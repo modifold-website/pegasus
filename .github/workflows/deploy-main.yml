@@ -26,6 +26,6 @@ jobs:
             cd /home/modifold.com/pegasus
             git checkout main
             git pull --ff-only origin main
-            npm ci
+            npm install
             npm run build
             pm2 restart pegasus --update-env

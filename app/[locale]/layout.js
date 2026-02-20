@@ -183,7 +183,11 @@ export default async function RootLayout({ children, params }) {
                                                         </a>
                                                     </div>
 
-                                                    <p className="footer-opensource">{messages.Footer.openSourceSoon}</p>
+                                                    <p className="footer-opensource">
+                                                        <a href="https://github.com/modifold-website" target="_blank" rel="noopener noreferrer">
+                                                            {messages.Footer.openSourceSoon}
+                                                        </a>
+                                                    </p>
 
                                                     <p className="footer-copyright">{messages.Footer.copyright}</p>
                                                 </div>

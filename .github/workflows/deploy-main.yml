@@ -28,4 +28,4 @@ jobs:
             git pull --ff-only origin main
             npm install
             npm run build
-            pm2 restart pegasus --update-env
+            PORT=3121 NODE_ENV=production pm2 restart pegasus --update-env

@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev -p 3122 --turbopack",
+    "dev": "next dev -p ${PORT:-3122} --turbopack",
     "build": "next build --turbopack",
-    "start": "next start -p 3122",
+    "start": "next start -p ${PORT:-3000}",
     "lint": "next lint"
   },
   "dependencies": {

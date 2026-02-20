@@ -1,0 +1,142 @@
+.moderation--title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.moderation-history {
+    background: var(--theme-color-background);
+    border-radius: var(--layout-island-border-radius);
+    margin-top: 18px;
+    padding: 24px;
+}
+.moderation-history h3 {
+    margin: 0 0 1.25rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary, #1e293b);
+}
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.history-item {
+    position: relative;
+    padding: 1rem 1rem 1rem 3.5rem;
+    background: var(--theme-color-background-content);
+    border-radius: var(--layout-island-border-radius);
+}
+.history-item::before {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    top: 1.25rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #94a3b8;
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px currentColor;
+    transition: all 0.2s;
+}
+.history-item.queued::before {
+    background: #3b82f6;
+    box-shadow: 0 0 0 3px #eff6ff;
+}
+.history-item.approved::before {
+    background: #10b981;
+    box-shadow: 0 0 0 3px #ecfdf5;
+}
+.history-item.rejected::before {
+    background: #ef4444;
+    box-shadow: 0 0 0 3px #fef2f2;
+}
+.history-item.changes_requested::before {
+    background: #f59e0b;
+    box-shadow: 0 0 0 3px #fffbeb;
+}
+.history-item .date {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+.history-item .action {
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+.history-item .reason {
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 1.45;
+}
+.history-item .moderator {
+    margin-top: 8px;
+    font-size: 16px;
+}
+.history-item .moderator a {
+    text-decoration: none;
+}
+.history-item .moderator a:hover {
+    text-decoration: underline;
+}
+.moderation-history .empty-state {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-style: italic;
+}
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+.bento-card {
+    position: relative;
+    padding: 24px;
+    background: var(--theme-color-background);
+    border-radius: var(--layout-island-border-radius);
+}
+.card-status {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    line-height: 0;
+}
+.card-status svg {
+    fill: none;
+    width: 28px;
+    height: 28px;
+}
+.completed .card-status svg {
+    color: #10b981;
+}
+.incomplete .card-status svg {
+    color: #ef4444;
+}
+.card-icon {
+    margin-bottom: 12px;
+    fill: none;
+}
+.bento-card h3 {
+    margin: 0 0 6px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.bento-card p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.4;
+}
+.status-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    margin: 18px 0;
+    font-weight: 500;
+    font-size: 16px;
+    background: var(--theme-color-background);
+    border-radius: var(--layout-island-border-radius);
+}
+.status-banner svg {
+    fill: none;
+}

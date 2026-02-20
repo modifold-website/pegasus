@@ -1,0 +1,67 @@
+﻿import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
+import ProjectSettings from "../../../../../components/project/settings/ProjectSettings";
+
+export async function generateMetadata({ params }) {
+    const { locale, slug } = await params;
+    const resolvedLocale = ["ru", "en", "es", "pt", "uk", "tr"].includes(locale) ? locale : "en";
+    const tProject = await getTranslations({ locale: resolvedLocale, namespace: "ProjectPage" });
+    const tSettings = await getTranslations({ locale: resolvedLocale, namespace: "SettingsProjectPage" });
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, {
+        headers: { Accept: "application/json" },
+    });
+
+    if(!res.ok) {
+        return { title: tProject("metadata.notFound") };
+    }
+
+    const project = await res.json();
+    return { title: tSettings("metadata.title", { title: project.title }) };
+}
+
+export default async function Page({ params }) {
+    const { locale, slug } = await params;
+    const resolvedLocale = ["ru", "en", "es", "pt", "uk", "tr"].includes(locale) ? locale : "en";
+    const tNotFound = await getTranslations({ locale: resolvedLocale, namespace: "NotFound" });
+    const cookieStore = await cookies();
+    const authToken = cookieStore.get("authToken")?.value;
+
+    if(!authToken) {
+        redirect("/");
+    }
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/settings`, {
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${authToken}`,
+        },
+        cache: "no-store",
+    });
+
+    if(res.status === 401 || res.status === 403) {
+        redirect("/403");
+    }
+
+    if(!res.ok) {
+        return (
+            <div className="layout">
+                <div className="view">
+                    <div className="not-found-page__dummy">{tNotFound("message")}</div>
+                </div>
+            </div>
+        );
+    }
+
+    const resProject = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, {
+        headers: {
+            Accept: "application/json",
+            Authorization: authToken ? `Bearer ${authToken}` : undefined,
+        },
+    });
+
+    const project = await resProject.json();
+
+    return <ProjectSettings project={project} authToken={authToken} />;
+}

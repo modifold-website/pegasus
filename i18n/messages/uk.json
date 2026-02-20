@@ -1,0 +1,1068 @@
+{
+    "pageTitle": {
+        "mods": "Моди — Modifold"
+    },
+    "Header": {
+        "home": "Головна",
+        "mods": "Моди",
+        "login": "Увійти",
+        "logout": "Вийти",
+        "settings": "Налаштування",
+        "createProject": "Створити проєкт",
+        "theme": {
+            "light": "Світла",
+            "dark": "Темна",
+            "system": "Системна"
+        },
+        "loginToCreate": "Будь ласка, увійдіть, щоб створити проєкт",
+        "beta": "бета",
+        "browse": "Відкрити контент",
+        "discoverContent": "Відкрити контент",
+        "myProfile": "Мій профіль",
+        "moderation": "Модерація",
+        "projects": "Проєкти",
+        "notifications": "Сповіщення"
+    },
+    "CookieBanner": {
+        "message": "Ми використовуємо файли cookie, щоб покращити ваш досвід. Необхідні cookie потрібні для роботи сайту, а аналітичні cookie допомагають нам зрозуміти, як ви користуєтеся сайтом.",
+        "learnMore": "Дізнатися більше",
+        "acceptAll": "Прийняти всі",
+        "customize": "Налаштувати",
+        "essentialCookies": "Необхідні cookie (обов’язкові)",
+        "analyticsCookies": "Аналітичні cookie",
+        "savePreferences": "Зберегти налаштування"
+    },
+    "Footer": {
+        "copyright": "© 2025-2026 modifold.com",
+        "sections": "Розділи",
+        "community": "Спільнота",
+        "legal": "Правова інформація",
+        "privacyPolicy": "Політика конфіденційності",
+        "termsOfUse": "Умови використання",
+        "contentRules": "Правила контенту",
+        "copyrightPolicy": "Політика авторського права та DMCA",
+        "notOfficial": "ЦЕ НЕ ОФІЦІЙНИЙ СЕРВІС HYTALE. НЕ СХВАЛЕНО ТА НЕ ПОВ’ЯЗАНО З HYPIXEL STUDIOS CANADA INC.",
+        "mods": "Моди",
+        "news": "Новини",
+        "openSourceSoon": "Відкритий код незабаром",
+        "apiDocs": "Документація API"
+    },
+    "NotFound": {
+        "message": "Сторінку не знайдено"
+    },
+    "HomePage": {
+        "title": "Дім для ваших модів Hytale — Modifold",
+        "description": "Приєднуйтеся до зростаючої спільноти авторів. Простора й прозора платформа, щоб ділитися своїми модами та відкривати, що створюють інші.",
+        "heroTitle": "Дім для ваших модів {hytale}",
+        "heroDescription": "Приєднуйтеся до зростаючої спільноти авторів. Простора й прозора платформа, щоб ділитися своїми модами та відкривати, що створюють інші.",
+        "exploreMods": "Переглянути моди",
+        "statsTitle": "Зростаємо разом: {count}+ модів від спільноти",
+        "searchPlaceholder": "Шукати моди за назвою",
+        "tabTrending": "У тренді",
+        "tabNew": "Нові",
+        "tabUpdated": "Оновлені",
+        "noProjects": "Проєкти не знайдено",
+        "creatorsSpotlightTitle": "У центрі уваги — автори",
+        "creatorsSpotlightDescription": "Познайомтеся з авторами, які формують сцену модингу Hytale.",
+        "creatorProjects": "{count} проєктів",
+        "noCreators": "Поки що немає авторів",
+        "ctaTitle": "Опублікуйте мод за лічені хвилини",
+        "ctaDescription": "Завантажуйте файли, додавайте скриншоти й виходьте на спільноту Hytale.",
+        "ctaButton": "Створити проєкт",
+        "forPlayersTitle": "Для гравців",
+        "forPlayersDescription": "Знаходьте та завантажуйте моди, створені спільнотою. Слідкуйте за найсвіжішими новинами та релізами.",
+        "forCreatorsTitle": "Для авторів",
+        "forCreatorsDescription": "Завантажуйте свої моди, діліться ними зі світом і зростайте разом з аудиторією на платформі, створеній для Hytale.",
+        "latestNewsTitle": "Останні новини від Modifold",
+        "viewAllNews": "Переглянути всі новини",
+        "commentsTitle": "Коментарі для авторів",
+        "commentsDescription": "Обговорюйте релізи, залишайте фідбек і допомагайте покращувати моди.",
+        "localesTitle": "Сайт 6 мовами",
+        "localesDescription": "Інтерфейс доступний англійською, іспанською, португальською, російською, турецькою та українською.",
+        "helloRotatorLabel": "Привіт шістьма мовами"
+    },
+    "ProjectCreationModal": {
+        "close": "Закрити",
+        "name": "Назва",
+        "summary": "Короткий опис",
+        "summaryHint": "Одне-два речення, які описують ваш проєкт.",
+        "projectType": "Тип проєкту",
+        "icon": "Іконка (обов’язково)",
+        "placeholders": {
+            "name": "Назва проєкту",
+            "summary": "Цей проєкт додає..."
+        },
+        "projectTypes": {
+            "mod": "Мод"
+        },
+        "createProject": "Створити проєкт",
+        "creating": "Створення...",
+        "cancel": "Скасувати",
+        "errors": {
+            "noIcon": "Будь ласка, завантажте іконку",
+            "noProjectType": "Будь ласка, виберіть тип проєкту",
+            "generic": "Помилка створення проєкту"
+        },
+        "success": "Проєкт створено!"
+    },
+    "ProjectPage": {
+        "previous": "Попередній",
+        "next": "Наступний",
+        "loginRequired": "Будь ласка, увійдіть, щоб уподобати цей проєкт",
+        "likeError": "Не вдалося змінити вподобання. Спробуйте ще раз.",
+        "failedToToggleLike": "Не вдалося змінити вподобання",
+        "links": "Посилання",
+        "reportIssues": "Проблеми",
+        "viewSource": "Переглянути код",
+        "wiki": "Вікі",
+        "joinDiscord": "Приєднатися до Discord-сервера",
+        "iconAlt": "Іконка проєкту {title}",
+        "ownerAvatarAlt": "Аватар користувача {username}",
+        "editSettings": "Редагувати налаштування",
+        "tabs": {
+            "description": "Опис",
+            "gallery": "Галерея",
+            "versions": "Версії",
+            "gameVersion": "Версії гри",
+            "gameChannel": "Канали",
+            "loader": "Лоадери",
+            "comments": "Коментарі"
+        },
+        "creators": "Автори",
+        "owner": "Власник",
+        "created": "Створено:",
+        "id": "ID:",
+        "notFound": "Проєкт не знайдено",
+        "projectTypes": {
+            "mod": "Мод Hytale",
+            "default": "Проєкт Hytale"
+        },
+        "metadata": {
+            "title": "{title} {titlePrefix} — Modifold",
+            "openGraph": {
+                "title": "{titlePrefix}: {title}"
+            },
+            "notFound": "Проєкт не знайдено — Modifold",
+            "version": {
+                "title": "{version} - {project} — Modifold",
+                "description": "Версія {version} проєкту {project}",
+                "notFound": "Версію не знайдено — Modifold",
+                "unknownProject": "Проєкт"
+            }
+        },
+        "editVersion": "Редагувати версію",
+        "versionNumber": "Номер версії",
+        "changelog": "Список змін",
+        "releaseChannel": "Канал релізу",
+        "gameVersions": "Версії гри",
+        "loaders": "Лоадери",
+        "file": "Файл",
+        "selectGameVersions": "Виберіть версії гри",
+        "selectLoaders": "Виберіть лоадери",
+        "update": "Оновити",
+        "updating": "Оновлення...",
+        "delete": "Видалити",
+        "cancel": "Скасувати",
+        "fillRequiredFields": "Будь ласка, заповніть усі обов’язкові поля",
+        "versionUpdated": "Версію успішно оновлено",
+        "confirmDeleteVersion": "Ви впевнені, що хочете видалити цю версію?",
+        "versionDeleted": "Версію успішно видалено",
+        "errorOccurred": "Сталася помилка. Спробуйте ще раз.",
+        "errorRecordingDownload": "Помилка запису завантаження",
+        "licenseTitle": "Ліцензія",
+        "licensedAs": "Ліцензовано за {license}",
+        "download": "Завантажити",
+        "changesTitle": "Р—РјС–РЅРё",
+        "noChanges": "Немає змін",
+        "filesTitle": "Файли",
+        "noFiles": "Немає файлів",
+        "close": "Закрити",
+        "versions": {
+            "headers": {
+                "version": "Версія",
+                "statistics": "Статистика"
+            },
+            "notSpecified": "Не вказано",
+            "published": "Опубліковано:",
+            "downloads": "завантажень"
+        },
+        "releaseChannels": {
+            "release": "Реліз",
+            "beta": "Бета",
+            "alpha": "Альфа"
+        },
+        "filters": {
+            "gameVersionsAria": "Фільтр за версіями гри",
+            "channelsAria": "Фільтр за каналами",
+            "loadersAria": "Фільтр за лоадерами"
+        },
+        "gallery": {
+            "updateSuccess": "Зображення оновлено",
+            "updateError": "Помилка оновлення зображення",
+            "deleteConfirm": "Ви впевнені, що хочете видалити це зображення?",
+            "deleteSuccess": "Зображення видалено",
+            "deleteError": "Помилка видалення зображення",
+            "viewImage": "Переглянути {title} на весь екран",
+            "image": "Зображення галереї",
+            "editImage": "Редагувати зображення",
+            "noImages": "У галереї немає зображень.",
+            "lightboxLabel": "Лайтбокс зображення",
+            "openInNewTab": "Відкрити зображення у новій вкладці",
+            "replaceImage": "Замінити зображення",
+            "title": "Заголовок",
+            "description": "Опис",
+            "orderIndex": "Порядковий індекс",
+            "featured": "Обране"
+        },
+        "versionNotFound": "Версію не знайдено",
+        "projectNotFound": "Проєкт не знайдено",
+        "comments": {
+            "title": "Коментарі",
+            "loginHint": "Увійдіть, щоб залишити коментар.",
+            "placeholder": "Напишіть коментар...",
+            "submit": "Надіслати",
+            "reply": "Відповісти",
+            "cancel": "Скасувати",
+            "delete": "Видалити",
+            "hide": "Сховати",
+            "show": "Показати",
+            "spam": "Спам",
+            "authorLabel": "Автор",
+            "deleted": "Коментар видалено.",
+            "loading": "Завантаження коментарів...",
+            "rateLimited": "Ви коментуєте надто часто. Спробуйте ще раз за кілька секунд.",
+            "errors": {
+                "load": "Не вдалося завантажити коментарі",
+                "submit": "Не вдалося надіслати коментар",
+                "moderate": "Не вдалося оновити коментар"
+            },
+            "status": {
+                "hidden": "Сховано",
+                "spam": "Спам",
+                "deleted": "Видалено"
+            },
+            "emptyLoggedIn": "Поки що немає коментарів. Залиште перший відгук про мод!",
+            "emptyGuest": "Поки що немає коментарів. Увійдіть, щоб залишити відгук про мод."
+        }
+    },
+    "DashboardClient": {
+        "userAvatarAlt": "Аватар користувача {username}",
+        "projectIconAlt": "Іконка проєкту {title}",
+        "noIcon": "Без іконки",
+        "loading": "Завантаження проєктів...",
+        "noProjects": "Ви ще не створили жодного проєкту.",
+        "previous": "Попередній",
+        "next": "Наступний",
+        "edit": "Редагувати",
+        "metadata": {
+            "title": "Панель керування — Modifold",
+            "description": "Керуйте своїми проєктами на Modifold."
+        },
+        "byYou": "від вас"
+    },
+    "SettingsBlogPage": {
+        "sidebar": {
+            "profileIconAlt": "Іконка профілю",
+            "projects": "Проєкти",
+            "notifications": "Сповіщення",
+            "settings": "Налаштування",
+            "apiTokens": "API-токени",
+            "verification": "Верифікація"
+        },
+        "username": "Ім’я користувача",
+        "description": "Опис",
+        "socialNetworks": "Соціальні мережі",
+        "uploadAvatar": "Завантажити аватар",
+        "avatarPreviewAlt": "Попередній перегляд аватара",
+        "placeholders": {
+            "username": "Введіть ім’я користувача",
+            "description": "Розкажіть про себе",
+            "youtube": "URL YouTube",
+            "telegram": "URL Telegram",
+            "x": "URL X",
+            "discord": "URL Discord"
+        },
+        "language": {
+            "title": "Мова",
+            "russian": "Російська",
+            "english": "Англійська",
+            "spanish": "Іспанська",
+            "portuguese": "Португальська",
+            "ukrainian": "Українська",
+            "turkish": "Турецька"
+        },
+        "save": "Зберегти",
+        "errors": {
+            "fileTooLarge": "Файл завеликий. Максимальний розмір — 20 МБ",
+            "generic": "Помилка збереження налаштувань"
+        },
+        "success": "Налаштування успішно збережено!",
+        "metadata": {
+            "title": "Налаштування акаунта — Modifold"
+        },
+        "verification": {
+            "title": "Верифікація",
+            "statusLabel": "Статус",
+            "status": {
+                "verified": "Верифіковано",
+                "notVerified": "Не верифіковано",
+                "pending": "На розгляді",
+                "rejected": "Відхилено"
+            },
+            "requirements": "Вимоги: 100+ підписників у X/YouTube або 1 000+ завантажень на CurseForge. Додайте посилання на Modifold у профіль та вкажіть його в заявці.",
+            "request": "Подати заявку на верифікацію",
+            "requestPending": "Заявка на розгляді",
+            "reapply": "Подати повторно",
+            "lastRequest": "Остання заявка: {date}",
+            "cooldown": "Доступно через {days} дн."
+        }
+    },
+    "BrowsePage": {
+        "gameVersion": "Версія гри",
+        "loader": "Лоадер",
+        "categories": "Категорії",
+        "clearFilters": "Очистити фільтри",
+        "placeholders": {
+            "search": "Пошук проєктів...",
+            "searchVersion": "Пошук..."
+        },
+        "sort": {
+            "downloads": "Найбільше завантажень",
+            "recent": "Нещодавно додані"
+        },
+        "loading": "Завантаження проєктів...",
+        "noProjects": "Поки що немає проєктів",
+        "previous": "Попередній",
+        "next": "Наступний",
+        "mods": "Моди"
+    },
+    "ProfilePage": {
+        "userAvatarAlt": "Аватар користувача {username}",
+        "loading": "Завантаження проєктів...",
+        "noProjects": "Поки що немає проєктів",
+        "previous": "Попередній",
+        "next": "Наступний",
+        "errors": {
+            "loadingProjects": "Помилка завантаження проєктів",
+            "subscriptionChange": "Помилка зміни підписки"
+        },
+        "loginToSubscribe": "Увійдіть, щоб підписатися",
+        "edit": "Редагувати",
+        "subscribe": "Підписатися",
+        "subscribed": "Підписано",
+        "accountFrozen": "Акаунт заморожено",
+        "role": {
+            "developer": "Розробник",
+            "team": "Команда Modifold"
+        },
+        "joined": "Приєднався:",
+        "subscribersLabel": "{count, plural, one {Підписник} other {Підписники}}",
+        "subscriptionsLabel": "{count, plural, one {Підписка} other {Підписки}}",
+        "moreActionsPlaceholder": "Більше дій незабаром",
+        "moreActionsAria": "Більше дій",
+        "metadata": {
+            "title": "{username} — Modifold",
+            "notFound": "Користувача не знайдено — Modifold",
+            "frozen": "Акаунт заморожено — Modifold"
+        },
+        "remove": "Прибрати"
+    },
+    "SettingsProjectPage": {
+        "sidebar": {
+            "general": "Загальні",
+            "description": "Опис",
+            "links": "Посилання",
+            "versions": "Версії",
+            "gallery": "Галерея",
+            "tags": "Теги",
+            "moderation": "Модерація",
+            "members": "Учасники",
+            "license": "Ліцензія"
+        },
+        "save": "Зберегти",
+        "metadata": {
+            "title": "Налаштування — {title} — Modifold"
+        },
+        "general": {
+            "iconAlt": "Іконка проєкту",
+            "errors": {
+                "fileTooLarge": "Файл завеликий. Максимальний розмір — 20 МБ",
+                "save": "Помилка збереження налаштувань проєкту",
+                "delete": "Помилка видалення проєкту"
+            },
+            "success": {
+                "saved": "Налаштування проєкту збережено",
+                "deleted": "Проєкт успішно видалено"
+            },
+            "confirmDelete": "Ви впевнені, що хочете видалити \"{title}\"? Цю дію неможливо скасувати.",
+            "fields": {
+                "icon": "Іконка",
+                "name": "Назва",
+                "summary": "Короткий опис",
+                "url": "URL",
+                "visibility": "Видимість"
+            },
+            "placeholders": {
+                "name": "Назва проєкту",
+                "summary": "Цей проєкт додає...",
+                "url": "Введіть URL"
+            },
+            "hints": {
+                "summary": "Мінімум 30 символів.",
+                "url": "URL має бути в нижньому регістрі, містити лише літери й цифри та може включати дефіси. Максимум 30 символів.",
+                "visibility": "Публічний: видимий у пошуку та профілях. Непублічний: опублікований, але не в пошуку. Приватний: доступний лише учасникам."
+            },
+            "visibility": {
+                "public": "Публічний",
+                "unlisted": "Непублічний",
+                "private": "Приватний"
+            },
+            "comments": {
+                "title": "Коментарі",
+                "enabled": "Увімкнено",
+                "disabled": "Вимкнено",
+                "hint": "Приховує вкладку коментарів і блокує нові коментарі."
+            },
+            "actions": {
+                "save": "Зберегти",
+                "delete": "Видалити проєкт"
+            }
+        },
+        "description": {
+            "success": "Опис оновлено",
+            "errors": {
+                "save": "Помилка оновлення опису"
+            },
+            "title": "Опис",
+            "placeholder": "Введіть опис проєкту (підтримується Markdown)",
+            "hint": "Мінімум 100 символів. Підтримується форматування Markdown.",
+            "preview": "Попередній перегляд",
+            "actions": {
+                "save": "Зберегти"
+            }
+        },
+        "links": {
+            "success": "Посилання оновлено",
+            "errors": {
+                "save": "Помилка оновлення посилань"
+            },
+            "fields": {
+                "issueTracker": "Трекер задач",
+                "sourceCode": "Вихідний код",
+                "wiki": "Вікі",
+                "discord": "Discord"
+            },
+            "placeholders": {
+                "issueTracker": "URL до трекера задач",
+                "sourceCode": "URL до вихідного коду",
+                "wiki": "URL до вікі",
+                "discord": "URL до Discord"
+            },
+            "actions": {
+                "save": "Зберегти"
+            }
+        },
+        "license": {
+            "success": "Ліцензію успішно оновлено",
+            "errors": {
+                "save": "Помилка оновлення ліцензії"
+            },
+            "title": "Ліцензія проєкту",
+            "actions": {
+                "save": "Зберегти ліцензію",
+                "clear": "Очистити ліцензію"
+            },
+            "current": "Поточна ліцензія",
+            "noSelection": "Ліцензію не вибрано"
+        },
+        "tags": {
+            "success": "Теги оновлено",
+            "errors": {
+                "save": "Помилка оновлення тегів"
+            },
+            "title": "Теги проєкту",
+            "selected": "{count, plural, one {# вибрано} other {# вибрано}}",
+            "select": "Вибрати теги",
+            "actions": {
+                "save": "Зберегти теги",
+                "clear": "Очистити теги"
+            },
+            "current": "Поточні теги",
+            "none": "Теги не вибрані.",
+            "labels": {
+                "adventure": "Пригоди",
+                "cursed": "Прокляте",
+                "decoration": "Декор",
+                "economy": "Економіка",
+                "equipment": "Спорядження",
+                "food": "Їжа",
+                "game_mechanics": "Механіки гри",
+                "library": "Бібліотека",
+                "magic": "Магія",
+                "management": "Керування",
+                "minigame": "Мінігра",
+                "mobs": "Моби",
+                "optimization": "Оптимізація",
+                "social": "Соціальне",
+                "storage": "Сховище",
+                "technology": "Технології",
+                "transportation": "Транспорт",
+                "utility": "Утиліти",
+                "world_generation": "Генерація світу",
+                "texture_packs": "Текстурпаки"
+            }
+        },
+        "versions": {
+            "errors": {
+                "selectVersionsAndLoaders": "Будь ласка, виберіть щонайменше одну версію гри та лоадер",
+                "upload": "Помилка завантаження версії"
+            },
+            "success": "Версію завантажено",
+            "title": "Завантажити нову версію",
+            "fields": {
+                "versionNumber": "Номер версії",
+                "changelog": "Список змін",
+                "releaseChannel": "Канал релізу",
+                "gameVersions": "Версії гри",
+                "loaders": "Лоадери"
+            },
+            "placeholders": {
+                "versionNumber": "наприклад, 1.0",
+                "changelog": "Опишіть зміни в цій версії"
+            },
+            "releaseChannels": {
+                "release": "Реліз",
+                "beta": "Бета",
+                "alpha": "Альфа"
+            },
+            "selectGameVersions": "Вибрати версії гри",
+            "selectedGameVersions": "{count, plural, one {# вибрано} other {# вибрано}}",
+            "selectLoaders": "Вибрати лоадери",
+            "selectedLoaders": "{count, plural, one {# вибрано} other {# вибрано}}",
+            "actions": {
+                "upload": "Завантажити версію"
+            }
+        },
+        "gallerySettings": {
+            "success": "Зображення завантажено",
+            "errors": {
+                "upload": "Помилка завантаження зображення"
+            },
+            "title": "Додати нове зображення",
+            "fields": {
+                "title": "Заголовок",
+                "description": "Опис",
+                "order": "Порядок",
+                "featured": "Обране"
+            },
+            "placeholders": {
+                "title": "Назва зображення",
+                "description": "Опис зображення",
+                "order": "Порядковий номер"
+            },
+            "featuredHint": "Обране зображення галереї відображається в пошуку та в картці вашого проєкту. Лише одне зображення галереї може бути обраним.",
+            "actions": {
+                "add": "Додати зображення"
+            },
+            "states": {
+                "enabled": "Увімкнено",
+                "disabled": "Вимкнено"
+            }
+        },
+        "moderation": {
+            "errors": {
+                "icon": "Будь ласка, завантажте іконку для проєкту",
+                "description": "Будь ласка, додайте опис для проєкту",
+                "summary": "Будь ласка, додайте короткий опис для проєкту",
+                "versions": "Будь ласка, завантажте принаймні одну версію для проєкту",
+                "submit": "Помилка відправлення проєкту на модерацію"
+            },
+            "title": "Надіслати проєкт на модерацію",
+            "description": "Переконайтеся, що всі обов’язкові поля заповнені перед відправленням проєкту на перевірку",
+            "cards": {
+                "icon": {
+                    "title": "Іконка проєкту",
+                    "done": "Успішно завантажено",
+                    "required": "Обов’язково (рекомендовано 512x512 px)"
+                },
+                "summary": {
+                    "title": "Короткий опис",
+                    "done": "Виглядає добре!",
+                    "required": "Короткий опис (1-2 речення)"
+                },
+                "description": {
+                    "title": "Опис",
+                    "done": "Детально і готово",
+                    "required": "Повний опис проєкту (рекомендовано 300+ символів)"
+                },
+                "versions": {
+                    "title": "Версії",
+                    "done": "Завантажено принаймні одну версію",
+                    "required": "Завантажте принаймні одну версію"
+                }
+            },
+            "status": {
+                "queued": "Проєкт уже подано на модерацію",
+                "approved": "Проєкт схвалено"
+            },
+            "history": {
+                "title": "Історія модерації",
+                "empty": "Поки що немає подій модерації",
+                "actions": {
+                    "queued": "Подано на перевірку",
+                    "approved": "Схвалено",
+                    "rejected": "Відхилено",
+                    "changesRequested": "Запитані зміни"
+                },
+                "reason": "Причина",
+                "moderator": "Модератор"
+            },
+            "actions": {
+                "submitting": "Відправлення...",
+                "alreadySubmitted": "Вже подано",
+                "approved": "Проєкт схвалено",
+                "submit": "Подати на модерацію"
+            }
+        },
+        "members": {
+            "errors": {
+                "fetch": "Помилка завантаження учасників проєкту",
+                "enterUsername": "Будь ласка, введіть ім’я користувача",
+                "invite": "Помилка запрошення учасника",
+                "roleEmpty": "Роль не може бути порожньою",
+                "roleTooLong": "Роль занадто довга (макс. 50)",
+                "updateRole": "Помилка оновлення ролі",
+                "remove": "Помилка видалення учасника",
+                "leave": "Помилка виходу з проєкту"
+            },
+            "success": {
+                "inviteSent": "Запрошення надіслано",
+                "roleUpdated": "Роль оновлено",
+                "removed": "Учасника видалено",
+                "left": "Ви вийшли з проєкту"
+            },
+            "confirmRemove": "Видалити {username} з проєкту?",
+            "confirmLeave": "Вийти з \"{title}\"?",
+            "inviteTitle": "Запросити учасника",
+            "inviteDescription": "Запросіть людей до співпраці над цим проєктом.",
+            "placeholders": {
+                "username": "Введіть ім’я користувача",
+                "role": "Роль"
+            },
+            "actions": {
+                "invite": "Запросити",
+                "leave": "Вийти з проєкту",
+                "remove": "Видалити",
+                "saveRole": "Зберегти"
+            },
+            "leaveTitle": "Вийти з проєкту",
+            "leaveDescription": "Ви втратите доступ до цього проєкту.",
+            "none": "Поки що немає учасників.",
+            "avatarAlt": "Аватар учасника {username}",
+            "roleLabel": "Роль",
+            "status": {
+                "pending": "Очікує",
+                "accepted": "Прийнято",
+                "member": "Учасник"
+            }
+        }
+    },
+    "NewsPage": {
+        "title": "Новини",
+        "featuredArticle": {
+            "label": "Рекомендована стаття"
+        },
+        "moreTitle": "Більше статей",
+        "notFound": "Статтю не знайдено",
+        "byline": {
+            "and": "і",
+            "team": "Команда Modifold",
+            "separator": "•"
+        }
+    },
+    "LoginModal": {
+        "close": "Закрити",
+        "continueWith": "Продовжити з {provider}",
+        "errors": {
+            "telegram": "Помилка авторизації Telegram",
+            "github": "Помилка авторизації GitHub",
+            "discord": "Помилка авторизації Discord",
+            "telegramProcessing": "Помилка обробки повідомлення Telegram",
+            "githubProcessing": "Помилка обробки повідомлення GitHub",
+            "discordProcessing": "Помилка обробки повідомлення Discord"
+        },
+        "dataModal": {
+            "title": "Які дані ми збираємо?",
+            "intro": "Ми цінуємо вашу приватність і використовуємо соціальні логіни (Telegram, GitHub, Discord) для безпечної автентифікації на Modifold. Ми збираємо лише мінімум даних, необхідний для роботи:",
+            "items": {
+                "usernameAvatar": "Ім’я користувача та аватар для ідентифікації вашого профілю.",
+                "email": "Email-адресу (якщо її надає соцмережа) для зв’язку та персоналізації."
+            },
+            "outro": "Ми не збираємо паролі й не отримуємо їх від соціальних мереж. Усі дані зберігаються виключно на захищених серверах Modifold і ніколи не передаються третім сторонам. Детальніше — в нашій Політиці конфіденційності."
+        }
+    },
+    "DeleteAccountSection": {
+        "title": "Небезпечна зона",
+        "description": "Усі ваші проєкти, версії, завантажені файли, зображення, підписки та інша пов’язана інформація будуть безповоротно видалені.",
+        "deleteButton": "Видалити мій акаунт назавжди",
+        "confirmTitle": "Ви абсолютно впевнені?",
+        "confirmDescription": "Цю дію неможливо скасувати. Усі ваші проєкти, файли, зображення, підписники та дані акаунта будуть безповоротно видалені.",
+        "cancel": "Скасувати",
+        "confirmDelete": "Так, видалити мій акаунт",
+        "deleting": "Видалення...",
+        "success": "Акаунт і всі пов’язані дані успішно видалено",
+        "errors": {
+            "generic": "Не вдалося видалити акаунт"
+        }
+    },
+    "SettingsAPIPage": {
+        "sidebar": {
+            "profileIconAlt": "Іконка профілю",
+            "projects": "Проєкти",
+            "notifications": "Сповіщення",
+            "settings": "Налаштування",
+            "apiTokens": "API-токени",
+            "verification": "Верифікація"
+        },
+        "title": "API-токени",
+        "description": "API-токени дозволяють зовнішнім застосункам і скриптам отримувати доступ до Modifold від вашого імені. Зберігайте їх у безпеці та ніколи не публікуйте.",
+        "tokenName": "Назва токена",
+        "placeholders": {
+            "tokenName": "Токен для мого скрипта"
+        },
+        "expiration": "Термін дії",
+        "createToken": "Створити токен",
+        "close": "Закрити",
+        "cancel": "Скасувати",
+        "creating": "Створення...",
+        "newTokenTitle": "Створено новий API-токен!",
+        "copy": "Копіювати",
+        "importantLabel": "Важливо:",
+        "importantBody": "Цей токен більше не буде показано. Збережіть його в безпечному місці.",
+        "expiresLabel": "Дійсний до:",
+        "never": "Ніколи",
+        "tokensTitle": "Ваші API-токени",
+        "loadingTokens": "Завантаження токенів...",
+        "noTokens": "У вас ще немає API-токенів.",
+        "revoke": "Відкликати",
+        "confirmRevoke": "Ви впевнені, що хочете відкликати цей токен?",
+        "docsPrompt": "Потрібна допомога? Перегляньте нашу",
+        "docsLink": "Документацію API",
+        "durations": {
+            "week": "1 тиждень",
+            "month": "1 місяць",
+            "quarter": "3 місяці",
+            "year": "1 рік",
+            "forever": "Назавжди"
+        },
+        "success": {
+            "created": "Токен створено! Скопіюйте його зараз — більше він не відобразиться.",
+            "copied": "Токен скопійовано в буфер обміну!",
+            "revoked": "Токен відкликано"
+        },
+        "errors": {
+            "loadTokens": "Не вдалося завантажити API-токени",
+            "tokenNameRequired": "Будь ласка, введіть назву токена",
+            "createToken": "Не вдалося створити токен",
+            "revokeToken": "Не вдалося відкликати токен"
+        },
+        "table": {
+            "name": "Назва",
+            "token": "Токен (приховано)",
+            "created": "Створено",
+            "expires": "Дійсний до",
+            "lastUsed": "Останнє використання"
+        },
+        "metadata": {
+            "title": "API-токени — Modifold"
+        }
+    },
+    "AccessDenied": {
+        "metadata": {
+            "title": "Доступ заборонено — Modifold"
+        },
+        "message": "Доступ заборонено"
+    },
+    "ShareButtons": {
+        "copiedToast": "Посилання скопійовано",
+        "shareOnX": "Поділитися в X",
+        "shareByEmail": "Поділитися через email",
+        "copiedAria": "Скопійовано!",
+        "copyLinkAria": "Скопіювати посилання"
+    },
+    "LicenseModal": {
+        "close": "Закрити",
+        "unknown": "Невідома ліцензія",
+        "empty": "Порожньо",
+        "failed": "Не вдалося"
+    },
+    "ProjectCard": {
+        "by": "РІС–Рґ",
+        "downloads": "завантажень",
+        "followers": "підписників",
+        "updated": "Оновлено",
+        "projectIconAlt": "Іконка проєкту {title}"
+    },
+    "ModerationPage": {
+        "metadata": {
+            "title": "Модерація — Modifold"
+        },
+        "title": "Модерація",
+        "tabs": {
+            "projects": "Проєкти",
+            "users": "Користувачі",
+            "verification": "Верифікація"
+        },
+        "charts": {
+            "approvedProjects": "Графік схвалених проєктів",
+            "userRegistrations": "Графік реєстрацій користувачів",
+            "projects": "Проєкти",
+            "registrations": "Реєстрації",
+            "date": "Дата: {date}"
+        },
+        "stats": {
+            "totalApproved": "Усього схвалених проєктів",
+            "totalUsers": "Усього користувачів",
+            "pending": "Проєкти в очікуванні"
+        },
+        "filters": {
+            "searchPlaceholder": "Пошук за назвою проєкту...",
+            "types": {
+                "all": "Усі проєкти",
+                "mod": "Моди"
+            },
+            "sort": {
+                "oldest": "Найстаріші",
+                "newest": "Найновіші"
+            }
+        },
+        "actions": {
+            "approve": "Схвалити",
+            "reject": "Відхилити",
+            "rejectPrompt": "Введіть причину відхилення:"
+        },
+        "errors": {
+            "fetchProjects": "Помилка отримання проєктів для модерації",
+            "fetchAnalytics": "Помилка отримання даних аналітики",
+            "approve": "Помилка схвалення проєкту",
+            "reject": "Помилка відхилення проєкту"
+        },
+        "success": {
+            "approved": "Проєкт схвалено",
+            "rejected": "Проєкт відхилено"
+        },
+        "pagination": {
+            "previous": "Попередній",
+            "next": "Наступний",
+            "pageOf": "Сторінка {page} з {totalPages}"
+        },
+        "empty": "Немає проєктів, що очікують на модерацію."
+    },
+    "UsersModerationPage": {
+        "metadata": {
+            "title": "Модерація користувачів — Modifold"
+        },
+        "title": "Модерація користувачів",
+        "tabs": {
+            "projects": "Проєкти",
+            "users": "Користувачі",
+            "verification": "Верифікація"
+        },
+        "errors": {
+            "fetch": "Помилка отримання користувачів",
+            "updateRole": "Помилка оновлення ролі",
+            "fileTooLarge": "Файл завеликий. Максимальний розмір — 20 МБ",
+            "updateUser": "Помилка оновлення користувача"
+        },
+        "success": {
+            "roleUpdated": "Роль користувача оновлено",
+            "userUpdated": "Користувача оновлено"
+        },
+        "roles": {
+            "admin": "Адміністратор",
+            "moderator": "Модератор",
+            "user": "Користувач"
+        },
+        "actions": {
+            "editAria": "Змінити роль або редагувати користувача",
+            "edit": "Редагувати",
+            "save": "Зберегти",
+            "cancel": "Скасувати",
+            "close": "Закрити"
+        },
+        "pagination": {
+            "previous": "Попередній",
+            "next": "Наступний",
+            "pageOf": "Сторінка {page} з {totalPages}"
+        },
+        "empty": "Немає користувачів для відображення.",
+        "modal": {
+            "title": "Редагувати користувача {username}"
+        },
+        "fields": {
+            "avatar": "Аватар",
+            "avatarAlt": "Попередній перегляд аватара",
+            "username": "Ім’я користувача",
+            "email": "Email",
+            "slug": "URL",
+            "description": "Опис",
+            "role": "Роль"
+        },
+        "placeholders": {
+            "username": "Введіть ім’я користувача",
+            "email": "Введіть email",
+            "slug": "Введіть slug",
+            "description": "Введіть опис"
+        }
+    },
+    "NotificationsPage": {
+        "title": "Сповіщення",
+        "loading": "Завантаження сповіщень...",
+        "loadingMore": "Завантаження...",
+        "loadMore": "Завантажити ще",
+        "empty": "Поки що немає сповіщень",
+        "sidebarAvatarAlt": "Аватар користувача {username}",
+        "unknownUser": "Невідомий користувач",
+        "sections": {
+            "today": "Сьогодні",
+            "yesterday": "Вчора"
+        },
+        "messages": {
+            "followOne": "{username} підписався на вас",
+            "followMany": "{username} та ще {count} користувачів підписалися на вас",
+            "followOneTail": "підписався на вас",
+            "followManyTail": "та ще {count} користувачів підписалися на вас",
+            "projectLikeOne": "{username} вподобав ваш проєкт {project}",
+            "projectLikeMany": "{username} та ще {count} користувачів вподобали ваш проєкт {project}",
+            "projectLikeOneMiddle": "вподобав ваш проєкт",
+            "projectLikeManyMiddle": "та ще {count} користувачів вподобали ваш проєкт",
+            "projectFallback": "ваш проєкт",
+            "unknown": "Нове сповіщення"
+        },
+        "errors": {
+            "fetch": "Не вдалося завантажити сповіщення",
+            "noToken": "Токен авторизації не знайдено"
+        }
+    },
+    "VerificationRequestModal": {
+        "title": "Заявка на верифікацію",
+        "close": "Закрити",
+        "description": "Додайте принаймні одне посилання (X, YouTube або CurseForge). Модератори перевірять і приймуть рішення.",
+        "platform": "Платформа",
+        "platformUrl": "Посилання на соцмережу",
+        "modifoldUrl": "Посилання на Modifold",
+        "followers": "Підписники",
+        "downloads": "Завантаження",
+        "note": "Коментар модератору",
+        "confirm": "Підтверджую, що посилання належать мені.",
+        "submit": "Надіслати",
+        "submitting": "Надсилаємо...",
+        "cancel": "Скасувати",
+        "placeholders": {
+            "platformUrl": "Посилання на X/YouTube/CurseForge",
+            "modifoldUrl": "Посилання на ваш профіль Modifold",
+            "followers": "Кількість підписників",
+            "downloads": "Кількість завантажень",
+            "note": "Де саме вказане посилання на Modifold (необов’язково)",
+            "xUrl": "https://x.com/yourprofile",
+            "youtubeUrl": "https://youtube.com/@yourchannel",
+            "curseforgeUrl": "https://curseforge.com/members/you"
+        },
+        "errors": {
+            "missingLinks": "Додайте принаймні одне посилання на X, YouTube або CurseForge.",
+            "confirmRequired": "Підтвердьте, що додали посилання на Modifold.",
+            "followers": "Потрібно мінімум 100 підписників.",
+            "downloads": "Потрібно мінімум 1 000 завантажень.",
+            "pending": "У вас уже є заявка на розгляді.",
+            "generic": "Помилка надсилання заявки на верифікацію",
+            "cooldown": "Повторну заявку можна подати через 7 днів після відмови."
+        },
+        "success": "Заявку надіслано",
+        "xUrl": "Посилання на X",
+        "youtubeUrl": "Посилання на YouTube",
+        "curseforgeUrl": "Посилання на CurseForge"
+    },
+    "VerificationModerationPage": {
+        "metadata": {
+            "title": "Заявки на верифікацію — Modifold"
+        },
+        "title": "Заявки на верифікацію",
+        "tabs": {
+            "projects": "Проєкти",
+            "users": "Користувачі",
+            "verification": "Верифікація"
+        },
+        "filters": {
+            "pending": "На розгляді",
+            "approved": "Схвалені",
+            "rejected": "Відхилені",
+            "all": "Усі"
+        },
+        "statuses": {
+            "pending": "На розгляді",
+            "approved": "Схвалено",
+            "rejected": "Відхилено"
+        },
+        "fields": {
+            "socialLink": "Посилання на соцмережу",
+            "modifoldLink": "Посилання Modifold",
+            "followers": "Підписники",
+            "downloads": "Завантаження",
+            "createdAt": "Дата заявки",
+            "note": "Коментар",
+            "xUrl": "Посилання X",
+            "youtubeUrl": "Посилання YouTube",
+            "curseforgeUrl": "Посилання CurseForge"
+        },
+        "actions": {
+            "approve": "Схвалити",
+            "reject": "Відхилити",
+            "notePrompt": "Коментар модератора (необов’язково):"
+        },
+        "errors": {
+            "fetch": "Помилка завантаження заявок",
+            "update": "Помилка оновлення заявки"
+        },
+        "success": {
+            "approved": "Заявку схвалено",
+            "rejected": "Заявку відхилено"
+        },
+        "pagination": {
+            "previous": "Назад",
+            "next": "Вперед",
+            "pageOf": "Сторінка {page} з {totalPages}"
+        },
+        "empty": "Заявок немає."
+    },
+    "SettingsVerificationPage": {
+        "metadata": {
+            "title": "Верифікація — Modifold"
+        },
+        "title": "Верифікація",
+        "benefitsNote": "Верифікація не дає додаткових переваг, окрім значка біля імені профілю. Значок допомагає відрізняти перевірених/популярних моддерів.",
+        "statusLabel": "Статус",
+        "status": {
+            "verified": "Верифіковано",
+            "notVerified": "Не верифіковано",
+            "pending": "На розгляді",
+            "rejected": "Відхилено"
+        },
+        "requirements": "Вимоги: 500+ підписників в X/YouTube або 3 000+ завантажень на CurseForge. Вкажіть принаймні одне посилання для перевірки.",
+        "request": "Подати заявку на верифікацію",
+        "requestPending": "Заявка на розгляді",
+        "reapply": "Подати повторно",
+        "cooldown": "Доступно через {days} дн.",
+        "lastRequest": "Остання заявка: {date}",
+        "errors": {
+            "fetch": "Не вдалося завантажити статус верифікації"
+        },
+        "sidebar": {
+            "profileIconAlt": "Іконка профілю",
+            "projects": "Проєкти",
+            "notifications": "Сповіщення",
+            "settings": "Налаштування",
+            "apiTokens": "API токени",
+            "verification": "Верифікація"
+        }
+    }
+}

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /mod/*/settings
+Disallow: /mod/*/settings/
+Disallow: /moderation
+Disallow: /moderation/*
+Allow: /

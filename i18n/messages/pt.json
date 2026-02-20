@@ -1,0 +1,1068 @@
+{
+    "pageTitle": {
+        "mods": "Mods — Modifold"
+    },
+    "Header": {
+        "home": "Início",
+        "mods": "Mods",
+        "login": "Entrar",
+        "logout": "Sair",
+        "settings": "Configurações",
+        "createProject": "Criar projeto",
+        "theme": {
+            "light": "Claro",
+            "dark": "Escuro",
+            "system": "Sistema"
+        },
+        "loginToCreate": "Faça login para criar um projeto",
+        "beta": "beta",
+        "browse": "Descobrir conteúdo",
+        "discoverContent": "Descobrir conteúdo",
+        "myProfile": "Meu perfil",
+        "moderation": "Moderação",
+        "projects": "Projetos",
+        "notifications": "Notificações"
+    },
+    "CookieBanner": {
+        "message": "Usamos cookies para melhorar sua experiência. Cookies essenciais são necessários para o funcionamento do site, enquanto cookies analíticos nos ajudam a entender como você usa nosso site.",
+        "learnMore": "Saiba mais",
+        "acceptAll": "Aceitar tudo",
+        "customize": "Personalizar",
+        "essentialCookies": "Cookies essenciais (obrigatórios)",
+        "analyticsCookies": "Cookies analíticos",
+        "savePreferences": "Salvar preferências"
+    },
+    "Footer": {
+        "copyright": "© 2025-2026 modifold.com",
+        "sections": "Seções",
+        "community": "Comunidade",
+        "legal": "Legal",
+        "privacyPolicy": "Política de privacidade",
+        "termsOfUse": "Termos de uso",
+        "contentRules": "Regras de conteúdo",
+        "copyrightPolicy": "Política de copyright e DMCA",
+        "notOfficial": "NÃO É UM SERVIÇO OFICIAL DE HYTALE. NÃO APROVADO NEM ASSOCIADO À HYPIXEL STUDIOS CANADA INC.",
+        "mods": "Mods",
+        "news": "Notícias",
+        "openSourceSoon": "Código aberto em breve",
+        "apiDocs": "Documentação da API"
+    },
+    "NotFound": {
+        "message": "Página não encontrada"
+    },
+    "HomePage": {
+        "title": "O lar dos seus mods de Hytale — Modifold",
+        "description": "Junte-se a uma comunidade crescente de criadores. Uma plataforma simples e transparente para compartilhar seus mods e descobrir o que outros estão construindo.",
+        "heroTitle": "O lar dos seus mods de {hytale}",
+        "heroDescription": "Junte-se a uma comunidade crescente de criadores. Uma plataforma simples e transparente para compartilhar seus mods e descobrir o que outros estão construindo.",
+        "exploreMods": "Explorar mods",
+        "statsTitle": "Crescendo juntos: {count}+ mods da comunidade",
+        "searchPlaceholder": "Pesquisar mods por nome",
+        "tabTrending": "Em alta",
+        "tabNew": "Novos",
+        "tabUpdated": "Atualizados",
+        "noProjects": "Nenhum projeto encontrado",
+        "creatorsSpotlightTitle": "Destaque de criadores",
+        "creatorsSpotlightDescription": "Conheça os criadores que estão moldando a cena de mods de Hytale.",
+        "creatorProjects": "{count} projetos",
+        "noCreators": "Ainda não há criadores",
+        "ctaTitle": "Publique seu mod em minutos",
+        "ctaDescription": "Envie arquivos, adicione capturas de tela e alcance a comunidade de Hytale.",
+        "ctaButton": "Criar um projeto",
+        "forPlayersTitle": "Para jogadores",
+        "forPlayersDescription": "Encontre e baixe mods criados pela comunidade. Fique por dentro das últimas notícias e lançamentos.",
+        "forCreatorsTitle": "Para criadores",
+        "forCreatorsDescription": "Envie seus mods, compartilhe com o mundo e amplie sua audiência em uma plataforma feita para Hytale.",
+        "latestNewsTitle": "Últimas notícias do Modifold",
+        "viewAllNews": "Ver todas as notícias",
+        "commentsTitle": "Comentários que ajudam",
+        "commentsDescription": "Comente lançamentos, deixe feedback e ajude a melhorar os mods.",
+        "localesTitle": "Site em 6 idiomas",
+        "localesDescription": "A interface está disponível em inglês, espanhol, português, russo, turco e ucraniano.",
+        "helloRotatorLabel": "Olá em seis idiomas"
+    },
+    "ProjectCreationModal": {
+        "close": "Fechar",
+        "name": "Nome",
+        "summary": "Resumo",
+        "summaryHint": "Uma ou duas frases que descrevam seu projeto.",
+        "projectType": "Tipo de projeto",
+        "icon": "Ícone (obrigatório)",
+        "placeholders": {
+            "name": "Nome do projeto",
+            "summary": "Este projeto adiciona..."
+        },
+        "projectTypes": {
+            "mod": "Mod"
+        },
+        "createProject": "Criar projeto",
+        "creating": "Criando...",
+        "cancel": "Cancelar",
+        "errors": {
+            "noIcon": "Envie um ícone",
+            "noProjectType": "Selecione um tipo de projeto",
+            "generic": "Erro ao criar projeto"
+        },
+        "success": "Projeto criado!"
+    },
+    "ProjectPage": {
+        "previous": "Anterior",
+        "next": "Próximo",
+        "loginRequired": "Faça login para curtir este projeto",
+        "likeError": "Não foi possível alternar a curtida. Tente novamente.",
+        "failedToToggleLike": "Falha ao alternar a curtida",
+        "links": "Links",
+        "reportIssues": "Problemas",
+        "viewSource": "Ver código-fonte",
+        "wiki": "Wiki",
+        "joinDiscord": "Entrar no servidor do Discord",
+        "iconAlt": "Ícone do projeto {title}",
+        "ownerAvatarAlt": "Avatar do usuário {username}",
+        "editSettings": "Editar configurações",
+        "tabs": {
+            "description": "Descrição",
+            "gallery": "Galeria",
+            "versions": "Versões",
+            "gameVersion": "Versões do jogo",
+            "gameChannel": "Canais",
+            "loader": "Loaders",
+            "comments": "Comentários"
+        },
+        "creators": "Criadores",
+        "owner": "Proprietário",
+        "created": "Criado:",
+        "id": "ID:",
+        "notFound": "Projeto não encontrado",
+        "projectTypes": {
+            "mod": "Mod de Hytale",
+            "default": "Projeto de Hytale"
+        },
+        "metadata": {
+            "title": "{title} {titlePrefix} — Modifold",
+            "openGraph": {
+                "title": "{titlePrefix}: {title}"
+            },
+            "notFound": "Projeto não encontrado — Modifold",
+            "version": {
+                "title": "{version} - {project} — Modifold",
+                "description": "Versão {version} de {project}",
+                "notFound": "Versão não encontrada — Modifold",
+                "unknownProject": "Projeto"
+            }
+        },
+        "editVersion": "Editar versão",
+        "versionNumber": "Número da versão",
+        "changelog": "Registro de mudanças",
+        "releaseChannel": "Canal de lançamento",
+        "gameVersions": "Versões do jogo",
+        "loaders": "Loaders",
+        "file": "Arquivo",
+        "selectGameVersions": "Selecionar versões do jogo",
+        "selectLoaders": "Selecionar loaders",
+        "update": "Atualizar",
+        "updating": "Atualizando...",
+        "delete": "Excluir",
+        "cancel": "Cancelar",
+        "fillRequiredFields": "Preencha todos os campos obrigatórios",
+        "versionUpdated": "Versão atualizada com sucesso",
+        "confirmDeleteVersion": "Tem certeza de que deseja excluir esta versão?",
+        "versionDeleted": "Versão excluída com sucesso",
+        "errorOccurred": "Ocorreu um erro. Tente novamente.",
+        "errorRecordingDownload": "Erro ao registrar o download",
+        "licenseTitle": "Licença",
+        "licensedAs": "Licenciado como {license}",
+        "download": "Baixar",
+        "changesTitle": "Mudanças",
+        "noChanges": "Sem mudanças",
+        "filesTitle": "Arquivos",
+        "noFiles": "Sem arquivos",
+        "close": "Fechar",
+        "versions": {
+            "headers": {
+                "version": "Versão",
+                "statistics": "Estatísticas"
+            },
+            "notSpecified": "Não especificado",
+            "published": "Publicado:",
+            "downloads": "downloads"
+        },
+        "releaseChannels": {
+            "release": "Lançamento",
+            "beta": "Beta",
+            "alpha": "Alfa"
+        },
+        "filters": {
+            "gameVersionsAria": "Filtrar por versões do jogo",
+            "channelsAria": "Filtrar por canais",
+            "loadersAria": "Filtrar por loaders"
+        },
+        "gallery": {
+            "updateSuccess": "Imagem atualizada",
+            "updateError": "Erro ao atualizar imagem",
+            "deleteConfirm": "Tem certeza de que deseja excluir esta imagem?",
+            "deleteSuccess": "Imagem excluída",
+            "deleteError": "Erro ao excluir imagem",
+            "viewImage": "Ver {title} em tela cheia",
+            "image": "Imagem da galeria",
+            "editImage": "Editar imagem",
+            "noImages": "Não há imagens na galeria.",
+            "lightboxLabel": "Visualizador de imagens",
+            "openInNewTab": "Abrir imagem em uma nova aba",
+            "replaceImage": "Substituir imagem",
+            "title": "Título",
+            "description": "Descrição",
+            "orderIndex": "Índice de ordem",
+            "featured": "Destaque"
+        },
+        "versionNotFound": "Versão não encontrada",
+        "projectNotFound": "Projeto não encontrado",
+        "comments": {
+            "title": "Comentários",
+            "loginHint": "Faça login para deixar um comentário.",
+            "placeholder": "Escreva um comentário...",
+            "submit": "Publicar",
+            "reply": "Responder",
+            "cancel": "Cancelar",
+            "delete": "Excluir",
+            "hide": "Ocultar",
+            "show": "Mostrar",
+            "spam": "Spam",
+            "authorLabel": "Autor",
+            "deleted": "Comentário removido.",
+            "loading": "Carregando comentários...",
+            "rateLimited": "Você está comentando rápido demais. Tente novamente em alguns segundos.",
+            "errors": {
+                "load": "Falha ao carregar comentários",
+                "submit": "Falha ao enviar comentário",
+                "moderate": "Falha ao atualizar comentário"
+            },
+            "status": {
+                "hidden": "Oculto",
+                "spam": "Spam",
+                "deleted": "Excluído"
+            },
+            "emptyLoggedIn": "Ainda não há comentários. Deixe a primeira avaliação deste mod!",
+            "emptyGuest": "Ainda não há comentários. Faça login para deixar uma avaliação deste mod."
+        }
+    },
+    "DashboardClient": {
+        "userAvatarAlt": "Avatar do usuário {username}",
+        "projectIconAlt": "Ícone do projeto {title}",
+        "noIcon": "Sem ícone",
+        "loading": "Carregando projetos...",
+        "noProjects": "Você ainda não criou nenhum projeto.",
+        "previous": "Anterior",
+        "next": "Próximo",
+        "edit": "Editar",
+        "metadata": {
+            "title": "Painel — Modifold",
+            "description": "Gerencie seus projetos no Modifold."
+        },
+        "byYou": "por você"
+    },
+    "SettingsBlogPage": {
+        "sidebar": {
+            "profileIconAlt": "Ícone do perfil",
+            "projects": "Projetos",
+            "notifications": "Notificações",
+            "settings": "Configurações",
+            "apiTokens": "Tokens de API",
+            "verification": "Verificação"
+        },
+        "username": "Nome de usuário",
+        "description": "Descrição",
+        "socialNetworks": "Redes sociais",
+        "uploadAvatar": "Enviar avatar",
+        "avatarPreviewAlt": "Prévia do avatar",
+        "placeholders": {
+            "username": "Digite o nome de usuário",
+            "description": "Conte um pouco sobre você",
+            "youtube": "Link do YouTube",
+            "telegram": "Link do Telegram",
+            "x": "Link do X",
+            "discord": "Link do Discord"
+        },
+        "language": {
+            "title": "Idioma",
+            "russian": "Russo",
+            "english": "Inglês",
+            "spanish": "Espanhol",
+            "portuguese": "Português",
+            "ukrainian": "Ucraniano",
+            "turkish": "Turco"
+        },
+        "save": "Salvar",
+        "errors": {
+            "fileTooLarge": "Arquivo muito grande. Tamanho máximo de 20 MB",
+            "generic": "Erro ao salvar configurações"
+        },
+        "success": "Configurações salvas com sucesso!",
+        "metadata": {
+            "title": "Configurações da conta — Modifold"
+        },
+        "verification": {
+            "title": "Verificação",
+            "statusLabel": "Status",
+            "status": {
+                "verified": "Verificado",
+                "notVerified": "Não verificado",
+                "pending": "Em análise",
+                "rejected": "Rejeitado"
+            },
+            "requirements": "Requisitos: 100+ seguidores no X/YouTube ou 1.000+ downloads no CurseForge. Adicione o link do Modifold no seu perfil social e inclua-o na solicitação.",
+            "request": "Enviar solicitação de verificação",
+            "requestPending": "Solicitação em análise",
+            "reapply": "Enviar novamente",
+            "lastRequest": "Última solicitação: {date}",
+            "cooldown": "Disponível em {days} dias"
+        }
+    },
+    "BrowsePage": {
+        "gameVersion": "Versão do jogo",
+        "loader": "Loader",
+        "categories": "Categorias",
+        "clearFilters": "Limpar filtros",
+        "placeholders": {
+            "search": "Pesquisar",
+            "searchVersion": "Pesquisar versão"
+        },
+        "sort": {
+            "downloads": "Downloads",
+            "recent": "Recentes"
+        },
+        "loading": "Carregando...",
+        "noProjects": "Nenhum projeto encontrado",
+        "previous": "Anterior",
+        "next": "Próximo",
+        "mods": "Mods"
+    },
+    "ProfilePage": {
+        "userAvatarAlt": "Avatar do usuário {username}",
+        "loading": "Carregando projetos...",
+        "noProjects": "Ainda não há projetos",
+        "previous": "Anterior",
+        "next": "Próximo",
+        "errors": {
+            "loadingProjects": "Erro ao carregar projetos",
+            "subscriptionChange": "Erro ao alterar a inscrição"
+        },
+        "loginToSubscribe": "Faça login para se inscrever",
+        "edit": "Editar",
+        "subscribe": "Inscrever-se",
+        "subscribed": "Inscrito",
+        "accountFrozen": "Conta congelada",
+        "role": {
+            "developer": "Desenvolvedor",
+            "team": "Equipe Modifold"
+        },
+        "joined": "Entrou em:",
+        "subscribersLabel": "{count, plural, one {Assinante} other {Assinantes}}",
+        "subscriptionsLabel": "{count, plural, one {Inscrição} other {Inscrições}}",
+        "moreActionsPlaceholder": "Mais ações em breve",
+        "moreActionsAria": "Mais ações",
+        "metadata": {
+            "title": "{username} — Modifold",
+            "notFound": "Usuário não encontrado — Modifold",
+            "frozen": "Conta congelada — Modifold"
+        },
+        "remove": "Remover"
+    },
+    "SettingsProjectPage": {
+        "sidebar": {
+            "general": "Geral",
+            "description": "Descrição",
+            "links": "Links",
+            "versions": "Versões",
+            "gallery": "Galeria",
+            "tags": "Etiquetas",
+            "moderation": "Moderação",
+            "members": "Membros",
+            "license": "Licença"
+        },
+        "save": "Salvar",
+        "metadata": {
+            "title": "Configurações — {title} — Modifold"
+        },
+        "general": {
+            "iconAlt": "Ícone do projeto",
+            "errors": {
+                "fileTooLarge": "Arquivo muito grande. Tamanho máximo de 20 MB",
+                "save": "Erro ao salvar as configurações do projeto",
+                "delete": "Erro ao excluir o projeto"
+            },
+            "success": {
+                "saved": "Configurações do projeto salvas",
+                "deleted": "Projeto excluído com sucesso"
+            },
+            "confirmDelete": "Tem certeza de que deseja excluir \"{title}\"? Esta ação não pode ser desfeita.",
+            "fields": {
+                "icon": "Ícone",
+                "name": "Nome",
+                "summary": "Resumo",
+                "url": "URL",
+                "visibility": "Visibilidade"
+            },
+            "placeholders": {
+                "name": "Nome do projeto",
+                "summary": "Este projeto adiciona...",
+                "url": "Digite a URL"
+            },
+            "hints": {
+                "summary": "Mínimo de 30 caracteres.",
+                "url": "A URL deve estar em letras minúsculas, conter apenas letras e números e pode incluir hífens. Máximo de 30 caracteres.",
+                "visibility": "Público: Visível na busca e nos perfis. Não listado: Publicado, mas não aparece na busca. Privado: Acessível apenas para membros."
+            },
+            "visibility": {
+                "public": "Público",
+                "unlisted": "Não listado",
+                "private": "Privado"
+            },
+            "comments": {
+                "title": "Comentários",
+                "enabled": "Ativados",
+                "disabled": "Desativados",
+                "hint": "Oculta a aba de comentários e bloqueia novos comentários."
+            },
+            "actions": {
+                "save": "Salvar",
+                "delete": "Excluir projeto"
+            }
+        },
+        "description": {
+            "success": "Descrição atualizada",
+            "errors": {
+                "save": "Erro ao salvar a descrição"
+            },
+            "title": "Descrição",
+            "placeholder": "Digite a descrição do projeto (suporta Markdown)",
+            "hint": "Mínimo de 100 caracteres. Suporta formatação Markdown.",
+            "preview": "Prévia",
+            "actions": {
+                "save": "Salvar"
+            }
+        },
+        "links": {
+            "success": "Links atualizados",
+            "errors": {
+                "save": "Erro ao salvar links"
+            },
+            "fields": {
+                "issueTracker": "Rastreador de issues",
+                "sourceCode": "Código-fonte",
+                "wiki": "Wiki",
+                "discord": "Discord"
+            },
+            "placeholders": {
+                "issueTracker": "URL do rastreador de issues",
+                "sourceCode": "URL do código-fonte",
+                "wiki": "URL da wiki",
+                "discord": "URL do Discord"
+            },
+            "actions": {
+                "save": "Salvar"
+            }
+        },
+        "license": {
+            "success": "Licença atualizada com sucesso",
+            "errors": {
+                "save": "Erro ao salvar licença"
+            },
+            "title": "Licença",
+            "actions": {
+                "save": "Salvar licença",
+                "clear": "Limpar licença"
+            },
+            "current": "Licença atual",
+            "noSelection": "Nenhuma licença selecionada"
+        },
+        "tags": {
+            "success": "Etiquetas atualizadas com sucesso",
+            "errors": {
+                "save": "Erro ao salvar etiquetas"
+            },
+            "title": "Etiquetas",
+            "selected": "{count, plural, one {# selecionada} other {# selecionadas}}",
+            "select": "Selecionar etiquetas",
+            "actions": {
+                "save": "Salvar etiquetas",
+                "clear": "Limpar etiquetas"
+            },
+            "current": "Etiquetas atuais",
+            "none": "Nenhuma etiqueta selecionada.",
+            "labels": {
+                "adventure": "Aventura",
+                "cursed": "Amaldiçoado",
+                "decoration": "Decoração",
+                "economy": "Economia",
+                "equipment": "Equipamento",
+                "food": "Comida",
+                "game_mechanics": "Mecânicas de jogo",
+                "library": "Biblioteca",
+                "magic": "Magia",
+                "management": "Gestão",
+                "minigame": "Minijogo",
+                "mobs": "Mobs",
+                "optimization": "Otimização",
+                "social": "Social",
+                "storage": "Armazenamento",
+                "technology": "Tecnologia",
+                "transportation": "Transporte",
+                "utility": "Utilidade",
+                "world_generation": "Geração do mundo",
+                "texture_packs": "Pacotes de textura"
+            }
+        },
+        "versions": {
+            "errors": {
+                "selectVersionsAndLoaders": "Selecione pelo menos uma versão do jogo e um loader",
+                "upload": "Erro ao enviar versão"
+            },
+            "success": "Versão enviada",
+            "title": "Versões",
+            "fields": {
+                "versionNumber": "Número da versão",
+                "changelog": "Registro de mudanças",
+                "releaseChannel": "Canal de lançamento",
+                "gameVersions": "Versões do jogo",
+                "loaders": "Loaders"
+            },
+            "placeholders": {
+                "versionNumber": "ex.: 1.0",
+                "changelog": "Descreva as mudanças desta versão"
+            },
+            "releaseChannels": {
+                "release": "Lançamento",
+                "beta": "Beta",
+                "alpha": "Alfa"
+            },
+            "selectGameVersions": "Selecionar versões do jogo",
+            "selectedGameVersions": "{count, plural, one {# selecionada} other {# selecionadas}}",
+            "selectLoaders": "Selecionar loaders",
+            "selectedLoaders": "{count, plural, one {# selecionado} other {# selecionados}}",
+            "actions": {
+                "upload": "Enviar versão"
+            }
+        },
+        "gallerySettings": {
+            "success": "Imagem enviada",
+            "errors": {
+                "upload": "Erro ao enviar imagem"
+            },
+            "title": "Adicionar nova imagem",
+            "fields": {
+                "title": "Título",
+                "description": "Descrição",
+                "order": "Índice de ordem",
+                "featured": "Destaque"
+            },
+            "placeholders": {
+                "title": "Título da imagem",
+                "description": "Descrição da imagem",
+                "order": "Índice de ordem"
+            },
+            "featuredHint": "Uma imagem em destaque da galeria aparece na busca e no cartão do seu projeto. Apenas uma imagem da galeria pode ficar em destaque.",
+            "actions": {
+                "add": "Adicionar imagem"
+            },
+            "states": {
+                "enabled": "Ativado",
+                "disabled": "Desativado"
+            }
+        },
+        "moderation": {
+            "errors": {
+                "icon": "Envie um ícone para o projeto",
+                "description": "Adicione uma descrição para o projeto",
+                "summary": "Adicione um resumo para o projeto",
+                "versions": "Envie pelo menos uma versão do projeto",
+                "submit": "Erro ao enviar o projeto para moderação"
+            },
+            "title": "Moderação",
+            "description": "Certifique-se de que todos os campos obrigatórios estejam preenchidos antes de enviar seu projeto para revisão",
+            "cards": {
+                "icon": {
+                    "title": "Ícone do projeto",
+                    "done": "Enviado com sucesso",
+                    "required": "Obrigatório (recomendado 512x512 px)"
+                },
+                "summary": {
+                    "title": "Resumo",
+                    "done": "Parece bom!",
+                    "required": "Descrição curta (1-2 frases)"
+                },
+                "description": {
+                    "title": "Descrição",
+                    "done": "Detalhada e pronta",
+                    "required": "Descrição completa do projeto (recomendado 300+ caracteres)"
+                },
+                "versions": {
+                    "title": "Versões",
+                    "done": "Pelo menos uma versão foi enviada",
+                    "required": "Envie ao menos uma versão"
+                }
+            },
+            "status": {
+                "queued": "O projeto já foi enviado para moderação",
+                "approved": "O projeto foi aprovado"
+            },
+            "history": {
+                "title": "Histórico de moderação",
+                "empty": "Ainda não há eventos de moderação",
+                "actions": {
+                    "queued": "Enviado para revisão",
+                    "approved": "Aprovado",
+                    "rejected": "Rejeitado",
+                    "changesRequested": "Alterações solicitadas"
+                },
+                "reason": "Motivo",
+                "moderator": "Moderador"
+            },
+            "actions": {
+                "submitting": "Enviando...",
+                "alreadySubmitted": "Já enviado",
+                "approved": "Projeto aprovado",
+                "submit": "Enviar para moderação"
+            }
+        },
+        "members": {
+            "errors": {
+                "fetch": "Erro ao carregar membros",
+                "enterUsername": "Digite um nome de usuário",
+                "invite": "Erro ao convidar membro",
+                "roleEmpty": "A função não pode estar vazia",
+                "roleTooLong": "A função é muito longa (máx. 50)",
+                "updateRole": "Erro ao atualizar a função",
+                "remove": "Erro ao remover membro",
+                "leave": "Erro ao sair do projeto"
+            },
+            "success": {
+                "inviteSent": "Convite enviado",
+                "roleUpdated": "Função atualizada",
+                "removed": "Membro removido",
+                "left": "Você saiu do projeto"
+            },
+            "confirmRemove": "Remover {username} do projeto?",
+            "confirmLeave": "Sair de \"{title}\"?",
+            "inviteTitle": "Convidar membro",
+            "inviteDescription": "Convide pessoas para colaborar neste projeto.",
+            "placeholders": {
+                "username": "Digite o nome de usuário",
+                "role": "Função"
+            },
+            "actions": {
+                "invite": "Convidar",
+                "leave": "Sair do projeto",
+                "remove": "Remover",
+                "saveRole": "Salvar"
+            },
+            "leaveTitle": "Sair do projeto",
+            "leaveDescription": "Você perderá o acesso a este projeto.",
+            "none": "Não há membros",
+            "avatarAlt": "Avatar de {username}",
+            "roleLabel": "Função",
+            "status": {
+                "pending": "Pendente",
+                "accepted": "Aceito",
+                "member": "Membro"
+            }
+        }
+    },
+    "NewsPage": {
+        "title": "Notícias",
+        "featuredArticle": {
+            "label": "Artigo em destaque"
+        },
+        "moreTitle": "Mais artigos",
+        "notFound": "Artigo não encontrado",
+        "byline": {
+            "and": "e",
+            "team": "Equipe Modifold",
+            "separator": "•"
+        }
+    },
+    "LoginModal": {
+        "close": "Fechar",
+        "continueWith": "Continuar com",
+        "errors": {
+            "telegram": "Erro ao entrar com Telegram",
+            "github": "Erro ao entrar com GitHub",
+            "discord": "Erro ao entrar com Discord",
+            "telegramProcessing": "Erro ao processar o Telegram",
+            "githubProcessing": "Erro ao processar o GitHub",
+            "discordProcessing": "Erro ao processar o Discord"
+        },
+        "dataModal": {
+            "title": "Dados adicionais",
+            "intro": "Para concluir o cadastro, precisamos de alguns dados adicionais:",
+            "items": {
+                "usernameAvatar": "Nome de usuário e avatar",
+                "email": "E-mail"
+            },
+            "outro": "Não coletamos senhas e não as recebemos de redes sociais. Todos os dados são armazenados exclusivamente nos servidores seguros do Modifold e nunca são compartilhados com terceiros. Para mais detalhes, consulte nossa Política de Privacidade."
+        }
+    },
+    "DeleteAccountSection": {
+        "title": "Excluir conta",
+        "description": "Esta ação excluirá sua conta e todos os dados relacionados. Esta ação é irreversível.",
+        "deleteButton": "Excluir conta",
+        "confirmTitle": "Confirmar exclusão",
+        "confirmDescription": "Tem certeza de que deseja excluir sua conta? Esta ação não pode ser desfeita.",
+        "cancel": "Cancelar",
+        "confirmDelete": "Sim, excluir",
+        "deleting": "Excluindo...",
+        "success": "Conta excluída",
+        "errors": {
+            "generic": "Erro ao excluir a conta"
+        }
+    },
+    "SettingsAPIPage": {
+        "sidebar": {
+            "profileIconAlt": "Ícone do perfil",
+            "projects": "Projetos",
+            "notifications": "Notificações",
+            "settings": "Configurações",
+            "apiTokens": "Tokens de API",
+            "verification": "Verificação"
+        },
+        "title": "Tokens de API",
+        "description": "Crie e gerencie tokens de API para integrações.",
+        "tokenName": "Nome do token",
+        "placeholders": {
+            "tokenName": "Token do meu script"
+        },
+        "expiration": "Expiração",
+        "createToken": "Criar token",
+        "close": "Fechar",
+        "cancel": "Cancelar",
+        "creating": "Criando...",
+        "newTokenTitle": "Novo token de API criado!",
+        "copy": "Copiar",
+        "importantLabel": "Importante:",
+        "importantBody": "Este token não será exibido novamente. Guarde-o em um local seguro.",
+        "expiresLabel": "Expira:",
+        "never": "Nunca",
+        "tokensTitle": "Seus tokens de API",
+        "loadingTokens": "Carregando tokens...",
+        "noTokens": "Você ainda não tem tokens de API.",
+        "revoke": "Revogar",
+        "confirmRevoke": "Tem certeza de que deseja revogar este token?",
+        "docsPrompt": "Precisa de ajuda? Veja nossa",
+        "docsLink": "Documentação da API",
+        "durations": {
+            "week": "1 semana",
+            "month": "1 mês",
+            "quarter": "3 meses",
+            "year": "1 ano",
+            "forever": "Para sempre"
+        },
+        "success": {
+            "created": "Token criado! Copie agora — ele não será exibido novamente.",
+            "copied": "Token copiado para a área de transferência!",
+            "revoked": "Token foi revogado"
+        },
+        "errors": {
+            "loadTokens": "Falha ao carregar tokens de API",
+            "tokenNameRequired": "Digite o nome do token",
+            "createToken": "Falha ao criar token",
+            "revokeToken": "Falha ao revogar token"
+        },
+        "table": {
+            "name": "Nome",
+            "token": "Token (mascarado)",
+            "created": "Criado",
+            "expires": "Expira",
+            "lastUsed": "Último uso"
+        },
+        "metadata": {
+            "title": "Tokens de API — Modifold"
+        }
+    },
+    "AccessDenied": {
+        "metadata": {
+            "title": "Acesso negado — Modifold"
+        },
+        "message": "Acesso negado"
+    },
+    "ShareButtons": {
+        "copiedToast": "Link copiado",
+        "shareOnX": "Compartilhar no X",
+        "shareByEmail": "Compartilhar por e-mail",
+        "copiedAria": "Copiado!",
+        "copyLinkAria": "Copiar link"
+    },
+    "LicenseModal": {
+        "close": "Fechar",
+        "unknown": "Licença desconhecida",
+        "empty": "Nenhuma licença disponível",
+        "failed": "Erro ao carregar licenças"
+    },
+    "ProjectCard": {
+        "by": "por",
+        "downloads": "downloads",
+        "followers": "seguidores",
+        "updated": "Atualizado",
+        "projectIconAlt": "Ícone do projeto {title}"
+    },
+    "ModerationPage": {
+        "metadata": {
+            "title": "Moderação — Modifold"
+        },
+        "title": "Moderação",
+        "tabs": {
+            "projects": "Projetos",
+            "users": "Usuários",
+            "verification": "Verificação"
+        },
+        "charts": {
+            "approvedProjects": "Gráfico de projetos aprovados",
+            "userRegistrations": "Gráfico de registros de usuários",
+            "projects": "Projetos",
+            "registrations": "Registros",
+            "date": "Data: {date}"
+        },
+        "stats": {
+            "totalApproved": "Total de projetos aprovados",
+            "totalUsers": "Total de usuários",
+            "pending": "Projetos pendentes"
+        },
+        "filters": {
+            "searchPlaceholder": "Pesquisar por título do projeto...",
+            "types": {
+                "all": "Todos os projetos",
+                "mod": "Mods"
+            },
+            "sort": {
+                "oldest": "Mais antigos",
+                "newest": "Mais recentes"
+            }
+        },
+        "actions": {
+            "approve": "Aprovar",
+            "reject": "Rejeitar",
+            "rejectPrompt": "Informe o motivo da rejeição:"
+        },
+        "errors": {
+            "fetchProjects": "Erro ao buscar projetos para moderação",
+            "fetchAnalytics": "Erro ao buscar dados de análise",
+            "approve": "Erro ao aprovar o projeto",
+            "reject": "Erro ao rejeitar o projeto"
+        },
+        "success": {
+            "approved": "Projeto aprovado",
+            "rejected": "Projeto rejeitado"
+        },
+        "pagination": {
+            "previous": "Anterior",
+            "next": "Próximo",
+            "pageOf": "Página {page} de {totalPages}"
+        },
+        "empty": "Não há projetos pendentes de moderação."
+    },
+    "UsersModerationPage": {
+        "metadata": {
+            "title": "Moderação de usuários — Modifold"
+        },
+        "title": "Moderação de usuários",
+        "tabs": {
+            "projects": "Projetos",
+            "users": "Usuários",
+            "verification": "Verificação"
+        },
+        "errors": {
+            "fetch": "Erro ao carregar usuários",
+            "updateRole": "Erro ao atualizar função",
+            "fileTooLarge": "Arquivo muito grande. Tamanho máximo de 20 MB",
+            "updateUser": "Erro ao atualizar usuário"
+        },
+        "success": {
+            "roleUpdated": "Função atualizada",
+            "userUpdated": "Usuário atualizado"
+        },
+        "roles": {
+            "admin": "Administrador",
+            "moderator": "Moderador",
+            "user": "Usuário"
+        },
+        "actions": {
+            "editAria": "Editar usuário",
+            "edit": "Editar",
+            "save": "Salvar",
+            "cancel": "Cancelar",
+            "close": "Fechar"
+        },
+        "pagination": {
+            "previous": "Anterior",
+            "next": "Próximo",
+            "pageOf": "Página {page} de {totalPages}"
+        },
+        "empty": "Não há usuários",
+        "modal": {
+            "title": "Editar usuário {username}"
+        },
+        "fields": {
+            "avatar": "Avatar",
+            "avatarAlt": "Prévia do avatar",
+            "username": "Nome de usuário",
+            "email": "E-mail",
+            "slug": "URL",
+            "description": "Descrição",
+            "role": "Função"
+        },
+        "placeholders": {
+            "username": "Nome de usuário",
+            "email": "E-mail",
+            "slug": "Slug",
+            "description": "Descrição"
+        }
+    },
+    "NotificationsPage": {
+        "title": "Notificações",
+        "loading": "Carregando notificações...",
+        "loadingMore": "Carregando...",
+        "loadMore": "Carregar mais",
+        "empty": "Você não tem notificações",
+        "sidebarAvatarAlt": "Avatar do usuário {username}",
+        "unknownUser": "Usuário desconhecido",
+        "sections": {
+            "today": "Hoje",
+            "yesterday": "Ontem"
+        },
+        "messages": {
+            "followOne": "{username} começou a seguir você",
+            "followMany": "{username} e mais {count} pessoas começaram a seguir você",
+            "followOneTail": "começou a seguir você",
+            "followManyTail": "e mais {count} pessoas começaram a seguir você",
+            "projectLikeOne": "{username} curtiu seu projeto {project}",
+            "projectLikeMany": "{username} e mais {count} pessoas curtiram seu projeto {project}",
+            "projectLikeOneMiddle": "curtiu seu projeto",
+            "projectLikeManyMiddle": "e mais {count} pessoas curtiram seu projeto",
+            "projectFallback": "seu projeto",
+            "unknown": "Nova notificação"
+        },
+        "errors": {
+            "fetch": "Não foi possível carregar notificações",
+            "noToken": "Token de autorização não encontrado"
+        }
+    },
+    "VerificationRequestModal": {
+        "title": "Solicitação de verificação",
+        "close": "Fechar",
+        "description": "Adicione pelo menos um link (X, YouTube ou CurseForge). Os moderadores analisarão e decidirão.",
+        "platform": "Plataforma",
+        "platformUrl": "Link do perfil social",
+        "modifoldUrl": "Link do Modifold",
+        "followers": "Seguidores",
+        "downloads": "Downloads",
+        "note": "Nota para moderadores",
+        "confirm": "Confirmo que os links são meus.",
+        "submit": "Enviar",
+        "submitting": "Enviando...",
+        "cancel": "Cancelar",
+        "placeholders": {
+            "platformUrl": "Link para seu X/YouTube/CurseForge",
+            "modifoldUrl": "Link para seu perfil Modifold",
+            "followers": "Número de seguidores",
+            "downloads": "Número de downloads",
+            "note": "Onde está o link do Modifold? (opcional)",
+            "xUrl": "https://x.com/yourprofile",
+            "youtubeUrl": "https://youtube.com/@yourchannel",
+            "curseforgeUrl": "https://curseforge.com/members/you"
+        },
+        "errors": {
+            "missingLinks": "Adicione pelo menos um link do X, YouTube ou CurseForge.",
+            "confirmRequired": "Confirme que adicionou o link do Modifold.",
+            "followers": "Você precisa de pelo menos 100 seguidores.",
+            "downloads": "Você precisa de pelo menos 1.000 downloads.",
+            "pending": "Você já tem uma solicitação pendente.",
+            "generic": "Erro ao enviar a solicitação de verificação",
+            "cooldown": "Você pode solicitar novamente após 7 dias da rejeição."
+        },
+        "success": "Solicitação de verificação enviada",
+        "xUrl": "Link do X",
+        "youtubeUrl": "Link do YouTube",
+        "curseforgeUrl": "Link do CurseForge"
+    },
+    "VerificationModerationPage": {
+        "metadata": {
+            "title": "Solicitações de verificação — Modifold"
+        },
+        "title": "Solicitações de verificação",
+        "tabs": {
+            "projects": "Projetos",
+            "users": "Usuários",
+            "verification": "Verificação"
+        },
+        "filters": {
+            "pending": "Pendentes",
+            "approved": "Aprovadas",
+            "rejected": "Rejeitadas",
+            "all": "Todas"
+        },
+        "statuses": {
+            "pending": "Pendente",
+            "approved": "Aprovada",
+            "rejected": "Rejeitada"
+        },
+        "fields": {
+            "socialLink": "Link social",
+            "modifoldLink": "Link do Modifold",
+            "followers": "Seguidores",
+            "downloads": "Downloads",
+            "createdAt": "Enviada",
+            "note": "Nota",
+            "xUrl": "Link do X",
+            "youtubeUrl": "Link do YouTube",
+            "curseforgeUrl": "Link do CurseForge"
+        },
+        "actions": {
+            "approve": "Aprovar",
+            "reject": "Rejeitar",
+            "notePrompt": "Nota do moderador (opcional):"
+        },
+        "errors": {
+            "fetch": "Erro ao carregar solicitações de verificação",
+            "update": "Erro ao atualizar a solicitação"
+        },
+        "success": {
+            "approved": "Solicitação aprovada",
+            "rejected": "Solicitação rejeitada"
+        },
+        "pagination": {
+            "previous": "Anterior",
+            "next": "Próxima",
+            "pageOf": "Página {page} de {totalPages}"
+        },
+        "empty": "Nenhuma solicitação de verificação."
+    },
+    "SettingsVerificationPage": {
+        "metadata": {
+            "title": "Verificação — Modifold"
+        },
+        "title": "Verificação",
+        "benefitsNote": "A verificação não oferece vantagens extras além de um selo ao lado do nome do perfil. O selo ajuda a identificar modders verificados/populares.",
+        "statusLabel": "Status",
+        "status": {
+            "verified": "Verificado",
+            "notVerified": "Não verificado",
+            "pending": "Em análise",
+            "rejected": "Rejeitada"
+        },
+        "requirements": "Requisitos: 500+ seguidores no X/YouTube ou 3.000+ downloads no CurseForge. Informe pelo menos um link para análise.",
+        "request": "Enviar solicitação de verificação",
+        "requestPending": "Solicitação em análise",
+        "reapply": "Enviar novamente",
+        "cooldown": "Disponível em {days} dias",
+        "lastRequest": "Última solicitação: {date}",
+        "errors": {
+            "fetch": "Não foi possível carregar o status de verificação"
+        },
+        "sidebar": {
+            "profileIconAlt": "Ícone do perfil",
+            "projects": "Projetos",
+            "notifications": "Notificações",
+            "settings": "Configurações",
+            "apiTokens": "Tokens de API",
+            "verification": "Verificação"
+        }
+    }
+}

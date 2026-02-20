@@ -1,0 +1,1068 @@
+{
+    "pageTitle": {
+        "mods": "Моды — Modifold"
+    },
+    "Header": {
+        "home": "Главная",
+        "mods": "Моды",
+        "login": "Войти",
+        "logout": "Выйти",
+        "settings": "Настройки",
+        "createProject": "Создать проект",
+        "theme": {
+            "light": "Светлая",
+            "dark": "Тёмная",
+            "system": "Системная"
+        },
+        "loginToCreate": "Войдите, чтобы создать проект",
+        "beta": "бета",
+        "browse": "Открыть контент",
+        "discoverContent": "Открыть контент",
+        "myProfile": "Мой профиль",
+        "moderation": "Модерация",
+        "projects": "Проекты",
+        "notifications": "Уведомления"
+    },
+    "CookieBanner": {
+        "message": "Мы используем cookies для улучшения работы сайта. Обязательные cookies нужны для корректной работы, а аналитические помогают понять, как вы используете сервис.",
+        "learnMore": "Подробнее",
+        "acceptAll": "Принять все",
+        "customize": "Настроить",
+        "essentialCookies": "Обязательные cookies (нужны для работы)",
+        "analyticsCookies": "Аналитические cookies",
+        "savePreferences": "Сохранить"
+    },
+    "Footer": {
+        "copyright": "© 2025-2026 modifold.com",
+        "sections": "Разделы",
+        "community": "Сообщество",
+        "legal": "Право",
+        "privacyPolicy": "Политика конфиденциальности",
+        "termsOfUse": "Пользовательское соглашение",
+        "contentRules": "Правила контента",
+        "copyrightPolicy": "Политика авторского права и DMCA",
+        "notOfficial": "ЭТО НЕ ОФИЦИАЛЬНЫЙ СЕРВИС HYTALE. НЕ ОДОБРЕНО И НЕ СВЯЗАНО С HYPIXEL STUDIOS CANADA INC.",
+        "mods": "Моды",
+        "news": "Новости",
+        "openSourceSoon": "Опен‑сорс скоро",
+        "apiDocs": "Документация API"
+    },
+    "NotFound": {
+        "message": "Страница не найдена"
+    },
+    "HomePage": {
+        "title": "Дом для ваших модов Hytale — Modifold",
+        "description": "Присоединяйтесь к растущему сообществу создателей. Простая и прозрачная платформа для публикации модов и поиска новых работ.",
+        "heroTitle": "Дом для ваших модов {hytale}",
+        "heroDescription": "Присоединяйтесь к растущему сообществу создателей. Простая и прозрачная платформа для публикации модов и поиска новых работ.",
+        "exploreMods": "Смотреть моды",
+        "statsTitle": "Растём вместе: {count}+ модов сообщества",
+        "searchPlaceholder": "Поиск модов по названию",
+        "tabTrending": "В тренде",
+        "tabNew": "Новые",
+        "tabUpdated": "Обновлённые",
+        "noProjects": "Проекты не найдены",
+        "creatorsSpotlightTitle": "Авторы недели",
+        "creatorsSpotlightDescription": "Создатели, которые формируют сцену моддинга Hytale.",
+        "creatorProjects": "{count} проектов",
+        "noCreators": "Пока нет авторов",
+        "ctaTitle": "Опубликуйте свой мод за минуты",
+        "ctaDescription": "Загрузите файлы, добавьте скриншоты и выйдите к сообществу Hytale.",
+        "ctaButton": "Создать проект",
+        "forPlayersTitle": "Для игроков",
+        "forPlayersDescription": "Находите и скачивайте моды, созданные сообществом. Следите за новостями и релизами.",
+        "forCreatorsTitle": "Для создателей",
+        "forCreatorsDescription": "Загружайте моды, делитесь ими с миром и развивайте аудиторию на платформе для Hytale.",
+        "latestNewsTitle": "Последние новости Modifold",
+        "viewAllNews": "Все новости",
+        "commentsTitle": "Комментарии для авторов",
+        "commentsDescription": "Обсуждайте релизы, оставляйте фидбек и помогайте улучшать моды.",
+        "localesTitle": "Сайт на 6 языках",
+        "localesDescription": "Интерфейс доступен на английском, испанском, португальском, русском, турецком и украинском.",
+        "helloRotatorLabel": "Привет на шести языках"
+    },
+    "ProjectCreationModal": {
+        "close": "Закрыть",
+        "name": "Название",
+        "summary": "Краткое описание",
+        "summaryHint": "Одно-два предложения, которые описывают ваш проект.",
+        "projectType": "Тип проекта",
+        "icon": "Иконка (обязательно)",
+        "placeholders": {
+            "name": "Название проекта",
+            "summary": "Этот проект добавляет..."
+        },
+        "projectTypes": {
+            "mod": "Мод"
+        },
+        "createProject": "Создать проект",
+        "creating": "Создание...",
+        "cancel": "Отмена",
+        "errors": {
+            "noIcon": "Загрузите иконку",
+            "noProjectType": "Выберите тип проекта",
+            "generic": "Ошибка при создании проекта"
+        },
+        "success": "Проект создан!"
+    },
+    "ProjectPage": {
+        "previous": "Назад",
+        "next": "Вперёд",
+        "loginRequired": "Войдите, чтобы поставить лайк",
+        "likeError": "Не удалось изменить лайк. Попробуйте ещё раз.",
+        "failedToToggleLike": "Не удалось изменить лайк",
+        "links": "Ссылки",
+        "reportIssues": "Баг‑репорты",
+        "viewSource": "Исходники",
+        "wiki": "Вики",
+        "joinDiscord": "Discord‑сервер",
+        "iconAlt": "Иконка проекта {title}",
+        "ownerAvatarAlt": "Аватар пользователя {username}",
+        "editSettings": "Редактировать настройки",
+        "tabs": {
+            "description": "Описание",
+            "gallery": "Галерея",
+            "versions": "Версии",
+            "gameVersion": "Версии игры",
+            "gameChannel": "Каналы",
+            "loader": "Загрузчики",
+            "comments": "Комментарии"
+        },
+        "creators": "Авторы",
+        "owner": "Владелец",
+        "created": "Создан:",
+        "id": "ID:",
+        "notFound": "Проект не найден",
+        "projectTypes": {
+            "mod": "Мод Hytale",
+            "default": "Проект Hytale"
+        },
+        "metadata": {
+            "title": "{title} {titlePrefix} — Modifold",
+            "openGraph": {
+                "title": "{titlePrefix}: {title}"
+            },
+            "notFound": "Проект не найден — Modifold",
+            "version": {
+                "title": "{version} - {project} — Modifold",
+                "description": "Версия {version} проекта {project}",
+                "notFound": "Версия не найдена — Modifold",
+                "unknownProject": "Проект"
+            }
+        },
+        "editVersion": "Редактировать версию",
+        "versionNumber": "Номер версии",
+        "changelog": "Список изменений",
+        "releaseChannel": "Канал релиза",
+        "gameVersions": "Версии игры",
+        "loaders": "Загрузчики",
+        "file": "Файл",
+        "selectGameVersions": "Выберите версии игры",
+        "selectLoaders": "Выберите загрузчики",
+        "update": "Обновить",
+        "updating": "Обновление...",
+        "delete": "Удалить",
+        "cancel": "Отмена",
+        "fillRequiredFields": "Заполните все обязательные поля",
+        "versionUpdated": "Версия успешно обновлена",
+        "confirmDeleteVersion": "Удалить эту версию?",
+        "versionDeleted": "Версия удалена",
+        "errorOccurred": "Произошла ошибка. Попробуйте ещё раз.",
+        "errorRecordingDownload": "Не удалось записать загрузку",
+        "licenseTitle": "Лицензия",
+        "licensedAs": "Лицензия {license}",
+        "download": "Скачать",
+        "changesTitle": "Изменения",
+        "noChanges": "Нет изменений",
+        "filesTitle": "Файлы",
+        "noFiles": "Файлов нет",
+        "close": "Закрыть",
+        "versions": {
+            "headers": {
+                "version": "Версия",
+                "statistics": "Статистика"
+            },
+            "notSpecified": "Не указано",
+            "published": "Опубликовано:",
+            "downloads": "скачиваний"
+        },
+        "releaseChannels": {
+            "release": "Релиз",
+            "beta": "Бета",
+            "alpha": "Альфа"
+        },
+        "filters": {
+            "gameVersionsAria": "Фильтр по версиям игры",
+            "channelsAria": "Фильтр по каналам",
+            "loadersAria": "Фильтр по загрузчикам"
+        },
+        "gallery": {
+            "updateSuccess": "Изображение обновлено",
+            "updateError": "Не удалось обновить изображение",
+            "deleteConfirm": "Удалить это изображение?",
+            "deleteSuccess": "Изображение удалено",
+            "deleteError": "Не удалось удалить изображение",
+            "viewImage": "Открыть {title} на весь экран",
+            "image": "Изображение галереи",
+            "editImage": "Редактировать",
+            "noImages": "В галерее нет изображений.",
+            "lightboxLabel": "Просмотр изображения",
+            "openInNewTab": "Открыть изображение в новой вкладке",
+            "replaceImage": "Заменить изображение",
+            "title": "Название",
+            "description": "Описание",
+            "orderIndex": "Порядок",
+            "featured": "Избранное"
+        },
+        "versionNotFound": "Версия не найдена",
+        "projectNotFound": "Проект не найден",
+        "comments": {
+            "title": "Комментарии",
+            "loginHint": "Войдите, чтобы оставить комментарий.",
+            "placeholder": "Напишите комментарий...",
+            "submit": "Отправить",
+            "reply": "Ответить",
+            "cancel": "Отмена",
+            "delete": "Удалить",
+            "hide": "Скрыть",
+            "show": "Показать",
+            "spam": "Спам",
+            "authorLabel": "Автор",
+            "deleted": "Комментарий удален.",
+            "loading": "Загрузка комментариев...",
+            "rateLimited": "Слишком часто. Попробуйте еще раз через несколько секунд.",
+            "errors": {
+                "load": "Не удалось загрузить комментарии",
+                "submit": "Не удалось отправить комментарий",
+                "moderate": "Не удалось обновить комментарий"
+            },
+            "status": {
+                "hidden": "Скрыто",
+                "spam": "Спам",
+                "deleted": "Удалено"
+            },
+            "emptyLoggedIn": "Пока нет комментариев. Оставьте первый отзыв о моде!",
+            "emptyGuest": "Пока нет комментариев. Войдите, чтобы оставить отзыв о моде."
+        }
+    },
+    "DashboardClient": {
+        "userAvatarAlt": "Аватар пользователя {username}",
+        "projectIconAlt": "Иконка проекта {title}",
+        "noIcon": "Нет иконки",
+        "loading": "Загрузка проектов...",
+        "noProjects": "Вы ещё не создали проекты.",
+        "previous": "Назад",
+        "next": "Вперёд",
+        "edit": "Редактировать",
+        "metadata": {
+            "title": "Панель управления — Modifold",
+            "description": "Управляйте своими проектами на Modifold."
+        },
+        "byYou": "вы"
+    },
+    "SettingsBlogPage": {
+        "sidebar": {
+            "profileIconAlt": "Иконка профиля",
+            "projects": "Проекты",
+            "notifications": "Уведомления",
+            "settings": "Настройки",
+            "apiTokens": "API‑токены",
+            "verification": "Верификация"
+        },
+        "username": "Имя пользователя",
+        "description": "Описание",
+        "socialNetworks": "Соцсети",
+        "uploadAvatar": "Загрузить аватар",
+        "avatarPreviewAlt": "Предпросмотр аватара",
+        "placeholders": {
+            "username": "Введите имя пользователя",
+            "description": "Расскажите о себе",
+            "youtube": "Ссылка на YouTube",
+            "telegram": "Ссылка на Telegram",
+            "x": "Ссылка на X",
+            "discord": "Ссылка на Discord"
+        },
+        "language": {
+            "title": "Язык",
+            "russian": "Русский",
+            "english": "Английский",
+            "spanish": "Испанский",
+            "portuguese": "Португальский",
+            "ukrainian": "Украинский",
+            "turkish": "Турецкий"
+        },
+        "save": "Сохранить",
+        "errors": {
+            "fileTooLarge": "Файл слишком большой. Максимум 20 МБ",
+            "generic": "Ошибка сохранения настроек"
+        },
+        "success": "Настройки сохранены!",
+        "metadata": {
+            "title": "Настройки аккаунта — Modifold"
+        },
+        "verification": {
+            "title": "Верификация",
+            "statusLabel": "Статус",
+            "status": {
+                "verified": "Верифицирован",
+                "notVerified": "Не верифицирован",
+                "pending": "На рассмотрении",
+                "rejected": "Отклонено"
+            },
+            "requirements": "Требования: 100+ подписчиков в X/YouTube или 1 000+ скачиваний на CurseForge. Добавьте ссылку на Modifold в профиль и укажите ее в заявке.",
+            "request": "Подать заявку на верификацию",
+            "requestPending": "Заявка на рассмотрении",
+            "reapply": "Подать повторно",
+            "lastRequest": "Последняя заявка: {date}",
+            "cooldown": "Доступно через {days} дн."
+        }
+    },
+    "BrowsePage": {
+        "gameVersion": "Версия игры",
+        "loader": "Загрузчик",
+        "categories": "Категории",
+        "clearFilters": "Сбросить фильтры",
+        "placeholders": {
+            "search": "Поиск проектов...",
+            "searchVersion": "Поиск..."
+        },
+        "sort": {
+            "downloads": "По скачиваниям",
+            "recent": "Недавно добавленные"
+        },
+        "loading": "Загрузка проектов...",
+        "noProjects": "Проектов пока нет",
+        "previous": "Назад",
+        "next": "Вперёд",
+        "mods": "Моды"
+    },
+    "ProfilePage": {
+        "userAvatarAlt": "Аватар пользователя {username}",
+        "loading": "Загрузка проектов...",
+        "noProjects": "Проектов пока нет",
+        "previous": "Назад",
+        "next": "Вперёд",
+        "errors": {
+            "loadingProjects": "Ошибка загрузки проектов",
+            "subscriptionChange": "Ошибка изменения подписки"
+        },
+        "loginToSubscribe": "Войдите, чтобы подписаться",
+        "edit": "Редактировать",
+        "subscribe": "Подписаться",
+        "subscribed": "Подписан",
+        "accountFrozen": "Аккаунт заморожен",
+        "role": {
+            "developer": "Разработчик",
+            "team": "Команда Modifold"
+        },
+        "joined": "Дата регистрации:",
+        "subscribersLabel": "{count, plural, one {подписчик} other {подписчиков}}",
+        "subscriptionsLabel": "{count, plural, one {подписка} other {подписок}}",
+        "moreActionsPlaceholder": "Скоро появятся действия",
+        "moreActionsAria": "Дополнительные действия",
+        "metadata": {
+            "title": "{username} — Modifold",
+            "notFound": "Пользователь не найден — Modifold",
+            "frozen": "Аккаунт заморожен — Modifold"
+        },
+        "remove": "Убрать"
+    },
+    "SettingsProjectPage": {
+        "sidebar": {
+            "general": "Общее",
+            "description": "Описание",
+            "links": "Ссылки",
+            "versions": "Версии",
+            "gallery": "Галерея",
+            "tags": "Теги",
+            "moderation": "Модерация",
+            "members": "Участники",
+            "license": "Лицензия"
+        },
+        "save": "Сохранить",
+        "metadata": {
+            "title": "Настройки — {title} — Modifold"
+        },
+        "general": {
+            "iconAlt": "Иконка проекта",
+            "errors": {
+                "fileTooLarge": "Файл слишком большой. Максимальный размер — 20 МБ",
+                "save": "Ошибка при сохранении настроек проекта",
+                "delete": "Ошибка при удалении проекта"
+            },
+            "success": {
+                "saved": "Настройки проекта сохранены",
+                "deleted": "Проект удален"
+            },
+            "confirmDelete": "Вы уверены, что хотите удалить «{title}»? Это действие нельзя отменить.",
+            "fields": {
+                "icon": "Иконка",
+                "name": "Название",
+                "summary": "Краткое описание",
+                "url": "URL",
+                "visibility": "Видимость"
+            },
+            "placeholders": {
+                "name": "Название проекта",
+                "summary": "Этот проект добавляет...",
+                "url": "Введите URL"
+            },
+            "hints": {
+                "summary": "Минимум 30 символов.",
+                "url": "URL должен быть в нижнем регистре, содержать только буквы и цифры, можно использовать дефисы. Максимум 30 символов.",
+                "visibility": "Публичный: виден в поиске и профилях. Скрытый: опубликован, но не отображается в поиске. Приватный: доступен только участникам."
+            },
+            "visibility": {
+                "public": "Публичный",
+                "unlisted": "Скрытый",
+                "private": "Приватный"
+            },
+            "comments": {
+                "title": "Комментарии",
+                "enabled": "Включены",
+                "disabled": "Выключены",
+                "hint": "Скрывает вкладку комментариев и запрещает новые комментарии."
+            },
+            "actions": {
+                "save": "Сохранить",
+                "delete": "Удалить проект"
+            }
+        },
+        "description": {
+            "success": "Описание обновлено",
+            "errors": {
+                "save": "Ошибка при обновлении описания"
+            },
+            "title": "Описание",
+            "placeholder": "Введите описание проекта (поддерживается Markdown)",
+            "hint": "Минимум 100 символов. Поддерживается Markdown.",
+            "preview": "Предпросмотр",
+            "actions": {
+                "save": "Сохранить"
+            }
+        },
+        "links": {
+            "success": "Ссылки обновлены",
+            "errors": {
+                "save": "Ошибка при обновлении ссылок"
+            },
+            "fields": {
+                "issueTracker": "Трекер задач",
+                "sourceCode": "Исходный код",
+                "wiki": "Wiki",
+                "discord": "Discord"
+            },
+            "placeholders": {
+                "issueTracker": "URL трекера задач",
+                "sourceCode": "URL исходного кода",
+                "wiki": "URL Wiki",
+                "discord": "URL Discord"
+            },
+            "actions": {
+                "save": "Сохранить"
+            }
+        },
+        "license": {
+            "success": "Лицензия успешно обновлена",
+            "errors": {
+                "save": "Ошибка при обновлении лицензии"
+            },
+            "title": "Лицензия проекта",
+            "actions": {
+                "save": "Сохранить лицензию",
+                "clear": "Очистить лицензию"
+            },
+            "current": "Текущая лицензия",
+            "noSelection": "Лицензия не выбрана"
+        },
+        "tags": {
+            "success": "Теги обновлены",
+            "errors": {
+                "save": "Ошибка при обновлении тегов"
+            },
+            "title": "Теги проекта",
+            "selected": "{count, plural, one {# выбран} few {# выбрано} many {# выбрано} other {# выбрано}}",
+            "select": "Выберите теги",
+            "actions": {
+                "save": "Сохранить теги",
+                "clear": "Сбросить теги"
+            },
+            "current": "Текущие теги",
+            "none": "Теги не выбраны.",
+            "labels": {
+                "adventure": "Приключения",
+                "cursed": "Проклятое",
+                "decoration": "Декор",
+                "economy": "Экономика",
+                "equipment": "Снаряжение",
+                "food": "Еда",
+                "game_mechanics": "Механики",
+                "library": "Библиотека",
+                "magic": "Магия",
+                "management": "Менеджмент",
+                "minigame": "Мини-игры",
+                "mobs": "Мобы",
+                "optimization": "Оптимизация",
+                "social": "Социальное",
+                "storage": "Хранилище",
+                "technology": "Технологии",
+                "transportation": "Транспорт",
+                "utility": "Утилиты",
+                "world_generation": "Генерация мира",
+                "texture_packs": "Текстурпаки"
+            }
+        },
+        "versions": {
+            "errors": {
+                "selectVersionsAndLoaders": "Выберите хотя бы одну версию игры и загрузчик",
+                "upload": "Ошибка при загрузке версии"
+            },
+            "success": "Версия загружена",
+            "title": "Загрузить новую версию",
+            "fields": {
+                "versionNumber": "Номер версии",
+                "changelog": "Список изменений",
+                "releaseChannel": "Канал релиза",
+                "gameVersions": "Версии игры",
+                "loaders": "Загрузчики"
+            },
+            "placeholders": {
+                "versionNumber": "например, 1.0",
+                "changelog": "Опишите изменения в этой версии"
+            },
+            "releaseChannels": {
+                "release": "Релиз",
+                "beta": "Бета",
+                "alpha": "Альфа"
+            },
+            "selectGameVersions": "Выберите версии игры",
+            "selectedGameVersions": "{count, plural, one {# выбран} few {# выбрано} many {# выбрано} other {# выбрано}}",
+            "selectLoaders": "Выберите загрузчики",
+            "selectedLoaders": "{count, plural, one {# выбран} few {# выбрано} many {# выбрано} other {# выбрано}}",
+            "actions": {
+                "upload": "Загрузить версию"
+            }
+        },
+        "gallerySettings": {
+            "success": "Изображение загружено",
+            "errors": {
+                "upload": "Ошибка при загрузке изображения"
+            },
+            "title": "Добавить изображение",
+            "fields": {
+                "title": "Название",
+                "description": "Описание",
+                "order": "Порядок",
+                "featured": "Избранное"
+            },
+            "placeholders": {
+                "title": "Название изображения",
+                "description": "Описание изображения",
+                "order": "Порядковый номер"
+            },
+            "featuredHint": "Избранное изображение галереи отображается в поиске и в карточке вашего проекта. Только одно изображение галереи может быть избранным.",
+            "actions": {
+                "add": "Добавить изображение"
+            },
+            "states": {
+                "enabled": "Включено",
+                "disabled": "Выключено"
+            }
+        },
+        "moderation": {
+            "errors": {
+                "icon": "Пожалуйста, загрузите иконку проекта",
+                "description": "Пожалуйста, добавьте описание проекта",
+                "summary": "Пожалуйста, добавьте краткое описание проекта",
+                "versions": "Пожалуйста, загрузите хотя бы одну версию проекта",
+                "submit": "Ошибка отправки проекта на модерацию"
+            },
+            "title": "Отправить проект на модерацию",
+            "description": "Перед отправкой убедитесь, что все обязательные поля заполнены",
+            "cards": {
+                "icon": {
+                    "title": "Иконка проекта",
+                    "done": "Загружено",
+                    "required": "Обязательно (рекомендуется 512x512 px)"
+                },
+                "summary": {
+                    "title": "Краткое описание",
+                    "done": "Выглядит отлично!",
+                    "required": "Короткое описание (1–2 предложения)"
+                },
+                "description": {
+                    "title": "Описание",
+                    "done": "Подробно и готово",
+                    "required": "Полное описание проекта (рекомендуется 300+ символов)"
+                },
+                "versions": {
+                    "title": "Версии",
+                    "done": "Загружена как минимум одна версия",
+                    "required": "Загрузите хотя бы одну версию"
+                }
+            },
+            "status": {
+                "queued": "Проект уже отправлен на модерацию",
+                "approved": "Проект одобрен"
+            },
+            "history": {
+                "title": "История модерации",
+                "empty": "Пока нет событий модерации",
+                "actions": {
+                    "queued": "Отправлено на проверку",
+                    "approved": "Одобрено",
+                    "rejected": "Отклонено",
+                    "changesRequested": "Нужны изменения"
+                },
+                "reason": "Причина",
+                "moderator": "Модератор"
+            },
+            "actions": {
+                "submitting": "Отправка...",
+                "alreadySubmitted": "Уже отправлено",
+                "approved": "Проект одобрен",
+                "submit": "Отправить на модерацию"
+            }
+        },
+        "members": {
+            "errors": {
+                "fetch": "Ошибка загрузки участников",
+                "enterUsername": "Введите имя пользователя",
+                "invite": "Ошибка приглашения участника",
+                "roleEmpty": "Роль не может быть пустой",
+                "roleTooLong": "Роль слишком длинная (макс. 50)",
+                "updateRole": "Ошибка обновления роли",
+                "remove": "Ошибка удаления участника",
+                "leave": "Ошибка выхода из проекта"
+            },
+            "success": {
+                "inviteSent": "Приглашение отправлено",
+                "roleUpdated": "Роль обновлена",
+                "removed": "Участник удален",
+                "left": "Вы вышли из проекта"
+            },
+            "confirmRemove": "Удалить {username} из проекта?",
+            "confirmLeave": "Покинуть проект «{title}»?",
+            "inviteTitle": "Пригласить участника",
+            "inviteDescription": "Пригласите людей для совместной работы над проектом.",
+            "placeholders": {
+                "username": "Введите имя пользователя",
+                "role": "Роль"
+            },
+            "actions": {
+                "invite": "Пригласить",
+                "leave": "Выйти из проекта",
+                "remove": "Удалить",
+                "saveRole": "Сохранить"
+            },
+            "leaveTitle": "Покинуть проект",
+            "leaveDescription": "Вы потеряете доступ к этому проекту.",
+            "none": "Участников пока нет.",
+            "avatarAlt": "Аватар участника {username}",
+            "roleLabel": "Роль",
+            "status": {
+                "pending": "Ожидает",
+                "accepted": "Принят",
+                "member": "Участник"
+            }
+        }
+    },
+    "NewsPage": {
+        "title": "Новости",
+        "featuredArticle": {
+            "label": "Главная статья"
+        },
+        "moreTitle": "Другие статьи",
+        "notFound": "Новость не найдена",
+        "byline": {
+            "and": "и",
+            "team": "Команда Modifold",
+            "separator": "•"
+        }
+    },
+    "LoginModal": {
+        "close": "Закрыть",
+        "continueWith": "Продолжить через {provider}",
+        "errors": {
+            "telegram": "Ошибка авторизации Telegram",
+            "github": "Ошибка авторизации GitHub",
+            "discord": "Ошибка авторизации Discord",
+            "telegramProcessing": "Ошибка обработки сообщения Telegram",
+            "githubProcessing": "Ошибка обработки сообщения GitHub",
+            "discordProcessing": "Ошибка обработки сообщения Discord"
+        },
+        "dataModal": {
+            "title": "Какие данные мы собираем?",
+            "intro": "Мы ценим вашу приватность и используем социальные входы (Telegram, GitHub, Discord) для безопасной авторизации в Modifold. Мы собираем только минимально необходимые данные:",
+            "items": {
+                "usernameAvatar": "Имя пользователя и аватар для идентификации профиля.",
+                "email": "Email (если предоставлен соцсетью) для связи и персонализации."
+            },
+            "outro": "Мы не собираем пароли и не получаем их от соцсетей. Все данные хранятся исключительно на серверах Modifold и не передаются третьим лицам. Подробнее — в Политике конфиденциальности."
+        }
+    },
+    "DeleteAccountSection": {
+        "title": "Опасная зона",
+        "description": "Все ваши проекты, версии, загруженные файлы, изображения, подписки и другая связанная информация будут удалены навсегда.",
+        "deleteButton": "Удалить аккаунт навсегда",
+        "confirmTitle": "Вы уверены?",
+        "confirmDescription": "Это действие нельзя отменить. Все ваши проекты, файлы, изображения, подписчики и данные аккаунта будут удалены навсегда.",
+        "cancel": "Отмена",
+        "confirmDelete": "Да, удалить аккаунт",
+        "deleting": "Удаление...",
+        "success": "Аккаунт и все связанные данные успешно удалены",
+        "errors": {
+            "generic": "Не удалось удалить аккаунт"
+        }
+    },
+    "SettingsAPIPage": {
+        "sidebar": {
+            "profileIconAlt": "Иконка профиля",
+            "projects": "Проекты",
+            "notifications": "Уведомления",
+            "settings": "Настройки",
+            "apiTokens": "API‑токены",
+            "verification": "Верификация"
+        },
+        "title": "API‑токены",
+        "description": "API‑токены позволяют внешним приложениям и скриптам обращаться к Modifold от вашего имени. Храните их в безопасности и не публикуйте публично.",
+        "tokenName": "Название токена",
+        "placeholders": {
+            "tokenName": "Токен для скрипта"
+        },
+        "expiration": "Срок действия",
+        "createToken": "Создать токен",
+        "close": "Закрыть",
+        "cancel": "Отмена",
+        "creating": "Создание...",
+        "newTokenTitle": "Новый API‑токен создан!",
+        "copy": "Копировать",
+        "importantLabel": "Важно:",
+        "importantBody": "Этот токен больше не будет показан. Сохраните его в безопасном месте.",
+        "expiresLabel": "Истекает:",
+        "never": "Никогда",
+        "tokensTitle": "Ваши API‑токены",
+        "loadingTokens": "Загрузка токенов...",
+        "noTokens": "У вас пока нет API‑токенов.",
+        "revoke": "Отозвать",
+        "confirmRevoke": "Вы уверены, что хотите отозвать этот токен?",
+        "docsPrompt": "Нужна помощь? Смотрите",
+        "docsLink": "Документация API",
+        "durations": {
+            "week": "1 неделя",
+            "month": "1 месяц",
+            "quarter": "3 месяца",
+            "year": "1 год",
+            "forever": "Бессрочно"
+        },
+        "success": {
+            "created": "Токен создан! Скопируйте его сейчас — больше он не будет показан.",
+            "copied": "Токен скопирован в буфер обмена!",
+            "revoked": "Токен отозван"
+        },
+        "errors": {
+            "loadTokens": "Не удалось загрузить API‑токены",
+            "tokenNameRequired": "Введите имя токена",
+            "createToken": "Не удалось создать токен",
+            "revokeToken": "Не удалось отозвать токен"
+        },
+        "table": {
+            "name": "Название",
+            "token": "Токен (скрыт)",
+            "created": "Создан",
+            "expires": "Истекает",
+            "lastUsed": "Последнее использование"
+        },
+        "metadata": {
+            "title": "API токены — Modifold"
+        }
+    },
+    "AccessDenied": {
+        "metadata": {
+            "title": "Доступ запрещен — Modifold"
+        },
+        "message": "Доступ запрещен"
+    },
+    "ShareButtons": {
+        "copiedToast": "Ссылка скопирована",
+        "shareOnX": "Поделиться в X",
+        "shareByEmail": "Поделиться по email",
+        "copiedAria": "Скопировано!",
+        "copyLinkAria": "Скопировать ссылку"
+    },
+    "LicenseModal": {
+        "close": "Закрыть",
+        "unknown": "Неизвестная лицензия",
+        "empty": "Пусто",
+        "failed": "Ошибка"
+    },
+    "ProjectCard": {
+        "by": "от",
+        "downloads": "скачиваний",
+        "followers": "подписчиков",
+        "updated": "Обновлено",
+        "projectIconAlt": "Иконка проекта {title}"
+    },
+    "ModerationPage": {
+        "metadata": {
+            "title": "Модерация — Modifold"
+        },
+        "title": "Модерация",
+        "tabs": {
+            "projects": "Проекты",
+            "users": "Пользователи",
+            "verification": "Верификация"
+        },
+        "charts": {
+            "approvedProjects": "График одобренных проектов",
+            "userRegistrations": "График регистраций пользователей",
+            "projects": "Проекты",
+            "registrations": "Регистрации",
+            "date": "Дата: {date}"
+        },
+        "stats": {
+            "totalApproved": "Всего одобрено проектов",
+            "totalUsers": "Всего пользователей",
+            "pending": "Проекты на модерации"
+        },
+        "filters": {
+            "searchPlaceholder": "Поиск по названию проекта...",
+            "types": {
+                "all": "Все проекты",
+                "mod": "Моды"
+            },
+            "sort": {
+                "oldest": "Сначала старые",
+                "newest": "Сначала новые"
+            }
+        },
+        "actions": {
+            "approve": "Одобрить",
+            "reject": "Отклонить",
+            "rejectPrompt": "Введите причину отклонения:"
+        },
+        "errors": {
+            "fetchProjects": "Ошибка загрузки проектов для модерации",
+            "fetchAnalytics": "Ошибка загрузки аналитики",
+            "approve": "Ошибка одобрения проекта",
+            "reject": "Ошибка отклонения проекта"
+        },
+        "success": {
+            "approved": "Проект одобрен",
+            "rejected": "Проект отклонен"
+        },
+        "pagination": {
+            "previous": "Предыдущая",
+            "next": "Следующая",
+            "pageOf": "Страница {page} из {totalPages}"
+        },
+        "empty": "Нет проектов, ожидающих модерации."
+    },
+    "UsersModerationPage": {
+        "metadata": {
+            "title": "Модерация пользователей — Modifold"
+        },
+        "title": "Модерация пользователей",
+        "tabs": {
+            "projects": "Проекты",
+            "users": "Пользователи",
+            "verification": "Верификация"
+        },
+        "errors": {
+            "fetch": "Ошибка получения пользователей",
+            "updateRole": "Ошибка изменения роли",
+            "fileTooLarge": "Файл слишком большой. Максимальный размер — 20 МБ",
+            "updateUser": "Ошибка обновления пользователя"
+        },
+        "success": {
+            "roleUpdated": "Роль пользователя обновлена",
+            "userUpdated": "Пользователь обновлен"
+        },
+        "roles": {
+            "admin": "Администратор",
+            "moderator": "Модератор",
+            "user": "Пользователь"
+        },
+        "actions": {
+            "editAria": "Изменить роль или редактировать пользователя",
+            "edit": "Редактировать",
+            "save": "Сохранить",
+            "cancel": "Отмена",
+            "close": "Закрыть"
+        },
+        "pagination": {
+            "previous": "Предыдущая",
+            "next": "Следующая",
+            "pageOf": "Страница {page} из {totalPages}"
+        },
+        "empty": "Нет пользователей для отображения.",
+        "modal": {
+            "title": "Редактировать пользователя {username}"
+        },
+        "fields": {
+            "avatar": "Аватар",
+            "avatarAlt": "Предпросмотр аватара",
+            "username": "Имя пользователя",
+            "email": "Эл. почта",
+            "slug": "URL",
+            "description": "Описание",
+            "role": "Роль"
+        },
+        "placeholders": {
+            "username": "Введите имя пользователя",
+            "email": "Введите email",
+            "slug": "Введите слаг",
+            "description": "Введите описание"
+        }
+    },
+    "NotificationsPage": {
+        "title": "Уведомления",
+        "loading": "Загрузка уведомлений...",
+        "loadingMore": "Загрузка...",
+        "loadMore": "Загрузить ещё",
+        "empty": "Пока нет уведомлений",
+        "sidebarAvatarAlt": "Аватар пользователя {username}",
+        "unknownUser": "Неизвестный пользователь",
+        "sections": {
+            "today": "Сегодня",
+            "yesterday": "Вчера"
+        },
+        "messages": {
+            "followOne": "{username} подписался на вас",
+            "followMany": "{username} и ещё {count} пользователей подписались на вас",
+            "followOneTail": "подписался на вас",
+            "followManyTail": "и ещё {count} пользователей подписались на вас",
+            "projectLikeOne": "{username} поставил лайк вашему проекту {project}",
+            "projectLikeMany": "{username} и ещё {count} пользователей поставили лайк вашему проекту {project}",
+            "projectLikeOneMiddle": "поставил лайк вашему проекту",
+            "projectLikeManyMiddle": "и ещё {count} пользователей поставили лайк вашему проекту",
+            "projectFallback": "вашему проекту",
+            "unknown": "Новое уведомление"
+        },
+        "errors": {
+            "fetch": "Не удалось загрузить уведомления",
+            "noToken": "Токен авторизации не найден"
+        }
+    },
+    "VerificationRequestModal": {
+        "title": "Заявка на верификацию",
+        "close": "Закрыть",
+        "description": "Добавьте хотя бы одну ссылку (X, YouTube или CurseForge). Модераторы проверят и примут решение.",
+        "platform": "Платформа",
+        "platformUrl": "Ссылка на соцсеть",
+        "modifoldUrl": "Ссылка на Modifold",
+        "followers": "Подписчики",
+        "downloads": "Скачивания",
+        "note": "Комментарий модератору",
+        "confirm": "Подтверждаю, что ссылки принадлежат мне.",
+        "submit": "Отправить",
+        "submitting": "Отправка...",
+        "cancel": "Отмена",
+        "placeholders": {
+            "platformUrl": "Ссылка на X/YouTube/CurseForge",
+            "modifoldUrl": "Ссылка на ваш профиль Modifold",
+            "followers": "Количество подписчиков",
+            "downloads": "Количество скачиваний",
+            "note": "Где именно указана ссылка на Modifold (необязательно)",
+            "xUrl": "https://x.com/yourprofile",
+            "youtubeUrl": "https://youtube.com/@yourchannel",
+            "curseforgeUrl": "https://curseforge.com/members/you"
+        },
+        "errors": {
+            "missingLinks": "Добавьте хотя бы одну ссылку на X, YouTube или CurseForge.",
+            "confirmRequired": "Подтвердите, что добавили ссылку на Modifold.",
+            "followers": "Нужно минимум 100 подписчиков.",
+            "downloads": "Нужно минимум 1 000 скачиваний.",
+            "pending": "У вас уже есть заявка на рассмотрении.",
+            "generic": "Ошибка при отправке заявки",
+            "cooldown": "Повторная заявка доступна через 7 дней после отказа."
+        },
+        "success": "Заявка отправлена",
+        "xUrl": "Ссылка на X",
+        "youtubeUrl": "Ссылка на YouTube",
+        "curseforgeUrl": "Ссылка на CurseForge"
+    },
+    "VerificationModerationPage": {
+        "metadata": {
+            "title": "Заявки на верификацию — Modifold"
+        },
+        "title": "Заявки на верификацию",
+        "tabs": {
+            "projects": "Проекты",
+            "users": "Пользователи",
+            "verification": "Верификация"
+        },
+        "filters": {
+            "pending": "На рассмотрении",
+            "approved": "Одобрены",
+            "rejected": "Отклонены",
+            "all": "Все"
+        },
+        "statuses": {
+            "pending": "На рассмотрении",
+            "approved": "Одобрена",
+            "rejected": "Отклонена"
+        },
+        "fields": {
+            "socialLink": "Ссылка на соцсеть",
+            "modifoldLink": "Ссылка Modifold",
+            "followers": "Подписчики",
+            "downloads": "Скачивания",
+            "createdAt": "Дата заявки",
+            "note": "Комментарий",
+            "xUrl": "Ссылка X",
+            "youtubeUrl": "Ссылка YouTube",
+            "curseforgeUrl": "Ссылка CurseForge"
+        },
+        "actions": {
+            "approve": "Одобрить",
+            "reject": "Отклонить",
+            "notePrompt": "Комментарий модератора (необязательно):"
+        },
+        "errors": {
+            "fetch": "Ошибка загрузки заявок",
+            "update": "Ошибка обновления заявки"
+        },
+        "success": {
+            "approved": "Заявка одобрена",
+            "rejected": "Заявка отклонена"
+        },
+        "pagination": {
+            "previous": "Назад",
+            "next": "Вперёд",
+            "pageOf": "Страница {page} из {totalPages}"
+        },
+        "empty": "Заявок нет."
+    },
+    "SettingsVerificationPage": {
+        "metadata": {
+            "title": "Верификация — Modifold"
+        },
+        "title": "Верификация",
+        "benefitsNote": "Верификация не дает дополнительных преимуществ, кроме значка у имени профиля. Значок помогает отличать проверенных/популярных моддеров.",
+        "statusLabel": "Статус",
+        "status": {
+            "verified": "Верифицирован",
+            "notVerified": "Не верифицирован",
+            "pending": "На рассмотрении",
+            "rejected": "Отклонена"
+        },
+        "requirements": "Требования: 500+ подписчиков в X/YouTube или 3 000+ скачиваний на CurseForge. Укажите хотя бы одну ссылку для проверки.",
+        "request": "Подать заявку на верификацию",
+        "requestPending": "Заявка на рассмотрении",
+        "reapply": "Подать повторно",
+        "cooldown": "Доступно через {days} дн.",
+        "lastRequest": "Последняя заявка: {date}",
+        "errors": {
+            "fetch": "Не удалось загрузить статус верификации"
+        },
+        "sidebar": {
+            "profileIconAlt": "Иконка профиля",
+            "projects": "Проекты",
+            "notifications": "Уведомления",
+            "settings": "Настройки",
+            "apiTokens": "API токены",
+            "verification": "Верификация"
+        }
+    }
+}

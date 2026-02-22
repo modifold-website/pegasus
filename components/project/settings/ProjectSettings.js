@@ -8,6 +8,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
+
+const getInitialFormData = (project) => ({
+    title: project?.title || "",
+    summary: project?.summary || "",
+    visibility: project?.visibility || "public",
+    slug: project?.slug || "",
+    icon: null,
+    comments_enabled: project?.comments_enabled !== false,
+});
 
 export default function ProjectSettings({ project }) {
     const t = useTranslations("SettingsProjectPage");
@@ -15,16 +25,12 @@ export default function ProjectSettings({ project }) {
     const router = useRouter();
     const pathname = usePathname();
 
-    const [formData, setFormData] = useState({
-        title: "",
-        summary: "",
-        visibility: "public",
-        slug: "",
-        icon: null,
-        comments_enabled: true,
-    });
+    const [formData, setFormData] = useState(getInitialFormData(project));
+    const [savedFormData, setSavedFormData] = useState(getInitialFormData(project));
+    const [isSaving, setIsSaving] = useState(false);
 
     const [previewIcon, setPreviewIcon] = useState("");
+    const [savedPreviewIcon, setSavedPreviewIcon] = useState(project?.icon_url || "");
     const iconInputRef = useRef(null);
     const [isCommentsMenuOpen, setIsCommentsMenuOpen] = useState(false);
     const commentsButtonRef = useRef(null);
@@ -34,18 +40,23 @@ export default function ProjectSettings({ project }) {
         if(!isLoggedIn) {
             router.push("/403");
         } else if(project) {
-            setFormData({
-                title: project.title || "",
-                summary: project.summary || "",
-                visibility: project.visibility || "public",
-                slug: project.slug || "",
-                icon: null,
-                comments_enabled: project.comments_enabled !== false,
-            });
-
-            setPreviewIcon(project.icon_url || "");
+            const initialData = getInitialFormData(project);
+            const initialPreview = project.icon_url || "";
+            setFormData(initialData);
+            setSavedFormData(initialData);
+            setPreviewIcon(initialPreview);
+            setSavedPreviewIcon(initialPreview);
         }
     }, [isLoggedIn, project, router]);
+
+    const isDirty = (
+        formData.title !== savedFormData.title ||
+        formData.summary !== savedFormData.summary ||
+        formData.visibility !== savedFormData.visibility ||
+        formData.slug !== savedFormData.slug ||
+        formData.comments_enabled !== savedFormData.comments_enabled ||
+        Boolean(formData.icon)
+    );
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -86,7 +97,13 @@ export default function ProjectSettings({ project }) {
     }, [isCommentsMenuOpen]);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        if(e) {
+            e.preventDefault();
+        }
+
+        if(isSaving || !isDirty) {
+            return;
+        }
 
         const data = new FormData();
         data.append("title", formData.title);
@@ -98,6 +115,8 @@ export default function ProjectSettings({ project }) {
             data.append("icon", formData.icon);
         }
 
+        setIsSaving(true);
+
         try {
             await axios.put(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.id}`, data, {
                 headers: {
@@ -106,9 +125,17 @@ export default function ProjectSettings({ project }) {
                 },
             });
 
+            setSavedFormData({
+                ...formData,
+                icon: null,
+            });
+            setFormData((prev) => ({ ...prev, icon: null }));
+            setSavedPreviewIcon(previewIcon);
             toast.success(t("general.success.saved"));
         } catch (err) {
             toast.error(err.response?.data?.message || t("general.errors.save"));
+        } finally {
+            setIsSaving(false);
         }
     };
 
@@ -235,7 +262,7 @@ export default function ProjectSettings({ project }) {
 
                                     <div className="blog-settings__avatar">
                                         <div className="avatar avatar--size-l">
-                                            <div className="avatar__wrapper" style={{ "--background-color": "#dbf3fb" }}>
+                                            <div className="avatar__wrapper" style={{ "--background-color": "var(--theme-color-background)" }}>
                                                 {previewIcon && (
                                                     <img src={previewIcon} alt={t("general.iconAlt")} className="avatar__image" />
                                                 )}
@@ -328,10 +355,6 @@ export default function ProjectSettings({ project }) {
                                     </div>
 
                                     <div style={{ marginTop: "18px", display: "flex", gap: "10px" }}>
-                                        <button type="submit" className="button button--size-m button--type-primary">
-                                            {t("general.actions.save")}
-                                        </button>
-
                                         <button type="button" className="button button--size-m button--type-negative" onClick={handleDelete}>
                                             {t("general.actions.delete")}
                                         </button>
@@ -343,6 +366,22 @@ export default function ProjectSettings({ project }) {
                 </div>
 
                 <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+                <UnsavedChangesBar
+                    isDirty={isDirty}
+                    isSaving={isSaving}
+                    onSave={handleSubmit}
+                    onReset={() => {
+                        setFormData({ ...savedFormData, icon: null });
+                        setPreviewIcon(savedPreviewIcon);
+                        setIsCommentsMenuOpen(false);
+                        if(iconInputRef.current) {
+                            iconInputRef.current.value = "";
+                        }
+                    }}
+                    saveLabel={t("general.actions.save")}
+                    resetLabel={t("unsavedBar.reset")}
+                    message={t("unsavedBar.message")}
+                />
             </div>
         </div>
     );

@@ -47,8 +47,15 @@
         "openSourceSoon": "Modifold açık kaynaklıdır.",
         "apiDocs": "API Dokümantasyonu"
     },
+    "Layout": {
+        "stagingBanner": "Staging ortamı: yalnızca dahili testler içindir. Bazı özellikler kullanılamıyor olabilir veya kararsız çalışabilir."
+    },
     "NotFound": {
-        "message": "Sayfa bulunamadı"
+        "title": "Sayfa bulunamadı",
+        "message": "Bağlantı yok, taşınmış ya da silinmiş.",
+        "joke": "CurseForge ne gerek? Modlarını Modifold'a yüklemen daha iyi.",
+        "goHome": "Ana sayfaya dön",
+        "goMods": "Modları keşfet"
     },
     "HomePage": {
         "title": "Hytale modlarınız için bir yuva - Modifold",
@@ -360,6 +367,10 @@
         "subscriptionsLabel": "{count, plural, one {Abonelik} other {Abonelikler}}",
         "moreActionsPlaceholder": "Daha fazla işlem yakında",
         "moreActionsAria": "Daha fazla işlem",
+        "openAvatar": "Avatarı aç",
+        "lightboxLabel": "Profil avatarı önizlemesi",
+        "openInNewTab": "Görseli yeni sekmede aç",
+        "close": "Kapat",
         "metadata": {
             "title": "{username} - Modifold",
             "notFound": "Kullanıcı bulunamadı - Modifold",
@@ -380,6 +391,10 @@
             "license": "Lisans"
         },
         "save": "Kaydet",
+        "unsavedBar": {
+            "message": "Kaydedilmemiş değişiklikleriniz var.",
+            "reset": "Sıfırla"
+        },
         "metadata": {
             "title": "Ayarlar - {title} - Modifold"
         },
@@ -435,7 +450,8 @@
             },
             "title": "Açıklama",
             "placeholder": "Proje açıklamasını girin (Markdown desteklenir)",
-            "hint": "En az 100 karakter. Markdown biçimlendirme desteklenir.",
+            "hint": "En az 50 karakter. Markdown biçimlendirme desteklenir.",
+            "editorSupportText": "Bu editör Markdown biçimlendirmeyi destekler.",
             "preview": "Önizleme",
             "actions": {
                 "save": "Kaydet"

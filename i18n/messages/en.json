@@ -47,8 +47,15 @@
         "openSourceSoon": "Modifold is open source.",
         "apiDocs": "API Docs"
     },
+    "Layout": {
+        "stagingBanner": "Staging environment: internal testing only. Some features may be unavailable or unstable."
+    },
     "NotFound": {
-        "message": "Page not found"
+        "title": "Page not found",
+        "message": "The link is missing, moved, or deleted.",
+        "joke": "Why CurseForge? Upload your mods to Modifold instead.",
+        "goHome": "Go home",
+        "goMods": "Browse mods"
     },
     "HomePage": {
         "title": "The home for your Hytale mods — Modifold",
@@ -360,6 +367,10 @@
         "subscriptionsLabel": "{count, plural, one {Subscription} other {Subscriptions}}",
         "moreActionsPlaceholder": "More actions soon",
         "moreActionsAria": "More actions",
+        "openAvatar": "Open avatar image",
+        "lightboxLabel": "Profile avatar preview",
+        "openInNewTab": "Open image in new tab",
+        "close": "Close",
         "metadata": {
             "title": "{username} — Modifold",
             "notFound": "User not found — Modifold",
@@ -380,6 +391,10 @@
             "license": "License"
         },
         "save": "Save",
+        "unsavedBar": {
+            "message": "You have unsaved changes.",
+            "reset": "Reset"
+        },
         "metadata": {
             "title": "Settings — {title} — Modifold"
         },
@@ -435,7 +450,8 @@
             },
             "title": "Description",
             "placeholder": "Enter project description (Markdown supported)",
-            "hint": "Minimum 100 characters. Supports Markdown formatting.",
+            "hint": "Minimum 50 characters. Supports Markdown formatting.",
+            "editorSupportText": "This editor supports Markdown formatting.",
             "preview": "Preview",
             "actions": {
                 "save": "Save"

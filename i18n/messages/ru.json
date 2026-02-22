@@ -47,8 +47,15 @@
         "openSourceSoon": "Modifold — открытый проект.",
         "apiDocs": "Документация API"
     },
+    "Layout": {
+        "stagingBanner": "Тестовый стенд: только для внутреннего тестирования. Некоторые функции могут быть недоступны или работать нестабильно."
+    },
     "NotFound": {
-        "message": "Страница не найдена"
+        "title": "Страница не найдена",
+        "message": "Ссылка не найдена, перемещена или удалена.",
+        "joke": "Зачем CurseForge? Лучше загружай свои моды на Modifold.",
+        "goHome": "На главную",
+        "goMods": "Смотреть моды"
     },
     "HomePage": {
         "title": "Дом для ваших модов Hytale — Modifold",
@@ -360,6 +367,10 @@
         "subscriptionsLabel": "{count, plural, one {подписка} other {подписок}}",
         "moreActionsPlaceholder": "Скоро появятся действия",
         "moreActionsAria": "Дополнительные действия",
+        "openAvatar": "Открыть аватар",
+        "lightboxLabel": "Просмотр аватара профиля",
+        "openInNewTab": "Открыть изображение в новой вкладке",
+        "close": "Закрыть",
         "metadata": {
             "title": "{username} — Modifold",
             "notFound": "Пользователь не найден — Modifold",
@@ -380,6 +391,10 @@
             "license": "Лицензия"
         },
         "save": "Сохранить",
+        "unsavedBar": {
+            "message": "У вас есть несохраненные изменения.",
+            "reset": "Сбросить"
+        },
         "metadata": {
             "title": "Настройки — {title} — Modifold"
         },
@@ -435,7 +450,8 @@
             },
             "title": "Описание",
             "placeholder": "Введите описание проекта (поддерживается Markdown)",
-            "hint": "Минимум 100 символов. Поддерживается Markdown.",
+            "hint": "Минимум 50 символов. Поддерживается Markdown.",
+            "editorSupportText": "Этот редактор поддерживает Markdown-разметку.",
             "preview": "Предпросмотр",
             "actions": {
                 "save": "Сохранить"

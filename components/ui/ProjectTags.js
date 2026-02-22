@@ -33,7 +33,6 @@ export default function ProjectTags({ tags, limit = 5, tagClassName = "new-tag",
     const resolvedTotalCount = numericTotalCount !== null ? Math.max(normalizedTags.length, numericTotalCount) : normalizedTags.length;
     const hiddenCount = Math.max(0, resolvedTotalCount - visibleTags.length);
     const overflowClass = overflowTagClassName || tagClassName;
-    const popoverTagClass = popoverClassName || tagClassName;
 
     const clearCloseTimer = () => {
         if(closeTimerRef.current) {
@@ -73,6 +72,7 @@ export default function ProjectTags({ tags, limit = 5, tagClassName = "new-tag",
         event.preventDefault();
         event.stopPropagation();
     };
+
     const stopPropagationOnly = (event) => {
         event.stopPropagation();
     };

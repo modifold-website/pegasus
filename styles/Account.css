@@ -1,34 +1,6 @@
 :root {
     --safe-tabbar-height: calc(var(--layout-tabbar-height) + env(safe-area-inset-bottom));
 }
-@keyframes underlay-in {
-    0% {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-@keyframes modal-enter {
-    0% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: none;
-    }
-}
-@keyframes modal-enter-slide {
-    0% {
-        opacity: 0;
-        transform: translate3d(0, 100%, 0);
-    }
-    to {
-        opacity: 1;
-        transform: translateZ(0);
-    }
-}
 .account {
     min-height: 100%;
     padding: var(--layout-content-offset-x);

@@ -10,6 +10,7 @@ import { useAuth } from "../../components/providers/AuthProvider";
 import VersionDisplay from "../VersionDisplay";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
 import ProjectMasthead from "../project/ProjectMasthead";
 import ProjectTabs from "../project/ProjectTabs";
 import ProjectSidebar from "../project/ProjectSidebar";
@@ -214,6 +215,7 @@ export default function VersionPage({ project, version, authToken }) {
                                     <div class="markdown-body">
                                         {version.changelog ? (
                                             <ReactMarkdown
+                                                remarkPlugins={[remarkGfm]}
                                                 rehypePlugins={[rehypeRaw]}
                                                 components={{
                                                     a: ({ href, children }) => (

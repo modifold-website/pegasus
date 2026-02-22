@@ -6,6 +6,7 @@ import { usePathname, useParams } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
+import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
 
 const TAGS_BY_TYPE = {
     mod: [
@@ -39,9 +40,13 @@ export default function TagsSettings({ project, authToken }) {
     const pathname = usePathname();
     const { slug } = useParams();
 
-    const [selectedTags, setSelectedTags] = useState(project.tags ? project.tags.split(",") : []);
+    const initialTags = project.tags ? project.tags.split(",") : [];
+    const [selectedTags, setSelectedTags] = useState(initialTags);
+    const [savedTags, setSavedTags] = useState(initialTags);
     const [isTagsPopoverOpen, setIsTagsPopoverOpen] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
     const tagsRef = useRef(null);
+    const isDirty = JSON.stringify(selectedTags) !== JSON.stringify(savedTags);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -69,7 +74,15 @@ export default function TagsSettings({ project, authToken }) {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        if(e) {
+            e.preventDefault();
+        }
+
+        if(isSaving || !isDirty) {
+            return;
+        }
+
+        setIsSaving(true);
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/tags`, {
@@ -82,6 +95,7 @@ export default function TagsSettings({ project, authToken }) {
             });
 
             if(response.ok) {
+                setSavedTags([...selectedTags]);
                 toast.success(t("tags.success"));
             } else {
                 toast.error(t("tags.errors.save"));
@@ -89,6 +103,8 @@ export default function TagsSettings({ project, authToken }) {
         } catch (err) {
             console.error("Error updating tags:", err);
             toast.error(t("tags.errors.save"));
+        } finally {
+            setIsSaving(false);
         }
     };
 
@@ -219,11 +235,7 @@ export default function TagsSettings({ project, authToken }) {
                                         )}
                                     </div>
 
-                                    <button type="submit" className="button button--size-m button--type-primary" style={{ marginTop: "18px" }}>
-                                        {t("tags.actions.save")}
-                                    </button>
-
-                                    <button type="button" className="button button--size-m button--type-secondary" style={{ marginTop: "10px", marginLeft: "10px" }} onClick={() => setSelectedTags([])}>
+                                    <button type="button" className="button button--size-m button--type-minimal" style={{ marginTop: "18px" }} onClick={() => setSelectedTags([])}>
                                         {t("tags.actions.clear")}
                                     </button>
                                 </form>
@@ -244,6 +256,18 @@ export default function TagsSettings({ project, authToken }) {
                 </div>
 
                 <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+                <UnsavedChangesBar
+                    isDirty={isDirty}
+                    isSaving={isSaving}
+                    onSave={handleSubmit}
+                    onReset={() => {
+                        setSelectedTags([...savedTags]);
+                        setIsTagsPopoverOpen(false);
+                    }}
+                    saveLabel={t("tags.actions.save")}
+                    resetLabel={t("unsavedBar.reset")}
+                    message={t("unsavedBar.message")}
+                />
             </div>
         </div>
     );

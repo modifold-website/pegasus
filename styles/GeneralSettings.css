@@ -9,14 +9,6 @@
         opacity: 1;
     }
 }
-@keyframes underlay-in {
-    0% {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
 @-webkit-keyframes modal-enter {
     0% {
         opacity: 0;
@@ -26,21 +18,6 @@
         opacity: 1;
         transform: none;
     }
-}
-@keyframes modal-enter {
-    0% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: none;
-    }
-}
-.general-settings-skeleton {
-    will-change: opacity;
-    -webkit-animation: skeleton-loading 1s linear alternate infinite;
-    animation: skeleton-loading 1s linear alternate infinite;
 }
 @-webkit-keyframes skeleton-loading {
     0% {
@@ -58,39 +35,10 @@
         opacity: 0.5;
     }
 }
-.general-settings-skeleton {
-    padding: 24px var(--layout-content-offset-x) 0 var(--layout-content-offset-x);
-}
-.general-settings-skeleton__title {
-    margin-bottom: 24px !important;
-}
-.general-settings-skeleton__title:not(:first-child) {
-    margin-top: 42px;
-}
-.general-settings-skeleton__title--delete-account:not(:first-child) {
-    margin-top: 24px;
-}
-.general-settings-skeleton__btn {
-    margin-top: 22px !important;
-}
-.general-settings-skeleton__linked-accounts {
-    display: flex;
-}
-.general-settings-skeleton__linked-accounts > *:first-child {
-    margin-right: 12px;
-}
 :root {
     --safe-tabbar-height: calc(var(--layout-tabbar-height) + env(safe-area-inset-bottom));
 }
 @-webkit-keyframes underlay-in {
-    0% {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-@keyframes underlay-in {
     0% {
         opacity: 0;
     }
@@ -108,102 +56,17 @@
         transform: none;
     }
 }
-@keyframes modal-enter {
-    0% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: none;
-    }
-}
-.general-settings {
-    --color-google: rgba(241, 67, 54, 1);
-    --color-apple: var(--color-black);
-}
-.general-settings__body {
-    padding: 20px var(--layout-content-offset-x) 0 var(--layout-content-offset-x);
-}
-.general-settings__field-title {
-    color: var(--theme-color-text-primary);
-    font-weight: 500;
-    margin-bottom: 8px;
-}
-.general-settings__field-title:not(:first-child) {
-    margin-top: 32px;
-}
-.general-settings__field-title {
-    font-size: 17px;
-    line-height: 24px;
-}
-.general-settings__body-text {
-    color: var(--theme-color-text-primary);
-    max-width: 433px;
-    font-size: 17px;
-    line-height: 24px;
-}
-.general-settings__change {
-    margin-top: 6px;
-}
-.general-settings__input {
-    max-width: var(--layout-settings-input-max-width);
-}
-.general-settings__password-confirmation,
-.general-settings__linked-accounts {
-    margin-top: 12px;
-}
-.general-settings__account {
-    max-width: 152px;
-    height: 34px;
-    border-radius: 9px;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 15px;
-    line-height: 22px;
-}
-.general-settings__account:not(:first-child) {
-    margin-left: 12px;
-}
 .general-settings__account .icon {
     margin-right: 6px;
     flex-shrink: 0;
-}
-.general-settings__account--google {
-    background: var(--color-google);
-    color: #fff;
-}
-.general-settings__account--apple {
-    background: var(--color-apple);
-    color: var(--color-white);
-}
-.general-settings__unlink-account-btn {
-    color: #fff;
-    opacity: 0.5;
-    cursor: pointer;
-    width: 16px;
-    margin-left: 6px;
 }
 @media (hover: hover) {
     .general-settings__unlink-account-btn:hover {
         opacity: 1;
     }
 }
-.general-settings__link-account {
-    background: var(--theme-color-button-minimal);
-    color: var(--theme-color-text-primary);
-    cursor: pointer;
-}
 @media (hover: hover) {
     .general-settings__link-account:hover {
         background: var(--theme-color-button-minimal-hover);
     }
-}
-.general-settings__linked-account-text {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }

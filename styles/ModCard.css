@@ -168,6 +168,14 @@
 .new-project-card:hover:has(.new-project-author a span:hover) .new-project-author a span {
     text-decoration: underline;
 }
+.new-project-card:hover:has(.dashboard-project-settings-button:hover),
+.new-project-card:hover:has(.dashboard-project-settings-button:focus-visible) {
+    filter: none;
+}
+.new-project-card:hover:has(.dashboard-project-settings-button:hover) .new-project-title,
+.new-project-card:hover:has(.dashboard-project-settings-button:focus-visible) .new-project-title {
+    text-decoration: none;
+}
 .new-project-card:active {
     filter: brightness(.8);
     scale: .95;
@@ -260,30 +268,14 @@
 .project-tags-overflow:focus-visible {
     outline: none;
 }
-.project-tags-overflow__popover {
-    position: absolute;
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    width: max-content;
-    max-width: min(320px, 80vw);
-    padding: 10px;
-    border-radius: 12px;
-    background: var(--theme-color-popover-background);
-    box-shadow: var(--theme-shadow-popover);
-    border: 1px solid var(--theme-color-border);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-4px);
-    transition: opacity .16s ease, transform .16s ease, visibility .16s ease;
-    z-index: 20;
-}
 @media (max-width: 768px) {
     .project-tags-floating-popover {
         max-width: min(280px, calc(100vw - 32px));
     }
 }
 .new-project-stats {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: flex-end;

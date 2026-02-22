@@ -1,31 +1,31 @@
-.editor-toolbar {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+.markdown-body blockquote,
+.markdown-body code,
+.markdown-body details,
+.markdown-body dl,
+.markdown-body ol,
+.markdown-body p,
+.markdown-body pre,
+.markdown-body table,
+.markdown-body ul {
+    margin-bottom: 16px;
+    margin-top: 0;
 }
-.editor-content {
-    outline: none;
-    width: 100%;
-    box-sizing: border-box;
+.markdown-body ul,
+.markdown-body ol {
+    padding-left: 40px;
+}
+.markdown-body li,
+.markdown-body p {
+    line-height: 1.5;
+    padding: 0;
+}
+.markdown-body h1 {
+    display: block;
 }
 .markdown-body h1,
 .markdown-body h2 {
     border-bottom: none;
     padding: 0;
-}
-.markdown-body ol > li:not(:last-child),
-.markdown-body ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    padding-inline-start: 40px;
-    unicode-bidi: isolate;
-    margin-bottom: 0.5rem;
-}
-.markdown-body ol p,
-.markdown-body ul p {
-    margin-bottom: 0.5rem;
 }
 .markdown-body [data-contrast-text] {
     color: #1a202c;
@@ -170,4 +170,168 @@ strong {
 .markdown-body details[open] > :last-child:not(summary),
 .markdown-body > :last-child {
     margin-bottom: 0 !important;
+}
+.markdown-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.markdown-editor__hint {
+    margin: 0;
+    color: var(--theme-color-text-secondary);
+}
+.markdown-editor__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.markdown-editor__toolbar-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.markdown-editor__tool {
+    min-width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--theme-color-background);
+    color: var(--theme-color-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter .15s ease, transform .05s ease;
+}
+.markdown-editor__tool:hover {
+    filter: brightness(.95);
+}
+.markdown-editor__tool:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    filter: none;
+}
+.markdown-editor__tool:disabled:hover {
+    filter: none;
+}
+.markdown-editor__tool:active {
+    transform: translateY(1px);
+}
+.markdown-editor__tool svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    flex-shrink: 0;
+}
+.markdown-editor__preview-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--theme-color-text-primary);
+    cursor: pointer;
+}
+.markdown-editor__preview-toggle input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+}
+.markdown-editor__preview-toggle-ui {
+    width: 52px;
+    height: 32px;
+    border-radius: 999px;
+    background: var(--theme-color-background);
+    display: inline-flex;
+    align-items: center;
+    padding: 6px;
+    box-sizing: border-box;
+    transition: background-color .18s ease;
+}
+.markdown-editor__preview-toggle-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: #101418;
+    transition: transform .18s ease;
+}
+.markdown-editor__preview-toggle input:checked + .markdown-editor__preview-toggle-ui {
+    background: #307def;
+}
+.markdown-editor__preview-toggle input:checked + .markdown-editor__preview-toggle-ui .markdown-editor__preview-toggle-thumb {
+    transform: translateX(22px);
+    background: #FFFFFF;
+}
+.markdown-editor__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+.markdown-editor__grid--split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.markdown-editor__panel {
+    overflow: hidden;
+    border-radius: 16px;
+}
+.markdown-editor__textarea {
+    min-height: 320px;
+    margin: 0;
+    border: 0;
+    resize: vertical;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    line-height: 1.5;
+}
+.markdown-editor__preview {
+    min-height: 320px;
+    border: 1px solid var(--theme-color-border);
+}
+.markdown-editor__preview-scroll {
+    padding: 16px;
+    max-height: 520px;
+    overflow-y: auto;
+}
+.markdown-editor__support {
+    margin: 0;
+    color: var(--theme-color-text-secondary);
+}
+@media (max-width: 960px) {
+    .markdown-editor__toolbar {
+        align-items: stretch;
+    }
+    .markdown-editor__preview-toggle-ui {
+        width: 52px;
+        height: 32px;
+        padding: 5px;
+    }
+    .markdown-editor__preview-toggle-thumb {
+        width: 18px;
+        height: 18px;
+    }
+    .markdown-editor__preview-toggle input:checked + .markdown-editor__preview-toggle-ui .markdown-editor__preview-toggle-thumb {
+        transform: translateX(25px);
+    }
+}
+.markdown-body pre {
+    background-color: var(--theme-color-background);
+    border-radius: 8px;
+    margin-top: 1rem;
+    overflow-x: auto;
+    padding: 14px;
+}
+.markdown-body pre code {
+    border-radius: 0;
+    font-size: 80%;
+    padding: 0;
+}
+.markdown-body code {
+    background-color: var(--theme-color-background);
+    border-radius: 8px;
+    font-size: 80%;
+    padding: 0.2em 0.4em;
 }

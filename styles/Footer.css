@@ -40,10 +40,6 @@
     display: flex;
     gap: 12px;
 }
-.footer-logo__pic {
-    width: 40px;
-    height: 40px;
-}
 .footer-announcement {
     margin: 0 auto;
     opacity: 0.5;

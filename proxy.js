@@ -1,4 +1,3 @@
-import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 import { NextResponse } from "next/server";
 
@@ -53,7 +52,7 @@ export default async function proxy(req) {
         }
     }
 
-    const response = createMiddleware(routing)(req);
+    const response = NextResponse.next();
     const requestHost = req.headers.get("host") || "";
     const isStagingHost = requestHost === "staging.modifold.com" || requestHost.startsWith("staging.");
 
@@ -73,9 +72,23 @@ export default async function proxy(req) {
         const headers = new Headers(req.headers);
         headers.set("X-Real-IP", clientIp);
         headers.set("X-Forwarded-For", clientIp);
+        headers.set("x-modifold-locale", resolvedLocale);
 
-        const newRequest = new Request(req, { headers });
-        return NextResponse.rewrite(newRequest);
+        const rewriteResponse = NextResponse.next({
+            request: { headers },
+        });
+
+        if(isStagingHost) {
+            rewriteResponse.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive, nosnippet, noimageindex");
+        }
+
+        rewriteResponse.cookies.set("NEXT_LOCALE", resolvedLocale, {
+            maxAge: 60 * 60 * 24 * 365,
+            path: "/",
+            sameSite: "lax",
+        });
+
+        return rewriteResponse;
     }
 
     return response;

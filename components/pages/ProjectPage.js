@@ -3,12 +3,12 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
 import ProjectMasthead from "../project/ProjectMasthead";
 import ProjectTabs from "../project/ProjectTabs";
 import ProjectSidebar from "../project/ProjectSidebar";
 
 export default function ProjectPage({ project, authToken }) {
-
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -46,6 +46,7 @@ export default function ProjectPage({ project, authToken }) {
 
                             <div className="content content--padding markdown-body">
                                 <ReactMarkdown
+                                    remarkPlugins={[remarkGfm]}
                                     rehypePlugins={[rehypeRaw]}
                                     components={{
                                         a: ({ href, children }) => (

@@ -48,11 +48,7 @@ export default function LicenseModal({ isOpen, licenseId, onRequestClose }) {
 
                     <button className="icon-button modal-window__close" type="button" onClick={onRequestClose} aria-label={t("close")}> 
                         <svg className="icon icon--cross" height="24" width="24">
-                            <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 0 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"
-                            />
+                            <path fillRule="evenodd" clipRule="evenodd" d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 0 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z" />
                         </svg>
                     </button>
                 </div>

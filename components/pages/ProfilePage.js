@@ -9,6 +9,7 @@ import ProjectCard from "../project/ProjectCard";
 import { useTranslations, useLocale } from "next-intl";
 import UserName from "../ui/UserName";
 import Modal from "react-modal";
+import ImageLightbox, { useImageLightbox } from "../ui/ImageLightbox";
 
 if(typeof window !== "undefined") {
     Modal.setAppElement("body");
@@ -54,6 +55,7 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
     const [loading, setLoading] = useState(true);
     const popoverRef = useRef(null);
     const buttonRef = useRef(null);
+    const { lightboxOpen, lightboxImage, closeLightbox, getLightboxTriggerProps } = useImageLightbox();
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -201,12 +203,12 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                 <div className="browse-page">
                     <div className="subsite-header" style={{ width: "300px", maxWidth: "300px" }}>
                         <div className="subsite-header__padding">
-                            <div className="subsite-header__header">
-                                <div className="subsite-avatar subsite-header__avatar">
-                                    <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--cropped andropov-image andropov-image--zoom subsite-avatar__image" style={{ backgroundColor: "#151824", aspectRatio: "1.5 / 1", maxWidth: "none" }}>
-                                        <img className="magnify" src={authorAva} alt="" />
+                                <div className="subsite-header__header">
+                                    <div className="subsite-avatar subsite-header__avatar">
+                                        <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--cropped andropov-image andropov-image--zoom subsite-avatar__image" style={{ backgroundColor: "#151824", aspectRatio: "1.5 / 1", maxWidth: "none" }} aria-label={t("openAvatar")} {...getLightboxTriggerProps({ url: authorAva, title: authorTitle })}>
+                                            <img className="magnify" src={authorAva} alt={authorTitle} />
+                                        </div>
                                     </div>
-                                </div>
 
                                 {isLoggedIn && (
                                     <div className="subsite-header__controls">
@@ -305,6 +307,8 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                                 </div>
                             )}
                         </div>
+
+                        <ImageLightbox isOpen={lightboxOpen} image={lightboxImage} onClose={closeLightbox} dialogLabel={t("lightboxLabel")} closeLabel={t("close")} openInNewTabLabel={t("openInNewTab")} fallbackAlt={authorTitle} />
                     </div>
 
                     <div className="browse-content">

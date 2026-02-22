@@ -11,26 +11,31 @@ import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import UserName from "../ui/UserName";
 
-export default function SettingsBlogPage() {
+const getEmptySocialLinks = () => ({
+    youtube: "",
+    telegram: "",
+    x: "",
+    discord: "",
+});
+
+const getInitialFormData = (user) => ({
+    username: user?.username || "",
+    avatar: null,
+    description: user?.description || "",
+    social_links: user?.social_links || getEmptySocialLinks(),
+});
+
+export default function SettingsBlogPage({ initialUser = null }) {
     const t = useTranslations("SettingsBlogPage");
     const locale = useLocale();
     const pathname = usePathname();
     const { isLoggedIn, user, setUser } = useAuth();
     const router = useRouter();
+    const effectiveUser = user || initialUser;
 
-    const [formData, setFormData] = useState({
-        username: "",
-        avatar: null,
-        description: "",
-        social_links: {
-            youtube: "",
-            telegram: "",
-            x: "",
-            discord: "",
-        },
-    });
+    const [formData, setFormData] = useState(() => getInitialFormData(effectiveUser));
 
-    const [previewAvatar, setPreviewAvatar] = useState("");
+    const [previewAvatar, setPreviewAvatar] = useState(effectiveUser?.avatar || "");
     const avatarInputRef = useRef(null);
     const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
     const languageButtonRef = useRef(null);
@@ -46,25 +51,19 @@ export default function SettingsBlogPage() {
     };
 
     useEffect(() => {
-        if(!isLoggedIn) {
+        if(!isLoggedIn && !initialUser) {
             router.push("/403");
-        } else {
-            setFormData({
-                username: user.username || "",
-                avatar: null,
-                cover: null,
-                description: user.description || "",
-                social_links: user.social_links || {
-                    youtube: "",
-                    telegram: "",
-                    x: "",
-                    discord: "",
-                },
-            });
-
-            setPreviewAvatar(user.avatar || "");
         }
-    }, [isLoggedIn, user, router]);
+    }, [initialUser, isLoggedIn, router]);
+
+    useEffect(() => {
+        if(!effectiveUser) {
+            return;
+        }
+
+        setFormData(getInitialFormData(effectiveUser));
+        setPreviewAvatar(effectiveUser.avatar || "");
+    }, [effectiveUser]);
 
     useEffect(() => {
         setSelectedLocale(locale || "en");
@@ -153,7 +152,7 @@ export default function SettingsBlogPage() {
         window.location.reload();
     };
 
-    if(!isLoggedIn) {
+    if(!isLoggedIn && !effectiveUser) {
         return null;
     }
 
@@ -162,9 +161,9 @@ export default function SettingsBlogPage() {
             <div className="page-content settings-page">
                 <div className="sidebar">
                     <div className="sidebar__main">
-                        <Link href={`/user/${user.slug}`} className="sidebar-item">
-                            <img src={user.avatar} alt={t("sidebar.profileIconAlt")} className="icon" width="28" height="28" style={{ borderRadius: "8px" }} />
-                            <UserName user={user} />
+                        <Link href={`/user/${effectiveUser.slug}`} className="sidebar-item">
+                            <img src={effectiveUser.avatar} alt={t("sidebar.profileIconAlt")} className="icon" width="28" height="28" style={{ borderRadius: "8px" }} />
+                            <UserName user={effectiveUser} />
                         </Link>
 
                         <div className="sidebar-separator-view _theme_default _size_s"></div>

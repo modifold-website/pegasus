@@ -6,34 +6,54 @@ import { usePathname } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
+import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
 
 export default function LinksSettings({ project, authToken }) {
     const t = useTranslations("SettingsProjectPage");
     const pathname = usePathname();
-
-    const [formData, setFormData] = useState({
+    const initialFormData = {
         issue_url: project.issue_url || "",
         source_url: project.source_url || "",
         wiki_url: project.wiki_url || "",
         discord_url: project.discord_url || "",
-    });
+    };
+
+    const [formData, setFormData] = useState(initialFormData);
+    const [savedFormData, setSavedFormData] = useState(initialFormData);
+    const [isSaving, setIsSaving] = useState(false);
+    const isDirty = JSON.stringify(formData) !== JSON.stringify(savedFormData);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        if(e) {
+            e.preventDefault();
+        }
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/links`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${authToken}`,
-            },
-            body: JSON.stringify(formData),
-        });
+        if(isSaving || !isDirty) {
+            return;
+        }
 
-        if(response.ok) {
-            toast.success(t("links.success"));
-        } else {
+        setIsSaving(true);
+
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/links`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${authToken}`,
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if(response.ok) {
+                setSavedFormData({ ...formData });
+                toast.success(t("links.success"));
+            } else {
+                toast.error(t("links.errors.save"));
+            }
+        } catch (err) {
             toast.error(t("links.errors.save"));
+        } finally {
+            setIsSaving(false);
         }
     };
 
@@ -185,9 +205,6 @@ export default function LinksSettings({ project, authToken }) {
                                             </label>
                                         </div>
 
-                                        <button type="submit" className="button button--size-m button--type-primary" style={{ marginTop: "18px" }}>
-                                            {t("links.actions.save")}
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -196,6 +213,15 @@ export default function LinksSettings({ project, authToken }) {
                 </div>
 
                 <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+                <UnsavedChangesBar
+                    isDirty={isDirty}
+                    isSaving={isSaving}
+                    onSave={handleSubmit}
+                    onReset={() => setFormData({ ...savedFormData })}
+                    saveLabel={t("links.actions.save")}
+                    resetLabel={t("unsavedBar.reset")}
+                    message={t("unsavedBar.message")}
+                />
             </div>
         </div>
     );

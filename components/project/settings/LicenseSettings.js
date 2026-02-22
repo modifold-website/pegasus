@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
 import { LICENSES } from "../../Licenses";
+import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
 
 export default function LicenseSettings({ project, authToken }) {
     const t = useTranslations("SettingsProjectPage");
@@ -15,8 +16,11 @@ export default function LicenseSettings({ project, authToken }) {
 
     const initialLicense = project.license.id || "no-license";
     const [selectedLicense, setSelectedLicense] = useState(initialLicense);
+    const [savedLicense, setSavedLicense] = useState(initialLicense);
     const [isLicensePopoverOpen, setIsLicensePopoverOpen] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
     const licenseRef = useRef(null);
+    const isDirty = selectedLicense !== savedLicense;
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -39,9 +43,16 @@ export default function LicenseSettings({ project, authToken }) {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        if(e) {
+            e.preventDefault();
+        }
+
+        if(isSaving || !isDirty) {
+            return;
+        }
 
         const selected = LICENSES.find((l) => l.key === selectedLicense);
+        setIsSaving(true);
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/license`, {
@@ -57,6 +68,7 @@ export default function LicenseSettings({ project, authToken }) {
             });
 
             if(response.ok) {
+                setSavedLicense(selectedLicense);
                 toast.success(t("license.success"));
             } else {
                 toast.error(t("license.errors.save"));
@@ -64,6 +76,8 @@ export default function LicenseSettings({ project, authToken }) {
         } catch (err) {
             console.error("Error updating license:", err);
             toast.error(t("license.errors.save"));
+        } finally {
+            setIsSaving(false);
         }
     };
 
@@ -192,11 +206,7 @@ export default function LicenseSettings({ project, authToken }) {
                                         )}
                                     </div>
 
-                                    <button type="submit" className="button button--size-m button--type-primary" style={{ marginTop: "18px" }}>
-                                        {t("license.actions.save")}
-                                    </button>
-
-                                    <button type="button" className="button button--size-m button--type-secondary" style={{ marginTop: "10px", marginLeft: "10px" }} onClick={handleClear}>
+                                    <button type="button" className="button button--size-m button--type-minimal" style={{ marginTop: "18px" }} onClick={handleClear}>
                                         {t("license.actions.clear")}
                                     </button>
                                 </form>
@@ -217,6 +227,18 @@ export default function LicenseSettings({ project, authToken }) {
                 </div>
 
                 <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+                <UnsavedChangesBar
+                    isDirty={isDirty}
+                    isSaving={isSaving}
+                    onSave={handleSubmit}
+                    onReset={() => {
+                        setSelectedLicense(savedLicense);
+                        setIsLicensePopoverOpen(false);
+                    }}
+                    saveLabel={t("license.actions.save")}
+                    resetLabel={t("unsavedBar.reset")}
+                    message={t("unsavedBar.message")}
+                />
             </div>
         </div>
     );

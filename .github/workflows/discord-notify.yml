@@ -44,9 +44,9 @@ jobs:
             COMPARE_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
           fi
 
-          EMBED_COLOR=3447003
+          EMBED_COLOR=3177968
           if [ "$GITHUB_REF_NAME" = "main" ]; then
-            EMBED_COLOR=5763719
+            EMBED_COLOR=3177968
           fi
 
           PAYLOAD=$(jq -n \
@@ -106,7 +106,7 @@ jobs:
                   title: $title,
                   description: $description,
                   url: $url,
-                  color: 15844367,
+                  color: 3177968,
                   fields: [
                     { name: "Author", value: $author, inline: true },
                     { name: "From", value: $head, inline: true },

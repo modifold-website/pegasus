@@ -2,14 +2,14 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../providers/AuthProvider";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import DeleteAccountSection from "../DeleteAccountSection";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import UserName from "../ui/UserName";
+import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
 
 const getEmptySocialLinks = () => ({
     youtube: "",
@@ -28,7 +28,6 @@ const getInitialFormData = (user) => ({
 export default function SettingsBlogPage({ initialUser = null }) {
     const t = useTranslations("SettingsBlogPage");
     const locale = useLocale();
-    const pathname = usePathname();
     const { isLoggedIn, user, setUser } = useAuth();
     const router = useRouter();
     const effectiveUser = user || initialUser;
@@ -139,8 +138,6 @@ export default function SettingsBlogPage({ initialUser = null }) {
         avatarInputRef.current?.click();
     };
 
-    const isActive = (href) => pathname === href;
-
     const toggleLanguageMenu = () => {
         setIsLanguageMenuOpen((prev) => !prev);
     };
@@ -159,56 +156,17 @@ export default function SettingsBlogPage({ initialUser = null }) {
     return (
         <div className="layout">
             <div className="page-content settings-page">
-                <div className="sidebar">
-                    <div className="sidebar__main">
-                        <Link href={`/user/${effectiveUser.slug}`} className="sidebar-item">
-                            <img src={effectiveUser.avatar} alt={t("sidebar.profileIconAlt")} className="icon" width="28" height="28" style={{ borderRadius: "8px" }} />
-                            <UserName user={effectiveUser} />
-                        </Link>
-
-                        <div className="sidebar-separator-view _theme_default _size_s"></div>
-
-                        <Link href="/dashboard" className={`sidebar-item ${isActive("/dashboard") ? "sidebar-item--active" : ""}`}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-box-icon lucide-box">
-                                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
-                                <path d="m3.3 7 8.7 5 8.7-5" />
-                                <path d="M12 22V12" />
-                            </svg>
-
-                            {t("sidebar.projects")}
-                        </Link>
-
-                        <Link href="/notifications" className={`sidebar-item ${isActive("/notifications") ? "sidebar-item--active" : ""}`}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-bell-icon lucide-bell">
-                                <path d="M10.268 21a2 2 0 0 0 3.464 0" />
-                                <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" />
-                            </svg>
-
-                            {t("sidebar.notifications")}
-                        </Link>
-
-                        <Link href="/settings" className={`sidebar-item ${isActive("/settings") ? "sidebar-item--active" : ""}`}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-settings-icon lucide-settings">
-                                <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
-                                <circle cx="12" cy="12" r="3" />
-                            </svg>
-
-                            {t("sidebar.settings")}
-                        </Link>
-
-                        <Link href="/settings/api" className={`sidebar-item ${isActive("/settings/api") ? "sidebar-item--active" : ""}`}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-braces-icon lucide-braces"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1"/><path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/></svg>
-
-                            {t("sidebar.apiTokens")}
-                        </Link>
-
-                        <Link href="/settings/verification" className={`sidebar-item ${isActive("/settings/verification") ? "sidebar-item--active" : ""}`}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-badge-check-icon lucide-badge-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
-
-                            {t("sidebar.verification")}
-                        </Link>
-                    </div>
-                </div>
+                <UserSettingsSidebar
+                    user={effectiveUser}
+                    profileIconAlt={t("sidebar.profileIconAlt")}
+                    labels={{
+                        projects: t("sidebar.projects"),
+                        notifications: t("sidebar.notifications"),
+                        settings: t("sidebar.settings"),
+                        apiTokens: t("sidebar.apiTokens"),
+                        verification: t("sidebar.verification"),
+                    }}
+                />
 
                 <form className="settings-wrapper blog-settings" onSubmit={handleSubmit}>
                     <div className="blog-settings__body">

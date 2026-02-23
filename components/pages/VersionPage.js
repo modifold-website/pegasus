@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 import { useAuth } from "../../components/providers/AuthProvider";
 import VersionDisplay from "../VersionDisplay";
 import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import ProjectMasthead from "../project/ProjectMasthead";
 import ProjectTabs from "../project/ProjectTabs";
@@ -22,6 +21,27 @@ const gameVersions = [
 const loaders = ["Vanilla"];
 
 Modal.setAppElement("body");
+
+const getSafeMarkdownHref = (href) => {
+    if(typeof href !== "string") {
+        return null;
+    }
+
+    if(href.startsWith("/") || href.startsWith("#")) {
+        return href;
+    }
+
+    try {
+        const parsed = new URL(href);
+        if(!["http:", "https:", "mailto:"].includes(parsed.protocol)) {
+            return null;
+        }
+
+        return parsed.toString();
+    } catch {
+        return null;
+    }
+};
 
 export default function VersionPage({ project, version, authToken }) {
     const t = useTranslations("ProjectPage");
@@ -216,13 +236,20 @@ export default function VersionPage({ project, version, authToken }) {
                                         {version.changelog ? (
                                             <ReactMarkdown
                                                 remarkPlugins={[remarkGfm]}
-                                                rehypePlugins={[rehypeRaw]}
                                                 components={{
-                                                    a: ({ href, children }) => (
-                                                        <a href={href} target="_blank" rel="noopener noreferrer">
-                                                            {children}
-                                                        </a>
-                                                    ),
+                                                    a: ({ href, children }) => {
+                                                        const safeHref = getSafeMarkdownHref(href);
+                                                        if(!safeHref) {
+                                                            return <>{children}</>;
+                                                        }
+
+                                                        const isExternal = /^https?:\/\//i.test(safeHref);
+                                                        return (
+                                                            <a href={safeHref} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
+                                                                {children}
+                                                            </a>
+                                                        );
+                                                    },
                                                 }}
                                             >
                                                 {version.changelog}

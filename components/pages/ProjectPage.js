@@ -2,11 +2,31 @@
 
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import ProjectMasthead from "../project/ProjectMasthead";
 import ProjectTabs from "../project/ProjectTabs";
 import ProjectSidebar from "../project/ProjectSidebar";
+
+const getSafeMarkdownHref = (href) => {
+    if(typeof href !== "string") {
+        return null;
+    }
+
+    if(href.startsWith("/") || href.startsWith("#")) {
+        return href;
+    }
+
+    try {
+        const parsed = new URL(href);
+        if(!["http:", "https:", "mailto:"].includes(parsed.protocol)) {
+            return null;
+        }
+
+        return parsed.toString();
+    } catch {
+        return null;
+    }
+};
 
 export default function ProjectPage({ project, authToken }) {
     const structuredData = {
@@ -47,13 +67,20 @@ export default function ProjectPage({ project, authToken }) {
                             <div className="content content--padding markdown-body">
                                 <ReactMarkdown
                                     remarkPlugins={[remarkGfm]}
-                                    rehypePlugins={[rehypeRaw]}
                                     components={{
-                                        a: ({ href, children }) => (
-                                            <a href={href} target="_blank" rel="noopener noreferrer">
-                                                {children}
-                                            </a>
-                                        ),
+                                        a: ({ href, children }) => {
+                                            const safeHref = getSafeMarkdownHref(href);
+                                            if(!safeHref) {
+                                                return <>{children}</>;
+                                            }
+
+                                            const isExternal = /^https?:\/\//i.test(safeHref);
+                                            return (
+                                                <a href={safeHref} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
+                                                    {children}
+                                                </a>
+                                            );
+                                        },
                                     }}
                                 >
                                     {project.description}

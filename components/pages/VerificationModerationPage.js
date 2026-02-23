@@ -9,6 +9,23 @@ import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import UserName from "../ui/UserName";
 
+const getSafeExternalUrl = (value) => {
+    if(typeof value !== "string") {
+        return null;
+    }
+
+    try {
+        const parsed = new URL(value);
+        if(parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+            return null;
+        }
+
+        return parsed.toString();
+    } catch {
+        return null;
+    }
+};
+
 export default function VerificationModerationPage({ authToken, initialRequests, initialTotalPages }) {
     const t = useTranslations("VerificationModerationPage");
     const locale = useLocale();
@@ -131,7 +148,12 @@ export default function VerificationModerationPage({ authToken, initialRequests,
                         <p>{t("empty")}</p>
                     ) : (
                         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                            {requests.map((request) => (
+                            {requests.map((request) => {
+                                const safeXUrl = getSafeExternalUrl(request.x_url);
+                                const safeYoutubeUrl = getSafeExternalUrl(request.youtube_url);
+                                const safeCurseforgeUrl = getSafeExternalUrl(request.curseforge_url);
+
+                                return (
                                 <div key={request.id} className="content content--padding" style={{ display: "flex", flexDirection: "column", gap: "8px", background: "var(--theme-color-background)" }}>
                                     <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
                                         <Link href={`/user/${request.slug}`} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -145,8 +167,8 @@ export default function VerificationModerationPage({ authToken, initialRequests,
                                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "8px" }}>
                                         <div>
                                             <div style={{ fontWeight: "500" }}>{t("fields.xUrl")}</div>
-                                            {request.x_url ? (
-                                                <a href={request.x_url} target="_blank" rel="noreferrer" style={{ color: "#1f68c0" }}>{request.x_url}</a>
+                                            {safeXUrl ? (
+                                                <a href={safeXUrl} target="_blank" rel="noreferrer" style={{ color: "#1f68c0" }}>{request.x_url}</a>
                                             ) : (
                                                 <span style={{ color: "var(--theme-color-text-secondary)" }}>—</span>
                                             )}
@@ -154,8 +176,8 @@ export default function VerificationModerationPage({ authToken, initialRequests,
 
                                         <div>
                                             <div style={{ fontWeight: "500" }}>{t("fields.youtubeUrl")}</div>
-                                            {request.youtube_url ? (
-                                                <a href={request.youtube_url} target="_blank" rel="noreferrer" style={{ color: "#1f68c0" }}>{request.youtube_url}</a>
+                                            {safeYoutubeUrl ? (
+                                                <a href={safeYoutubeUrl} target="_blank" rel="noreferrer" style={{ color: "#1f68c0" }}>{request.youtube_url}</a>
                                             ) : (
                                                 <span style={{ color: "var(--theme-color-text-secondary)" }}>—</span>
                                             )}
@@ -163,8 +185,8 @@ export default function VerificationModerationPage({ authToken, initialRequests,
 
                                         <div>
                                             <div style={{ fontWeight: "500" }}>{t("fields.curseforgeUrl")}</div>
-                                            {request.curseforge_url ? (
-                                                <a href={request.curseforge_url} target="_blank" rel="noreferrer" style={{ color: "#1f68c0" }}>{request.curseforge_url}</a>
+                                            {safeCurseforgeUrl ? (
+                                                <a href={safeCurseforgeUrl} target="_blank" rel="noreferrer" style={{ color: "#1f68c0" }}>{request.curseforge_url}</a>
                                             ) : (
                                                 <span style={{ color: "var(--theme-color-text-secondary)" }}>—</span>
                                             )}
@@ -190,7 +212,8 @@ export default function VerificationModerationPage({ authToken, initialRequests,
                                         </div>
                                     )}
                                 </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     )}
 

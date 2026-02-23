@@ -3,7 +3,7 @@ import { AuthProvider } from "@/components/providers/AuthProvider";
 import { cookies } from "next/headers";
 import Script from "next/script";
 import ClientProvider from "@/components/providers/ClientProvider";
-import CookieBanner from "@/components/CookieBanner";
+import CookieBanner from "@/components/ui/CookieBanner";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";

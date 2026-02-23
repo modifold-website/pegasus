@@ -6,6 +6,27 @@ import remarkGfm from "remark-gfm";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
+const getSafeMarkdownHref = (href) => {
+    if(typeof href !== "string") {
+        return null;
+    }
+
+    if(href.startsWith("/") || href.startsWith("#")) {
+        return href;
+    }
+
+    try {
+        const parsed = new URL(href);
+        if(!["http:", "https:", "mailto:"].includes(parsed.protocol)) {
+            return null;
+        }
+
+        return parsed.toString();
+    } catch {
+        return null;
+    }
+};
+
 const contentRulesEN = `
 # Content Rules
 
@@ -190,7 +211,26 @@ export default function ContentRules() {
                         </button>
                     </div>
 
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+                    <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                            a: ({ href, children }) => {
+                                const safeHref = getSafeMarkdownHref(href);
+                                if(!safeHref) {
+                                    return <>{children}</>;
+                                }
+
+                                const isExternal = /^https?:\/\//i.test(safeHref);
+                                return (
+                                    <a href={safeHref} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
+                                        {children}
+                                    </a>
+                                );
+                            },
+                        }}
+                    >
+                        {content}
+                    </ReactMarkdown>
                 </div>
             </div>
         </div>

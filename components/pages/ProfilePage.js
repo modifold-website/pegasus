@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState, useRef, useEffect } from "react";
+import { Fragment, useState, useRef, useEffect } from "react";
 import { useAuth } from "../providers/AuthProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -10,19 +10,72 @@ import { useTranslations, useLocale } from "next-intl";
 import UserName from "../ui/UserName";
 import Modal from "react-modal";
 import ImageLightbox, { useImageLightbox } from "../ui/ImageLightbox";
+import RoleBadge from "../ui/RoleBadge";
 
 if(typeof window !== "undefined") {
     Modal.setAppElement("body");
 }
 
-const processDescription = (desc) => {
-    if(!desc) {
-        return "";
+const DESCRIPTION_URL_RE = /\bhttps?:\/\/[^\s<]+/gi;
+
+const getSafeExternalUrl = (value) => {
+    if(typeof value !== "string") {
+        return null;
     }
 
-    const pattern = /\b(?<!href=['"])https?:\/\/([^\s\[\]<]+)(?![^<>]*<\/a>)/gi;
-    const processed = desc.replace(pattern, '<a target="_blank" href="$&">$1</a>');
-    return processed.replace(/\n/g, "<br />");
+    try {
+        const parsed = new URL(value);
+        if(parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+            return null;
+        }
+
+        return parsed.toString();
+    } catch {
+        return null;
+    }
+};
+
+const renderDescription = (desc) => {
+    if(!desc) {
+        return null;
+    }
+
+    const lines = desc.split("\n");
+    return lines.map((line, lineIndex) => {
+        const parts = [];
+        let lastIndex = 0;
+
+        line.replace(DESCRIPTION_URL_RE, (match, offset) => {
+            if(offset > lastIndex) {
+                parts.push(line.slice(lastIndex, offset));
+            }
+
+            const safeUrl = getSafeExternalUrl(match);
+            if(safeUrl) {
+                parts.push(
+                    <a key={`url-${lineIndex}-${offset}`} href={safeUrl} target="_blank" rel="noopener noreferrer">
+                        {match.replace(/^https?:\/\//i, "")}
+                    </a>
+                );
+            } else {
+                parts.push(match);
+            }
+
+            lastIndex = offset + match.length;
+            return match;
+        });
+
+        if(lastIndex < line.length) {
+            parts.push(line.slice(lastIndex));
+        }
+
+        return (
+            <Fragment key={`line-${lineIndex}`}>
+                {parts}
+                {lineIndex < lines.length - 1 && <br />}
+            </Fragment>
+        );
+    });
 };
 
 const formatDate = (timestamp, locale) => {
@@ -121,7 +174,7 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
 
     const authorAva = isBanned ? "https://leonardo.osnova.io/8e95d9d3-932c-5f85-8b53-43da2e8ccaeb/-/format/webp/" : user.avatar || "https://cdn.modifold.com/default_avatar.png";
     const authorTitle = isBanned ? t("accountFrozen") : user.username;
-    const desc = isBanned ? "" : processDescription(user.description);
+    const desc = isBanned ? null : renderDescription(user.description);
 
     const countSubs = user.subscribers || 0;
     const countUserSubs = user.subscriptions || 0;
@@ -256,23 +309,15 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
 
                             </h1>
 
-                            {user.isRole === 'user' && (
-                                <span class="badge--developer" style={{ width: 'fit-content', marginBottom: '8px' }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-box-icon lucide-box"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+                            <RoleBadge
+                                role={user.isRole}
+                                labels={{
+                                    developer: t("role.developer"),
+                                    team: t("role.team"),
+                                }}
+                            />
 
-                                    {t("role.developer")}
-                                </span>
-                            )}
-
-                            {user.isRole === 'admin' && (
-                                <span class="badge--admin" style={{ width: 'fit-content', marginBottom: '8px' }}><div class="circle"></div>{t("role.team")}</span>
-                            )}
-
-                            {user.isRole === 'moderator' && (
-                                <span class="badge--moderator" style={{ width: 'fit-content', marginBottom: '8px' }}><div class="circle"></div>{t("role.team")}</span>
-                            )}
-
-                            <p className="subsite-header__description" dangerouslySetInnerHTML={{ __html: desc }} />
+                            <p className="subsite-header__description">{desc}</p>
 
                             <div class="subsite-header__cols">
                                 <div class="subsite-header__date-created">{t("joined")} {formatDate(user.created_at, locale)}</div>
@@ -291,9 +336,10 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                             {user.social_links && Object.keys(user.social_links).length > 0 && (
                                 <div className="subsite-social-links">
                                     <div className="social-links__list">
-                                        {Object.entries(user.social_links).map(([key, url]) =>
-                                            url && (
-                                                <a key={key} href={url} target="_blank" rel="noopener noreferrer" className="social-links__item" title={key.charAt(0).toUpperCase() + key.slice(1)}>
+                                        {Object.entries(user.social_links).map(([key, url]) => {
+                                            const safeUrl = getSafeExternalUrl(url);
+                                            return safeUrl ? (
+                                                <a key={key} href={safeUrl} target="_blank" rel="noopener noreferrer" className="social-links__item" title={key.charAt(0).toUpperCase() + key.slice(1)}>
                                                     {socialIcons[key] || (
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                             <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
@@ -301,8 +347,8 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                                                         </svg>
                                                     )}
                                                 </a>
-                                            )
-                                        )}
+                                            ) : null;
+                                        })}
                                     </div>
                                 </div>
                             )}

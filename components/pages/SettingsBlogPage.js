@@ -7,9 +7,9 @@ import DeleteAccountSection from "../DeleteAccountSection";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
+import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
 
 const getEmptySocialLinks = () => ({
     youtube: "",
@@ -25,6 +25,19 @@ const getInitialFormData = (user) => ({
     social_links: user?.social_links || getEmptySocialLinks(),
 });
 
+const getSettingsSnapshot = (data) => ({
+    username: (data?.username || "").trim(),
+    description: data?.description || "",
+    social_links: {
+        youtube: (data?.social_links?.youtube || "").trim(),
+        telegram: (data?.social_links?.telegram || "").trim(),
+        x: (data?.social_links?.x || "").trim(),
+        discord: (data?.social_links?.discord || "").trim(),
+    },
+});
+
+const areSnapshotsEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
 export default function SettingsBlogPage({ initialUser = null }) {
     const t = useTranslations("SettingsBlogPage");
     const locale = useLocale();
@@ -33,6 +46,8 @@ export default function SettingsBlogPage({ initialUser = null }) {
     const effectiveUser = user || initialUser;
 
     const [formData, setFormData] = useState(() => getInitialFormData(effectiveUser));
+    const [savedSettings, setSavedSettings] = useState(() => getSettingsSnapshot(getInitialFormData(effectiveUser)));
+    const [isSaving, setIsSaving] = useState(false);
 
     const [previewAvatar, setPreviewAvatar] = useState(effectiveUser?.avatar || "");
     const avatarInputRef = useRef(null);
@@ -61,6 +76,7 @@ export default function SettingsBlogPage({ initialUser = null }) {
         }
 
         setFormData(getInitialFormData(effectiveUser));
+        setSavedSettings(getSettingsSnapshot(getInitialFormData(effectiveUser)));
         setPreviewAvatar(effectiveUser.avatar || "");
     }, [effectiveUser]);
 
@@ -110,7 +126,13 @@ export default function SettingsBlogPage({ initialUser = null }) {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        if(e) {
+            e.preventDefault();
+        }
+
+        if(isSaving) {
+            return;
+        }
 
         const data = new FormData();
         data.append("username", formData.username);
@@ -123,14 +145,18 @@ export default function SettingsBlogPage({ initialUser = null }) {
         data.append("social_links", JSON.stringify(formData.social_links));
 
         try {
+            setIsSaving(true);
             const res = await axios.put(`${process.env.NEXT_PUBLIC_API_BASE}/users/me`, data, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
             });
 
             setUser(res.data);
+            setSavedSettings(getSettingsSnapshot(formData));
             toast.success(t("success"));
         } catch (err) {
             toast.error(t("errors.generic"));
+        } finally {
+            setIsSaving(false);
         }
     };
 
@@ -152,6 +178,20 @@ export default function SettingsBlogPage({ initialUser = null }) {
     if(!isLoggedIn && !effectiveUser) {
         return null;
     }
+
+    const isTextSettingsDirty = !areSnapshotsEqual(getSettingsSnapshot(formData), savedSettings);
+    const isAvatarDirty = !!formData.avatar;
+    const isDirty = isTextSettingsDirty || isAvatarDirty;
+
+    const handleReset = () => {
+        setFormData((prev) => ({
+            ...prev,
+            ...savedSettings,
+            social_links: { ...savedSettings.social_links },
+            avatar: null,
+        }));
+        setPreviewAvatar(effectiveUser?.avatar || "");
+    };
 
     return (
         <div className="layout">
@@ -254,13 +294,19 @@ export default function SettingsBlogPage({ initialUser = null }) {
                             </label>
                         </div>
 
-                        <button type="submit" className="button button--size-m button--type-primary" style={{ marginTop: "18px" }}>
-                            {t("save")}
-                        </button>
-
                         <DeleteAccountSection />
                     </div>
                 </form>
+
+                <UnsavedChangesBar
+                    isDirty={isDirty}
+                    isSaving={isSaving}
+                    onSave={handleSubmit}
+                    onReset={handleReset}
+                    saveLabel={t("save")}
+                    resetLabel={t("unsavedBar.reset")}
+                    message={t("unsavedBar.message")}
+                />
             </div>
         </div>
     );

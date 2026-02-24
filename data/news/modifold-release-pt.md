@@ -1,7 +1,7 @@
 ---
 title: "Modifold: lançamento completo"
 description: "Modifold sai da beta e entra no lançamento completo: feedback da comunidade, interface em 6 idiomas, verificação de perfil e comentários em projetos."
-author: "Modifold Team"
+author: ["modifold"]
 date: 2026-02-07
 slug: /news/modifold-release
 image: https://media.modifold.com/news/Modifold%20Release.png

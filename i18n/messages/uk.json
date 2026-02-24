@@ -250,6 +250,17 @@
             },
             "emptyLoggedIn": "Поки що немає коментарів. Залиште перший відгук про мод!",
             "emptyGuest": "Поки що немає коментарів. Увійдіть, щоб залишити відгук про мод."
+        },
+        "report": {
+            "moreActions": "More actions",
+            "openModal": "Report project",
+            "alreadySubmitted": "Report already sent",
+            "alreadySubmittedToast": "You have already reported this project.",
+            "loginRequired": "Sign in to report this project.",
+            "statusOpen": "Repeat report for this project is unavailable.",
+            "copyLink": "Copy link",
+            "copySuccess": "Link copied",
+            "copyError": "Failed to copy link"
         }
     },
     "DashboardClient": {
@@ -322,6 +333,10 @@
             "reapply": "Подати повторно",
             "lastRequest": "Остання заявка: {date}",
             "cooldown": "Доступно через {days} дн."
+        },
+        "unsavedBar": {
+            "message": "У вас є незбережені зміни профілю.",
+            "reset": "Скинути"
         }
     },
     "BrowsePage": {
@@ -827,7 +842,9 @@
         "tabs": {
             "projects": "Проєкти",
             "users": "Користувачі",
-            "verification": "Верифікація"
+            "verification": "Верифікація",
+            "statistics": "Статистика",
+            "reports": "Reports"
         },
         "charts": {
             "approvedProjects": "Графік схвалених проєктів",
@@ -882,7 +899,9 @@
         "tabs": {
             "projects": "Проєкти",
             "users": "Користувачі",
-            "verification": "Верифікація"
+            "verification": "Верифікація",
+            "statistics": "Статистика",
+            "reports": "Reports"
         },
         "errors": {
             "fetch": "Помилка отримання користувачів",
@@ -1006,7 +1025,9 @@
         "tabs": {
             "projects": "Проєкти",
             "users": "Користувачі",
-            "verification": "Верифікація"
+            "verification": "Верифікація",
+            "statistics": "Статистика",
+            "reports": "Reports"
         },
         "filters": {
             "pending": "На розгляді",
@@ -1080,5 +1101,104 @@
             "apiTokens": "API токени",
             "verification": "Верифікація"
         }
+    },
+    "ProjectReportModal": {
+        "title": "Report project",
+        "close": "Close",
+        "description": "Select a reason for the report. You can add details for moderators in the comment.",
+        "reason": "Reason",
+        "comment": "Comment (optional)",
+        "commentCounter": "{count}/{max}",
+        "submit": "Send report",
+        "submitting": "Sending...",
+        "cancel": "Cancel",
+        "success": "Report sent successfully.",
+        "placeholders": {
+            "comment": "Describe the issue in more detail (optional)."
+        },
+        "reasons": {
+            "spam": "Spam / junk content",
+            "malware": "Malware / dangerous files",
+            "copyright": "Copyright infringement",
+            "nsfw": "Adult / inappropriate content",
+            "fraud": "Fraud / misleading content",
+            "rules_violation": "Rules violation",
+            "other": "Other"
+        },
+        "errors": {
+            "reasonRequired": "Select a report reason.",
+            "commentTooLong": "Comment is too long (max {max} characters).",
+            "duplicate": "You have already reported this project.",
+            "generic": "Failed to send report. Try again later."
+        }
+    },
+    "ReportsModerationPage": {
+        "metadata": {
+            "title": "Project reports moderation — Modifold"
+        },
+        "title": "Project Reports",
+        "tabs": {
+            "projects": "Projects",
+            "reports": "Reports",
+            "statistics": "Statistics",
+            "users": "Users",
+            "verification": "Verification"
+        },
+        "filters": {
+            "searchPlaceholder": "Search by project, slug, reporter, comment",
+            "status": {
+                "open": "Active",
+                "resolved": "Resolved",
+                "dismissed": "Dismissed",
+                "all": "All statuses"
+            },
+            "sort": {
+                "newest": "Newest first",
+                "oldest": "Oldest first"
+            },
+            "reasons": {
+                "all": "All reasons",
+                "spam": "Spam",
+                "malware": "Malware",
+                "copyright": "Copyright",
+                "nsfw": "NSFW",
+                "fraud": "Fraud",
+                "rules_violation": "Rules violation",
+                "other": "Other"
+            }
+        },
+        "statuses": {
+            "open": "Active",
+            "resolved": "Resolved",
+            "dismissed": "Dismissed"
+        },
+        "fields": {
+            "projectSlug": "Slug",
+            "reason": "Reason",
+            "reporter": "Reporter",
+            "comment": "Comment",
+            "moderationResult": "Moderator decision",
+            "resolvedBy": "Handled by {username}",
+            "noResolver": "Moderator is not specified"
+        },
+        "actions": {
+            "resolve": "Resolve",
+            "dismiss": "Dismiss",
+            "notePrompt": "Moderator note (optional)"
+        },
+        "pagination": {
+            "previous": "Previous",
+            "next": "Next",
+            "pageOf": "Page {page} of {totalPages}"
+        },
+        "success": {
+            "resolved": "Report marked as resolved.",
+            "dismissed": "Report dismissed."
+        },
+        "errors": {
+            "fetch": "Failed to load reports.",
+            "decision": "Failed to update report."
+        },
+        "empty": "No reports found for current filters."
     }
 }

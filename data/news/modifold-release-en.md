@@ -1,7 +1,7 @@
 ---
 title: "Modifold Full Release"
 description: "Modifold is out of beta. A full release built with community feedback, 6 languages, profile verification, and project comments."
-author: "Modifold Team"
+author: ["modifold"]
 date: 2026-02-07
 slug: /news/modifold-release
 image: https://media.modifold.com/news/Modifold%20Release.png

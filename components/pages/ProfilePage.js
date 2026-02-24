@@ -179,7 +179,6 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
     const countSubs = user.subscribers || 0;
     const countUserSubs = user.subscriptions || 0;
 
-    const isAdmin = currentUser?.isAdmin || false;
     const isOwnProfile = isLoggedIn && user.id === currentUser.id;
 
     const getPageButtons = () => {

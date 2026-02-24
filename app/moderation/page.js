@@ -38,28 +38,6 @@ async function fetchProjects(authToken) {
     }
 }
 
-async function fetchAnalytics(authToken) {
-    try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE}/moderation/analytics`, {
-            headers: { Authorization: `Bearer ${authToken}` },
-            params: { time_range: "30d" },
-        });
-
-        return response.data;
-    } catch (err) {
-        console.error("Error fetching analytics data:", err);
-
-        return {
-            approvedProjects: [],
-            pendingProjects: [],
-            userRegistrations: [],
-            totalApproved: 0,
-            totalPending: 0,
-            totalUsers: 0,
-        };
-    }
-}
-
 export default async function ModerationServer() {
     const cookieStore = await cookies();
     const authToken = cookieStore.get("authToken")?.value;
@@ -69,7 +47,5 @@ export default async function ModerationServer() {
     }
 
     const { projects, totalPages } = await fetchProjects(authToken);
-    const analytics = await fetchAnalytics(authToken);
-
-    return <ModerationPage authToken={authToken} initialProjects={projects} initialTotalPages={totalPages} initialAnalytics={analytics} />;
+    return <ModerationPage authToken={authToken} initialProjects={projects} initialTotalPages={totalPages} />;
 }

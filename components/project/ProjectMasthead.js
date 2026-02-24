@@ -247,14 +247,6 @@ export default function ProjectMasthead({ project, authToken }) {
                                                 <span>{reportStatus.hasReported ? t("report.alreadySubmitted") : t("report.openModal")}</span>
                                             </div>
                                         </button>
-
-                                        {reportStatus.hasReported && (
-                                            <div className="context-list-option">
-                                                <div className="context-list-option__label" style={{ color: "var(--theme-color-text-secondary)" }}>
-                                                    {t("report.statusOpen")}
-                                                </div>
-                                            </div>
-                                        )}
                                     </div>
                                 </div>
                             </div>

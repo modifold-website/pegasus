@@ -252,15 +252,15 @@
             "emptyGuest": "Ainda não há comentários. Faça login para deixar uma avaliação deste mod."
         },
         "report": {
-            "moreActions": "More actions",
-            "openModal": "Report project",
-            "alreadySubmitted": "Report already sent",
-            "alreadySubmittedToast": "You have already reported this project.",
-            "loginRequired": "Sign in to report this project.",
-            "statusOpen": "Repeat report for this project is unavailable.",
-            "copyLink": "Copy link",
-            "copySuccess": "Link copied",
-            "copyError": "Failed to copy link"
+            "moreActions": "Mais ações",
+            "openModal": "Denunciar projeto",
+            "alreadySubmitted": "Denúncia já enviada",
+            "alreadySubmittedToast": "Você já denunciou este projeto.",
+            "loginRequired": "Faça login para denunciar este projeto.",
+            "statusOpen": "Não é possível enviar outra denúncia para este projeto.",
+            "copyLink": "Copiar link",
+            "copySuccess": "Link copiado",
+            "copyError": "Falha ao copiar o link"
         }
     },
     "DashboardClient": {
@@ -1103,102 +1103,102 @@
         }
     },
     "ProjectReportModal": {
-        "title": "Report project",
-        "close": "Close",
-        "description": "Select a reason for the report. You can add details for moderators in the comment.",
-        "reason": "Reason",
-        "comment": "Comment (optional)",
+        "title": "Denúncia do projeto",
+        "close": "Fechar",
+        "description": "Selecione um motivo da denúncia. Você pode adicionar detalhes para os moderadores no comentário.",
+        "reason": "Motivo",
+        "comment": "Comentário (opcional)",
         "commentCounter": "{count}/{max}",
-        "submit": "Send report",
-        "submitting": "Sending...",
-        "cancel": "Cancel",
-        "success": "Report sent successfully.",
+        "submit": "Enviar denúncia",
+        "submitting": "Enviando...",
+        "cancel": "Cancelar",
+        "success": "Denúncia enviada com sucesso.",
         "placeholders": {
-            "comment": "Describe the issue in more detail (optional)."
+            "comment": "Descreva o problema com mais detalhes (opcional)."
         },
         "reasons": {
-            "spam": "Spam / junk content",
-            "malware": "Malware / dangerous files",
-            "copyright": "Copyright infringement",
-            "nsfw": "Adult / inappropriate content",
-            "fraud": "Fraud / misleading content",
-            "rules_violation": "Rules violation",
-            "other": "Other"
+            "spam": "Spam / conteúdo inútil",
+            "malware": "Malware / arquivos perigosos",
+            "copyright": "Violação de direitos autorais",
+            "nsfw": "Conteúdo adulto / impróprio",
+            "fraud": "Fraude / conteúdo enganoso",
+            "rules_violation": "Violação das regras",
+            "other": "Outro"
         },
         "errors": {
-            "reasonRequired": "Select a report reason.",
-            "commentTooLong": "Comment is too long (max {max} characters).",
-            "duplicate": "You have already reported this project.",
-            "generic": "Failed to send report. Try again later."
+            "reasonRequired": "Selecione um motivo da denúncia.",
+            "commentTooLong": "O comentário é muito longo (máx. {max} caracteres).",
+            "duplicate": "Você já denunciou este projeto.",
+            "generic": "Falha ao enviar a denúncia. Tente novamente mais tarde."
         }
     },
     "ReportsModerationPage": {
         "metadata": {
-            "title": "Project reports moderation — Modifold"
+            "title": "Moderação de denúncias de projetos — Modifold"
         },
-        "title": "Project Reports",
+        "title": "Denúncias de projetos",
         "tabs": {
-            "projects": "Projects",
-            "reports": "Reports",
-            "statistics": "Statistics",
-            "users": "Users",
-            "verification": "Verification"
+            "projects": "Projetos",
+            "reports": "Denúncias",
+            "statistics": "Estatísticas",
+            "users": "Usuários",
+            "verification": "Verificação"
         },
         "filters": {
-            "searchPlaceholder": "Search by project, slug, reporter, comment",
+            "searchPlaceholder": "Pesquisar por projeto",
             "status": {
-                "open": "Active",
-                "resolved": "Resolved",
-                "dismissed": "Dismissed",
-                "all": "All statuses"
+                "open": "Ativas",
+                "resolved": "Resolvidas",
+                "dismissed": "Descartadas",
+                "all": "Todos os status"
             },
             "sort": {
-                "newest": "Newest first",
-                "oldest": "Oldest first"
+                "newest": "Mais recentes primeiro",
+                "oldest": "Mais antigas primeiro"
             },
             "reasons": {
-                "all": "All reasons",
+                "all": "Todos os motivos",
                 "spam": "Spam",
                 "malware": "Malware",
-                "copyright": "Copyright",
+                "copyright": "Direitos autorais",
                 "nsfw": "NSFW",
-                "fraud": "Fraud",
-                "rules_violation": "Rules violation",
-                "other": "Other"
+                "fraud": "Fraude",
+                "rules_violation": "Violação das regras",
+                "other": "Outro"
             }
         },
         "statuses": {
-            "open": "Active",
-            "resolved": "Resolved",
-            "dismissed": "Dismissed"
+            "open": "Ativa",
+            "resolved": "Resolvida",
+            "dismissed": "Descartada"
         },
         "fields": {
             "projectSlug": "Slug",
-            "reason": "Reason",
-            "reporter": "Reporter",
-            "comment": "Comment",
-            "moderationResult": "Moderator decision",
-            "resolvedBy": "Handled by {username}",
-            "noResolver": "Moderator is not specified"
+            "reason": "Motivo",
+            "reporter": "Denunciante",
+            "comment": "Comentário",
+            "moderationResult": "Decisão do moderador",
+            "resolvedBy": "Tratado por {username}",
+            "noResolver": "Moderador não especificado"
         },
         "actions": {
-            "resolve": "Resolve",
-            "dismiss": "Dismiss",
-            "notePrompt": "Moderator note (optional)"
+            "resolve": "Resolver",
+            "dismiss": "Descartar",
+            "notePrompt": "Nota do moderador (opcional)"
         },
         "pagination": {
-            "previous": "Previous",
-            "next": "Next",
-            "pageOf": "Page {page} of {totalPages}"
+            "previous": "Anterior",
+            "next": "Próxima",
+            "pageOf": "Página {page} de {totalPages}"
         },
         "success": {
-            "resolved": "Report marked as resolved.",
-            "dismissed": "Report dismissed."
+            "resolved": "Denúncia marcada como resolvida.",
+            "dismissed": "Denúncia descartada."
         },
         "errors": {
-            "fetch": "Failed to load reports.",
-            "decision": "Failed to update report."
+            "fetch": "Falha ao carregar denúncias.",
+            "decision": "Falha ao atualizar denúncia."
         },
-        "empty": "No reports found for current filters."
+        "empty": "Nenhuma denúncia encontrada para os filtros atuais."
     }
 }

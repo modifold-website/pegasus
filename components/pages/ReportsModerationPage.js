@@ -159,7 +159,7 @@ export default function ReportsModerationPage({ authToken, initialReports, initi
                         </label>
                     </div>
 
-                    <div className="field field--default blog-settings__input" style={{ width: "190px" }} ref={statusPopoverRef}>
+                    <div className="field field--default blog-settings__input" style={{ width: "220px" }} ref={statusPopoverRef}>
                         <label className="field__wrapper" onClick={() => setIsStatusPopoverOpen((v) => !v)} style={{ cursor: "pointer", background: "var(--theme-color-background-content)" }}>
                             <div className="field__wrapper-body">
                                 <div className="select">
@@ -187,7 +187,7 @@ export default function ReportsModerationPage({ authToken, initialReports, initi
                         )}
                     </div>
 
-                    <div className="field field--default blog-settings__input" style={{ width: "210px" }} ref={reasonPopoverRef}>
+                    <div className="field field--default blog-settings__input" style={{ width: "220px" }} ref={reasonPopoverRef}>
                         <label className="field__wrapper" onClick={() => setIsReasonPopoverOpen((v) => !v)} style={{ cursor: "pointer", background: "var(--theme-color-background-content)" }}>
                             <div className="field__wrapper-body">
                                 <div className="select">
@@ -215,7 +215,7 @@ export default function ReportsModerationPage({ authToken, initialReports, initi
                         )}
                     </div>
 
-                    <div className="field field--default blog-settings__input" style={{ width: "170px" }} ref={sortPopoverRef}>
+                    <div className="field field--default blog-settings__input" style={{ width: "220px" }} ref={sortPopoverRef}>
                         <label className="field__wrapper" onClick={() => setIsSortPopoverOpen((v) => !v)} style={{ cursor: "pointer", background: "var(--theme-color-background-content)" }}>
                             <div className="field__wrapper-body">
                                 <div className="select">
@@ -254,14 +254,11 @@ export default function ReportsModerationPage({ authToken, initialReports, initi
                                     <div style={{ display: "flex", justifyContent: "space-between", gap: "10px", flexWrap: "wrap" }}>
                                         <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
                                             <Link href={`/mod/${report.project_slug}`} style={{ fontWeight: 600 }}>{report.project_title || report.project_slug}</Link>
-                                            <div style={{ color: "var(--theme-color-text-secondary)", fontSize: "13px" }}>
-                                                {t("fields.projectSlug")}: {report.project_slug}
-                                            </div>
                                         </div>
 
                                         <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
-                                            <span className="button button--size-s button--type-minimal" style={{ pointerEvents: "none" }}>{t(`statuses.${report.status}`)}</span>
-                                            <span style={{ color: "var(--theme-color-text-secondary)", fontSize: "13px" }}>
+                                            <span className="button button--size-s button--type-primary" style={{ pointerEvents: "none" }}>{t(`statuses.${report.status}`)}</span>
+                                            <span style={{ color: "var(--theme-color-text-secondary)", fontSize: "14px" }}>
                                                 {new Date(report.created_at).toLocaleString(locale)}
                                             </span>
                                         </div>
@@ -277,7 +274,7 @@ export default function ReportsModerationPage({ authToken, initialReports, initi
                                             <div style={{ fontWeight: 500 }}>{t("fields.reporter")}</div>
                                             {report.reporter_username ? (
                                                 <Link href={`/user/${report.reporter_slug}`} style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
-                                                    <img src={report.reporter_avatar || "/images/user/default_ava.png"} alt={report.reporter_username} width="28" height="28" style={{ borderRadius: "6px" }} />
+                                                    <img src={report.reporter_avatar || "/images/user/default_ava.png"} alt={report.reporter_username} width="24" height="24" style={{ borderRadius: "6px" }} />
                                                     <UserName user={{ username: report.reporter_username, slug: report.reporter_slug, isVerified: 0 }} />
                                                 </Link>
                                             ) : (
@@ -296,7 +293,7 @@ export default function ReportsModerationPage({ authToken, initialReports, initi
                                     {(report.moderator_note || report.resolver_username || report.resolved_at) && (
                                         <div style={{ borderTop: "1px solid var(--theme-color-border, rgba(255,255,255,.08))", paddingTop: "8px" }}>
                                             <div style={{ fontWeight: 500 }}>{t("fields.moderationResult")}</div>
-                                            <div style={{ color: "var(--theme-color-text-secondary)", fontSize: "13px" }}>
+                                            <div style={{ color: "var(--theme-color-text-secondary)", fontSize: "16px" }}>
                                                 {report.resolver_username ? t("fields.resolvedBy", { username: report.resolver_username }) : t("fields.noResolver")}
                                                 {" · "}
                                                 {report.resolved_at ? new Date(report.resolved_at).toLocaleString(locale) : "—"}

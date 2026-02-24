@@ -1145,7 +1145,7 @@
             "verification": "Verification"
         },
         "filters": {
-            "searchPlaceholder": "Search by project, slug, reporter, comment",
+            "searchPlaceholder": "Search by project",
             "status": {
                 "open": "Active",
                 "resolved": "Resolved",

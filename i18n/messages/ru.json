@@ -1145,7 +1145,7 @@
             "verification": "Верификация"
         },
         "filters": {
-            "searchPlaceholder": "Поиск по проекту, slug, автору жалобы, комментарию",
+            "searchPlaceholder": "Поиск по проекту",
             "status": {
                 "open": "Активные",
                 "resolved": "Завершённые",

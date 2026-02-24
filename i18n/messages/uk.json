@@ -250,6 +250,17 @@
             },
             "emptyLoggedIn": "Поки що немає коментарів. Залиште перший відгук про мод!",
             "emptyGuest": "Поки що немає коментарів. Увійдіть, щоб залишити відгук про мод."
+        },
+        "report": {
+            "moreActions": "Додаткові дії",
+            "openModal": "Поскаржитися на проєкт",
+            "alreadySubmitted": "Скаргу вже надіслано",
+            "alreadySubmittedToast": "Ви вже надсилали скаргу на цей проєкт.",
+            "loginRequired": "Увійдіть, щоб поскаржитися на проєкт.",
+            "statusOpen": "Повторна скарга на цей проєкт недоступна.",
+            "copyLink": "Скопіювати посилання",
+            "copySuccess": "Посилання скопійовано",
+            "copyError": "Не вдалося скопіювати посилання"
         }
     },
     "DashboardClient": {
@@ -322,6 +333,10 @@
             "reapply": "Подати повторно",
             "lastRequest": "Остання заявка: {date}",
             "cooldown": "Доступно через {days} дн."
+        },
+        "unsavedBar": {
+            "message": "У вас є незбережені зміни профілю.",
+            "reset": "Скинути"
         }
     },
     "BrowsePage": {
@@ -827,7 +842,9 @@
         "tabs": {
             "projects": "Проєкти",
             "users": "Користувачі",
-            "verification": "Верифікація"
+            "verification": "Верифікація",
+            "statistics": "Статистика",
+            "reports": "Reports"
         },
         "charts": {
             "approvedProjects": "Графік схвалених проєктів",
@@ -882,7 +899,9 @@
         "tabs": {
             "projects": "Проєкти",
             "users": "Користувачі",
-            "verification": "Верифікація"
+            "verification": "Верифікація",
+            "statistics": "Статистика",
+            "reports": "Reports"
         },
         "errors": {
             "fetch": "Помилка отримання користувачів",
@@ -1006,7 +1025,9 @@
         "tabs": {
             "projects": "Проєкти",
             "users": "Користувачі",
-            "verification": "Верифікація"
+            "verification": "Верифікація",
+            "statistics": "Статистика",
+            "reports": "Reports"
         },
         "filters": {
             "pending": "На розгляді",
@@ -1080,5 +1101,104 @@
             "apiTokens": "API токени",
             "verification": "Верифікація"
         }
+    },
+    "ProjectReportModal": {
+        "title": "Скарга на проєкт",
+        "close": "Закрити",
+        "description": "Оберіть причину скарги. За потреби додайте коментар для модераторів.",
+        "reason": "Причина",
+        "comment": "Коментар (необов’язково)",
+        "commentCounter": "{count}/{max}",
+        "submit": "Надіслати скаргу",
+        "submitting": "Надсилання...",
+        "cancel": "Скасувати",
+        "success": "Скаргу успішно надіслано.",
+        "placeholders": {
+            "comment": "Опишіть проблему детальніше (необов’язково)."
+        },
+        "reasons": {
+            "spam": "Спам / сміттєвий контент",
+            "malware": "Шкідливий файл / небезпечний контент",
+            "copyright": "Порушення авторських прав",
+            "nsfw": "18+ / неприйнятний контент",
+            "fraud": "Шахрайство / оманливий контент",
+            "rules_violation": "Порушення правил",
+            "other": "Інше"
+        },
+        "errors": {
+            "reasonRequired": "Оберіть причину скарги.",
+            "commentTooLong": "Коментар надто довгий (максимум {max} символів).",
+            "duplicate": "Ви вже надсилали скаргу на цей проєкт.",
+            "generic": "Не вдалося надіслати скаргу. Спробуйте пізніше."
+        }
+    },
+    "ReportsModerationPage": {
+        "metadata": {
+            "title": "Скарги на проєкти — модерація — Modifold"
+        },
+        "title": "Скарги",
+        "tabs": {
+            "projects": "Проєкти",
+            "reports": "Скарги",
+            "statistics": "Статистика",
+            "users": "Користувачі",
+            "verification": "Верифікація"
+        },
+        "filters": {
+            "searchPlaceholder": "Пошук за проєктом",
+            "status": {
+                "open": "Активні",
+                "resolved": "Завершені",
+                "dismissed": "Відхилені",
+                "all": "Усі статуси"
+            },
+            "sort": {
+                "newest": "Спочатку нові",
+                "oldest": "Спочатку старі"
+            },
+            "reasons": {
+                "all": "Усі причини",
+                "spam": "Спам",
+                "malware": "Шкідливе ПЗ",
+                "copyright": "Авторські права",
+                "nsfw": "18+ контент",
+                "fraud": "Шахрайство",
+                "rules_violation": "Порушення правил",
+                "other": "Інше"
+            }
+        },
+        "statuses": {
+            "open": "Активна",
+            "resolved": "Завершена",
+            "dismissed": "Відхилена"
+        },
+        "fields": {
+            "projectSlug": "Slug",
+            "reason": "Причина",
+            "reporter": "Хто поскаржився",
+            "comment": "Коментар",
+            "moderationResult": "Рішення модератора",
+            "resolvedBy": "Опрацював: {username}",
+            "noResolver": "Модератора не вказано"
+        },
+        "actions": {
+            "resolve": "Завершити",
+            "dismiss": "Відхилити",
+            "notePrompt": "Коментар модератора (необов’язково)"
+        },
+        "pagination": {
+            "previous": "Назад",
+            "next": "Далі",
+            "pageOf": "Сторінка {page} з {totalPages}"
+        },
+        "success": {
+            "resolved": "Скаргу позначено як завершену.",
+            "dismissed": "Скаргу відхилено."
+        },
+        "errors": {
+            "fetch": "Не вдалося завантажити скарги.",
+            "decision": "Не вдалося оновити скаргу."
+        },
+        "empty": "За поточними фільтрами скарг не знайдено."
     }
 }

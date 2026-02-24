@@ -257,7 +257,7 @@ strong {
     width: 18px;
     height: 18px;
     border-radius: 999px;
-    background: #101418;
+    background: var(--theme-color-text-primary);
     transition: transform .18s ease;
 }
 .markdown-editor__preview-toggle input:checked + .markdown-editor__preview-toggle-ui {

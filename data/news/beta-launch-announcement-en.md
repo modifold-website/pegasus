@@ -1,7 +1,7 @@
 ---
 title: "Modifold Beta Launch"
 description: "Welcome to the beta version of Modifold — a community-driven platform for Hytale mods. Help us build the best home for creators and players."
-author: "Modifold Team"
+author: ["modifold"]
 date: 2026-01-10
 slug: /news/beta-launch-announcement
 image: https://modifold.com/images/banner.png?v=3

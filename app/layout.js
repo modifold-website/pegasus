@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import Script from "next/script";
 import ClientProvider from "@/components/providers/ClientProvider";
 import CookieBanner from "@/components/ui/CookieBanner";
+import RippleEffects from "@/components/ui/RippleEffects";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
@@ -256,6 +257,7 @@ export default async function RootLayout({ children }) {
                                 </footer>
 
                                 <CookieBanner />
+                                <RippleEffects />
 
                                 <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
                             </NextIntlClientProvider>

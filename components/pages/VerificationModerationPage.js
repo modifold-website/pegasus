@@ -32,7 +32,6 @@ export default function VerificationModerationPage({ authToken, initialRequests,
     const { isLoggedIn, user } = useAuth();
     const router = useRouter();
     const pathname = usePathname();
-
     const isActive = (href) => pathname === href;
     const [requests, setRequests] = useState(initialRequests || []);
     const [totalPages, setTotalPages] = useState(initialTotalPages || 1);
@@ -106,15 +105,23 @@ export default function VerificationModerationPage({ authToken, initialRequests,
                 <h1 className="moderation--title">{t("title")}</h1>
 
                 <nav className="pagination">
-                    <Link href={`/moderation`} className={`pagination__button ${isActive(`/moderation`) ? "pagination__button--active" : ""}`}>
+                    <Link href="/moderation" className={`pagination__button ${isActive("/moderation") ? "pagination__button--active" : ""}`}>
                         {t("tabs.projects")}
                     </Link>
 
-                    <Link href={`/moderation/users`} className={`pagination__button ${isActive(`/moderation/users`) ? "pagination__button--active" : ""}`}>
+                    <Link href="/moderation/reports" className={`pagination__button ${isActive("/moderation/reports") ? "pagination__button--active" : ""}`}>
+                        {t("tabs.reports")}
+                    </Link>
+
+                    <Link href="/moderation/statistics" className={`pagination__button ${isActive("/moderation/statistics") ? "pagination__button--active" : ""}`}>
+                        {t("tabs.statistics")}
+                    </Link>
+
+                    <Link href="/moderation/users" className={`pagination__button ${isActive("/moderation/users") ? "pagination__button--active" : ""}`}>
                         {t("tabs.users")}
                     </Link>
 
-                    <Link href={`/moderation/verification`} className={`pagination__button ${isActive(`/moderation/verification`) ? "pagination__button--active" : ""}`}>
+                    <Link href="/moderation/verification" className={`pagination__button ${isActive("/moderation/verification") ? "pagination__button--active" : ""}`}>
                         {t("tabs.verification")}
                     </Link>
                 </nav>

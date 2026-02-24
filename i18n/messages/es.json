@@ -250,6 +250,17 @@
             },
             "emptyLoggedIn": "Aún no hay comentarios. ¡Deja la primera reseña de este mod!",
             "emptyGuest": "Aún no hay comentarios. Inicia sesión para dejar una reseña de este mod."
+        },
+        "report": {
+            "moreActions": "Más acciones",
+            "openModal": "Reportar proyecto",
+            "alreadySubmitted": "Reporte ya enviado",
+            "alreadySubmittedToast": "Ya has reportado este proyecto.",
+            "loginRequired": "Inicia sesión para reportar este proyecto.",
+            "statusOpen": "No se puede enviar otro reporte para este proyecto.",
+            "copyLink": "Copiar enlace",
+            "copySuccess": "Enlace copiado",
+            "copyError": "No se pudo copiar el enlace"
         }
     },
     "DashboardClient": {
@@ -322,6 +333,10 @@
             "reapply": "Enviar de nuevo",
             "lastRequest": "Última solicitud: {date}",
             "cooldown": "Disponible en {days} días"
+        },
+        "unsavedBar": {
+            "message": "Tienes cambios de perfil sin guardar.",
+            "reset": "Restablecer"
         }
     },
     "BrowsePage": {
@@ -827,7 +842,9 @@
         "tabs": {
             "projects": "Proyectos",
             "users": "Usuarios",
-            "verification": "Verificación"
+            "verification": "Verificación",
+            "statistics": "Estadisticas",
+            "reports": "Reports"
         },
         "charts": {
             "approvedProjects": "Gráfico de proyectos aprobados",
@@ -882,7 +899,9 @@
         "tabs": {
             "projects": "Proyectos",
             "users": "Usuarios",
-            "verification": "Verificación"
+            "verification": "Verificación",
+            "statistics": "Estadisticas",
+            "reports": "Reports"
         },
         "errors": {
             "fetch": "Error al obtener usuarios",
@@ -1006,7 +1025,9 @@
         "tabs": {
             "projects": "Proyectos",
             "users": "Usuarios",
-            "verification": "Verificación"
+            "verification": "Verificación",
+            "statistics": "Estadisticas",
+            "reports": "Reports"
         },
         "filters": {
             "pending": "Pendientes",
@@ -1080,5 +1101,104 @@
             "apiTokens": "Tokens de API",
             "verification": "Verificación"
         }
+    },
+    "ProjectReportModal": {
+        "title": "Reporte del proyecto",
+        "close": "Cerrar",
+        "description": "Selecciona un motivo del reporte. Puedes añadir detalles para los moderadores en el comentario.",
+        "reason": "Motivo",
+        "comment": "Comentario (opcional)",
+        "commentCounter": "{count}/{max}",
+        "submit": "Enviar reporte",
+        "submitting": "Enviando...",
+        "cancel": "Cancelar",
+        "success": "Reporte enviado correctamente.",
+        "placeholders": {
+            "comment": "Describe el problema con más detalle (opcional)."
+        },
+        "reasons": {
+            "spam": "Spam / contenido basura",
+            "malware": "Malware / archivos peligrosos",
+            "copyright": "Infracción de derechos de autor",
+            "nsfw": "Contenido adulto / inapropiado",
+            "fraud": "Fraude / contenido engañoso",
+            "rules_violation": "Incumplimiento de reglas",
+            "other": "Otro"
+        },
+        "errors": {
+            "reasonRequired": "Selecciona un motivo del reporte.",
+            "commentTooLong": "El comentario es demasiado largo (máx. {max} caracteres).",
+            "duplicate": "Ya has reportado este proyecto.",
+            "generic": "No se pudo enviar el reporte. Inténtalo más tarde."
+        }
+    },
+    "ReportsModerationPage": {
+        "metadata": {
+            "title": "Moderación de reportes de proyectos — Modifold"
+        },
+        "title": "Reportes de proyectos",
+        "tabs": {
+            "projects": "Proyectos",
+            "reports": "Reportes",
+            "statistics": "Estadísticas",
+            "users": "Usuarios",
+            "verification": "Verificación"
+        },
+        "filters": {
+            "searchPlaceholder": "Buscar por proyecto",
+            "status": {
+                "open": "Activos",
+                "resolved": "Resueltos",
+                "dismissed": "Descartados",
+                "all": "Todos los estados"
+            },
+            "sort": {
+                "newest": "Más recientes primero",
+                "oldest": "Más antiguos primero"
+            },
+            "reasons": {
+                "all": "Todos los motivos",
+                "spam": "Spam",
+                "malware": "Malware",
+                "copyright": "Derechos de autor",
+                "nsfw": "NSFW",
+                "fraud": "Fraude",
+                "rules_violation": "Incumplimiento de reglas",
+                "other": "Otro"
+            }
+        },
+        "statuses": {
+            "open": "Activo",
+            "resolved": "Resuelto",
+            "dismissed": "Descartado"
+        },
+        "fields": {
+            "projectSlug": "Slug",
+            "reason": "Motivo",
+            "reporter": "Reportante",
+            "comment": "Comentario",
+            "moderationResult": "Decisión del moderador",
+            "resolvedBy": "Gestionado por {username}",
+            "noResolver": "No se especificó moderador"
+        },
+        "actions": {
+            "resolve": "Resolver",
+            "dismiss": "Descartar",
+            "notePrompt": "Nota del moderador (opcional)"
+        },
+        "pagination": {
+            "previous": "Anterior",
+            "next": "Siguiente",
+            "pageOf": "Página {page} de {totalPages}"
+        },
+        "success": {
+            "resolved": "Reporte marcado como resuelto.",
+            "dismissed": "Reporte descartado."
+        },
+        "errors": {
+            "fetch": "No se pudieron cargar los reportes.",
+            "decision": "No se pudo actualizar el reporte."
+        },
+        "empty": "No se encontraron reportes con los filtros actuales."
     }
 }

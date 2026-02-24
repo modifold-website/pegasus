@@ -250,6 +250,17 @@
             },
             "emptyLoggedIn": "Ainda não há comentários. Deixe a primeira avaliação deste mod!",
             "emptyGuest": "Ainda não há comentários. Faça login para deixar uma avaliação deste mod."
+        },
+        "report": {
+            "moreActions": "Mais ações",
+            "openModal": "Denunciar projeto",
+            "alreadySubmitted": "Denúncia já enviada",
+            "alreadySubmittedToast": "Você já denunciou este projeto.",
+            "loginRequired": "Faça login para denunciar este projeto.",
+            "statusOpen": "Não é possível enviar outra denúncia para este projeto.",
+            "copyLink": "Copiar link",
+            "copySuccess": "Link copiado",
+            "copyError": "Falha ao copiar o link"
         }
     },
     "DashboardClient": {
@@ -322,6 +333,10 @@
             "reapply": "Enviar novamente",
             "lastRequest": "Última solicitação: {date}",
             "cooldown": "Disponível em {days} dias"
+        },
+        "unsavedBar": {
+            "message": "Voce tem alteracoes de perfil nao salvas.",
+            "reset": "Redefinir"
         }
     },
     "BrowsePage": {
@@ -827,7 +842,9 @@
         "tabs": {
             "projects": "Projetos",
             "users": "Usuários",
-            "verification": "Verificação"
+            "verification": "Verificação",
+            "statistics": "Estatisticas",
+            "reports": "Reports"
         },
         "charts": {
             "approvedProjects": "Gráfico de projetos aprovados",
@@ -882,7 +899,9 @@
         "tabs": {
             "projects": "Projetos",
             "users": "Usuários",
-            "verification": "Verificação"
+            "verification": "Verificação",
+            "statistics": "Estatisticas",
+            "reports": "Reports"
         },
         "errors": {
             "fetch": "Erro ao carregar usuários",
@@ -1006,7 +1025,9 @@
         "tabs": {
             "projects": "Projetos",
             "users": "Usuários",
-            "verification": "Verificação"
+            "verification": "Verificação",
+            "statistics": "Estatisticas",
+            "reports": "Reports"
         },
         "filters": {
             "pending": "Pendentes",
@@ -1080,5 +1101,104 @@
             "apiTokens": "Tokens de API",
             "verification": "Verificação"
         }
+    },
+    "ProjectReportModal": {
+        "title": "Denúncia do projeto",
+        "close": "Fechar",
+        "description": "Selecione um motivo da denúncia. Você pode adicionar detalhes para os moderadores no comentário.",
+        "reason": "Motivo",
+        "comment": "Comentário (opcional)",
+        "commentCounter": "{count}/{max}",
+        "submit": "Enviar denúncia",
+        "submitting": "Enviando...",
+        "cancel": "Cancelar",
+        "success": "Denúncia enviada com sucesso.",
+        "placeholders": {
+            "comment": "Descreva o problema com mais detalhes (opcional)."
+        },
+        "reasons": {
+            "spam": "Spam / conteúdo inútil",
+            "malware": "Malware / arquivos perigosos",
+            "copyright": "Violação de direitos autorais",
+            "nsfw": "Conteúdo adulto / impróprio",
+            "fraud": "Fraude / conteúdo enganoso",
+            "rules_violation": "Violação das regras",
+            "other": "Outro"
+        },
+        "errors": {
+            "reasonRequired": "Selecione um motivo da denúncia.",
+            "commentTooLong": "O comentário é muito longo (máx. {max} caracteres).",
+            "duplicate": "Você já denunciou este projeto.",
+            "generic": "Falha ao enviar a denúncia. Tente novamente mais tarde."
+        }
+    },
+    "ReportsModerationPage": {
+        "metadata": {
+            "title": "Moderação de denúncias de projetos — Modifold"
+        },
+        "title": "Denúncias de projetos",
+        "tabs": {
+            "projects": "Projetos",
+            "reports": "Denúncias",
+            "statistics": "Estatísticas",
+            "users": "Usuários",
+            "verification": "Verificação"
+        },
+        "filters": {
+            "searchPlaceholder": "Pesquisar por projeto",
+            "status": {
+                "open": "Ativas",
+                "resolved": "Resolvidas",
+                "dismissed": "Descartadas",
+                "all": "Todos os status"
+            },
+            "sort": {
+                "newest": "Mais recentes primeiro",
+                "oldest": "Mais antigas primeiro"
+            },
+            "reasons": {
+                "all": "Todos os motivos",
+                "spam": "Spam",
+                "malware": "Malware",
+                "copyright": "Direitos autorais",
+                "nsfw": "NSFW",
+                "fraud": "Fraude",
+                "rules_violation": "Violação das regras",
+                "other": "Outro"
+            }
+        },
+        "statuses": {
+            "open": "Ativa",
+            "resolved": "Resolvida",
+            "dismissed": "Descartada"
+        },
+        "fields": {
+            "projectSlug": "Slug",
+            "reason": "Motivo",
+            "reporter": "Denunciante",
+            "comment": "Comentário",
+            "moderationResult": "Decisão do moderador",
+            "resolvedBy": "Tratado por {username}",
+            "noResolver": "Moderador não especificado"
+        },
+        "actions": {
+            "resolve": "Resolver",
+            "dismiss": "Descartar",
+            "notePrompt": "Nota do moderador (opcional)"
+        },
+        "pagination": {
+            "previous": "Anterior",
+            "next": "Próxima",
+            "pageOf": "Página {page} de {totalPages}"
+        },
+        "success": {
+            "resolved": "Denúncia marcada como resolvida.",
+            "dismissed": "Denúncia descartada."
+        },
+        "errors": {
+            "fetch": "Falha ao carregar denúncias.",
+            "decision": "Falha ao atualizar denúncia."
+        },
+        "empty": "Nenhuma denúncia encontrada para os filtros atuais."
     }
 }

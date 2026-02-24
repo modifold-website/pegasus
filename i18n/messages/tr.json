@@ -250,6 +250,17 @@
             },
             "emptyLoggedIn": "Henüz yorum yok. Bu mod için ilk yorumu sen bırak!",
             "emptyGuest": "Henüz yorum yok. Bu mod için yorum bırakmak için giriş yapın."
+        },
+        "report": {
+            "moreActions": "Ek işlemler",
+            "openModal": "Projeyi şikayet et",
+            "alreadySubmitted": "Şikayet zaten gönderildi",
+            "alreadySubmittedToast": "Bu proje için zaten şikayet gönderdiniz.",
+            "loginRequired": "Bu projeyi şikayet etmek için giriş yapın.",
+            "statusOpen": "Bu proje için tekrar şikayet gönderilemez.",
+            "copyLink": "Bağlantıyı kopyala",
+            "copySuccess": "Bağlantı kopyalandı",
+            "copyError": "Bağlantı kopyalanamadı"
         }
     },
     "DashboardClient": {
@@ -322,6 +333,10 @@
             "reapply": "Tekrar gönder",
             "lastRequest": "Son başvuru: {date}",
             "cooldown": "{days} gün sonra kullanılabilir"
+        },
+        "unsavedBar": {
+            "message": "Kaydedilmemis profil degisiklikleriniz var.",
+            "reset": "Sifirla"
         }
     },
     "BrowsePage": {
@@ -827,7 +842,9 @@
         "tabs": {
             "projects": "Projeler",
             "users": "Kullanıcılar",
-            "verification": "Doğrulama"
+            "verification": "Doğrulama",
+            "statistics": "Istatistikler",
+            "reports": "Reports"
         },
         "charts": {
             "approvedProjects": "Onaylanan proje grafiği",
@@ -882,7 +899,9 @@
         "tabs": {
             "projects": "Projeler",
             "users": "Kullanıcılar",
-            "verification": "Doğrulama"
+            "verification": "Doğrulama",
+            "statistics": "Istatistikler",
+            "reports": "Reports"
         },
         "errors": {
             "fetch": "Kullanıcılar alınamadı",
@@ -1006,7 +1025,9 @@
         "tabs": {
             "projects": "Projeler",
             "users": "Kullanıcılar",
-            "verification": "Doğrulama"
+            "verification": "Doğrulama",
+            "statistics": "Istatistikler",
+            "reports": "Reports"
         },
         "filters": {
             "pending": "Beklemede",
@@ -1080,5 +1101,104 @@
             "apiTokens": "API Tokenları",
             "verification": "Doğrulama"
         }
+    },
+    "ProjectReportModal": {
+        "title": "Proje şikayeti",
+        "close": "Kapat",
+        "description": "Şikayet nedenini seçin. İsterseniz moderatörler için yorum ekleyebilirsiniz.",
+        "reason": "Neden",
+        "comment": "Yorum (isteğe bağlı)",
+        "commentCounter": "{count}/{max}",
+        "submit": "Şikayeti gönder",
+        "submitting": "Gönderiliyor...",
+        "cancel": "İptal",
+        "success": "Şikayet başarıyla gönderildi.",
+        "placeholders": {
+            "comment": "Sorunu daha detaylı açıklayın (isteğe bağlı)."
+        },
+        "reasons": {
+            "spam": "Spam / gereksiz içerik",
+            "malware": "Zararlı yazılım / tehlikeli dosyalar",
+            "copyright": "Telif hakkı ihlali",
+            "nsfw": "Yetişkin / uygunsuz içerik",
+            "fraud": "Dolandırıcılık / yanıltıcı içerik",
+            "rules_violation": "Kural ihlali",
+            "other": "Diğer"
+        },
+        "errors": {
+            "reasonRequired": "Bir şikayet nedeni seçin.",
+            "commentTooLong": "Yorum çok uzun (en fazla {max} karakter).",
+            "duplicate": "Bu proje için zaten şikayet gönderdiniz.",
+            "generic": "Şikayet gönderilemedi. Daha sonra tekrar deneyin."
+        }
+    },
+    "ReportsModerationPage": {
+        "metadata": {
+            "title": "Proje şikayetleri moderasyonu — Modifold"
+        },
+        "title": "Şikayetler",
+        "tabs": {
+            "projects": "Projeler",
+            "reports": "Şikayetler",
+            "statistics": "İstatistikler",
+            "users": "Kullanıcılar",
+            "verification": "Doğrulama"
+        },
+        "filters": {
+            "searchPlaceholder": "Proje, slug, şikayet eden veya yorumda ara",
+            "status": {
+                "open": "Aktif",
+                "resolved": "Çözüldü",
+                "dismissed": "Reddedildi",
+                "all": "Tüm durumlar"
+            },
+            "sort": {
+                "newest": "Önce en yeni",
+                "oldest": "Önce en eski"
+            },
+            "reasons": {
+                "all": "Tüm nedenler",
+                "spam": "Spam",
+                "malware": "Zararlı yazılım",
+                "copyright": "Telif hakkı",
+                "nsfw": "NSFW",
+                "fraud": "Dolandırıcılık",
+                "rules_violation": "Kural ihlali",
+                "other": "Diğer"
+            }
+        },
+        "statuses": {
+            "open": "Aktif",
+            "resolved": "Çözüldü",
+            "dismissed": "Reddedildi"
+        },
+        "fields": {
+            "projectSlug": "Slug",
+            "reason": "Neden",
+            "reporter": "Şikayet eden",
+            "comment": "Yorum",
+            "moderationResult": "Moderatör kararı",
+            "resolvedBy": "{username} tarafından işlendi",
+            "noResolver": "Moderatör belirtilmedi"
+        },
+        "actions": {
+            "resolve": "Çöz",
+            "dismiss": "Reddet",
+            "notePrompt": "Moderatör notu (isteğe bağlı)"
+        },
+        "pagination": {
+            "previous": "Önceki",
+            "next": "Sonraki",
+            "pageOf": "Sayfa {page} / {totalPages}"
+        },
+        "success": {
+            "resolved": "Şikayet çözüldü olarak işaretlendi.",
+            "dismissed": "Şikayet reddedildi."
+        },
+        "errors": {
+            "fetch": "Şikayetler yüklenemedi.",
+            "decision": "Şikayet güncellenemedi."
+        },
+        "empty": "Geçerli filtreler için şikayet bulunamadı."
     }
 }

@@ -1,7 +1,7 @@
 ---
 title: "Modifold: tam sürüm"
 description: "Modifold betadan çıkıyor ve tam sürüme geçiyor: topluluk geri bildirimi, 6 dil, profil doğrulama ve proje yorumları."
-author: "Modifold Team"
+author: ["modifold"]
 date: 2026-02-07
 slug: /news/modifold-release
 image: https://media.modifold.com/news/Modifold%20Release.png

@@ -179,7 +179,7 @@
         "licenseTitle": "Ліцензія",
         "licensedAs": "Ліцензовано за {license}",
         "download": "Завантажити",
-        "changesTitle": "Р—РјС–РЅРё",
+        "changesTitle": "Зміни",
         "noChanges": "Немає змін",
         "filesTitle": "Файли",
         "noFiles": "Немає файлів",
@@ -828,7 +828,7 @@
         "failed": "Не вдалося"
     },
     "ProjectCard": {
-        "by": "РІС–Рґ",
+        "by": "від",
         "downloads": "завантажень",
         "followers": "підписників",
         "updated": "Оновлено",

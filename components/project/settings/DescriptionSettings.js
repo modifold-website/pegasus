@@ -3,33 +3,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import sanitizeHtml from "sanitize-html";
 import { useTranslations } from "next-intl";
 import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
 import ProjectSettingsSidebar from "@/components/ui/ProjectSettingsSidebar";
-
-const getSafeMarkdownHref = (href) => {
-    if(typeof href !== "string") {
-        return null;
-    }
-
-    if(href.startsWith("/") || href.startsWith("#")) {
-        return href;
-    }
-
-    try {
-        const parsed = new URL(href);
-        if(!["http:", "https:", "mailto:"].includes(parsed.protocol)) {
-            return null;
-        }
-
-        return parsed.toString();
-    } catch {
-        return null;
-    }
-};
+import { getSafeMarkdownHref, getSafeMarkdownImageSrc, prepareProjectDescriptionMarkdown } from "@/utils/projectDescriptionContent";
 
 export default function DescriptionSettings({ project, authToken }) {
     const t = useTranslations("SettingsProjectPage");
@@ -57,14 +37,7 @@ export default function DescriptionSettings({ project, authToken }) {
         }
 
         setIsSaving(true);
-        const sanitizedDescription = sanitizeHtml(description, {
-            allowedTags: [],
-            allowedAttributes: {
-                a: ["href"],
-            },
-            allowedSchemes: ["http", "https"],
-            allowProtocolRelative: false,
-        });
+        const sanitizedDescription = prepareProjectDescriptionMarkdown(description);
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/description`, {
@@ -262,6 +235,7 @@ export default function DescriptionSettings({ project, authToken }) {
                                                 <div className="markdown-editor__preview-scroll">
                                                     <ReactMarkdown
                                                         remarkPlugins={[remarkGfm]}
+                                                        rehypePlugins={[rehypeRaw]}
                                                         components={{
                                                             a: ({ href, children }) => {
                                                                 const safeHref = getSafeMarkdownHref(href);
@@ -276,9 +250,17 @@ export default function DescriptionSettings({ project, authToken }) {
                                                                     </a>
                                                                 );
                                                             },
+                                                            img: ({ src, alt, title }) => {
+                                                                const safeSrc = getSafeMarkdownImageSrc(src);
+                                                                if(!safeSrc) {
+                                                                    return null;
+                                                                }
+
+                                                                return <img src={safeSrc} alt={alt || ""} title={title} loading="lazy" />;
+                                                            },
                                                         }}
                                                     >
-                                                        {description}
+                                                        {prepareProjectDescriptionMarkdown(description)}
                                                     </ReactMarkdown>
                                                 </div>
                                             </div>

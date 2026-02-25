@@ -3,32 +3,14 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import ProjectMasthead from "../project/ProjectMasthead";
 import ProjectTabs from "../project/ProjectTabs";
 import ProjectSidebar from "../project/ProjectSidebar";
-
-const getSafeMarkdownHref = (href) => {
-    if(typeof href !== "string") {
-        return null;
-    }
-
-    if(href.startsWith("/") || href.startsWith("#")) {
-        return href;
-    }
-
-    try {
-        const parsed = new URL(href);
-        if(!["http:", "https:", "mailto:"].includes(parsed.protocol)) {
-            return null;
-        }
-
-        return parsed.toString();
-    } catch {
-        return null;
-    }
-};
+import { getSafeMarkdownHref, getSafeMarkdownImageSrc, prepareProjectDescriptionMarkdown } from "@/utils/projectDescriptionContent";
 
 export default function ProjectPage({ project, authToken }) {
+    const safeDescription = prepareProjectDescriptionMarkdown(project.description);
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -67,6 +49,7 @@ export default function ProjectPage({ project, authToken }) {
                             <div className="content content--padding markdown-body">
                                 <ReactMarkdown
                                     remarkPlugins={[remarkGfm]}
+                                    rehypePlugins={[rehypeRaw]}
                                     components={{
                                         a: ({ href, children }) => {
                                             const safeHref = getSafeMarkdownHref(href);
@@ -81,9 +64,17 @@ export default function ProjectPage({ project, authToken }) {
                                                 </a>
                                             );
                                         },
+                                        img: ({ src, alt, title }) => {
+                                            const safeSrc = getSafeMarkdownImageSrc(src);
+                                            if(!safeSrc) {
+                                                return null;
+                                            }
+
+                                            return <img src={safeSrc} alt={alt || ""} title={title} loading="lazy" />;
+                                        },
                                     }}
                                 >
-                                    {project.description}
+                                    {safeDescription}
                                 </ReactMarkdown>
                             </div>
                         </div>

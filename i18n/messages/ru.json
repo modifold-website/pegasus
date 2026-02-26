@@ -580,6 +580,24 @@
             "selectedLoaders": "{count, plural, one {# выбран} few {# выбрано} many {# выбрано} other {# выбрано}}",
             "actions": {
                 "upload": "Загрузить версию"
+            },
+            "modal": {
+                "steps": {
+                    "files": "Файлы",
+                    "metadata": "Метаданные",
+                    "compatibility": "Совместимость"
+                },
+                "dropzone": {
+                    "uploadTitle": "Загрузить файл версии",
+                    "uploadHint": "Перетащите файл сюда или нажмите для выбора",
+                    "replaceTitle": "Заменить файл версии (необязательно)",
+                    "replaceHint": "Перетащите новый файл сюда или нажмите для выбора"
+                },
+                "actions": {
+                    "continue": "Дальше",
+                    "back": "Назад",
+                    "uploading": "Загрузка..."
+                }
             }
         },
         "gallerySettings": {

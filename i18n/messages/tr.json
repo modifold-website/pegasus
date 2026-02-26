@@ -580,6 +580,24 @@
             "selectedLoaders": "{count, plural, one {# seçildi} other {# seçildi}}",
             "actions": {
                 "upload": "Sürümü yükle"
+            },
+            "modal": {
+                "steps": {
+                    "files": "Dosyalar",
+                    "metadata": "Meta veriler",
+                    "compatibility": "Uyumluluk"
+                },
+                "dropzone": {
+                    "uploadTitle": "Sürüm dosyası yükle",
+                    "uploadHint": "Bir dosyayı sürükleyip bırakın veya göz atmak için tıklayın",
+                    "replaceTitle": "Sürüm dosyasını değiştir (isteğe bağlı)",
+                    "replaceHint": "Yeni bir dosyayı sürükleyip bırakın veya göz atmak için tıklayın"
+                },
+                "actions": {
+                    "continue": "Devam",
+                    "back": "Geri",
+                    "uploading": "Yükleniyor..."
+                }
             }
         },
         "gallerySettings": {

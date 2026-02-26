@@ -580,6 +580,24 @@
             "selectedLoaders": "{count, plural, one {# вибрано} other {# вибрано}}",
             "actions": {
                 "upload": "Завантажити версію"
+            },
+            "modal": {
+                "steps": {
+                    "files": "Файли",
+                    "metadata": "Метадані",
+                    "compatibility": "Сумісність"
+                },
+                "dropzone": {
+                    "uploadTitle": "Завантажити файл версії",
+                    "uploadHint": "Перетягніть файл сюди або натисніть для вибору",
+                    "replaceTitle": "Замінити файл версії (необов'язково)",
+                    "replaceHint": "Перетягніть новий файл сюди або натисніть для вибору"
+                },
+                "actions": {
+                    "continue": "Далі",
+                    "back": "Назад",
+                    "uploading": "Завантаження..."
+                }
             }
         },
         "gallerySettings": {

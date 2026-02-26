@@ -580,6 +580,24 @@
             "selectedLoaders": "{count, plural, one {# seleccionado} other {# seleccionados}}",
             "actions": {
                 "upload": "Subir versión"
+            },
+            "modal": {
+                "steps": {
+                    "files": "Archivos",
+                    "metadata": "Metadatos",
+                    "compatibility": "Compatibilidad"
+                },
+                "dropzone": {
+                    "uploadTitle": "Subir archivo de versión",
+                    "uploadHint": "Arrastra y suelta un archivo o haz clic para buscar",
+                    "replaceTitle": "Reemplazar archivo de versión (opcional)",
+                    "replaceHint": "Arrastra un archivo nuevo o haz clic para buscar"
+                },
+                "actions": {
+                    "continue": "Continuar",
+                    "back": "Atrás",
+                    "uploading": "Subiendo..."
+                }
             }
         },
         "gallerySettings": {

@@ -580,6 +580,24 @@
             "selectedLoaders": "{count, plural, one {# selected} other {# selected}}",
             "actions": {
                 "upload": "Upload Version"
+            },
+            "modal": {
+                "steps": {
+                    "files": "Files",
+                    "metadata": "Metadata",
+                    "compatibility": "Compatibility"
+                },
+                "dropzone": {
+                    "uploadTitle": "Upload version file",
+                    "uploadHint": "Drag and drop a file or click to browse",
+                    "replaceTitle": "Replace version file (optional)",
+                    "replaceHint": "Drag and drop a new file or click to browse"
+                },
+                "actions": {
+                    "continue": "Continue",
+                    "back": "Back",
+                    "uploading": "Uploading..."
+                }
             }
         },
         "gallerySettings": {

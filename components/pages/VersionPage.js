@@ -13,6 +13,7 @@ import remarkGfm from "remark-gfm";
 import ProjectMasthead from "../project/ProjectMasthead";
 import ProjectTabs from "../project/ProjectTabs";
 import ProjectSidebar from "../project/ProjectSidebar";
+import showOverTheTopDownloadAnimation from "../ui/showOverTheTopDownloadAnimation";
 
 const gameVersions = [
     "1.0",
@@ -206,7 +207,7 @@ export default function VersionPage({ project, version, authToken }) {
 
                                     <div className="input-group">
                                         {primaryFile && (
-                                            <a className="button button--size-m button--type-primary" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`}>
+                                            <a className="button button--size-m button--type-primary" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation}>
                                                 <svg className="masthead-stats__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                     <path d="M12 15V3" />
                                                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -273,7 +274,7 @@ export default function VersionPage({ project, version, authToken }) {
                                                 <span className="file-size">({formatBytes(file.size)})</span>
                                             </span>
 
-                                            <a style={{ marginLeft: "auto", "--button-radius": "100px", "--button-padding": "0 16px" }} className="button button--size-m button--type-primary" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`}>{t("download")}</a>
+                                            <a style={{ marginLeft: "auto", "--button-radius": "100px", "--button-padding": "0 16px" }} className="button button--size-m button--type-primary" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation}>{t("download")}</a>
                                         </div>
                                     )) || <span>{t("noFiles")}</span>}
                                 </div>

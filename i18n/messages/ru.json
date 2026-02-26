@@ -366,7 +366,8 @@
         "next": "Вперёд",
         "errors": {
             "loadingProjects": "Ошибка загрузки проектов",
-            "subscriptionChange": "Ошибка изменения подписки"
+            "subscriptionChange": "Ошибка изменения подписки",
+            "loadingFollowList": "Ошибка загрузки списка подписок"
         },
         "loginToSubscribe": "Войдите, чтобы подписаться",
         "edit": "Редактировать",
@@ -380,6 +381,13 @@
         "joined": "Дата регистрации:",
         "subscribersLabel": "{count, plural, one {подписчик} other {подписчиков}}",
         "subscriptionsLabel": "{count, plural, one {подписка} other {подписок}}",
+        "followersModal": {
+            "subscribersTitle": "Подписчики",
+            "subscriptionsTitle": "Подписки",
+            "loading": "Загрузка...",
+            "loadingMore": "Загрузка...",
+            "empty": "Список пуст"
+        },
         "moreActionsPlaceholder": "Скоро появятся действия",
         "moreActionsAria": "Дополнительные действия",
         "openAvatar": "Открыть аватар",

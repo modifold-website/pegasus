@@ -366,7 +366,8 @@
         "next": "Sonraki",
         "errors": {
             "loadingProjects": "Projeler yüklenemedi",
-            "subscriptionChange": "Abonelik değiştirilemedi"
+            "subscriptionChange": "Abonelik değiştirilemedi",
+            "loadingFollowList": "Takip listesi yüklenemedi"
         },
         "loginToSubscribe": "Abone olmak için giriş yapın",
         "edit": "Düzenle",
@@ -380,6 +381,13 @@
         "joined": "Katılma:",
         "subscribersLabel": "{count, plural, one {Abone} other {Aboneler}}",
         "subscriptionsLabel": "{count, plural, one {Abonelik} other {Abonelikler}}",
+        "followersModal": {
+            "subscribersTitle": "Takipçiler",
+            "subscriptionsTitle": "Takip edilenler",
+            "loading": "Yükleniyor...",
+            "loadingMore": "Daha fazla yükleniyor...",
+            "empty": "Liste boş"
+        },
         "moreActionsPlaceholder": "Daha fazla işlem yakında",
         "moreActionsAria": "Daha fazla işlem",
         "openAvatar": "Avatarı aç",

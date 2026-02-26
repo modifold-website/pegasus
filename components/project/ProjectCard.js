@@ -56,14 +56,16 @@ export default function ProjectCard({ project }) {
     };
 
     return (
-        <Link className="new-project-card" href={`/mod/${project.slug}`} id={project.slug}>
+        <div className="new-project-card" id={project.slug}>
+            <Link className="new-project-card__overlay" href={`/mod/${project.slug}`} aria-label={project.title} />
+
             <img className="new-project-icon" alt={t("projectIconAlt", { title: project.title })} src={project.icon_url || DEFAULT_PROJECT_ICON_URL} />
 
             <div className="new-project-info">
                 <div className="new-project-header">
                     <span className="new-project-title">{project.title}</span>
                     <span className="new-project-author">
-                        {t("by")} <Link href={`/user/${project.owner.slug}`}><UserName user={project.owner} /></Link>
+                        {t("by")} <Link className="new-project-author__link" href={`/user/${project.owner.slug}`}><UserName user={project.owner} /></Link>
                     </span>
                 </div>
 
@@ -97,6 +99,6 @@ export default function ProjectCard({ project }) {
                     <div><span>{t("updated")}</span> {formatDate(project.updated_at)}</div>
                 </div>
             </div>
-        </Link>
+        </div>
     );
 }

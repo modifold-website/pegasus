@@ -366,7 +366,8 @@
         "next": "Próximo",
         "errors": {
             "loadingProjects": "Erro ao carregar projetos",
-            "subscriptionChange": "Erro ao alterar a inscrição"
+            "subscriptionChange": "Erro ao alterar a inscrição",
+            "loadingFollowList": "Erro ao carregar a lista de seguidores"
         },
         "loginToSubscribe": "Faça login para se inscrever",
         "edit": "Editar",
@@ -380,6 +381,13 @@
         "joined": "Entrou em:",
         "subscribersLabel": "{count, plural, one {Assinante} other {Assinantes}}",
         "subscriptionsLabel": "{count, plural, one {Inscrição} other {Inscrições}}",
+        "followersModal": {
+            "subscribersTitle": "Seguidores",
+            "subscriptionsTitle": "Seguindo",
+            "loading": "Carregando...",
+            "loadingMore": "Carregando mais...",
+            "empty": "A lista está vazia"
+        },
         "moreActionsPlaceholder": "Mais ações em breve",
         "moreActionsAria": "Mais ações",
         "openAvatar": "Abrir avatar",

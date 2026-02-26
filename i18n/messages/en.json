@@ -366,7 +366,8 @@
         "next": "Next",
         "errors": {
             "loadingProjects": "Error loading projects",
-            "subscriptionChange": "Error changing subscription"
+            "subscriptionChange": "Error changing subscription",
+            "loadingFollowList": "Error loading follow list"
         },
         "loginToSubscribe": "Log in to subscribe",
         "edit": "Edit",
@@ -380,6 +381,13 @@
         "joined": "Joined:",
         "subscribersLabel": "{count, plural, one {Subscriber} other {Subscribers}}",
         "subscriptionsLabel": "{count, plural, one {Subscription} other {Subscriptions}}",
+        "followersModal": {
+            "subscribersTitle": "Followers",
+            "subscriptionsTitle": "Following",
+            "loading": "Loading...",
+            "loadingMore": "Loading more...",
+            "empty": "List is empty"
+        },
         "moreActionsPlaceholder": "More actions soon",
         "moreActionsAria": "More actions",
         "openAvatar": "Open avatar image",

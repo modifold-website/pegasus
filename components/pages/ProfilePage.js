@@ -11,6 +11,7 @@ import UserName from "../ui/UserName";
 import Modal from "react-modal";
 import ImageLightbox, { useImageLightbox } from "../ui/ImageLightbox";
 import RoleBadge from "../ui/RoleBadge";
+import ProfileSubscriptionsModal from "@/modal/ProfileSubscriptionsModal";
 
 if(typeof window !== "undefined") {
     Modal.setAppElement("body");
@@ -94,7 +95,7 @@ const formatDate = (timestamp, locale) => {
     return `${day} ${month} ${hours}:${minutes}`;
 };
 
-export default function ProfilePage({ user, isBanned, isSubscribed: initialSubscribed, subscriptionId: initialSubId, authToken }) {
+export default function ProfilePage({ user, isBanned, isSubscribed: initialSubscribed, subscriptionId: initialSubId, authToken, projects = [], currentPage = 1, totalPages = 1 }) {
     const t = useTranslations("ProfilePage");
     const locale = useLocale();
     const { isLoggedIn, user: currentUser } = useAuth();
@@ -102,35 +103,14 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
     const [subscriptionId, setSubscriptionId] = useState(initialSubId);
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
     const [isVerifiedModalOpen, setIsVerifiedModalOpen] = useState(false);
-    const [projects, setProjects] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const [loading, setLoading] = useState(true);
+    const [activeFollowModal, setActiveFollowModal] = useState(null);
     const popoverRef = useRef(null);
     const buttonRef = useRef(null);
     const { lightboxOpen, lightboxImage, closeLightbox, getLightboxTriggerProps } = useImageLightbox();
 
     useEffect(() => {
-        const fetchProjects = async () => {
-            try {
-                setLoading(true);
-
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE}/users/${user.slug}/projects`, {
-                    params: { page: currentPage, limit: 20 },
-                });
-
-                setProjects(res.data.projects);
-                setTotalPages(res.data.totalPages);
-            } catch (err) {
-                console.error("Error fetching user projects:", err);
-                toast.error(t("errors.loadingProjects"));
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProjects();
-    }, [user.slug, currentPage]);
+        setActiveFollowModal(null);
+    }, [user.slug]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -172,6 +152,15 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
         setIsPopoverOpen((prev) => !prev);
     };
 
+    const handleOpenFollowModal = (type) => {
+        const count = type === "subscribers" ? countSubs : countUserSubs;
+        if(count < 1) {
+            return;
+        }
+
+        setActiveFollowModal(type);
+    };
+
     const authorAva = isBanned ? "https://leonardo.osnova.io/8e95d9d3-932c-5f85-8b53-43da2e8ccaeb/-/format/webp/" : user.avatar || "https://cdn.modifold.com/default_avatar.png";
     const authorTitle = isBanned ? t("accountFrozen") : user.username;
     const desc = isBanned ? null : renderDescription(user.description);
@@ -192,9 +181,9 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
         const buttons = [];
         for(let i = startPage; i <= endPage; i++) {
             buttons.push(
-                <button key={i} className={`button button--size-m pagination-button ${currentPage === i ? "button--type-primary" : "button--type-secondary"}`} onClick={() => setCurrentPage(i)} aria-current={currentPage === i ? "page" : undefined}>
+                <Link key={i} href={i === 1 ? `/user/${user.slug}` : `/user/${user.slug}?page=${i}`} className={`button button--size-m pagination-button ${currentPage === i ? "button--type-primary" : "button--type-secondary"}`} aria-current={currentPage === i ? "page" : undefined}>
                     {i}
-                </button>
+                </Link>
             );
         }
 
@@ -255,12 +244,12 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                 <div className="browse-page">
                     <div className="subsite-header" style={{ width: "300px", maxWidth: "300px" }}>
                         <div className="subsite-header__padding">
-                                <div className="subsite-header__header">
-                                    <div className="subsite-avatar subsite-header__avatar">
-                                        <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--cropped andropov-image andropov-image--zoom subsite-avatar__image" style={{ backgroundColor: "#151824", aspectRatio: "1.5 / 1", maxWidth: "none" }} aria-label={t("openAvatar")} {...getLightboxTriggerProps({ url: authorAva, title: authorTitle })}>
-                                            <img className="magnify" src={authorAva} alt={authorTitle} />
-                                        </div>
+                            <div className="subsite-header__header">
+                                <div className="subsite-avatar subsite-header__avatar">
+                                    <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--cropped andropov-image andropov-image--zoom subsite-avatar__image" style={{ backgroundColor: "#151824", aspectRatio: "1.5 / 1", maxWidth: "none" }} aria-label={t("openAvatar")} {...getLightboxTriggerProps({ url: authorAva, title: authorTitle })}>
+                                        <img className="magnify" src={authorAva} alt={authorTitle} />
                                     </div>
+                                </div>
 
                                 {isLoggedIn && (
                                     <div className="subsite-header__controls">
@@ -268,9 +257,9 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                                             <Link href="/settings" className="button button--size-m button--type-minimal">{t("edit")}</Link>
                                         ) : (
                                             <>
-                                                <button data-blog-id={user.id} className="button button--size-m button--type-primary" style={{ display: isSubscribed ? "none" : "block" }} onClick={handleSubscribe}>{t("subscribe")}</button>
+                                                <button className="button button--size-m button--type-primary" style={{ display: isSubscribed ? "none" : "block" }} onClick={handleSubscribe}>{t("subscribe")}</button>
 
-                                                <button data-blog-id={user.id} className="button button--size-m button--type-minimal" style={{ display: isSubscribed ? "block" : "none" }} onClick={handleSubscribe}>{t("subscribed")}</button>
+                                                <button className="button button--size-m button--type-minimal" style={{ display: isSubscribed ? "block" : "none" }} onClick={handleSubscribe}>{t("subscribed")}</button>
                                             </>
                                         )}
 
@@ -305,7 +294,6 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                                 {user.isVerified === 1 && (
                                     <img onClick={() => setIsVerifiedModalOpen(true)} src="/badges/verified.png" alt="Verified" style={{ width: "18px", height: "18px", cursor: "pointer" }} />
                                 )}
-
                             </h1>
 
                             <RoleBadge
@@ -323,13 +311,13 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                             </div>
 
                             <div class="subsite-followers">
-                                <div class="subsite-followers__item">
+                                <button type="button" className={`subsite-followers__item subsite-followers__item--button ${countSubs < 1 ? "subsite-followers__item--disabled" : ""}`} onClick={() => handleOpenFollowModal("subscribers")} disabled={countSubs < 1}>
                                     <span>{countSubs}</span> {t("subscribersLabel", { count: countSubs })}
-                                </div>
+                                </button>
 
-                                <div class="subsite-followers__item">
+                                <button type="button" className={`subsite-followers__item subsite-followers__item--button ${countUserSubs < 1 ? "subsite-followers__item--disabled" : ""}`} onClick={() => handleOpenFollowModal("subscriptions")} disabled={countUserSubs < 1}>
                                     <span>{countUserSubs}</span> {t("subscriptionsLabel", { count: countUserSubs })}
-                                </div>
+                                </button>
                             </div>
 
                             {user.social_links && Object.keys(user.social_links).length > 0 && (
@@ -357,11 +345,7 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                     </div>
 
                     <div className="browse-content">
-                        {loading ? (
-                            <div className="subsite-empty-feed">
-                                <p className="subsite-empty-feed__title">{t("loading")}</p>
-                            </div>
-                        ) : projects.length > 0 ? (
+                        {projects.length > 0 ? (
                             <div className="browse-project-list">
                                 {projects.map((project) => (
                                     <ProjectCard key={project.id} project={project} />
@@ -375,20 +359,39 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
 
                         {totalPages > 1 && (
                             <div className="pagination-controls">
-                                <button className="button button--size-m button--type-secondary" onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))} disabled={currentPage === 1} aria-disabled={currentPage === 1}>
-                                    {t("previous")}
-                                </button>
+                                {currentPage === 1 ? (
+                                    <button className="button button--size-m button--type-secondary" disabled aria-disabled="true">
+                                        {t("previous")}
+                                    </button>
+                                ) : (
+                                    <Link className="button button--size-m button--type-secondary" href={currentPage - 1 === 1 ? `/user/${user.slug}` : `/user/${user.slug}?page=${currentPage - 1}`}>
+                                        {t("previous")}
+                                    </Link>
+                                )}
 
                                 {getPageButtons()}
 
-                                <button className="button button--size-m button--type-secondary" onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))} disabled={currentPage === totalPages} aria-disabled={currentPage === totalPages}>
-                                    {t("next")}
-                                </button>
+                                {currentPage === totalPages ? (
+                                    <button className="button button--size-m button--type-secondary" disabled aria-disabled="true">
+                                        {t("next")}
+                                    </button>
+                                ) : (
+                                    <Link className="button button--size-m button--type-secondary" href={`/user/${user.slug}?page=${currentPage + 1}`}>
+                                        {t("next")}
+                                    </Link>
+                                )}
                             </div>
                         )}
                     </div>
                 </div>
             </div>
+
+            <ProfileSubscriptionsModal
+                isOpen={Boolean(activeFollowModal)}
+                onRequestClose={() => setActiveFollowModal(null)}
+                username={user.slug}
+                type={activeFollowModal}
+            />
 
             <Modal isOpen={isVerifiedModalOpen} onRequestClose={() => setIsVerifiedModalOpen(false)} className="modal active" overlayClassName="modal-overlay">
                 <div className="modal-window">

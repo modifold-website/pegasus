@@ -101,6 +101,12 @@
     display: grid;
     grid-template-columns: 1fr 3fr;
 }
+@media (max-width: 859px) {
+    .settings-page {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
 .tokens-table {
     width: 100%;
     border-collapse: separate;

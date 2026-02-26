@@ -95,7 +95,7 @@ const formatDate = (timestamp, locale) => {
     return `${day} ${month} ${hours}:${minutes}`;
 };
 
-export default function ProfilePage({ user, isBanned, isSubscribed: initialSubscribed, subscriptionId: initialSubId, authToken }) {
+export default function ProfilePage({ user, isBanned, isSubscribed: initialSubscribed, subscriptionId: initialSubId, authToken, projects = [], currentPage = 1, totalPages = 1 }) {
     const t = useTranslations("ProfilePage");
     const locale = useLocale();
     const { isLoggedIn, user: currentUser } = useAuth();
@@ -104,10 +104,6 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
     const [isVerifiedModalOpen, setIsVerifiedModalOpen] = useState(false);
     const [activeFollowModal, setActiveFollowModal] = useState(null);
-    const [projects, setProjects] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const [loading, setLoading] = useState(true);
     const popoverRef = useRef(null);
     const buttonRef = useRef(null);
     const { lightboxOpen, lightboxImage, closeLightbox, getLightboxTriggerProps } = useImageLightbox();
@@ -115,28 +111,6 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
     useEffect(() => {
         setActiveFollowModal(null);
     }, [user.slug]);
-
-    useEffect(() => {
-        const fetchProjects = async () => {
-            try {
-                setLoading(true);
-
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE}/users/${user.slug}/projects`, {
-                    params: { page: currentPage, limit: 20 },
-                });
-
-                setProjects(res.data.projects);
-                setTotalPages(res.data.totalPages);
-            } catch (err) {
-                console.error("Error fetching user projects:", err);
-                toast.error(t("errors.loadingProjects"));
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProjects();
-    }, [user.slug, currentPage]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -207,9 +181,9 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
         const buttons = [];
         for(let i = startPage; i <= endPage; i++) {
             buttons.push(
-                <button key={i} className={`button button--size-m pagination-button ${currentPage === i ? "button--type-primary" : "button--type-secondary"}`} onClick={() => setCurrentPage(i)} aria-current={currentPage === i ? "page" : undefined}>
+                <Link key={i} href={i === 1 ? `/user/${user.slug}` : `/user/${user.slug}?page=${i}`} className={`button button--size-m pagination-button ${currentPage === i ? "button--type-primary" : "button--type-secondary"}`} aria-current={currentPage === i ? "page" : undefined}>
                     {i}
-                </button>
+                </Link>
             );
         }
 
@@ -371,11 +345,7 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                     </div>
 
                     <div className="browse-content">
-                        {loading ? (
-                            <div className="subsite-empty-feed">
-                                <p className="subsite-empty-feed__title">{t("loading")}</p>
-                            </div>
-                        ) : projects.length > 0 ? (
+                        {projects.length > 0 ? (
                             <div className="browse-project-list">
                                 {projects.map((project) => (
                                     <ProjectCard key={project.id} project={project} />
@@ -389,15 +359,27 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
 
                         {totalPages > 1 && (
                             <div className="pagination-controls">
-                                <button className="button button--size-m button--type-secondary" onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))} disabled={currentPage === 1} aria-disabled={currentPage === 1}>
-                                    {t("previous")}
-                                </button>
+                                {currentPage === 1 ? (
+                                    <button className="button button--size-m button--type-secondary" disabled aria-disabled="true">
+                                        {t("previous")}
+                                    </button>
+                                ) : (
+                                    <Link className="button button--size-m button--type-secondary" href={currentPage - 1 === 1 ? `/user/${user.slug}` : `/user/${user.slug}?page=${currentPage - 1}`}>
+                                        {t("previous")}
+                                    </Link>
+                                )}
 
                                 {getPageButtons()}
 
-                                <button className="button button--size-m button--type-secondary" onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))} disabled={currentPage === totalPages} aria-disabled={currentPage === totalPages}>
-                                    {t("next")}
-                                </button>
+                                {currentPage === totalPages ? (
+                                    <button className="button button--size-m button--type-secondary" disabled aria-disabled="true">
+                                        {t("next")}
+                                    </button>
+                                ) : (
+                                    <Link className="button button--size-m button--type-secondary" href={`/user/${user.slug}?page=${currentPage + 1}`}>
+                                        {t("next")}
+                                    </Link>
+                                )}
                             </div>
                         )}
                     </div>

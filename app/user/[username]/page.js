@@ -30,12 +30,15 @@ export async function generateMetadata({ params }) {
     };
 }
 
-export default async function Page({ params }) {
+export default async function Page({ params, searchParams }) {
     const { username } = await params;
+    const resolvedSearchParams = await searchParams;
     const resolvedLocale = await getLocale();
     const tNotFound = await getTranslations({ locale: resolvedLocale, namespace: "NotFound" });
     const cookieStore = await cookies();
     const authToken = cookieStore.get("authToken")?.value;
+    const requestedPage = Number(resolvedSearchParams?.page);
+    const currentProjectsPage = Number.isFinite(requestedPage) && requestedPage > 0 ? Math.trunc(requestedPage) : 1;
 
     const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/users/${username}`, {
         headers: { Accept: "application/json" },
@@ -59,21 +62,18 @@ export default async function Page({ params }) {
         next: { revalidate: 60, tags: [`user:${username}:ban`] },
     };
 
-    const postsFetchOptions = authToken ? {
-        headers: { Accept: "application/json", Authorization: `Bearer ${authToken}` },
-        cache: "no-store",
-    } : {
+    const projectsFetchOptions = {
         headers: { Accept: "application/json" },
-        next: { revalidate: 60, tags: [`user:${username}:articles`] },
+        next: { revalidate: 60, tags: [`user:${username}:projects:${currentProjectsPage}`] },
     };
 
-    const [banRes, postsRes] = await Promise.all([
+    const [banRes, projectsRes] = await Promise.all([
         fetch(`${process.env.NEXT_PUBLIC_API_BASE}/bans/${user.id}`, banFetchOptions),
-        fetch(`${process.env.NEXT_PUBLIC_API_BASE}/articles?user=${username}&sort=latest&period=all`, postsFetchOptions),
+        fetch(`${process.env.NEXT_PUBLIC_API_BASE}/users/${username}/projects?page=${currentProjectsPage}&limit=20`, projectsFetchOptions),
     ]);
 
     const banData = banRes.ok ? await banRes.json() : { isBanned: false };
-    const posts = postsRes.ok ? await postsRes.json() : { articles: [] };
+    const projectsData = projectsRes.ok ? await projectsRes.json() : { projects: [], totalPages: 1, currentPage: currentProjectsPage };
 
     let isSubscribed = false;
     let subscriptionId = null;
@@ -95,6 +95,15 @@ export default async function Page({ params }) {
     }
 
     return (
-        <ProfilePage user={user} posts={posts.articles} isBanned={banData.isBanned} isSubscribed={isSubscribed} subscriptionId={subscriptionId} authToken={authToken} />
+        <ProfilePage
+            user={user}
+            isBanned={banData.isBanned}
+            isSubscribed={isSubscribed}
+            subscriptionId={subscriptionId}
+            authToken={authToken}
+            projects={projectsData.projects || []}
+            currentPage={projectsData.currentPage || currentProjectsPage}
+            totalPages={projectsData.totalPages || 1}
+        />
     );
 }

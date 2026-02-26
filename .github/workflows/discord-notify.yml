@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - develop
   pull_request:
     types:
       - opened
@@ -45,8 +46,8 @@ jobs:
           fi
 
           EMBED_COLOR=3177968
-          if [ "$GITHUB_REF_NAME" = "main" ]; then
-            EMBED_COLOR=3177968
+          if [ "$GITHUB_REF_NAME" = "develop" ]; then
+            EMBED_COLOR=16098851
           fi
 
           PAYLOAD=$(jq -n \
@@ -74,7 +75,7 @@ jobs:
             "$DISCORD_WEBHOOK_URL"
 
       - name: Notify Discord (pull request)
-        if: github.event_name == 'pull_request' && env.DISCORD_WEBHOOK_URL != ''
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.ref != 'develop' && env.DISCORD_WEBHOOK_URL != ''
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           PR_ACTION: ${{ github.event.action }}
@@ -93,6 +94,11 @@ jobs:
             PR_BODY_TRIMMED="No description provided."
           fi
 
+          EMBED_COLOR=3177968
+          if [ "$PR_BASE_REF" = "develop" ] || [ "$PR_HEAD_REF" = "develop" ]; then
+            EMBED_COLOR=16098851
+          fi
+
           PAYLOAD=$(jq -n \
             --arg title "[$GITHUB_REPOSITORY] PR #$PR_NUMBER $PR_ACTION: $PR_TITLE" \
             --arg description "$PR_BODY_TRIMMED" \
@@ -100,13 +106,14 @@ jobs:
             --arg author "$PR_AUTHOR" \
             --arg base "$PR_BASE_REF" \
             --arg head "$PR_HEAD_REF" \
+            --argjson color "$EMBED_COLOR" \
             '{
               embeds: [
                 {
                   title: $title,
                   description: $description,
                   url: $url,
-                  color: 3177968,
+                  color: $color,
                   fields: [
                     { name: "Author", value: $author, inline: true },
                     { name: "From", value: $head, inline: true },

@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+﻿import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 
 const tags = {
@@ -118,13 +118,12 @@ function formatVersionsForDisplay(gameVersions) {
 
 export default function VersionDisplay({ gameVersions }) {
     const t = useTranslations("ProjectPage.versions");
-    const [formattedVersions, setFormattedVersions] = useState([]);
-
-    useEffect(() => {
-        if(gameVersions && Array.isArray(gameVersions)) {
-            const versions = formatVersionsForDisplay(gameVersions);
-            setFormattedVersions(versions);
+    const formattedVersions = useMemo(() => {
+        if(!Array.isArray(gameVersions) || gameVersions.length === 0) {
+            return [];
         }
+
+        return formatVersionsForDisplay(gameVersions);
     }, [gameVersions]);
 
     return (

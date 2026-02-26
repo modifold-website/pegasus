@@ -141,6 +141,7 @@
     white-space: nowrap;
 }
 .new-project-card {
+    position: relative;
     display: flex;
     align-items: flex-start;
     background: var(--theme-color-background-content);
@@ -148,6 +149,20 @@
     padding: 16px;
     gap: 12px;
     transition: opacity .5s ease-in-out, filter .2s ease-in-out, transform .05s ease-in-out, background 0.25s ease-in-out;
+}
+.new-project-card__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+}
+.new-project-card > *:not(.new-project-card__overlay) {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+}
+.new-project-card .new-project-author__link {
+    pointer-events: auto;
 }
 .new-project-card:hover {
     filter: brightness(.95);

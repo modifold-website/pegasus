@@ -253,7 +253,7 @@ export default function Header({ authToken }) {
                                                     </svg>
                                                 </h2>
 
-                                                <img srcSet="/images/083e2ac1ea322b571d5f571e7d0cd383_10_block_size-no-bg-preview.png" style={{ overflow: "hidden", position: "absolute", right: "-45px", bottom: "-60px", height: "100%", width: "95%", objectFit: "cover", pointerEvents: "none" }} />
+                                                <img className="content--browse__preview" srcSet="/images/083e2ac1ea322b571d5f571e7d0cd383_10_block_size-no-bg-preview.png" />
                                             </Link>
                                         </div>
                                     </div>

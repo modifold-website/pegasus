@@ -286,7 +286,7 @@ svg {
     --color-white: #fff;
     --layout-z-index-header: 10;
     --layout-z-index-navbar: 2;
-    --layout-z-modal-overlay: calc(var(--layout-z-index-header) + 1);
+    --layout-z-modal-overlay: 100;
     --layout-z-index-feed: 1;
     --layout-z-alerts: calc(var(--layout-z-index-header) + 2);
     --layout-island-border-radius: 0px;
@@ -3617,13 +3617,13 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .sort-wrapper {
     margin-left: auto;
     position: relative;
-    z-index: calc(var(--layout-z-index-feed) + 1);
+    z-index: 40;
 }
 .popover--sort {
     position: absolute;
     top: 100%;
     right: 0;
-    z-index: 10;
+    z-index: 41;
 }
 .dropdown__label .icon.open {
     transform: rotate(180deg);

@@ -30,341 +30,411 @@ const getSafeMarkdownHref = (href) => {
 const contentRulesEN = `
 # Terms of Use
 
-**Last modified: October 10, 2025**
+**Last modified: February 26, 2026**
 
-## Acceptance of the Terms of Use
+## 1. Scope of These Terms
 
-These Terms of Use govern your access to and use of \`modifold.com\` and \`api.modifold.com\` (the "Service"), including any content, functionality, and services offered, whether as a guest or registered user.
+These Terms of Use ("Terms") govern your access to and use of **Modifold**, including:
+- modifold.com
+- api.modifold.com
+- related web pages, APIs, and platform features (collectively, the "Service")
 
-By accessing or using the Service, you accept and agree to be bound by these Terms of Use and our [Privacy Policy](/legal/privacy). If you do not agree, you must not access or use the Service.
+By accessing or using the Service, you agree to these Terms and our [Privacy Policy](/legal/privacy). If you do not agree, do not use the Service.
 
-The Service is offered to users who are 13 years of age or older. By using the Service, you represent and warrant that you are of legal age to form a binding contract and meet all eligibility requirements. If you do not meet these requirements, you must not access or use the Service.
+## 2. Eligibility
 
-## Changes to the Terms of Use
+You must be at least **13 years old** to use the Service.
 
-We may revise and update these Terms of Use at our sole discretion. All changes are effective immediately upon posting and apply to all access and use of the Service thereafter. Your continued use of the Service after changes means you accept and agree to them. You are expected to check this page periodically for updates, as they are binding on you.
+By using the Service, you represent that:
+- you can lawfully agree to these Terms;
+- your use of the Service is not prohibited by applicable law; and
+- any information you provide to us is accurate and reasonably up to date.
 
-## Accessing the Service and Account Security
+## 3. Changes to the Service or Terms
 
-We reserve the right to withdraw or amend the Service, or any material provided through it, at our sole discretion without notice. We are not liable if any part of the Service is unavailable at any time.
+We may update these Terms from time to time. If we make material changes, we may provide notice through the website, your account, or email when practical.
+
+Your continued use of the Service after updated Terms are posted means you accept the updated Terms.
+
+We may also change, suspend, or discontinue parts of the Service at any time.
+
+## 4. Compliance With Applicable Laws (Including Belarus)
+
+Modifold is operated for an international audience. Our owner and part of our team are located in the **Republic of Belarus**, and we aim to operate the Service in compliance with applicable laws, including where relevant the laws of Belarus, as well as other laws applicable to our users and operations.
+
+You are responsible for complying with laws that apply to you based on your location and how you use the Service.
+
+## 5. Accounts and Security
+
+Some features require an account.
 
 You are responsible for:
-- Making all arrangements necessary to access the Service.
-- Ensuring that all persons accessing the Service through your internet connection are aware of and comply with these Terms of Use.
+- maintaining the confidentiality of your account credentials;
+- activity that occurs under your account (except where caused by our failure to secure the Service);
+- notifying us promptly at [support@modifold.com](mailto:support@modifold.com) if you suspect unauthorized access.
 
-To access certain resources, you may need to provide registration details. You agree that all information you provide is correct, current, and complete, and is governed by our [Privacy Policy](/legal/privacy). You consent to all actions we take with your information consistent with our Privacy Policy.
+You must not share your account password with another person.
 
-If you choose or are provided with an email, password, or other security information, you must:
-- Treat such information as confidential and not disclose it.
-- Not provide any other person access to the Service using your credentials.
-- Notify us immediately of any unauthorized access or security breach at [support@modifold.com](mailto:support@modifold.com).
+We may suspend, restrict, or terminate accounts that violate these Terms, applicable law, or our safety/security requirements.
 
-We may disable any username, password, or identifier at our discretion, including if you violate these Terms of Use.
+## 6. Project Collaboration, Teams, and Permissions
 
-## About the Service
+Modifold may allow project owners or authorized maintainers to invite other registered users to collaborate on projects using roles and permissions.
 
-The Service allows you to upload and share your gaming content (e.g., mods, resource packs, shaders, data packs; "Gaming Content") with other users. Unlike user comments or posts, we do not claim any ownership of your Gaming Content. You are solely responsible for any claims, actions, or damages related to your Gaming Content.
+By using these features, you agree that:
+- project owners/maintainers are responsible for granting and revoking access;
+- collaborators may act within the permissions assigned to their own accounts;
+- account sharing is not an acceptable substitute for permission-based collaboration;
+- we may keep audit/security logs of project actions (for example version uploads, edits, deletions, membership changes, and settings changes).
 
-By uploading Gaming Content, you grant us a limited, non-exclusive, royalty-free, fully paid-up right to display and distribute it to users through the Service, who may use it at their discretion. If you delete your Gaming Content, it may remain in use by users who previously downloaded it or included it in modpacks until they remove it. You retain all ownership rights in your Gaming Content.
+If you invite a collaborator, you represent that you are authorized to grant that access.
 
-All Gaming Content must comply with our [Content Rules](#content-rules).
+## 7. User Content and Project Files
 
-## API Usage
+The Service allows users to upload and publish gaming-related content (for example mods, packs, shaders, project files, metadata, and descriptions) ("Project Content").
 
-The Service provides an Application Programming Interface (API) at \`api.modifold.com\`, allowing users to interact with the Service via their own websites or applications.
+### 7.1 Ownership
 
-We grant you a limited, non-exclusive, non-sublicensable, and revocable license to use the API to download, display, query, create, edit, or delete Gaming Content, provided you:
-- Use the API in accordance with these Terms, our [Content Rules](#content-rules), and applicable laws.
-- Do not infringe third-party rights.
-- Assist us in complying with applicable laws and regulations.
+You retain ownership of Project Content you upload, to the extent you own those rights.
 
-You agree to indemnify and hold us harmless from any claims, proceedings, or actions arising from your use of the API.
+### 7.2 License to Modifold
 
-## Intellectual Property Rights
+By uploading or publishing Project Content, you grant Modifold a non-exclusive, worldwide, royalty-free license to host, store, reproduce, process, display, distribute, and make available that content solely for operating, improving, securing, and promoting the Service.
 
-Except for Gaming Content, the Service and its contents, features, and functionality (e.g., software, text, images, design) are owned by us or our licensors and are protected by United States and international copyright, trademark, patent, trade secret, and other intellectual property laws.
+This license ends when the content is removed from the Service, except to the extent:
+- copies already exist in backups;
+- users previously downloaded the content; or
+- retention is required for legal, security, or abuse-prevention reasons.
 
-These Terms of Use permit personal, non-commercial use only. No right, title, or interest in the Service is transferred to you, and all rights not expressly granted are reserved.
+### 7.3 Your Responsibility
 
-## Trademarks
+You are responsible for Project Content you upload or publish, including ensuring you have the rights necessary to do so.
 
-The Modifold name, logo, and related designs are our trademarks. You must not use them without prior written permission. Other names, logos, or designs on the Service are the trademarks of their respective owners.
+All content must comply with our [Content Rules](/legal/rules).
 
-## Prohibited Uses
+## 8. User Contributions (Profiles, Comments, Posts)
 
-You may use the Service only for lawful purposes and in accordance with these Terms of Use. You agree not to:
-- Violate any applicable federal, state, local, or international law or regulation.
-- Exploit or harm minors by exposing them to inappropriate content or requesting personal information.
-- Upload or use material that does not comply with our [Content Rules](#content-rules).
-- Send or procure advertising, "spam," or similar solicitations.
-- Impersonate us, our employees, or other users.
-- Engage in conduct that restricts or inhibits others’ use or enjoyment of the Service or may harm us or users.
+If the Service includes comments, profile text, posts, or similar user-submitted content that is not Project Content ("User Contributions"), you remain responsible for that content.
 
-Additionally, you agree not to:
-- Use any robot, spider, or automatic device to access the Service without permission.
-- Use any device, software, or routine that interferes with the Service’s operation.
-- Introduce viruses, trojan horses, or other harmful material.
-- Attempt unauthorized access, interference, or disruption of the Service or its servers.
-- Attack the Service via denial-of-service or distributed denial-of-service attacks.
+By submitting User Contributions, you grant us a non-exclusive, worldwide, royalty-free license to host, display, reproduce, and distribute them through the Service, subject to your account settings and these Terms.
 
-## User Contributions
+## 9. Prohibited Conduct
 
-The Service may include interactive features (e.g., profiles, posts, comments; "Interactive Services") that allow users to submit content (other than Gaming Content; "User Contributions").
+You may not use the Service to:
+- violate applicable law or regulations;
+- infringe intellectual property, privacy, or other rights;
+- upload malware or harmful code;
+- interfere with or disrupt the Service;
+- scrape or automate access in a way that harms the Service or bypasses restrictions;
+- impersonate another person or misrepresent affiliation;
+- spam, scam, or distribute abusive, deceptive, or unlawful content;
+- attempt unauthorized access to accounts, servers, or systems.
 
-All User Contributions and use of Interactive Services must comply with our [Content Rules](#content-rules).
+We may investigate and take action against prohibited conduct.
 
-By posting User Contributions, you grant us and our service providers a non-exclusive, royalty-free right to use, reproduce, modify, display, and distribute them for purposes consistent with your account settings. You represent and warrant that:
-- You own or control all rights to your User Contributions.
-- Your User Contributions comply with these Terms of Use.
+## 10. API Use
 
-You are responsible for your User Contributions’ legality, reliability, and appropriateness. We are not liable for the content or accuracy of User Contributions.
+If you use api.modifold.com, you must comply with these Terms, our [Privacy Policy](/legal/privacy), our [Content Rules](/legal/rules), and applicable law.
 
-## Content Rules
+We may set or enforce API limits, authentication requirements, or usage restrictions to protect reliability and security.
 
-All Gaming Content and User Contributions must:
-- Be accurate and not misleading.
-- Not violate any third-party intellectual property rights.
-- Not contain unlawful, offensive, abusive, defamatory, or obscene material.
-- Not contain viruses or other harmful code.
-- Comply with all applicable laws and regulations.
+We may suspend or revoke API access if your usage creates risk, abuse, or operational issues.
 
-We may remove or refuse any content that violates these rules at our discretion.
+## 11. Intellectual Property of the Service
 
-## Monitoring and Enforcement; Termination
+Except for user-owned content, the Service (including software, design, branding, text, and other platform materials) is owned by Modifold or its licensors and protected by applicable intellectual property laws.
 
-We may:
-- Remove or refuse User Contributions at our discretion.
-- Take action against User Contributions that violate these Terms of Use, including those that infringe rights, threaten safety, or create liability.
-- Take legal action or refer illegal use to law enforcement.
-- Terminate or suspend your access for any reason, including violations of these Terms.
+These Terms do not grant you ownership of the Service or our trademarks.
 
-We may cooperate with law enforcement or court orders to disclose user information. You waive and hold us harmless from claims resulting from such actions.
+## 12. Moderation, Enforcement, and Removal
 
-We are not liable for any failure to remove objectionable material promptly and assume no responsibility for user-provided content.
+We may review, moderate, restrict, remove, or refuse content or accounts when we reasonably believe it is necessary to:
+- enforce these Terms or our policies;
+- protect users or the Service;
+- comply with law or legal process;
+- investigate abuse, fraud, or security incidents.
 
-## Copyright Infringement
+We are not obligated to publish or keep any content on the Service.
 
-If you believe any User Contributions violate your copyright, please contact us at [support@modifold.com](mailto:support@modifold.com) for instructions on submitting a notice. We may terminate accounts of repeat infringers.
+## 13. Copyright and Rights Complaints
 
-## Reliance on Information Posted
+If you believe content on Modifold infringes your copyright or other rights, contact us at [support@modifold.com](mailto:support@modifold.com) with sufficient information for us to review the complaint.
 
-Information on the Service is for general purposes only. We do not warrant its accuracy, completeness, or usefulness. Any reliance on such information is at your own risk. We disclaim liability for reliance by you or others.
+We may remove or restrict access to content while investigating and may act against repeat infringers.
 
-Third-party content (e.g., user posts) reflects the opinions of its providers, not us. We are not liable for its content or accuracy.
+## 14. Third-Party Links and Services
 
-## Changes to the Service
+The Service may contain links to third-party websites or services. We do not control them and are not responsible for their content, policies, or availability.
 
-We may update the Service’s content periodically, but it may not always be complete or up-to-date. We are not obligated to update any material.
+Your use of third-party services is at your own risk and subject to their terms.
 
-## Linking to the Service and Social Media Features
+## 15. Disclaimers
 
-You may link to our website if it is fair, legal, and does not damage our reputation or suggest unauthorized association or endorsement. The Service may include social media features to:
-- Link to content.
-- Send communications with content or links.
-- Display limited content on your or third-party websites.
+The Service is provided on an **"as is"** and **"as available"** basis to the maximum extent permitted by law.
 
-You must use these features as provided and in accordance with any additional terms. You must not:
-- Frame or deep-link the Service without permission.
-- Take actions inconsistent with these Terms.
+We do not guarantee that the Service will be uninterrupted, secure, error-free, or free from harmful components, and we do not guarantee the accuracy or reliability of user-submitted content.
 
-We may disable social media features or links at our discretion.
+## 16. Limitation of Liability
 
-## Links from the Service
+To the maximum extent permitted by law, Modifold and its operators, affiliates, and service providers are not liable for indirect, incidental, special, consequential, exemplary, or punitive damages, or for loss of profits, data, goodwill, or business interruption arising from or related to the Service.
 
-Links to third-party sites are for convenience only. We have no control over their content and accept no responsibility for any loss or damage from their use. You access them at your own risk.
+To the maximum extent permitted by law, our aggregate liability for claims arising out of or relating to the Service will not exceed the greater of:
+- the amount you paid us (if any) in the **3 months** before the event giving rise to the claim; or
+- **USD $50**.
 
-## Geographic Restrictions
+Some jurisdictions do not allow certain limitations, so some of the above may not apply to you.
 
-Access to the Service may not be legal in certain countries. If you access it from outside, you are responsible for compliance with local laws.
+## 17. Indemnification
 
-## Disclaimer of Warranties
+To the extent permitted by law, you agree to indemnify and hold harmless Modifold and its operators from claims, liabilities, damages, and expenses (including reasonable legal fees) arising from:
+- your misuse of the Service;
+- your content;
+- your violation of these Terms; or
+- your violation of applicable law or third-party rights.
 
-We do not guarantee that files downloaded from the Service are free of viruses or harmful code. You are responsible for implementing anti-virus protection and data recovery measures.
+## 18. Termination
 
-The Service and its content are provided "as is" and "as available," without warranties of any kind, express or implied, including completeness, security, reliability, or availability. We disclaim all warranties, including merchantability, non-infringement, and fitness for a particular purpose, to the extent permitted by law.
+You may stop using the Service at any time.
 
-## Limitation on Liability
+We may suspend or terminate your access (in whole or in part) if we reasonably believe:
+- you violated these Terms;
+- your use creates legal, security, or operational risk; or
+- we must do so to comply with law.
 
-We, our affiliates, licensors, or service providers are not liable for any damages arising from your use or inability to use the Service, including direct, indirect, special, incidental, consequential, or punitive damages, even if foreseeable.
+Termination does not affect provisions that by their nature should survive (for example licenses already granted for operation of the Service, disclaimers, limitations of liability, and dispute provisions).
 
-Our total liability for any claim is limited to the amount you paid us (if any) in the three months prior to the claim, to the extent permitted by law.
+## 19. Governing Law and Dispute Resolution
 
-## Indemnification
+These Terms are governed by the laws of the **State of Delaware, USA**, without regard to conflict of law rules, unless mandatory law in your jurisdiction provides otherwise.
 
-You agree to defend, indemnify, and hold us harmless from any claims, liabilities, damages, or costs (including attorneys’ fees) arising from your violation of these Terms or use of the Service, including your User Contributions.
+You agree that disputes may be brought in courts located in Delaware, USA, subject to applicable law. We may also seek injunctive or protective relief in any competent jurisdiction where necessary.
 
-## Governing Law and Jurisdiction
+## 20. Miscellaneous
 
-These Terms of Use and any disputes are governed by the laws of the State of Delaware, USA, without regard to conflict of law provisions. Any legal action shall be brought exclusively in Delaware’s federal or state courts, though we may pursue actions in your country of residence or elsewhere. You waive objections to jurisdiction or venue in such courts.
+### 20.1 Entire Agreement
 
-## Arbitration
+These Terms and our [Privacy Policy](/legal/privacy) are the entire agreement between you and Modifold regarding the Service.
 
-At our discretion, disputes arising from these Terms or the Service may be submitted to final and binding arbitration under the Rules of Arbitration of the American Arbitration Association, applying Delaware law.
+### 20.2 Severability
 
-## Limitation on Time to File Claims
+If part of these Terms is unenforceable, the remaining parts remain in effect.
 
-Any claim arising from these Terms or the Service must be filed within one year after the cause of action accrues, or it is permanently barred.
+### 20.3 Waiver
 
-## Waiver and Severability
+A failure to enforce any provision is not a waiver of our right to do so later.
 
-No waiver of any term is a continuing waiver, and failure to assert a right does not waive it. If any provision is held invalid or unenforceable, it will be limited to the minimum extent, and the remaining provisions will remain in effect.
+### 20.4 Assignment
 
-## Entire Agreement
+You may not assign these Terms without our consent. We may assign these Terms as part of a reorganization, transfer, or sale of the Service.
 
-These Terms of Use and our [Privacy Policy](/legal/privacy) constitute the entire agreement between you and us regarding the Service, superseding all prior agreements.
+## 21. Contact
 
-## Your Comments and Concerns
-
-For feedback, support, or other communications, contact us at [support@modifold.com](mailto:support@modifold.com).
+For support or legal questions, contact: [support@modifold.com](mailto:support@modifold.com)
 `;
 
 const contentRulesRU = `
 # Условия использования
 
-**Последнее изменение: 10 января 2026**
+**Последнее изменение: 26 февраля 2026**
 
-## Принятие Условий использования
+## 1. Сфера действия Условий
 
-Настоящие Условия использования регулируют ваш доступ и использование сайтов \`modifold.com\` и \`api.modifold.com\` (далее совместно — «Сервис»), включая любой контент, функциональность и услуги, предлагаемые на Сервисе, независимо от того, используете ли вы его как гость или зарегистрированный пользователь.
+Настоящие Условия использования (далее — «Условия») регулируют ваш доступ и использование **Modifold**, включая:
+- modifold.com
+- api.modifold.com
+- связанные веб-страницы, API и функции платформы (совместно — «Сервис»)
 
-Используя или заходя на Сервис, вы подтверждаете, что принимаете и соглашаетесь соблюдать настоящие Условия использования, а также нашу [Политику конфиденциальности](/legal/privacy). Если вы не согласны с этими условиями — вы не имеете права использовать Сервис.
+Используя Сервис, вы соглашаетесь с настоящими Условиями и нашей [Политикой конфиденциальности](/legal/privacy). Если вы не согласны, не используйте Сервис.
 
-Сервис предназначен для лиц старше 13 лет. Используя Сервис, вы заявляете и гарантируете, что достигли возраста, позволяющего заключать юридически обязывающие договоры, и соответствуете всем требованиям для использования Сервиса. Если вы не соответствуете этим требованиям — вы не можете использовать Сервис.
+## 2. Требования к пользователю
 
-## Изменения Условий использования
+Для использования Сервиса вам должно быть не менее **13 лет**.
 
-Мы вправе в любое время по своему усмотрению изменять и обновлять настоящие Условия. Все изменения вступают в силу немедленно после публикации и применяются ко всему последующему использованию Сервиса. Продолжение использования Сервиса после внесения изменений означает, что вы приняли и согласны с ними. Рекомендуем периодически проверять эту страницу, так как изменения обязательны для вас.
+Используя Сервис, вы подтверждаете, что:
+- вправе заключать обязательные для вас соглашения;
+- использование Сервиса не запрещено применимым законодательством;
+- предоставляемая вами информация является точной и по возможности актуальной.
 
-## Доступ к Сервису и безопасность аккаунта
+## 3. Изменения Условий и Сервиса
 
-Мы оставляем за собой право в любое время и без уведомления снять, изменить или ограничить доступность Сервиса или любой его части. Мы не несем ответственности, если Сервис (или его часть) окажется недоступен в какое-либо время.
+Мы можем время от времени обновлять настоящие Условия. При существенных изменениях мы можем уведомлять пользователей через сайт, аккаунт или электронную почту, если это практически возможно.
 
-Вы несёте ответственность за:
-- Создание всех необходимых условий для доступа к Сервису (включая интернет-соединение, устройство и т.д.);
-- Обеспечение того, чтобы все лица, использующие интернет-соединение вашего устройства, знали и соблюдали настоящие Условия.
+Продолжение использования Сервиса после публикации обновлённых Условий означает их принятие.
 
-Для доступа к некоторым функциям может потребоваться регистрация. Вы гарантируете, что вся предоставляемая вами информация является точной, актуальной и полной. Все данные обрабатываются в соответствии с нашей [Политикой конфиденциальности](/legal/privacy).
+Мы также можем изменять, приостанавливать или прекращать работу отдельных частей Сервиса.
 
-Если вы получаете логин, пароль или другие данные для входа, вы обязаны:
-- Считать их конфиденциальными и не разглашать;
-- Не передавать доступ к вашему аккаунту третьим лицам;
-- Немедленно сообщать нам о любом несанкционированном доступе или подозрении на утечку по адресу [support@modifold.com](mailto:support@modifold.com).
+## 4. Соблюдение применимого законодательства (включая Беларусь)
 
-Мы вправе в любое время отключить ваш логин, пароль или аккаунт, в том числе при нарушении вами настоящих Условий.
+Modifold работает для международной аудитории. Владелец проекта и часть команды находятся в **Республике Беларусь**, и мы стремимся осуществлять деятельность Сервиса в соответствии с применимым законодательством, включая, где это применимо, законодательство Республики Беларусь, а также иные нормы, применимые к нашим пользователям и операциям.
 
-## О Сервисе
+Вы несёте ответственность за соблюдение законов, которые применяются к вам с учётом вашего местонахождения и способа использования Сервиса.
 
-Сервис позволяет загружать и делиться вашим игровым контентом (моды, ресурспаки, шейдеры, дата-паки и т.п. для **Hytale** — далее «Игровой контент») с другими пользователями.
+## 5. Аккаунты и безопасность
 
-Мы **не претендуем** на право собственности на ваш Игровой контент. Вы несёте полную ответственность за любые претензии, иски и убытки, связанные с вашим Игровым контентом.
+Для части функций требуется аккаунт.
 
-Загружая Игровой контент, вы предоставляете нам ограниченное, неисключительное, безвозмездное, полностью оплаченное право на показ и распространение этого контента через Сервис. Пользователи, скачавшие ваш контент, могут использовать его по своему усмотрению. При удалении вами контента он может продолжать использоваться теми, кто уже скачал его или включил в сборки, до тех пор, пока они сами его не удалят. Вы сохраняете все права собственности на свой Игровой контент.
+Вы отвечаете за:
+- конфиденциальность данных для входа;
+- действия, совершаемые через ваш аккаунт (за исключением случаев, вызванных нашей ошибкой в обеспечении безопасности Сервиса);
+- своевременное уведомление нас по адресу [support@modifold.com](mailto:support@modifold.com), если вы подозреваете несанкционированный доступ.
 
-Весь Игровой контент обязан соответствовать нашим [Правилам контента](/legal/rules).
+Нельзя передавать пароль от аккаунта другим лицам.
 
-## Использование API
+Мы можем ограничить, приостановить или прекратить доступ к аккаунту при нарушении Условий, закона или требований безопасности.
 
-Сервис предоставляет API по адресу \`api.modifold.com\`, позволяющий взаимодействовать с Сервисом через собственные сайты и приложения.
+## 6. Совместная работа, команды и права доступа
 
-Мы предоставляем вам ограниченную, неисключительную, несублицензируемую и отзывную лицензию на использование API для скачивания, отображения, запроса, создания, редактирования или удаления Игрового контента при условии, что вы:
-- Используете API в соответствии с настоящими Условиями, [Правилами контента](/legal/rules) и действующим законодательством;
-- Не нарушаете права третьих лиц;
-- Содействуете нам в соблюдении применимого законодательства.
+Modifold может позволять владельцам проектов или уполномоченным участникам приглашать других зарегистрированных пользователей для совместной работы с использованием ролей и прав доступа.
 
-Вы обязуетесь возмещать и защищать нас от любых претензий, исков и требований, возникающих в связи с вашим использованием API.
+Используя такие функции, вы соглашаетесь, что:
+- владельцы/поддерживающие участники отвечают за выдачу и отзыв доступа;
+- соавторы действуют в рамках прав, назначенных их собственным аккаунтам;
+- передача аккаунта не является допустимой заменой системе прав доступа;
+- мы можем хранить журналы действий по проекту (например, загрузка, редактирование и удаление версий, изменения участников и настроек) в целях безопасности и аудита.
 
-## Интеллектуальная собственность
+Если вы приглашаете соавтора, вы подтверждаете, что имеете право предоставить такой доступ.
 
-За исключением Игрового контента, весь Сервис, его содержимое, дизайн, программное обеспечение, тексты, изображения и другие элементы принадлежат нам или нашим лицензиарам и защищены законами США и международным законодательством об авторском праве, товарных знаках, патентах и коммерческой тайне.
+## 7. Контент пользователя и файлы проектов
 
-Настоящие Условия разрешают только личное, некоммерческое использование. Никакие права собственности на Сервис вам не передаются, все права, прямо не предоставленные, сохраняются за нами.
+Сервис позволяет загружать и публиковать игровой контент (например, моды, паки, шейдеры, файлы проекта, метаданные и описания) (далее — «Контент проекта»).
 
-## Товарные знаки
+### 7.1 Право собственности
 
-Название Modifold, логотип и связанные с ними элементы являются нашими товарными знаками. Их использование без предварительного письменного разрешения запрещено. Остальные названия и логотипы принадлежат своим правообладателям.
+Вы сохраняете право собственности на Контент проекта в той мере, в какой эти права принадлежат вам.
 
-## Запрещённое использование
+### 7.2 Лицензия для Modifold
 
-Сервис можно использовать только в законных целях и в соответствии с настоящими Условиями. Запрещается:
-- Нарушать любое применимое законодательство;
-- Эксплуатировать или подвергать опасности несовершеннолетних;
-- Загружать контент, нарушающий наши [Правила контента](/legal/rules);
-- Распространять рекламу, спам или аналогичные материалы;
-- Выдавать себя за нас, наших сотрудников или других пользователей;
-- Препятствовать использованию Сервиса другими лицами.
+Загружая или публикуя Контент проекта, вы предоставляете Modifold неисключительную, всемирную, безвозмездную лицензию на размещение, хранение, воспроизведение, обработку, отображение, распространение и предоставление такого контента исключительно для работы, улучшения, защиты и развития Сервиса.
 
-Также запрещено:
-- Использовать роботов, пауков, скрипты и любые автоматические средства доступа без разрешения;
-- Внедрять вирусы, трояны или иной вредоносный код;
-- Пытаться получить несанкционированный доступ к Сервису, его серверам или данным;
-- Организовывать DoS- или DDoS-атаки.
+Эта лицензия прекращается после удаления контента из Сервиса, кроме случаев, когда:
+- копии уже находятся в резервных копиях;
+- пользователи ранее скачали контент;
+- хранение необходимо по юридическим, защитным или антиабузным причинам.
 
-## Пользовательский контент (не Игровой)
+### 7.3 Ваша ответственность
 
-Сервис может содержать интерактивные функции (профили, посты, комментарии и т.п. — «Интерактивные сервисы»), позволяющие публиковать пользовательский контент (не являющийся Игровым контентом — «Пользовательские материалы»).
+Вы несёте ответственность за загружаемый и публикуемый Контент проекта, включая наличие необходимых прав.
 
-Все Пользовательские материалы обязаны соответствовать нашим [Правилам контента](/legal/rules).
+Весь контент должен соответствовать нашим [Правилам контента](/legal/rules).
 
-Публикуя Пользовательские материалы, вы предоставляете нам и нашим поставщикам услуг неисключительное, безвозмездное право использовать, воспроизводить, модифицировать, показывать и распространять их в рамках настроек вашего аккаунта. Вы гарантируете, что обладаете всеми правами на свои Пользовательские материалы и они не нарушают настоящие Условия.
+## 8. Пользовательские материалы (профили, комментарии, посты)
 
-Вы несёте полную ответственность за законность, достоверность и уместность ваших Пользовательских материалов. Мы не несем ответственности за их содержание.
+Если в Сервисе есть комментарии, тексты профиля, посты или иной пользовательский контент, не являющийся Контентом проекта (далее — «Пользовательские материалы»), вы сохраняете ответственность за такой контент.
 
-## Правила контента
+Публикуя Пользовательские материалы, вы предоставляете нам неисключительную, всемирную, безвозмездную лицензию на их размещение, отображение, воспроизведение и распространение через Сервис в соответствии с настройками аккаунта и настоящими Условиями.
 
-Весь Игровой контент и Пользовательские материалы должны:
-- Быть точными и не вводить в заблуждение;
-- Не нарушать права третьих лиц на интеллектуальную собственность;
-- Не содержать незаконный, оскорбительный, клеветнический или непристойный материал;
-- Не содержать вирусы и вредоносный код;
-- Соответствовать всем применимым законам.
+## 9. Запрещённое поведение
 
-Мы вправе удалять или отказывать в публикации любого контента, нарушающего данные требования.
+Запрещается использовать Сервис для того, чтобы:
+- нарушать закон или нормативные требования;
+- нарушать права на интеллектуальную собственность, приватность или иные права;
+- загружать вредоносный код;
+- мешать работе Сервиса;
+- осуществлять скрейпинг или автоматизированный доступ способом, вредящим Сервису или обходящим ограничения;
+- выдавать себя за другое лицо или вводить в заблуждение относительно связи с кем-либо;
+- распространять спам, мошеннический, оскорбительный, незаконный или вводящий в заблуждение контент;
+- пытаться получить несанкционированный доступ к аккаунтам, серверам или системам.
 
-## Мониторинг, обеспечение соблюдения и прекращение доступа
+Мы можем расследовать такие нарушения и принимать меры.
 
-Мы вправе:
-- Удалять или отказывать в публикации Пользовательских материалов;
-- Принимать меры в отношении нарушений, включая нарушение прав, угрозу безопасности и создание ответственности;
-- Передавать информацию правоохранительным органам;
-- В любой момент приостановить или прекратить ваш доступ к Сервису.
+## 10. Использование API
 
-Вы отказываетесь от любых претензий к нам в связи с такими действиями.
+При использовании api.modifold.com вы обязаны соблюдать настоящие Условия, [Политику конфиденциальности](/legal/privacy), [Правила контента](/legal/rules) и применимое законодательство.
 
-## Нарушение авторских прав
+Мы можем вводить лимиты API, требования к аутентификации и иные ограничения для обеспечения надёжности и безопасности.
 
-Если вы считаете, что какой-либо контент нарушает ваши авторские права — обращайтесь на [support@modifold.com](mailto:support@modifold.com) для получения инструкций по подаче уведомления. Мы вправе прекращать аккаунты повторных нарушителей.
+Мы можем приостановить или отозвать доступ к API, если использование создаёт риск, злоупотребления или операционные проблемы.
 
-## Ограничение ответственности
+## 11. Интеллектуальная собственность Сервиса
 
-Сервис и вся информация предоставляются «как есть», без каких-либо гарантий. Мы не гарантируем точность, полноту, безопасность, бесперебойную работу Сервиса или отсутствие вирусов в загружаемых файлах.
+За исключением пользовательского контента, Сервис (включая программное обеспечение, дизайн, бренд, тексты и иные материалы платформы) принадлежит Modifold или его лицензиарам и защищён применимым законодательством об интеллектуальной собственности.
 
-Мы не несём ответственности за любые прямые, косвенные, случайные, специальные, штрафные или последующие убытки, возникшие в связи с использованием (или невозможностью использования) Сервиса.
+Настоящие Условия не передают вам право собственности на Сервис или наши товарные знаки.
 
-Максимальный размер нашей ответственности ограничен суммой, которую вы уплатили нам (если уплачивали) за последние три месяца.
+## 12. Модерация, применение правил и удаление
 
-## Возмещение убытков
+Мы можем проверять, модерировать, ограничивать, удалять или отклонять контент и аккаунты, если разумно считаем это необходимым для:
+- соблюдения настоящих Условий и наших правил;
+- защиты пользователей или Сервиса;
+- соблюдения закона или юридических требований;
+- расследования злоупотреблений, мошенничества или инцидентов безопасности.
 
-Вы обязуетесь защищать, возмещать и ограждать нас от любых претензий, убытков, расходов (включая судебные издержки), возникающих в связи с нарушением вами настоящих Условий или использованием Сервиса.
+Мы не обязаны публиковать или хранить какой-либо контент на Сервисе.
 
-## Применимое право и юрисдикция
+## 13. Жалобы на нарушение прав
 
-Настоящие Условия регулируются законодательством штата Делавэр, США. Любые споры подлежат рассмотрению исключительно в судах штата Делавэр (или федеральных судах США на территории Делавэра). Мы вправе также предъявлять иски в вашей стране проживания.
+Если вы считаете, что контент на Modifold нарушает ваши авторские или иные права, напишите на [support@modifold.com](mailto:support@modifold.com) и предоставьте достаточно информации для проверки.
 
-## Арбитраж
+Мы можем удалить или ограничить доступ к контенту на время проверки и принимать меры в отношении повторных нарушителей.
 
-По нашему усмотрению споры могут передаваться на обязательный арбитраж в соответствии с Правилами Американской арбитражной ассоциации.
+## 14. Ссылки и сторонние сервисы
 
-## Срок исковой давности
+Сервис может содержать ссылки на сторонние сайты и сервисы. Мы их не контролируем и не несем ответственности за их содержимое, политики или доступность.
 
-Любой иск должен быть подан в течение 1 года с момента возникновения основания для иска, иначе он считается погашенным.
+Использование сторонних сервисов осуществляется вами на свой риск и по их правилам.
 
-## Полное соглашение
+## 15. Отказ от гарантий
 
-Настоящие Условия использования и [Политика конфиденциальности](/legal/privacy) составляют полное соглашение между вами и нами относительно использования Сервиса.
+Сервис предоставляется по принципу **«как есть»** и **«как доступно»** в максимальной степени, допустимой законом.
 
-## Ваши обращения
+Мы не гарантируем бесперебойную, безопасную и безошибочную работу Сервиса, отсутствие вредоносных компонентов, а также точность или надёжность пользовательского контента.
 
-По любым вопросам, предложениям и жалобам — пишите на [support@modifold.com](mailto:support@modifold.com).
+## 16. Ограничение ответственности
+
+В максимальной степени, допустимой законом, Modifold, его операторы, аффилированные лица и поставщики услуг не несут ответственности за косвенные, случайные, специальные, последующие, штрафные убытки, а также за упущенную выгоду, потерю данных, деловой репутации или перерывы в деятельности, связанные с Сервисом.
+
+В максимальной степени, допустимой законом, совокупная ответственность по требованиям, связанным с Сервисом, не превышает большей из сумм:
+- суммы, уплаченной вами нам (если таковая была) за **3 месяца** до события, вызвавшего требование; или
+- **50 долларов США**.
+
+В некоторых юрисдикциях часть ограничений может не применяться.
+
+## 17. Возмещение убытков
+
+В пределах, допустимых законом, вы обязуетесь возмещать и защищать Modifold и его операторов от претензий, обязательств, убытков и расходов (включая разумные юридические расходы), возникающих из-за:
+- неправомерного использования Сервиса;
+- вашего контента;
+- нарушения настоящих Условий;
+- нарушения закона или прав третьих лиц.
+
+## 18. Прекращение доступа
+
+Вы можете прекратить использование Сервиса в любое время.
+
+Мы можем приостановить или прекратить ваш доступ (полностью или частично), если разумно считаем, что:
+- вы нарушили настоящие Условия;
+- использование создаёт юридический, технический или операционный риск;
+- это требуется по закону.
+
+Прекращение доступа не затрагивает положения, которые по своей природе должны продолжать действовать (например, лицензии для работы Сервиса, отказ от гарантий, ограничение ответственности и положения о спорах).
+
+## 19. Применимое право и споры
+
+Настоящие Условия регулируются законодательством **штата Делавэр, США**, без учёта коллизионных норм, если иное не требуется императивным правом вашей юрисдикции.
+
+Вы соглашаетесь, что споры могут рассматриваться судами в штате Делавэр, США, с учётом применимого законодательства. Мы также вправе обращаться за обеспечительными мерами в любой компетентный суд при необходимости.
+
+## 20. Прочие положения
+
+### 20.1 Полное соглашение
+
+Настоящие Условия и наша [Политика конфиденциальности](/legal/privacy) составляют полное соглашение между вами и Modifold относительно Сервиса.
+
+### 20.2 Делимость положений
+
+Если какое-либо положение окажется неисполнимым, остальные положения сохраняют силу.
+
+### 20.3 Отказ от прав
+
+Неприменение какого-либо положения не означает отказ от права применить его позже.
+
+### 20.4 Передача прав и обязанностей
+
+Вы не можете передавать свои права и обязанности по этим Условиям без нашего согласия. Мы можем передать их в рамках реорганизации, передачи или продажи Сервиса.
+
+## 21. Контакты
+
+По вопросам поддержки и правовым вопросам: [support@modifold.com](mailto:support@modifold.com)
 `;
 
 export default function TermsOfUse() {

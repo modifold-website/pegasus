@@ -192,21 +192,21 @@ export default function VersionEditModal({ isOpen, onRequestClose, editLoading, 
                         ) : isMetadataStep ? (
                             <>
                                 <p className="blog-settings__field-title">{t("versions.fields.versionNumber")}</p>
-                                <div className="field field--default blog-settings__input">
+                                <div className="field field--default">
                                     <label className="field__wrapper">
                                         <input type="text" name="version_number" value={editFormData.version_number} onChange={handleEditInputChange} className="text-input" required disabled={editLoading} />
                                     </label>
                                 </div>
 
                                 <p className="blog-settings__field-title">{t("versions.fields.changelog")}</p>
-                                <div className="field field--default textarea blog-settings__input">
+                                <div className="field field--default textarea">
                                     <label className="field__wrapper">
                                         <textarea name="changelog" value={editFormData.changelog} onChange={handleEditInputChange} className="autosize textarea__input" style={{ height: "200px" }} disabled={editLoading} />
                                     </label>
                                 </div>
 
                                 <p className="blog-settings__field-title">{t("versions.fields.releaseChannel")}</p>
-                                <div className="field field--default blog-settings__input" ref={editReleaseChannelRef}>
+                                <div className="field field--default" ref={editReleaseChannelRef}>
                                     <label className="field__wrapper" onClick={!editLoading ? toggleEditReleaseChannelPopover : undefined}>
                                         <div className="field__wrapper-body">
                                             <div className="select">
@@ -245,7 +245,7 @@ export default function VersionEditModal({ isOpen, onRequestClose, editLoading, 
                         ) : (
                             <>
                                 <p className="blog-settings__field-title">{t("versions.fields.gameVersions")}</p>
-                                <div className="field field--default blog-settings__input" ref={editGameVersionsRef}>
+                                <div className="field field--default" ref={editGameVersionsRef}>
                                     <label className="field__wrapper" onClick={!editLoading ? toggleEditGameVersionsPopover : undefined}>
                                         <div className="field__wrapper-body">
                                             <div className="select">
@@ -268,7 +268,7 @@ export default function VersionEditModal({ isOpen, onRequestClose, editLoading, 
                                 </div>
 
                                 <p className="blog-settings__field-title">{t("versions.fields.loaders")}</p>
-                                <div className="field field--default blog-settings__input" ref={editLoadersRef}>
+                                <div className="field field--default" ref={editLoadersRef}>
                                     <label className="field__wrapper" onClick={!editLoading ? toggleEditLoadersPopover : undefined}>
                                         <div className="field__wrapper-body">
                                             <div className="select">

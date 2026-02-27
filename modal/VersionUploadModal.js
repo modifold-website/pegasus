@@ -94,13 +94,13 @@ export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoadi
                                     </div>
                                 </div>
 
-                                <div className="version-upload-actions">
-                                    {uploadFile && (
+                                {uploadFile && (
+                                    <div className="version-upload-actions">
                                         <button type="button" className="button button--size-m button--type-primary" onClick={goToUploadMetadataStepBack} disabled={uploadLoading}>
                                             {t("versions.modal.actions.continue")}
                                         </button>
-                                    )}
-                                </div>
+                                    </div>
+                                )}
                             </>
                         ) : isMetadataStep ? (
                             <>

@@ -621,6 +621,23 @@
             "actions": {
                 "add": "Añadir imagen"
             },
+            "modal": {
+                "steps": {
+                    "files": "Archivos",
+                    "metadata": "Metadatos"
+                },
+                "dropzone": {
+                    "uploadTitle": "Subir imagen",
+                    "uploadHint": "Arrastra y suelta una imagen o haz clic para buscar",
+                    "replaceTitle": "Reemplazar imagen (opcional)",
+                    "replaceHint": "Arrastra una imagen nueva o haz clic para buscar"
+                },
+                "actions": {
+                    "continue": "Continuar",
+                    "back": "Atrás",
+                    "uploading": "Subiendo..."
+                }
+            },
             "states": {
                 "enabled": "Activado",
                 "disabled": "Desactivado"

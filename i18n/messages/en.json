@@ -621,6 +621,23 @@
             "actions": {
                 "add": "Add Image"
             },
+            "modal": {
+                "steps": {
+                    "files": "Files",
+                    "metadata": "Metadata"
+                },
+                "dropzone": {
+                    "uploadTitle": "Upload image",
+                    "uploadHint": "Drag and drop an image or click to browse",
+                    "replaceTitle": "Replace image (optional)",
+                    "replaceHint": "Drag and drop a new image or click to browse"
+                },
+                "actions": {
+                    "continue": "Continue",
+                    "back": "Back",
+                    "uploading": "Uploading..."
+                }
+            },
             "states": {
                 "enabled": "Enabled",
                 "disabled": "Disabled"

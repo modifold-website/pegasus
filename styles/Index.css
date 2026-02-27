@@ -2620,6 +2620,12 @@ input[type="file"]::-webkit-file-upload-button:hover {
     background: rgb(48, 125, 240);
     transition: width .2s ease;
 }
+.version-upload-progress__bar.is-two-steps {
+    width: 50%;
+}
+.version-upload-progress__bar.is-two-steps.is-final {
+    width: 100%;
+}
 .version-upload-progress__bar.is-metadata {
     width: 66.6667%;
 }

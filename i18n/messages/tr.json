@@ -621,6 +621,23 @@
             "actions": {
                 "add": "Görsel ekle"
             },
+            "modal": {
+                "steps": {
+                    "files": "Dosyalar",
+                    "metadata": "Meta veriler"
+                },
+                "dropzone": {
+                    "uploadTitle": "Görsel yükle",
+                    "uploadHint": "Bir görseli sürükleyip bırakın veya seçmek için tıklayın",
+                    "replaceTitle": "Görseli değiştir (isteğe bağlı)",
+                    "replaceHint": "Yeni bir görseli sürükleyip bırakın veya seçmek için tıklayın"
+                },
+                "actions": {
+                    "continue": "Devam",
+                    "back": "Geri",
+                    "uploading": "Yükleniyor..."
+                }
+            },
             "states": {
                 "enabled": "Açık",
                 "disabled": "Kapalı"

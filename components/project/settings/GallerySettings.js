@@ -1,13 +1,17 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
-import Modal from "react-modal";
 import ProjectSettingsSidebar from "@/components/ui/ProjectSettingsSidebar";
+import GalleryUploadModal from "@/modal/GalleryUploadModal";
+import GalleryEditModal from "@/modal/GalleryEditModal";
 
-Modal.setAppElement("body");
+const GALLERY_STEPS = {
+    FILES: "files",
+    METADATA: "metadata",
+};
 
 export default function GallerySettings({ project, authToken }) {
     const t = useTranslations("SettingsProjectPage");
@@ -16,11 +20,12 @@ export default function GallerySettings({ project, authToken }) {
     const images = Array.isArray(project?.gallery) ? project.gallery : [];
     const [galleryImages, setGalleryImages] = useState(images);
 
-    const uploadPickerRef = useRef(null);
     const [uploadModalOpen, setUploadModalOpen] = useState(false);
     const [uploadLoading, setUploadLoading] = useState(false);
+    const [uploadStep, setUploadStep] = useState(GALLERY_STEPS.FILES);
     const [uploadFile, setUploadFile] = useState(null);
-    const [uploadPreviewUrl, setUploadPreviewUrl] = useState("");
+    const [isUploadDragActive, setIsUploadDragActive] = useState(false);
+    const uploadFileRef = useRef(null);
 
     const [uploadFormData, setUploadFormData] = useState({
         title: "",
@@ -32,6 +37,11 @@ export default function GallerySettings({ project, authToken }) {
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [editLoading, setEditLoading] = useState(false);
+    const [editStep, setEditStep] = useState(GALLERY_STEPS.FILES);
+    const [editSelectedFile, setEditSelectedFile] = useState(null);
+    const [isEditDragActive, setIsEditDragActive] = useState(false);
+    const editFileRef = useRef(null);
+
     const [editFormData, setEditFormData] = useState({
         title: "",
         description: "",
@@ -42,14 +52,6 @@ export default function GallerySettings({ project, authToken }) {
     useEffect(() => {
         setGalleryImages(Array.isArray(project?.gallery) ? project.gallery : []);
     }, [project?.gallery]);
-
-    useEffect(() => {
-        return () => {
-            if(uploadPreviewUrl) {
-                URL.revokeObjectURL(uploadPreviewUrl);
-            }
-        };
-    }, [uploadPreviewUrl]);
 
     const refreshGallery = async () => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}`, {
@@ -67,10 +69,34 @@ export default function GallerySettings({ project, authToken }) {
         setGalleryImages(Array.isArray(nextProject?.gallery) ? nextProject.gallery : []);
     };
 
+    const formatFileSize = (size) => {
+        if(!Number.isFinite(size) || size <= 0) {
+            return "0 B";
+        }
+
+        const units = ["B", "KB", "MB", "GB"];
+        const unitIndex = Math.min(Math.floor(Math.log(size) / Math.log(1024)), units.length - 1);
+        const value = size / (1024 ** unitIndex);
+        return `${value.toFixed(unitIndex === 0 ? 0 : 1)} ${units[unitIndex]}`;
+    };
+
+    const openUploadModal = () => {
+        setUploadModalOpen(true);
+    };
+
+    const handleUploadBarKeyDown = (event) => {
+        if(event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openUploadModal();
+        }
+    };
+
     const resetUploadModal = () => {
         setUploadModalOpen(false);
         setUploadLoading(false);
+        setUploadStep(GALLERY_STEPS.FILES);
         setUploadFile(null);
+        setIsUploadDragActive(false);
         setUploadFormData({
             title: "",
             description: "",
@@ -78,14 +104,18 @@ export default function GallerySettings({ project, authToken }) {
             featured: false,
         });
 
-        if(uploadPreviewUrl) {
-            URL.revokeObjectURL(uploadPreviewUrl);
-            setUploadPreviewUrl("");
+        if(uploadFileRef.current) {
+            uploadFileRef.current.value = "";
+        }
+    };
+
+    const openUploadFilePicker = () => {
+        if(uploadLoading || !uploadFileRef.current) {
+            return;
         }
 
-        if(uploadPickerRef.current) {
-            uploadPickerRef.current.value = "";
-        }
+        uploadFileRef.current.value = "";
+        uploadFileRef.current.click();
     };
 
     const handleUploadFileSelected = (file) => {
@@ -93,26 +123,77 @@ export default function GallerySettings({ project, authToken }) {
             return;
         }
 
-        if(uploadPreviewUrl) {
-            URL.revokeObjectURL(uploadPreviewUrl);
-        }
-
         setUploadFile(file);
-        setUploadPreviewUrl(URL.createObjectURL(file));
-        setUploadModalOpen(true);
+        setUploadStep(GALLERY_STEPS.METADATA);
     };
 
-    const openUploadPicker = () => {
-        uploadPickerRef.current?.click();
-    };
-
-    const handleUploadPickerChange = (e) => {
-        const file = e.target.files?.[0];
+    const handleUploadFileChange = (event) => {
+        const file = event.target.files?.[0] || null;
         handleUploadFileSelected(file);
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleUploadDragOver = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setIsUploadDragActive(true);
+    };
+
+    const handleUploadDragLeave = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if(event.currentTarget.contains(event.relatedTarget)) {
+            return;
+        }
+
+        setIsUploadDragActive(false);
+    };
+
+    const handleUploadDrop = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setIsUploadDragActive(false);
+
+        const file = event.dataTransfer?.files?.[0] || null;
+        if(!file) {
+            return;
+        }
+
+        handleUploadFileSelected(file);
+
+        if(uploadFileRef.current) {
+            const dt = new DataTransfer();
+            dt.items.add(file);
+            uploadFileRef.current.files = dt.files;
+        }
+    };
+
+    const handleUploadInputChange = (event) => {
+        const { name, value } = event.target;
+        setUploadFormData((prev) => ({ ...prev, [name]: name === "ordering" ? value : value }));
+    };
+
+    const toggleUploadFeatured = () => {
+        setUploadFormData((prev) => ({ ...prev, featured: !prev.featured }));
+    };
+
+    const goToUploadFilesStep = () => {
+        if(uploadLoading) {
+            return;
+        }
+
+        setUploadStep(GALLERY_STEPS.FILES);
+    };
+
+    const goToUploadMetadataStep = () => {
+        if(uploadLoading || !uploadFile) {
+            return;
+        }
+
+        setUploadStep(GALLERY_STEPS.METADATA);
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         if(!uploadFile) {
             return;
         }
@@ -153,8 +234,11 @@ export default function GallerySettings({ project, authToken }) {
             title: image?.title || "",
             description: image?.description || "",
             ordering: image?.ordering ?? 0,
-            featured: false,
+            featured: Boolean(Number(image?.featured)),
         });
+        setEditSelectedFile(null);
+        setIsEditDragActive(false);
+        setEditStep(GALLERY_STEPS.FILES);
         setEditModalOpen(true);
     };
 
@@ -162,10 +246,99 @@ export default function GallerySettings({ project, authToken }) {
         setEditModalOpen(false);
         setSelectedImage(null);
         setEditLoading(false);
+        setEditStep(GALLERY_STEPS.FILES);
+        setEditSelectedFile(null);
+        setIsEditDragActive(false);
+        if(editFileRef.current) {
+            editFileRef.current.value = "";
+        }
     };
 
-    const handleUpdate = async (e) => {
-        e.preventDefault();
+    const openEditFilePicker = () => {
+        if(editLoading || !editFileRef.current) {
+            return;
+        }
+
+        editFileRef.current.value = "";
+        editFileRef.current.click();
+    };
+
+    const handleEditFileSelected = (file) => {
+        if(!file) {
+            return;
+        }
+
+        setEditSelectedFile(file);
+        setEditStep(GALLERY_STEPS.METADATA);
+    };
+
+    const handleEditFileChange = (event) => {
+        const file = event.target.files?.[0] || null;
+        handleEditFileSelected(file);
+    };
+
+    const handleEditDragOver = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setIsEditDragActive(true);
+    };
+
+    const handleEditDragLeave = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if(event.currentTarget.contains(event.relatedTarget)) {
+            return;
+        }
+
+        setIsEditDragActive(false);
+    };
+
+    const handleEditDrop = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setIsEditDragActive(false);
+
+        const file = event.dataTransfer?.files?.[0] || null;
+        if(!file) {
+            return;
+        }
+
+        handleEditFileSelected(file);
+
+        if(editFileRef.current) {
+            const dt = new DataTransfer();
+            dt.items.add(file);
+            editFileRef.current.files = dt.files;
+        }
+    };
+
+    const handleEditInputChange = (event) => {
+        const { name, value } = event.target;
+        setEditFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const toggleEditFeatured = () => {
+        setEditFormData((prev) => ({ ...prev, featured: !prev.featured }));
+    };
+
+    const goToEditFilesStep = () => {
+        if(editLoading) {
+            return;
+        }
+
+        setEditStep(GALLERY_STEPS.FILES);
+    };
+
+    const goToEditMetadataStep = () => {
+        if(editLoading) {
+            return;
+        }
+
+        setEditStep(GALLERY_STEPS.METADATA);
+    };
+
+    const handleUpdate = async (event) => {
+        event.preventDefault();
         if(!selectedImage) {
             return;
         }
@@ -177,6 +350,10 @@ export default function GallerySettings({ project, authToken }) {
         formDataToSend.append("description", editFormData.description);
         formDataToSend.append("ordering", editFormData.ordering);
         formDataToSend.append("featured", editFormData.featured);
+
+        if(editSelectedFile) {
+            formDataToSend.append("image", editSelectedFile);
+        }
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/gallery/${selectedImage.id}`, {
@@ -288,9 +465,7 @@ export default function GallerySettings({ project, authToken }) {
 
                 <div style={{ width: "100%" }}>
                     <div className="content content--padding" style={{ marginBottom: "12px" }}>
-                        <input ref={uploadPickerRef} type="file" accept="image/*" style={{ display: "none" }} onChange={handleUploadPickerChange} />
-                        
-                        <div className="gallery-upload-bar" role="button" tabIndex={0} onClick={openUploadPicker} onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && openUploadPicker()}>
+                        <div className="gallery-upload-bar" role="button" tabIndex={0} onClick={openUploadModal} onKeyDown={handleUploadBarKeyDown}>
                             <button type="button" className="button button--size-m button--type-primary button--with-icon" style={{ "--icon-size": "17px" }}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload-icon lucide-upload"><path d="M12 3v12"/><path d="m17 8-5-5-5 5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
 
@@ -318,7 +493,7 @@ export default function GallerySettings({ project, authToken }) {
 
                                         <div className="gallery-settings-card__actions">
                                             <button type="button" className="button button--size-m button--type-minimal" onClick={() => openEditModal(image)}>{tProject("gallery.editImage")}</button>
-                                            
+
                                             <button type="button" className="button button--size-m button--type-minimal" onClick={() => handleDeleteById(image.id)}>{tProject("delete")}</button>
                                         </div>
                                     </div>
@@ -327,122 +502,59 @@ export default function GallerySettings({ project, authToken }) {
                         </div>
                     )}
                 </div>
-
-                <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
             </div>
 
-            <Modal isOpen={uploadModalOpen} onRequestClose={resetUploadModal} className="modal active" overlayClassName="modal-overlay">
-                <div className="modal-window">
-                    <div className="modal-window__header">
-                        <span>{t("gallerySettings.title")}</span>
-                        
-                        <button className="icon-button modal-window__close" type="button" onClick={resetUploadModal} disabled={uploadLoading}>
-                            <svg className="icon icon--cross" height="24" width="24">
-                                <path fillRule="evenodd" clipRule="evenodd" d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 0 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path>
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div className="modal-window__content">
-                        <form onSubmit={handleSubmit} className="gallery-modal-form">
-                            <div className="gallery-modal-preview">
-                                {uploadPreviewUrl && <img src={uploadPreviewUrl} alt={uploadFormData.title || tProject("gallery.image")} />}
-                            </div>
-
-                            <p className="blog-settings__field-title">{t("gallerySettings.fields.title")}</p>
-                            <div className="field field--default blog-settings__input">
-                                <label className="field__wrapper">
-                                    <input type="text" value={uploadFormData.title} onChange={(e) => setUploadFormData((prev) => ({ ...prev, title: e.target.value }))} placeholder={t("gallerySettings.placeholders.title")} className="text-input" disabled={uploadLoading} />
-                                </label>
-                            </div>
-
-                            <p className="blog-settings__field-title">{t("gallerySettings.fields.description")}</p>
-                            <div className="field field--default textarea blog-settings__input">
-                                <label className="field__wrapper">
-                                    <textarea value={uploadFormData.description} onChange={(e) => setUploadFormData((prev) => ({ ...prev, description: e.target.value }))} placeholder={t("gallerySettings.placeholders.description")} className="autosize textarea__input" style={{ height: "160px" }} disabled={uploadLoading} />
-                                </label>
-                            </div>
-
-                            <p className="blog-settings__field-title">{t("gallerySettings.fields.order")}</p>
-                            <div className="field field--default blog-settings__input">
-                                <label className="field__wrapper">
-                                    <input type="number" value={uploadFormData.ordering} onChange={(e) => setUploadFormData((prev) => ({ ...prev, ordering: e.target.value }))} placeholder={t("gallerySettings.placeholders.order")} className="text-input" disabled={uploadLoading} />
-                                </label>
-                            </div>
-
-                            <p className="blog-settings__field-title">{t("gallerySettings.fields.featured")}</p>
-
-                            <button type="button" className="button button--size-m button--type-minimal" aria-pressed={uploadFormData.featured} onClick={() => setUploadFormData((prev) => ({ ...prev, featured: !prev.featured }))} disabled={uploadLoading}>
-                                {uploadFormData.featured ? t("gallerySettings.states.enabled") : t("gallerySettings.states.disabled")}
-                            </button>
-
-                            <p className="gallery-modal-help">{t("gallerySettings.featuredHint")}</p>
-
-                            <div className="gallery-modal-actions">
-                                <button type="button" className="button button--size-m button--type-minimal" onClick={resetUploadModal} disabled={uploadLoading}>{tProject("cancel")}</button>
-                                <button type="submit" className="button button--size-m button--type-primary" disabled={uploadLoading || !uploadFile}>{t("gallerySettings.actions.add")}</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </Modal>
+            <GalleryUploadModal
+                isOpen={uploadModalOpen}
+                onRequestClose={resetUploadModal}
+                uploadLoading={uploadLoading}
+                uploadStep={uploadStep}
+                uploadSteps={GALLERY_STEPS}
+                uploadFile={uploadFile}
+                isUploadDragActive={isUploadDragActive}
+                uploadFileRef={uploadFileRef}
+                openUploadFilePicker={openUploadFilePicker}
+                handleUploadDragOver={handleUploadDragOver}
+                handleUploadDragLeave={handleUploadDragLeave}
+                handleUploadDrop={handleUploadDrop}
+                handleUploadFileChange={handleUploadFileChange}
+                formatFileSize={formatFileSize}
+                goToUploadFilesStep={goToUploadFilesStep}
+                goToUploadMetadataStep={goToUploadMetadataStep}
+                handleSubmit={handleSubmit}
+                uploadFormData={uploadFormData}
+                handleUploadInputChange={handleUploadInputChange}
+                toggleUploadFeatured={toggleUploadFeatured}
+                t={t}
+                tProject={tProject}
+            />
 
             {editModalOpen && selectedImage && (
-                <Modal isOpen={editModalOpen} onRequestClose={closeEditModal} className="modal active" overlayClassName="modal-overlay">
-                    <div className="modal-window">
-                        <div className="modal-window__header">
-                            <span>{tProject("gallery.editImage")}</span>
-                            
-                            <button className="icon-button modal-window__close" type="button" onClick={closeEditModal} disabled={editLoading}>
-                                <svg className="icon icon--cross" height="24" width="24">
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 0 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path>
-                                </svg>
-                            </button>
-                        </div>
-
-                        <div className="modal-window__content">
-                            <form onSubmit={handleUpdate} className="gallery-modal-form">
-                                <div className="gallery-modal-preview">
-                                    <img src={selectedImage.url} alt={editFormData.title || tProject("gallery.image")} />
-                                </div>
-
-                                <p className="blog-settings__field-title">{tProject("gallery.title")}</p>
-                                <div className="field field--default blog-settings__input">
-                                    <label className="field__wrapper">
-                                        <input type="text" name="title" value={editFormData.title} className="text-input" disabled={editLoading} onChange={(e) => setEditFormData((prev) => ({ ...prev, title: e.target.value }))} />
-                                    </label>
-                                </div>
-
-                                <p className="blog-settings__field-title">{tProject("gallery.description")}</p>
-                                <div className="field field--default textarea blog-settings__input">
-                                    <label className="field__wrapper">
-                                        <textarea name="description" value={editFormData.description} className="autosize textarea__input" style={{ height: "100px" }} disabled={editLoading} onChange={(e) => setEditFormData((prev) => ({ ...prev, description: e.target.value }))} />
-                                    </label>
-                                </div>
-
-                                <p className="blog-settings__field-title">{tProject("gallery.orderIndex")}</p>
-                                <div className="field field--default blog-settings__input">
-                                    <label className="field__wrapper">
-                                        <input type="number" name="ordering" value={editFormData.ordering} className="text-input" disabled={editLoading} onChange={(e) => setEditFormData((prev) => ({ ...prev, ordering: e.target.value }))} />
-                                    </label>
-                                </div>
-
-                                <p className="blog-settings__field-title">{tProject("gallery.featured")}</p>
-
-                                <button type="button" className="button button--size-m button--type-minimal" aria-pressed={editFormData.featured} onClick={() => setEditFormData((prev) => ({ ...prev, featured: !prev.featured }))} disabled={editLoading}>
-                                    {editFormData.featured ? t("gallerySettings.states.enabled") : t("gallerySettings.states.disabled")}
-                                </button>
-
-                                <p className="gallery-modal-help">{t("gallerySettings.featuredHint")}</p>
-
-                                <div className="gallery-modal-actions">
-                                    <button type="button" className="button button--size-m button--type-minimal" onClick={handleDelete} disabled={editLoading}>{tProject("delete")}</button>
-                                    <button type="submit" className="button button--size-m button--type-primary" disabled={editLoading}>{tProject("update")}</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </Modal>
+                <GalleryEditModal
+                    isOpen={editModalOpen}
+                    onRequestClose={closeEditModal}
+                    editLoading={editLoading}
+                    editStep={editStep}
+                    editSteps={GALLERY_STEPS}
+                    editSelectedFile={editSelectedFile}
+                    isEditDragActive={isEditDragActive}
+                    editFileRef={editFileRef}
+                    openEditFilePicker={openEditFilePicker}
+                    handleEditDragOver={handleEditDragOver}
+                    handleEditDragLeave={handleEditDragLeave}
+                    handleEditDrop={handleEditDrop}
+                    handleEditFileChange={handleEditFileChange}
+                    formatFileSize={formatFileSize}
+                    goToEditFilesStep={goToEditFilesStep}
+                    goToEditMetadataStep={goToEditMetadataStep}
+                    handleUpdate={handleUpdate}
+                    handleDelete={handleDelete}
+                    editFormData={editFormData}
+                    handleEditInputChange={handleEditInputChange}
+                    toggleEditFeatured={toggleEditFeatured}
+                    t={t}
+                    tProject={tProject}
+                />
             )}
         </div>
     );

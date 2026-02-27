@@ -3617,13 +3617,12 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .sort-wrapper {
     margin-left: auto;
     position: relative;
-    z-index: 40;
 }
 .popover--sort {
     position: absolute;
     top: 100%;
     right: 0;
-    z-index: 41;
+    z-index: 3;
 }
 .dropdown__label .icon.open {
     transform: rotate(180deg);

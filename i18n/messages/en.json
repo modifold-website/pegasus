@@ -580,6 +580,24 @@
             "selectedLoaders": "{count, plural, one {# selected} other {# selected}}",
             "actions": {
                 "upload": "Upload Version"
+            },
+            "modal": {
+                "steps": {
+                    "files": "Files",
+                    "metadata": "Metadata",
+                    "compatibility": "Compatibility"
+                },
+                "dropzone": {
+                    "uploadTitle": "Upload version file",
+                    "uploadHint": "Drag and drop a file or click to browse",
+                    "replaceTitle": "Replace version file (optional)",
+                    "replaceHint": "Drag and drop a new file or click to browse"
+                },
+                "actions": {
+                    "continue": "Continue",
+                    "back": "Back",
+                    "uploading": "Uploading..."
+                }
             }
         },
         "gallerySettings": {
@@ -602,6 +620,23 @@
             "featuredHint": "A featured gallery image shows up in search and your project card. Only one gallery image can be featured.",
             "actions": {
                 "add": "Add Image"
+            },
+            "modal": {
+                "steps": {
+                    "files": "Files",
+                    "metadata": "Metadata"
+                },
+                "dropzone": {
+                    "uploadTitle": "Upload image",
+                    "uploadHint": "Drag and drop an image or click to browse",
+                    "replaceTitle": "Replace image (optional)",
+                    "replaceHint": "Drag and drop a new image or click to browse"
+                },
+                "actions": {
+                    "continue": "Continue",
+                    "back": "Back",
+                    "uploading": "Uploading..."
+                }
             },
             "states": {
                 "enabled": "Enabled",

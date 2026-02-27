@@ -29,123 +29,178 @@ const getSafeMarkdownHref = (href) => {
 const privacyPolicy = `
 # Privacy Policy
 
-**Last modified: February 22, 2026**
+**Last modified: February 26, 2026**
 
-## Introduction
+## 1. Overview
 
-Modifold ("we", "us", "our") is a platform for discovering and publishing **Hytale** content.  
-This privacy policy explains how we collect, process, and protect your data, as well as your rights regarding your personal information.
+Modifold ("Modifold", "we", "us", "our") is a platform for discovering, publishing, and managing gaming-related content.
 
-This policy applies to information we collect:
-- On our website (\`modifold.com\` and \`api.modifold.com\`) and through the Modifold platform ("Service" or "Website")
-- In email, text, and other electronic messages between you and this Website
-- When you interact with our applications or services, including any links to this policy
+This Privacy Policy explains what information we collect, how we use it, when we share it, and what rights you may have.
 
-This policy does **not** apply to:
-- Information collected offline or through any other means
-- Information collected by third-party websites or services that may link to or be accessible from our Website
+This Policy applies to:
+- modifold.com
+- api.modifold.com
+- related services, pages, and features operated by Modifold (collectively, the "Service")
 
-Please read this policy carefully. By accessing or using our Website, you agree to this privacy policy.  
-The policy may be updated from time to time (see *Changes to the Privacy Policy* section).
+It does not apply to third-party websites or services that may be linked from Modifold.
 
-## Foreword
+## 2. Compliance and Jurisdiction Context (Including Belarus)
 
-We comply with applicable data protection laws, including but not limited to:
-- The legislation of the **Republic of Belarus** (country of primary legal registration and operation)
-- The [General Data Protection Regulation (GDPR)](https://gdpr.eu) of the European Union
-- The [California Consumer Privacy Act (CCPA)](https://oag.ca.gov) as applicable to California residents
+Modifold serves users internationally. Our owner and part of our team are located in the **Republic of Belarus**, and Belarus is an important jurisdiction for our operations.
 
-Modifold acts as the **data controller** for personal data collected through our Service.
+We aim to process personal data in accordance with applicable law, which may include:
+- laws of the Republic of Belarus;
+- the EU General Data Protection Regulation (GDPR), where applicable;
+- the California Consumer Privacy Act (CCPA/CPRA), where applicable; and
+- other applicable privacy and data protection laws.
 
-## What Data Do We Collect?
+For data processed through the Service, Modifold generally acts as the **data controller** (or equivalent concept under applicable law).
 
-### User Account Data
+## 3. Information We Collect
 
-When you create an account, we collect:
-- Email address
-- Username
-- Display name
-- Profile picture (optional)
-- Social links (YouTube, Telegram, X/Twitter, Discord, etc. — optional)
-- Profile description (optional)
+### 3.1 Account Information
 
-### View & Download Statistics
+When you create or maintain an account, we may collect:
+- email address;
+- username and display name;
+- profile image (optional);
+- profile description and social links (optional);
+- account preferences (such as language or theme settings).
 
-When you view a project page or download any file we collect:
-- IP-address
-- User ID (if logged in)
-- Project/file identifier
-- Approximate country (derived from IP)
-- Basic technical metadata (browser, HTTP headers, etc.)
+### 3.2 Project and Version Data
 
-### Analytics Data
+When you create or manage projects/versions, we may process:
+- project metadata (title, description, tags, links, categories);
+- version metadata (version number, changelog, release channel, supported game versions/loaders);
+- uploaded files and related metadata (filename, size, type, hashes where applicable);
+- moderation-related notes or status data.
 
-When you consent to analytics cookies, we collect analytics data via **Yandex.Metrika** and **Google Analytics**, including:
-- IP-address
-- Anonymized user identifier (if logged in)
-- Pages visited, time spent, clicks
-- Device/browser information
+### 3.3 Collaboration and Permissions Data
 
-### Cookies
+If you use project collaboration features, we may process:
+- project membership records;
+- roles and permission assignments;
+- invitation records (sender, recipient, status, timestamps);
+- project-management activity logs (such as version uploads/edits/deletes, member changes, and settings changes).
 
-We use necessary cookies for:
-- Authentication (\`authToken\`)
-- Saving user preferences (theme, language, etc.)
+We use this data to provide role-based collaboration, improve security, and investigate abuse or unauthorized actions.
 
-Analytics cookies (including Yandex.Metrika and Google Analytics) are placed **only after your consent** through our cookie banner.
+### 3.4 Usage, View, and Download Data
 
-## Data Retention Periods
+When you use the Service (including viewing project pages or downloading files), we may collect:
+- IP address;
+- user/account identifier (if logged in);
+- project or file identifiers;
+- approximate location data derived from IP (such as country);
+- device, browser, and request metadata (for example user agent, headers, timestamps, referrer when available).
 
-- View/download logs → anonymized after **24 months**
-- Account data → stored until you request deletion
-- Analytics data → stored as long as necessary for improvement purposes (or until you withdraw consent)
+### 3.5 Analytics Data (Consent-Based Where Required)
 
-## Third Parties & Data Sharing
+When required by law, we collect analytics data only after your consent. This may include data processed through tools such as **Google Analytics** and **Yandex Metrika**, for example:
+- pages visited and session duration;
+- interactions and click events;
+- browser/device information;
+- approximate geolocation;
+- pseudonymous identifiers.
 
-- We use **Yandex.Metrika** and **Google Analytics** for website analytics (only with your consent)
-- **We do not sell** your personal data to anyone
-- No other third-party services currently receive your personal data
+### 3.6 Cookies and Similar Technologies
 
-## Data Storage & Security
+We use cookies and similar technologies for:
+- authentication and session management;
+- storing preferences (such as language/theme);
+- security and abuse prevention;
+- analytics (where permitted and/or consented to).
 
-All personal data is stored in a secure data center within the **European Economic Area (EEA)**.  
-Data is encrypted both at rest and in transit.
+You can manage cookie preferences through browser settings and, where available, our cookie consent tools.
 
-## Your Rights
+## 4. How We Use Information
 
-Depending on applicable law (especially GDPR and Belarus legislation) you have the right to:
-- Access your personal data
-- Correct inaccurate data
-- Request deletion ("right to be forgotten")
-- Restrict processing
-- Object to processing
-- Data portability
+We use personal data to:
+- provide and operate the Service;
+- authenticate users and secure accounts;
+- host, process, and deliver user content and project files;
+- enable project collaboration features and permission-based actions;
+- provide support and respond to requests;
+- improve performance, reliability, and user experience;
+- measure usage and analytics (subject to consent where required);
+- detect, prevent, and investigate abuse, fraud, or security incidents;
+- comply with legal obligations and enforce our terms/policies.
 
-To exercise these rights please write to: **support@modifold.com**  
-We usually respond within 30 days.
+## 5. Legal Bases for Processing (Where Applicable)
 
-## Children's Privacy
+Depending on your location and applicable law, we may process personal data based on one or more of the following legal bases:
+- **Contract**: to provide the Service you request (for example account, uploads, project management);
+- **Legitimate interests**: to secure, maintain, and improve the Service, prevent abuse, and operate collaboration features;
+- **Consent**: for analytics cookies/tools or other optional processing where consent is required;
+- **Legal obligation**: to comply with applicable law, legal process, or regulatory requests.
 
-We do not knowingly collect personal data from children under the age of **13**.  
-If you believe a child under 13 has provided us with personal information, please contact us immediately.
+## 6. How We Share Information
 
-## California Privacy Rights (CCPA)
+We do **not sell** personal data.
 
-California residents have additional rights under the CCPA.  
-We do not sell personal information.  
-For more information see the official California Attorney General website: https://oag.ca.gov/privacy/ccpa
+We may share information:
+- with service providers that help us operate the Service (for example infrastructure, analytics providers, security tools), subject to appropriate obligations;
+- when required by law, court order, or legal process;
+- to protect the rights, safety, and security of Modifold, users, or others;
+- in connection with a merger, acquisition, financing, or asset transfer (subject to applicable confidentiality and notice obligations).
 
-## Changes to This Privacy Policy
+Where analytics providers are used, related sharing may depend on your consent where required by law.
 
-We may update this policy from time to time.  
-The new version becomes effective immediately after posting on the website.  
-We will try to notify users of **significant** changes via website announcement or email.
+## 7. Data Retention
 
-## Contact Us
+We retain information for as long as reasonably necessary for the purposes described in this Policy, including to provide the Service, comply with legal obligations, resolve disputes, and enforce our policies.
 
-Questions, requests, complaints → **support@modifold.com**
+Examples (which may change over time):
+- account data: while your account remains active, plus a reasonable period for legal/security purposes;
+- project/version metadata and files: while published or retained by the project owner, plus backup/operational retention periods;
+- logs (including security/audit logs): retained for operational, abuse-prevention, and compliance needs, then deleted or anonymized where appropriate;
+- analytics data: retained according to provider settings and your consent choices where applicable.
 
-If you believe we process your data unlawfully, you may also contact the supervisory authority of the **Republic of Belarus** — the **National Data Protection Authority** (Оперативно-аналитический центр при Президенте Республики Беларусь) or any other relevant EU supervisory authority (depending on your location).
+## 8. International Data Transfers
+
+Because Modifold serves users internationally, your information may be processed in countries other than your own.
+
+Where required by law, we take reasonable steps to implement appropriate safeguards for cross-border transfers.
+
+## 9. Security
+
+We use reasonable technical and organizational measures to protect personal data, including measures for transport security, access control, and abuse prevention.
+
+However, no method of storage or transmission is completely secure, and we cannot guarantee absolute security.
+
+## 10. Your Rights and Choices
+
+Depending on applicable law, you may have rights such as:
+- access to your personal data;
+- correction of inaccurate data;
+- deletion of personal data;
+- restriction of processing;
+- objection to certain processing;
+- data portability;
+- withdrawal of consent (for consent-based processing);
+- complaint to a supervisory authority.
+
+To exercise rights or ask privacy questions, contact us at [support@modifold.com](mailto:support@modifold.com).
+
+We may need to verify your identity before fulfilling certain requests.
+
+## 11. Children's Privacy
+
+The Service is not intended for children under **13**, and we do not knowingly collect personal data from children under 13.
+
+If you believe a child under 13 has provided personal data to us, contact us at [support@modifold.com](mailto:support@modifold.com), and we will review and take appropriate action.
+
+## 12. Changes to This Policy
+
+We may update this Privacy Policy from time to time.
+
+When we do, we will update the "Last modified" date above and may provide additional notice for material changes when practical.
+
+## 13. Contact Us
+
+For privacy requests or questions, contact: [support@modifold.com](mailto:support@modifold.com)
+
+If you believe your data is being processed unlawfully, you may also contact a competent data protection authority, including a relevant authority in the Republic of Belarus or in your jurisdiction, where applicable.
 `;
 
 export default function PrivacyPolicy() {

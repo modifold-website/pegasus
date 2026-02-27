@@ -5,10 +5,11 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
-import Modal from "react-modal";
 import axios from "axios";
 import VersionDisplay from "../../VersionDisplay";
 import ProjectSettingsSidebar from "@/components/ui/ProjectSettingsSidebar";
+import VersionUploadModal from "../../../modal/VersionUploadModal";
+import VersionEditModal from "../../../modal/VersionEditModal";
 
 const gameVersions = [
     "1.0",
@@ -19,14 +20,22 @@ const loaders = [
 ];
 
 const releaseChannels = ["release", "beta", "alpha"];
-
-Modal.setAppElement("body");
+const VERSION_FILE_ACCEPT = ".jar,.zip,.rar,application/zip, application/x-rar-compressed, application/vnd.rar, application/java-archive";
+const VERSION_UPLOAD_STEPS = {
+    FILES: "files",
+    METADATA: "metadata",
+    COMPATIBILITY: "compatibility",
+};
 
 export default function VersionsSettings({ project, authToken }) {
     const t = useTranslations("SettingsProjectPage");
     const tProject = useTranslations("ProjectPage");
 
     const [showUpload, setShowUpload] = useState(false);
+    const [uploadLoading, setUploadLoading] = useState(false);
+    const [uploadFile, setUploadFile] = useState(null);
+    const [isUploadDragActive, setIsUploadDragActive] = useState(false);
+    const [uploadStep, setUploadStep] = useState(VERSION_UPLOAD_STEPS.FILES);
 
     const [formData, setFormData] = useState({
         version_number: "",
@@ -191,36 +200,48 @@ export default function VersionsSettings({ project, authToken }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if(!uploadFile) {
+            toast.error(t("versions.errors.upload"));
+            return;
+        }
+
         if(formData.game_versions.length === 0 || formData.loaders.length === 0) {
             toast.error(t("versions.errors.selectVersionsAndLoaders"));
             return;
         }
 
+        setUploadLoading(true);
+
         const formDataToSend = new FormData();
-        formDataToSend.append("file", e.target.file.files[0]);
+        formDataToSend.append("file", uploadFile);
         formDataToSend.append("version_number", formData.version_number);
         formDataToSend.append("changelog", formData.changelog);
         formDataToSend.append("release_channel", formData.release_channel);
         formDataToSend.append("game_versions", JSON.stringify(formData.game_versions));
         formDataToSend.append("loaders", JSON.stringify(formData.loaders));
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions`, {
-            method: "POST",
-            headers: { Authorization: `Bearer ${authToken}` },
-            body: formDataToSend,
-        });
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions`, {
+                method: "POST",
+                headers: { Authorization: `Bearer ${authToken}` },
+                body: formDataToSend,
+            });
 
-        if(response.ok) {
-            toast.success(t("versions.success"));
-            setShowUpload(false);
-            resetUploadForm();
-            try {
-                await refreshVersions();
-            } catch (err) {
-                toast.error(tProject("errorOccurred"));
+            if(response.ok) {
+                toast.success(t("versions.success"));
+                setShowUpload(false);
+                resetUploadForm();
+
+                try {
+                    await refreshVersions();
+                } catch (err) {
+                    toast.error(tProject("errorOccurred"));
+                }
+            } else {
+                toast.error(t("versions.errors.upload"));
             }
-        } else {
-            toast.error(t("versions.errors.upload"));
+        } finally {
+            setUploadLoading(false);
         }
     };
 
@@ -268,8 +289,91 @@ export default function VersionsSettings({ project, authToken }) {
     };
 
     const cancelUpload = () => {
+        if(uploadLoading) {
+            return;
+        }
+
         setShowUpload(false);
         resetUploadForm();
+    };
+
+    const goToUploadCompatibilityStep = () => {
+        if(uploadLoading) {
+            return;
+        }
+
+        setUploadStep(VERSION_UPLOAD_STEPS.COMPATIBILITY);
+    };
+
+    const goToUploadFilesStep = () => {
+        if(uploadLoading) {
+            return;
+        }
+
+        setUploadStep(VERSION_UPLOAD_STEPS.FILES);
+    };
+
+    const goToUploadMetadataStepBack = () => {
+        if(uploadLoading) {
+            return;
+        }
+
+        setUploadStep(VERSION_UPLOAD_STEPS.METADATA);
+    };
+
+    const openUploadModal = () => {
+        resetUploadForm();
+        setShowUpload(true);
+    };
+
+    const handleUploadFileChange = (event) => {
+        const nextFile = event.target.files?.[0] || null;
+        setUploadFile(nextFile);
+
+        if(nextFile) {
+            setUploadStep(VERSION_UPLOAD_STEPS.METADATA);
+        }
+    };
+
+    const handleUploadDrop = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setIsUploadDragActive(false);
+
+        const nextFile = event.dataTransfer?.files?.[0] || null;
+        if(nextFile) {
+            setUploadFile(nextFile);
+            setUploadStep(VERSION_UPLOAD_STEPS.METADATA);
+        }
+    };
+
+    const handleUploadDragOver = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if(!isUploadDragActive) {
+            setIsUploadDragActive(true);
+        }
+    };
+
+    const handleUploadDragLeave = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if(event.currentTarget.contains(event.relatedTarget)) {
+            return;
+        }
+
+        setIsUploadDragActive(false);
+    };
+
+    const openUploadFilePicker = () => {
+        if(uploadLoading) {
+            return;
+        }
+
+        if(uploadFileRef.current) {
+            uploadFileRef.current.value = "";
+            uploadFileRef.current.click();
+        }
     };
 
     const handleEditInputChange = (e) => {
@@ -329,6 +433,7 @@ export default function VersionsSettings({ project, authToken }) {
 
             toast.success(tProject("versionUpdated"));
             closeEditModal();
+
             try {
                 await refreshVersions();
             } catch (err) {
@@ -371,6 +476,7 @@ export default function VersionsSettings({ project, authToken }) {
             setEditLoading(false);
         }
     };
+
     const gameVersionsLabel = formData.game_versions.length > 0 ? t("versions.selectedGameVersions", { count: formData.game_versions.length }) : t("versions.selectGameVersions");
     const loadersLabel = formData.loaders.length > 0 ? t("versions.selectedLoaders", { count: formData.loaders.length }) : t("versions.selectLoaders");
     const releaseChannelLabel = t(`versions.releaseChannels.${formData.release_channel}`);
@@ -411,9 +517,23 @@ export default function VersionsSettings({ project, authToken }) {
         setIsGameVersionsPopoverOpen(false);
         setIsLoadersPopoverOpen(false);
         setIsReleaseChannelPopoverOpen(false);
+        setIsUploadDragActive(false);
+        setUploadFile(null);
+        setUploadStep(VERSION_UPLOAD_STEPS.FILES);
         if(uploadFileRef.current) {
             uploadFileRef.current.value = "";
         }
+    };
+
+    const formatFileSize = (size) => {
+        if(!Number.isFinite(size) || size <= 0) {
+            return "0 B";
+        }
+
+        const units = ["B", "KB", "MB", "GB"];
+        const unitIndex = Math.min(Math.floor(Math.log(size) / Math.log(1024)), units.length - 1);
+        const value = size / (1024 ** unitIndex);
+        return `${value.toFixed(unitIndex === 0 ? 0 : 1)} ${units[unitIndex]}`;
     };
 
     const availableGameVersions = useMemo(() => {
@@ -563,123 +683,10 @@ export default function VersionsSettings({ project, authToken }) {
                             </div>
                         </div>
 
-                        <button type="button" className="button button--size-m button--type-primary" onClick={() => { if(showUpload) { cancelUpload(); } else { setShowUpload(true); } }}>
+                        <button type="button" className="button button--size-m button--type-primary" onClick={openUploadModal}>
                             {t("versions.title")}
                         </button>
                     </div>
-
-                    {showUpload && (
-                        <div className="blog-settings content" style={{ marginBottom: "12px" }}>
-                            <div className="blog-settings__body" style={{ paddingBottom: "20px" }}>
-                                <form onSubmit={handleSubmit}>
-                                    <div className="field field--default blog-settings__input">
-                                        <label style={{ marginBottom: "10px" }} className="field__wrapper">
-                                            <input ref={uploadFileRef} type="file" name="file" accept=".jar,.zip,.rar,application/zip, application/x-rar-compressed, application/vnd.rar, application/java-archive" required />
-                                        </label>
-                                    </div>
-
-                                    <p className="blog-settings__field-title">{t("versions.fields.versionNumber")}</p>
-                                    <div className="field field--default blog-settings__input">
-                                        <label style={{ marginBottom: "10px" }} className="field__wrapper">
-                                            <input type="text" name="version_number" value={formData.version_number} onChange={handleInputChange} placeholder={t("versions.placeholders.versionNumber")} className="text-input" required />
-                                        </label>
-                                    </div>
-
-                                    <p className="blog-settings__field-title">{t("versions.fields.changelog")}</p>
-                                    <div className="field field--default textarea blog-settings__input">
-                                        <label style={{ marginBottom: "10px" }} className="field__wrapper">
-                                            <textarea name="changelog" value={formData.changelog} onChange={handleInputChange} placeholder={t("versions.placeholders.changelog")} className="autosize textarea__input" style={{ height: "200px" }} />
-                                        </label>
-                                    </div>
-
-                                    <p className="blog-settings__field-title">{t("versions.fields.releaseChannel")}</p>
-                                    <div className="field field--default blog-settings__input" ref={releaseChannelRef}>
-                                        <label style={{ marginBottom: "10px" }} className="field__wrapper" onClick={toggleReleaseChannelPopover}>
-                                            <div className="field__wrapper-body">
-                                                <div className="select">
-                                                    <div className="select__selected">
-                                                        {releaseChannelLabel}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </label>
-
-                                        {isReleaseChannelPopoverOpen && (
-                                            <div className="popover">
-                                                <div className="context-list" style={{ maxHeight: "200px" }}>
-                                                    {releaseChannels.map((channel) => (
-                                                        <div key={channel} className={`context-list-option ${formData.release_channel === channel ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleSelectReleaseChannel(channel)}>
-                                                            <div className="context-list-option__label">{t(`versions.releaseChannels.${channel}`)}</div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <p className="blog-settings__field-title">{t("versions.fields.gameVersions")}</p>
-                                    <div className="field field--default blog-settings__input" ref={gameVersionsRef}>
-                                        <label className="field__wrapper" onClick={toggleGameVersionsPopover}>
-                                            <div className="field__wrapper-body">
-                                                <div className="select">
-                                                    <div className="select__selected">
-                                                        {gameVersionsLabel}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </label>
-
-                                        {isGameVersionsPopoverOpen && (
-                                            <div className="popover">
-                                                <div className="context-list" data-scrollable style={{ maxHeight: "200px", overflowY: "auto" }}>
-                                                    {gameVersions.map((version) => (
-                                                        <div key={version} className={`context-list-option ${formData.game_versions.includes(version) ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleToggleGameVersion(version)}>
-                                                            <div className="context-list-option__label">{version}</div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <p className="blog-settings__field-title">{t("versions.fields.loaders")}</p>
-                                    <div className="field field--default blog-settings__input" ref={loadersRef}>
-                                        <label className="field__wrapper" onClick={toggleLoadersPopover}>
-                                            <div className="field__wrapper-body">
-                                                <div className="select">
-                                                    <div className="select__selected">
-                                                        {loadersLabel}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </label>
-
-                                        {isLoadersPopoverOpen && (
-                                            <div className="popover">
-                                                <div className="context-list" data-scrollable style={{ maxHeight: "200px", overflowY: "auto" }}>
-                                                    {loaders.map((loader) => (
-                                                        <div key={loader} className={`context-list-option ${formData.loaders.includes(loader) ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleToggleLoader(loader)}>
-                                                            <div className="context-list-option__label">{loader}</div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <div style={{ display: "flex", gap: "8px", marginTop: "18px" }}>
-                                        <button type="submit" className="button button--size-m button--type-primary">
-                                            {t("versions.actions.upload")}
-                                        </button>
-
-                                        <button type="button" className="button button--size-m button--type-minimal" onClick={cancelUpload}>
-                                            {tProject("cancel")}
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    )}
 
                     <div className="all-versions">
                         <div className="card-header">
@@ -742,133 +749,79 @@ export default function VersionsSettings({ project, authToken }) {
                 <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
             </div>
 
-            <Modal isOpen={editModalOpen} onRequestClose={closeEditModal} className="modal active" overlayClassName="modal-overlay">
-                <div className="modal-window">
-                    <div className="modal-window__header">
-                        <span>{tProject("editVersion")}</span>
+            <VersionUploadModal
+                isOpen={showUpload}
+                onRequestClose={cancelUpload}
+                uploadLoading={uploadLoading}
+                uploadStep={uploadStep}
+                uploadSteps={VERSION_UPLOAD_STEPS}
+                uploadFile={uploadFile}
+                isUploadDragActive={isUploadDragActive}
+                uploadFileRef={uploadFileRef}
+                versionFileAccept={VERSION_FILE_ACCEPT}
+                openUploadFilePicker={openUploadFilePicker}
+                handleUploadDragOver={handleUploadDragOver}
+                handleUploadDragLeave={handleUploadDragLeave}
+                handleUploadDrop={handleUploadDrop}
+                handleUploadFileChange={handleUploadFileChange}
+                formatFileSize={formatFileSize}
+                goToUploadCompatibilityStep={goToUploadCompatibilityStep}
+                goToUploadFilesStep={goToUploadFilesStep}
+                goToUploadMetadataStepBack={goToUploadMetadataStepBack}
+                handleSubmit={handleSubmit}
+                formData={formData}
+                handleInputChange={handleInputChange}
+                releaseChannelRef={releaseChannelRef}
+                toggleReleaseChannelPopover={toggleReleaseChannelPopover}
+                isReleaseChannelPopoverOpen={isReleaseChannelPopoverOpen}
+                releaseChannels={releaseChannels}
+                handleSelectReleaseChannel={handleSelectReleaseChannel}
+                releaseChannelLabel={releaseChannelLabel}
+                gameVersionsRef={gameVersionsRef}
+                toggleGameVersionsPopover={toggleGameVersionsPopover}
+                isGameVersionsPopoverOpen={isGameVersionsPopoverOpen}
+                gameVersions={gameVersions}
+                handleToggleGameVersion={handleToggleGameVersion}
+                gameVersionsLabel={gameVersionsLabel}
+                loadersRef={loadersRef}
+                toggleLoadersPopover={toggleLoadersPopover}
+                isLoadersPopoverOpen={isLoadersPopoverOpen}
+                loaders={loaders}
+                handleToggleLoader={handleToggleLoader}
+                loadersLabel={loadersLabel}
+                t={t}
+                tProject={tProject}
+            />
 
-                        <button className="icon-button modal-window__close" type="button" onClick={closeEditModal} disabled={editLoading}>
-                            <svg className="icon icon--cross" height="24" width="24">
-                                <path fillRule="evenodd" clipRule="evenodd" d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 0 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z" />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div className="modal-window__content">
-                        <form onSubmit={handleUpdate}>
-                            <p className="blog-settings__field-title">{t("versions.fields.versionNumber")}</p>
-                            <div className="field field--default blog-settings__input">
-                                <label className="field__wrapper">
-                                    <input type="text" name="version_number" value={editFormData.version_number} onChange={handleEditInputChange} className="text-input" required disabled={editLoading} />
-                                </label>
-                            </div>
-
-                            <p className="blog-settings__field-title">{t("versions.fields.changelog")}</p>
-                            <div className="field field--default textarea blog-settings__input">
-                                <label className="field__wrapper">
-                                    <textarea name="changelog" value={editFormData.changelog} onChange={handleEditInputChange} className="autosize textarea__input" style={{ height: "200px" }} disabled={editLoading} />
-                                </label>
-                            </div>
-
-                            <p className="blog-settings__field-title">{t("versions.fields.releaseChannel")}</p>
-                            <div className="field field--default blog-settings__input" ref={editReleaseChannelRef}>
-                                <label className="field__wrapper" onClick={!editLoading ? toggleEditReleaseChannelPopover : undefined}>
-                                    <div className="field__wrapper-body">
-                                        <div className="select">
-                                            <div className="select__selected">
-                                                {editReleaseChannelLabel}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </label>
-
-                                {isEditReleaseChannelPopoverOpen && !editLoading && (
-                                    <div className="popover">
-                                        <div className="context-list" style={{ maxHeight: "200px" }}>
-                                            {releaseChannels.map((channel) => (
-                                                <div key={channel} className={`context-list-option ${editFormData.release_channel === channel ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleSelectEditReleaseChannel(channel)}>
-                                                    <div className="context-list-option__label">{t(`versions.releaseChannels.${channel}`)}</div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-
-                            <p className="blog-settings__field-title">{t("versions.fields.gameVersions")}</p>
-                            <div className="field field--default blog-settings__input" ref={editGameVersionsRef}>
-                                <label className="field__wrapper" onClick={toggleEditGameVersionsPopover}>
-                                    <div className="field__wrapper-body">
-                                        <div className="select">
-                                            <div className="select__selected">
-                                                {editGameVersionsLabel}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </label>
-
-                                {isEditGameVersionsPopoverOpen && (
-                                    <div className="popover">
-                                        <div className="context-list" data-scrollable style={{ maxHeight: "200px", overflowY: "auto" }}>
-                                            {gameVersions.map((version) => (
-                                                <div key={version} className={`context-list-option ${editFormData.game_versions.includes(version) ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleEditToggleGameVersion(version)}>
-                                                    <div className="context-list-option__label">{version}</div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-
-                            <p className="blog-settings__field-title">{t("versions.fields.loaders")}</p>
-                            <div className="field field--default blog-settings__input" ref={editLoadersRef}>
-                                <label className="field__wrapper" onClick={toggleEditLoadersPopover}>
-                                    <div className="field__wrapper-body">
-                                        <div className="select">
-                                            <div className="select__selected">
-                                                {editLoadersLabel}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </label>
-
-                                {isEditLoadersPopoverOpen && (
-                                    <div className="popover">
-                                        <div className="context-list" data-scrollable style={{ maxHeight: "200px", overflowY: "auto" }}>
-                                            {loaders.map((loader) => (
-                                                <div key={loader} className={`context-list-option ${editFormData.loaders.includes(loader) ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleEditToggleLoader(loader)}>
-                                                    <div className="context-list-option__label">{loader}</div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-
-                            <p className="blog-settings__field-title">{tProject("file")}</p>
-                            <div className="field field--default blog-settings__input">
-                                <label className="field__wrapper">
-                                    <input type="file" name="file" accept=".jar,.zip,.rar,application/zip, application/x-rar-compressed, application/vnd.rar, application/java-archive" className="text-input" disabled={editLoading} />
-                                </label>
-                            </div>
-
-                            <div style={{ display: "flex", gap: "8px", marginTop: "18px" }}>
-                                <button type="submit" className="button button--size-m button--type-primary" disabled={editLoading}>
-                                    {editLoading ? tProject("updating") : tProject("update")}
-                                </button>
-
-                                <button type="button" className="button button--size-m button--type-negative" onClick={handleDelete} disabled={editLoading}>
-                                    {tProject("delete")}
-                                </button>
-
-                                <button type="button" className="button button--size-m button--type-minimal" onClick={closeEditModal} disabled={editLoading}>
-                                    {tProject("cancel")}
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </Modal>
+            <VersionEditModal
+                isOpen={editModalOpen}
+                onRequestClose={closeEditModal}
+                editLoading={editLoading}
+                onSubmit={handleUpdate}
+                onDelete={handleDelete}
+                t={t}
+                tProject={tProject}
+                editFormData={editFormData}
+                handleEditInputChange={handleEditInputChange}
+                editReleaseChannelRef={editReleaseChannelRef}
+                toggleEditReleaseChannelPopover={toggleEditReleaseChannelPopover}
+                isEditReleaseChannelPopoverOpen={isEditReleaseChannelPopoverOpen}
+                releaseChannels={releaseChannels}
+                handleSelectEditReleaseChannel={handleSelectEditReleaseChannel}
+                editReleaseChannelLabel={editReleaseChannelLabel}
+                editGameVersionsRef={editGameVersionsRef}
+                toggleEditGameVersionsPopover={toggleEditGameVersionsPopover}
+                isEditGameVersionsPopoverOpen={isEditGameVersionsPopoverOpen}
+                gameVersions={gameVersions}
+                handleEditToggleGameVersion={handleEditToggleGameVersion}
+                editGameVersionsLabel={editGameVersionsLabel}
+                editLoadersRef={editLoadersRef}
+                toggleEditLoadersPopover={toggleEditLoadersPopover}
+                isEditLoadersPopoverOpen={isEditLoadersPopoverOpen}
+                loaders={loaders}
+                handleEditToggleLoader={handleEditToggleLoader}
+                editLoadersLabel={editLoadersLabel}
+            />
         </div>
     );
 }

@@ -580,6 +580,24 @@
             "selectedLoaders": "{count, plural, one {# seleccionado} other {# seleccionados}}",
             "actions": {
                 "upload": "Subir versión"
+            },
+            "modal": {
+                "steps": {
+                    "files": "Archivos",
+                    "metadata": "Metadatos",
+                    "compatibility": "Compatibilidad"
+                },
+                "dropzone": {
+                    "uploadTitle": "Subir archivo de versión",
+                    "uploadHint": "Arrastra y suelta un archivo o haz clic para buscar",
+                    "replaceTitle": "Reemplazar archivo de versión (opcional)",
+                    "replaceHint": "Arrastra un archivo nuevo o haz clic para buscar"
+                },
+                "actions": {
+                    "continue": "Continuar",
+                    "back": "Atrás",
+                    "uploading": "Subiendo..."
+                }
             }
         },
         "gallerySettings": {
@@ -602,6 +620,23 @@
             "featuredHint": "Una imagen destacada de la galería aparece en la búsqueda y en la tarjeta de tu proyecto. Solo una imagen de la galería puede estar destacada.",
             "actions": {
                 "add": "Añadir imagen"
+            },
+            "modal": {
+                "steps": {
+                    "files": "Archivos",
+                    "metadata": "Metadatos"
+                },
+                "dropzone": {
+                    "uploadTitle": "Subir imagen",
+                    "uploadHint": "Arrastra y suelta una imagen o haz clic para buscar",
+                    "replaceTitle": "Reemplazar imagen (opcional)",
+                    "replaceHint": "Arrastra una imagen nueva o haz clic para buscar"
+                },
+                "actions": {
+                    "continue": "Continuar",
+                    "back": "Atrás",
+                    "uploading": "Subiendo..."
+                }
             },
             "states": {
                 "enabled": "Activado",

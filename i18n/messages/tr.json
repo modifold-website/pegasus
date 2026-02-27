@@ -580,6 +580,24 @@
             "selectedLoaders": "{count, plural, one {# seçildi} other {# seçildi}}",
             "actions": {
                 "upload": "Sürümü yükle"
+            },
+            "modal": {
+                "steps": {
+                    "files": "Dosyalar",
+                    "metadata": "Meta veriler",
+                    "compatibility": "Uyumluluk"
+                },
+                "dropzone": {
+                    "uploadTitle": "Sürüm dosyası yükle",
+                    "uploadHint": "Bir dosyayı sürükleyip bırakın veya göz atmak için tıklayın",
+                    "replaceTitle": "Sürüm dosyasını değiştir (isteğe bağlı)",
+                    "replaceHint": "Yeni bir dosyayı sürükleyip bırakın veya göz atmak için tıklayın"
+                },
+                "actions": {
+                    "continue": "Devam",
+                    "back": "Geri",
+                    "uploading": "Yükleniyor..."
+                }
             }
         },
         "gallerySettings": {
@@ -602,6 +620,23 @@
             "featuredHint": "Öne çıkan galeri görseli arama sonuçlarında ve proje kartınızda görünür. Galeride yalnızca bir görsel öne çıkarılabilir.",
             "actions": {
                 "add": "Görsel ekle"
+            },
+            "modal": {
+                "steps": {
+                    "files": "Dosyalar",
+                    "metadata": "Meta veriler"
+                },
+                "dropzone": {
+                    "uploadTitle": "Görsel yükle",
+                    "uploadHint": "Bir görseli sürükleyip bırakın veya seçmek için tıklayın",
+                    "replaceTitle": "Görseli değiştir (isteğe bağlı)",
+                    "replaceHint": "Yeni bir görseli sürükleyip bırakın veya seçmek için tıklayın"
+                },
+                "actions": {
+                    "continue": "Devam",
+                    "back": "Geri",
+                    "uploading": "Yükleniyor..."
+                }
             },
             "states": {
                 "enabled": "Açık",

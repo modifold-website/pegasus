@@ -580,6 +580,24 @@
             "selectedLoaders": "{count, plural, one {# selecionado} other {# selecionados}}",
             "actions": {
                 "upload": "Enviar versão"
+            },
+            "modal": {
+                "steps": {
+                    "files": "Arquivos",
+                    "metadata": "Metadados",
+                    "compatibility": "Compatibilidade"
+                },
+                "dropzone": {
+                    "uploadTitle": "Enviar arquivo da versão",
+                    "uploadHint": "Arraste e solte um arquivo ou clique para procurar",
+                    "replaceTitle": "Substituir arquivo da versão (opcional)",
+                    "replaceHint": "Arraste um novo arquivo ou clique para procurar"
+                },
+                "actions": {
+                    "continue": "Continuar",
+                    "back": "Voltar",
+                    "uploading": "Enviando..."
+                }
             }
         },
         "gallerySettings": {
@@ -602,6 +620,23 @@
             "featuredHint": "Uma imagem em destaque da galeria aparece na busca e no cartão do seu projeto. Apenas uma imagem da galeria pode ficar em destaque.",
             "actions": {
                 "add": "Adicionar imagem"
+            },
+            "modal": {
+                "steps": {
+                    "files": "Arquivos",
+                    "metadata": "Metadados"
+                },
+                "dropzone": {
+                    "uploadTitle": "Enviar imagem",
+                    "uploadHint": "Arraste e solte uma imagem ou clique para procurar",
+                    "replaceTitle": "Substituir imagem (opcional)",
+                    "replaceHint": "Arraste uma nova imagem ou clique para procurar"
+                },
+                "actions": {
+                    "continue": "Continuar",
+                    "back": "Voltar",
+                    "uploading": "Enviando..."
+                }
             },
             "states": {
                 "enabled": "Ativado",

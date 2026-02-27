@@ -167,6 +167,9 @@
 .new-project-card .project-tags-overflow {
     pointer-events: auto;
 }
+.new-project-card .dashboard-project-settings-button {
+    pointer-events: auto;
+}
 .new-project-card:hover {
     filter: brightness(.95);
     background: var(--theme-color-background-content);

@@ -144,12 +144,12 @@ export default function VersionPage({ project, version, authToken }) {
                                             <span key={loader} className="version__game-platform">
                                                 {loader.trim()}
                                             </span>
-                                        )) : <span>{t("notSpecified")}</span>}
+                                        )) : <span>{t("versions.notSpecified")}</span>}
                                     </div>
 
                                     <div>
                                         <strong>Channel</strong>
-                                        {version.release_channel || t("notSpecified")}
+                                        {version.release_channel || t("versions.notSpecified")}
                                     </div>
 
                                     <div>

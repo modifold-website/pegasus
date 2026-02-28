@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../../providers/AuthProvider";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
 import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
@@ -19,9 +19,9 @@ const getInitialFormData = (project) => ({
     comments_enabled: project?.comments_enabled !== false,
 });
 
-export default function ProjectSettings({ project }) {
+export default function ProjectSettings({ project, organizationOptions: initialOrganizationOptions = [] }) {
     const t = useTranslations("SettingsProjectPage");
-    const { isLoggedIn, user } = useAuth();
+    const { isLoggedIn } = useAuth();
     const router = useRouter();
 
     const [formData, setFormData] = useState(getInitialFormData(project));
@@ -32,8 +32,14 @@ export default function ProjectSettings({ project }) {
     const [savedPreviewIcon, setSavedPreviewIcon] = useState(project?.icon_url || "");
     const iconInputRef = useRef(null);
     const [isCommentsMenuOpen, setIsCommentsMenuOpen] = useState(false);
+    const [organizationOptions, setOrganizationOptions] = useState(() => initialOrganizationOptions);
+    const [selectedOrganizationSlug, setSelectedOrganizationSlug] = useState(project?.organization?.slug || "");
+    const [savedOrganizationSlug, setSavedOrganizationSlug] = useState(project?.organization?.slug || "");
+    const [isOrganizationMenuOpen, setIsOrganizationMenuOpen] = useState(false);
     const commentsButtonRef = useRef(null);
     const commentsMenuRef = useRef(null);
+    const organizationButtonRef = useRef(null);
+    const organizationMenuRef = useRef(null);
 
     useEffect(() => {
         if(!isLoggedIn) {
@@ -41,12 +47,16 @@ export default function ProjectSettings({ project }) {
         } else if(project) {
             const initialData = getInitialFormData(project);
             const initialPreview = project.icon_url || "";
+            const initialOrganizationSlug = project.organization?.slug || "";
             setFormData(initialData);
             setSavedFormData(initialData);
             setPreviewIcon(initialPreview);
             setSavedPreviewIcon(initialPreview);
+            setSelectedOrganizationSlug(initialOrganizationSlug);
+            setSavedOrganizationSlug(initialOrganizationSlug);
+            setOrganizationOptions(initialOrganizationOptions);
         }
-    }, [isLoggedIn, project, router]);
+    }, [initialOrganizationOptions, isLoggedIn, project, router]);
 
     const isDirty = (
         formData.title !== savedFormData.title ||
@@ -54,6 +64,7 @@ export default function ProjectSettings({ project }) {
         formData.visibility !== savedFormData.visibility ||
         formData.slug !== savedFormData.slug ||
         formData.comments_enabled !== savedFormData.comments_enabled ||
+        selectedOrganizationSlug !== savedOrganizationSlug ||
         Boolean(formData.icon)
     );
 
@@ -80,20 +91,18 @@ export default function ProjectSettings({ project }) {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if(!isCommentsMenuOpen) {
-                return;
+            if(isCommentsMenuOpen && !commentsMenuRef.current?.contains(event.target) && !commentsButtonRef.current?.contains(event.target)) {
+                setIsCommentsMenuOpen(false);
             }
 
-            if(commentsMenuRef.current?.contains(event.target) || commentsButtonRef.current?.contains(event.target)) {
-                return;
+            if(isOrganizationMenuOpen && !organizationMenuRef.current?.contains(event.target) && !organizationButtonRef.current?.contains(event.target)) {
+                setIsOrganizationMenuOpen(false);
             }
-
-            setIsCommentsMenuOpen(false);
         };
 
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [isCommentsMenuOpen]);
+    }, [isCommentsMenuOpen, isOrganizationMenuOpen]);
 
     const handleSubmit = async (e) => {
         if(e) {
@@ -123,6 +132,18 @@ export default function ProjectSettings({ project }) {
                     "Content-Type": "multipart/form-data",
                 },
             });
+
+            if(selectedOrganizationSlug !== savedOrganizationSlug) {
+                await axios.put(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${formData.slug || project.slug}/organization`, {
+                    organization_slug: selectedOrganizationSlug || null,
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    },
+                });
+
+                setSavedOrganizationSlug(selectedOrganizationSlug);
+            }
 
             setSavedFormData({
                 ...formData,
@@ -162,6 +183,8 @@ export default function ProjectSettings({ project }) {
     }
 
     const toggleCommentsMenu = () => setIsCommentsMenuOpen((prev) => !prev);
+    const toggleOrganizationMenu = () => setIsOrganizationMenuOpen((prev) => !prev);
+    const selectedOrganization = organizationOptions.find((organization) => organization.slug === selectedOrganizationSlug);
 
     return (
         <div className="layout">
@@ -284,6 +307,39 @@ export default function ProjectSettings({ project }) {
                                         <p>{t("general.comments.hint")}</p>
                                     </div>
 
+                                    <p className="blog-settings__field-title">{t("general.organization.title")}</p>
+                                    <div className="field field--default blog-settings__input" ref={organizationMenuRef}>
+                                        <label style={{ marginBottom: "10px" }} className="field__wrapper" onClick={toggleOrganizationMenu} ref={organizationButtonRef}>
+                                            <div className="field__wrapper-body">
+                                                <div className="select">
+                                                    <div className="select__selected">
+                                                        {selectedOrganization?.name || t("general.organization.noOrganization")}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <svg style={{ fill: "none" }} className={`icon icon--chevron_down ${isOrganizationMenuOpen ? "rotate" : ""}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                                        </label>
+
+                                        {isOrganizationMenuOpen && (
+                                            <div className="popover">
+                                                <div className="context-list" data-scrollable>
+                                                    <div className={`context-list-option ${selectedOrganizationSlug === "" ? "context-list-option--selected" : ""}`} onClick={() => { setSelectedOrganizationSlug(""); setIsOrganizationMenuOpen(false); }}>
+                                                        <div className="context-list-option__label">{t("general.organization.noOrganization")}</div>
+                                                    </div>
+
+                                                    {organizationOptions.map((organization) => (
+                                                        <div key={organization.id} className={`context-list-option ${selectedOrganizationSlug === organization.slug ? "context-list-option--selected" : ""}`} onClick={() => { setSelectedOrganizationSlug(organization.slug); setIsOrganizationMenuOpen(false); }}>
+                                                            <div className="context-list-option__label">{organization.name}</div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        <p>{t("general.organization.hint")}</p>
+                                    </div>
+
                                     <div style={{ marginTop: "18px", display: "flex", gap: "10px" }}>
                                         <button type="button" className="button button--size-m button--type-negative" onClick={handleDelete}>
                                             {t("general.actions.delete")}
@@ -295,7 +351,6 @@ export default function ProjectSettings({ project }) {
                     </div>
                 </div>
 
-                <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
                 <UnsavedChangesBar
                     isDirty={isDirty}
                     isSaving={isSaving}
@@ -303,7 +358,9 @@ export default function ProjectSettings({ project }) {
                     onReset={() => {
                         setFormData({ ...savedFormData, icon: null });
                         setPreviewIcon(savedPreviewIcon);
+                        setSelectedOrganizationSlug(savedOrganizationSlug);
                         setIsCommentsMenuOpen(false);
+                        setIsOrganizationMenuOpen(false);
                         if(iconInputRef.current) {
                             iconInputRef.current.value = "";
                         }

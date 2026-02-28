@@ -11,6 +11,7 @@ import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
 
 export default function SettingsVerificationPage() {
     const t = useTranslations("SettingsVerificationPage");
+    const tSidebar = useTranslations("SettingsBlogPage.sidebar");
     const locale = useLocale();
     const { isLoggedIn, user } = useAuth();
     const router = useRouter();
@@ -75,11 +76,12 @@ export default function SettingsVerificationPage() {
                     user={user}
                     profileIconAlt={t("sidebar.profileIconAlt")}
                     labels={{
-                        projects: t("sidebar.projects"),
-                        notifications: t("sidebar.notifications"),
-                        settings: t("sidebar.settings"),
-                        apiTokens: t("sidebar.apiTokens"),
-                        verification: t("sidebar.verification"),
+                        projects: tSidebar("projects"),
+                        organizations: tSidebar("organizations"),
+                        notifications: tSidebar("notifications"),
+                        settings: tSidebar("settings"),
+                        apiTokens: tSidebar("apiTokens"),
+                        verification: tSidebar("verification"),
                     }}
                 />
 

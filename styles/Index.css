@@ -2245,6 +2245,11 @@ input[type="file"]::-webkit-file-upload-button:hover {
     align-self: flex-start;
     height: 36px;
 }
+.notification-item__actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
 @media (hover: hover) {
     .notification-item:hover {
         cursor: pointer;

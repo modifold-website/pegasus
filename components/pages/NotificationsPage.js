@@ -138,6 +138,24 @@ export default function NotificationsPage({ authToken }) {
 
     const canLoadMore = page < totalPages;
 
+    const handleOrganizationInviteAction = async (notification, action) => {
+        if(!notification?.inviteId) {
+            return;
+        }
+
+        try {
+            await axios.post(`${process.env.NEXT_PUBLIC_API_BASE}/organizations/invites/${notification.inviteId}/${action}`, {}, {
+                headers: {
+                    Authorization: `Bearer ${authToken || localStorage.getItem("authToken")}`,
+                },
+            });
+
+            setNotifications((prev) => prev.filter((item) => item.id !== notification.id));
+        } catch {
+            setError(t("errors.fetch"));
+        }
+    };
+
     const renderText = (notification) => {
         const firstActor = notification.actors?.[0];
         const firstActorView = firstActor ? (
@@ -188,6 +206,36 @@ export default function NotificationsPage({ authToken }) {
             );
         }
 
+        if(notification.eventType === "organization_invite") {
+            const organizationName = notification.organization?.name || t("messages.organizationFallback");
+            const organizationView = notification.organization?.slug ? (
+                <Link href={`/organization/${notification.organization.slug}`}><b>{organizationName}</b></Link>
+            ) : (
+                <b>{organizationName}</b>
+            );
+
+            return (
+                <>
+                    {firstActorView} {t("messages.organizationInviteTail")} {organizationView}
+                </>
+            );
+        }
+
+        if(notification.eventType === "organization_member_removed") {
+            const organizationName = notification.organization?.name || t("messages.organizationFallback");
+            const organizationView = notification.organization?.slug ? (
+                <Link href={`/organization/${notification.organization.slug}`}><b>{organizationName}</b></Link>
+            ) : (
+                <b>{organizationName}</b>
+            );
+
+            return (
+                <>
+                    {firstActorView} {t("messages.organizationRemovedTail")} {organizationView}
+                </>
+            );
+        }
+
         return t("messages.unknown");
     };
 
@@ -218,6 +266,20 @@ export default function NotificationsPage({ authToken }) {
                                 <path fill="#fff" d="M3.603 8.308a.34.34 0 0 1 0-.485l.485-.485c.162-.161.373-.111.52.035L6.51 9.415c.07.07.173.07.242 0l4.674-4.811a.335.335 0 0 1 .484 0l.485.484a.335.335 0 0 1 0 .485L6.857 11.32a.31.31 0 0 1-.242.104.31.31 0 0 1-.242-.104z"></path>
                             </svg>
                         )}
+
+                        {notification.eventType === "organization_invite" && (
+                            <svg className="notification-item__icon notification-item__icon--blue" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                                <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
+                                <path d="M5.2 8h5.6M8 5.2v5.6" stroke="#fff" strokeWidth="1.8" strokeLinecap="round"></path>
+                            </svg>
+                        )}
+
+                        {notification.eventType === "organization_member_removed" && (
+                            <svg className="notification-item__icon notification-item__icon--red" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                                <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
+                                <path d="M5.2 8h5.6" stroke="#fff" strokeWidth="1.8" strokeLinecap="round"></path>
+                            </svg>
+                        )}
                     </div>
                 </div>
 
@@ -245,6 +307,18 @@ export default function NotificationsPage({ authToken }) {
         return (
             <div key={notification.id} className="notification-item">
                 {content}
+
+                {notification.eventType === "organization_invite" && notification.inviteId && (
+                    <div className="notification-item__actions">
+                        <button className="button button--size-s button--type-primary" onClick={() => handleOrganizationInviteAction(notification, "accept")}>
+                            {t("actions.accept")}
+                        </button>
+                        
+                        <button className="button button--size-s button--type-secondary" onClick={() => handleOrganizationInviteAction(notification, "decline")}>
+                            {t("actions.decline")}
+                        </button>
+                    </div>
+                )}
             </div>
         );
     };
@@ -257,6 +331,7 @@ export default function NotificationsPage({ authToken }) {
                     profileIconAlt={t("sidebarAvatarAlt", { username: user?.username || "" })}
                     labels={{
                         projects: tSidebar("projects"),
+                        organizations: tSidebar("organizations"),
                         notifications: tSidebar("notifications"),
                         settings: tSidebar("settings"),
                         apiTokens: tSidebar("apiTokens"),

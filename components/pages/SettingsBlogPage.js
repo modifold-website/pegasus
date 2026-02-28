@@ -40,6 +40,7 @@ const areSnapshotsEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
 export default function SettingsBlogPage({ initialUser = null }) {
     const t = useTranslations("SettingsBlogPage");
+    const tSidebar = useTranslations("SettingsBlogPage.sidebar");
     const locale = useLocale();
     const { isLoggedIn, user, setUser } = useAuth();
     const router = useRouter();
@@ -200,11 +201,12 @@ export default function SettingsBlogPage({ initialUser = null }) {
                     user={effectiveUser}
                     profileIconAlt={t("sidebar.profileIconAlt")}
                     labels={{
-                        projects: t("sidebar.projects"),
-                        notifications: t("sidebar.notifications"),
-                        settings: t("sidebar.settings"),
-                        apiTokens: t("sidebar.apiTokens"),
-                        verification: t("sidebar.verification"),
+                        projects: tSidebar("projects"),
+                        organizations: tSidebar("organizations"),
+                        notifications: tSidebar("notifications"),
+                        settings: tSidebar("settings"),
+                        apiTokens: tSidebar("apiTokens"),
+                        verification: tSidebar("verification"),
                     }}
                 />
 

@@ -156,6 +156,10 @@ export default async function NewsArticle({ params }) {
                             {data.title}
                         </h2>
 
+                        <span style={{ display: "block", fontSize: "18px", lineHeight: "28px", marginBottom: "20px" }}>
+                            {data.description}
+                        </span>
+
                         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px", fontSize: "0.875rem", marginBottom: "20px" }}>
                             {authorCount > 0 ? (
                                 <>
@@ -163,8 +167,8 @@ export default async function NewsArticle({ params }) {
                                         <span key={author.id} style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
                                             {index === authorCount - 1 && authorCount > 1 && <span>{t("byline.and")} </span>}
 
-                                            <Link href={`/user/${author.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontWeight: "500", textDecoration: "none", color: "inherit" }}>
-                                                <div style={{ position: "relative", width: "24px", height: "24px", borderRadius: "50%", overflow: "hidden", border: "1px solid var(--theme-border)" }}>
+                                            <Link href={`/user/${author.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontWeight: "500", textDecoration: "none", color: "inherit" }} className="button--active-transform">
+                                                <div style={{ position: "relative", width: "24px", height: "24px", borderRadius: "50%", overflow: "hidden" }}>
                                                     <Image src={author.avatar} alt={author.username} fill style={{ objectFit: "cover" }} unoptimized />
                                                 </div>
 
@@ -187,7 +191,7 @@ export default async function NewsArticle({ params }) {
                         <ShareButtons title={data.title} url={`https://modifold.com${data.slug}`} />
 
                         {data.image && (
-                            <div style={{ marginBottom: "24px", borderRadius: "20px", overflow: "hidden", border: "1px solid var(--theme-border)" }}>
+                            <div style={{ marginBottom: "24px", borderRadius: "20px", overflow: "hidden" }}>
                                 <Image src={data.image} alt={data.title} width={1200} height={630} style={{ width: "100%", height: "auto", display: "block" }} unoptimized />
                             </div>
                         )}

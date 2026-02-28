@@ -1,7 +1,9 @@
 name: Deploy Pegasus (main -> production)
 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
       - main
 
@@ -11,6 +13,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Deploy over SSH

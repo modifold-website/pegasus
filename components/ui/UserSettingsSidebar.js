@@ -31,6 +31,16 @@ export default function UserSettingsSidebar({ user, labels, profileIconAlt }) {
                     {labels.projects}
                 </Link>
 
+                <Link href="/dashboard/organizations" className={`sidebar-item ${isActive("/dashboard/organizations") ? "sidebar-item--active" : ""}`} data-ripple>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-users-round-icon lucide-users-round">
+                        <path d="M18 21a8 8 0 0 0-16 0"/>
+                        <circle cx="10" cy="8" r="5"/>
+                        <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/>
+                    </svg>
+
+                    {labels.organizations}
+                </Link>
+
                 <Link href="/notifications" className={`sidebar-item ${isActive("/notifications") ? "sidebar-item--active" : ""}`} data-ripple>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-bell-icon lucide-bell">
                         <path d="M10.268 21a2 2 0 0 0 3.464 0" />

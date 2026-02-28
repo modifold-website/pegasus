@@ -1245,8 +1245,10 @@
         "settings": {
             "title": "Información de la organización",
             "membersTitle": "Gestionar miembros",
+            "projectsTitle": "Proyectos de la organización",
             "navOverview": "Resumen",
             "navMembers": "Miembros",
+            "navProjects": "Proyectos",
             "inviteTitle": "Invitar a un miembro",
             "invitePlaceholder": "Slug del usuario",
             "projectPermissions": "Permisos de proyecto",
@@ -1268,6 +1270,9 @@
                 "inviting": "Invitando...",
                 "expand": "Expandir",
                 "collapse": "Colapsar",
+                "openProjectSettings": "Ajustes del proyecto",
+                "detachProject": "Desvincular proyecto",
+                "detachingProject": "Desvinculando...",
                 "saveMember": "Guardar cambios",
                 "removeMember": "Eliminar miembro",
                 "removingMember": "Eliminando..."
@@ -1292,7 +1297,10 @@
             "successInviteSent": "Invitación enviada",
             "successMemberUpdated": "Se actualizó {username}",
             "successMemberRemoved": "Se eliminó a {username}",
+            "successProjectDetached": "Se desvinculó el proyecto {title}",
+            "confirmDetachProject": "¿Desvincular el proyecto {title} de la organización?",
             "confirmRemoveMember": "¿Eliminar a {username} de la organización?",
+            "emptyProjects": "Todavía no hay proyectos vinculados a esta organización.",
             "errors": {
                 "save": "No se pudo guardar la organización",
                 "iconUpload": "No se pudo subir el icono de la organización",
@@ -1300,6 +1308,7 @@
                 "inviteSlugRequired": "Ingresa el slug del usuario",
                 "memberUpdate": "No se pudo actualizar el miembro",
                 "memberRemove": "No se pudo eliminar el miembro",
+                "projectDetach": "No se pudo desvincular el proyecto",
                 "fileTooLarge": "El archivo es demasiado grande. Tamaño máximo: 20 MB"
             }
         },

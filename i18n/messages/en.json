@@ -1245,8 +1245,10 @@
         "settings": {
             "title": "Organization information",
             "membersTitle": "Manage members",
+            "projectsTitle": "Organization projects",
             "navOverview": "Overview",
             "navMembers": "Members",
+            "navProjects": "Projects",
             "inviteTitle": "Invite a member",
             "invitePlaceholder": "User slug",
             "projectPermissions": "Project permissions",
@@ -1268,6 +1270,9 @@
                 "inviting": "Inviting...",
                 "expand": "Expand",
                 "collapse": "Collapse",
+                "openProjectSettings": "Project settings",
+                "detachProject": "Detach project",
+                "detachingProject": "Detaching...",
                 "saveMember": "Save changes",
                 "removeMember": "Remove member",
                 "removingMember": "Removing..."
@@ -1292,7 +1297,10 @@
             "successInviteSent": "Invite sent",
             "successMemberUpdated": "Updated {username}",
             "successMemberRemoved": "Removed {username}",
+            "successProjectDetached": "Project {title} detached",
+            "confirmDetachProject": "Detach project {title} from organization?",
             "confirmRemoveMember": "Remove {username} from organization?",
+            "emptyProjects": "No projects are linked to this organization yet.",
             "errors": {
                 "save": "Failed to save organization",
                 "iconUpload": "Failed to upload organization icon",
@@ -1300,6 +1308,7 @@
                 "inviteSlugRequired": "Enter user slug",
                 "memberUpdate": "Failed to update member",
                 "memberRemove": "Failed to remove member",
+                "projectDetach": "Failed to detach project",
                 "fileTooLarge": "File is too large. Maximum size is 20 MB"
             }
         },

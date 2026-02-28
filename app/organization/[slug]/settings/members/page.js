@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect, notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
-import OrganizationMembersSettingsPage from "@/components/pages/OrganizationMembersSettingsPage";
+import OrganizationMembersSettingsPage from "@/components/organizations/settings/OrganizationMembersSettingsPage";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;

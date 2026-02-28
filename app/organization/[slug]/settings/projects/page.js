@@ -1,7 +1,7 @@
-import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
+import { redirect, notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
-import OrganizationPage from "@/components/organizations/OrganizationPage";
+import OrganizationProjectsSettingsPage from "@/components/organizations/settings/OrganizationProjectsSettingsPage";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
@@ -15,37 +15,45 @@ export async function generateMetadata({ params }) {
         });
 
         if(!response.ok) {
-            return { title: `${t("dashboard.title")} — Modifold` };
+            return { title: `${t("settings.navProjects")} — ${t("dashboard.title")} — Modifold` };
         }
 
         const data = await response.json();
         const organizationName = data?.organization?.name || t("dashboard.title");
 
         return {
-            title: `${organizationName} — Modifold`,
+            title: `${organizationName} — ${t("settings.navProjects")} — Modifold`,
         };
     } catch {
-        return { title: `${t("dashboard.title")} — Modifold` };
+        return { title: `${t("settings.navProjects")} — ${t("dashboard.title")} — Modifold` };
     }
 }
 
-export default async function OrganizationRoute({ params }) {
+export default async function OrganizationSettingsProjectsRoute({ params }) {
     const { slug } = await params;
     const cookieStore = await cookies();
     const authToken = cookieStore.get("authToken")?.value;
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/organizations/${slug}`, {
+    if(!authToken) {
+        redirect("/403");
+    }
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/organizations/${slug}/settings`, {
         headers: {
+            Authorization: `Bearer ${authToken}`,
             Accept: "application/json",
-            Authorization: authToken ? `Bearer ${authToken}` : undefined,
         },
         cache: "no-store",
     });
+
+    if(response.status === 401 || response.status === 403) {
+        redirect("/403");
+    }
 
     if(!response.ok) {
         notFound();
     }
 
     const data = await response.json();
-    return <OrganizationPage {...data} />;
+    return <OrganizationProjectsSettingsPage authToken={authToken} {...data} />;
 }

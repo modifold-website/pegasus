@@ -1245,8 +1245,10 @@
         "settings": {
             "title": "Информация об организации",
             "membersTitle": "Управление участниками",
+            "projectsTitle": "Проекты организации",
             "navOverview": "Обзор",
             "navMembers": "Участники",
+            "navProjects": "Проекты",
             "inviteTitle": "Пригласить участника",
             "invitePlaceholder": "Slug пользователя",
             "projectPermissions": "Права проекта",
@@ -1268,6 +1270,9 @@
                 "inviting": "Приглашение...",
                 "expand": "Развернуть",
                 "collapse": "Свернуть",
+                "openProjectSettings": "Настройки проекта",
+                "detachProject": "Открепить проект",
+                "detachingProject": "Открепление...",
                 "saveMember": "Сохранить изменения",
                 "removeMember": "Удалить участника",
                 "removingMember": "Удаление..."
@@ -1292,7 +1297,10 @@
             "successInviteSent": "Приглашение отправлено",
             "successMemberUpdated": "Обновлен участник {username}",
             "successMemberRemoved": "Участник {username} удалён",
+            "successProjectDetached": "Проект {title} откреплен",
+            "confirmDetachProject": "Открепить проект {title} от организации?",
             "confirmRemoveMember": "Удалить участника {username} из организации?",
+            "emptyProjects": "К этой организации пока не привязано ни одного проекта.",
             "errors": {
                 "save": "Не удалось сохранить организацию",
                 "iconUpload": "Не удалось загрузить иконку организации",
@@ -1300,6 +1308,7 @@
                 "inviteSlugRequired": "Введите slug пользователя",
                 "memberUpdate": "Не удалось обновить участника",
                 "memberRemove": "Не удалось удалить участника",
+                "projectDetach": "Не удалось открепить проект",
                 "fileTooLarge": "Файл слишком большой. Максимальный размер 20 МБ"
             }
         },

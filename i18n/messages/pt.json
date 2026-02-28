@@ -1245,8 +1245,10 @@
         "settings": {
             "title": "Informações da organização",
             "membersTitle": "Gerenciar membros",
+            "projectsTitle": "Projetos da organização",
             "navOverview": "Visão geral",
             "navMembers": "Membros",
+            "navProjects": "Projetos",
             "inviteTitle": "Convidar um membro",
             "invitePlaceholder": "Slug do usuário",
             "projectPermissions": "Permissões do projeto",
@@ -1268,6 +1270,9 @@
                 "inviting": "Convidando...",
                 "expand": "Expandir",
                 "collapse": "Recolher",
+                "openProjectSettings": "Configurações do projeto",
+                "detachProject": "Desvincular projeto",
+                "detachingProject": "Desvinculando...",
                 "saveMember": "Salvar alterações",
                 "removeMember": "Remover membro",
                 "removingMember": "Removendo..."
@@ -1292,7 +1297,10 @@
             "successInviteSent": "Convite enviado",
             "successMemberUpdated": "{username} atualizado",
             "successMemberRemoved": "{username} removido",
+            "successProjectDetached": "Projeto {title} desvinculado",
+            "confirmDetachProject": "Desvincular o projeto {title} da organização?",
             "confirmRemoveMember": "Remover {username} da organização?",
+            "emptyProjects": "Ainda não há projetos vinculados a esta organização.",
             "errors": {
                 "save": "Falha ao salvar organização",
                 "iconUpload": "Falha ao enviar ícone da organização",
@@ -1300,6 +1308,7 @@
                 "inviteSlugRequired": "Digite o slug do usuário",
                 "memberUpdate": "Falha ao atualizar membro",
                 "memberRemove": "Falha ao remover membro",
+                "projectDetach": "Falha ao desvincular projeto",
                 "fileTooLarge": "Arquivo muito grande. Tamanho máximo de 20 MB"
             }
         },

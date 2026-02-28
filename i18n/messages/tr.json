@@ -1230,6 +1230,7 @@
         },
         "page": {
             "edit": "Düzenle",
+            "organizationBadge": "Organizasyon",
             "openAvatar": "Avatarı aç",
             "lightboxLabel": "Organizasyon görsel görüntüleyicisi",
             "openInNewTab": "Görseli yeni sekmede aç",

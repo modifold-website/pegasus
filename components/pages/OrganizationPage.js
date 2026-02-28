@@ -9,12 +9,18 @@ import UserName from "@/components/ui/UserName";
 
 const DEFAULT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
-export default function OrganizationPage({ organization, members = [], projects = [] }) {
+export default function OrganizationPage({ organization, members = [], projects = [], my_permissions = null }) {
     const t = useTranslations("Organizations");
     const locale = useLocale();
     const { isLoggedIn, user } = useAuth();
     const { lightboxOpen, lightboxImage, closeLightbox, getLightboxTriggerProps } = useImageLightbox();
-    const canEditOrganization = Boolean(isLoggedIn && user?.id && Number(user.id) === Number(organization?.owner_user_id));
+    const canEditOrganization = Boolean(
+        isLoggedIn && (
+            my_permissions?.is_owner ||
+            my_permissions?.organization_permissions?.includes("organization_edit_details") ||
+            (user?.id && Number(user.id) === Number(organization?.owner_user_id))
+        )
+    );
 
     if(!organization) {
         return null;
@@ -50,6 +56,19 @@ export default function OrganizationPage({ organization, members = [], projects 
                                 </div>
 
                                 <h1 className="subsite-header__name">{organization.name}</h1>
+                                
+                                <span className="badge--developer" style={{ width: "fit-content", marginBottom: "8px" }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-building2-icon lucide-building-2">
+                                        <path d="M10 12h4"></path>
+                                        <path d="M10 8h4"></path>
+                                        <path d="M14 21v-3a2 2 0 0 0-4 0v3"></path>
+                                        <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"></path>
+                                        <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path>
+                                    </svg>
+
+                                    {t("page.organizationBadge")}
+                                </span>
+                                
                                 <p className="subsite-header__description">{organization.summary}</p>
 
                                 {formattedCreatedAt && (

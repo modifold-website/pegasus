@@ -1230,6 +1230,7 @@
         },
         "page": {
             "edit": "Editar",
+            "organizationBadge": "Organización",
             "openAvatar": "Abrir avatar",
             "lightboxLabel": "Visor de imagen de la organización",
             "openInNewTab": "Abrir imagen en una pestaña nueva",

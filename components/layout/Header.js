@@ -296,7 +296,7 @@ export default function Header({ authToken }) {
 
                             {isLoggedIn ? (
                                 <>
-                                    <button className="button button--size-m button--type-primary" onClick={openProjectModal}>
+                                    <button className="button button--size-m button--type-primary button--active-transform" onClick={openProjectModal}>
                                         {t("createProject")}
                                     </button>
 

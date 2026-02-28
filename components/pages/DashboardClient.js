@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import ProjectTags from "../ui/ProjectTags";
 import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
-const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
 export default function DashboardClient({ initialProjects, initialTotalPages, initialPage, authToken }) {
     const t = useTranslations("DashboardClient");
@@ -106,7 +105,7 @@ export default function DashboardClient({ initialProjects, initialTotalPages, in
                                 <div key={project.slug} id={project.slug} className="new-project-card">
                                     <Link className="new-project-card__overlay" href={`/mod/${project.slug}`} aria-label={project.title} />
 
-                                    <img className="new-project-icon" alt={t("projectIconAlt", { title: project.title })} src={project.icon_url || DEFAULT_PROJECT_ICON_URL} />
+                                    <img className="new-project-icon" alt={t("projectIconAlt", { title: project.title })} src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} />
 
                                     <div className="new-project-info">
                                         <div className="new-project-header">

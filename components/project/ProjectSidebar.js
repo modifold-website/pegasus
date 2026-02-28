@@ -32,7 +32,7 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
                 <div style={{ display: "flex", gap: "12px", flexDirection: "column" }}>
                     {project.owner?.type === "organization" ? (
                         <div className="author author-card" style={{ "--1ebedaf6": "40px" }}>
-                            <Link className="author__avatar" href={ownerProfileUrl}>
+                            <Link className="author__avatar button--active-transform" href={ownerProfileUrl}>
                                 <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "40px", height: "40px", maxWidth: "none" }}>
                                     <img src={project.owner.avatar} className="magnify" alt={t("ownerAvatarAlt", { username: project.owner.username })} />
                                 </div>
@@ -53,7 +53,7 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
                     ) : project.members && project.members.length > 0 ? (
                         project.members.map((member) => (
                             <div key={member.user_id} className="author author-card" style={{ "--1ebedaf6": "40px" }}>
-                                <Link className="author__avatar" href={`/user/${member.slug}`}>
+                                <Link className="author__avatar button--active-transform" href={`/user/${member.slug}`}>
                                     <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "40px", height: "40px", maxWidth: "none" }}>
                                         <img src={member.avatar} className="magnify" alt={t("ownerAvatarAlt", { username: member.username })} />
                                     </div>
@@ -81,7 +81,7 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
                         ))
                     ) : (
                         <div className="author author-card" style={{ "--1ebedaf6": "40px" }}>
-                            <Link className="author__avatar" href={ownerProfileUrl}>
+                            <Link className="author__avatar button--active-transform" href={ownerProfileUrl}>
                                 <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "40px", height: "40px", maxWidth: "none" }}>
                                     <img src={project.owner.avatar} className="magnify" alt={t("ownerAvatarAlt", { username: project.owner.username })} />
                                 </div>

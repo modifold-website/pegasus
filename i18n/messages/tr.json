@@ -1230,6 +1230,8 @@
         },
         "page": {
             "edit": "Düzenle",
+            "organizationBadge": "Organizasyon",
+            "organizationOwnerTooltip": "Organizasyon sahibi",
             "openAvatar": "Avatarı aç",
             "lightboxLabel": "Organizasyon görsel görüntüleyicisi",
             "openInNewTab": "Görseli yeni sekmede aç",
@@ -1243,8 +1245,10 @@
         "settings": {
             "title": "Organizasyon bilgileri",
             "membersTitle": "Üyeleri yönet",
+            "projectsTitle": "Organizasyon projeleri",
             "navOverview": "Genel bakış",
             "navMembers": "Üyeler",
+            "navProjects": "Projeler",
             "inviteTitle": "Üye davet et",
             "invitePlaceholder": "Kullanıcı slug'ı",
             "projectPermissions": "Proje izinleri",
@@ -1266,6 +1270,9 @@
                 "inviting": "Davet ediliyor...",
                 "expand": "Genişlet",
                 "collapse": "Daralt",
+                "openProjectSettings": "Proje ayarları",
+                "detachProject": "Projeyi ayır",
+                "detachingProject": "Ayrılıyor...",
                 "saveMember": "Değişiklikleri kaydet",
                 "removeMember": "Üyeyi kaldır",
                 "removingMember": "Kaldırılıyor..."
@@ -1290,7 +1297,10 @@
             "successInviteSent": "Davet gönderildi",
             "successMemberUpdated": "{username} güncellendi",
             "successMemberRemoved": "{username} kaldırıldı",
+            "successProjectDetached": "{title} projesi ayrıldı",
+            "confirmDetachProject": "{title} projesi organizasyondan ayrılsın mı?",
             "confirmRemoveMember": "{username} organizasyondan kaldırılsın mı?",
+            "emptyProjects": "Bu organizasyona henüz proje bağlı değil.",
             "errors": {
                 "save": "Organizasyon kaydedilemedi",
                 "iconUpload": "Organizasyon simgesi yüklenemedi",
@@ -1298,6 +1308,7 @@
                 "inviteSlugRequired": "Kullanıcı slug'ını girin",
                 "memberUpdate": "Üye güncellenemedi",
                 "memberRemove": "Üye kaldırılamadı",
+                "projectDetach": "Proje ayrılamadı",
                 "fileTooLarge": "Dosya çok büyük. Maksimum boyut 20 MB"
             }
         },

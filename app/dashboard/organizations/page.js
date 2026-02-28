@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
-import OrganizationsDashboardPage from "@/components/pages/OrganizationsDashboardPage";
+import OrganizationsDashboardPage from "@/components/organizations/OrganizationsDashboardPage";
 
 export async function generateMetadata() {
     const resolvedLocale = await getLocale();

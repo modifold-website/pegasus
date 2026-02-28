@@ -351,7 +351,7 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                                 <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                                     {organizations.map((organization) => (
                                         <Tooltip key={organization.id} content={organization.name}>
-                                            <Link href={`/organization/${organization.slug}`} style={{ display: "inline-flex" }}>
+                                            <Link href={`/organization/${organization.slug}`} className="button--active-transform" style={{ display: "inline-flex" }}>
                                                 <img src={organization.icon_url} alt={organization.name} style={{ width: "34px", height: "34px", borderRadius: "8px", objectFit: "cover" }} />
                                             </Link>
                                         </Tooltip>

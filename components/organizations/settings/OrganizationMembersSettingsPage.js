@@ -3,10 +3,10 @@
 import { useMemo, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
-import OrganizationMemberCard from "@/components/ui/OrganizationMemberCard";
+import OrganizationMemberCard from "@/components/organizations/settings/OrganizationMemberCard";
+import OrganizationSettingsSidebar from "@/components/organizations/settings/OrganizationSettingsSidebar";
 
 const PROJECT_PERMISSION_KEYS = [
     "project_edit_details",
@@ -213,36 +213,7 @@ export default function OrganizationMembersSettingsPage({ authToken, organizatio
     return (
         <div className="layout">
             <div className="page-content settings-page">
-                <div className="sidebar">
-                    <div className="sidebar__main">
-                        <Link href={`/organization/${organization.slug}`} className="sidebar-item" data-ripple>
-                            <img src={organization.icon_url || DEFAULT_ICON_URL} alt={t("settings.iconAlt", { name: organization.name })} className="icon" width="28" height="28" style={{ borderRadius: "8px" }} />
-                            
-                            <span>{organization.name}</span>
-                        </Link>
-
-                        <div className="sidebar-separator-view _theme_default _size_s"></div>
-
-                        <Link href={`/organization/${organization.slug}/settings`} className="sidebar-item" data-ripple>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-settings-icon lucide-settings">
-                                <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/>
-                                <circle cx="12" cy="12" r="3"/>
-                            </svg>
-                            
-                            {t("settings.navOverview")}
-                        </Link>
-
-                        <Link href={`/organization/${organization.slug}/settings/members`} className="sidebar-item sidebar-item--active" data-ripple>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-users-round-icon lucide-users-round">
-                                <path d="M18 21a8 8 0 0 0-16 0"/>
-                                <circle cx="10" cy="8" r="5"/>
-                                <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/>
-                            </svg>
-                            
-                            {t("settings.navMembers")}
-                        </Link>
-                    </div>
-                </div>
+                <OrganizationSettingsSidebar organization={organization} />
 
                 <div className="settings-content" style={{ display: "grid", gap: "16px" }}>
                     <div className="content content--padding">

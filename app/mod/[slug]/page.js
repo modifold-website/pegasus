@@ -1,7 +1,7 @@
 ﻿import { cookies, headers } from "next/headers";
 import { notFound } from "next/navigation";
 import ProjectPage from "@/components/pages/ProjectPage";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getLocale } from "next-intl/server";
 import Script from "next/script";
 const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
@@ -10,7 +10,6 @@ export async function generateMetadata({ params }) {
     const resolvedLocale = await getLocale();
     const ogLocale = resolvedLocale === "ru" ? "ru_RU" : "en_US";
 
-    const t = await getTranslations({ locale: resolvedLocale, namespace: "ProjectPage" });
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, {
         headers: { Accept: "application/json" },
         next: { revalidate: 60, tags: [`project:${slug}`] },
@@ -22,16 +21,12 @@ export async function generateMetadata({ params }) {
 
     const project = await res.json();
 
-    const titlePrefix = t(`projectTypes.${project.project_type}`, {
-        defaultValue: project.project_type.replace("_", " ").replace(/\b\w/g, l => l.toUpperCase()),
-    });
-
     const description = project.summary.length > 160 ? `${project.summary.substring(0, 157)}...` : project.summary;
 
     return {
-        title: t("metadata.title", { title: project.title, titlePrefix }),
+        title: `${project.title} — Modifold`,
         description,
-        keywords: `${project.title}, ${titlePrefix}, Hytale, mods, shaders, resource packs, modpacks, download mods Hytale, Modifold`,
+        keywords: `${project.title}, Hytale, mods, shaders, resource packs, modpacks, download mods Hytale, Modifold`,
         author: project.owner.username,
         robots: "index, follow",
         alternates: {
@@ -39,7 +34,7 @@ export async function generateMetadata({ params }) {
             "x-default": `https://modifold.com/mod/${project.slug}`,
         },
         openGraph: {
-            title: t("metadata.openGraph.title", { titlePrefix, title: project.title }),
+            title: `${project.title} — Modifold`,
             description,
             images: [
                 {
@@ -55,7 +50,7 @@ export async function generateMetadata({ params }) {
         },
         twitter: {
             card: "summary_large_image",
-            title: t("metadata.openGraph.title", { titlePrefix, title: project.title }),
+            title: `${project.title} — Modifold`,
             description,
             images: [project.icon_url || DEFAULT_PROJECT_ICON_URL],
         },

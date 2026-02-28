@@ -6,15 +6,22 @@ import ProjectCard from "@/components/project/ProjectCard";
 import { useAuth } from "../providers/AuthProvider";
 import ImageLightbox, { useImageLightbox } from "@/components/ui/ImageLightbox";
 import UserName from "@/components/ui/UserName";
+import Tooltip from "@/components/ui/Tooltip";
 
 const DEFAULT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
-export default function OrganizationPage({ organization, members = [], projects = [] }) {
+export default function OrganizationPage({ organization, members = [], projects = [], my_permissions = null }) {
     const t = useTranslations("Organizations");
     const locale = useLocale();
     const { isLoggedIn, user } = useAuth();
     const { lightboxOpen, lightboxImage, closeLightbox, getLightboxTriggerProps } = useImageLightbox();
-    const canEditOrganization = Boolean(isLoggedIn && user?.id && Number(user.id) === Number(organization?.owner_user_id));
+    const canEditOrganization = Boolean(
+        isLoggedIn && (
+            my_permissions?.is_owner ||
+            my_permissions?.organization_permissions?.includes("organization_edit_details") ||
+            (user?.id && Number(user.id) === Number(organization?.owner_user_id))
+        )
+    );
 
     if(!organization) {
         return null;
@@ -50,6 +57,19 @@ export default function OrganizationPage({ organization, members = [], projects 
                                 </div>
 
                                 <h1 className="subsite-header__name">{organization.name}</h1>
+                                
+                                <span className="badge--developer" style={{ width: "fit-content", marginBottom: "8px" }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-building2-icon lucide-building-2">
+                                        <path d="M10 12h4"></path>
+                                        <path d="M10 8h4"></path>
+                                        <path d="M14 21v-3a2 2 0 0 0-4 0v3"></path>
+                                        <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"></path>
+                                        <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path>
+                                    </svg>
+
+                                    {t("page.organizationBadge")}
+                                </span>
+                                
                                 <p className="subsite-header__description">{organization.summary}</p>
 
                                 {formattedCreatedAt && (
@@ -74,23 +94,38 @@ export default function OrganizationPage({ organization, members = [], projects 
                             <h2>{t("page.membersTitle")}</h2>
                             
                             <div style={{ display: "grid", gap: "10px" }}>
-                                {members.map((member) => (
-                                    <div key={member.user_id} className="author author-card" style={{ "--1ebedaf6": "40px" }}>
-                                        <Link href={`/user/${member.slug}`} className="author__avatar">
-                                            <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "40px", height: "40px", maxWidth: "none" }}>
-                                                <img src={member.avatar || DEFAULT_ICON_URL} className="magnify" alt={member.username} />
-                                            </div>
-                                        </Link>
+                                {members.map((member) => {
+                                    const isOwnerMember = Number(member.user_id) === Number(organization.owner_user_id);
 
-                                        <div className="author__main">
-                                            <Link href={`/user/${member.slug}`} className="author__name">
-                                                <UserName user={member} />
+                                    return (
+                                        <div key={member.user_id} className="author author-card" style={{ "--1ebedaf6": "40px" }}>
+                                            <Link href={`/user/${member.slug}`} className="author__avatar button--active-transform">
+                                                <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "40px", height: "40px", maxWidth: "none" }}>
+                                                    <img src={member.avatar || DEFAULT_ICON_URL} className="magnify" alt={member.username} />
+                                                </div>
                                             </Link>
-                                        </div>
 
-                                        <div className="author__details">{member.role}</div>
-                                    </div>
-                                ))}
+                                            <div className="author__main">
+                                                <Link href={`/user/${member.slug}`} className="author__name">
+                                                    <UserName user={member} />
+                                                </Link>
+                                            </div>
+
+                                            <div className="author__details" style={{ display: "flex", alignItems: "center", overflow: "visible" }}>
+                                                <span>{member.role}</span>
+
+                                                {isOwnerMember && (
+                                                    <Tooltip content={t("page.organizationOwnerTooltip")}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="lucide lucide-crown" viewBox="0 0 24 24" style={{ color: "#e08325", verticalAlign: "middle", fill: "none" }}>
+                                                            <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7z"></path>
+                                                            <path d="M5 20h14"></path>
+                                                        </svg>
+                                                    </Tooltip>
+                                                )}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>

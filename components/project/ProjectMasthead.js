@@ -205,7 +205,7 @@ export default function ProjectMasthead({ project, authToken }) {
                 </div>
 
                 <div className="masthead-buttons">
-                    {user && project.user_id === user.id && (
+                    {user && (project.permissions?.can_edit_details || project.user_id === user.id) && (
                         <Link className="button button--size-m button--type-secondary" href={`/mod/${project.slug}/settings`}>
                             {t("editSettings")}
                         </Link>

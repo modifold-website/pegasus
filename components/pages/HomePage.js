@@ -51,6 +51,7 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
                     slug: project.owner.slug,
                     username: project.owner.username,
                     avatar: project.owner.avatar,
+                    profile_url: project.owner.profile_url || `/user/${project.owner.slug}`,
                     count: 1,
                 });
             }
@@ -137,7 +138,7 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
                                 )}
 
                                 {creatorSpotlight.map((creator) => (
-                                    <Link href={`/user/${creator.slug}`} key={creator.slug} className="mod-badge">
+                                    <Link href={creator.profile_url || `/user/${creator.slug}`} key={creator.slug} className="mod-badge">
                                         <img src={creator.avatar} alt={creator.username} className="mod-avatar" width={64} height={64} />
                                         <span className="mod-name"><UserName user={creator} /></span>
                                     </Link>

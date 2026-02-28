@@ -242,6 +242,152 @@
     display: flex;
     gap: 8px;
 }
+.organization-member-card {
+    margin: 0;
+}
+.organization-member-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+.organization-member-card__identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.organization-member-card__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    object-fit: cover;
+}
+.organization-member-card__name {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 2px;
+}
+.organization-member-card__role-preview {
+    color: var(--theme-color-text-secondary);
+    font-size: 16px;
+    line-height: normal;
+}
+.organization-member-card__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.organization-member-card__status {
+    color: #00af5c;
+    font-weight: 600;
+}
+.organization-member-card__expand .icon {
+    transition: transform 0.2s ease;
+}
+.organization-member-card__expand .icon.rotate {
+    transform: rotate(180deg);
+}
+.organization-member-card__body {
+    margin-top: 14px;
+}
+.organization-member-card__role-field {
+    margin-bottom: 10px;
+}
+.organization-member-card__permissions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.organization-member-card__permission-toggle {
+    border: none;
+    background: transparent;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 6px 0;
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.25;
+    color: var(--theme-color-text-primary);
+    cursor: pointer;
+}
+.organization-member-card__permission-toggle:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.organization-member-card__permission-check {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 9px;
+    border: 2px solid var(--theme-color-border);
+    background: var(--theme-color-background);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+.organization-member-card__permission-check--active {
+    border-color: #00af5c;
+    background: rgb(0 175 92);
+}
+.organization-member-card__permission-check--active svg {
+    fill: none;
+}
+.organization-member-card__permission-toggle:hover .organization-member-card__permission-check:not(.organization-member-card__permission-check--active) {
+    opacity: 0.8;
+}
+.organization-member-card__remove-row {
+    margin-top: 12px;
+}
+@media (max-width: 760px) {
+    .organization-member-card__permissions-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+.mf-tooltip {
+    position: relative;
+    display: inline-flex;
+}
+.mf-tooltip__bubble {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    transform: translateX(-50%);
+    z-index: 20;
+    background: #0d0f14;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .15s ease, visibility .15s ease;
+}
+.mf-tooltip__bubble::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #0d0f14;
+}
+.mf-tooltip:hover .mf-tooltip__bubble,
+.mf-tooltip:focus-within .mf-tooltip__bubble {
+    opacity: 1;
+    visibility: visible;
+}
 .gallery-modal-preview {
     border-radius: 16px;
     overflow: hidden;

@@ -137,6 +137,7 @@
         },
         "creators": "Creadores",
         "owner": "Propietario",
+        "organizationOwner": "Organización",
         "created": "Creado:",
         "id": "ID:",
         "notFound": "Proyecto no encontrado",
@@ -285,7 +286,8 @@
             "notifications": "Notificaciones",
             "settings": "Ajustes",
             "apiTokens": "Tokens API",
-            "verification": "Verificación"
+            "verification": "Verificación",
+            "organizations": "Organizaciones"
         },
         "username": "Nombre de usuario",
         "description": "Descripción",
@@ -399,7 +401,8 @@
             "notFound": "Usuario no encontrado — Modifold",
             "frozen": "Cuenta congelada — Modifold"
         },
-        "remove": "Quitar"
+        "remove": "Quitar",
+        "organizationsTitle": "Organizaciones"
     },
     "SettingsProjectPage": {
         "sidebar": {
@@ -464,6 +467,17 @@
             "actions": {
                 "save": "Guardar",
                 "delete": "Eliminar proyecto"
+            },
+            "organization": {
+                "title": "Organización",
+                "successUpdated": "La organización del proyecto se actualizó",
+                "errors": {
+                    "update": "No se pudo actualizar la organización"
+                },
+                "noOrganization": "Sin organización",
+                "hint": "Vincula este proyecto a una organización para mostrarlo como gestionado por una organización.",
+                "transfer": "Transferir gestión",
+                "transferring": "Transfiriendo..."
             }
         },
         "description": {
@@ -1015,11 +1029,18 @@
             "projectLikeOneMiddle": "le dio like a tu proyecto",
             "projectLikeManyMiddle": "y {count} personas más le dieron like a tu proyecto",
             "projectFallback": "tu proyecto",
-            "unknown": "Nueva notificación"
+            "unknown": "Nueva notificación",
+            "organizationFallback": "organización",
+            "organizationInviteTail": "te invitó a",
+            "organizationRemovedTail": "te eliminó de"
         },
         "errors": {
             "fetch": "No se pudieron cargar las notificaciones",
             "noToken": "No se encontró token de autorización"
+        },
+        "actions": {
+            "accept": "Aceptar",
+            "decline": "Rechazar"
         }
     },
     "VerificationRequestModal": {
@@ -1243,5 +1264,125 @@
             "decision": "No se pudo actualizar el reporte."
         },
         "empty": "No se encontraron reportes con los filtros actuales."
+    },
+    "Organizations": {
+        "dashboard": {
+            "title": "Organizaciones",
+            "create": "Crear organización",
+            "empty": "Aún no perteneces a ninguna organización.",
+            "noSummary": "Sin resumen",
+            "members": "{count, plural, one {# miembro} other {# miembros}}"
+        },
+        "create": {
+            "title": "Creando una organización",
+            "close": "Cerrar",
+            "success": "Organización creada",
+            "fields": {
+                "name": "Nombre",
+                "url": "URL",
+                "summary": "Resumen"
+            },
+            "placeholders": {
+                "name": "Ingresa el nombre de la organización...",
+                "summary": "Una organización para..."
+            },
+            "actions": {
+                "cancel": "Cancelar",
+                "create": "Crear organización",
+                "creating": "Creando..."
+            },
+            "errors": {
+                "generic": "No se pudo crear la organización"
+            }
+        },
+        "page": {
+            "edit": "Editar",
+            "openAvatar": "Abrir avatar",
+            "lightboxLabel": "Visor de imagen de la organización",
+            "openInNewTab": "Abrir imagen en una pestaña nueva",
+            "close": "Cerrar",
+            "membersTitle": "Miembros",
+            "dateCreated": "Fecha de registro: {date}",
+            "membersCount": "{count, plural, one {miembro} other {miembros}}",
+            "projectsCount": "{count, plural, one {proyecto} other {proyectos}}",
+            "emptyProjects": "Esta organización aún no tiene proyectos."
+        },
+        "settings": {
+            "title": "Información de la organización",
+            "membersTitle": "Gestionar miembros",
+            "navOverview": "Resumen",
+            "navMembers": "Miembros",
+            "inviteTitle": "Invitar a un miembro",
+            "invitePlaceholder": "Slug del usuario",
+            "projectPermissions": "Permisos de proyecto",
+            "organizationPermissions": "Permisos de organización",
+            "publicPage": "Página pública",
+            "iconAlt": "Icono de organización {name}",
+            "fields": {
+                "icon": "Icono",
+                "name": "Nombre",
+                "slug": "Slug",
+                "summary": "Resumen"
+            },
+            "actions": {
+                "uploadIcon": "Subir icono",
+                "uploading": "Subiendo...",
+                "save": "Guardar organización",
+                "saving": "Guardando...",
+                "invite": "Invitar",
+                "inviting": "Invitando...",
+                "expand": "Expandir",
+                "collapse": "Colapsar",
+                "saveMember": "Guardar cambios",
+                "removeMember": "Eliminar miembro",
+                "removingMember": "Eliminando..."
+            },
+            "status": {
+                "accepted": "Aceptado",
+                "pending": "Pendiente",
+                "invited": "Invitado",
+                "declined": "Rechazado"
+            },
+            "delete": {
+                "title": "Eliminar organización",
+                "description": "Eliminar la organización borra permanentemente miembros, invitaciones y enlaces de proyectos.",
+                "action": "Eliminar organización",
+                "deleting": "Eliminando...",
+                "confirm": "¿Eliminar esta organización?",
+                "success": "Organización eliminada",
+                "error": "No se pudo eliminar la organización"
+            },
+            "successSaved": "Organización guardada",
+            "successIconUploaded": "Icono de organización subido",
+            "successInviteSent": "Invitación enviada",
+            "successMemberUpdated": "Se actualizó {username}",
+            "successMemberRemoved": "Se eliminó a {username}",
+            "confirmRemoveMember": "¿Eliminar a {username} de la organización?",
+            "errors": {
+                "save": "No se pudo guardar la organización",
+                "iconUpload": "No se pudo subir el icono de la organización",
+                "invite": "No se pudo invitar al usuario",
+                "inviteSlugRequired": "Ingresa el slug del usuario",
+                "memberUpdate": "No se pudo actualizar el miembro",
+                "memberRemove": "No se pudo eliminar el miembro",
+                "fileTooLarge": "El archivo es demasiado grande. Tamaño máximo: 20 MB"
+            }
+        },
+        "permissions": {
+            "project": {
+                "project_edit_details": "Editar detalles",
+                "project_edit_body": "Editar cuerpo",
+                "project_edit_gallery": "Editar galería",
+                "project_manage_versions": "Gestionar versiones",
+                "project_delete": "Eliminar proyecto"
+            },
+            "organization": {
+                "organization_edit_details": "Editar detalles",
+                "organization_manage_invites": "Gestionar invitaciones",
+                "organization_manage_members": "Gestionar miembros",
+                "organization_add_project": "Agregar proyecto",
+                "organization_remove_project": "Eliminar proyecto"
+            }
+        }
     }
 }

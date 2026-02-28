@@ -12,6 +12,7 @@ import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
 
 export default function SettingsAPIPage() {
     const t = useTranslations("SettingsAPIPage");
+    const tSidebar = useTranslations("SettingsBlogPage.sidebar");
     const { isLoggedIn, user } = useAuth();
     const router = useRouter();
 
@@ -119,11 +120,12 @@ export default function SettingsAPIPage() {
                     user={user}
                     profileIconAlt={t("sidebar.profileIconAlt")}
                     labels={{
-                        projects: t("sidebar.projects"),
-                        notifications: t("sidebar.notifications"),
-                        settings: t("sidebar.settings"),
-                        apiTokens: t("sidebar.apiTokens"),
-                        verification: t("sidebar.verification"),
+                        projects: tSidebar("projects"),
+                        organizations: tSidebar("organizations"),
+                        notifications: tSidebar("notifications"),
+                        settings: tSidebar("settings"),
+                        apiTokens: tSidebar("apiTokens"),
+                        verification: tSidebar("verification"),
                     }}
                 />
 
@@ -132,7 +134,7 @@ export default function SettingsAPIPage() {
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
                             <p className="blog-settings__field-title" style={{ marginBottom: "0" }}>{t("title")}</p>
                             
-                            <button type="button" className="button button--size-m button--type-primary" onClick={() => setIsCreateModalOpen(true)}>
+                            <button type="button" className="button button--size-m button--type-primary button--active-transform" onClick={() => setIsCreateModalOpen(true)}>
                                 {t("createToken")}
                             </button>
                         </div>

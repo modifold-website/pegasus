@@ -55,6 +55,8 @@ export default function ProjectCard({ project }) {
         return num;
     };
 
+    const ownerProfileUrl = project.owner?.profile_url || `/user/${project.owner?.slug || ""}`;
+
     return (
         <div className="new-project-card" id={project.slug}>
             <Link className="new-project-card__overlay" href={`/mod/${project.slug}`} aria-label={project.title} />
@@ -65,7 +67,7 @@ export default function ProjectCard({ project }) {
                 <div className="new-project-header">
                     <span className="new-project-title">{project.title}</span>
                     <span className="new-project-author">
-                        {t("by")} <Link className="new-project-author__link" href={`/user/${project.owner.slug}`}><UserName user={project.owner} /></Link>
+                        {t("by")} <Link className="new-project-author__link" href={ownerProfileUrl}><UserName user={project.owner} /></Link>
                     </span>
                 </div>
 

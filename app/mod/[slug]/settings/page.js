@@ -54,14 +54,17 @@ export default async function Page({ params }) {
         );
     }
 
-    const resProject = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, {
-        headers: {
-            Accept: "application/json",
-            Authorization: authToken ? `Bearer ${authToken}` : undefined,
-        },
-    });
+    const settingsData = await res.json();
+    const project = {
+        ...settingsData,
+        organization: settingsData?.organization || null,
+    };
 
-    const project = await resProject.json();
-
-    return <ProjectSettings project={project} authToken={authToken} />;
+    return (
+        <ProjectSettings
+            project={project}
+            organizationOptions={Array.isArray(settingsData?.organization_options) ? settingsData.organization_options : []}
+            authToken={authToken}
+        />
+    );
 }

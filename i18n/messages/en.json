@@ -137,6 +137,7 @@
         },
         "creators": "Creators",
         "owner": "Owner",
+        "organizationOwner": "Organization",
         "created": "Created:",
         "id": "ID:",
         "notFound": "Project not found",
@@ -285,7 +286,8 @@
             "notifications": "Notifications",
             "settings": "Settings",
             "apiTokens": "API Tokens",
-            "verification": "Verification"
+            "verification": "Verification",
+            "organizations": "Organizations"
         },
         "username": "Username",
         "description": "Description",
@@ -399,7 +401,8 @@
             "notFound": "User not found — Modifold",
             "frozen": "Account frozen — Modifold"
         },
-        "remove": "Remove"
+        "remove": "Remove",
+        "organizationsTitle": "Organizations"
     },
     "SettingsProjectPage": {
         "sidebar": {
@@ -464,6 +467,17 @@
             "actions": {
                 "save": "Save",
                 "delete": "Delete Project"
+            },
+            "organization": {
+                "title": "Organization",
+                "successUpdated": "Project organization updated",
+                "errors": {
+                    "update": "Failed to update organization"
+                },
+                "noOrganization": "No organization",
+                "hint": "Attach this project to an organization to display it as organization-owned.",
+                "transfer": "Transfer management",
+                "transferring": "Transferring..."
             }
         },
         "description": {
@@ -1015,11 +1029,18 @@
             "projectLikeOneMiddle": "liked your project",
             "projectLikeManyMiddle": "and {count} others liked your project",
             "projectFallback": "your project",
-            "unknown": "New notification"
+            "unknown": "New notification",
+            "organizationFallback": "organization",
+            "organizationInviteTail": "invited you to",
+            "organizationRemovedTail": "removed you from"
         },
         "errors": {
             "fetch": "Failed to load notifications",
             "noToken": "Authorization token not found"
+        },
+        "actions": {
+            "accept": "Accept",
+            "decline": "Decline"
         }
     },
     "VerificationRequestModal": {
@@ -1243,5 +1264,125 @@
             "decision": "Failed to update report."
         },
         "empty": "No reports found for current filters."
+    },
+    "Organizations": {
+        "dashboard": {
+            "title": "Organizations",
+            "create": "Create organization",
+            "empty": "You are not a member of any organization yet.",
+            "noSummary": "No summary",
+            "members": "{count, plural, one {# member} other {# members}}"
+        },
+        "create": {
+            "title": "Creating an organization",
+            "close": "Close",
+            "success": "Organization created",
+            "fields": {
+                "name": "Name",
+                "url": "URL",
+                "summary": "Summary"
+            },
+            "placeholders": {
+                "name": "Enter organization name...",
+                "summary": "An organization for..."
+            },
+            "actions": {
+                "cancel": "Cancel",
+                "create": "Create organization",
+                "creating": "Creating..."
+            },
+            "errors": {
+                "generic": "Failed to create organization"
+            }
+        },
+        "page": {
+            "edit": "Edit",
+            "openAvatar": "Open avatar",
+            "lightboxLabel": "Organization image viewer",
+            "openInNewTab": "Open image in new tab",
+            "close": "Close",
+            "membersTitle": "Members",
+            "dateCreated": "Date registered: {date}",
+            "membersCount": "{count, plural, one {member} other {members}}",
+            "projectsCount": "{count, plural, one {project} other {projects}}",
+            "emptyProjects": "This organization doesn't have projects yet."
+        },
+        "settings": {
+            "title": "Organization information",
+            "membersTitle": "Manage members",
+            "navOverview": "Overview",
+            "navMembers": "Members",
+            "inviteTitle": "Invite a member",
+            "invitePlaceholder": "User slug",
+            "projectPermissions": "Project permissions",
+            "organizationPermissions": "Organization permissions",
+            "publicPage": "Public page",
+            "iconAlt": "Organization icon {name}",
+            "fields": {
+                "icon": "Icon",
+                "name": "Name",
+                "slug": "Slug",
+                "summary": "Summary"
+            },
+            "actions": {
+                "uploadIcon": "Upload icon",
+                "uploading": "Uploading...",
+                "save": "Save organization",
+                "saving": "Saving...",
+                "invite": "Invite",
+                "inviting": "Inviting...",
+                "expand": "Expand",
+                "collapse": "Collapse",
+                "saveMember": "Save changes",
+                "removeMember": "Remove member",
+                "removingMember": "Removing..."
+            },
+            "status": {
+                "accepted": "Accepted",
+                "pending": "Pending",
+                "invited": "Invited",
+                "declined": "Declined"
+            },
+            "delete": {
+                "title": "Delete organization",
+                "description": "Deleting the organization permanently removes members, invites and project links.",
+                "action": "Delete organization",
+                "deleting": "Deleting...",
+                "confirm": "Delete this organization?",
+                "success": "Organization deleted",
+                "error": "Failed to delete organization"
+            },
+            "successSaved": "Organization saved",
+            "successIconUploaded": "Organization icon uploaded",
+            "successInviteSent": "Invite sent",
+            "successMemberUpdated": "Updated {username}",
+            "successMemberRemoved": "Removed {username}",
+            "confirmRemoveMember": "Remove {username} from organization?",
+            "errors": {
+                "save": "Failed to save organization",
+                "iconUpload": "Failed to upload organization icon",
+                "invite": "Failed to invite user",
+                "inviteSlugRequired": "Enter user slug",
+                "memberUpdate": "Failed to update member",
+                "memberRemove": "Failed to remove member",
+                "fileTooLarge": "File is too large. Maximum size is 20 MB"
+            }
+        },
+        "permissions": {
+            "project": {
+                "project_edit_details": "Edit details",
+                "project_edit_body": "Edit body",
+                "project_edit_gallery": "Edit gallery",
+                "project_manage_versions": "Manage versions",
+                "project_delete": "Delete project"
+            },
+            "organization": {
+                "organization_edit_details": "Edit details",
+                "organization_manage_invites": "Manage invites",
+                "organization_manage_members": "Manage members",
+                "organization_add_project": "Add project",
+                "organization_remove_project": "Remove project"
+            }
+        }
     }
 }

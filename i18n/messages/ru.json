@@ -137,6 +137,7 @@
         },
         "creators": "Авторы",
         "owner": "Владелец",
+        "organizationOwner": "Организация",
         "created": "Создан:",
         "id": "ID:",
         "notFound": "Проект не найден",
@@ -285,7 +286,8 @@
             "notifications": "Уведомления",
             "settings": "Настройки",
             "apiTokens": "API‑токены",
-            "verification": "Верификация"
+            "verification": "Верификация",
+            "organizations": "Организации"
         },
         "username": "Имя пользователя",
         "description": "Описание",
@@ -399,7 +401,8 @@
             "notFound": "Пользователь не найден — Modifold",
             "frozen": "Аккаунт заморожен — Modifold"
         },
-        "remove": "Убрать"
+        "remove": "Убрать",
+        "organizationsTitle": "Организации"
     },
     "SettingsProjectPage": {
         "sidebar": {
@@ -464,6 +467,17 @@
             "actions": {
                 "save": "Сохранить",
                 "delete": "Удалить проект"
+            },
+            "organization": {
+                "title": "Организация",
+                "successUpdated": "Организация проекта обновлена",
+                "errors": {
+                    "update": "Не удалось обновить организацию"
+                },
+                "noOrganization": "Без организации",
+                "hint": "Привяжите проект к организации, чтобы он отображался как проект организации.",
+                "transfer": "Передать управление",
+                "transferring": "Передача..."
             }
         },
         "description": {
@@ -1015,11 +1029,18 @@
             "projectLikeOneMiddle": "поставил лайк вашему проекту",
             "projectLikeManyMiddle": "и ещё {count} пользователей поставили лайк вашему проекту",
             "projectFallback": "вашему проекту",
-            "unknown": "Новое уведомление"
+            "unknown": "Новое уведомление",
+            "organizationFallback": "организацию",
+            "organizationInviteTail": "пригласил(а) вас в",
+            "organizationRemovedTail": "удалил(а) вас из"
         },
         "errors": {
             "fetch": "Не удалось загрузить уведомления",
             "noToken": "Токен авторизации не найден"
+        },
+        "actions": {
+            "accept": "Принять",
+            "decline": "Отклонить"
         }
     },
     "VerificationRequestModal": {
@@ -1243,5 +1264,125 @@
             "decision": "Не удалось обновить жалобу."
         },
         "empty": "По текущим фильтрам жалобы не найдены."
+    },
+    "Organizations": {
+        "dashboard": {
+            "title": "Организации",
+            "create": "Создать организацию",
+            "empty": "Вы пока не состоите ни в одной организации.",
+            "noSummary": "Нет описания",
+            "members": "{count, plural, one {# участник} few {# участника} many {# участников} other {# участника}}"
+        },
+        "create": {
+            "title": "Создание организации",
+            "close": "Закрыть",
+            "success": "Организация создана",
+            "fields": {
+                "name": "Название",
+                "url": "URL",
+                "summary": "Краткое описание"
+            },
+            "placeholders": {
+                "name": "Введите название организации...",
+                "summary": "Организация для..."
+            },
+            "actions": {
+                "cancel": "Отмена",
+                "create": "Создать организацию",
+                "creating": "Создание..."
+            },
+            "errors": {
+                "generic": "Не удалось создать организацию"
+            }
+        },
+        "page": {
+            "edit": "Редактировать",
+            "openAvatar": "Открыть аватар",
+            "lightboxLabel": "Просмотр изображения организации",
+            "openInNewTab": "Открыть изображение в новой вкладке",
+            "close": "Закрыть",
+            "membersTitle": "Участники",
+            "dateCreated": "Дата регистрации: {date}",
+            "membersCount": "{count, plural, one {участник} few {участника} many {участников} other {участника}}",
+            "projectsCount": "{count, plural, one {проект} few {проекта} many {проектов} other {проекта}}",
+            "emptyProjects": "В этой организации пока нет проектов."
+        },
+        "settings": {
+            "title": "Информация об организации",
+            "membersTitle": "Управление участниками",
+            "navOverview": "Обзор",
+            "navMembers": "Участники",
+            "inviteTitle": "Пригласить участника",
+            "invitePlaceholder": "Slug пользователя",
+            "projectPermissions": "Права проекта",
+            "organizationPermissions": "Права организации",
+            "publicPage": "Публичная страница",
+            "iconAlt": "Иконка организации {name}",
+            "fields": {
+                "icon": "Иконка",
+                "name": "Название",
+                "slug": "Слаг",
+                "summary": "Краткое описание"
+            },
+            "actions": {
+                "uploadIcon": "Загрузить иконку",
+                "uploading": "Загрузка...",
+                "save": "Сохранить организацию",
+                "saving": "Сохранение...",
+                "invite": "Пригласить",
+                "inviting": "Приглашение...",
+                "expand": "Развернуть",
+                "collapse": "Свернуть",
+                "saveMember": "Сохранить изменения",
+                "removeMember": "Удалить участника",
+                "removingMember": "Удаление..."
+            },
+            "status": {
+                "accepted": "Принят",
+                "pending": "Ожидание",
+                "invited": "Приглашен",
+                "declined": "Отклонен"
+            },
+            "delete": {
+                "title": "Удаление организации",
+                "description": "Удаление организации навсегда удалит участников, приглашения и привязки проектов.",
+                "action": "Удалить организацию",
+                "deleting": "Удаление...",
+                "confirm": "Удалить эту организацию?",
+                "success": "Организация удалена",
+                "error": "Не удалось удалить организацию"
+            },
+            "successSaved": "Организация сохранена",
+            "successIconUploaded": "Иконка организации загружена",
+            "successInviteSent": "Приглашение отправлено",
+            "successMemberUpdated": "Обновлен участник {username}",
+            "successMemberRemoved": "Участник {username} удалён",
+            "confirmRemoveMember": "Удалить участника {username} из организации?",
+            "errors": {
+                "save": "Не удалось сохранить организацию",
+                "iconUpload": "Не удалось загрузить иконку организации",
+                "invite": "Не удалось пригласить пользователя",
+                "inviteSlugRequired": "Введите slug пользователя",
+                "memberUpdate": "Не удалось обновить участника",
+                "memberRemove": "Не удалось удалить участника",
+                "fileTooLarge": "Файл слишком большой. Максимальный размер 20 МБ"
+            }
+        },
+        "permissions": {
+            "project": {
+                "project_edit_details": "Редактировать детали",
+                "project_edit_body": "Редактировать описание",
+                "project_edit_gallery": "Редактировать галерею",
+                "project_manage_versions": "Управлять версиями",
+                "project_delete": "Удалить проект"
+            },
+            "organization": {
+                "organization_edit_details": "Редактировать организацию",
+                "organization_manage_invites": "Управлять приглашениями",
+                "organization_manage_members": "Управлять участниками",
+                "organization_add_project": "Добавлять проекты",
+                "organization_remove_project": "Удалять проекты"
+            }
+        }
     }
 }

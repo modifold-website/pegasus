@@ -15,6 +15,8 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
     const licensedAs = t("licensedAs", { license: licenseToken });
     const [licensedAsBefore, licensedAsAfter = ""] = licensedAs.split(licenseToken);
     const licensedHasToken = licensedAs.includes(licenseToken);
+    const ownerProfileUrl = project.owner?.profile_url || `/user/${project.owner?.slug || ""}`;
+    const ownerIsUser = project.owner?.type !== "organization";
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -27,7 +29,27 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
                 <h2>{t("creators")}</h2>
 
                 <div style={{ display: "flex", gap: "12px", flexDirection: "column" }}>
-                    {project.members && project.members.length > 0 ? (
+                    {project.owner?.type === "organization" ? (
+                        <div className="author author-card" style={{ "--1ebedaf6": "40px" }}>
+                            <Link className="author__avatar" href={ownerProfileUrl}>
+                                <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "40px", height: "40px", maxWidth: "none" }}>
+                                    <img src={project.owner.avatar} className="magnify" alt={t("ownerAvatarAlt", { username: project.owner.username })} />
+                                </div>
+                            </Link>
+
+                            <div className="author__main">
+                                <Link className="author__name" href={ownerProfileUrl}>
+                                    <UserName user={project.owner} />
+                                </Link>
+                            </div>
+
+                            <div className="author__details">
+                                <div className="comment__detail" style={{ display: "flex", alignItems: "center", gap: "2px" }}>
+                                    <time style={{ lineHeight: "normal" }}>{t("organizationOwner")}</time>
+                                </div>
+                            </div>
+                        </div>
+                    ) : project.members && project.members.length > 0 ? (
                         project.members.map((member) => (
                             <div key={member.user_id} className="author author-card" style={{ "--1ebedaf6": "40px" }}>
                                 <Link className="author__avatar" href={`/user/${member.slug}`}>
@@ -46,7 +68,7 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
                                     <div className="comment__detail" style={{ display: "flex", alignItems: "center", gap: "2px" }}>
                                         <time style={{ lineHeight: "normal" }}>{member.role}</time>
                                         
-                                        {project.owner.slug === member.slug && (
+                                        {ownerIsUser && project.owner.slug === member.slug && (
                                             <svg style={{ fill: "none", color: "#f0a530" }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-crown-icon lucide-crown">
                                                 <path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z" />
                                                 <path d="M5 21h14" />
@@ -58,14 +80,14 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
                         ))
                     ) : (
                         <div className="author author-card" style={{ "--1ebedaf6": "40px" }}>
-                            <Link className="author__avatar" href={`/user/${project.owner.slug}`}>
+                            <Link className="author__avatar" href={ownerProfileUrl}>
                                 <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "40px", height: "40px", maxWidth: "none" }}>
                                     <img src={project.owner.avatar} className="magnify" alt={t("ownerAvatarAlt", { username: project.owner.username })} />
                                 </div>
                             </Link>
 
                             <div className="author__main">
-                                <Link className="author__name" href={`/user/${project.owner.slug}`}>
+                                <Link className="author__name" href={ownerProfileUrl}>
                                     <UserName user={project.owner} />
                                 </Link>
                             </div>

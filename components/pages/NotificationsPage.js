@@ -188,6 +188,36 @@ export default function NotificationsPage({ authToken }) {
             );
         }
 
+        if(notification.eventType === "organization_invite") {
+            const organizationName = notification.organization?.name || t("messages.organizationFallback");
+            const organizationView = notification.organization?.slug ? (
+                <Link href={`/organization/${notification.organization.slug}`}><b>{organizationName}</b></Link>
+            ) : (
+                <b>{organizationName}</b>
+            );
+
+            return (
+                <>
+                    {firstActorView} {t("messages.organizationInviteTail")} {organizationView}
+                </>
+            );
+        }
+
+        if(notification.eventType === "organization_member_removed") {
+            const organizationName = notification.organization?.name || t("messages.organizationFallback");
+            const organizationView = notification.organization?.slug ? (
+                <Link href={`/organization/${notification.organization.slug}`}><b>{organizationName}</b></Link>
+            ) : (
+                <b>{organizationName}</b>
+            );
+
+            return (
+                <>
+                    {firstActorView} {t("messages.organizationRemovedTail")} {organizationView}
+                </>
+            );
+        }
+
         return t("messages.unknown");
     };
 
@@ -245,6 +275,42 @@ export default function NotificationsPage({ authToken }) {
         return (
             <div key={notification.id} className="notification-item">
                 {content}
+
+                {notification.eventType === "organization_invite" && notification.inviteId && (
+                    <div style={{ display: "flex", gap: "8px", marginLeft: "auto" }}>
+                        <button
+                            className="button button--size-s button--type-primary"
+                            onClick={async () => {
+                                try {
+                                    await axios.post(`${process.env.NEXT_PUBLIC_API_BASE}/organizations/invites/${notification.inviteId}/accept`, {}, {
+                                        headers: { Authorization: `Bearer ${authToken || localStorage.getItem("authToken")}` },
+                                    });
+                                    setNotifications((prev) => prev.filter((item) => item.id !== notification.id));
+                                } catch {
+                                    setError(t("errors.fetch"));
+                                }
+                            }}
+                        >
+                            {t("actions.accept")}
+                        </button>
+                        
+                        <button
+                            className="button button--size-s button--type-secondary"
+                            onClick={async () => {
+                                try {
+                                    await axios.post(`${process.env.NEXT_PUBLIC_API_BASE}/organizations/invites/${notification.inviteId}/decline`, {}, {
+                                        headers: { Authorization: `Bearer ${authToken || localStorage.getItem("authToken")}` },
+                                    });
+                                    setNotifications((prev) => prev.filter((item) => item.id !== notification.id));
+                                } catch {
+                                    setError(t("errors.fetch"));
+                                }
+                            }}
+                        >
+                            {t("actions.decline")}
+                        </button>
+                    </div>
+                )}
             </div>
         );
     };
@@ -257,6 +323,7 @@ export default function NotificationsPage({ authToken }) {
                     profileIconAlt={t("sidebarAvatarAlt", { username: user?.username || "" })}
                     labels={{
                         projects: tSidebar("projects"),
+                        organizations: tSidebar("organizations"),
                         notifications: tSidebar("notifications"),
                         settings: tSidebar("settings"),
                         apiTokens: tSidebar("apiTokens"),

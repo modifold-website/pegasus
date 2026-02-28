@@ -57,6 +57,7 @@ export default function ProjectCardMedia({ project }) {
 
     const featuredImage = project?.gallery?.find((image) => image?.featured === 1) || project?.gallery?.[0] || null;
     const coverUrl = featuredImage?.url || null;
+    const ownerProfileUrl = project.owner?.profile_url || `/user/${project.owner?.slug || ""}`;
 
     return (
         <Link className="media-project-card" href={`/mod/${project.slug}`} id={project.slug}>
@@ -74,7 +75,7 @@ export default function ProjectCardMedia({ project }) {
                         <div className="media-project-title-row">
                             <span className="media-project-title">{project.title}</span>
                             <span className="media-project-author">
-                                {t("by")} <Link href={`/user/${project.owner.slug}`}><UserName user={project.owner} /></Link>
+                                {t("by")} <Link href={ownerProfileUrl}><UserName user={project.owner} /></Link>
                             </span>
                         </div>
 

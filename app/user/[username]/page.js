@@ -67,13 +67,18 @@ export default async function Page({ params, searchParams }) {
         next: { revalidate: 60, tags: [`user:${username}:projects:${currentProjectsPage}`] },
     };
 
-    const [banRes, projectsRes] = await Promise.all([
+    const [banRes, projectsRes, organizationsRes] = await Promise.all([
         fetch(`${process.env.NEXT_PUBLIC_API_BASE}/bans/${user.id}`, banFetchOptions),
         fetch(`${process.env.NEXT_PUBLIC_API_BASE}/users/${username}/projects?page=${currentProjectsPage}&limit=20`, projectsFetchOptions),
+        fetch(`${process.env.NEXT_PUBLIC_API_BASE}/users/${username}/organizations`, {
+            headers: { Accept: "application/json" },
+            next: { revalidate: 60, tags: [`user:${username}:organizations`] },
+        }),
     ]);
 
     const banData = banRes.ok ? await banRes.json() : { isBanned: false };
     const projectsData = projectsRes.ok ? await projectsRes.json() : { projects: [], totalPages: 1, currentPage: currentProjectsPage };
+    const organizationsData = organizationsRes.ok ? await organizationsRes.json() : { organizations: [] };
 
     let isSubscribed = false;
     let subscriptionId = null;
@@ -102,6 +107,7 @@ export default async function Page({ params, searchParams }) {
             subscriptionId={subscriptionId}
             authToken={authToken}
             projects={projectsData.projects || []}
+            organizations={organizationsData.organizations || []}
             currentPage={projectsData.currentPage || currentProjectsPage}
             totalPages={projectsData.totalPages || 1}
         />

@@ -12,6 +12,7 @@ import Modal from "react-modal";
 import ImageLightbox, { useImageLightbox } from "../ui/ImageLightbox";
 import RoleBadge from "../ui/RoleBadge";
 import ProfileSubscriptionsModal from "@/modal/ProfileSubscriptionsModal";
+import Tooltip from "@/components/ui/Tooltip";
 
 if(typeof window !== "undefined") {
     Modal.setAppElement("body");
@@ -95,7 +96,7 @@ const formatDate = (timestamp, locale) => {
     return `${day} ${month} ${hours}:${minutes}`;
 };
 
-export default function ProfilePage({ user, isBanned, isSubscribed: initialSubscribed, subscriptionId: initialSubId, authToken, projects = [], currentPage = 1, totalPages = 1 }) {
+export default function ProfilePage({ user, isBanned, isSubscribed: initialSubscribed, subscriptionId: initialSubId, authToken, projects = [], organizations = [], currentPage = 1, totalPages = 1 }) {
     const t = useTranslations("ProfilePage");
     const locale = useLocale();
     const { isLoggedIn, user: currentUser } = useAuth();
@@ -242,104 +243,122 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
         <>
             <div className="layout">
                 <div className="browse-page">
-                    <div className="subsite-header" style={{ width: "300px", maxWidth: "300px" }}>
-                        <div className="subsite-header__padding">
-                            <div className="subsite-header__header">
-                                <div className="subsite-avatar subsite-header__avatar">
-                                    <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--cropped andropov-image andropov-image--zoom subsite-avatar__image" style={{ backgroundColor: "#151824", aspectRatio: "1.5 / 1", maxWidth: "none" }} aria-label={t("openAvatar")} {...getLightboxTriggerProps({ url: authorAva, title: authorTitle })}>
-                                        <img className="magnify" src={authorAva} alt={authorTitle} />
+                    <div style={{ width: "300px", maxWidth: "300px", display: "grid", gap: "12px" }}>
+                        <div className="subsite-header">
+                            <div className="subsite-header__padding">
+                                <div className="subsite-header__header">
+                                    <div className="subsite-avatar subsite-header__avatar">
+                                        <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--cropped andropov-image andropov-image--zoom subsite-avatar__image" style={{ aspectRatio: "1.5 / 1", maxWidth: "none" }} aria-label={t("openAvatar")} {...getLightboxTriggerProps({ url: authorAva, title: authorTitle })}>
+                                            <img className="magnify" src={authorAva} alt={authorTitle} />
+                                        </div>
                                     </div>
-                                </div>
 
-                                {isLoggedIn && (
-                                    <div className="subsite-header__controls">
-                                        {currentUser.id === user.id ? (
-                                            <Link href="/settings" className="button button--size-m button--type-minimal">{t("edit")}</Link>
-                                        ) : (
-                                            <>
-                                                <button className="button button--size-m button--type-primary" style={{ display: isSubscribed ? "none" : "block" }} onClick={handleSubscribe}>{t("subscribe")}</button>
+                                    {isLoggedIn && (
+                                        <div className="subsite-header__controls">
+                                            {currentUser.id === user.id ? (
+                                                <Link href="/settings" className="button button--size-m button--type-minimal button--active-transform">{t("edit")}</Link>
+                                            ) : (
+                                                <>
+                                                    <button className="button button--size-m button--type-primary" style={{ display: isSubscribed ? "none" : "block" }} onClick={handleSubscribe}>{t("subscribe")}</button>
 
-                                                <button className="button button--size-m button--type-minimal" style={{ display: isSubscribed ? "block" : "none" }} onClick={handleSubscribe}>{t("subscribed")}</button>
-                                            </>
-                                        )}
+                                                    <button className="button button--size-m button--type-minimal" style={{ display: isSubscribed ? "block" : "none" }} onClick={handleSubscribe}>{t("subscribed")}</button>
+                                                </>
+                                            )}
 
-                                        {!isOwnProfile && (
-                                            <div className="content-header__actions" style={{ position: "relative", right: "0" }}>
-                                                <button ref={buttonRef} className="icon-button content__etc" type="button" onClick={togglePopover} aria-label={t("moreActionsAria")}>
-                                                    <svg viewBox="0 0 24 24" className="icon icon--dots" height="24" width="24">
-                                                        <path fillRule="evenodd" clipRule="evenodd" d="M5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM19 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor" />
-                                                    </svg>
-                                                </button>
+                                            {!isOwnProfile && (
+                                                <div className="content-header__actions" style={{ position: "relative", right: "0" }}>
+                                                    <button ref={buttonRef} className="icon-button content__etc" type="button" onClick={togglePopover} aria-label={t("moreActionsAria")}>
+                                                        <svg viewBox="0 0 24 24" className="icon icon--dots" height="24" width="24">
+                                                            <path fillRule="evenodd" clipRule="evenodd" d="M5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM19 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor" />
+                                                        </svg>
+                                                    </button>
 
-                                                {isPopoverOpen && (
-                                                    <div id="popover-overlay" className="popover-overlay">
-                                                        <div ref={popoverRef} className="popover" tabIndex={0} style={{ "--width": "207px", "--top": "45px", "--position": "absolute", "--left": "auto", "--right": "15px", "--bottom": "auto", "--distance": "8px" }}>
-                                                            <div className="popover__scrollable" style={{ "--max-height": "auto" }}>
-                                                                <div className="context-list-option">
-                                                                    <div className="context-list-option__label">{t("moreActionsPlaceholder")}</div>
+                                                    {isPopoverOpen && (
+                                                        <div id="popover-overlay" className="popover-overlay">
+                                                            <div ref={popoverRef} className="popover" tabIndex={0} style={{ "--width": "207px", "--top": "45px", "--position": "absolute", "--left": "auto", "--right": "15px", "--bottom": "auto", "--distance": "8px" }}>
+                                                                <div className="popover__scrollable" style={{ "--max-height": "auto" }}>
+                                                                    <div className="context-list-option">
+                                                                        <div className="context-list-option__label">{t("moreActionsPlaceholder")}</div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
-                            </div>
-
-                            <h1 className="subsite-header__name" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                                <UserName showVerifiedIcon={false} user={isBanned ? { username: authorTitle } : user} />
-
-                                {user.isVerified === 1 && (
-                                    <img onClick={() => setIsVerifiedModalOpen(true)} src="/badges/verified.png" alt="Verified" style={{ width: "18px", height: "18px", cursor: "pointer" }} />
-                                )}
-                            </h1>
-
-                            <RoleBadge
-                                role={user.isRole}
-                                labels={{
-                                    developer: t("role.developer"),
-                                    team: t("role.team"),
-                                }}
-                            />
-
-                            <p className="subsite-header__description">{desc}</p>
-
-                            <div class="subsite-header__cols">
-                                <div class="subsite-header__date-created">{t("joined")} {formatDate(user.created_at, locale)}</div>
-                            </div>
-
-                            <div class="subsite-followers">
-                                <button type="button" className={`subsite-followers__item subsite-followers__item--button ${countSubs < 1 ? "subsite-followers__item--disabled" : ""}`} onClick={() => handleOpenFollowModal("subscribers")} disabled={countSubs < 1}>
-                                    <span>{countSubs}</span> {t("subscribersLabel", { count: countSubs })}
-                                </button>
-
-                                <button type="button" className={`subsite-followers__item subsite-followers__item--button ${countUserSubs < 1 ? "subsite-followers__item--disabled" : ""}`} onClick={() => handleOpenFollowModal("subscriptions")} disabled={countUserSubs < 1}>
-                                    <span>{countUserSubs}</span> {t("subscriptionsLabel", { count: countUserSubs })}
-                                </button>
-                            </div>
-
-                            {user.social_links && Object.keys(user.social_links).length > 0 && (
-                                <div className="subsite-social-links">
-                                    <div className="social-links__list">
-                                        {Object.entries(user.social_links).map(([key, url]) => {
-                                            const safeUrl = getSafeExternalUrl(url);
-                                            return safeUrl ? (
-                                                <a key={key} href={safeUrl} target="_blank" rel="noopener noreferrer" className="social-links__item" title={key.charAt(0).toUpperCase() + key.slice(1)}>
-                                                    {socialIcons[key] || (
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                                                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                                                        </svg>
                                                     )}
-                                                </a>
-                                            ) : null;
-                                        })}
-                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
-                            )}
+
+                                <h1 className="subsite-header__name" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                                    <UserName showVerifiedIcon={false} user={isBanned ? { username: authorTitle } : user} />
+
+                                    {user.isVerified === 1 && (
+                                        <img onClick={() => setIsVerifiedModalOpen(true)} src="/badges/verified.png" alt="Verified" style={{ width: "18px", height: "18px", cursor: "pointer" }} />
+                                    )}
+                                </h1>
+
+                                <RoleBadge
+                                    role={user.isRole}
+                                    labels={{
+                                        developer: t("role.developer"),
+                                        team: t("role.team"),
+                                    }}
+                                />
+
+                                <p className="subsite-header__description">{desc}</p>
+
+                                <div class="subsite-header__cols">
+                                    <div class="subsite-header__date-created">{t("joined")} {formatDate(user.created_at, locale)}</div>
+                                </div>
+
+                                <div class="subsite-followers">
+                                    <button type="button" className={`subsite-followers__item subsite-followers__item--button ${countSubs < 1 ? "subsite-followers__item--disabled" : ""}`} onClick={() => handleOpenFollowModal("subscribers")} disabled={countSubs < 1}>
+                                        <span>{countSubs}</span> {t("subscribersLabel", { count: countSubs })}
+                                    </button>
+
+                                    <button type="button" className={`subsite-followers__item subsite-followers__item--button ${countUserSubs < 1 ? "subsite-followers__item--disabled" : ""}`} onClick={() => handleOpenFollowModal("subscriptions")} disabled={countUserSubs < 1}>
+                                        <span>{countUserSubs}</span> {t("subscriptionsLabel", { count: countUserSubs })}
+                                    </button>
+                                </div>
+
+                                {user.social_links && Object.keys(user.social_links).length > 0 && (
+                                    <div className="subsite-social-links">
+                                        <div className="social-links__list">
+                                            {Object.entries(user.social_links).map(([key, url]) => {
+                                                const safeUrl = getSafeExternalUrl(url);
+                                                return safeUrl ? (
+                                                    <a key={key} href={safeUrl} target="_blank" rel="noopener noreferrer" className="social-links__item" title={key.charAt(0).toUpperCase() + key.slice(1)}>
+                                                        {socialIcons[key] || (
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                                                            </svg>
+                                                        )}
+                                                    </a>
+                                                ) : null;
+                                            })}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
+
+                        {organizations.length > 0 && (
+                            <div className="content content--padding">
+                                <h2>{t("organizationsTitle")}</h2>
+                                
+                                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                                    {organizations.map((organization) => (
+                                        <Tooltip key={organization.id} content={organization.name}>
+                                            <Link href={`/organization/${organization.slug}`} style={{ display: "inline-flex" }}>
+                                                <img src={organization.icon_url} alt={organization.name} style={{ width: "34px", height: "34px", borderRadius: "8px", objectFit: "cover" }} />
+                                            </Link>
+                                        </Tooltip>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
 
                         <ImageLightbox isOpen={lightboxOpen} image={lightboxImage} onClose={closeLightbox} dialogLabel={t("lightboxLabel")} closeLabel={t("close")} openInNewTabLabel={t("openInNewTab")} fallbackAlt={authorTitle} />
                     </div>

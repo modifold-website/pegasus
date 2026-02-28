@@ -137,6 +137,7 @@
         },
         "creators": "Автори",
         "owner": "Власник",
+        "organizationOwner": "Організація",
         "created": "Створено:",
         "id": "ID:",
         "notFound": "Проєкт не знайдено",
@@ -285,7 +286,8 @@
             "notifications": "Сповіщення",
             "settings": "Налаштування",
             "apiTokens": "API-токени",
-            "verification": "Верифікація"
+            "verification": "Верифікація",
+            "organizations": "Організації"
         },
         "username": "Ім’я користувача",
         "description": "Опис",
@@ -399,7 +401,8 @@
             "notFound": "Користувача не знайдено — Modifold",
             "frozen": "Акаунт заморожено — Modifold"
         },
-        "remove": "Прибрати"
+        "remove": "Прибрати",
+        "organizationsTitle": "Організації"
     },
     "SettingsProjectPage": {
         "sidebar": {
@@ -464,6 +467,17 @@
             "actions": {
                 "save": "Зберегти",
                 "delete": "Видалити проєкт"
+            },
+            "organization": {
+                "title": "Організація",
+                "successUpdated": "Організацію проєкту оновлено",
+                "errors": {
+                    "update": "Не вдалося оновити організацію"
+                },
+                "noOrganization": "Без організації",
+                "hint": "Привʼяжіть цей проєкт до організації, щоб він відображався як організаційний.",
+                "transfer": "Передати керування",
+                "transferring": "Передача..."
             }
         },
         "description": {
@@ -1015,11 +1029,18 @@
             "projectLikeOneMiddle": "вподобав ваш проєкт",
             "projectLikeManyMiddle": "та ще {count} користувачів вподобали ваш проєкт",
             "projectFallback": "ваш проєкт",
-            "unknown": "Нове сповіщення"
+            "unknown": "Нове сповіщення",
+            "organizationFallback": "організацію",
+            "organizationInviteTail": "запросив(ла) вас до",
+            "organizationRemovedTail": "видалив(ла) вас з"
         },
         "errors": {
             "fetch": "Не вдалося завантажити сповіщення",
             "noToken": "Токен авторизації не знайдено"
+        },
+        "actions": {
+            "accept": "Прийняти",
+            "decline": "Відхилити"
         }
     },
     "VerificationRequestModal": {
@@ -1243,5 +1264,125 @@
             "decision": "Не вдалося оновити скаргу."
         },
         "empty": "За поточними фільтрами скарг не знайдено."
+    },
+    "Organizations": {
+        "dashboard": {
+            "title": "Організації",
+            "create": "Створити організацію",
+            "empty": "Ви ще не є учасником жодної організації.",
+            "noSummary": "Немає опису",
+            "members": "{count, plural, one {# учасник} few {# учасники} many {# учасників} other {# учасника}}"
+        },
+        "create": {
+            "title": "Створення організації",
+            "close": "Закрити",
+            "success": "Організацію створено",
+            "fields": {
+                "name": "Назва",
+                "url": "URL",
+                "summary": "Короткий опис"
+            },
+            "placeholders": {
+                "name": "Введіть назву організації...",
+                "summary": "Організація для..."
+            },
+            "actions": {
+                "cancel": "Скасувати",
+                "create": "Створити організацію",
+                "creating": "Створення..."
+            },
+            "errors": {
+                "generic": "Не вдалося створити організацію"
+            }
+        },
+        "page": {
+            "edit": "Редагувати",
+            "openAvatar": "Відкрити аватар",
+            "lightboxLabel": "Перегляд зображення організації",
+            "openInNewTab": "Відкрити зображення в новій вкладці",
+            "close": "Закрити",
+            "membersTitle": "Учасники",
+            "dateCreated": "Дата реєстрації: {date}",
+            "membersCount": "{count, plural, one {учасник} few {учасники} many {учасників} other {учасника}}",
+            "projectsCount": "{count, plural, one {проєкт} few {проєкти} many {проєктів} other {проєкта}}",
+            "emptyProjects": "У цієї організації ще немає проєктів."
+        },
+        "settings": {
+            "title": "Інформація про організацію",
+            "membersTitle": "Керування учасниками",
+            "navOverview": "Огляд",
+            "navMembers": "Учасники",
+            "inviteTitle": "Запросити учасника",
+            "invitePlaceholder": "Slug користувача",
+            "projectPermissions": "Права проєкту",
+            "organizationPermissions": "Права організації",
+            "publicPage": "Публічна сторінка",
+            "iconAlt": "Іконка організації {name}",
+            "fields": {
+                "icon": "Іконка",
+                "name": "Назва",
+                "slug": "Слаг",
+                "summary": "Короткий опис"
+            },
+            "actions": {
+                "uploadIcon": "Завантажити іконку",
+                "uploading": "Завантаження...",
+                "save": "Зберегти організацію",
+                "saving": "Збереження...",
+                "invite": "Запросити",
+                "inviting": "Запрошення...",
+                "expand": "Розгорнути",
+                "collapse": "Згорнути",
+                "saveMember": "Зберегти зміни",
+                "removeMember": "Видалити учасника",
+                "removingMember": "Видалення..."
+            },
+            "status": {
+                "accepted": "Прийнято",
+                "pending": "В очікуванні",
+                "invited": "Запрошено",
+                "declined": "Відхилено"
+            },
+            "delete": {
+                "title": "Видалення організації",
+                "description": "Видалення організації назавжди видалить учасників, запрошення та прив'язки проєктів.",
+                "action": "Видалити організацію",
+                "deleting": "Видалення...",
+                "confirm": "Видалити цю організацію?",
+                "success": "Організацію видалено",
+                "error": "Не вдалося видалити організацію"
+            },
+            "successSaved": "Організацію збережено",
+            "successIconUploaded": "Іконку організації завантажено",
+            "successInviteSent": "Запрошення надіслано",
+            "successMemberUpdated": "Оновлено учасника {username}",
+            "successMemberRemoved": "Учасника {username} видалено",
+            "confirmRemoveMember": "Видалити {username} з організації?",
+            "errors": {
+                "save": "Не вдалося зберегти організацію",
+                "iconUpload": "Не вдалося завантажити іконку організації",
+                "invite": "Не вдалося запросити користувача",
+                "inviteSlugRequired": "Введіть slug користувача",
+                "memberUpdate": "Не вдалося оновити учасника",
+                "memberRemove": "Не вдалося видалити учасника",
+                "fileTooLarge": "Файл завеликий. Максимум 20 МБ"
+            }
+        },
+        "permissions": {
+            "project": {
+                "project_edit_details": "Редагувати деталі",
+                "project_edit_body": "Редагувати опис",
+                "project_edit_gallery": "Редагувати галерею",
+                "project_manage_versions": "Керувати версіями",
+                "project_delete": "Видалити проєкт"
+            },
+            "organization": {
+                "organization_edit_details": "Редагувати організацію",
+                "organization_manage_invites": "Керувати запрошеннями",
+                "organization_manage_members": "Керувати учасниками",
+                "organization_add_project": "Додавати проєкти",
+                "organization_remove_project": "Видаляти проєкти"
+            }
+        }
     }
 }

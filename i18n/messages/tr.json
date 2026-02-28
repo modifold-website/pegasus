@@ -137,6 +137,7 @@
         },
         "creators": "Üreticiler",
         "owner": "Sahip",
+        "organizationOwner": "Organizasyon",
         "created": "Oluşturulma:",
         "id": "ID:",
         "notFound": "Proje bulunamadı",
@@ -285,7 +286,8 @@
             "notifications": "Bildirimler",
             "settings": "Ayarlar",
             "apiTokens": "API token’ları",
-            "verification": "Doğrulama"
+            "verification": "Doğrulama",
+            "organizations": "Organizasyonlar"
         },
         "username": "Kullanıcı adı",
         "description": "Açıklama",
@@ -399,7 +401,8 @@
             "notFound": "Kullanıcı bulunamadı - Modifold",
             "frozen": "Hesap donduruldu - Modifold"
         },
-        "remove": "Kaldır"
+        "remove": "Kaldır",
+        "organizationsTitle": "Organizasyonlar"
     },
     "SettingsProjectPage": {
         "sidebar": {
@@ -464,6 +467,17 @@
             "actions": {
                 "save": "Kaydet",
                 "delete": "Projeyi sil"
+            },
+            "organization": {
+                "title": "Organizasyon",
+                "successUpdated": "Proje organizasyonu güncellendi",
+                "errors": {
+                    "update": "Organizasyon güncellenemedi"
+                },
+                "noOrganization": "Organizasyon yok",
+                "hint": "Bu projeyi bir organizasyona bağlayarak organizasyon sahipliğinde gösterin.",
+                "transfer": "Yönetimi devret",
+                "transferring": "Devrediliyor..."
             }
         },
         "description": {
@@ -1015,11 +1029,18 @@
             "projectLikeOneMiddle": "projenizi beğendi",
             "projectLikeManyMiddle": "ve {count} kişi daha projenizi beğendi",
             "projectFallback": "projenizi",
-            "unknown": "Yeni bildirim"
+            "unknown": "Yeni bildirim",
+            "organizationFallback": "organizasyon",
+            "organizationInviteTail": "seni şuraya davet etti",
+            "organizationRemovedTail": "seni şuradan çıkardı"
         },
         "errors": {
             "fetch": "Bildirimler yüklenemedi",
             "noToken": "Yetkilendirme belirteci bulunamadı"
+        },
+        "actions": {
+            "accept": "Kabul et",
+            "decline": "Reddet"
         }
     },
     "VerificationRequestModal": {
@@ -1243,5 +1264,125 @@
             "decision": "Şikayet güncellenemedi."
         },
         "empty": "Geçerli filtreler için şikayet bulunamadı."
+    },
+    "Organizations": {
+        "dashboard": {
+            "title": "Organizasyonlar",
+            "create": "Organizasyon oluştur",
+            "empty": "Henüz hiçbir organizasyona üye değilsin.",
+            "noSummary": "Özet yok",
+            "members": "{count, plural, one {# üye} other {# üye}}"
+        },
+        "create": {
+            "title": "Organizasyon oluşturma",
+            "close": "Kapat",
+            "success": "Organizasyon oluşturuldu",
+            "fields": {
+                "name": "Ad",
+                "url": "URL",
+                "summary": "Özet"
+            },
+            "placeholders": {
+                "name": "Organizasyon adını girin...",
+                "summary": "Bir organizasyon..."
+            },
+            "actions": {
+                "cancel": "İptal",
+                "create": "Organizasyon oluştur",
+                "creating": "Oluşturuluyor..."
+            },
+            "errors": {
+                "generic": "Organizasyon oluşturulamadı"
+            }
+        },
+        "page": {
+            "edit": "Düzenle",
+            "openAvatar": "Avatarı aç",
+            "lightboxLabel": "Organizasyon görsel görüntüleyicisi",
+            "openInNewTab": "Görseli yeni sekmede aç",
+            "close": "Kapat",
+            "membersTitle": "Üyeler",
+            "dateCreated": "Kayıt tarihi: {date}",
+            "membersCount": "{count, plural, one {üye} other {üye}}",
+            "projectsCount": "{count, plural, one {proje} other {proje}}",
+            "emptyProjects": "Bu organizasyonun henüz projesi yok."
+        },
+        "settings": {
+            "title": "Organizasyon bilgileri",
+            "membersTitle": "Üyeleri yönet",
+            "navOverview": "Genel bakış",
+            "navMembers": "Üyeler",
+            "inviteTitle": "Üye davet et",
+            "invitePlaceholder": "Kullanıcı slug'ı",
+            "projectPermissions": "Proje izinleri",
+            "organizationPermissions": "Organizasyon izinleri",
+            "publicPage": "Herkese açık sayfa",
+            "iconAlt": "Organizasyon simgesi {name}",
+            "fields": {
+                "icon": "Simge",
+                "name": "Ad",
+                "slug": "Slug",
+                "summary": "Özet"
+            },
+            "actions": {
+                "uploadIcon": "Simge yükle",
+                "uploading": "Yükleniyor...",
+                "save": "Organizasyonu kaydet",
+                "saving": "Kaydediliyor...",
+                "invite": "Davet et",
+                "inviting": "Davet ediliyor...",
+                "expand": "Genişlet",
+                "collapse": "Daralt",
+                "saveMember": "Değişiklikleri kaydet",
+                "removeMember": "Üyeyi kaldır",
+                "removingMember": "Kaldırılıyor..."
+            },
+            "status": {
+                "accepted": "Kabul edildi",
+                "pending": "Beklemede",
+                "invited": "Davet edildi",
+                "declined": "Reddedildi"
+            },
+            "delete": {
+                "title": "Organizasyonu sil",
+                "description": "Organizasyonu silmek üyeleri, davetleri ve proje bağlantılarını kalıcı olarak kaldırır.",
+                "action": "Organizasyonu sil",
+                "deleting": "Siliniyor...",
+                "confirm": "Bu organizasyon silinsin mi?",
+                "success": "Organizasyon silindi",
+                "error": "Organizasyon silinemedi"
+            },
+            "successSaved": "Organizasyon kaydedildi",
+            "successIconUploaded": "Organizasyon simgesi yüklendi",
+            "successInviteSent": "Davet gönderildi",
+            "successMemberUpdated": "{username} güncellendi",
+            "successMemberRemoved": "{username} kaldırıldı",
+            "confirmRemoveMember": "{username} organizasyondan kaldırılsın mı?",
+            "errors": {
+                "save": "Organizasyon kaydedilemedi",
+                "iconUpload": "Organizasyon simgesi yüklenemedi",
+                "invite": "Kullanıcı davet edilemedi",
+                "inviteSlugRequired": "Kullanıcı slug'ını girin",
+                "memberUpdate": "Üye güncellenemedi",
+                "memberRemove": "Üye kaldırılamadı",
+                "fileTooLarge": "Dosya çok büyük. Maksimum boyut 20 MB"
+            }
+        },
+        "permissions": {
+            "project": {
+                "project_edit_details": "Detayları düzenle",
+                "project_edit_body": "İçeriği düzenle",
+                "project_edit_gallery": "Galeriyi düzenle",
+                "project_manage_versions": "Sürümleri yönet",
+                "project_delete": "Projeyi sil"
+            },
+            "organization": {
+                "organization_edit_details": "Detayları düzenle",
+                "organization_manage_invites": "Davetleri yönet",
+                "organization_manage_members": "Üyeleri yönet",
+                "organization_add_project": "Proje ekle",
+                "organization_remove_project": "Projeyi kaldır"
+            }
+        }
     }
 }

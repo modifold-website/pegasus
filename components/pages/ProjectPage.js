@@ -19,9 +19,9 @@ export default function ProjectPage({ project, authToken }) {
         applicationCategory: "Game",
         operatingSystem: "Hytale",
         author: {
-            "@type": "Person",
+            "@type": project.owner?.type === "organization" ? "Organization" : "Person",
             name: project.owner.username,
-            url: `https://modifold.com/user/${project.owner.slug}`,
+            url: `https://modifold.com${project.owner?.profile_url || `/user/${project.owner.slug}`}`,
         },
         datePublished: project.created_at,
         image: project.icon_url,

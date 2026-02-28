@@ -250,7 +250,8 @@
             "title": "Panel — Modifold",
             "description": "Gestiona tus proyectos en Modifold."
         },
-        "byYou": "por ti"
+        "byYou": "de ti",
+        "byOrganization": "de {name}"
     },
     "SettingsBlogPage": {
         "sidebar": {

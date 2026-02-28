@@ -104,18 +104,20 @@ export default function DashboardClient({ initialProjects, initialTotalPages, in
                         <div className="projects-grid">
                             {projects.map((project) => (
                                 <div key={project.slug} id={project.slug} className="new-project-card">
+                                    <Link className="new-project-card__overlay" href={`/mod/${project.slug}`} aria-label={project.title} />
+
                                     <img className="new-project-icon" alt={t("projectIconAlt", { title: project.title })} src={project.icon_url || DEFAULT_PROJECT_ICON_URL} />
 
                                     <div className="new-project-info">
                                         <div className="new-project-header">
-                                            <Link href={`/mod/${project.slug}`} className="new-project-title">{project.title}</Link>
+                                            <span className="new-project-title">{project.title}</span>
                                             
                                             <span className="new-project-author">
-                                                {project.owner?.username || t("byYou")}
+                                                {project.owner?.type === "organization" ? t("byOrganization", { name: project.owner?.username || "" }) : t("byYou")}
                                             </span>
                                         </div>
 
-                                        <Link href={`/mod/${project.slug}`} className="new-project-description">{project.summary}</Link>
+                                        <p className="new-project-description">{project.summary}</p>
 
                                         {project.tags?.length > 0 && (
                                             <div className="new-project-tags">

@@ -250,7 +250,8 @@
             "title": "Kontrol paneli - Modifold",
             "description": "Modifold’daki projelerinizi yönetin."
         },
-        "byYou": "sizden"
+        "byYou": "senin tarafından",
+        "byOrganization": "{name} tarafından"
     },
     "SettingsBlogPage": {
         "sidebar": {

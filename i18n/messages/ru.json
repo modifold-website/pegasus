@@ -250,7 +250,8 @@
             "title": "Панель управления — Modifold",
             "description": "Управляйте своими проектами на Modifold."
         },
-        "byYou": "вы"
+        "byYou": "от вас",
+        "byOrganization": "от {name}"
     },
     "SettingsBlogPage": {
         "sidebar": {

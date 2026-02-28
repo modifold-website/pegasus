@@ -250,7 +250,8 @@
             "title": "Панель керування — Modifold",
             "description": "Керуйте своїми проєктами на Modifold."
         },
-        "byYou": "від вас"
+        "byYou": "від вас",
+        "byOrganization": "від {name}"
     },
     "SettingsBlogPage": {
         "sidebar": {

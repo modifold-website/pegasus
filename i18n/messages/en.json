@@ -250,7 +250,8 @@
             "title": "Dashboard — Modifold",
             "description": "Manage your projects on Modifold."
         },
-        "byYou": "by you"
+        "byYou": "by you",
+        "byOrganization": "by {name}"
     },
     "SettingsBlogPage": {
         "sidebar": {

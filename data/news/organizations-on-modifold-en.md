@@ -4,7 +4,7 @@ description: "Teams can now create organizations, invite members, manage permiss
 author: ["modifold"]
 date: 2026-02-28
 slug: /news/organizations-on-modifold
-image: https://media.modifold.com/news/banner.png
+image: https://media.modifold.com/news/banner.png?v=1
 featured: true
 locale: en
 ---

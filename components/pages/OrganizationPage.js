@@ -6,6 +6,7 @@ import ProjectCard from "@/components/project/ProjectCard";
 import { useAuth } from "../providers/AuthProvider";
 import ImageLightbox, { useImageLightbox } from "@/components/ui/ImageLightbox";
 import UserName from "@/components/ui/UserName";
+import Tooltip from "@/components/ui/Tooltip";
 
 const DEFAULT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
@@ -93,23 +94,38 @@ export default function OrganizationPage({ organization, members = [], projects 
                             <h2>{t("page.membersTitle")}</h2>
                             
                             <div style={{ display: "grid", gap: "10px" }}>
-                                {members.map((member) => (
-                                    <div key={member.user_id} className="author author-card" style={{ "--1ebedaf6": "40px" }}>
-                                        <Link href={`/user/${member.slug}`} className="author__avatar">
-                                            <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "40px", height: "40px", maxWidth: "none" }}>
-                                                <img src={member.avatar || DEFAULT_ICON_URL} className="magnify" alt={member.username} />
-                                            </div>
-                                        </Link>
+                                {members.map((member) => {
+                                    const isOwnerMember = Number(member.user_id) === Number(organization.owner_user_id);
 
-                                        <div className="author__main">
-                                            <Link href={`/user/${member.slug}`} className="author__name">
-                                                <UserName user={member} />
+                                    return (
+                                        <div key={member.user_id} className="author author-card" style={{ "--1ebedaf6": "40px" }}>
+                                            <Link href={`/user/${member.slug}`} className="author__avatar button--active-transform">
+                                                <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "40px", height: "40px", maxWidth: "none" }}>
+                                                    <img src={member.avatar || DEFAULT_ICON_URL} className="magnify" alt={member.username} />
+                                                </div>
                                             </Link>
-                                        </div>
 
-                                        <div className="author__details">{member.role}</div>
-                                    </div>
-                                ))}
+                                            <div className="author__main">
+                                                <Link href={`/user/${member.slug}`} className="author__name">
+                                                    <UserName user={member} />
+                                                </Link>
+                                            </div>
+
+                                            <div className="author__details" style={{ display: "flex", alignItems: "center", overflow: "visible" }}>
+                                                <span>{member.role}</span>
+
+                                                {isOwnerMember && (
+                                                    <Tooltip content={t("page.organizationOwnerTooltip")}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="lucide lucide-crown" viewBox="0 0 24 24" style={{ color: "#e08325", verticalAlign: "middle", fill: "none" }}>
+                                                            <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7z"></path>
+                                                            <path d="M5 20h14"></path>
+                                                        </svg>
+                                                    </Tooltip>
+                                                )}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>

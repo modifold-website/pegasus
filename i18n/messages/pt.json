@@ -1231,6 +1231,7 @@
         "page": {
             "edit": "Editar",
             "organizationBadge": "Organização",
+            "organizationOwnerTooltip": "Proprietário da organização",
             "openAvatar": "Abrir avatar",
             "lightboxLabel": "Visualizador de imagem da organização",
             "openInNewTab": "Abrir imagem em nova aba",

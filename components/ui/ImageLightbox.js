@@ -97,7 +97,11 @@ export default function ImageLightbox({isOpen, image, onClose, dialogLabel, clos
                 <img src={image.url} alt={image.title || fallbackAlt} className="expanded-image" onClick={(e) => e.stopPropagation()} />
 
                 <div className="floating" aria-label={dialogLabel}>
-                    <div className="text" />
+                    {image.title && 
+                        <div class="text">
+                            <h2>{image.title}</h2>
+                        </div>
+                    }
 
                     <div className="controls">
                         <div className="buttons">
@@ -111,8 +115,6 @@ export default function ImageLightbox({isOpen, image, onClose, dialogLabel, clos
                         </div>
                     </div>
                 </div>
-
-                {image.title && <h3 className="lightbox-title">{image.title}</h3>}
 
                 {image.description && <p className="lightbox-description">{image.description}</p>}
             </div>

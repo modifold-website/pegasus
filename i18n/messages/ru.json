@@ -1231,6 +1231,7 @@
         "page": {
             "edit": "Редактировать",
             "organizationBadge": "Организация",
+            "organizationOwnerTooltip": "Владелец организации",
             "openAvatar": "Открыть аватар",
             "lightboxLabel": "Просмотр изображения организации",
             "openInNewTab": "Открыть изображение в новой вкладке",

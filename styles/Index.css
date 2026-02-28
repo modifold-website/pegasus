@@ -3276,7 +3276,9 @@ input[type="file"]::-webkit-file-upload-button:hover {
     transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
 }
 .expanded-image-modal .expanded-image-content .floating .text h2 {
+    color: var(--color-white);
     font-size: 1.25rem;
+    font-weight: 600;
     margin: 0;
     text-align: center;
 }

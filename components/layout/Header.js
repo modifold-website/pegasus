@@ -224,7 +224,7 @@ export default function Header({ authToken }) {
                         </div>
 
                         <div className="browse-menu-wrapper" ref={browseWrapperRef} onMouseEnter={openBrowseMenu} onMouseLeave={scheduleCloseBrowseMenu}>
-                            <button style={{ "--button-font-size": "16px" }} className={`button button--size-m button--type-secondary button__browse--with-icon ${isBrowseMenuOpen ? "active" : ""}`} onClick={toggleBrowseMenu} aria-expanded={isBrowseMenuOpen} aria-controls="browse-menu">
+                            <button style={{ "--button-font-size": "16px" }} className={`button button--size-m button--type-secondary button__browse--with-icon button--active-transform ${isBrowseMenuOpen ? "active" : ""}`} onClick={toggleBrowseMenu} aria-expanded={isBrowseMenuOpen} aria-controls="browse-menu">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-compass-icon lucide-compass">
                                     <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/>
                                     <circle cx="12" cy="12" r="10"/>
@@ -263,7 +263,7 @@ export default function Header({ authToken }) {
 
                         <div className="header__right">
                             <div className="theme-switcher" style={{ position: "relative" }}>
-                                <svg ref={themeButtonRef} onClick={toggleThemeMenu} style={{ fill: "none", cursor: "pointer" }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon">
+                                <svg ref={themeButtonRef} onClick={toggleThemeMenu} style={{ fill: "none", cursor: "pointer" }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon button--active-transform">
                                     <path d="M12 8a2.83 2.83 0 0 0 4 4 4 4 0 1 1-4-4" />
                                     <path d="M12 2v2" />
                                     <path d="M12 20v2" />

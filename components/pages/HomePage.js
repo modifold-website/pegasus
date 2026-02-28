@@ -293,7 +293,7 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
 
                     <div className="news-cards">
                         {news.slice(0, 3).map((article) => (
-                            <Link href={`${article.slug}`} className="news-card" key={article.slug}>
+                            <Link href={`${article.slug}`} className="news-card button--active-transform" key={article.slug}>
                                 <img src={article.image || "/images/placeholder.png"} alt={article.title} className="news-image" />
                                 
                                 <div className="news-content">
@@ -306,7 +306,7 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
                     </div>
 
                     <div className="view-all">
-                        <Link href="/news" className="button button--size-xl button--type-primary">{t("viewAllNews")}</Link>
+                        <Link href="/news" className="button button--size-xl button--type-primary button--active-transform">{t("viewAllNews")}</Link>
                     </div>
                 </section>
             </div>

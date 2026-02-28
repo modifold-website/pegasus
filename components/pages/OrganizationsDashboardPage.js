@@ -58,7 +58,15 @@ export default function OrganizationsDashboardPage({ authToken, initialOrganizat
                                             </div>
 
                                             <p className="new-project-description">{organization.summary || t("dashboard.noSummary")}</p>
-                                            <p style={{ marginTop: "auto", color: "var(--theme-color-text-secondary)" }}>{t("dashboard.members", { count: organization.members_count || 0 })}</p>
+                                            <p style={{ marginTop: "auto", color: "var(--theme-color-text-secondary)", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-users-round-icon lucide-users-round">
+                                                    <path d="M18 21a8 8 0 0 0-16 0"/>
+                                                    <circle cx="10" cy="8" r="5"/>
+                                                    <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/>
+                                                </svg>
+
+                                                {t("dashboard.members", { count: organization.members_count || 0 })}
+                                            </p>
                                         </div>
                                     </Link>
                                 ))}

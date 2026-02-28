@@ -53,9 +53,7 @@
     "NotFound": {
         "title": "Sayfa bulunamadı",
         "message": "Bağlantı yok, taşınmış ya da silinmiş.",
-        "joke": "CurseForge ne gerek? Modlarını Modifold'a yüklemen daha iyi.",
-        "goHome": "Ana sayfaya dön",
-        "goMods": "Modları keşfet"
+        "joke": "CurseForge ne gerek? Modlarını Modifold'a yüklemen daha iyi."
     },
     "HomePage": {
         "title": "Hytale modlarınız için bir yuva - Modifold",
@@ -65,17 +63,10 @@
         "exploreMods": "Modları keşfet",
         "statsTitle": "Birlikte büyüyoruz: Topluluktan {count}+ mod",
         "searchPlaceholder": "Modları ada göre ara",
-        "tabTrending": "Popüler",
-        "tabNew": "Yeni",
-        "tabUpdated": "Güncellenenler",
         "noProjects": "Proje bulunamadı",
         "creatorsSpotlightTitle": "Öne çıkan üreticiler",
         "creatorsSpotlightDescription": "Hytale mod sahnesini şekillendiren üreticilerle tanışın.",
-        "creatorProjects": "{count} proje",
         "noCreators": "Henüz üretici yok",
-        "ctaTitle": "Dakikalar içinde mod yayınlayın",
-        "ctaDescription": "Dosyaları yükleyin, ekran görüntüleri ekleyin ve Hytale topluluğuna ulaşın.",
-        "ctaButton": "Proje oluştur",
         "forPlayersTitle": "Oyuncular için",
         "forPlayersDescription": "Topluluğun ürettiği modları bulun ve indirin. En yeni haberleri ve sürümleri takip edin.",
         "forCreatorsTitle": "Üreticiler için",
@@ -84,9 +75,7 @@
         "viewAllNews": "Tüm haberleri görüntüle",
         "commentsTitle": "Yorumlarla destek",
         "commentsDescription": "Sürümleri tartışın, geri bildirim bırakın ve modları geliştirmeye yardımcı olun.",
-        "localesTitle": "6 dilde site",
-        "localesDescription": "Arayüz İngilizce, İspanyolca, Portekizce, Rusça, Türkçe ve Ukraynaca dillerinde.",
-        "helloRotatorLabel": "Altı dilde merhaba"
+        "localesDescription": "Arayüz İngilizce, İspanyolca, Portekizce, Rusça, Türkçe ve Ukraynaca dillerinde."
     },
     "ProjectCreationModal": {
         "close": "Kapat",
@@ -106,7 +95,6 @@
         "creating": "Oluşturuluyor...",
         "cancel": "İptal",
         "errors": {
-            "noIcon": "Lütfen bir simge yükleyin",
             "noProjectType": "Lütfen bir proje türü seçin",
             "generic": "Proje oluşturma hatası"
         },
@@ -117,7 +105,6 @@
         "next": "Sonraki",
         "loginRequired": "Bu projeyi beğenmek için lütfen giriş yapın",
         "likeError": "Beğeni durumu değiştirilemedi. Lütfen tekrar deneyin.",
-        "failedToToggleLike": "Beğeni durumu değiştirilemedi",
         "links": "Bağlantılar",
         "reportIssues": "Sorunlar",
         "viewSource": "Kaynak kodu görüntüle",
@@ -141,10 +128,6 @@
         "created": "Oluşturulma:",
         "id": "ID:",
         "notFound": "Proje bulunamadı",
-        "projectTypes": {
-            "mod": "Hytale Modu",
-            "default": "Hytale Projesi"
-        },
         "metadata": {
             "title": "{title} {titlePrefix} - Modifold",
             "openGraph": {
@@ -176,7 +159,6 @@
         "confirmDeleteVersion": "Bu sürümü silmek istediğinize emin misiniz?",
         "versionDeleted": "Sürüm başarıyla silindi",
         "errorOccurred": "Bir hata oluştu. Lütfen tekrar deneyin.",
-        "errorRecordingDownload": "İndirme kaydedilemedi",
         "licenseTitle": "Lisans",
         "licensedAs": "{license} ile lisanslandı",
         "download": "İndir",
@@ -193,11 +175,6 @@
             "notSpecified": "Belirtilmedi",
             "published": "Yayınlanma:",
             "downloads": "indirme"
-        },
-        "releaseChannels": {
-            "release": "Yayın",
-            "beta": "Beta",
-            "alpha": "Alfa"
         },
         "filters": {
             "gameVersionsAria": "Oyun sürümlerine göre filtrele",
@@ -216,7 +193,6 @@
             "noImages": "Galeride görsel yok.",
             "lightboxLabel": "Görsel lightbox",
             "openInNewTab": "Görseli yeni sekmede aç",
-            "replaceImage": "Görseli değiştir",
             "title": "Başlık",
             "description": "Açıklama",
             "orderIndex": "Sıra indeksi",
@@ -234,7 +210,6 @@
             "delete": "Sil",
             "hide": "Gizle",
             "show": "Göster",
-            "spam": "Spam",
             "authorLabel": "Yazar",
             "deleted": "Yorum silindi.",
             "loading": "Yorumlar yükleniyor...",
@@ -258,7 +233,6 @@
             "alreadySubmitted": "Şikayet zaten gönderildi",
             "alreadySubmittedToast": "Bu proje için zaten şikayet gönderdiniz.",
             "loginRequired": "Bu projeyi şikayet etmek için giriş yapın.",
-            "statusOpen": "Bu proje için tekrar şikayet gönderilemez.",
             "copyLink": "Bağlantıyı kopyala",
             "copySuccess": "Bağlantı kopyalandı",
             "copyError": "Bağlantı kopyalanamadı"
@@ -267,7 +241,6 @@
     "DashboardClient": {
         "userAvatarAlt": "{username} kullanıcı avatarı",
         "projectIconAlt": "{title} proje simgesi",
-        "noIcon": "Simge yok",
         "loading": "Projeler yükleniyor...",
         "noProjects": "Henüz proje oluşturmadınız.",
         "previous": "Önceki",
@@ -320,22 +293,6 @@
         "metadata": {
             "title": "Hesap ayarları - Modifold"
         },
-        "verification": {
-            "title": "Doğrulama",
-            "statusLabel": "Durum",
-            "status": {
-                "verified": "Doğrulandı",
-                "notVerified": "Doğrulanmadı",
-                "pending": "İncelemede",
-                "rejected": "Reddedildi"
-            },
-            "requirements": "Gereksinimler: X/YouTube’da 100+ takipçi veya CurseForge’da 1.000+ indirme. Modifold bağlantısını sosyal profilinize ekleyip başvuruda belirtin.",
-            "request": "Doğrulama başvurusu gönder",
-            "requestPending": "Başvuru incelemede",
-            "reapply": "Tekrar gönder",
-            "lastRequest": "Son başvuru: {date}",
-            "cooldown": "{days} gün sonra kullanılabilir"
-        },
         "unsavedBar": {
             "message": "Kaydedilmemis profil degisiklikleriniz var.",
             "reset": "Sifirla"
@@ -347,8 +304,7 @@
         "categories": "Kategoriler",
         "clearFilters": "Filtreleri temizle",
         "placeholders": {
-            "search": "Projeleri ara...",
-            "searchVersion": "Ara..."
+            "search": "Projeleri ara..."
         },
         "sort": {
             "downloads": "En çok indirilen",
@@ -367,7 +323,6 @@
         "previous": "Önceki",
         "next": "Sonraki",
         "errors": {
-            "loadingProjects": "Projeler yüklenemedi",
             "subscriptionChange": "Abonelik değiştirilemedi",
             "loadingFollowList": "Takip listesi yüklenemedi"
         },
@@ -805,12 +760,7 @@
     },
     "SettingsAPIPage": {
         "sidebar": {
-            "profileIconAlt": "Profil simgesi",
-            "projects": "Projeler",
-            "notifications": "Bildirimler",
-            "settings": "Ayarlar",
-            "apiTokens": "API token’ları",
-            "verification": "Doğrulama"
+            "profileIconAlt": "Profil simgesi"
         },
         "title": "API token’ları",
         "description": "API token’ları, harici uygulamaların ve betiklerin sizin adınıza Modifold’a erişmesini sağlar. Güvende tutun ve asla paylaşmayın.",
@@ -1048,8 +998,6 @@
         "close": "Kapat",
         "description": "En az bir bağlantı ekleyin (X, YouTube veya CurseForge). Moderatörler inceleyip karar verecek.",
         "platform": "Platform",
-        "platformUrl": "Sosyal profil bağlantısı",
-        "modifoldUrl": "Modifold bağlantısı",
         "followers": "Takipçiler",
         "downloads": "İndirmeler",
         "note": "Moderatör notu",
@@ -1058,10 +1006,6 @@
         "submitting": "Gönderiliyor...",
         "cancel": "İptal",
         "placeholders": {
-            "platformUrl": "X/YouTube/CurseForge bağlantınız",
-            "modifoldUrl": "Modifold profil bağlantınız",
-            "followers": "Takipçi sayısı",
-            "downloads": "İndirme sayısı",
             "note": "Modifold bağlantısı nerede? (isteğe bağlı)",
             "xUrl": "https://x.com/yourprofile",
             "youtubeUrl": "https://youtube.com/@yourchannel",
@@ -1070,8 +1014,6 @@
         "errors": {
             "missingLinks": "X, YouTube veya CurseForge için en az bir bağlantı ekleyin.",
             "confirmRequired": "Modifold bağlantısını eklediğinizi onaylayın.",
-            "followers": "En az 100 takipçi gerekir.",
-            "downloads": "En az 1.000 indirme gerekir.",
             "pending": "Zaten bekleyen bir başvurunuz var.",
             "generic": "Doğrulama başvurusu gönderilirken hata oluştu",
             "cooldown": "Reddedildikten 7 gün sonra yeniden başvurabilirsiniz."
@@ -1105,10 +1047,6 @@
             "rejected": "Reddedildi"
         },
         "fields": {
-            "socialLink": "Sosyal bağlantı",
-            "modifoldLink": "Modifold bağlantı",
-            "followers": "Takipçiler",
-            "downloads": "İndirmeler",
             "createdAt": "Gönderim tarihi",
             "note": "Not",
             "xUrl": "X bağlantısı",
@@ -1158,12 +1096,7 @@
             "fetch": "Doğrulama durumu yüklenemedi"
         },
         "sidebar": {
-            "profileIconAlt": "Profil simgesi",
-            "projects": "Projeler",
-            "notifications": "Bildirimler",
-            "settings": "Ayarlar",
-            "apiTokens": "API Tokenları",
-            "verification": "Doğrulama"
+            "profileIconAlt": "Profil simgesi"
         }
     },
     "ProjectReportModal": {
@@ -1237,7 +1170,6 @@
             "dismissed": "Reddedildi"
         },
         "fields": {
-            "projectSlug": "Slug",
             "reason": "Neden",
             "reporter": "Şikayet eden",
             "comment": "Yorum",

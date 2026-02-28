@@ -53,9 +53,7 @@
     "NotFound": {
         "title": "Página não encontrada",
         "message": "O link não existe, foi movido ou removido.",
-        "joke": "Pra que CurseForge? Melhor publicar seus mods no Modifold.",
-        "goHome": "Ir para início",
-        "goMods": "Ver mods"
+        "joke": "Pra que CurseForge? Melhor publicar seus mods no Modifold."
     },
     "HomePage": {
         "title": "O lar dos seus mods de Hytale — Modifold",
@@ -65,17 +63,10 @@
         "exploreMods": "Explorar mods",
         "statsTitle": "Crescendo juntos: {count}+ mods da comunidade",
         "searchPlaceholder": "Pesquisar mods por nome",
-        "tabTrending": "Em alta",
-        "tabNew": "Novos",
-        "tabUpdated": "Atualizados",
         "noProjects": "Nenhum projeto encontrado",
         "creatorsSpotlightTitle": "Destaque de criadores",
         "creatorsSpotlightDescription": "Conheça os criadores que estão moldando a cena de mods de Hytale.",
-        "creatorProjects": "{count} projetos",
         "noCreators": "Ainda não há criadores",
-        "ctaTitle": "Publique seu mod em minutos",
-        "ctaDescription": "Envie arquivos, adicione capturas de tela e alcance a comunidade de Hytale.",
-        "ctaButton": "Criar um projeto",
         "forPlayersTitle": "Para jogadores",
         "forPlayersDescription": "Encontre e baixe mods criados pela comunidade. Fique por dentro das últimas notícias e lançamentos.",
         "forCreatorsTitle": "Para criadores",
@@ -84,9 +75,7 @@
         "viewAllNews": "Ver todas as notícias",
         "commentsTitle": "Comentários que ajudam",
         "commentsDescription": "Comente lançamentos, deixe feedback e ajude a melhorar os mods.",
-        "localesTitle": "Site em 6 idiomas",
-        "localesDescription": "A interface está disponível em inglês, espanhol, português, russo, turco e ucraniano.",
-        "helloRotatorLabel": "Olá em seis idiomas"
+        "localesDescription": "A interface está disponível em inglês, espanhol, português, russo, turco e ucraniano."
     },
     "ProjectCreationModal": {
         "close": "Fechar",
@@ -106,7 +95,6 @@
         "creating": "Criando...",
         "cancel": "Cancelar",
         "errors": {
-            "noIcon": "Envie um ícone",
             "noProjectType": "Selecione um tipo de projeto",
             "generic": "Erro ao criar projeto"
         },
@@ -117,7 +105,6 @@
         "next": "Próximo",
         "loginRequired": "Faça login para curtir este projeto",
         "likeError": "Não foi possível alternar a curtida. Tente novamente.",
-        "failedToToggleLike": "Falha ao alternar a curtida",
         "links": "Links",
         "reportIssues": "Problemas",
         "viewSource": "Ver código-fonte",
@@ -141,10 +128,6 @@
         "created": "Criado:",
         "id": "ID:",
         "notFound": "Projeto não encontrado",
-        "projectTypes": {
-            "mod": "Mod de Hytale",
-            "default": "Projeto de Hytale"
-        },
         "metadata": {
             "title": "{title} {titlePrefix} — Modifold",
             "openGraph": {
@@ -176,7 +159,6 @@
         "confirmDeleteVersion": "Tem certeza de que deseja excluir esta versão?",
         "versionDeleted": "Versão excluída com sucesso",
         "errorOccurred": "Ocorreu um erro. Tente novamente.",
-        "errorRecordingDownload": "Erro ao registrar o download",
         "licenseTitle": "Licença",
         "licensedAs": "Licenciado como {license}",
         "download": "Baixar",
@@ -193,11 +175,6 @@
             "notSpecified": "Não especificado",
             "published": "Publicado:",
             "downloads": "downloads"
-        },
-        "releaseChannels": {
-            "release": "Lançamento",
-            "beta": "Beta",
-            "alpha": "Alfa"
         },
         "filters": {
             "gameVersionsAria": "Filtrar por versões do jogo",
@@ -216,7 +193,6 @@
             "noImages": "Não há imagens na galeria.",
             "lightboxLabel": "Visualizador de imagens",
             "openInNewTab": "Abrir imagem em uma nova aba",
-            "replaceImage": "Substituir imagem",
             "title": "Título",
             "description": "Descrição",
             "orderIndex": "Índice de ordem",
@@ -234,7 +210,6 @@
             "delete": "Excluir",
             "hide": "Ocultar",
             "show": "Mostrar",
-            "spam": "Spam",
             "authorLabel": "Autor",
             "deleted": "Comentário removido.",
             "loading": "Carregando comentários...",
@@ -258,7 +233,6 @@
             "alreadySubmitted": "Denúncia já enviada",
             "alreadySubmittedToast": "Você já denunciou este projeto.",
             "loginRequired": "Faça login para denunciar este projeto.",
-            "statusOpen": "Não é possível enviar outra denúncia para este projeto.",
             "copyLink": "Copiar link",
             "copySuccess": "Link copiado",
             "copyError": "Falha ao copiar o link"
@@ -267,7 +241,6 @@
     "DashboardClient": {
         "userAvatarAlt": "Avatar do usuário {username}",
         "projectIconAlt": "Ícone do projeto {title}",
-        "noIcon": "Sem ícone",
         "loading": "Carregando projetos...",
         "noProjects": "Você ainda não criou nenhum projeto.",
         "previous": "Anterior",
@@ -320,22 +293,6 @@
         "metadata": {
             "title": "Configurações da conta — Modifold"
         },
-        "verification": {
-            "title": "Verificação",
-            "statusLabel": "Status",
-            "status": {
-                "verified": "Verificado",
-                "notVerified": "Não verificado",
-                "pending": "Em análise",
-                "rejected": "Rejeitado"
-            },
-            "requirements": "Requisitos: 100+ seguidores no X/YouTube ou 1.000+ downloads no CurseForge. Adicione o link do Modifold no seu perfil social e inclua-o na solicitação.",
-            "request": "Enviar solicitação de verificação",
-            "requestPending": "Solicitação em análise",
-            "reapply": "Enviar novamente",
-            "lastRequest": "Última solicitação: {date}",
-            "cooldown": "Disponível em {days} dias"
-        },
         "unsavedBar": {
             "message": "Voce tem alteracoes de perfil nao salvas.",
             "reset": "Redefinir"
@@ -347,8 +304,7 @@
         "categories": "Categorias",
         "clearFilters": "Limpar filtros",
         "placeholders": {
-            "search": "Pesquisar",
-            "searchVersion": "Pesquisar versão"
+            "search": "Pesquisar"
         },
         "sort": {
             "downloads": "Downloads",
@@ -367,7 +323,6 @@
         "previous": "Anterior",
         "next": "Próximo",
         "errors": {
-            "loadingProjects": "Erro ao carregar projetos",
             "subscriptionChange": "Erro ao alterar a inscrição",
             "loadingFollowList": "Erro ao carregar a lista de seguidores"
         },
@@ -805,12 +760,7 @@
     },
     "SettingsAPIPage": {
         "sidebar": {
-            "profileIconAlt": "Ícone do perfil",
-            "projects": "Projetos",
-            "notifications": "Notificações",
-            "settings": "Configurações",
-            "apiTokens": "Tokens de API",
-            "verification": "Verificação"
+            "profileIconAlt": "Ícone do perfil"
         },
         "title": "Tokens de API",
         "description": "Crie e gerencie tokens de API para integrações.",
@@ -1048,8 +998,6 @@
         "close": "Fechar",
         "description": "Adicione pelo menos um link (X, YouTube ou CurseForge). Os moderadores analisarão e decidirão.",
         "platform": "Plataforma",
-        "platformUrl": "Link do perfil social",
-        "modifoldUrl": "Link do Modifold",
         "followers": "Seguidores",
         "downloads": "Downloads",
         "note": "Nota para moderadores",
@@ -1058,10 +1006,6 @@
         "submitting": "Enviando...",
         "cancel": "Cancelar",
         "placeholders": {
-            "platformUrl": "Link para seu X/YouTube/CurseForge",
-            "modifoldUrl": "Link para seu perfil Modifold",
-            "followers": "Número de seguidores",
-            "downloads": "Número de downloads",
             "note": "Onde está o link do Modifold? (opcional)",
             "xUrl": "https://x.com/yourprofile",
             "youtubeUrl": "https://youtube.com/@yourchannel",
@@ -1070,8 +1014,6 @@
         "errors": {
             "missingLinks": "Adicione pelo menos um link do X, YouTube ou CurseForge.",
             "confirmRequired": "Confirme que adicionou o link do Modifold.",
-            "followers": "Você precisa de pelo menos 100 seguidores.",
-            "downloads": "Você precisa de pelo menos 1.000 downloads.",
             "pending": "Você já tem uma solicitação pendente.",
             "generic": "Erro ao enviar a solicitação de verificação",
             "cooldown": "Você pode solicitar novamente após 7 dias da rejeição."
@@ -1105,10 +1047,6 @@
             "rejected": "Rejeitada"
         },
         "fields": {
-            "socialLink": "Link social",
-            "modifoldLink": "Link do Modifold",
-            "followers": "Seguidores",
-            "downloads": "Downloads",
             "createdAt": "Enviada",
             "note": "Nota",
             "xUrl": "Link do X",
@@ -1158,12 +1096,7 @@
             "fetch": "Não foi possível carregar o status de verificação"
         },
         "sidebar": {
-            "profileIconAlt": "Ícone do perfil",
-            "projects": "Projetos",
-            "notifications": "Notificações",
-            "settings": "Configurações",
-            "apiTokens": "Tokens de API",
-            "verification": "Verificação"
+            "profileIconAlt": "Ícone do perfil"
         }
     },
     "ProjectReportModal": {
@@ -1237,7 +1170,6 @@
             "dismissed": "Descartada"
         },
         "fields": {
-            "projectSlug": "Slug",
             "reason": "Motivo",
             "reporter": "Denunciante",
             "comment": "Comentário",

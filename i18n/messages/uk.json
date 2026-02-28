@@ -53,9 +53,7 @@
     "NotFound": {
         "title": "Сторінку не знайдено",
         "message": "Посилання відсутнє, переміщене або видалене.",
-        "joke": "Навіщо CurseForge? Краще завантажуй свої моди на Modifold.",
-        "goHome": "На головну",
-        "goMods": "Переглянути моди"
+        "joke": "Навіщо CurseForge? Краще завантажуй свої моди на Modifold."
     },
     "HomePage": {
         "title": "Дім для ваших модів Hytale — Modifold",
@@ -65,17 +63,10 @@
         "exploreMods": "Переглянути моди",
         "statsTitle": "Зростаємо разом: {count}+ модів від спільноти",
         "searchPlaceholder": "Шукати моди за назвою",
-        "tabTrending": "У тренді",
-        "tabNew": "Нові",
-        "tabUpdated": "Оновлені",
         "noProjects": "Проєкти не знайдено",
         "creatorsSpotlightTitle": "У центрі уваги — автори",
         "creatorsSpotlightDescription": "Познайомтеся з авторами, які формують сцену модингу Hytale.",
-        "creatorProjects": "{count} проєктів",
         "noCreators": "Поки що немає авторів",
-        "ctaTitle": "Опублікуйте мод за лічені хвилини",
-        "ctaDescription": "Завантажуйте файли, додавайте скриншоти й виходьте на спільноту Hytale.",
-        "ctaButton": "Створити проєкт",
         "forPlayersTitle": "Для гравців",
         "forPlayersDescription": "Знаходьте та завантажуйте моди, створені спільнотою. Слідкуйте за найсвіжішими новинами та релізами.",
         "forCreatorsTitle": "Для авторів",
@@ -84,9 +75,7 @@
         "viewAllNews": "Переглянути всі новини",
         "commentsTitle": "Коментарі для авторів",
         "commentsDescription": "Обговорюйте релізи, залишайте фідбек і допомагайте покращувати моди.",
-        "localesTitle": "Сайт 6 мовами",
-        "localesDescription": "Інтерфейс доступний англійською, іспанською, португальською, російською, турецькою та українською.",
-        "helloRotatorLabel": "Привіт шістьма мовами"
+        "localesDescription": "Інтерфейс доступний англійською, іспанською, португальською, російською, турецькою та українською."
     },
     "ProjectCreationModal": {
         "close": "Закрити",
@@ -106,7 +95,6 @@
         "creating": "Створення...",
         "cancel": "Скасувати",
         "errors": {
-            "noIcon": "Будь ласка, завантажте іконку",
             "noProjectType": "Будь ласка, виберіть тип проєкту",
             "generic": "Помилка створення проєкту"
         },
@@ -117,7 +105,6 @@
         "next": "Наступний",
         "loginRequired": "Будь ласка, увійдіть, щоб уподобати цей проєкт",
         "likeError": "Не вдалося змінити вподобання. Спробуйте ще раз.",
-        "failedToToggleLike": "Не вдалося змінити вподобання",
         "links": "Посилання",
         "reportIssues": "Проблеми",
         "viewSource": "Переглянути код",
@@ -141,10 +128,6 @@
         "created": "Створено:",
         "id": "ID:",
         "notFound": "Проєкт не знайдено",
-        "projectTypes": {
-            "mod": "Мод Hytale",
-            "default": "Проєкт Hytale"
-        },
         "metadata": {
             "title": "{title} {titlePrefix} — Modifold",
             "openGraph": {
@@ -176,7 +159,6 @@
         "confirmDeleteVersion": "Ви впевнені, що хочете видалити цю версію?",
         "versionDeleted": "Версію успішно видалено",
         "errorOccurred": "Сталася помилка. Спробуйте ще раз.",
-        "errorRecordingDownload": "Помилка запису завантаження",
         "licenseTitle": "Ліцензія",
         "licensedAs": "Ліцензовано за {license}",
         "download": "Завантажити",
@@ -193,11 +175,6 @@
             "notSpecified": "Не вказано",
             "published": "Опубліковано:",
             "downloads": "завантажень"
-        },
-        "releaseChannels": {
-            "release": "Реліз",
-            "beta": "Бета",
-            "alpha": "Альфа"
         },
         "filters": {
             "gameVersionsAria": "Фільтр за версіями гри",
@@ -216,7 +193,6 @@
             "noImages": "У галереї немає зображень.",
             "lightboxLabel": "Лайтбокс зображення",
             "openInNewTab": "Відкрити зображення у новій вкладці",
-            "replaceImage": "Замінити зображення",
             "title": "Заголовок",
             "description": "Опис",
             "orderIndex": "Порядковий індекс",
@@ -234,7 +210,6 @@
             "delete": "Видалити",
             "hide": "Сховати",
             "show": "Показати",
-            "spam": "Спам",
             "authorLabel": "Автор",
             "deleted": "Коментар видалено.",
             "loading": "Завантаження коментарів...",
@@ -258,7 +233,6 @@
             "alreadySubmitted": "Скаргу вже надіслано",
             "alreadySubmittedToast": "Ви вже надсилали скаргу на цей проєкт.",
             "loginRequired": "Увійдіть, щоб поскаржитися на проєкт.",
-            "statusOpen": "Повторна скарга на цей проєкт недоступна.",
             "copyLink": "Скопіювати посилання",
             "copySuccess": "Посилання скопійовано",
             "copyError": "Не вдалося скопіювати посилання"
@@ -267,7 +241,6 @@
     "DashboardClient": {
         "userAvatarAlt": "Аватар користувача {username}",
         "projectIconAlt": "Іконка проєкту {title}",
-        "noIcon": "Без іконки",
         "loading": "Завантаження проєктів...",
         "noProjects": "Ви ще не створили жодного проєкту.",
         "previous": "Попередній",
@@ -320,22 +293,6 @@
         "metadata": {
             "title": "Налаштування акаунта — Modifold"
         },
-        "verification": {
-            "title": "Верифікація",
-            "statusLabel": "Статус",
-            "status": {
-                "verified": "Верифіковано",
-                "notVerified": "Не верифіковано",
-                "pending": "На розгляді",
-                "rejected": "Відхилено"
-            },
-            "requirements": "Вимоги: 100+ підписників у X/YouTube або 1 000+ завантажень на CurseForge. Додайте посилання на Modifold у профіль та вкажіть його в заявці.",
-            "request": "Подати заявку на верифікацію",
-            "requestPending": "Заявка на розгляді",
-            "reapply": "Подати повторно",
-            "lastRequest": "Остання заявка: {date}",
-            "cooldown": "Доступно через {days} дн."
-        },
         "unsavedBar": {
             "message": "У вас є незбережені зміни профілю.",
             "reset": "Скинути"
@@ -347,8 +304,7 @@
         "categories": "Категорії",
         "clearFilters": "Очистити фільтри",
         "placeholders": {
-            "search": "Пошук проєктів...",
-            "searchVersion": "Пошук..."
+            "search": "Пошук проєктів..."
         },
         "sort": {
             "downloads": "Найбільше завантажень",
@@ -367,7 +323,6 @@
         "previous": "Попередній",
         "next": "Наступний",
         "errors": {
-            "loadingProjects": "Помилка завантаження проєктів",
             "subscriptionChange": "Помилка зміни підписки",
             "loadingFollowList": "Помилка завантаження списку підписок"
         },
@@ -805,12 +760,7 @@
     },
     "SettingsAPIPage": {
         "sidebar": {
-            "profileIconAlt": "Іконка профілю",
-            "projects": "Проєкти",
-            "notifications": "Сповіщення",
-            "settings": "Налаштування",
-            "apiTokens": "API-токени",
-            "verification": "Верифікація"
+            "profileIconAlt": "Іконка профілю"
         },
         "title": "API-токени",
         "description": "API-токени дозволяють зовнішнім застосункам і скриптам отримувати доступ до Modifold від вашого імені. Зберігайте їх у безпеці та ніколи не публікуйте.",
@@ -1048,8 +998,6 @@
         "close": "Закрити",
         "description": "Додайте принаймні одне посилання (X, YouTube або CurseForge). Модератори перевірять і приймуть рішення.",
         "platform": "Платформа",
-        "platformUrl": "Посилання на соцмережу",
-        "modifoldUrl": "Посилання на Modifold",
         "followers": "Підписники",
         "downloads": "Завантаження",
         "note": "Коментар модератору",
@@ -1058,10 +1006,6 @@
         "submitting": "Надсилаємо...",
         "cancel": "Скасувати",
         "placeholders": {
-            "platformUrl": "Посилання на X/YouTube/CurseForge",
-            "modifoldUrl": "Посилання на ваш профіль Modifold",
-            "followers": "Кількість підписників",
-            "downloads": "Кількість завантажень",
             "note": "Де саме вказане посилання на Modifold (необов’язково)",
             "xUrl": "https://x.com/yourprofile",
             "youtubeUrl": "https://youtube.com/@yourchannel",
@@ -1070,8 +1014,6 @@
         "errors": {
             "missingLinks": "Додайте принаймні одне посилання на X, YouTube або CurseForge.",
             "confirmRequired": "Підтвердьте, що додали посилання на Modifold.",
-            "followers": "Потрібно мінімум 100 підписників.",
-            "downloads": "Потрібно мінімум 1 000 завантажень.",
             "pending": "У вас уже є заявка на розгляді.",
             "generic": "Помилка надсилання заявки на верифікацію",
             "cooldown": "Повторну заявку можна подати через 7 днів після відмови."
@@ -1105,10 +1047,6 @@
             "rejected": "Відхилено"
         },
         "fields": {
-            "socialLink": "Посилання на соцмережу",
-            "modifoldLink": "Посилання Modifold",
-            "followers": "Підписники",
-            "downloads": "Завантаження",
             "createdAt": "Дата заявки",
             "note": "Коментар",
             "xUrl": "Посилання X",
@@ -1158,12 +1096,7 @@
             "fetch": "Не вдалося завантажити статус верифікації"
         },
         "sidebar": {
-            "profileIconAlt": "Іконка профілю",
-            "projects": "Проєкти",
-            "notifications": "Сповіщення",
-            "settings": "Налаштування",
-            "apiTokens": "API токени",
-            "verification": "Верифікація"
+            "profileIconAlt": "Іконка профілю"
         }
     },
     "ProjectReportModal": {
@@ -1237,7 +1170,6 @@
             "dismissed": "Відхилена"
         },
         "fields": {
-            "projectSlug": "Slug",
             "reason": "Причина",
             "reporter": "Хто поскаржився",
             "comment": "Коментар",

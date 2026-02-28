@@ -8,10 +8,11 @@ import UserName from "../ui/UserName";
 
 export default function ProjectSidebar({ project, showLicense = true, showLinks = true }) {
     const t = useTranslations("ProjectPage");
+    const tLicense = useTranslations("LicenseModal");
     const locale = useLocale();
     const [showLicenseModal, setShowLicenseModal] = useState(false);
     const licenseToken = "__LICENSE__";
-    const licenseName = project?.license?.name || t("LicenseModal.unknown");
+    const licenseName = project?.license?.name || tLicense("unknown");
     const licensedAs = t("licensedAs", { license: licenseToken });
     const [licensedAsBefore, licensedAsAfter = ""] = licensedAs.split(licenseToken);
     const licensedHasToken = licensedAs.includes(licenseToken);

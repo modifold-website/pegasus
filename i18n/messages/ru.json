@@ -53,9 +53,7 @@
     "NotFound": {
         "title": "Страница не найдена",
         "message": "Ссылка не найдена, перемещена или удалена.",
-        "joke": "Зачем CurseForge? Лучше загружай свои моды на Modifold.",
-        "goHome": "На главную",
-        "goMods": "Смотреть моды"
+        "joke": "Зачем CurseForge? Лучше загружай свои моды на Modifold."
     },
     "HomePage": {
         "title": "Дом для ваших модов Hytale — Modifold",
@@ -65,17 +63,10 @@
         "exploreMods": "Смотреть моды",
         "statsTitle": "Растём вместе: {count}+ модов сообщества",
         "searchPlaceholder": "Поиск модов по названию",
-        "tabTrending": "В тренде",
-        "tabNew": "Новые",
-        "tabUpdated": "Обновлённые",
         "noProjects": "Проекты не найдены",
         "creatorsSpotlightTitle": "Авторы недели",
         "creatorsSpotlightDescription": "Создатели, которые формируют сцену моддинга Hytale.",
-        "creatorProjects": "{count} проектов",
         "noCreators": "Пока нет авторов",
-        "ctaTitle": "Опубликуйте свой мод за минуты",
-        "ctaDescription": "Загрузите файлы, добавьте скриншоты и выйдите к сообществу Hytale.",
-        "ctaButton": "Создать проект",
         "forPlayersTitle": "Для игроков",
         "forPlayersDescription": "Находите и скачивайте моды, созданные сообществом. Следите за новостями и релизами.",
         "forCreatorsTitle": "Для создателей",
@@ -84,9 +75,7 @@
         "viewAllNews": "Все новости",
         "commentsTitle": "Комментарии для авторов",
         "commentsDescription": "Обсуждайте релизы, оставляйте фидбек и помогайте улучшать моды.",
-        "localesTitle": "Сайт на 6 языках",
-        "localesDescription": "Интерфейс доступен на английском, испанском, португальском, русском, турецком и украинском.",
-        "helloRotatorLabel": "Привет на шести языках"
+        "localesDescription": "Интерфейс доступен на английском, испанском, португальском, русском, турецком и украинском."
     },
     "ProjectCreationModal": {
         "close": "Закрыть",
@@ -106,7 +95,6 @@
         "creating": "Создание...",
         "cancel": "Отмена",
         "errors": {
-            "noIcon": "Загрузите иконку",
             "noProjectType": "Выберите тип проекта",
             "generic": "Ошибка при создании проекта"
         },
@@ -117,7 +105,6 @@
         "next": "Вперёд",
         "loginRequired": "Войдите, чтобы поставить лайк",
         "likeError": "Не удалось изменить лайк. Попробуйте ещё раз.",
-        "failedToToggleLike": "Не удалось изменить лайк",
         "links": "Ссылки",
         "reportIssues": "Баг‑репорты",
         "viewSource": "Исходники",
@@ -141,10 +128,6 @@
         "created": "Создан:",
         "id": "ID:",
         "notFound": "Проект не найден",
-        "projectTypes": {
-            "mod": "Мод Hytale",
-            "default": "Проект Hytale"
-        },
         "metadata": {
             "title": "{title} {titlePrefix} — Modifold",
             "openGraph": {
@@ -176,7 +159,6 @@
         "confirmDeleteVersion": "Удалить эту версию?",
         "versionDeleted": "Версия удалена",
         "errorOccurred": "Произошла ошибка. Попробуйте ещё раз.",
-        "errorRecordingDownload": "Не удалось записать загрузку",
         "licenseTitle": "Лицензия",
         "licensedAs": "Лицензия {license}",
         "download": "Скачать",
@@ -193,11 +175,6 @@
             "notSpecified": "Не указано",
             "published": "Опубликовано:",
             "downloads": "скачиваний"
-        },
-        "releaseChannels": {
-            "release": "Релиз",
-            "beta": "Бета",
-            "alpha": "Альфа"
         },
         "filters": {
             "gameVersionsAria": "Фильтр по версиям игры",
@@ -216,7 +193,6 @@
             "noImages": "В галерее нет изображений.",
             "lightboxLabel": "Просмотр изображения",
             "openInNewTab": "Открыть изображение в новой вкладке",
-            "replaceImage": "Заменить изображение",
             "title": "Название",
             "description": "Описание",
             "orderIndex": "Порядок",
@@ -234,7 +210,6 @@
             "delete": "Удалить",
             "hide": "Скрыть",
             "show": "Показать",
-            "spam": "Спам",
             "authorLabel": "Автор",
             "deleted": "Комментарий удален.",
             "loading": "Загрузка комментариев...",
@@ -258,7 +233,6 @@
             "alreadySubmitted": "Жалоба уже отправлена",
             "alreadySubmittedToast": "Вы уже отправляли жалобу на этот проект.",
             "loginRequired": "Войдите, чтобы пожаловаться на проект.",
-            "statusOpen": "Повторная жалоба на этот проект недоступна.",
             "copyLink": "Скопировать ссылку",
             "copySuccess": "Ссылка скопирована",
             "copyError": "Не удалось скопировать ссылку"
@@ -267,7 +241,6 @@
     "DashboardClient": {
         "userAvatarAlt": "Аватар пользователя {username}",
         "projectIconAlt": "Иконка проекта {title}",
-        "noIcon": "Нет иконки",
         "loading": "Загрузка проектов...",
         "noProjects": "Вы ещё не создали проекты.",
         "previous": "Назад",
@@ -320,22 +293,6 @@
         "metadata": {
             "title": "Настройки аккаунта — Modifold"
         },
-        "verification": {
-            "title": "Верификация",
-            "statusLabel": "Статус",
-            "status": {
-                "verified": "Верифицирован",
-                "notVerified": "Не верифицирован",
-                "pending": "На рассмотрении",
-                "rejected": "Отклонено"
-            },
-            "requirements": "Требования: 100+ подписчиков в X/YouTube или 1 000+ скачиваний на CurseForge. Добавьте ссылку на Modifold в профиль и укажите ее в заявке.",
-            "request": "Подать заявку на верификацию",
-            "requestPending": "Заявка на рассмотрении",
-            "reapply": "Подать повторно",
-            "lastRequest": "Последняя заявка: {date}",
-            "cooldown": "Доступно через {days} дн."
-        },
         "unsavedBar": {
             "message": "У вас есть несохраненные изменения профиля.",
             "reset": "Сбросить"
@@ -347,8 +304,7 @@
         "categories": "Категории",
         "clearFilters": "Сбросить фильтры",
         "placeholders": {
-            "search": "Поиск проектов...",
-            "searchVersion": "Поиск..."
+            "search": "Поиск проектов..."
         },
         "sort": {
             "downloads": "По скачиваниям",
@@ -367,7 +323,6 @@
         "previous": "Назад",
         "next": "Вперёд",
         "errors": {
-            "loadingProjects": "Ошибка загрузки проектов",
             "subscriptionChange": "Ошибка изменения подписки",
             "loadingFollowList": "Ошибка загрузки списка подписок"
         },
@@ -805,12 +760,7 @@
     },
     "SettingsAPIPage": {
         "sidebar": {
-            "profileIconAlt": "Иконка профиля",
-            "projects": "Проекты",
-            "notifications": "Уведомления",
-            "settings": "Настройки",
-            "apiTokens": "API‑токены",
-            "verification": "Верификация"
+            "profileIconAlt": "Иконка профиля"
         },
         "title": "API‑токены",
         "description": "API‑токены позволяют внешним приложениям и скриптам обращаться к Modifold от вашего имени. Храните их в безопасности и не публикуйте публично.",
@@ -1048,8 +998,6 @@
         "close": "Закрыть",
         "description": "Добавьте хотя бы одну ссылку (X, YouTube или CurseForge). Модераторы проверят и примут решение.",
         "platform": "Платформа",
-        "platformUrl": "Ссылка на соцсеть",
-        "modifoldUrl": "Ссылка на Modifold",
         "followers": "Подписчики",
         "downloads": "Скачивания",
         "note": "Комментарий модератору",
@@ -1058,10 +1006,6 @@
         "submitting": "Отправка...",
         "cancel": "Отмена",
         "placeholders": {
-            "platformUrl": "Ссылка на X/YouTube/CurseForge",
-            "modifoldUrl": "Ссылка на ваш профиль Modifold",
-            "followers": "Количество подписчиков",
-            "downloads": "Количество скачиваний",
             "note": "Где именно указана ссылка на Modifold (необязательно)",
             "xUrl": "https://x.com/yourprofile",
             "youtubeUrl": "https://youtube.com/@yourchannel",
@@ -1070,8 +1014,6 @@
         "errors": {
             "missingLinks": "Добавьте хотя бы одну ссылку на X, YouTube или CurseForge.",
             "confirmRequired": "Подтвердите, что добавили ссылку на Modifold.",
-            "followers": "Нужно минимум 100 подписчиков.",
-            "downloads": "Нужно минимум 1 000 скачиваний.",
             "pending": "У вас уже есть заявка на рассмотрении.",
             "generic": "Ошибка при отправке заявки",
             "cooldown": "Повторная заявка доступна через 7 дней после отказа."
@@ -1105,10 +1047,6 @@
             "rejected": "Отклонена"
         },
         "fields": {
-            "socialLink": "Ссылка на соцсеть",
-            "modifoldLink": "Ссылка Modifold",
-            "followers": "Подписчики",
-            "downloads": "Скачивания",
             "createdAt": "Дата заявки",
             "note": "Комментарий",
             "xUrl": "Ссылка X",
@@ -1158,12 +1096,7 @@
             "fetch": "Не удалось загрузить статус верификации"
         },
         "sidebar": {
-            "profileIconAlt": "Иконка профиля",
-            "projects": "Проекты",
-            "notifications": "Уведомления",
-            "settings": "Настройки",
-            "apiTokens": "API токены",
-            "verification": "Верификация"
+            "profileIconAlt": "Иконка профиля"
         }
     },
     "ProjectReportModal": {
@@ -1237,7 +1170,6 @@
             "dismissed": "Отклонена"
         },
         "fields": {
-            "projectSlug": "Slug",
             "reason": "Причина",
             "reporter": "Кто пожаловался",
             "comment": "Комментарий",

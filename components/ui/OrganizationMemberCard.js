@@ -40,7 +40,9 @@ export default function OrganizationMemberCard({ member, draft, expanded, onTogg
                 </div>
 
                 <div className="organization-member-card__actions">
-                    <div className="organization-member-card__status">{t(`settings.status.${member.status}`)}</div>
+                    <div className={`organization-member-card__status organization-member-card__status--${member.status || "accepted"}`}>
+                        {t(`settings.status.${member.status}`)}
+                    </div>
                     
                     {canExpand && (
                         <button type="button" className="icon-button organization-member-card__expand" onClick={onToggle} aria-label={expanded ? t("settings.actions.collapse") : t("settings.actions.expand")}>

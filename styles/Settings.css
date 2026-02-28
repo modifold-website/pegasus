@@ -282,6 +282,9 @@
     color: #00af5c;
     font-weight: 600;
 }
+.organization-member-card__status--pending {
+    color: #f59e0b;
+}
 .organization-member-card__expand .icon {
     transition: transform 0.2s ease;
 }

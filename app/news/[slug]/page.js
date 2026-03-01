@@ -146,13 +146,13 @@ export default async function NewsArticle({ params }) {
             <div className="layout">
                 <section className="news">
                     <Link href="/news">
-                        <h2 className="news-title news-title--hover" style={{ borderColor: "var(--theme-sidebar-separator-color-background)", borderStyle: "solid", borderBottomWidth: "1px", paddingBottom: "16px" }}>
+                        <h2 className="news-title news-title--hover" style={{ borderColor: "var(--theme-sidebar-separator-color-background)", borderStyle: "solid", borderBottomWidth: "1px", paddingBottom: "20px" }}>
                             {t("title")}
                         </h2>
                     </Link>
 
                     <div className="markdown-body">
-                        <h2 style={{ fontSize: "1.8rem", fontFamily: '"Dela Gothic One", sans-serif', marginBottom: "20px", fontWeight: "500", border: "0", paddingBottom: "0" }}>
+                        <h2 className="news-page--title">
                             {data.title}
                         </h2>
 
@@ -160,14 +160,14 @@ export default async function NewsArticle({ params }) {
                             {data.description}
                         </span>
 
-                        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px", fontSize: "0.875rem", marginBottom: "20px" }}>
+                        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px", fontSize: "16px", lineHeight: "24px", marginBottom: "20px" }}>
                             {authorCount > 0 ? (
                                 <>
                                     {authors.map((author, index) => (
                                         <span key={author.id} style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
                                             {index === authorCount - 1 && authorCount > 1 && <span>{t("byline.and")} </span>}
 
-                                            <Link href={`/user/${author.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontWeight: "500", textDecoration: "none", color: "inherit" }} className="button--active-transform">
+                                            <Link href={`/user/${author.slug}`} className="news-page--author button--active-transform">
                                                 <div style={{ position: "relative", width: "24px", height: "24px", borderRadius: "50%", overflow: "hidden" }}>
                                                     <Image src={author.avatar} alt={author.username} fill style={{ objectFit: "cover" }} unoptimized />
                                                 </div>

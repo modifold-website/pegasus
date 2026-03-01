@@ -108,7 +108,7 @@ export default async function RootLayout({ children }) {
                 <meta name="theme-color" content="#307df0" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 
-                <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Golos+Text:wght@400..900&family=Inter:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=family=Inter:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
 
                 <meta property="og:site_name" content="Modifold" />
                 <meta property="og:image:width" content="600" />

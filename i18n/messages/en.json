@@ -57,9 +57,9 @@
     },
     "HomePage": {
         "title": "The home for your Hytale mods — Modifold",
-        "description": "Join a growing community of creators. A simple and transparent platform to share your mods and discover what others are building.",
+        "description": "Discover, play, and share Hytale mods through our open-source platform built for the community.",
         "heroTitle": "The home for your {hytale} mods",
-        "heroDescription": "Join a growing community of creators. A simple and transparent platform to share your mods and discover what others are building.",
+        "heroDescription": "Discover, play, and share Hytale mods through our open-source platform built for the community.",
         "exploreMods": "Explore mods",
         "statsTitle": "Growing together: {count}+ community mods",
         "searchPlaceholder": "Search mods by name",

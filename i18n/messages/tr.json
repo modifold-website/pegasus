@@ -57,9 +57,9 @@
     },
     "HomePage": {
         "title": "Hytale modlarınız için bir yuva - Modifold",
-        "description": "Büyüyen üretici topluluğuna katılın. Modlarınızı paylaşmak ve başkalarının neler yaptığını keşfetmek için ferah ve şeffaf bir platform.",
+        "description": "Topluluk için oluşturulmuş açık kaynak platformumuzda Hytale modlarını keşfedin, oynayın ve paylaşın.",
         "heroTitle": "{hytale} modlarınız için bir yuva",
-        "heroDescription": "Büyüyen üretici topluluğuna katılın. Modlarınızı paylaşmak ve başkalarının neler yaptığını keşfetmek için ferah ve şeffaf bir platform.",
+        "heroDescription": "Topluluk için oluşturulmuş açık kaynak platformumuzda Hytale modlarını keşfedin, oynayın ve paylaşın.",
         "exploreMods": "Modları keşfet",
         "statsTitle": "Birlikte büyüyoruz: Topluluktan {count}+ mod",
         "searchPlaceholder": "Modları ada göre ara",

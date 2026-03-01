@@ -15,20 +15,20 @@ export default function NewsPage({ featuredArticle, otherArticles, locale }) {
                 <h2 className="news-title">{t("title")}</h2>
 
                 {featuredArticle && (
-                    <Link href={featuredArticle.slug}>
-                        <div className="featured-article button--active-transform">
-                            <img src={featuredArticle.image} alt={featuredArticle.title} />
-                            
-                            <div className="featured-content">
-                                <div>
+                    <Link href={featuredArticle.slug} className="featured-article-link">
+                        <div className="featured-article">
+                            <div className="featured-article-inner button--active-transform">
+                                <img src={featuredArticle.image} alt={featuredArticle.title} />
+
+                                <div className="featured-content">
                                     <span className="featured-label">{t("featuredArticle.label")}</span>
                                     <h3 className="featured-heading">{featuredArticle.title}</h3>
                                     <p className="featured-desc">{featuredArticle.description}</p>
-                                </div>
 
-                                <span className="featured-date">
-                                    {new Date(featuredArticle.date).toLocaleDateString(dateLocale, { month: "long", day: "numeric", year: "numeric" })}
-                                </span>
+                                    <span className="featured-date">
+                                        {new Date(featuredArticle.date).toLocaleDateString(dateLocale, { month: "long", day: "numeric", year: "numeric" })}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </Link>

@@ -397,7 +397,7 @@ export default function BrowsePage({ projectType }) {
                 </div>
 
                 <div className="browse-page">
-                    <div className="content content--padding sidebar--browse" style={{ width: "300px", maxWidth: "300px" }}>
+                    <div className="content content--padding sidebar--browse">
                         <h2 style={{ fontSize: "18px", marginBottom: "6px", fontWeight: "700" }}>{t("categories")}</h2>
 
                         <ul className="category-list" role="list">

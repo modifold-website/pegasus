@@ -1,5 +1,9 @@
 .layout__footer {
     display: block;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 48px 24px;
 }
 .footer-root {
     display: -moz-box;
@@ -11,8 +15,6 @@
 .footer-container {
     width: 100%;
     position: relative;
-    margin-inline: auto;
-    padding: 48px 24px;
 }
 .footer-inner {
     max-width: 1280px;

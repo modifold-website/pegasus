@@ -62,13 +62,13 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
 
     return (
         <>
-            <img src="/images/content-upper-1920 (1).jpg" className="fixed-background-teleport" style={{ opacity: ".5 !important" }} alt="" />
+            <img src="/images/content-upper-1920 (1).jpg" className="fixed-background-teleport" alt="" />
 
             <div className="layout">
                 <section className="hero-section">
                     <div className="hero-container">
                         <div className="hero-content animated">
-                            <svg width="300" height="708" viewBox="0 0 627 708" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "240px", height: "240px", marginLeft: "auto", marginRight: "auto", marginBottom: "30px" }}>
+                            <svg width="300" height="708" viewBox="0 0 627 708" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "208px", height: "208px", marginLeft: "auto", marginRight: "auto", marginBottom: "40px" }}>
                                 <path d="M306.947 1.82646C310.997 -0.537246 316.005 -0.537167 320.055 1.82646L620.556 177.239C624.548 179.569 627.003 183.843 627.003 188.465V521.495C627.003 526.14 624.524 530.432 620.502 532.754L320.001 706.248C315.979 708.57 311.023 708.571 307.001 706.248L6.5 532.754C2.47779 530.432 0 526.14 0 521.495V188.465C8.86154e-05 183.843 2.45453 179.569 6.44629 177.239L306.947 1.82646ZM34.6426 200.501V509.501L313.503 671.001L592.363 509.501V200.501L313.503 37.0013L34.6426 200.501ZM560.32 216.501V494.501L313.503 635.001L66.6855 494.501V216.501L313.503 73.0013L560.32 216.501ZM99.502 478.001L300.502 593.001V366.001L99.502 252.001V478.001ZM329.502 366.332V592.001L529.502 477.676V251.001L329.502 366.332ZM279.502 516.004V552.173L249.502 535.004V499.004L279.502 516.004ZM379.502 535.003L349.502 552.172V516.003L379.502 499.003V535.003ZM151.502 444.004V480.004L120.502 463.004V427.004L151.502 444.004ZM508.502 463.003L477.502 480.003V444.003L508.502 427.003V463.003ZM225.502 392.004V459.004L169.502 428.004V361.004L225.502 392.004ZM459.502 428.003L403.502 459.003V392.003L459.502 361.003V428.003ZM280.502 383.004V421.004L249.502 404.004V366.004L280.502 383.004ZM379.502 404.003L348.502 421.003V383.003L379.502 366.003V404.003ZM151.502 313.004V349.004L120.502 332.004V296.004L151.502 313.004ZM508.502 332.003L477.502 349.003V313.003L508.502 296.003V332.003Z" fill="#2041DA"></path>
                             </svg>
 

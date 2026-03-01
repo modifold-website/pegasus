@@ -123,7 +123,9 @@ export default function VersionPage({ project, version, authToken }) {
                                                 <span className="file-size">({formatBytes(file.size)})</span>
                                             </span>
 
-                                            <a style={{ marginLeft: "auto", "--button-radius": "100px", "--button-padding": "0 16px" }} className="button button--size-m button--type-primary" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation}>{t("download")}</a>
+                                            <a style={{ marginLeft: "auto", "--button-radius": "100px", "--button-padding": "0 16px" }} className="button button--size-m button--type-secondary" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation}>
+                                                {t("download")}
+                                            </a>
                                         </div>
                                     )) || <span>{t("noFiles")}</span>}
                                 </div>

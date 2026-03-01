@@ -37,7 +37,7 @@ export default function OrganizationPage({ organization, members = [], projects 
         <>
             <div className="layout">
                 <div className="browse-page">
-                    <div style={{ width: "300px", maxWidth: "300px", display: "grid", gap: "12px" }}>
+                    <div className="subsite-content">
                         <div className="subsite-header">
                             <div className="subsite-header__padding">
                                 <div className="subsite-header__header">

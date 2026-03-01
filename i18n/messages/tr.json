@@ -61,6 +61,8 @@
         "heroTitle": "{hytale} modlarınız için bir yuva",
         "heroDescription": "Topluluk için oluşturulmuş açık kaynak platformumuzda Hytale modlarını keşfedin, oynayın ve paylaşın.",
         "exploreMods": "Modları keşfet",
+        "dashboardCta": "Panel",
+        "loginCta": "Giriş yap",
         "statsTitle": "Birlikte büyüyoruz: Topluluktan {count}+ mod",
         "searchPlaceholder": "Modları ada göre ara",
         "noProjects": "Proje bulunamadı",

@@ -211,3 +211,15 @@
     width: 100%;
     height: 1px;
 }
+.subsite-content {
+    width: 300px;
+    max-width: 300px;
+    display: grid;
+    gap: 12px;
+}
+@media (max-width: 859px) {
+    .subsite-content {
+        width: 100% !important;
+        max-width: none !important;
+    }
+}

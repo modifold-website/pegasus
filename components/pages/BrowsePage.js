@@ -444,7 +444,7 @@ export default function BrowsePage({ projectType }) {
 
                             <div style={{ display: "flex", gap: "12px", flexDirection: "row", alignItems: "center" }}>
                                 <div className="browse-view-toggle">
-                                    <button className="button button--size-m button--type-secondary" onClick={toggleCardView} aria-pressed={cardView === "media"} aria-label={cardView === "media" ? "Media view" : "List view"} title={cardView === "media" ? "Media view" : "List view"} style={{ "--button-padding": "0 7px" }} type="button">
+                                    <button className="button button--size-m button--type-secondary button--active-transform" onClick={toggleCardView} aria-pressed={cardView === "media"} aria-label={cardView === "media" ? "Media view" : "List view"} title={cardView === "media" ? "Media view" : "List view"} style={{ "--button-padding": "0 7px" }} type="button">
                                         {cardView === "media" ? (
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg>
                                         ) : (

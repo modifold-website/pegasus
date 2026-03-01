@@ -243,7 +243,7 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
         <>
             <div className="layout">
                 <div className="browse-page">
-                    <div style={{ width: "300px", maxWidth: "300px", display: "grid", gap: "12px" }}>
+                    <div className="subsite-content">
                         <div className="subsite-header">
                             <div className="subsite-header__padding">
                                 <div className="subsite-header__header">
@@ -328,7 +328,7 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                                             {Object.entries(user.social_links).map(([key, url]) => {
                                                 const safeUrl = getSafeExternalUrl(url);
                                                 return safeUrl ? (
-                                                    <a key={key} href={safeUrl} target="_blank" rel="noopener noreferrer" className="social-links__item" title={key.charAt(0).toUpperCase() + key.slice(1)}>
+                                                    <a key={key} href={safeUrl} target="_blank" rel="noopener noreferrer" className="social-links__item button--active-transform" title={key.charAt(0).toUpperCase() + key.slice(1)}>
                                                         {socialIcons[key] || (
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>

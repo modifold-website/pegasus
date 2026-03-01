@@ -1,14 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import ProjectCard from "../project/ProjectCard";
+import { useAuth } from "../providers/AuthProvider";
+import LoginModal from "../../modal/LoginModal";
 
 const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
 export default function HomePage({ news = [], locale, projects = [], projectsLimit = 20 }) {
     const t = useTranslations("HomePage");
+    const { isLoggedIn } = useAuth();
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const activeLocale = useLocale();
     const currentLocale = activeLocale || locale || "en";
 
@@ -66,6 +70,28 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
 
                                     {t("exploreMods")}
                                 </Link>
+
+                                {isLoggedIn ? (
+                                    <Link href="/dashboard" className="button button--size-xl button--type-secondary button--with-icon button--active-transform">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-panel-left-icon lucide-layout-panel-left">
+                                            <rect width="7" height="18" x="3" y="3" rx="1"/>
+                                            <rect width="7" height="7" x="14" y="3" rx="1"/>
+                                            <rect width="7" height="7" x="14" y="14" rx="1"/>
+                                        </svg>
+                                        
+                                        {t("dashboardCta")}
+                                    </Link>
+                                ) : (
+                                    <button className="button button--size-xl button--type-secondary button--with-icon button--active-transform" type="button" onClick={() => setIsLoginModalOpen(true)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in-icon lucide-log-in">
+                                            <path d="m10 17 5-5-5-5"/>
+                                            <path d="M15 12H3"/>
+                                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                                        </svg>
+                                        
+                                        {t("loginCta")}
+                                    </button>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -81,7 +107,7 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
                             )}
 
                             {displayedProjects.map((project) => (
-                                <Link href={`/mod/${project.slug}`} key={project.id} className="mod-badge">
+                                <Link href={`/mod/${project.slug}`} key={project.id} className="mod-badge button--active-transform">
                                     <img src={project.icon_url || DEFAULT_PROJECT_ICON_URL} alt="" className="mod-avatar" width={64} height={64} />
                                     <span className="mod-name">{project.title}</span>
                                 </Link>
@@ -265,6 +291,8 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
                     </div>
                 </section>
             </div>
+
+            <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
         </>
     );
 }

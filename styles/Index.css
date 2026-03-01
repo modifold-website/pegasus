@@ -963,8 +963,7 @@ body.dark {
     }
 }
 .header__right .button {
-    margin-left: 8px;
-    font-size: 15px;
+    font-size: 16px;
 }
 .andropov-external-video .andropov-image {
     width: 100%;
@@ -4081,9 +4080,6 @@ body.light div .image-container::before {
     }
     .new-project-card {
         flex-direction: column !important;
-    }
-    .masthead-buttons {
-        display: none !important;
     }
     .swiper-slide {
         display: flex !important;

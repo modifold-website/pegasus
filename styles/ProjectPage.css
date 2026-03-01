@@ -429,13 +429,11 @@
     font-weight: 500;
     cursor: pointer;
     white-space: nowrap;
-    background-color: var(--button-bg-color);
-    border-radius: var(--button-radius);
     font-size: var(--button-font-size);
-    color: var(--button-text-color);
+    box-shadow: var(--theme-color-button-secondary-shadow);
     padding: var(--button-padding);
     height: var(--button-height);
-    background-color: var(--theme-color-background-content);
+    background-color: var(--theme-color-button-secondary);
     border-radius: 100px;
     transition: scale .125s ease-in-out, background-color .1s ease-in-out, color .25s ease-in-out;
 }

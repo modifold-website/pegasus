@@ -5,7 +5,7 @@
     "Header": {
         "home": "Home",
         "mods": "Mods",
-        "login": "Log in",
+        "login": "Sign in",
         "logout": "Log out",
         "settings": "Settings",
         "createProject": "Create Project",
@@ -61,6 +61,8 @@
         "heroTitle": "The home for your {hytale} mods",
         "heroDescription": "Discover, play, and share Hytale mods through our open-source platform built for the community.",
         "exploreMods": "Explore mods",
+        "dashboardCta": "Dashboard",
+        "loginCta": "Sign in",
         "statsTitle": "Growing together: {count}+ community mods",
         "searchPlaceholder": "Search mods by name",
         "noProjects": "No projects found",

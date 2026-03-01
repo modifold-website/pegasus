@@ -61,6 +61,8 @@
         "heroTitle": "El hogar de tus mods de {hytale}",
         "heroDescription": "Descubre, juega y comparte mods de Hytale en nuestra plataforma de código abierto creada para la comunidad.",
         "exploreMods": "Explorar mods",
+        "dashboardCta": "Panel",
+        "loginCta": "Iniciar sesión",
         "statsTitle": "Creciendo juntos: {count}+ mods de la comunidad",
         "searchPlaceholder": "Buscar mods por nombre",
         "noProjects": "No se encontraron proyectos",

@@ -75,7 +75,45 @@
         "viewAllNews": "Tüm haberleri görüntüle",
         "commentsTitle": "Yorumlarla destek",
         "commentsDescription": "Sürümleri tartışın, geri bildirim bırakın ve modları geliştirmeye yardımcı olun.",
-        "localesDescription": "Arayüz İngilizce, İspanyolca, Portekizce, Rusça, Türkçe ve Ukraynaca dillerinde."
+        "localesDescription": "Arayüz İngilizce, İspanyolca, Portekizce, Rusça, Türkçe ve Ukraynaca dillerinde.",
+        "showcase": {
+            "playersBadge": "Oyuncular için",
+            "playersTitle": "İhtiyacınızı hızlıca bulun",
+            "playersLead": "Anlık arama ve anlaşılır kartlar, oyun tarzınıza uygun modları hemen bulmanıza yardımcı olur.",
+            "searchPlaceholder": "Proje ara...",
+            "sortRelevance": "Alaka düzeyine göre"
+        },
+        "creatorSection": {
+            "badge": "Üreticiler için",
+            "title": "Üretimlerinizi toplulukla paylaşın",
+            "lead": "Modifold, üreticilere yayınlama, proje sunumu, ekip çalışması ve topluluk iletişimi için pratik araçlar sunar."
+        },
+        "creatorCards": {
+            "team": {
+                "title": "Ekipler ve organizasyonlar",
+                "description": "Üreticileri tek bir ekipte toplayın, rolleri dağıtın ve projeleri organizasyon adına yayınlayın."
+            },
+            "versions": {
+                "title": "Esnek sürümler",
+                "description": "Sürümleri kanallar, oyun sürümü desteği ve loader'larla yayınlayın; oyuncular uyumlu modları hızla bulsun."
+            },
+            "pages": {
+                "title": "Zengin proje sayfaları",
+                "description": "Projenizi Markdown açıklaması, galeri, bağlantılar, etiketler ve lisans bilgisiyle tek yerde sunun."
+            },
+            "feedback": {
+                "title": "Topluluktan geri bildirim",
+                "description": "Yorumlar, üreticilerin hızlı geri bildirim almasına ve her sürümü geliştirmesine yardımcı olur."
+            },
+            "moderation": {
+                "title": "Net moderasyon",
+                "description": "Basit gönderim adımları, karar geçmişi ve şikayet sistemi; oyuncular ve üreticiler için daha güvenli yayınlama sağlar."
+            },
+            "notifications": {
+                "title": "Takipler ve bildirimler",
+                "description": "Favori üreticilerinizi takip edin, bildirim alın ve yeni sürüm ile güncellemeleri kaçırmayın."
+            }
+        }
     },
     "ProjectCreationModal": {
         "close": "Kapat",

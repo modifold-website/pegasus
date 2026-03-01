@@ -75,7 +75,45 @@
         "viewAllNews": "Ver todas as notícias",
         "commentsTitle": "Comentários que ajudam",
         "commentsDescription": "Comente lançamentos, deixe feedback e ajude a melhorar os mods.",
-        "localesDescription": "A interface está disponível em inglês, espanhol, português, russo, turco e ucraniano."
+        "localesDescription": "A interface está disponível em inglês, espanhol, português, russo, turco e ucraniano.",
+        "showcase": {
+            "playersBadge": "Para jogadores",
+            "playersTitle": "Encontre o que precisa rapidamente",
+            "playersLead": "A busca instantânea e os cartões claros ajudam você a encontrar mods que combinam com seu estilo de jogo na hora.",
+            "searchPlaceholder": "Buscar projetos...",
+            "sortRelevance": "Por relevância"
+        },
+        "creatorSection": {
+            "badge": "Para criadores",
+            "title": "Compartilhe criações com a comunidade",
+            "lead": "O Modifold oferece aos criadores ferramentas práticas para publicar, apresentar projetos, colaborar em equipe e se comunicar com a audiência."
+        },
+        "creatorCards": {
+            "team": {
+                "title": "Equipes e organizações",
+                "description": "Reúna criadores em uma equipe, defina funções e publique projetos em nome de uma organização."
+            },
+            "versions": {
+                "title": "Versões flexíveis",
+                "description": "Publique versões com canais, suporte a versões do jogo e loaders para que os jogadores encontrem mods compatíveis rapidamente."
+            },
+            "pages": {
+                "title": "Páginas de projeto completas",
+                "description": "Apresente seu projeto com descrição em Markdown, galeria, links, tags e licença em um só lugar."
+            },
+            "feedback": {
+                "title": "Feedback da comunidade",
+                "description": "Os comentários ajudam os criadores a receber feedback rápido e melhorar cada lançamento."
+            },
+            "moderation": {
+                "title": "Moderação clara",
+                "description": "Fluxo simples de envio, histórico de decisões e sistema de denúncias tornam a publicação mais segura para jogadores e criadores."
+            },
+            "notifications": {
+                "title": "Seguidores e notificações",
+                "description": "Siga seus criadores favoritos, receba notificações e não perca novas versões e atualizações."
+            }
+        }
     },
     "ProjectCreationModal": {
         "close": "Fechar",

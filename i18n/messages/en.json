@@ -75,7 +75,45 @@
         "viewAllNews": "View all news",
         "commentsTitle": "Comments that help creators",
         "commentsDescription": "Discuss releases, leave feedback, and help mod authors improve their projects.",
-        "localesDescription": "Interface available in English, Spanish, Portuguese, Russian, Turkish, and Ukrainian."
+        "localesDescription": "Interface available in English, Spanish, Portuguese, Russian, Turkish, and Ukrainian.",
+        "showcase": {
+            "playersBadge": "For Players",
+            "playersTitle": "Find what you need quickly",
+            "playersLead": "Instant search and clear cards help you find mods that match your playstyle right away.",
+            "searchPlaceholder": "Search projects...",
+            "sortRelevance": "By relevance"
+        },
+        "creatorSection": {
+            "badge": "For creators",
+            "title": "Share creations with the community",
+            "lead": "Modifold gives creators practical tools for publishing, presentation, teamwork, and communication with their audience."
+        },
+        "creatorCards": {
+            "team": {
+                "title": "Teams and organizations",
+                "description": "Bring creators into one team, assign roles, and publish projects under organization ownership."
+            },
+            "versions": {
+                "title": "Flexible versions",
+                "description": "Publish releases with channels, game version support, and loaders so players can quickly find compatible mods."
+            },
+            "pages": {
+                "title": "Rich project pages",
+                "description": "Present your project with Markdown descriptions, gallery media, links, tags, and license details in one place."
+            },
+            "feedback": {
+                "title": "Community feedback",
+                "description": "Comments help creators gather feedback quickly and improve every release."
+            },
+            "moderation": {
+                "title": "Clear moderation",
+                "description": "Simple submission flow, moderation history, and project reports make publishing safer for players and creators."
+            },
+            "notifications": {
+                "title": "Follows and notifications",
+                "description": "Follow your favorite creators, get notifications, and never miss new versions and updates."
+            }
+        }
     },
     "ProjectCreationModal": {
         "close": "Close",

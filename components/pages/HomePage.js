@@ -3,24 +3,18 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import UserName from "../ui/UserName";
+import ProjectCard from "../project/ProjectCard";
+
 const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
 export default function HomePage({ news = [], locale, projects = [], projectsLimit = 20 }) {
     const t = useTranslations("HomePage");
     const activeLocale = useLocale();
-    const greetings = [
-        { label: "Русский", text: "Привет!" },
-        { label: "English", text: "Hello!" },
-        { label: "Español", text: "¡Hola!" },
-        { label: "Português", text: "Olá!" },
-        { label: "Türkçe", text: "Merhaba!" },
-        { label: "Українська", text: "Привіт!" },
-    ];
+    const currentLocale = activeLocale || locale || "en";
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
-        return date.toLocaleDateString(activeLocale || locale, { month: "long", day: "numeric", year: "numeric" });
+        return date.toLocaleDateString(currentLocale, { month: "long", day: "numeric", year: "numeric" });
     };
 
     const hytaleToken = "__HYTALE__";
@@ -35,34 +29,11 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
         return sorted.slice(0, projectsLimit);
     }, [projects]);
 
-    const creatorSpotlight = useMemo(() => {
-        const creators = new Map();
-
-        projects.forEach((project) => {
-            if(!project.owner?.slug) {
-                return;
-            }
-
-            const existing = creators.get(project.owner.slug);
-            if(existing) {
-                existing.count += 1;
-            } else {
-                creators.set(project.owner.slug, {
-                    slug: project.owner.slug,
-                    username: project.owner.username,
-                    avatar: project.owner.avatar,
-                    profile_url: project.owner.profile_url || `/user/${project.owner.slug}`,
-                    count: 1,
-                });
-            }
-        });
-
-        return Array.from(creators.values()).sort((a, b) => b.count - a.count).slice(0, projectsLimit);
-    }, [projects]);
+    const showcaseProjects = displayedProjects.slice(0, 3);
 
     return (
         <>
-            <img src="/images/content-upper-1920 (1).jpg" className="fixed-background-teleport" alt="" />
+            <img src="/images/hytale_cursebreaker_key_art.jpg" className="fixed-background-teleport" alt="" />
 
             <div className="layout">
                 <section className="hero-section">
@@ -84,14 +55,15 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
                                 )}
                             </h1>
 
-                            <p className="hero-description">
-                                {t("heroDescription")}
-                            </p>
+                            <p className="hero-description">{t("heroDescription")}</p>
 
                             <div className="hero-actions">
                                 <Link href="/mods" className="button button--size-xl button--type-primary button--with-icon button--active-transform">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-compass-icon lucide-compass"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></svg>
-                                    
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" />
+                                    </svg>
+
                                     {t("exploreMods")}
                                 </Link>
                             </div>
@@ -100,10 +72,6 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
                 </section>
 
                 <section className="stats-section">
-                    <div className="stats-header">
-                        <h2 className="stats-title">{t("statsTitle", { count: projects.length })}</h2>
-                    </div>
-
                     <div className="mods-marquee">
                         <div className="marquee-content">
                             {displayedProjects.length === 0 && (
@@ -122,169 +90,147 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
                     </div>
                 </section>
 
-                <section className="features-grid">
-                    <div className="features-container">
-                        <div className="feature-card">
-                            <h3 className="feature-title">{t("creatorsSpotlightTitle")}</h3>
-                            <p className="feature-text">{t("creatorsSpotlightDescription")}</p>
+                <section className="home-showcase-section">
+                    <div className="showcase-shell">
+                        <div className="showcase-copy">
+                            <span className="home-pill home-pill--players" style={{ width: "fit-content" }}>{t("showcase.playersBadge")}</span>
+
+                            <h3>{t("showcase.playersTitle")}</h3>
+                            
+                            <p>{t("showcase.playersLead")}</p>
                         </div>
 
-                        <div className="mods-marquee">
-                            <div className="marquee-content">
-                                {creatorSpotlight.length === 0 && (
-                                    <div className="mod-badge" style={{ cursor: "default" }}>
-                                        <span className="mod-name">{t("noCreators")}</span>
+                        <div className="showcase-visual">
+                            <div className="sort-controls">
+                                <div className="field field--large" style={{ width: "100%" }}>
+                                    <label className="field__wrapper" style={{ background: "var(--theme-color-background-content)" }}>
+                                        <div className="field__wrapper-body">
+                                            <svg className="icon icon--search field__icon field__icon--left" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="m21 21-4.34-4.34" />
+                                                <circle cx="11" cy="11" r="8" />
+                                            </svg>
+
+                                            <input type="text" placeholder={t("showcase.searchPlaceholder")} value="" readOnly className="text-input" />
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div style={{ display: "flex", gap: "12px", flexDirection: "row", alignItems: "center" }}>
+                                    <div className="sort-wrapper">
+                                        <div className="dropdown">
+                                            <button className="dropdown__label" type="button" disabled style={{ cursor: "default" }}>
+                                                {t("showcase.sortRelevance")}
+                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" className="icon icon--chevron_up" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="m6 9 6 6 6-6" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="browse-project-list">
+                                {showcaseProjects.length === 0 && (
+                                    <div className="subsite-empty-feed">
+                                        <p className="subsite-empty-feed__title">{t("noProjects")}</p>
                                     </div>
                                 )}
 
-                                {creatorSpotlight.map((creator) => (
-                                    <Link href={creator.profile_url || `/user/${creator.slug}`} key={creator.slug} className="mod-badge">
-                                        <img src={creator.avatar} alt={creator.username} className="mod-avatar" width={64} height={64} />
-                                        <span className="mod-name"><UserName user={creator} /></span>
-                                    </Link>
+                                {showcaseProjects.map((project) => (
+                                    <ProjectCard key={`showcase-${project.id}`} maxTags={3} project={project} />
                                 ))}
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <section className="features-grid">
-                    <div className="features-container" style={{ flexDirection: "row", justifyContent: "center" }}>
-                        <div className="feature-card">
-                            <img src="/images/kweebec.png" style={{ width: "345px" }}></img>
-
-                            <h3 className="feature-title">{t("forPlayersTitle")}</h3>
-                            <p className="feature-text">
-                                {t("forPlayersDescription")}
-                            </p>
-                        </div>
-
-                        <div className="feature-card">
-                            <img src="/images/player.png" style={{ width: "280px" }}></img>
-
-                            <h3 className="feature-title">{t("forCreatorsTitle")}</h3>
-                            <p className="feature-text">
-                                {t("forCreatorsDescription")}
-                            </p>
-                        </div>
+                <section className="creator-features-section">
+                    <div className="home-section-intro">
+                        <span className="home-pill home-pill--creators">{t("creatorSection.badge")}</span>
+                        
+                        <h2 className="home-section-title">{t("creatorSection.title")}</h2>
+                        
+                        <p className="home-section-lead">{t("creatorSection.lead")}</p>
                     </div>
-                </section>
 
-                <section className="features-grid" style={{ paddingTop: "0" }}>
-                    <div className="features-container" style={{ flexDirection: "row", justifyContent: "center" }}>
-                        <div className="feature-card">
-                            <h3 className="feature-title">{t("commentsTitle")}</h3>
-                            <p className="feature-text" style={{ marginBottom: "12px" }}>{t("commentsDescription")}</p>
-
-                            <div class="comments" style={{ textAlign: "left" }}>
-                                <div class="comment-list">
-                                    <div class="comment-item">
-                                        <div class="comment" style={{ "--branches-count": "0" }}>
-                                            <div class="comment__branches">
-                                                <div class="comment-branches"></div>
-                                            </div>
-
-                                            <div class="comment__content">
-                                                <div class="author" style={{ "--1ebedaf6": "36px" }}>
-                                                    <div class="author__avatar">
-                                                        <div class="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "36px", height: "36px", maxWidth: "none", "--background-color": "#33302c" }}>
-                                                            <picture>
-                                                                <img alt="bogdan" src="/images/Simon.jpg" />
-                                                            </picture>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="author__main" style={{ fontWeight: "500" }}>
-                                                        <span style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
-                                                            <span>Simon</span>
-                                                        </span>
-                                                    </div>
-
-                                                    <div class="author__details">
-                                                        <span class="comment__detail"><time>Feb 5, 2026, 10:23 PM</time></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="comment__break comment__break--author"></div>
-                                                
-                                                <div class="comment__text">
-                                                    <p>I will be the first to leave a comment here. Very good mod! :)</p>
-                                                </div>
-
-                                                <div class="comment__actions">
-                                                    <button type="button" class="comment__action comment__action--reply">Reply</button>
-                                                    
-                                                    <div class="comment-menu" style={{ height: "26px" }}>
-                                                        <button type="button" class="icon-button" aria-label="More actions">
-                                                            <svg viewBox="0 0 24 24" class="icon icon--dots" height="20" width="20">
-                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM19 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor"></path>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="feature-card">
-                            <div className="animate-strong">
-                                <span>
-                                    {greetings.map((item, index) => (
-                                        <strong key={item.label} className="main-header-strong">
-                                            {item.text}
-                                            {index < greetings.length - 1 && <br />}
-                                        </strong>
-                                    ))}
-                                </span>
+                    <div className="creator-features-grid">
+                        <article className="creator-feature-card">
+                            <div className="creator-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-round-icon lucide-users-round">
+                                    <path d="M18 21a8 8 0 0 0-16 0"/>
+                                    <circle cx="10" cy="8" r="5"/>
+                                    <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/>
+                                </svg>
                             </div>
 
-                            <p className="feature-text" style={{ marginBottom: "12px" }}>{t("localesDescription")}</p>
+                            <h3>{t("creatorCards.team.title")}</h3>
+                            <p>{t("creatorCards.team.description")}</p>
+                        </article>
 
-                            <div class="field field--default" style={{ textAlign: "left", width: "250px" }}>
-                                <label class="field__wrapper" style={{ backgroundColor: "var(--theme-color-background-content)" }}>
-                                    <div class="field__wrapper-body">
-                                        <div class="select">
-                                            <div class="select__selected">English</div>
-                                        </div>
-                                    </div>
-
-                                    <svg class="icon icon--chevron_down rotate" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ fill: "none" }}>
-                                        <path d="m6 9 6 6 6-6"></path>
-                                    </svg>
-                                </label>
-
-                                <div class="popover">
-                                    <div class="context-list" data-scrollable="true" style={{ maxHeight: "200px", overflowY: "auto" }}>
-                                        <div class="context-list-option context-list-option--selected">
-                                            <div class="context-list-option__label">English</div>
-                                        </div>
-
-                                        <div class="context-list-option">
-                                            <div class="context-list-option__label">Spanish</div>
-                                        </div>
-
-                                        <div class="context-list-option">
-                                            <div class="context-list-option__label">Portuguese</div>
-                                        </div>
-
-                                        <div class="context-list-option">
-                                            <div class="context-list-option__label">Russian</div>
-                                        </div>
-
-                                        <div class="context-list-option">
-                                            <div class="context-list-option__label">Ukrainian</div>
-                                        </div>
-
-                                        <div class="context-list-option">
-                                            <div class="context-list-option__label">Turkish</div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <article className="creator-feature-card">
+                            <div className="creator-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-branch-icon lucide-git-branch">
+                                    <path d="M15 6a9 9 0 0 0-9 9V3"/>
+                                    <circle cx="18" cy="6" r="3"/>
+                                    <circle cx="6" cy="18" r="3"/>
+                                </svg>
                             </div>
-                        </div>
+
+                            <h3>{t("creatorCards.versions.title")}</h3>
+                            <p>{t("creatorCards.versions.description")}</p>
+                        </article>
+
+                        <article className="creator-feature-card">
+                            <div className="creator-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text-icon lucide-file-text">
+                                    <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/>
+                                    <path d="M14 2v5a1 1 0 0 0 1 1h5"/>
+                                    <path d="M10 9H8"/>
+                                    <path d="M16 13H8"/>
+                                    <path d="M16 17H8"/>
+                                </svg>
+                            </div>
+
+                            <h3>{t("creatorCards.pages.title")}</h3>
+                            <p>{t("creatorCards.pages.description")}</p>
+                        </article>
+
+                        <article className="creator-feature-card">
+                            <div className="creator-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle-icon lucide-message-circle">
+                                    <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/>
+                                </svg>
+                            </div>
+
+                            <h3>{t("creatorCards.feedback.title")}</h3>
+                            <p>{t("creatorCards.feedback.description")}</p>
+                        </article>
+
+                        <article className="creator-feature-card">
+                            <div className="creator-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check-icon lucide-shield-check">
+                                    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+
+                            <h3>{t("creatorCards.moderation.title")}</h3>
+                            <p>{t("creatorCards.moderation.description")}</p>
+                        </article>
+
+                        <article className="creator-feature-card">
+                            <div className="creator-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell-ring-icon lucide-bell-ring">
+                                    <path d="M10.268 21a2 2 0 0 0 3.464 0"/>
+                                    <path d="M22 8c0-2.3-.8-4.3-2-6"/>
+                                    <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/>
+                                    <path d="M4 2C2.8 3.7 2 5.7 2 8"/>
+                                </svg>
+                            </div>
+
+                            <h3>{t("creatorCards.notifications.title")}</h3>
+                            <p>{t("creatorCards.notifications.description")}</p>
+                        </article>
                     </div>
                 </section>
 
@@ -306,7 +252,16 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
                     </div>
 
                     <div className="view-all">
-                        <Link href="/news" className="button button--size-xl button--type-primary button--active-transform">{t("viewAllNews")}</Link>
+                        <Link href="/news" className="button button--size-xl button--type-primary button--with-icon button--active-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-newspaper-icon lucide-newspaper">
+                                <path d="M15 18h-5"/>
+                                <path d="M18 14h-8"/>
+                                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2"/>
+                                <rect width="8" height="4" x="10" y="6" rx="1"/>
+                            </svg>
+                            
+                            {t("viewAllNews")}
+                        </Link>
                     </div>
                 </section>
             </div>

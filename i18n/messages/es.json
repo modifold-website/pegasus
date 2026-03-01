@@ -75,7 +75,45 @@
         "viewAllNews": "Ver todas las noticias",
         "commentsTitle": "Comentarios que ayudan",
         "commentsDescription": "Comenta lanzamientos, deja feedback y ayuda a mejorar los mods.",
-        "localesDescription": "La interfaz está disponible en inglés, español, portugués, ruso, turco y ucraniano."
+        "localesDescription": "La interfaz está disponible en inglés, español, portugués, ruso, turco y ucraniano.",
+        "showcase": {
+            "playersBadge": "Para jugadores",
+            "playersTitle": "Encuentra lo que necesitas rápido",
+            "playersLead": "La búsqueda instantánea y las tarjetas claras te ayudan a encontrar mods que encajan con tu estilo de juego al momento.",
+            "searchPlaceholder": "Buscar proyectos...",
+            "sortRelevance": "Por relevancia"
+        },
+        "creatorSection": {
+            "badge": "Para creadores",
+            "title": "Comparte tus creaciones con la comunidad",
+            "lead": "Modifold ofrece a los creadores herramientas prácticas para publicar, presentar proyectos, colaborar en equipo y comunicarse con su audiencia."
+        },
+        "creatorCards": {
+            "team": {
+                "title": "Equipos y organizaciones",
+                "description": "Reúne creadores en un solo equipo, asigna roles y publica proyectos en nombre de una organización."
+            },
+            "versions": {
+                "title": "Versiones flexibles",
+                "description": "Publica lanzamientos con canales, compatibilidad de versiones del juego y loaders para que los jugadores encuentren mods compatibles rápidamente."
+            },
+            "pages": {
+                "title": "Páginas de proyecto completas",
+                "description": "Presenta tu proyecto con descripciones en Markdown, galería, enlaces, etiquetas y licencia en un solo lugar."
+            },
+            "feedback": {
+                "title": "Feedback de la comunidad",
+                "description": "Los comentarios ayudan a los creadores a recibir feedback rápido y mejorar cada lanzamiento."
+            },
+            "moderation": {
+                "title": "Moderación clara",
+                "description": "Un flujo simple para enviar proyectos, historial de decisiones y reportes hace la publicación más segura para jugadores y creadores."
+            },
+            "notifications": {
+                "title": "Seguimientos y notificaciones",
+                "description": "Sigue a tus creadores favoritos, recibe notificaciones y no te pierdas nuevas versiones y actualizaciones."
+            }
+        }
     },
     "ProjectCreationModal": {
         "close": "Cerrar",

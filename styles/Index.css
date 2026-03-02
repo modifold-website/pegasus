@@ -3968,10 +3968,9 @@ body.light div .image-container::before {
     }
     .creator-features-grid {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 40px;
     }
     .creator-feature-card {
-        min-height: 240px;
         padding: 28px 18px 18px;
     }
     .creator-feature-card h3 {
@@ -4263,13 +4262,17 @@ body.light .ripple-effect {
         bottom: 0;
         display: flex;
         height: 60px;
+        height: calc(60px + constant(safe-area-inset-bottom));
+        height: calc(60px + env(safe-area-inset-bottom, 0px));
         padding: 0 18px;
         background: var(--theme-color-background-content);
         border-radius: 100px;
         border: 1px solid var(--theme-sidebar-separator-color-background);
         justify-content: space-between;
         margin-bottom: 12px;
-        padding-bottom: env(safe-area-inset-bottom);
+        padding-bottom: 0;
+        padding-bottom: constant(safe-area-inset-bottom);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
         position: fixed;
         width: 100%;
         z-index: 1;
@@ -4511,5 +4514,17 @@ body.light .ripple-effect {
 @media (max-width: 859px) {
     .layout {
         padding: 0 0 16px;
+    }
+    .showcase-visual .browse-project-list .new-project-card {
+        border-radius: 20px;
+    }
+    .showcase-visual {
+        border-radius: 20px;
+    }
+    .showcase-visual:after {
+        border-radius: 20px;
+    }
+    .marquee-content .mod-badge {
+        border-radius: 20px;
     }
 }

@@ -335,3 +335,6 @@ strong {
     font-size: 80%;
     padding: 0.2em 0.4em;
 }
+.news .markdown-body code {
+    background-color: var(--theme-color-background-content);
+}

@@ -143,6 +143,7 @@
     "ProjectPage": {
         "previous": "Previous",
         "next": "Next",
+        "backToVersions": "Back to versions",
         "loginRequired": "Please log in to like this project",
         "likeError": "Failed to toggle like. Please try again.",
         "links": "Links",
@@ -214,7 +215,21 @@
             },
             "notSpecified": "Not specified",
             "published": "Published:",
-            "downloads": "downloads"
+            "downloads": "downloads",
+            "channels": {
+                "release": "Release",
+                "beta": "Beta",
+                "alpha": "Alpha"
+            },
+            "metadata": {
+                "title": "Metadata",
+                "gameVersion": "Game Version",
+                "platform": "Platform",
+                "releaseChannel": "Release channel",
+                "downloads": "Downloads",
+                "publicationDate": "Publication date",
+                "versionId": "Version ID"
+            }
         },
         "filters": {
             "gameVersionsAria": "Filter by game versions",

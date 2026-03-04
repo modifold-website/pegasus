@@ -697,6 +697,9 @@ body.dark {
     grid-row: span 2;
     flex-shrink: 0;
 }
+.account-menu__name-label {
+    font-weight: 500;
+}
 .account-menu__section:not(:last-child) {
     margin-bottom: 8px;
 }
@@ -2653,6 +2656,47 @@ input[type="file"]::-webkit-file-upload-button:hover {
     gap: 8px;
     margin-top: 18px;
 }
+.version-release-channel-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+.version-release-channel-picker__option {
+    appearance: none;
+    background: var(--theme-color-background);
+    color: var(--theme-color-text-secondary);
+    cursor: pointer;
+    border: 2px solid #0000;
+    border-radius: 12px;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    font-weight: 600;
+    line-height: 1;
+    transition: background-color .2s, border-color .2s, color .2s;
+    display: inline-flex;
+}
+.version-release-channel-picker__option:hover:not(:disabled):not(.is-active) {
+    opacity: 0.9;
+}
+.version-release-channel-picker__option:disabled {
+    opacity: .6;
+    cursor: default;
+}
+.version-release-channel-picker__option.is-active {
+    border-color: #307df0;
+    background: color-mix(in srgb, #307df0 24%, var(--theme-color-background-content));
+    color: var(--theme-color-text-primary);
+}
+.version-release-channel-picker__check {
+    display: none;
+    fill: none;
+    flex-shrink: 0;
+}
+.version-release-channel-picker__option.is-active .version-release-channel-picker__check {
+    display: block;
+}
 @media all and (min-width: 640px) {
     .modal-window__content {
         padding: 0 32px 32px;
@@ -2694,6 +2738,10 @@ input[type="file"]::-webkit-file-upload-button:hover {
     }
     .version-upload-actions .button {
         width: 100%;
+    }
+    .version-release-channel-picker__option {
+        width: 100%;
+        justify-content: center;
     }
 }
 @media all and (min-width: 925px) {
@@ -4071,6 +4119,15 @@ body.light div .image-container::before {
     .sidebar--browse {
         width: 100% !important;
         max-width: none !important;
+    }
+    .category-list {
+        max-height: min(42vh, 320px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        padding-right: 4px;
+        -webkit-mask-image: linear-gradient(transparent, #000 14px, #000 calc(100% - 14px), transparent 100%);
+        mask-image: linear-gradient(transparent, #000 14px, #000 calc(100% - 14px), transparent 100%);
     }
     .sort-controls {
         align-items: center !important;

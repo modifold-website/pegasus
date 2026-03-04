@@ -12,7 +12,7 @@ export default function CommentsPage({ project, authToken }) {
 
     return (
         <>
-            {featuredImage && project.showProjectBackground === 1 && (
+            {featuredImage && (
                 <img src={featuredImage.url} className="fixed-background-teleport"></img>
             )}
 

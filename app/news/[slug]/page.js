@@ -212,6 +212,20 @@ export default async function NewsArticle({ params }) {
                                         </a>
                                     );
                                 },
+                                img: ({ src, alt }) => {
+                                    if(typeof src !== "string" || !src.trim()) {
+                                        return null;
+                                    }
+
+                                    return (
+                                        <img
+                                            src={src}
+                                            alt={alt || ""}
+                                            loading="lazy"
+                                            style={{ borderRadius: "20px" }}
+                                        />
+                                    );
+                                },
                             }}
                         >
                             {content}

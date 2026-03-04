@@ -1,52 +1,86 @@
 ---
-title: "Creator Update: Organizations on Modifold"
-description: "Teams can now create organizations, invite members, manage permissions, and publish projects under one shared identity."
+title: "Introducing Organizations"
+description: "A new collaboration layer for teams on Modifold: shared ownership, member roles, and project publishing under one identity."
 author: ["modifold"]
 date: 2026-02-28
 slug: /news/organizations-on-modifold
-image: https://media.modifold.com/news/banner.png?v=1
+image: https://media.modifold.com/news/organizations banner.png
 featured: true
 locale: en
 ---
 
-Hey everyone! Today we’re shipping **Organizations on Modifold**.
+# Introducing Organizations
 
-This update is for creators who build together and want one shared place to manage access, ownership, and project publishing.
+Big news: we are shipping **Organizations** on Modifold.
+
+This is our new team workflow layer for creators who build together and need clean ownership, reliable permissions, and one shared publishing identity.
 
 ## TL;DR
 
-- Create organizations with name, summary, and icon
-- Invite members by **user slug** via notifications
-- Assign member roles and permissions for projects and organization actions
-- Attach projects to organizations so they publish under team identity
-- Public sees approved projects, members can also see attached drafts
+- New organization layer for team-owned projects
+- Invite members by user slug through notifications
+- Role-based permissions for organization and project actions
+- Attach projects to organizations and publish under team identity
+- Public users see approved projects, members can also access attached drafts
 
-## Why we built this
+## Design goals
 
-Until now, Modifold did not have built-in shared ownership. If you had a team, permissions were harder to keep clean and consistent across multiple projects.
+Most creators do not work alone forever. As projects grow, shared ownership and access control become critical.
 
-Organizations fix that with a dedicated team layer: invite members, define access, and keep management in one place.
+Before this release, teams had to coordinate ownership and permissions manually across projects. That works at small scale, but breaks down quickly.
 
-## Creating and managing organizations
+Organizations solve this with one clear workspace for team membership, permissions, and publishing.
 
-You can now create an organization, upload an icon, set a summary, and manage everything from organization settings.
+## Creating an organization
 
-Members can be invited by slug and accept or decline directly from notifications.
+When creating an organization, you can set:
 
-## Projects under organization identity
+- Name
+- Summary
+- Icon
 
-Projects can now be attached to an organization and shown as organization-owned projects.
+After creation, organization settings become the control center for team management.
 
-This is especially useful for teams, studios, and long-term multi-maintainer projects.
+![](https://media.modifold.com/news/organization_settings.png)
 
-## Visibility rules
+## Invites and membership
 
-For public visitors, organization pages show only approved projects.
+Organizations use slug-based invites.
 
-For signed-in organization members, attached drafts are visible too, so teams can manage unpublished work safely.
+To add a member, enter their user slug. They receive a notification and can accept or decline directly.
+
+This keeps onboarding fast without external invite links or manual handoffs.
+
+## Roles and permissions
+
+Each member can have role-based permissions for:
+
+- Organization management actions
+- Project-level actions
+
+This gives teams precise control over who can manage settings, maintain projects, and publish updates.
+
+![](https://media.modifold.com/news/organization_settings_members.png)
+
+## Project ownership and visibility
+
+Projects can now be attached to an organization and shown as organization-owned.
+
+Visibility rules:
+
+- Public visitors: approved projects only
+- Signed-in organization members: approved projects plus attached drafts
+
+This allows teams to coordinate unpublished work safely while keeping public pages clean.
 
 ## For solo creators
 
-Nothing breaks for solo workflows. Organizations are optional, and you can adopt them only when your project grows into a team effort.
+Nothing changes for solo workflows. Organizations are optional.
 
-We’ll keep iterating based on your feedback. Thanks for building with us.
+You can keep publishing exactly as before and adopt organizations only when your project becomes a team effort.
+
+## What is next
+
+This is the first release of Organizations. We will keep iterating based on community feedback.
+
+Thanks for building on Modifold.

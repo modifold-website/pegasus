@@ -1,6 +1,6 @@
 ---
 title: "Introducing Organizations"
-description: "A new collaboration layer for teams on Modifold: shared ownership, member roles, and project publishing under one identity."
+description: "Organizations on Modifold: shared project ownership, member roles, and publishing under a team identity."
 author: ["modifold"]
 date: 2026-02-28
 slug: /news/organizations-on-modifold
@@ -13,23 +13,23 @@ locale: en
 
 Big news: we are shipping **Organizations** on Modifold.
 
-This is our new team workflow layer for creators who build together and need clean ownership, reliable permissions, and one shared publishing identity.
+Organizations are built for creators who work together and need shared ownership, clear permissions, and one team identity for publishing.
 
 ## TL;DR
 
-- New organization layer for team-owned projects
+- Organizations for team-owned projects
 - Invite members by user slug through notifications
 - Role-based permissions for organization and project actions
-- Attach projects to organizations and publish under team identity
-- Public users see approved projects, members can also access attached drafts
+- Attach projects to organizations and publish as a team
+- Public visitors see approved projects, while members can also access attached drafts
 
 ## Design goals
 
-Most creators do not work alone forever. As projects grow, shared ownership and access control become critical.
+Most creators do not stay solo forever. As projects grow, shared ownership and access control become essential.
 
-Before this release, teams had to coordinate ownership and permissions manually across projects. That works at small scale, but breaks down quickly.
+Before this release, teams had to manage ownership and permissions manually across projects. That can work for small teams, but it becomes fragile as they scale.
 
-Organizations solve this with one clear workspace for team membership, permissions, and publishing.
+Organizations solve this by keeping membership, permissions, and publishing in one place.
 
 ## Creating an organization
 
@@ -39,7 +39,7 @@ When creating an organization, you can set:
 - Summary
 - Icon
 
-After creation, organization settings become the control center for team management.
+After creation, organization settings become your team control center.
 
 ![](https://media.modifold.com/news/organization_settings.png)
 
@@ -47,9 +47,11 @@ After creation, organization settings become the control center for team managem
 
 Organizations use slug-based invites.
 
-To add a member, enter their user slug. They receive a notification and can accept or decline directly.
+`Slug` is the profile identifier in the URL. For example, in `https://modifold.com/user/john-doe`, the slug is `john-doe`.
 
-This keeps onboarding fast without external invite links or manual handoffs.
+To add a member, enter their slug. They receive a notification and can accept or decline right away.
+
+This keeps onboarding quick without external invite links or manual access handoffs.
 
 ## Roles and permissions
 
@@ -58,29 +60,29 @@ Each member can have role-based permissions for:
 - Organization management actions
 - Project-level actions
 
-This gives teams precise control over who can manage settings, maintain projects, and publish updates.
+This gives teams precise control over who manages settings, maintains projects, and publishes updates.
 
 ![](https://media.modifold.com/news/organization_settings_members.png)
 
 ## Project ownership and visibility
 
-Projects can now be attached to an organization and shown as organization-owned.
+Projects can now be attached to an organization and shown on the organization page.
 
 Visibility rules:
 
 - Public visitors: approved projects only
 - Signed-in organization members: approved projects plus attached drafts
 
-This allows teams to coordinate unpublished work safely while keeping public pages clean.
+This lets teams safely coordinate unpublished work while keeping public pages clean.
 
 ## For solo creators
 
-Nothing changes for solo workflows. Organizations are optional.
+Nothing changes for solo creators. Organizations are optional.
 
-You can keep publishing exactly as before and adopt organizations only when your project becomes a team effort.
+You can keep publishing as before and adopt organizations when your project becomes a team effort.
 
 ## What is next
 
-This is the first release of Organizations. We will keep iterating based on community feedback.
+This is the first release of Organizations. We will keep improving it based on community feedback.
 
 Thanks for building on Modifold.

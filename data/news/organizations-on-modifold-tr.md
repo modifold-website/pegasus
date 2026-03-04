@@ -1,6 +1,6 @@
 ---
-title: "Organizasyonlari Taniyin"
-description: "Modifold'da ekipler icin yeni bir isbirligi katmani: paylasilan sahiplik, uye rolleri ve tek kimlikle proje yayini."
+title: "Organizasyonları Tanıyın"
+description: "Modifold'da organizasyonlar: paylaşılan sahiplik, ekip rolleri ve ortak kimlikle proje yayını."
 author: ["modifold"]
 date: 2026-02-28
 slug: /news/organizations-on-modifold
@@ -9,78 +9,80 @@ featured: true
 locale: tr
 ---
 
-# Organizasyonlari Taniyin
+# Organizasyonları Tanıyın
 
-Buyuk haber: Modifold'da **Organizasyonlar** ozelligini yayinliyoruz.
+Büyük haber: Modifold'da **Organizasyonlar** özelliğini yayınlıyoruz.
 
-Bu, birlikte ureten ekipler icin yeni bir is akis katmani: net sahiplik, guvenilir izinler ve yayinlama icin ortak bir kimlik.
+Organizasyonlar, birlikte üreten ekipler için tasarlandı: net sahiplik, açık yetkiler ve yayınlama için ortak bir kimlik sağlar.
 
-## Kisa ozet
+## Kısa özet
 
-- Ekip projeleri icin yeni organizasyon katmani
-- Bildirimler uzerinden kullanici slug'i ile uye daveti
-- Organizasyon ve proje aksiyonlari icin role dayali izinler
-- Projeleri organizasyona baglayip ekip kimligiyle yayinlama
-- Genel kullanici sadece onayli projeleri gorur; uyeler bagli taslaklari da gorur
+- Ekip projeleri için organizasyon desteği
+- Bildirimler üzerinden kullanıcı slug'ı ile üye daveti
+- Organizasyon ve proje işlemleri için role dayalı yetkiler
+- Projeleri organizasyona bağlayıp ekip kimliğiyle yayınlama
+- Genel kullanıcılar yalnızca onaylı projeleri görür; üyeler bağlı taslakları da görür
 
-## Tasarim hedefleri
+## Çıkış hedefleri
 
-Cogu uretici uzun vadede tek basina calismiyor. Proje buyudukce paylasilan sahiplik ve erisim kontrolu kritik hale geliyor.
+Çoğu üretici uzun vadede tek başına çalışmıyor. Proje büyüdükçe paylaşılan sahiplik ve erişim kontrolü kritik hale geliyor.
 
-Bu surumden once ekipler, birden fazla proje arasinda sahiplik ve izinleri manuel yonetiyordu. Kucuk olcekte idare eder, ama hizla kirilgan olur.
+Bu sürümden önce ekipler, birden fazla proje arasında sahiplik ve izinleri manuel olarak yönetiyordu. Küçük ölçekte idare edilebilir, ancak büyüdükçe hızla kırılgan hale gelir.
 
-Organizasyonlar, uyelik, izinler ve yayinlama icin tek bir calisma alani sunarak bu sorunu cozer.
+Organizasyonlar bu sorunu çözer: üyelik, izinler ve yayınlama tek bir çalışma alanında toplanır.
 
-## Organizasyon olusturma
+## Organizasyon oluşturma
 
-Bir organizasyon olustururken sunlari belirleyebilirsiniz:
+Bir organizasyon oluştururken şunları belirleyebilirsiniz:
 
 - Ad
-- Ozet
+- Özet
 - Simge
 
-Olusturma sonrasi organizasyon ayarlari ekip yonetiminin kontrol merkezi olur.
+Oluşturduktan sonra organizasyon ayarları ekip yönetiminin kontrol merkezi olur.
 
 ![](https://media.modifold.com/news/organization_settings.png)
 
-## Davetler ve uyelik
+## Davetler ve üyelik
 
-Organizasyonlar slug tabanli davet kullanir.
+Organizasyonlar slug tabanlı davet kullanır.
 
-Uye eklemek icin kullanici slug'ini girmeniz yeterli. Kullanici bildirim alir ve daveti dogrudan kabul ya da reddedebilir.
+`Slug`, profil URL'sindeki kimliktir. Örneğin `https://modifold.com/user/john-doe` bağlantısında slug `john-doe` olur.
 
-Bu sayede dis baglantilar veya manuel devir olmadan hizli katilim saglanir.
+Üye eklemek için kullanıcı slug'ını girmeniz yeterli. Kullanıcı bildirim alır ve daveti doğrudan kabul ya da reddedebilir.
 
-## Roller ve izinler
+Bu sayede dış bağlantılar veya manuel erişim devri olmadan hızlı katılım sağlanır.
 
-Her uye icin su alanlarda role dayali izin tanimlanabilir:
+## Roller ve yetkiler
 
-- Organizasyon yonetimi aksiyonlari
-- Proje duzeyi aksiyonlar
+Her üye için şu alanlarda role dayalı yetki tanımlanabilir:
 
-Boylece ekip, ayarlari kimin yonetecegini, projeleri kimin bakimini yapacagini ve guncellemeleri kimin yayinlayacagini net sekilde kontrol eder.
+- Organizasyon yönetimi işlemleri
+- Proje düzeyi işlemler
+
+Böylece ekip, ayarları kimin yöneteceğini, projeleri kimin sürdüreceğini ve güncellemeleri kimin yayınlayacağını net biçimde kontrol eder.
 
 ![](https://media.modifold.com/news/organization_settings_members.png)
 
-## Proje sahipligi ve gorunurluk
+## Proje sahipliği ve görünürlük
 
-Projeler artik organizasyona baglanabilir ve organizasyon projesi olarak gorunur.
+Projeler artık organizasyona bağlanabilir ve organizasyon sayfasında gösterilebilir.
 
-Gorunurluk kurallari:
+Görünürlük kuralları:
 
-- Genel ziyaretciler: sadece onayli projeler
-- Giris yapmis organizasyon uyeleri: onayli projeler + bagli taslaklar
+- Genel ziyaretçiler: sadece onaylı projeler
+- Giriş yapmış organizasyon üyeleri: onaylı projeler + bağlı taslaklar
 
-Bu, yayinda olmayan icerigi guvenli yonetmeyi saglarken halka acik sayfalari temiz tutar.
+Bu yapı, yayınlanmamış içeriği güvenle yönetmeyi sağlarken herkese açık sayfaları düzenli tutar.
 
-## Tek kisilik ureticiler icin
+## Tek başına üretenler için
 
-Tek kisilik akista hicbir sey degismez. Organizasyonlar tamamen opsiyoneldir.
+Tek başına çalışanlar için hiçbir şey değişmez. Organizasyonlar tamamen isteğe bağlıdır.
 
-Ayni sekilde yayinlamaya devam edebilir, proje ekip calismasina donustugunde organizasyon kullanabilirsiniz.
+Aynı şekilde yayınlamaya devam edebilir, proje ekip çalışmasına dönüştüğünde organizasyonları kullanabilirsiniz.
 
-## Sirada ne var
+## Sırada ne var
 
-Bu, Organizasyonlarin ilk surumu. Topluluktan gelen geri bildirimle gelistirmeye devam edecegiz.
+Bu, Organizasyonların ilk sürümü. Topluluktan gelen geri bildirimlerle geliştirmeye devam edeceğiz.
 
-Modifold'da urettiginiz icin tesekkurler.
+Modifold'da ürettiğiniz için teşekkürler.

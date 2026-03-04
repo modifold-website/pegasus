@@ -1,52 +1,86 @@
 ---
-title: "Actualización para creadores: Organizaciones en Modifold"
-description: "Ahora los equipos pueden crear organizaciones, invitar miembros por slug, gestionar permisos y publicar proyectos bajo una identidad compartida."
+title: "Presentamos Organizaciones"
+description: "Una nueva capa de colaboración para equipos en Modifold: propiedad compartida, roles de miembros y publicación bajo una sola identidad."
 author: ["modifold"]
 date: 2026-02-28
 slug: /news/organizations-on-modifold
-image: https://media.modifold.com/news/banner.png?v=1
+image: https://media.modifold.com/news/organizations banner.png
 featured: true
 locale: es
 ---
 
-¡Hola a todos! Hoy lanzamos **Organizaciones en Modifold**.
+# Presentamos Organizaciones
 
-Esta actualización es para creadores que trabajan en equipo y quieren un lugar único para gestionar accesos, propiedad y publicación de proyectos.
+Gran noticia: lanzamos **Organizaciones** en Modifold.
 
-## Resumen rápido
+Esta es nuestra nueva capa de trabajo en equipo para creadores que construyen juntos y necesitan propiedad clara, permisos confiables y una identidad compartida para publicar.
 
-- Crear organizaciones con nombre, descripción e icono
-- Invitar miembros por **slug de usuario** mediante notificaciones
-- Asignar roles y permisos para proyectos y acciones de la organización
-- Vincular proyectos a organizaciones para publicarlos bajo identidad de equipo
-- El público ve solo proyectos aprobados; los miembros también ven borradores vinculados
+## Resumen rapido
 
-## Por qué lo hicimos
+- Nueva capa de organización para proyectos de equipo
+- Invitaciones por slug de usuario mediante notificaciones
+- Permisos por roles para acciones de organización y de proyecto
+- Vincula proyectos a organizaciones y publica con identidad de equipo
+- El publico ve solo proyectos aprobados; los miembros tambien acceden a borradores vinculados
 
-Hasta ahora, Modifold no tenía un sistema integrado de propiedad compartida. Si trabajabas con un equipo, mantener permisos claros y consistentes entre varios proyectos era difícil.
+## Objetivos de diseño
 
-Las organizaciones resuelven esto con un espacio común para invitar miembros, definir accesos y centralizar la gestión.
+La mayoria de creadores no trabaja en solitario para siempre. Cuando un proyecto crece, la propiedad compartida y el control de acceso se vuelven esenciales.
 
-## Crear y gestionar organizaciones
+Antes de este lanzamiento, los equipos coordinaban propiedad y permisos manualmente entre varios proyectos. Eso funciona a pequena escala, pero se vuelve fragil con rapidez.
 
-Ahora puedes crear una organización, subir un icono, definir un resumen y gestionar todo desde la configuración de la organización.
+Organizaciones resuelve esto con un espacio unico para membresia, permisos y publicacion.
 
-Los miembros se invitan por slug y pueden aceptar o rechazar la invitación directamente desde notificaciones.
+## Crear una organizacion
 
-## Proyectos bajo identidad de organización
+Al crear una organizacion puedes definir:
 
-Ahora los proyectos se pueden vincular a una organización y mostrarse como proyectos de esa organización.
+- Nombre
+- Resumen
+- Icono
 
-Esto es especialmente útil para equipos, estudios y proyectos con varios mantenedores a largo plazo.
+Despues de crearla, la configuracion de la organizacion se convierte en el centro de control del equipo.
 
-## Reglas de visibilidad
+![](https://media.modifold.com/news/organization_settings.png)
 
-Para visitantes públicos, las páginas de organización muestran solo proyectos aprobados.
+## Invitaciones y membresia
 
-Para miembros de la organización con sesión iniciada, también se muestran los borradores vinculados, para que el equipo pueda gestionar trabajo no publicado.
+Las organizaciones usan invitaciones por slug.
+
+Para agregar un miembro, introduces su slug de usuario. Recibe una notificacion y puede aceptar o rechazar directamente.
+
+Esto acelera la incorporacion sin enlaces externos ni procesos manuales.
+
+## Roles y permisos
+
+Cada miembro puede tener permisos por rol para:
+
+- Acciones de gestion de organizacion
+- Acciones a nivel de proyecto
+
+Asi, el equipo controla con precision quien gestiona configuraciones, mantiene proyectos y publica cambios.
+
+![](https://media.modifold.com/news/organization_settings_members.png)
+
+## Propiedad de proyectos y visibilidad
+
+Ahora los proyectos pueden vincularse a una organizacion y mostrarse como propiedad de esa organizacion.
+
+Reglas de visibilidad:
+
+- Visitantes publicos: solo proyectos aprobados
+- Miembros autenticados de la organizacion: proyectos aprobados mas borradores vinculados
+
+Esto permite coordinar trabajo no publicado de forma segura, manteniendo limpias las paginas publicas.
 
 ## Para creadores en solitario
 
-Tu flujo actual no cambia. Las organizaciones son opcionales y puedes usarlas cuando tu proyecto crezca y se convierta en trabajo de equipo.
+Nada cambia para tu flujo individual. Organizaciones es opcional.
 
-Seguiremos mejorando esto según sus comentarios. Gracias por construir Modifold con nosotros.
+Puedes publicar como siempre y adoptarlo solo cuando tu proyecto pase a ser un esfuerzo de equipo.
+
+## Que sigue
+
+Esta es la primera version de Organizaciones. Seguiremos iterando en base al feedback de la comunidad.
+
+Gracias por construir en Modifold.

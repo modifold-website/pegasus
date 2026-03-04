@@ -1,52 +1,86 @@
 ---
-title: "Üretici Güncellemesi: Modifold'da Organizasyonlar"
-description: "Artık ekipler organizasyon oluşturabilir, üyeleri slug ile davet edebilir, izinleri yönetebilir ve projeleri ortak bir kimlikle yayımlayabilir."
+title: "Organizasyonlari Taniyin"
+description: "Modifold'da ekipler icin yeni bir isbirligi katmani: paylasilan sahiplik, uye rolleri ve tek kimlikle proje yayini."
 author: ["modifold"]
 date: 2026-02-28
 slug: /news/organizations-on-modifold
-image: https://media.modifold.com/news/banner.png?v=1
+image: https://media.modifold.com/news/organizations banner.png
 featured: true
 locale: tr
 ---
 
-Herkese selam! Bugün **Modifold'da Organizasyonlar** özelliğini yayınlıyoruz.
+# Organizasyonlari Taniyin
 
-Bu güncelleme, ekip halinde çalışan ve erişim, sahiplik ile proje yayımını tek bir yerden yönetmek isteyen üreticiler için.
+Buyuk haber: Modifold'da **Organizasyonlar** ozelligini yayinliyoruz.
 
-## Kısa özet
+Bu, birlikte ureten ekipler icin yeni bir is akis katmani: net sahiplik, guvenilir izinler ve yayinlama icin ortak bir kimlik.
 
-- İsim, açıklama ve simge ile organizasyon oluşturma
-- Üyeleri bildirimler üzerinden **kullanıcı slug'ı** ile davet etme
-- Proje işlemleri ve organizasyon yönetimi için rol ve izin atama
-- Projeleri organizasyona bağlayıp ekip kimliğiyle yayımlama
-- Herkes sadece onaylı projeleri görür; üyeler bağlı taslakları da görür
+## Kisa ozet
 
-## Bunu neden yaptık
+- Ekip projeleri icin yeni organizasyon katmani
+- Bildirimler uzerinden kullanici slug'i ile uye daveti
+- Organizasyon ve proje aksiyonlari icin role dayali izinler
+- Projeleri organizasyona baglayip ekip kimligiyle yayinlama
+- Genel kullanici sadece onayli projeleri gorur; uyeler bagli taslaklari da gorur
 
-Modifold'da şimdiye kadar yerleşik bir ortak sahiplik sistemi yoktu. Ekipli projelerde izinleri birden fazla projede temiz ve tutarlı şekilde yönetmek zordu.
+## Tasarim hedefleri
 
-Organizasyonlar bunu tek bir ekip alanıyla çözüyor: üye davet edin, erişimleri belirleyin ve yönetimi merkezileştirin.
+Cogu uretici uzun vadede tek basina calismiyor. Proje buyudukce paylasilan sahiplik ve erisim kontrolu kritik hale geliyor.
 
-## Organizasyon oluşturma ve yönetim
+Bu surumden once ekipler, birden fazla proje arasinda sahiplik ve izinleri manuel yonetiyordu. Kucuk olcekte idare eder, ama hizla kirilgan olur.
 
-Artık organizasyon oluşturabilir, simge yükleyebilir, özet yazabilir ve her şeyi organizasyon ayarlarından yönetebilirsiniz.
+Organizasyonlar, uyelik, izinler ve yayinlama icin tek bir calisma alani sunarak bu sorunu cozer.
 
-Üyeler slug ile davet edilir ve daveti doğrudan bildirimlerden kabul veya reddedebilir.
+## Organizasyon olusturma
 
-## Organizasyon kimliğiyle projeler
+Bir organizasyon olustururken sunlari belirleyebilirsiniz:
 
-Projeler artık organizasyona bağlanabilir ve organizasyon projesi olarak gösterilebilir.
+- Ad
+- Ozet
+- Simge
 
-Bu özellikle ekipler, stüdyolar ve uzun süreli çok bakımcılı projeler için faydalı.
+Olusturma sonrasi organizasyon ayarlari ekip yonetiminin kontrol merkezi olur.
 
-## Görünürlük kuralları
+![](https://media.modifold.com/news/organization_settings.png)
 
-Genel ziyaretçiler için organizasyon sayfalarında yalnızca onaylı projeler gösterilir.
+## Davetler ve uyelik
 
-Organizasyon üyeleri giriş yaptığında bağlı taslakları da görebilir; böylece ekip yayımlanmamış içeriği güvenli şekilde yönetebilir.
+Organizasyonlar slug tabanli davet kullanir.
 
-## Tek başına çalışan üreticiler için
+Uye eklemek icin kullanici slug'ini girmeniz yeterli. Kullanici bildirim alir ve daveti dogrudan kabul ya da reddedebilir.
 
-Mevcut çalışma akışınız değişmez. Organizasyonlar isteğe bağlıdır; projeniz ekip işine dönüştüğünde kullanabilirsiniz.
+Bu sayede dis baglantilar veya manuel devir olmadan hizli katilim saglanir.
 
-Geri bildirimlerinize göre geliştirmeye devam edeceğiz. Modifold'u bizimle birlikte büyüttüğünüz için teşekkürler.
+## Roller ve izinler
+
+Her uye icin su alanlarda role dayali izin tanimlanabilir:
+
+- Organizasyon yonetimi aksiyonlari
+- Proje duzeyi aksiyonlar
+
+Boylece ekip, ayarlari kimin yonetecegini, projeleri kimin bakimini yapacagini ve guncellemeleri kimin yayinlayacagini net sekilde kontrol eder.
+
+![](https://media.modifold.com/news/organization_settings_members.png)
+
+## Proje sahipligi ve gorunurluk
+
+Projeler artik organizasyona baglanabilir ve organizasyon projesi olarak gorunur.
+
+Gorunurluk kurallari:
+
+- Genel ziyaretciler: sadece onayli projeler
+- Giris yapmis organizasyon uyeleri: onayli projeler + bagli taslaklar
+
+Bu, yayinda olmayan icerigi guvenli yonetmeyi saglarken halka acik sayfalari temiz tutar.
+
+## Tek kisilik ureticiler icin
+
+Tek kisilik akista hicbir sey degismez. Organizasyonlar tamamen opsiyoneldir.
+
+Ayni sekilde yayinlamaya devam edebilir, proje ekip calismasina donustugunde organizasyon kullanabilirsiniz.
+
+## Sirada ne var
+
+Bu, Organizasyonlarin ilk surumu. Topluluktan gelen geri bildirimle gelistirmeye devam edecegiz.
+
+Modifold'da urettiginiz icin tesekkurler.

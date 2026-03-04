@@ -6,7 +6,7 @@ if(typeof window !== "undefined") {
     Modal.setAppElement("body");
 }
 
-export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoading, uploadStep, uploadSteps, uploadFile, isUploadDragActive, uploadFileRef, versionFileAccept, openUploadFilePicker, handleUploadDragOver, handleUploadDragLeave, handleUploadDrop, handleUploadFileChange, formatFileSize, goToUploadCompatibilityStep, goToUploadFilesStep, goToUploadMetadataStepBack, handleSubmit, formData, handleInputChange, releaseChannelRef, toggleReleaseChannelPopover, isReleaseChannelPopoverOpen, releaseChannels, handleSelectReleaseChannel, releaseChannelLabel, gameVersionsRef, toggleGameVersionsPopover, isGameVersionsPopoverOpen, gameVersions, handleToggleGameVersion, gameVersionsLabel, loadersRef, toggleLoadersPopover, isLoadersPopoverOpen, loaders, handleToggleLoader, loadersLabel, t, tProject }) {
+export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoading, uploadStep, uploadSteps, uploadFile, isUploadDragActive, uploadFileRef, versionFileAccept, openUploadFilePicker, handleUploadDragOver, handleUploadDragLeave, handleUploadDrop, handleUploadFileChange, formatFileSize, goToUploadCompatibilityStep, goToUploadFilesStep, goToUploadMetadataStepBack, handleSubmit, formData, handleInputChange, releaseChannels, handleSelectReleaseChannel, gameVersionsRef, toggleGameVersionsPopover, isGameVersionsPopoverOpen, gameVersions, handleToggleGameVersion, gameVersionsLabel, loadersRef, toggleLoadersPopover, isLoadersPopoverOpen, loaders, handleToggleLoader, loadersLabel, t, tProject }) {
     const isFilesStep = uploadStep === uploadSteps.FILES;
     const isMetadataStep = uploadStep === uploadSteps.METADATA;
     const isCompatibilityStep = uploadStep === uploadSteps.COMPATIBILITY;
@@ -136,28 +136,20 @@ export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoadi
                                 </div>
 
                                 <p className="blog-settings__field-title">{t("versions.fields.releaseChannel")}</p>
-                                <div className="field field--default" ref={releaseChannelRef}>
-                                    <label className="field__wrapper" onClick={!uploadLoading ? toggleReleaseChannelPopover : undefined}>
-                                        <div className="field__wrapper-body">
-                                            <div className="select">
-                                                <div className="select__selected">{releaseChannelLabel}</div>
-                                            </div>
-                                        </div>
-                                    </label>
+                                <div className="version-release-channel-picker" role="group" aria-label={t("versions.fields.releaseChannel")}>
+                                    {releaseChannels.map((channel) => {
+                                        const isActive = formData.release_channel === channel;
 
-                                    {isReleaseChannelPopoverOpen && !uploadLoading && (
-                                        <div className="popover">
-                                            <div className="context-list" style={{ maxHeight: "200px" }}>
-                                                {releaseChannels.map((channel) => (
-                                                    <div key={channel} className={`context-list-option ${formData.release_channel === channel ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleSelectReleaseChannel(channel)}>
-                                                        <div className="context-list-option__label">
-                                                            {t(`versions.releaseChannels.${channel}`)}
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
+                                        return (
+                                            <button key={channel} type="button" className={`version-release-channel-picker__option ${isActive ? "is-active" : ""}`} onClick={() => handleSelectReleaseChannel(channel)} disabled={uploadLoading} aria-pressed={isActive}>
+                                                <svg className="version-release-channel-picker__check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                                    <path d="M20 6 9 17l-5-5" />
+                                                </svg>
+                                                
+                                                {t(`versions.releaseChannels.${channel}`)}
+                                            </button>
+                                        );
+                                    })}
                                 </div>
 
                                 <div className="version-upload-actions">

@@ -168,7 +168,7 @@ export default function VersionsPage({ project, authToken }) {
 
     return (
         <>
-            {featuredImage && project.showProjectBackground === 1 && (
+            {featuredImage && (
                 <img src={featuredImage.url} className="fixed-background-teleport"></img>
             )}
 
@@ -253,7 +253,7 @@ export default function VersionsPage({ project, authToken }) {
                                     </div>
 
                                     {currentVersions.map((version) => (
-                                        <div key={version.id} className="version-button">
+                                        <div key={version.id} className="version-button button--active-transform">
                                             <a className="download-button" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-4-4 4m0 0-4-4m4 4V4"></path>

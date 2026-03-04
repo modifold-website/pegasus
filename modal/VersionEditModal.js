@@ -15,7 +15,7 @@ if(typeof window !== "undefined") {
     Modal.setAppElement("body");
 }
 
-export default function VersionEditModal({ isOpen, onRequestClose, editLoading, onSubmit, onDelete, t, tProject, editFormData, handleEditInputChange, editReleaseChannelRef, toggleEditReleaseChannelPopover, isEditReleaseChannelPopoverOpen, releaseChannels, handleSelectEditReleaseChannel, editReleaseChannelLabel, editGameVersionsRef, toggleEditGameVersionsPopover, isEditGameVersionsPopoverOpen, gameVersions, handleEditToggleGameVersion, editGameVersionsLabel, editLoadersRef, toggleEditLoadersPopover, isEditLoadersPopoverOpen, loaders, handleEditToggleLoader, editLoadersLabel }) {
+export default function VersionEditModal({ isOpen, onRequestClose, editLoading, onSubmit, onDelete, t, tProject, editFormData, handleEditInputChange, releaseChannels, handleSelectEditReleaseChannel, editGameVersionsRef, toggleEditGameVersionsPopover, isEditGameVersionsPopoverOpen, gameVersions, handleEditToggleGameVersion, editGameVersionsLabel, editLoadersRef, toggleEditLoadersPopover, isEditLoadersPopoverOpen, loaders, handleEditToggleLoader, editLoadersLabel }) {
     const [step, setStep] = useState(EDIT_STEPS.FILES);
     const [isDragActive, setIsDragActive] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
@@ -206,26 +206,20 @@ export default function VersionEditModal({ isOpen, onRequestClose, editLoading, 
                                 </div>
 
                                 <p className="blog-settings__field-title">{t("versions.fields.releaseChannel")}</p>
-                                <div className="field field--default" ref={editReleaseChannelRef}>
-                                    <label className="field__wrapper" onClick={!editLoading ? toggleEditReleaseChannelPopover : undefined}>
-                                        <div className="field__wrapper-body">
-                                            <div className="select">
-                                                <div className="select__selected">{editReleaseChannelLabel}</div>
-                                            </div>
-                                        </div>
-                                    </label>
+                                <div className="version-release-channel-picker" role="group" aria-label={t("versions.fields.releaseChannel")}>
+                                    {releaseChannels.map((channel) => {
+                                        const isActive = editFormData.release_channel === channel;
 
-                                    {isEditReleaseChannelPopoverOpen && !editLoading && (
-                                        <div className="popover">
-                                            <div className="context-list" style={{ maxHeight: "200px" }}>
-                                                {releaseChannels.map((channel) => (
-                                                    <div key={channel} className={`context-list-option ${editFormData.release_channel === channel ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleSelectEditReleaseChannel(channel)}>
-                                                        <div className="context-list-option__label">{t(`versions.releaseChannels.${channel}`)}</div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
+                                        return (
+                                            <button key={channel} type="button" className={`version-release-channel-picker__option ${isActive ? "is-active" : ""}`} onClick={() => handleSelectEditReleaseChannel(channel)} disabled={editLoading} aria-pressed={isActive}>
+                                                <svg className="version-release-channel-picker__check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                                    <path d="M20 6 9 17l-5-5" />
+                                                </svg>
+
+                                                {t(`versions.releaseChannels.${channel}`)}
+                                            </button>
+                                        );
+                                    })}
                                 </div>
 
                                 <div className="version-upload-actions">

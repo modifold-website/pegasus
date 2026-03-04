@@ -143,6 +143,7 @@
     "ProjectPage": {
         "previous": "Назад",
         "next": "Вперёд",
+        "backToVersions": "Назад к версиям",
         "loginRequired": "Войдите, чтобы поставить лайк",
         "likeError": "Не удалось изменить лайк. Попробуйте ещё раз.",
         "links": "Ссылки",
@@ -214,7 +215,21 @@
             },
             "notSpecified": "Не указано",
             "published": "Опубликовано:",
-            "downloads": "скачиваний"
+            "downloads": "скачиваний",
+            "channels": {
+                "release": "Релиз",
+                "beta": "Бета",
+                "alpha": "Альфа"
+            },
+            "metadata": {
+                "title": "Метаданные",
+                "gameVersion": "Версия игры",
+                "platform": "Платформа",
+                "releaseChannel": "Канал релиза",
+                "downloads": "Скачивания",
+                "publicationDate": "Дата публикации",
+                "versionId": "ID версии"
+            }
         },
         "filters": {
             "gameVersionsAria": "Фильтр по версиям игры",

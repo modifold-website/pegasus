@@ -143,6 +143,7 @@
     "ProjectPage": {
         "previous": "Anterior",
         "next": "Próximo",
+        "backToVersions": "Voltar para as versões",
         "loginRequired": "Faça login para curtir este projeto",
         "likeError": "Não foi possível alternar a curtida. Tente novamente.",
         "links": "Links",
@@ -214,7 +215,21 @@
             },
             "notSpecified": "Não especificado",
             "published": "Publicado:",
-            "downloads": "downloads"
+            "downloads": "downloads",
+            "channels": {
+                "release": "Lançamento",
+                "beta": "Beta",
+                "alpha": "Alfa"
+            },
+            "metadata": {
+                "title": "Metadados",
+                "gameVersion": "Versão do jogo",
+                "platform": "Plataforma",
+                "releaseChannel": "Canal de lançamento",
+                "downloads": "Downloads",
+                "publicationDate": "Data de publicação",
+                "versionId": "ID da versão"
+            }
         },
         "filters": {
             "gameVersionsAria": "Filtrar por versões do jogo",

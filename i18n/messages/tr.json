@@ -143,6 +143,7 @@
     "ProjectPage": {
         "previous": "Önceki",
         "next": "Sonraki",
+        "backToVersions": "Sürümlere dön",
         "loginRequired": "Bu projeyi beğenmek için lütfen giriş yapın",
         "likeError": "Beğeni durumu değiştirilemedi. Lütfen tekrar deneyin.",
         "links": "Bağlantılar",
@@ -214,7 +215,21 @@
             },
             "notSpecified": "Belirtilmedi",
             "published": "Yayınlanma:",
-            "downloads": "indirme"
+            "downloads": "indirme",
+            "channels": {
+                "release": "Kararlı",
+                "beta": "Beta",
+                "alpha": "Alfa"
+            },
+            "metadata": {
+                "title": "Meta verileri",
+                "gameVersion": "Oyun sürümü",
+                "platform": "Platform",
+                "releaseChannel": "Yayın kanalı",
+                "downloads": "İndirmeler",
+                "publicationDate": "Yayın tarihi",
+                "versionId": "Sürüm kimliği"
+            }
         },
         "filters": {
             "gameVersionsAria": "Oyun sürümlerine göre filtrele",

@@ -143,6 +143,7 @@
     "ProjectPage": {
         "previous": "Попередній",
         "next": "Наступний",
+        "backToVersions": "Назад до версій",
         "loginRequired": "Будь ласка, увійдіть, щоб уподобати цей проєкт",
         "likeError": "Не вдалося змінити вподобання. Спробуйте ще раз.",
         "links": "Посилання",
@@ -214,7 +215,21 @@
             },
             "notSpecified": "Не вказано",
             "published": "Опубліковано:",
-            "downloads": "завантажень"
+            "downloads": "завантажень",
+            "channels": {
+                "release": "Реліз",
+                "beta": "Бета",
+                "alpha": "Альфа"
+            },
+            "metadata": {
+                "title": "Метадані",
+                "gameVersion": "Версія гри",
+                "platform": "Платформа",
+                "releaseChannel": "Канал релізу",
+                "downloads": "Завантаження",
+                "publicationDate": "Дата публікації",
+                "versionId": "ID версії"
+            }
         },
         "filters": {
             "gameVersionsAria": "Фільтр за версіями гри",

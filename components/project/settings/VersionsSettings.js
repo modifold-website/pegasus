@@ -45,18 +45,14 @@ export default function VersionsSettings({ project, authToken }) {
         loaders: [],
     });
 
-    const [isReleaseChannelPopoverOpen, setIsReleaseChannelPopoverOpen] = useState(false);
     const [isGameVersionsPopoverOpen, setIsGameVersionsPopoverOpen] = useState(false);
     const [isLoadersPopoverOpen, setIsLoadersPopoverOpen] = useState(false);
-    const releaseChannelRef = useRef(null);
     const gameVersionsRef = useRef(null);
     const loadersRef = useRef(null);
     const uploadFileRef = useRef(null);
 
-    const [isEditReleaseChannelPopoverOpen, setIsEditReleaseChannelPopoverOpen] = useState(false);
     const [isEditGameVersionsPopoverOpen, setIsEditGameVersionsPopoverOpen] = useState(false);
     const [isEditLoadersPopoverOpen, setIsEditLoadersPopoverOpen] = useState(false);
-    const editReleaseChannelRef = useRef(null);
     const editGameVersionsRef = useRef(null);
     const editLoadersRef = useRef(null);
 
@@ -84,20 +80,12 @@ export default function VersionsSettings({ project, authToken }) {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if(releaseChannelRef.current && !releaseChannelRef.current.contains(event.target)) {
-                setIsReleaseChannelPopoverOpen(false);
-            }
-
             if(gameVersionsRef.current && !gameVersionsRef.current.contains(event.target)) {
                 setIsGameVersionsPopoverOpen(false);
             }
 
             if(loadersRef.current && !loadersRef.current.contains(event.target)) {
                 setIsLoadersPopoverOpen(false);
-            }
-
-            if(editReleaseChannelRef.current && !editReleaseChannelRef.current.contains(event.target)) {
-                setIsEditReleaseChannelPopoverOpen(false);
             }
 
             if(editGameVersionsRef.current && !editGameVersionsRef.current.contains(event.target)) {
@@ -125,20 +113,12 @@ export default function VersionsSettings({ project, authToken }) {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    const toggleReleaseChannelPopover = () => {
-        setIsReleaseChannelPopoverOpen((prev) => !prev);
-    };
-
     const toggleGameVersionsPopover = () => {
         setIsGameVersionsPopoverOpen((prev) => !prev);
     };
 
     const toggleLoadersPopover = () => {
         setIsLoadersPopoverOpen((prev) => !prev);
-    };
-
-    const toggleEditReleaseChannelPopover = () => {
-        setIsEditReleaseChannelPopoverOpen((prev) => !prev);
     };
 
     const toggleEditGameVersionsPopover = () => {
@@ -190,7 +170,6 @@ export default function VersionsSettings({ project, authToken }) {
 
     const handleSelectReleaseChannel = (channel) => {
         setFormData((prev) => ({ ...prev, release_channel: channel }));
-        setIsReleaseChannelPopoverOpen(false);
     };
 
     const handleInputChange = (e) => {
@@ -276,7 +255,6 @@ export default function VersionsSettings({ project, authToken }) {
         setEditModalOpen(false);
         setEditingVersionId(null);
         setEditLoading(false);
-        setIsEditReleaseChannelPopoverOpen(false);
         setIsEditGameVersionsPopoverOpen(false);
         setIsEditLoadersPopoverOpen(false);
         setEditFormData({
@@ -397,7 +375,6 @@ export default function VersionsSettings({ project, authToken }) {
 
     const handleSelectEditReleaseChannel = (channel) => {
         setEditFormData((prev) => ({ ...prev, release_channel: channel }));
-        setIsEditReleaseChannelPopoverOpen(false);
     };
 
     const handleUpdate = async (e) => {
@@ -479,10 +456,8 @@ export default function VersionsSettings({ project, authToken }) {
 
     const gameVersionsLabel = formData.game_versions.length > 0 ? t("versions.selectedGameVersions", { count: formData.game_versions.length }) : t("versions.selectGameVersions");
     const loadersLabel = formData.loaders.length > 0 ? t("versions.selectedLoaders", { count: formData.loaders.length }) : t("versions.selectLoaders");
-    const releaseChannelLabel = t(`versions.releaseChannels.${formData.release_channel}`);
     const editGameVersionsLabel = editFormData.game_versions.length > 0 ? t("versions.selectedGameVersions", { count: editFormData.game_versions.length }) : t("versions.selectGameVersions");
     const editLoadersLabel = editFormData.loaders.length > 0 ? t("versions.selectedLoaders", { count: editFormData.loaders.length }) : t("versions.selectLoaders");
-    const editReleaseChannelLabel = t(`versions.releaseChannels.${editFormData.release_channel}`);
     const [versions, setVersions] = useState(project?.versions || []);
 
     useEffect(() => {
@@ -516,7 +491,6 @@ export default function VersionsSettings({ project, authToken }) {
 
         setIsGameVersionsPopoverOpen(false);
         setIsLoadersPopoverOpen(false);
-        setIsReleaseChannelPopoverOpen(false);
         setIsUploadDragActive(false);
         setUploadFile(null);
         setUploadStep(VERSION_UPLOAD_STEPS.FILES);
@@ -771,12 +745,8 @@ export default function VersionsSettings({ project, authToken }) {
                 handleSubmit={handleSubmit}
                 formData={formData}
                 handleInputChange={handleInputChange}
-                releaseChannelRef={releaseChannelRef}
-                toggleReleaseChannelPopover={toggleReleaseChannelPopover}
-                isReleaseChannelPopoverOpen={isReleaseChannelPopoverOpen}
                 releaseChannels={releaseChannels}
                 handleSelectReleaseChannel={handleSelectReleaseChannel}
-                releaseChannelLabel={releaseChannelLabel}
                 gameVersionsRef={gameVersionsRef}
                 toggleGameVersionsPopover={toggleGameVersionsPopover}
                 isGameVersionsPopoverOpen={isGameVersionsPopoverOpen}
@@ -803,12 +773,8 @@ export default function VersionsSettings({ project, authToken }) {
                 tProject={tProject}
                 editFormData={editFormData}
                 handleEditInputChange={handleEditInputChange}
-                editReleaseChannelRef={editReleaseChannelRef}
-                toggleEditReleaseChannelPopover={toggleEditReleaseChannelPopover}
-                isEditReleaseChannelPopoverOpen={isEditReleaseChannelPopoverOpen}
                 releaseChannels={releaseChannels}
                 handleSelectEditReleaseChannel={handleSelectEditReleaseChannel}
-                editReleaseChannelLabel={editReleaseChannelLabel}
                 editGameVersionsRef={editGameVersionsRef}
                 toggleEditGameVersionsPopover={toggleEditGameVersionsPopover}
                 isEditGameVersionsPopoverOpen={isEditGameVersionsPopoverOpen}

@@ -62,6 +62,7 @@
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
+    margin-bottom: 8px;
 }
 .masthead-short {
     margin-top: auto;

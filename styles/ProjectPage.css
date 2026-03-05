@@ -204,8 +204,8 @@
 }
 .all-versions .version-button .download-button svg {
     fill: none;
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
 }
 .all-versions .version-button .version-actions__trigger svg {
     fill: none;
@@ -231,7 +231,7 @@
     background: var(--theme-color-background-content) !important;
 }
 .all-versions .version-button .version__title {
-    font-weight: 700;
+    font-weight: 600;
     grid-area: title;
     display: flex;
     gap: 4px;
@@ -249,7 +249,7 @@
 .version__badge {
 	--badge-color: #414247;
     color: var(--badge-color);
-    font-weight: 700;
+    font-weight: 600;
     white-space: nowrap;
     width: -moz-fit-content;
     width: fit-content;
@@ -410,7 +410,6 @@
     color: var(--theme-color-text-secondary);
 }
 .links-list {
-    opacity: 0.7;
     font-weight: 500;
     list-style: none;
     padding: 0;
@@ -562,7 +561,7 @@
     margin-bottom: 8px;
 }
 .version-page__metadata .metadata-item {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -669,15 +668,17 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
 }
 .license svg {
     fill: none;
 }
 .details-list {
-    margin-top: 12px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 .project-compatibility {
     display: flex;

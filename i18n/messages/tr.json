@@ -611,6 +611,8 @@
             },
             "modal": {
                 "editMetadataTitle": "Meta verileri düzenle",
+                "editDetailsTitle": "Detayları düzenle",
+                "editFilesTitle": "Dosyaları düzenle",
                 "steps": {
                     "files": "Dosyalar",
                     "metadata": "Meta veriler",

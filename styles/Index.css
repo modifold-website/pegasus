@@ -2402,6 +2402,10 @@ input[type="file"]::-webkit-file-upload-button:hover {
         align-content: center;
         grid-template-columns: minmax(0, var(--layout-modal-view-width));
     }
+
+    .modal-overlay--version-details-wide {
+        grid-template-columns: minmax(0, 800px);
+    }
 }
 @media all and (min-width: 640px) {
     .modal-overlay--fit-cover {
@@ -2467,6 +2471,14 @@ input[type="file"]::-webkit-file-upload-button:hover {
 }
 .version-upload-modal .modal-window__content {
     overflow: visible;
+}
+.version-edit-details-modal {
+    max-height: calc(100dvh - var(--layout-header-height));
+    overflow: hidden;
+}
+.version-edit-details-modal .modal-window__content {
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .version-upload-modal .field .popover {
     z-index: 40;
@@ -2611,21 +2623,26 @@ input[type="file"]::-webkit-file-upload-button:hover {
 }
 .version-edit-file-card {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
-    border: 1px solid var(--theme-color-border);
-    border-radius: 14px;
-    padding: 14px;
-    margin-bottom: 14px;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
     background: var(--theme-color-background);
+    border-radius: 12px;
+    padding: 8px 16px;
 }
-.version-edit-file-card strong {
-    font-size: 17px;
-    line-height: 1.2;
+.version-edit-file-card .svg-green {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #16a34a;
+    border-radius: 999px;
+    height: 20px;
+    width: 20px;
 }
-.version-edit-file-card span {
-    color: var(--theme-color-text-secondary);
-    font-size: 14px;
+.version-edit-file-card svg {
+    height: 14px;
+    width: 14px;
+    fill: none;
 }
 .version-release-channel-picker {
     display: flex;
@@ -2642,9 +2659,10 @@ input[type="file"]::-webkit-file-upload-button:hover {
     border-radius: 12px;
     align-items: center;
     gap: 10px;
-    padding: 8px 16px;
+    padding: 8px 14px;
     font-weight: 600;
-    line-height: 1;
+    font-size: 16px;
+    line-height: 18px;
     transition: background-color .2s, border-color .2s, color .2s;
     display: inline-flex;
 }
@@ -2713,6 +2731,11 @@ input[type="file"]::-webkit-file-upload-button:hover {
     .version-release-channel-picker__option {
         width: 100%;
         justify-content: center;
+    }
+}
+@media all and (min-width: 640px) {
+    .version-edit-details-modal {
+        max-height: min(900px, calc(100dvh - 32px));
     }
 }
 @media all and (min-width: 925px) {
@@ -3001,6 +3024,9 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .context-list {
     position: relative;
     padding: 6px;
+}
+.popover__scrollable .context-list-option:not(:last-child) {
+    margin-bottom: 4px;
 }
 .context-list .context-list-option:not(:last-child) {
     margin-bottom: 4px;
@@ -4557,4 +4583,7 @@ body.light .ripple-effect {
     .marquee-content .mod-badge {
         border-radius: 20px;
     }
+}
+.context-list-option.context-list-option--with-art.color--negative {
+    color: var(--theme-color-signal-negative-dark);
 }

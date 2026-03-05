@@ -611,6 +611,8 @@
             },
             "modal": {
                 "editMetadataTitle": "Редагувати метадані",
+                "editDetailsTitle": "Редагувати деталі",
+                "editFilesTitle": "Редагувати файли",
                 "steps": {
                     "files": "Файли",
                     "metadata": "Метадані",

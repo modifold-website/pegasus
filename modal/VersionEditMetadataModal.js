@@ -6,7 +6,7 @@ if(typeof window !== "undefined") {
     Modal.setAppElement("body");
 }
 
-export default function VersionEditMetadataModal({ isOpen, onRequestClose, editLoading, onSubmit, onDelete, t, tProject, editFormData, editGameVersionsRef, toggleEditGameVersionsPopover, isEditGameVersionsPopoverOpen, gameVersions, handleEditToggleGameVersion, editGameVersionsLabel, editLoadersRef, toggleEditLoadersPopover, isEditLoadersPopoverOpen, loaders, handleEditToggleLoader, editLoadersLabel }) {
+export default function VersionEditMetadataModal({ isOpen, onRequestClose, editLoading, onSubmit, t, tProject, editFormData, editGameVersionsRef, toggleEditGameVersionsPopover, isEditGameVersionsPopoverOpen, gameVersions, handleEditToggleGameVersion, editGameVersionsLabel, editLoadersRef, toggleEditLoadersPopover, isEditLoadersPopoverOpen, loaders, handleEditToggleLoader, editLoadersLabel }) {
     return (
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
             <div className="modal-window version-upload-modal">
@@ -69,10 +69,6 @@ export default function VersionEditMetadataModal({ isOpen, onRequestClose, editL
                         </div>
 
                         <div className="version-upload-actions">
-                            <button type="button" className="button button--size-m button--type-negative" onClick={onDelete} disabled={editLoading}>
-                                {tProject("delete")}
-                            </button>
-
                             <button type="submit" className="button button--size-m button--type-primary" disabled={editLoading}>
                                 {editLoading ? tProject("updating") : tProject("update")}
                             </button>

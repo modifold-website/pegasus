@@ -611,6 +611,8 @@
             },
             "modal": {
                 "editMetadataTitle": "Editar metadatos",
+                "editDetailsTitle": "Editar detalles",
+                "editFilesTitle": "Editar archivos",
                 "steps": {
                     "files": "Archivos",
                     "metadata": "Metadatos",

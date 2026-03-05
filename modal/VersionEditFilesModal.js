@@ -7,7 +7,7 @@ if(typeof window !== "undefined") {
     Modal.setAppElement("body");
 }
 
-export default function VersionEditFilesModal({ isOpen, onRequestClose, editLoading, onSubmit, t, tProject, versionFileAccept, currentFileName, currentFileSize, formatFileSize }) {
+export default function VersionEditFilesModal({ isOpen, onRequestClose, editLoading, onSubmit, t, tProject, versionFileAccept, currentFileName, formatFileSize }) {
     const [selectedFile, setSelectedFile] = useState(null);
     const [isDragActive, setIsDragActive] = useState(false);
     const fileRef = useRef(null);
@@ -93,7 +93,7 @@ export default function VersionEditFilesModal({ isOpen, onRequestClose, editLoad
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
             <div className="modal-window version-upload-modal">
                 <div className="modal-window__header">
-                    <p className="modal-window__title">Edit files</p>
+                    <p className="modal-window__title">{t("versions.modal.editFilesTitle")}</p>
 
                     <button className="icon-button modal-window__close" type="button" onClick={onRequestClose} disabled={editLoading}>
                         <svg className="icon icon--cross" height="24" width="24">
@@ -114,10 +114,15 @@ export default function VersionEditFilesModal({ isOpen, onRequestClose, editLoad
                             disabled={editLoading}
                         />
 
-                        <p className="blog-settings__field-title">{tProject("file")}</p>
+                        <p className="blog-settings__field-title" style={{ marginTop: "0" }}>{tProject("file")}</p>
                         <div className="version-edit-file-card">
-                            <strong>{currentFileName || tProject("versions.notSpecified")}</strong>
-                            {Number.isFinite(currentFileSize) && currentFileSize > 0 && <span>{formatFileSize(currentFileSize)}</span>}
+                            <div className="svg-green">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
+                            
+                            <span>{currentFileName || tProject("versions.notSpecified")}</span>
                         </div>
 
                         <p className="blog-settings__field-title">{t("versions.modal.dropzone.replaceTitle")}</p>
@@ -146,10 +151,6 @@ export default function VersionEditFilesModal({ isOpen, onRequestClose, editLoad
                         </div>
 
                         <div className="version-upload-actions">
-                            <button type="button" className="button button--size-m button--type-minimal" onClick={onRequestClose} disabled={editLoading}>
-                                {tProject("cancel")}
-                            </button>
-
                             <button type="submit" className="button button--size-m button--type-primary" disabled={editLoading || !selectedFile}>
                                 {editLoading ? tProject("updating") : tProject("update")}
                             </button>

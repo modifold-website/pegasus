@@ -610,6 +610,7 @@
                 "upload": "Завантажити версію"
             },
             "modal": {
+                "editMetadataTitle": "Редагувати метадані",
                 "steps": {
                     "files": "Файли",
                     "metadata": "Метадані",

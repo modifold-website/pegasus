@@ -611,6 +611,7 @@
                 "upload": "Upload Version"
             },
             "modal": {
+                "editMetadataTitle": "Edit metadata",
                 "steps": {
                     "files": "Files",
                     "metadata": "Metadata",

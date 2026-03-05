@@ -237,12 +237,38 @@ export default function VersionsSettings({ project, authToken }) {
         }
     };
 
+    const parseVersionList = (value) => {
+        if(Array.isArray(value)) {
+            return value.map((item) => String(item).trim()).filter(Boolean);
+        }
+
+        if(typeof value === "string") {
+            return value.split(",").map((item) => item.trim()).filter(Boolean);
+        }
+
+        return [];
+    };
+
     const openEditModal = async (versionId, modalType) => {
+        const selectedVersion = versions.find((version) => version.id === versionId);
+        const initialGameVersions = parseVersionList(selectedVersion?.game_versions);
+        const initialLoaders = parseVersionList(selectedVersion?.loaders);
+
         setOpenEditActionsVersionId(null);
         setEditingVersionId(versionId);
-        setEditModalType(modalType);
         setEditLoading(true);
-        setEditVersionFile({ url: "", size: null });
+        setEditVersionFile({
+            url: selectedVersion?.file_url || "",
+            size: Number.isFinite(selectedVersion?.file_size) ? selectedVersion.file_size : Number(selectedVersion?.file_size),
+        });
+        setEditFormData({
+            version_number: selectedVersion?.version_number || "",
+            changelog: selectedVersion?.changelog || "",
+            release_channel: selectedVersion?.release_channel || "release",
+            game_versions: initialGameVersions,
+            loaders: initialLoaders,
+        });
+        setEditModalType(modalType);
 
         try {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/version/${versionId}`, {
@@ -250,16 +276,8 @@ export default function VersionsSettings({ project, authToken }) {
             });
 
             const version = res.data;
-            const nextGameVersions = Array.isArray(version.game_versions)
-                ? version.game_versions
-                : typeof version.game_versions === "string"
-                    ? version.game_versions.split(",").map((v) => v.trim()).filter(Boolean)
-                    : [];
-            const nextLoaders = Array.isArray(version.loaders)
-                ? version.loaders
-                : typeof version.loaders === "string"
-                    ? version.loaders.split(",").map((v) => v.trim()).filter(Boolean)
-                    : [];
+            const nextGameVersions = parseVersionList(version.game_versions);
+            const nextLoaders = parseVersionList(version.loaders);
             setEditFormData({
                 version_number: version.version_number || "",
                 changelog: version.changelog || "",

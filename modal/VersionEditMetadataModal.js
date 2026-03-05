@@ -11,7 +11,7 @@ export default function VersionEditMetadataModal({ isOpen, onRequestClose, editL
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
             <div className="modal-window version-upload-modal">
                 <div className="modal-window__header">
-                    <p className="modal-window__title">Edit metadata</p>
+                    <p className="modal-window__title">{t("versions.modal.editMetadataTitle")}</p>
 
                     <button className="icon-button modal-window__close" type="button" onClick={onRequestClose} disabled={editLoading}>
                         <svg className="icon icon--cross" height="24" width="24">
@@ -69,10 +69,6 @@ export default function VersionEditMetadataModal({ isOpen, onRequestClose, editL
                         </div>
 
                         <div className="version-upload-actions">
-                            <button type="button" className="button button--size-m button--type-minimal" onClick={onRequestClose} disabled={editLoading}>
-                                {tProject("cancel")}
-                            </button>
-
                             <button type="button" className="button button--size-m button--type-negative" onClick={onDelete} disabled={editLoading}>
                                 {tProject("delete")}
                             </button>

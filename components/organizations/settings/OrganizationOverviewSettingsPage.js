@@ -145,8 +145,8 @@ export default function OrganizationOverviewSettingsPage({ authToken, organizati
                     <div className="settings-wrapper blog-settings">
                         <div className="blog-settings__body">
                             <div className="subsite-header">
-                                <div className="subsite-avatar subsite-header__avatar">
-                                    <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--has-preview subsite-avatar__image andropov-image andropov-image--zoom" style={{ aspectRatio: "1 / 1", width: "90px", height: "90px", maxWidth: "none" }} data-loaded="true">
+                                <div className="subsite-avatar subsite-header__avatar" style={{ borderRadius: "12px" }}>
+                                    <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--has-preview subsite-avatar__image andropov-image andropov-image--zoom" style={{ aspectRatio: "1 / 1", width: "90px", height: "90px", maxWidth: "none", borderRadius: "12px" }} data-loaded="true">
                                         {previewIcon && <img id="create_image_url_avatar" src={previewIcon} alt={t("settings.iconAlt", { name: organization.name })} />}
                                     </div>
 

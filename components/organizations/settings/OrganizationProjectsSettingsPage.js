@@ -78,7 +78,7 @@ export default function OrganizationProjectsSettingsPage({ authToken, organizati
                         projectItems.map((project) => (
                             <div key={project.id} className="content content--padding" style={{ display: "grid", gap: "12px" }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                                    <img src={project.icon_url || DEFAULT_ICON_URL} alt={project.title} style={{ width: "60px", height: "60px", borderRadius: "16px", objectFit: "cover" }} />
+                                    <img src={project.icon_url || DEFAULT_ICON_URL} alt={project.title} style={{ width: "60px", height: "60px", borderRadius: "12px", objectFit: "cover" }} />
                                     
                                     <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
                                         <Link href={`/mod/${project.slug}`} style={{ fontWeight: 600, lineHeight: "normal" }}>

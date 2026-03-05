@@ -41,8 +41,8 @@ export default function OrganizationPage({ organization, members = [], projects 
                         <div className="subsite-header">
                             <div className="subsite-header__padding">
                                 <div className="subsite-header__header">
-                                    <div className="subsite-avatar subsite-header__avatar">
-                                        <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--cropped andropov-image andropov-image--zoom subsite-avatar__image" style={{ aspectRatio: "1.5 / 1", maxWidth: "none" }} aria-label={t("page.openAvatar")} {...getLightboxTriggerProps({ url: organization.icon_url || DEFAULT_ICON_URL, title: organization.name })}>
+                                    <div className="subsite-avatar subsite-header__avatar" style={{ borderRadius: "12px" }}>
+                                        <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--cropped andropov-image andropov-image--zoom subsite-avatar__image" style={{ aspectRatio: "1.5 / 1", maxWidth: "none", borderRadius: "12px" }} aria-label={t("page.openAvatar")} {...getLightboxTriggerProps({ url: organization.icon_url || DEFAULT_ICON_URL, title: organization.name })}>
                                             <img className="magnify" src={organization.icon_url || DEFAULT_ICON_URL} alt={organization.name} />
                                         </div>
                                     </div>

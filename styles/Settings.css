@@ -386,8 +386,7 @@
     border-right: 7px solid transparent;
     border-top: 7px solid #0d0f14;
 }
-.mf-tooltip:hover .mf-tooltip__bubble,
-.mf-tooltip:focus-within .mf-tooltip__bubble {
+.mf-tooltip--visible .mf-tooltip__bubble {
     opacity: 1;
     visibility: visible;
 }

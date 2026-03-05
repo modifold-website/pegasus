@@ -387,6 +387,7 @@
         "subscribe": "Abone ol",
         "subscribed": "Abone olundu",
         "accountFrozen": "Hesap donduruldu",
+        "defaultDescription": "Modifold'da yazar.",
         "role": {
             "developer": "Geliştirici",
             "team": "Modifold Ekibi"

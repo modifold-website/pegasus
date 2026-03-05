@@ -164,7 +164,8 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
 
     const authorAva = isBanned ? "https://leonardo.osnova.io/8e95d9d3-932c-5f85-8b53-43da2e8ccaeb/-/format/webp/" : user.avatar || "https://cdn.modifold.com/default_avatar.png";
     const authorTitle = isBanned ? t("accountFrozen") : user.username;
-    const desc = isBanned ? null : renderDescription(user.description);
+    const profileDescription = typeof user.description === "string" ? user.description.trim() : "";
+    const desc = isBanned ? null : (renderDescription(profileDescription) || t("defaultDescription"));
 
     const countSubs = user.subscribers || 0;
     const countUserSubs = user.subscriptions || 0;

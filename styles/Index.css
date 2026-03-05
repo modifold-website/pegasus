@@ -4199,6 +4199,7 @@ body.light div .image-container::before {
     color: var(--theme-color-text-primary);
     min-height: 0;
     padding: 14px 12px 15px;
+    font-family: Inter,sans-serif !important;
     font-size: 15px;
     font-weight: 500;
     line-height: 22px;

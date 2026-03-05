@@ -113,7 +113,11 @@ export default function VersionEditDetailsModal({ isOpen, onRequestClose, editLo
                                 const isActive = editFormData.release_channel === channel;
 
                                 return (
-                                    <button key={channel} type="button" class={`button button--size-m ${isActive ? "button--type-primary" : "button--type-minimal"}`} onClick={() => handleSelectEditReleaseChannel(channel)} disabled={editLoading} aria-pressed={isActive}>
+                                    <button key={channel} type="button" className={`version-release-channel-picker__option ${isActive ? "is-active" : ""}`} onClick={() => handleSelectEditReleaseChannel(channel)} disabled={editLoading} aria-pressed={isActive}>
+                                        <svg className="version-release-channel-picker__check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                            <path d="M20 6 9 17l-5-5" />
+                                        </svg>
+                                        
                                         {t(`versions.releaseChannels.${channel}`)}
                                     </button>
                                 );

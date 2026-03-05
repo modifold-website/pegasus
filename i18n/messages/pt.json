@@ -387,6 +387,7 @@
         "subscribe": "Inscrever-se",
         "subscribed": "Inscrito",
         "accountFrozen": "Conta congelada",
+        "defaultDescription": "Autor no Modifold.",
         "role": {
             "developer": "Desenvolvedor",
             "team": "Equipe Modifold"

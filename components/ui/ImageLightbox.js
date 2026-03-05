@@ -93,13 +93,15 @@ export default function ImageLightbox({isOpen, image, onClose, dialogLabel, clos
 
     return (
         <div className="expanded-image-modal" onClick={onClose} role="dialog" aria-label={dialogLabel}>
-            <div className="expanded-image-content" onClick={onClose}>
+            <div className="expanded-image-content" onClick={(e) => e.stopPropagation()}>
                 <img src={image.url} alt={image.title || fallbackAlt} className="expanded-image" onClick={(e) => e.stopPropagation()} />
 
                 <div className="floating" aria-label={dialogLabel}>
-                    {image.title && 
+                    {(image.title || image.description) &&
                         <div class="text">
-                            <h2>{image.title}</h2>
+                            {image.title && <h2>{image.title}</h2>}
+
+                            {image.description && <p>{image.description}</p>}
                         </div>
                     }
 
@@ -115,8 +117,6 @@ export default function ImageLightbox({isOpen, image, onClose, dialogLabel, clos
                         </div>
                     </div>
                 </div>
-
-                {image.description && <p className="lightbox-description">{image.description}</p>}
             </div>
         </div>
     );

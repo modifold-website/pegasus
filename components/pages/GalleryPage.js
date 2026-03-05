@@ -174,6 +174,14 @@ export default function GalleryPage({ project, authToken }) {
                                                 </div>
 
                                                 <div className="gallery-settings-card__body">
+                                                    {(image.title || image.description) &&
+                                                        <div class="gallery-settings-card__info">
+                                                            {image.title && <h2>{image.title}</h2>}
+
+                                                            {image.description && <p>{image.description}</p>}
+                                                        </div>
+                                                    }
+
                                                     <div className="gallery-settings-card__date">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                             <path d="M8 2v4" />

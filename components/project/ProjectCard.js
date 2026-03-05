@@ -2,6 +2,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import UserName from "../ui/UserName";
 import ProjectTags from "../ui/ProjectTags";
+import Tooltip from "../ui/Tooltip";
 const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
 export default function ProjectCard({ project, maxTags = 5 }) {
@@ -55,6 +56,15 @@ export default function ProjectCard({ project, maxTags = 5 }) {
         return num;
     };
 
+    const formatUpdatedTooltip = (dateString) => {
+        const date = new Date(dateString);
+
+        return `${t("updated")} ${new Intl.DateTimeFormat(locale, {
+            dateStyle: "long",
+            timeStyle: "short"
+        }).format(date)}`;
+    };
+
     const ownerProfileUrl = project.owner?.profile_url || `/user/${project.owner?.slug || ""}`;
 
     return (
@@ -83,22 +93,30 @@ export default function ProjectCard({ project, maxTags = 5 }) {
             </div>
 
             <div className="new-project-stats">
-                <div className="new-stat">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+                <div className="new-project-stats-top">
+                    <div className="new-stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
 
-                    {formatNumber(project.downloads)} <span className="new-label">{t("downloads")}</span>
-                </div>
+                        <Tooltip content={`${formatNumber(project.downloads)} ${t("downloads")}`}>
+                            <span>{formatNumber(project.downloads)}</span>
+                        </Tooltip>
+                    </div>
 
-                <div className="new-stat">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+                    <div className="new-stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
 
-                    {formatNumber(project.followers || 0)} <span className="new-label">{t("followers")}</span>
+                        <Tooltip content={`${formatNumber(project.followers || 0)} ${t("followers")}`}>
+                            <span>{formatNumber(project.followers || 0)}</span>
+                        </Tooltip>
+                    </div>
                 </div>
 
                 <div className="new-stat new-updated">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="lucide lucide-heart-icon lucide-update"><path d="M3 3v5h5"></path><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"></path><path d="M12 7v5l4 2"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="lucide lucide-heart-icon lucide-update"><path d="M3 3v5h5"></path><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"></path><path d="M12 7v5l4 2"></path></svg>
 
-                    <div><span>{t("updated")}</span> {formatDate(project.updated_at)}</div>
+                    <Tooltip content={formatUpdatedTooltip(project.updated_at)}>
+                        <span>{formatDate(project.updated_at)}</span>
+                    </Tooltip>
                 </div>
             </div>
         </div>

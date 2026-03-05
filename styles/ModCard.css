@@ -170,6 +170,10 @@
 .new-project-card .dashboard-project-settings-button {
     pointer-events: auto;
 }
+.new-project-card .new-stat,
+.new-project-card .new-stat * {
+    pointer-events: auto;
+}
 .new-project-card:hover {
     filter: brightness(.95);
     background: var(--theme-color-background-content);
@@ -253,6 +257,9 @@
 .new-project-tags .lucide-tags {
     fill: none;
 }
+.new-project-card .new-project-info .new-project-tags .new-tag {
+    background: var(--theme-color-background-content);
+}
 .new-tag {
     border: 1px solid var(--theme-color-button-minimal);
     background: var(--theme-color-background);
@@ -300,9 +307,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 6px;
+    gap: 10px;
     margin-left: auto;
-    align-self: stretch;
+    width: max-content;
+}
+.new-project-stats-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
 }
 .new-stat {
     font-size: 16px;
@@ -319,11 +332,9 @@
     color: var(--theme-color-text-secondary);
 }
 .new-updated {
-    margin-top: auto;
+    justify-content: center;
+    margin-top: 0;
     font-size: 16px;
-}
-.new-updated span {
-    color: var(--theme-color-text-secondary);
 }
 @media (max-width: 640px) {
     .new-project-card {
@@ -373,12 +384,17 @@
     .new-project-stats {
         grid-column: 1 / -1;
         width: 100%;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        align-items: start;
-        gap: 6px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
         margin-left: 0;
         margin-top: 2px;
+    }
+    .new-project-stats-top {
+        width: 100%;
+        justify-content: center;
+        gap: 14px;
     }
     .new-stat {
         font-size: 14px;
@@ -386,11 +402,10 @@
         min-width: 0;
     }
     .new-updated {
-        grid-column: 1 / -1;
         margin-top: 0;
         font-size: 14px;
     }
-    .new-updated div {
+    .new-updated span {
         overflow-wrap: anywhere;
     }
 }

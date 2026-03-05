@@ -27,7 +27,7 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
     return (
         <div style={{ display: "flex", gap: "12px", flexDirection: "column" }}>
             <div className="content content--padding">
-                <h2>{t("creators")}</h2>
+                <h2 style={{ fontSize: "18px", fontWeight: "600" }}>{t("creators")}</h2>
 
                 <div style={{ display: "flex", gap: "12px", flexDirection: "column" }}>
                     {project.owner?.type === "organization" ? (
@@ -45,8 +45,18 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
                             </div>
 
                             <div className="author__details">
-                                <div className="comment__detail" style={{ display: "flex", alignItems: "center", gap: "2px" }}>
-                                    <time style={{ lineHeight: "normal" }}>{t("organizationOwner")}</time>
+                                <div className="comment__detail" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                                    <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-building2-icon lucide-building-2">
+                                        <path d="M10 12h4"></path>
+                                        <path d="M10 8h4"></path>
+                                        <path d="M14 21v-3a2 2 0 0 0-4 0v3"></path>
+                                        <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"></path>
+                                        <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path>
+                                    </svg>
+                                    
+                                    <time style={{ lineHeight: "normal" }}>
+                                        {t("organizationOwner")}
+                                    </time>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +133,7 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
             {showLicense && project?.license?.id && (
                 <>
                     <div className="content content--padding">
-                        <h2>{t("licenseTitle")}</h2>
+                        <h2 style={{ fontSize: "18px", fontWeight: "600" }}>{t("licenseTitle")}</h2>
 
                         <div className="license">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-copyright-icon lucide-copyright"><circle cx="12" cy="12" r="10"/><path d="M14.83 14.83a4 4 0 1 1 0-5.66"/></svg>
@@ -155,7 +165,7 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
 
             {showLinks && (project.issue_url || project.source_url || project.wiki_url || project.discord_url) && (
                 <div className="content content--padding">
-                    <h2>{t("links")}</h2>
+                    <h2 style={{ fontSize: "18px", fontWeight: "600" }}>{t("links")}</h2>
 
                     <ul className="links-list">
                         {project.issue_url && (

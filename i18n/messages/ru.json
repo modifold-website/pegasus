@@ -387,6 +387,7 @@
         "subscribe": "Подписаться",
         "subscribed": "Подписан",
         "accountFrozen": "Аккаунт заморожен",
+        "defaultDescription": "Автор на Modifold.",
         "role": {
             "developer": "Разработчик",
             "team": "Команда Modifold"

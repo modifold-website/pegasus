@@ -166,7 +166,8 @@
         "creators": "Автори",
         "owner": "Власник",
         "organizationOwner": "Організація",
-        "created": "Створено:",
+        "created": "Створено",
+        "updated": "Оновлено",
         "id": "ID:",
         "notFound": "Проєкт не знайдено",
         "metadata": {
@@ -200,6 +201,7 @@
         "confirmDeleteVersion": "Ви впевнені, що хочете видалити цю версію?",
         "versionDeleted": "Версію успішно видалено",
         "errorOccurred": "Сталася помилка. Спробуйте ще раз.",
+        "detailsTitle": "Відомості",
         "licenseTitle": "Ліцензія",
         "licensedAs": "Ліцензовано за {license}",
         "download": "Завантажити",

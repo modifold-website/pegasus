@@ -166,7 +166,8 @@
         "creators": "Üreticiler",
         "owner": "Sahip",
         "organizationOwner": "Organizasyon",
-        "created": "Oluşturulma:",
+        "created": "Oluşturulma",
+        "updated": "Güncellendi",
         "id": "ID:",
         "notFound": "Proje bulunamadı",
         "metadata": {
@@ -200,6 +201,7 @@
         "confirmDeleteVersion": "Bu sürümü silmek istediğinize emin misiniz?",
         "versionDeleted": "Sürüm başarıyla silindi",
         "errorOccurred": "Bir hata oluştu. Lütfen tekrar deneyin.",
+        "detailsTitle": "Detaylar",
         "licenseTitle": "Lisans",
         "licensedAs": "{license} ile lisanslandı",
         "download": "İndir",

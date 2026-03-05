@@ -166,7 +166,8 @@
         "creators": "Авторы",
         "owner": "Владелец",
         "organizationOwner": "Организация",
-        "created": "Создан:",
+        "created": "Создан",
+        "updated": "Обновлён",
         "id": "ID:",
         "notFound": "Проект не найден",
         "metadata": {
@@ -200,6 +201,7 @@
         "confirmDeleteVersion": "Удалить эту версию?",
         "versionDeleted": "Версия удалена",
         "errorOccurred": "Произошла ошибка. Попробуйте ещё раз.",
+        "detailsTitle": "Сведения",
         "licenseTitle": "Лицензия",
         "licensedAs": "Лицензия {license}",
         "download": "Скачать",

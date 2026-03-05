@@ -4159,7 +4159,6 @@ body.light div .image-container::before {
     line-height: 22px;
     transition: none;
     border-radius: 10px !important;
-    font-family: Inter !important;
 }
 .Toastify__toast-body > div:last-child {
     flex: 1;

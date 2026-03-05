@@ -166,7 +166,8 @@
         "creators": "Criadores",
         "owner": "Proprietário",
         "organizationOwner": "Organização",
-        "created": "Criado:",
+        "created": "Criado",
+        "updated": "Atualizado",
         "id": "ID:",
         "notFound": "Projeto não encontrado",
         "metadata": {
@@ -200,6 +201,7 @@
         "confirmDeleteVersion": "Tem certeza de que deseja excluir esta versão?",
         "versionDeleted": "Versão excluída com sucesso",
         "errorOccurred": "Ocorreu um erro. Tente novamente.",
+        "detailsTitle": "Detalhes",
         "licenseTitle": "Licença",
         "licensedAs": "Licenciado como {license}",
         "download": "Baixar",

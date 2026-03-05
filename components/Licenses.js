@@ -1,10 +1,10 @@
 export const LICENSES = [
     {
-        id: "NO-LICENSE",
+        id: "ARR",
         name: "All Rights Reserved / No License",
-        spdx: "no-license",
-        url: "no-license",
-        key: "no-license",
+        spdx: "ARR",
+        url: "",
+        key: "arr",
     },
     {
         id: "MIT",

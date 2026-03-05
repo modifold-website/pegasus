@@ -19,6 +19,17 @@ export default function LicenseModal({ isOpen, licenseId, onRequestClose }) {
             return;
         }
 
+        const normalizedLicenseId = licenseId.toString().toLowerCase();
+        if(normalizedLicenseId === "arr" || normalizedLicenseId === "no-license") {
+            setLoading(false);
+            setLicense({
+                name: "ARR",
+                body: "All rights reserved unless explicitly stated.",
+            });
+            
+            return;
+        }
+
         const fetchLicense = async () => {
             setLoading(true);
 

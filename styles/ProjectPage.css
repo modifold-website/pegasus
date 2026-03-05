@@ -649,3 +649,9 @@
 .license svg {
     fill: none;
 }
+.details-list {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

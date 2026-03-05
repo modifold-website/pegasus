@@ -33,7 +33,7 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
                     {project.owner?.type === "organization" ? (
                         <div className="author author-card" style={{ "--1ebedaf6": "40px" }}>
                             <Link className="author__avatar button--active-transform" href={ownerProfileUrl}>
-                                <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "40px", height: "40px", maxWidth: "none" }}>
+                                <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "40px", height: "40px", maxWidth: "none", borderRadius: "8px" }}>
                                     <img src={project.owner.avatar} className="magnify" alt={t("ownerAvatarAlt", { username: project.owner.username })} />
                                 </div>
                             </Link>

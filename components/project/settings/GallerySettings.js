@@ -485,6 +485,14 @@ export default function GallerySettings({ project, authToken }) {
                                     </div>
 
                                     <div className="gallery-settings-card__body">
+                                        {(image.title || image.description) &&
+                                            <div class="gallery-settings-card__info">
+                                                {image.title && <h2>{image.title}</h2>}
+
+                                                {image.description && <p>{image.description}</p>}
+                                            </div>
+                                        }
+
                                         <div className="gallery-settings-card__date">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
 

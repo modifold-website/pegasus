@@ -341,13 +341,7 @@ svg {
 
     --backgroundColorAuthor: #f5f5f5;
 
-    --readsYouBackground: rgb(239, 243, 244);
-    --readsYouColor: rgb(83, 100, 113);
-
     --subs-select: rgba(32, 35, 51, 0.07);
-
-    --slade-next-button: #eaeaea;
-    --slade-next-button-hover: #e2e2e2;
 
     --theme-sidebar-separator-color-background: rgb(0 0 0 / 5%);
     --theme-color-background-popular-reel: rgba(255, 255, 255, 0.6);
@@ -406,28 +400,15 @@ svg {
     --theme-shadow-popover: 0px 4px 20px rgba(0, 0, 0, 0.08), 0px 0px 1px rgba(0, 0, 0, 0.16);
     --theme-color-popover-background: var(--color-white);
     --theme-color-updates-shadow: 0.5px 0px 0px rgba(0, 0, 0, 0.1), -0.5px 0px 0px rgba(0, 0, 0, 0.1), 0px -0.5px 0px rgba(0, 0, 0, 0.05), 0px 4px 7px rgba(0, 0, 0, 0.08), 0px 1px 1px rgba(0, 0, 0, 0.1);
-    --theme-color-donate-text: #004150;
-    --theme-color-donate-gradient: linear-gradient(100deg, #cbfdf6 0%, #cde8fc 100%);
-    --_1kWb64f-tt-background: rgba(32, 35, 51, 0.07);
-    --_1xJ6qKHpge-fill: #000;
     --content-header-label-background: #fffbe0;
     --content-header-label-color: #000;
     --content-footer--sticky-background: rgb(255 255 255 / 90%);
-    --theme-color-advert-button: var(--theme-color-link);
-    --theme-color-advert-button-background-default: var(--theme-color-background-active);
-    --theme-color-advert-button-background-hover: var(--theme-color-background-active-hover);
-
-    --app-background: #f2f2f2;
 
     --theme-andropov-border-color: rgba(0, 0, 0, 0.1);
 
     --theme-color-content-footer-button-hover-background: rgba(48, 125, 240, 0.12);
 
     --account-menu-background: rgb(255 255 255 / 90%);
-
-    --ce-toolbar-background: #fff;
-    --ce-toolbar-background-hover: #d2e4ff;
-    --cdx-search-field: rgba(232, 232, 235, 0.49);
 
     --tabbar-background: rgb(255 255 255 / 90%);
     --tabbar-shadow: 0 -1px #0000001c;
@@ -436,13 +417,6 @@ svg {
     --feed-sorting-shadow: 0 1px #0000001c;
 
     --comment-selected: rgb(204 239 222 / 50%);
-
-    --theme-plus-color: var(--theme-color-text-primary);
-    --theme-plus-modal-background: linear-gradient(116.51deg,#fef2fa 54.31%,#aae9ff 110.13%) #aae9ff;
-    --theme-plus-modal-footer: linear-gradient(180deg, rgba(234, 232, 252, 0) 0%, #eae8fc 27.25%);
-    --theme-plus-features-background: var(--theme-color-background-content);
-    --theme-plus-features-shadow: 0 0 1px rgba(0, 0, 0, .16);
-    --theme-plus-action-background: radial-gradient(82.73% 121.53% at 17.94% 77.44%, #307df0 36.98%, #5e36ff 89.06%);
 
     --project_card-box-shadow: rgba(50,50,100,.1) 0px 2px 4px 0px;
 
@@ -459,13 +433,6 @@ body.dark {
 
     --project_card-box-shadow: rgba(0,0,0,.25) 0px 2px 4px 0px;
 
-    --theme-plus-color: var(--color-white);
-    --theme-plus-modal-background: linear-gradient(219.57deg, #1C162D 12.97%, #000A12 86.69%);
-    --theme-plus-modal-footer: linear-gradient(180deg, rgba(16, 13, 21, 0) 0%, #100D15 25%);
-    --theme-plus-features-background: linear-gradient(0deg, rgba(44, 44, 46, .32), rgba(44, 44, 46, .32));
-    --theme-plus-features-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1);
-    --theme-plus-action-background: radial-gradient(82.73% 121.53% at 17.94% 77.44%, #307df0 36.98%, #8161fa 89.06%);
-
     --comment-selected: rgb(0 255 131 / 7%);
 
     --feed-sorting-background: rgb(21 24 36 / 90%);
@@ -473,10 +440,6 @@ body.dark {
 
     --tabbar-background: rgb(29 33 49 / 90%);
     --tabbar-shadow: 0 -1px #ffffff14;
-
-    --ce-toolbar-background: #323232;
-    --ce-toolbar-background-hover: #2c2c2c;
-    --cdx-search-field: rgb(29 33 49);
 
     --account-menu-background: rgb(29 33 49);
 
@@ -486,15 +449,10 @@ body.dark {
 
     --backgroundColorAuthor: #323232;
 
-    --readsYouBackground: rgb(21 25 42);
-    --readsYouColor: rgb(113, 118, 123);
-
     --content-footer--sticky-background: rgb(32 36 53 / 90%);
     --theme-color-background-popular-reel: rgba(0, 0, 0, 0.6);
     --content-header-label-background: #333333;
     --content-header-label-color: #969da0;
-    --_1kWb64f-tt-background: rgb(51 51 51);
-    --_1xJ6qKHpge-fill: #969c9d;
     --theme-sidebar-separator-color-background: rgb(255 255 255 / 3%);
     --theme-color-brand-logo: #fff;
     --theme-color-brand-primary: #307df0;
@@ -546,12 +504,7 @@ body.dark {
     --theme-shadow-popover: 0px 4px 20px rgba(0, 0, 0, 0.32), 0 0 0 1px #363636;
     --theme-color-popover-background: #1F1F1F;
     --theme-color-updates-shadow: 0.5px 0px 0px #363636, -0.5px 0px 0px #363636, 0px -0.5px 0px #363636, 0px 4px 7px rgba(0, 0, 0, 0.12), 0px 1px 1px #363636;
-    --theme-color-donate-text: #a7e5f3;
-    --theme-color-donate-gradient: linear-gradient(100deg, #154842 0%, #203f56 100%);
-    --theme-color-advert-button: var(--theme-color-text-primary);
     --theme-color-content-footer-button-hover-background: rgba(48, 125, 240, 0.12);
-
-    --app-background: rgb(21 24 36);
 }
 .andropov-media {
     overflow: hidden;
@@ -3255,6 +3208,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .expanded-image-modal .expanded-image-content .floating .text {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.25rem;
     max-width: 40rem;
@@ -3269,6 +3223,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     text-align: center;
 }
 .expanded-image-modal .expanded-image-content .floating .text p {
+    color: var(--color-white);
     margin: 0;
 }
 .expanded-image-modal .expanded-image-content .floating .controls {
@@ -3765,7 +3720,7 @@ body.light div .image-container::before {
 .fixed-background-teleport {
     object-fit: cover;
     position: absolute;
-    height: 520px;
+    height: 320px;
     -webkit-mask-image: linear-gradient(180deg, #000, transparent);
     mask-image: linear-gradient(180deg, #000000, #ff000000);
     opacity: .25 !important;

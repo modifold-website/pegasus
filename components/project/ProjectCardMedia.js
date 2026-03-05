@@ -100,7 +100,7 @@ export default function ProjectCardMedia({ project }) {
                         <span>{formatNumber(project.followers || 0)}</span>
                     </div>
 
-                    <div className="media-project-stat media-project-updated" title={t("updated")}>
+                    <div className="media-project-stat media-project-updated" title={formatDate(project.updated_at)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="lucide lucide-heart-icon lucide-update"><path d="M3 3v5h5"></path><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"></path><path d="M12 7v5l4 2"></path></svg>
                         <span>{formatDate(project.updated_at)}</span>
                     </div>

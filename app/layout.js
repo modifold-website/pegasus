@@ -1,6 +1,6 @@
 ﻿import Header from "@/components/layout/Header";
 import { AuthProvider } from "@/components/providers/AuthProvider";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import Script from "next/script";
 import ClientProvider from "@/components/providers/ClientProvider";
 import CookieBanner from "@/components/ui/CookieBanner";
@@ -51,6 +51,7 @@ export async function generateMetadata() {
 export default async function RootLayout({ children }) {
     const resolvedLocale = await getLocale();
     const cookieStore = await cookies();
+    const requestHeaders = await headers();
     const token = cookieStore.get("authToken")?.value || null;
     const themeCookie = cookieStore.get("theme")?.value;
     const messages = (await import(`../i18n/messages/${resolvedLocale}.json`)).default;
@@ -80,10 +81,11 @@ export default async function RootLayout({ children }) {
         }
     }
 
-    let initialTheme = "light";
-    if(themeCookie) {
-        initialTheme = themeCookie === "dark" ? "dark" : themeCookie === "system" ? "system" : "light";
-    }
+    const themeFromProxy = requestHeaders.get("x-modifold-theme");
+    const themePreferenceFromProxy = requestHeaders.get("x-modifold-theme-preference");
+    const normalizedThemeCookie = themeCookie === "dark" || themeCookie === "light" || themeCookie === "system" ? themeCookie : "light";
+    const initialTheme = themeFromProxy === "dark" || themeFromProxy === "light" ? themeFromProxy : normalizedThemeCookie === "dark" ? "dark" : "light";
+    const themePreference = themePreferenceFromProxy === "dark" || themePreferenceFromProxy === "light" || themePreferenceFromProxy === "system" ? themePreferenceFromProxy : normalizedThemeCookie;
 
     return (
         <html lang={resolvedLocale}>
@@ -150,7 +152,7 @@ export default async function RootLayout({ children }) {
                 </Script>
             </head>
 
-            <body data-font-smoothing="Antialiased" className={initialTheme}>
+            <body data-font-smoothing="Antialiased" className={initialTheme} data-theme-preference={themePreference}>
                 <div id="app">
                     {isStaging && (
                         <div role="note" class="staging__banner">
@@ -263,29 +265,6 @@ export default async function RootLayout({ children }) {
                             </NextIntlClientProvider>
                         </ClientProvider>
                     </AuthProvider>
-
-                    <Script id="theme-sync" strategy="afterInteractive">
-                        {`
-                        (function() {
-                            const savedTheme = localStorage.getItem('theme') || '${initialTheme}';
-                            const applyTheme = (theme) => {
-                                if(theme === 'system') {
-                                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                                    document.body.className = prefersDark ? 'dark' : 'light';
-                                } else {
-                                    document.body.className = theme;
-                                }
-                            };
-
-                            applyTheme(savedTheme);
-                            if(savedTheme === 'system') {
-                                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-                                    document.body.className = e.matches ? 'dark' : 'light';
-                                });
-                            }
-                        })();
-                        `}
-                    </Script>
                 </div>
             </body>
         </html>

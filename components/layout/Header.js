@@ -26,14 +26,29 @@ export default function Header({ authToken }) {
     const browseWrapperRef = useRef(null);
     const browseCloseTimeoutRef = useRef(null);
 
+    const applyTheme = (nextTheme) => {
+        const resolvedTheme = nextTheme === "system" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : nextTheme === "dark" ? "dark" : "light";
+
+        document.body.classList.remove("light", "dark", "system");
+        document.body.classList.add(resolvedTheme);
+        document.body.dataset.themePreference = nextTheme;
+    };
+
     useEffect(() => {
         const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
-            const [name, value] = cookie.split("=");
-            acc[name] = value;
+            const [rawName, ...rest] = cookie.split("=");
+            const name = rawName?.trim();
+            if(!name) {
+                return acc;
+            }
+
+            acc[name] = decodeURIComponent(rest.join("=") || "");
             return acc;
         }, {});
 
-        const savedTheme = cookies["theme"] || "system";
+        const themeFromDataset = document.body?.dataset?.themePreference;
+        const savedTheme = cookies.theme === "dark" || cookies.theme === "light" || cookies.theme === "system" ? cookies.theme : themeFromDataset === "dark" || themeFromDataset === "light" || themeFromDataset === "system" ? themeFromDataset : "light";
+
         setThemeState(savedTheme);
         applyTheme(savedTheme);
     }, []);
@@ -182,18 +197,22 @@ export default function Header({ authToken }) {
         setProjectModalOpen(false);
     };
 
-    const applyTheme = (theme) => {
-        if(theme === "system") {
-            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            document.body.className = prefersDark ? "dark" : "light";
-        } else {
-            document.body.className = theme;
+    useEffect(() => {
+        if(theme !== "system") {
+            return;
         }
-    };
+
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        const handleChange = () => applyTheme("system");
+        mediaQuery.addEventListener("change", handleChange);
+
+        return () => {
+            mediaQuery.removeEventListener("change", handleChange);
+        };
+    }, [theme]);
 
     const setTheme = (newTheme) => {
-        localStorage.setItem("theme", newTheme);
-        document.cookie = `theme=${newTheme}; path=/; max-age=31536000`;
+        document.cookie = `theme=${newTheme}; path=/; max-age=31536000; samesite=lax`;
         setThemeState(newTheme);
         applyTheme(newTheme);
         setIsThemeMenuOpen(false);

@@ -52,7 +52,33 @@ export default async function proxy(req) {
         }
     }
 
-    const response = NextResponse.next();
+    const getThemePreference = () => {
+        const themeCookie = req.cookies.get("theme")?.value;
+        if(themeCookie === "dark" || themeCookie === "light" || themeCookie === "system") {
+            return themeCookie;
+        }
+
+        return "light";
+    };
+
+    const resolveThemeClass = (themePreference) => {
+        if(themePreference === "dark" || themePreference === "light") {
+            return themePreference;
+        }
+
+        const prefersColorScheme = (req.headers.get("sec-ch-prefers-color-scheme") || "").replace(/"/g, "").toLowerCase();
+        return prefersColorScheme === "dark" ? "dark" : "light";
+    };
+
+    const themePreference = getThemePreference();
+    const resolvedThemeClass = resolveThemeClass(themePreference);
+    const requestHeaders = new Headers(req.headers);
+    requestHeaders.set("x-modifold-theme-preference", themePreference);
+    requestHeaders.set("x-modifold-theme", resolvedThemeClass);
+
+    const response = NextResponse.next({
+        request: { headers: requestHeaders },
+    });
     const requestHost = req.headers.get("host") || "";
     const isStagingHost = requestHost === "staging.modifold.com" || requestHost.startsWith("staging.");
 
@@ -65,17 +91,18 @@ export default async function proxy(req) {
         path: "/",
         sameSite: "lax",
     });
+    response.headers.set("Accept-CH", "Sec-CH-Prefers-Color-Scheme");
+    response.headers.set("Critical-CH", "Sec-CH-Prefers-Color-Scheme");
 
     const clientIp = req.headers.get("x-real-ip") || req.headers.get("x-forwarded-for")?.split(",")[0] || req.ip || "unknown";
 
     if(req.nextUrl.pathname.startsWith("/api") || req.url.includes(apiHost)) {
-        const headers = new Headers(req.headers);
-        headers.set("X-Real-IP", clientIp);
-        headers.set("X-Forwarded-For", clientIp);
-        headers.set("x-modifold-locale", resolvedLocale);
+        requestHeaders.set("X-Real-IP", clientIp);
+        requestHeaders.set("X-Forwarded-For", clientIp);
+        requestHeaders.set("x-modifold-locale", resolvedLocale);
 
         const rewriteResponse = NextResponse.next({
-            request: { headers },
+            request: { headers: requestHeaders },
         });
 
         if(isStagingHost) {
@@ -87,6 +114,8 @@ export default async function proxy(req) {
             path: "/",
             sameSite: "lax",
         });
+        rewriteResponse.headers.set("Accept-CH", "Sec-CH-Prefers-Color-Scheme");
+        rewriteResponse.headers.set("Critical-CH", "Sec-CH-Prefers-Color-Scheme");
 
         return rewriteResponse;
     }

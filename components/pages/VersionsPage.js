@@ -11,7 +11,7 @@ import ProjectSidebar from "../project/ProjectSidebar";
 import showOverTheTopDownloadAnimation from "../ui/showOverTheTopDownloadAnimation";
 
 const gameVersions = [
-    "1.0",
+    "Early Access",
 ];
 
 const releaseChannels = ["release", "beta", "alpha"];

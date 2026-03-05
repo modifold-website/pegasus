@@ -12,7 +12,7 @@ import VersionUploadModal from "../../../modal/VersionUploadModal";
 import VersionEditModal from "../../../modal/VersionEditModal";
 
 const gameVersions = [
-    "1.0",
+    "Early Access",
 ];
 
 const loaders = [

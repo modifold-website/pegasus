@@ -95,7 +95,7 @@ export default function GalleryUploadModal({ isOpen, onRequestClose, uploadLoadi
                             </>
                         ) : (
                             <>
-                                <p className="blog-settings__field-title">{t("gallerySettings.fields.title")}</p>
+                                <p className="blog-settings__field-title" style={{ marginTop: "0" }}>{t("gallerySettings.fields.title")}</p>
                                 <div className="field field--default">
                                     <label className="field__wrapper">
                                         <input

@@ -166,7 +166,8 @@
         "creators": "Creators",
         "owner": "Owner",
         "organizationOwner": "Organization",
-        "created": "Created:",
+        "created": "Created",
+        "updated": "Updated",
         "id": "ID:",
         "notFound": "Project not found",
         "metadata": {
@@ -200,6 +201,8 @@
         "confirmDeleteVersion": "Are you sure you want to delete this version?",
         "versionDeleted": "Version deleted successfully",
         "errorOccurred": "An error occurred. Please try again.",
+        "compatibilityTitle": "Compatibility",
+        "detailsTitle": "Details",
         "licenseTitle": "License",
         "licensedAs": "Licensed {license}",
         "download": "Download",
@@ -608,6 +611,9 @@
                 "upload": "Upload Version"
             },
             "modal": {
+                "editMetadataTitle": "Edit metadata",
+                "editDetailsTitle": "Edit details",
+                "editFilesTitle": "Edit files",
                 "steps": {
                     "files": "Files",
                     "metadata": "Metadata",

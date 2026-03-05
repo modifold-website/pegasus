@@ -235,21 +235,30 @@ export default function ProjectMasthead({ project, authToken }) {
 
                         {isActionsOpen && (
                             <div id="popover-overlay" className="popover-overlay">
-                                <div className="popover" tabIndex={0} style={{ "--width": "240px", "--top": "46px", "--position": "absolute", "--left": "auto", "--right": "0", "--bottom": "auto", "--distance": "8px" }}>
+                                <div className="popover" tabIndex={0} style={{ "--width": "max-content", "--top": "46px", "--position": "absolute", "--left": "auto", "--right": "0", "--bottom": "auto", "--distance": "8px" }}>
                                     <div className="popover__scrollable" style={{ "--max-height": "auto" }}>
-                                        <button style={{ width: "100%" }} type="button" className="context-list-option" onClick={handleCopyProjectLink}>
-                                            <div className="context-list-option__label" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link-icon lucide-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-
-                                                <span>{t("report.copyLink")}</span>
+                                        <button style={{ width: "100%" }} type="button" className="context-list-option context-list-option--with-art" onClick={handleCopyProjectLink}>
+                                            <div className="context-list-option__art context-list-option__art--icon">
+                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link-icon lucide-link">
+                                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                                                </svg>
+                                            </div>
+                                            
+                                            <div className="context-list-option__label">
+                                                {t("report.copyLink")}
                                             </div>
                                         </button>
 
-                                        <button style={{ width: "100%" }} type="button" className={`context-list-option ${reportStatus.hasReported ? "context-list-option--selected" : ""}`} onClick={openReportModal} disabled={reportStatus.hasReported || reportStatus.loading}>
-                                            <div className="context-list-option__label" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flag-icon lucide-flag"><path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"/></svg>
-
-                                                <span>{reportStatus.hasReported ? t("report.alreadySubmitted") : t("report.openModal")}</span>
+                                        <button style={{ width: "100%" }} type="button" className={`context-list-option context-list-option--with-art ${reportStatus.hasReported ? "context-list-option--selected" : ""}`} onClick={openReportModal} disabled={reportStatus.hasReported || reportStatus.loading}>
+                                            <div className="context-list-option__art context-list-option__art--icon">
+                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flag-icon lucide-flag">
+                                                    <path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"/>
+                                                </svg>
+                                            </div>
+                                            
+                                            <div className="context-list-option__label">
+                                                {reportStatus.hasReported ? t("report.alreadySubmitted") : t("report.openModal")}
                                             </div>
                                         </button>
                                     </div>

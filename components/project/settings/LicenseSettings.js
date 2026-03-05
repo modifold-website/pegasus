@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
 import { LICENSES } from "../../Licenses";
@@ -13,7 +13,15 @@ export default function LicenseSettings({ project, authToken }) {
     const t = useTranslations("SettingsProjectPage");
     const { slug } = useParams();
 
-    const initialLicense = project.license.id || "no-license";
+    const normalizeLicenseId = (licenseId) => {
+        if(!licenseId || licenseId === "no-license") {
+            return "arr";
+        }
+
+        return licenseId;
+    };
+
+    const initialLicense = normalizeLicenseId(project.license.id);
     const [selectedLicense, setSelectedLicense] = useState(initialLicense);
     const [savedLicense, setSavedLicense] = useState(initialLicense);
     const [isLicensePopoverOpen, setIsLicensePopoverOpen] = useState(false);
@@ -61,7 +69,7 @@ export default function LicenseSettings({ project, authToken }) {
                     Authorization: `Bearer ${authToken}`,
                 },
                 body: JSON.stringify({
-                    license_id: selected?.key === "no-license" ? null : selected?.key,
+                    license_id: selected?.key || "arr",
                     license_name: selected?.name || null,
                 }),
             });
@@ -81,7 +89,7 @@ export default function LicenseSettings({ project, authToken }) {
     };
 
     const handleClear = () => {
-        setSelectedLicense("no-license");
+        setSelectedLicense("arr");
     };
 
     const currentLicenseName = LICENSES.find((l) => l.key === selectedLicense)?.name || t("license.noSelection");
@@ -142,7 +150,7 @@ export default function LicenseSettings({ project, authToken }) {
 
                                 <p className="blog-settings__field-title">{t("license.current")}</p>
                                 <div className="tags-list">
-                                    {selectedLicense !== "no-license" ? (
+                                    {LICENSES.some((license) => license.key === selectedLicense) ? (
                                         <div className="button button--size-m button--type-minimal">
                                             {currentLicenseName}
                                         </div>
@@ -155,7 +163,6 @@ export default function LicenseSettings({ project, authToken }) {
                     </div>
                 </div>
 
-                <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
                 <UnsavedChangesBar
                     isDirty={isDirty}
                     isSaving={isSaving}

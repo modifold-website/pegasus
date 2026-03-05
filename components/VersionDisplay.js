@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 
 const tags = {
     gameVersions: [
-        "1.0",
+        "Early Access",
     ]
 };
 

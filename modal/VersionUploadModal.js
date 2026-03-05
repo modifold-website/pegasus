@@ -104,7 +104,7 @@ export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoadi
                             </>
                         ) : isMetadataStep ? (
                             <>
-                                <p className="blog-settings__field-title">{t("versions.fields.versionNumber")}</p>
+                                <p className="blog-settings__field-title" style={{ marginTop: "0" }}>{t("versions.fields.versionNumber")}</p>
                                 <div className="field field--default">
                                     <label className="field__wrapper">
                                         <input
@@ -168,7 +168,7 @@ export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoadi
                             </>
                         ) : (
                             <>
-                                <p className="blog-settings__field-title">{t("versions.fields.gameVersions")}</p>
+                                <p className="blog-settings__field-title" style={{ marginTop: "0" }}>{t("versions.fields.gameVersions")}</p>
                                 <div className="field field--default" ref={gameVersionsRef}>
                                     <label className="field__wrapper" onClick={!uploadLoading ? toggleGameVersionsPopover : undefined}>
                                         <div className="field__wrapper-body">

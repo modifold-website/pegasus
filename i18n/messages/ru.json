@@ -166,7 +166,8 @@
         "creators": "Авторы",
         "owner": "Владелец",
         "organizationOwner": "Организация",
-        "created": "Создан:",
+        "created": "Создан",
+        "updated": "Обновлён",
         "id": "ID:",
         "notFound": "Проект не найден",
         "metadata": {
@@ -200,6 +201,8 @@
         "confirmDeleteVersion": "Удалить эту версию?",
         "versionDeleted": "Версия удалена",
         "errorOccurred": "Произошла ошибка. Попробуйте ещё раз.",
+        "compatibilityTitle": "Совместимость",
+        "detailsTitle": "Сведения",
         "licenseTitle": "Лицензия",
         "licensedAs": "Лицензия {license}",
         "download": "Скачать",
@@ -608,6 +611,9 @@
                 "upload": "Загрузить версию"
             },
             "modal": {
+                "editMetadataTitle": "Редактировать метаданные",
+                "editDetailsTitle": "Редактировать детали",
+                "editFilesTitle": "Редактировать файлы",
                 "steps": {
                     "files": "Файлы",
                     "metadata": "Метаданные",

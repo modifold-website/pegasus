@@ -194,20 +194,44 @@
     justify-content: center;
     transition: scale .125s ease-in-out, background .25s ease-in-out, color .25s ease-in-out;
 }
+.all-versions .version-button .version-actions {
+    grid-area: download;
+    position: relative;
+}
+.all-versions .version-button .download-button.version-actions__trigger {
+    color: var(--theme-color-text-secondary);
+    background: var(--theme-color-button-minimal);
+}
 .all-versions .version-button .download-button svg {
     fill: none;
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
+}
+.all-versions .version-button .version-actions__trigger svg {
+    fill: none;
+    width: 20px;
+    height: 20px;
 }
 .version-button .download-button:hover {
     color: #ffffff !important;
     background: #00af5c !important;
 }
+.version-button .download-button.version-actions__trigger:hover {
+    color: var(--theme-color-text-primary) !important;
+    background: var(--theme-color-button-minimal-hover) !important;
+}
+.version-actions__overlay {
+    --z-index: 12;
+}
+.version-actions__overlay .popover {
+    box-shadow: var(--theme-shadow-popover);
+    border-radius: 14px;
+}
 .all-versions.versions-modal .version__metadata .version__game-versions {
     background: var(--theme-color-background-content) !important;
 }
 .all-versions .version-button .version__title {
-    font-weight: 700;
+    font-weight: 600;
     grid-area: title;
     display: flex;
     gap: 4px;
@@ -225,7 +249,7 @@
 .version__badge {
 	--badge-color: #414247;
     color: var(--badge-color);
-    font-weight: 700;
+    font-weight: 600;
     white-space: nowrap;
     width: -moz-fit-content;
     width: fit-content;
@@ -386,7 +410,6 @@
     color: var(--theme-color-text-secondary);
 }
 .links-list {
-    opacity: 0.7;
     font-weight: 500;
     list-style: none;
     padding: 0;
@@ -538,7 +561,7 @@
     margin-bottom: 8px;
 }
 .version-page__metadata .metadata-item {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -645,7 +668,43 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
 }
 .license svg {
     fill: none;
+}
+.details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.project-compatibility {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.project-compatibility__game {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+}
+.project-compatibility__versions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.project-compatibility__versions .version__game-versions {
+    background: var(--theme-color-background-content);
+    border: 1px solid var(--theme-color-button-minimal);
+    padding: 4px 8px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+}
+@media (max-width: 859px) {
+    .project-compatibility__game {
+        font-size: 34px;
+    }
 }

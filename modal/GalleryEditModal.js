@@ -93,7 +93,7 @@ export default function GalleryEditModal({ isOpen, onRequestClose, editLoading, 
                             </>
                         ) : (
                             <>
-                                <p className="blog-settings__field-title">{tProject("gallery.title")}</p>
+                                <p className="blog-settings__field-title" style={{ marginTop: "0" }}>{tProject("gallery.title")}</p>
                                 <div className="field field--default">
                                     <label className="field__wrapper">
                                         <input type="text" name="title" value={editFormData.title} className="text-input" disabled={editLoading} onChange={handleEditInputChange} />

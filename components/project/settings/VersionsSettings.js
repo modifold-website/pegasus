@@ -9,7 +9,9 @@ import axios from "axios";
 import VersionDisplay from "../../VersionDisplay";
 import ProjectSettingsSidebar from "@/components/ui/ProjectSettingsSidebar";
 import VersionUploadModal from "../../../modal/VersionUploadModal";
-import VersionEditModal from "../../../modal/VersionEditModal";
+import VersionEditMetadataModal from "../../../modal/VersionEditMetadataModal";
+import VersionEditDetailsModal from "../../../modal/VersionEditDetailsModal";
+import VersionEditFilesModal from "../../../modal/VersionEditFilesModal";
 
 const gameVersions = [
     "Early Access",
@@ -25,6 +27,11 @@ const VERSION_UPLOAD_STEPS = {
     FILES: "files",
     METADATA: "metadata",
     COMPATIBILITY: "compatibility",
+};
+const EDIT_MODAL_TYPES = {
+    METADATA: "metadata",
+    DETAILS: "details",
+    FILES: "files",
 };
 
 export default function VersionsSettings({ project, authToken }) {
@@ -67,9 +74,11 @@ export default function VersionsSettings({ project, authToken }) {
     const filterChannelsRef = useRef(null);
     const filterLoadersRef = useRef(null);
 
-    const [editModalOpen, setEditModalOpen] = useState(false);
+    const [editModalType, setEditModalType] = useState(null);
+    const [openEditActionsVersionId, setOpenEditActionsVersionId] = useState(null);
     const [editingVersionId, setEditingVersionId] = useState(null);
     const [editLoading, setEditLoading] = useState(false);
+    const [editVersionFile, setEditVersionFile] = useState({ url: "", size: null });
     const [editFormData, setEditFormData] = useState({
         version_number: "",
         changelog: "",
@@ -106,6 +115,10 @@ export default function VersionsSettings({ project, authToken }) {
 
             if(filterLoadersRef.current && !filterLoadersRef.current.contains(event.target)) {
                 setIsFilterLoadersPopoverOpen(false);
+            }
+
+            if(!event.target.closest(".version-actions")) {
+                setOpenEditActionsVersionId(null);
             }
         };
 
@@ -224,10 +237,12 @@ export default function VersionsSettings({ project, authToken }) {
         }
     };
 
-    const openEditModal = async (versionId) => {
+    const openEditModal = async (versionId, modalType) => {
+        setOpenEditActionsVersionId(null);
         setEditingVersionId(versionId);
-        setEditModalOpen(true);
+        setEditModalType(modalType);
         setEditLoading(true);
+        setEditVersionFile({ url: "", size: null });
 
         try {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/version/${versionId}`, {
@@ -235,16 +250,30 @@ export default function VersionsSettings({ project, authToken }) {
             });
 
             const version = res.data;
+            const nextGameVersions = Array.isArray(version.game_versions)
+                ? version.game_versions
+                : typeof version.game_versions === "string"
+                    ? version.game_versions.split(",").map((v) => v.trim()).filter(Boolean)
+                    : [];
+            const nextLoaders = Array.isArray(version.loaders)
+                ? version.loaders
+                : typeof version.loaders === "string"
+                    ? version.loaders.split(",").map((v) => v.trim()).filter(Boolean)
+                    : [];
             setEditFormData({
                 version_number: version.version_number || "",
                 changelog: version.changelog || "",
                 release_channel: version.release_channel || "release",
-                game_versions: Array.isArray(version.game_versions) ? version.game_versions : [],
-                loaders: Array.isArray(version.loaders) ? version.loaders : [],
+                game_versions: nextGameVersions,
+                loaders: nextLoaders,
+            });
+            setEditVersionFile({
+                url: version.file_url || "",
+                size: Number.isFinite(version.file_size) ? version.file_size : Number(version.file_size),
             });
         } catch (err) {
             toast.error(err.response?.data?.message || tProject("errorOccurred"));
-            setEditModalOpen(false);
+            setEditModalType(null);
             setEditingVersionId(null);
         } finally {
             setEditLoading(false);
@@ -252,9 +281,11 @@ export default function VersionsSettings({ project, authToken }) {
     };
 
     const closeEditModal = () => {
-        setEditModalOpen(false);
+        setEditModalType(null);
+        setOpenEditActionsVersionId(null);
         setEditingVersionId(null);
         setEditLoading(false);
+        setEditVersionFile({ url: "", size: null });
         setIsEditGameVersionsPopoverOpen(false);
         setIsEditLoadersPopoverOpen(false);
         setEditFormData({
@@ -377,8 +408,8 @@ export default function VersionsSettings({ project, authToken }) {
         setEditFormData((prev) => ({ ...prev, release_channel: channel }));
     };
 
-    const handleUpdate = async (e) => {
-        e.preventDefault();
+    const handleUpdate = async (e, options = {}) => {
+        e?.preventDefault?.();
         if(!editingVersionId) {
             return;
         }
@@ -396,8 +427,9 @@ export default function VersionsSettings({ project, authToken }) {
         formDataToSend.append("release_channel", editFormData.release_channel);
         formDataToSend.append("game_versions", JSON.stringify(editFormData.game_versions));
         formDataToSend.append("loaders", JSON.stringify(editFormData.loaders));
-        if(e.target.file?.files?.[0]) {
-            formDataToSend.append("file", e.target.file.files[0]);
+        const selectedFile = options.file || e?.target?.file?.files?.[0] || null;
+        if(selectedFile) {
+            formDataToSend.append("file", selectedFile);
         }
 
         try {
@@ -569,6 +601,21 @@ export default function VersionsSettings({ project, authToken }) {
         return date.toLocaleDateString(undefined, { day: "numeric", month: "short" });
     };
 
+    const getFileNameFromUrl = (url) => {
+        if(typeof url !== "string" || !url.trim()) {
+            return "";
+        }
+
+        try {
+            const { pathname } = new URL(url);
+            const segments = pathname.split("/").filter(Boolean);
+            return decodeURIComponent(segments[segments.length - 1] || "");
+        } catch {
+            const segments = url.split("/").filter(Boolean);
+            return segments[segments.length - 1] || "";
+        }
+    };
+
     return (
         <div className="layout">
             <div className="page-content settings-page">
@@ -676,12 +723,63 @@ export default function VersionsSettings({ project, authToken }) {
                         ) : (
                             filteredVersions.map((version) => (
                                 <div key={version.id} className="version-button">
-                                    <button className="download-button" type="button" onClick={() => openEditModal(version.id)} aria-label={tProject("editVersion")} title={tProject("editVersion")}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ fill: "none" }}>
-                                            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.51a2 2 0 0 1 1-1.72l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-                                            <circle cx="12" cy="12" r="3" />
-                                        </svg>
-                                    </button>
+                                    <div className="version-actions">
+                                        <button className="download-button version-actions__trigger" type="button" onClick={() => setOpenEditActionsVersionId((prev) => (prev === version.id ? null : version.id))} aria-label={tProject("editVersion")} title={tProject("editVersion")} aria-expanded={openEditActionsVersionId === version.id}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings">
+                                                <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/>
+                                                <circle cx="12" cy="12" r="3"/>
+                                            </svg>
+                                        </button>
+
+                                        {openEditActionsVersionId === version.id && (
+                                            <div id="popover-overlay" className="popover-overlay version-actions__overlay">
+                                                <div className="popover" tabIndex={0} style={{ "--width": "180px", "--top": "46px", "--position": "absolute", "--left": "0", "--right": "auto", "--bottom": "auto", "--distance": "8px" }}>
+                                                    <div className="popover__scrollable" style={{ "--max-height": "auto" }}>
+                                                        <button style={{ width: "100%" }} type="button" className="context-list-option context-list-option--with-art" onClick={() => openEditModal(version.id, EDIT_MODAL_TYPES.METADATA)}>
+                                                            <div className="context-list-option__art context-list-option__art--icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ fill: "none" }}>
+                                                                    <path d="M21 16V8a2 2 0 0 0-1-1.73L13 2.27a2 2 0 0 0-2 0L4 6.27A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                                                    <polyline points="3.29 7 12 12 20.71 7"></polyline>
+                                                                    <line x1="12" y1="22" x2="12" y2="12"></line>
+                                                                </svg>
+                                                            </div>
+                                                            
+                                                            <div className="context-list-option__label">
+                                                                Edit metadata
+                                                            </div>
+                                                        </button>
+
+                                                        <button style={{ width: "100%" }} type="button" className="context-list-option context-list-option--with-art" onClick={() => openEditModal(version.id, EDIT_MODAL_TYPES.DETAILS)}>
+                                                            <div className="context-list-option__art context-list-option__art--icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ fill: "none" }}>
+                                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                                    <path d="M12 16v-4"></path>
+                                                                    <path d="M12 8h.01"></path>
+                                                                </svg>
+                                                            </div>
+                                                            
+                                                            <div className="context-list-option__label">
+                                                                Edit details
+                                                            </div>
+                                                        </button>
+
+                                                        <button style={{ width: "100%" }} type="button" className="context-list-option context-list-option--with-art" onClick={() => openEditModal(version.id, EDIT_MODAL_TYPES.FILES)}>
+                                                            <div className="context-list-option__art context-list-option__art--icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ fill: "none" }}>
+                                                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                                                </svg>
+                                                            </div>
+                                                            
+                                                            <div className="context-list-option__label">
+                                                                Edit files
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
 
                                     <Link href={`/mod/${project.slug}/version/${version.id}`}>
                                         <span className="version__title">
@@ -761,8 +859,8 @@ export default function VersionsSettings({ project, authToken }) {
                 tProject={tProject}
             />
 
-            <VersionEditModal
-                isOpen={editModalOpen}
+            <VersionEditMetadataModal
+                isOpen={editModalType === EDIT_MODAL_TYPES.METADATA}
                 onRequestClose={closeEditModal}
                 editLoading={editLoading}
                 onSubmit={handleUpdate}
@@ -785,6 +883,32 @@ export default function VersionsSettings({ project, authToken }) {
                 loaders={loaders}
                 handleEditToggleLoader={handleEditToggleLoader}
                 editLoadersLabel={editLoadersLabel}
+            />
+
+            <VersionEditDetailsModal
+                isOpen={editModalType === EDIT_MODAL_TYPES.DETAILS}
+                onRequestClose={closeEditModal}
+                editLoading={editLoading}
+                onSubmit={handleUpdate}
+                t={t}
+                tProject={tProject}
+                editFormData={editFormData}
+                handleEditInputChange={handleEditInputChange}
+                releaseChannels={releaseChannels}
+                handleSelectEditReleaseChannel={handleSelectEditReleaseChannel}
+            />
+
+            <VersionEditFilesModal
+                isOpen={editModalType === EDIT_MODAL_TYPES.FILES}
+                onRequestClose={closeEditModal}
+                editLoading={editLoading}
+                onSubmit={handleUpdate}
+                t={t}
+                tProject={tProject}
+                versionFileAccept={VERSION_FILE_ACCEPT}
+                currentFileName={getFileNameFromUrl(editVersionFile.url)}
+                currentFileSize={editVersionFile.size}
+                formatFileSize={formatFileSize}
             />
         </div>
     );

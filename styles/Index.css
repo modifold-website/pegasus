@@ -2609,6 +2609,24 @@ input[type="file"]::-webkit-file-upload-button:hover {
     gap: 8px;
     margin-top: 18px;
 }
+.version-edit-file-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border: 1px solid var(--theme-color-border);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 14px;
+    background: var(--theme-color-background);
+}
+.version-edit-file-card strong {
+    font-size: 17px;
+    line-height: 1.2;
+}
+.version-edit-file-card span {
+    color: var(--theme-color-text-secondary);
+    font-size: 14px;
+}
 .version-release-channel-picker {
     display: flex;
     flex-wrap: wrap;
@@ -2938,6 +2956,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: left;
 }
 @keyframes scaleOption {
     0%,

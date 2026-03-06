@@ -124,28 +124,40 @@ const CategoryIcon = ({ category }) => {
     }
 };
 
-export default function BrowsePage({ projectType }) {
+export default function BrowsePage({ projectType, initialState = null, initialData = null, initialCardView = "list" }) {
     const t = useTranslations("BrowsePage");
     const router = useRouter();
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const searchParamsString = useMemo(() => searchParams.toString(), [searchParams]);
+    const normalizedInitialState = useMemo(() => ({
+        tags: Array.isArray(initialState?.tags) ? initialState.tags : [],
+        sort: ["downloads", "recent"].includes(initialState?.sort) ? initialState.sort : "downloads",
+        search: typeof initialState?.search === "string" ? initialState.search : "",
+        page: Number.isFinite(initialState?.page) && initialState.page > 0 ? initialState.page : 1,
+    }), [initialState]);
+    const hasInitialData = Boolean(initialData?.apiKey);
 
-    const cardViewStorageKey = `browse:cardView:${projectType}`;
-    const [projects, setProjects] = useState([]);
-    const [sort, setSort] = useState("downloads");
-    const [search, setSearch] = useState("");
-    const [searchInput, setSearchInput] = useState("");
-    const [selectedTags, setSelectedTags] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
+    const [projects, setProjects] = useState(() => initialData?.projects || []);
+    const [sort, setSort] = useState(normalizedInitialState.sort);
+    const [search, setSearch] = useState(normalizedInitialState.search);
+    const [searchInput, setSearchInput] = useState(normalizedInitialState.search);
+    const [selectedTags, setSelectedTags] = useState(normalizedInitialState.tags);
+    const [loading, setLoading] = useState(!hasInitialData);
+    const [currentPage, setCurrentPage] = useState(normalizedInitialState.page);
+    const [totalPages, setTotalPages] = useState(() => initialData?.totalPages || 1);
     const [isSortOpen, setIsSortOpen] = useState(false);
     const sortRef = useRef(null);
-    const [cardView, setCardView] = useState("list");
+    const [cardView, setCardView] = useState(initialCardView === "media" ? "media" : "list");
     const syncingFromUrlRef = useRef(true);
     const lastQueryRef = useRef(null);
-    const apiCacheRef = useRef(new Map());
+    const apiCacheRef = useRef(hasInitialData ? new Map([
+        [initialData.apiKey, {
+            projects: initialData.projects || [],
+            totalPages: initialData.totalPages || 1,
+            timestamp: initialData.timestamp || Date.now(),
+        }],
+    ]) : new Map());
     const apiRequestIdRef = useRef(0);
 
     const toggleCardView = () => {
@@ -154,29 +166,20 @@ export default function BrowsePage({ projectType }) {
 
     useEffect(() => {
         try {
-            const saved = localStorage.getItem(cardViewStorageKey);
-            if(saved === "list" || saved === "media") {
-                setCardView(saved);
-            } else {
-                setCardView("list");
-            }
+            document.cookie = `browse_card_view_${projectType}=${encodeURIComponent(cardView)}; path=/; max-age=31536000; samesite=lax`;
         } catch {}
-    }, [cardViewStorageKey]);
-
-    useEffect(() => {
-        try {
-            localStorage.setItem(cardViewStorageKey, cardView);
-        } catch {}
-    }, [cardViewStorageKey, cardView]);
+    }, [projectType, cardView]);
 
     const parseSearchParams = (sp) => {
         const params = new URLSearchParams(sp);
+        const rawSort = params.get("sort");
+        const rawPage = Number.parseInt(params.get("page"), 10);
 
         return {
             tags: params.getAll("c"),
-            sort: params.get("sort") || "downloads",
+            sort: ["downloads", "recent"].includes(rawSort) ? rawSort : "downloads",
             search: params.get("q") || "",
-            page: parseInt(params.get("page")) || 1,
+            page: Number.isFinite(rawPage) && rawPage > 0 ? rawPage : 1,
         };
     };
 

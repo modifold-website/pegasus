@@ -87,7 +87,9 @@ export default function ProjectCardMedia({ project }) {
     } : undefined;
 
     return (
-        <Link className="media-project-card" href={`/mod/${project.slug}`} id={project.slug}>
+        <div className="media-project-card" id={project.slug}>
+            <Link className="media-project-card__overlay" href={`/mod/${project.slug}`} aria-label={project.title} />
+
             <div className={`media-project-cover ${!coverUrl ? "media-project-cover--fallback" : ""}`} style={fallbackCoverStyle}>
                 {coverUrl && (
                     <img src={coverUrl} alt="" loading="lazy" />
@@ -146,6 +148,6 @@ export default function ProjectCardMedia({ project }) {
                     </div>
                 </div>
             </div>
-        </Link>
+        </div>
     );
 }

@@ -9,6 +9,7 @@
     gap: 16px;
 }
 .media-project-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     background: var(--theme-color-background-content);
@@ -16,6 +17,23 @@
     overflow: visible;
     height: 100%;
     transition: filter .2s ease-in-out, transform .05s ease-in-out, background 0.25s ease-in-out;
+}
+.media-project-card__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+}
+.media-project-card > *:not(.media-project-card__overlay) {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+}
+.media-project-card .media-project-author a {
+    pointer-events: auto;
+}
+.media-project-card .project-tags-overflow {
+    pointer-events: auto;
 }
 .media-project-card:hover {
     filter: brightness(.95);

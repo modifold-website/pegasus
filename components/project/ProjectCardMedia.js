@@ -3,6 +3,23 @@ import { useLocale, useTranslations } from "next-intl";
 import UserName from "../ui/UserName";
 import ProjectTags from "../ui/ProjectTags";
 const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
+const MAX_RGB_INT = 16777215;
+
+const clampByte = (value) => Math.max(0, Math.min(255, Math.round(value)));
+
+const intToRgb = (value) => ({
+    r: (value >> 16) & 255,
+    g: (value >> 8) & 255,
+    b: value & 255,
+});
+
+const rgbToHex = ({ r, g, b }) => `#${[r, g, b].map((channel) => clampByte(channel).toString(16).padStart(2, "0")).join("")}`;
+
+const darkenRgb = (rgb, amount = 0.52) => ({
+    r: rgb.r * (1 - amount),
+    g: rgb.g * (1 - amount),
+    b: rgb.b * (1 - amount),
+});
 
 export default function ProjectCardMedia({ project }) {
     const t = useTranslations("ProjectCard");
@@ -57,11 +74,21 @@ export default function ProjectCardMedia({ project }) {
 
     const featuredImage = project?.gallery?.find((image) => image?.featured === 1) || project?.gallery?.[0] || null;
     const coverUrl = featuredImage?.url || null;
-    const ownerProfileUrl = project.owner?.profile_url || `/user/${project.owner?.slug || ""}`;
+    const rawColor = project?.color;
+    const hasRawColor = rawColor !== null && rawColor !== undefined && rawColor !== "";
+    const parsedColor = hasRawColor ? Number(rawColor) : NaN;
+    const hasProjectColor = Number.isFinite(parsedColor) && parsedColor >= 0 && parsedColor <= MAX_RGB_INT;
+    const accentRgb = hasProjectColor ? intToRgb(parsedColor) : null;
+    const accentHex = accentRgb ? rgbToHex(accentRgb) : null;
+    const accentDarkHex = accentRgb ? rgbToHex(darkenRgb(accentRgb)) : null;
+    const fallbackCoverStyle = !coverUrl && accentHex && accentDarkHex ? {
+        "--media-cover-color": accentHex,
+        "--media-cover-color-dark": accentDarkHex,
+    } : undefined;
 
     return (
         <Link className="media-project-card" href={`/mod/${project.slug}`} id={project.slug}>
-            <div className="media-project-cover">
+            <div className={`media-project-cover ${!coverUrl ? "media-project-cover--fallback" : ""}`} style={fallbackCoverStyle}>
                 {coverUrl && (
                     <img src={coverUrl} alt="" loading="lazy" />
                 )}
@@ -75,7 +102,7 @@ export default function ProjectCardMedia({ project }) {
                         <div className="media-project-title-row">
                             <span className="media-project-title">{project.title}</span>
                             <span className="media-project-author">
-                                {t("by")} <Link href={ownerProfileUrl}><UserName user={project.owner} /></Link>
+                                {t("by")} <Link href={project.owner?.profile_url || `/user/${project.owner?.slug || ""}`}><UserName user={project.owner} /></Link>
                             </span>
                         </div>
 
@@ -91,17 +118,30 @@ export default function ProjectCardMedia({ project }) {
 
                 <div className="media-project-stats">
                     <div className="media-project-stat" title={t("downloads")}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download-icon lucide-download">
+                            <path d="M12 15V3"/>
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <path d="m7 10 5 5 5-5"/>
+                        </svg>
+                        
                         <span>{formatNumber(project.downloads)}</span>
                     </div>
 
                     <div className="media-project-stat" title={t("followers")}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-heart-icon lucide-heart">
+                            <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/>
+                        </svg>
+                        
                         <span>{formatNumber(project.followers || 0)}</span>
                     </div>
 
                     <div className="media-project-stat media-project-updated" title={formatDate(project.updated_at)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="lucide lucide-heart-icon lucide-update"><path d="M3 3v5h5"></path><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"></path><path d="M12 7v5l4 2"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="lucide lucide-heart-icon lucide-update">
+                            <path d="M3 3v5h5"></path>
+                            <path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"></path>
+                            <path d="M12 7v5l4 2"></path>
+                        </svg>
+                        
                         <span>{formatDate(project.updated_at)}</span>
                     </div>
                 </div>

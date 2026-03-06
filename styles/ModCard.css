@@ -44,8 +44,14 @@
     aspect-ratio: 16 / 9;
     background: var(--theme-color-background-active);
     overflow: hidden;
+    position: relative;
     border-top-left-radius: var(--layout-island-border-radius);
     border-top-right-radius: var(--layout-island-border-radius);
+}
+.media-project-cover--fallback {
+    --media-cover-color: var(--theme-color-background-active);
+    --media-cover-color-dark: var(--theme-color-background-active-hover);
+    background: linear-gradient(135deg, var(--media-cover-color) 0%, var(--media-cover-color-dark) 100%), radial-gradient(120% 90% at 80% 20%, rgb(255 255 255 / 10%) 0%, rgb(255 255 255 / 0%) 65%);
 }
 .media-project-cover img {
     width: 100%;

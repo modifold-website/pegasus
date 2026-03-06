@@ -6,6 +6,7 @@ import axios from "axios";
 import ProjectCard from "../project/ProjectCard";
 import ProjectCardMedia from "../project/ProjectCardMedia";
 import ProjectCardSkeleton from "../ui/ProjectCardSkeleton";
+import ProjectCardMediaSkeleton from "../ui/ProjectCardMediaSkeleton";
 import BrowseFiltersSidebar from "./browse/BrowseFiltersSidebar";
 import BrowseToolbar from "./browse/BrowseToolbar";
 import { useTranslations } from "next-intl";
@@ -310,17 +311,15 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
                         )}
 
                         {loading ? (
-                            <div className="browse-project-list" aria-label={t("loading")} aria-busy="true">
+                            <div className={cardView === "media" ? "browse-project-grid" : "browse-project-list"} aria-label={t("loading")} aria-busy="true">
                                 {Array.from({ length: 10 }).map((_, index) => (
-                                    <ProjectCardSkeleton key={index} />
+                                    cardView === "media" ? <ProjectCardMediaSkeleton key={index} /> : <ProjectCardSkeleton key={index} />
                                 ))}
                             </div>
                         ) : projects.length > 0 ? (
                             <div className={cardView === "media" ? "browse-project-grid" : "browse-project-list"}>
                                 {projects.map((project) => (
-                                    cardView === "media"
-                                        ? <ProjectCardMedia key={project.id} project={project} />
-                                        : <ProjectCard key={project.id} project={project} />
+                                    cardView === "media" ? <ProjectCardMedia key={project.id} project={project} /> : <ProjectCard key={project.id} project={project} />
                                 ))}
                             </div>
                         ) : (

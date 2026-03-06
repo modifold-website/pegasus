@@ -260,6 +260,9 @@
 .new-project-card .new-project-info .new-project-tags .new-tag {
     background: var(--theme-color-background-content);
 }
+.media-project-card .media-project-body .media-project-tags .new-tag {
+    background: var(--theme-color-background-content);
+}
 .new-tag {
     border: 1px solid var(--theme-color-button-minimal);
     background: var(--theme-color-background);

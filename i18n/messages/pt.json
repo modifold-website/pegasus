@@ -361,6 +361,7 @@
         "loader": "Loader",
         "categories": "Categorias",
         "clearFilters": "Limpar filtros",
+        "clearAllFilters": "Limpar todos os filtros",
         "placeholders": {
             "search": "Pesquisar"
         },

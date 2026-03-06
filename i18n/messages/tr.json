@@ -361,6 +361,7 @@
         "loader": "Yükleyici",
         "categories": "Kategoriler",
         "clearFilters": "Filtreleri temizle",
+        "clearAllFilters": "Tüm filtreleri temizle",
         "placeholders": {
             "search": "Projeleri ara..."
         },

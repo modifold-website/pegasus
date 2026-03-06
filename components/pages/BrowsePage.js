@@ -352,6 +352,11 @@ export default function BrowsePage({ projectType }) {
         router.replace(pathname, { scroll: false });
     };
 
+    const clearSelectedTags = () => {
+        setSelectedTags([]);
+        setCurrentPage(1);
+    };
+
     const handleSortSelect = (sortOption) => {
         setSort(sortOption);
         setCurrentPage(1);
@@ -414,7 +419,9 @@ export default function BrowsePage({ projectType }) {
                                         </span>
 
                                         {selectedTags.includes(tag) && (
-                                            <svg className="category-option__check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                            <svg className="category-option__check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M20 6 9 17l-5-5"/>
+                                            </svg>
                                         )}
                                     </button>
                                 </li>
@@ -447,9 +454,15 @@ export default function BrowsePage({ projectType }) {
                                 <div className="browse-view-toggle">
                                     <button className="button button--size-m button--type-secondary button--active-transform" onClick={toggleCardView} aria-pressed={cardView === "media"} aria-label={cardView === "media" ? "Media view" : "List view"} title={cardView === "media" ? "Media view" : "List view"} style={{ "--button-padding": "0 7px" }} type="button">
                                         {cardView === "media" ? (
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                                                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+                                                <circle cx="9" cy="9" r="2"></circle>
+                                                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+                                            </svg>
                                         ) : (
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M3 14h7v7H3zM3 3h7v7H3zM14 4h7M14 9h7M14 15h7M14 20h7"></path></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                                                <path d="M3 14h7v7H3zM3 3h7v7H3zM14 4h7M14 9h7M14 15h7M14 20h7"></path>
+                                            </svg>
                                         )}
                                     </button>
                                 </div>
@@ -459,7 +472,9 @@ export default function BrowsePage({ projectType }) {
                                         <button class="dropdown__label" onClick={() => setIsSortOpen(!isSortOpen)} aria-expanded={isSortOpen}>
                                             {sort === "downloads" ? t("sort.downloads") : t("sort.recent")}
 
-                                            <svg style={{ fill: 'none' }} xmlns="http://www.w3.org/2000/svg" className={`icon icon--chevron_up ${isSortOpen ? "open" : ""}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                            <svg style={{ fill: 'none' }} xmlns="http://www.w3.org/2000/svg" className={`icon icon--chevron_up ${isSortOpen ? "open" : ""}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="m6 9 6 6 6-6"/>
+                                            </svg>
                                         </button>
                                     </div>
 
@@ -479,6 +494,33 @@ export default function BrowsePage({ projectType }) {
                                 </div>
                             </div>
                         </div>
+
+                        {selectedTags.length > 0 && (
+                            <div className="browse-selected-filters">
+                                {selectedTags.length > 1 && (
+                                    <button className="browse-selected-filter-chip" type="button" onClick={clearSelectedTags}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x">
+                                            <circle cx="12" cy="12" r="10"/>
+                                            <path d="m15 9-6 6"/>
+                                            <path d="m9 9 6 6"/>
+                                        </svg>
+
+                                        {t("clearAllFilters")}
+                                    </button>
+                                )}
+
+                                {selectedTags.map((tag) => (
+                                    <button key={tag} className="browse-selected-filter-chip" type="button" onClick={() => toggleTag(tag)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x">
+                                            <path d="M18 6 6 18"/>
+                                            <path d="m6 6 12 12"/>
+                                        </svg>
+
+                                        {tag}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
 
                         {loading ? (
                             <div className="browse-project-list" aria-label={t("loading")} aria-busy="true">

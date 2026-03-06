@@ -9,6 +9,7 @@
     gap: 16px;
 }
 .media-project-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     background: var(--theme-color-background-content);
@@ -16,6 +17,23 @@
     overflow: visible;
     height: 100%;
     transition: filter .2s ease-in-out, transform .05s ease-in-out, background 0.25s ease-in-out;
+}
+.media-project-card__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+}
+.media-project-card > *:not(.media-project-card__overlay) {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+}
+.media-project-card .media-project-author a {
+    pointer-events: auto;
+}
+.media-project-card .project-tags-overflow {
+    pointer-events: auto;
 }
 .media-project-card:hover {
     filter: brightness(.95);
@@ -44,8 +62,14 @@
     aspect-ratio: 16 / 9;
     background: var(--theme-color-background-active);
     overflow: hidden;
+    position: relative;
     border-top-left-radius: var(--layout-island-border-radius);
     border-top-right-radius: var(--layout-island-border-radius);
+}
+.media-project-cover--fallback {
+    --media-cover-color: var(--theme-color-background-active);
+    --media-cover-color-dark: var(--theme-color-background-active-hover);
+    background: linear-gradient(135deg, var(--media-cover-color) 0%, var(--media-cover-color-dark) 100%), radial-gradient(120% 90% at 80% 20%, rgb(255 255 255 / 10%) 0%, rgb(255 255 255 / 0%) 65%);
 }
 .media-project-cover img {
     width: 100%;
@@ -174,34 +198,34 @@
 .new-project-card .new-stat * {
     pointer-events: auto;
 }
-.new-project-card:hover {
+.new-project-card:not(.skeleton):hover {
     filter: brightness(.95);
     background: var(--theme-color-background-content);
 }
-.new-project-card:hover .new-project-title {
+.new-project-card:not(.skeleton):hover .new-project-title {
     text-decoration: underline;
 }
-.new-project-card:hover:has(.new-project-author a:hover),
-.new-project-card:hover:has(.new-project-author a span:hover) {
+.new-project-card:not(.skeleton):hover:has(.new-project-author a:hover),
+.new-project-card:not(.skeleton):hover:has(.new-project-author a span:hover) {
     filter: none;
 }
-.new-project-card:hover:has(.new-project-author a:hover) .new-project-title,
-.new-project-card:hover:has(.new-project-author a span:hover) .new-project-title {
+.new-project-card:not(.skeleton):hover:has(.new-project-author a:hover) .new-project-title,
+.new-project-card:not(.skeleton):hover:has(.new-project-author a span:hover) .new-project-title {
     text-decoration: none;
 }
-.new-project-card:hover:has(.new-project-author a:hover) .new-project-author a span,
-.new-project-card:hover:has(.new-project-author a span:hover) .new-project-author a span {
+.new-project-card:not(.skeleton):hover:has(.new-project-author a:hover) .new-project-author a span,
+.new-project-card:not(.skeleton):hover:has(.new-project-author a span:hover) .new-project-author a span {
     text-decoration: underline;
 }
-.new-project-card:hover:has(.dashboard-project-settings-button:hover),
-.new-project-card:hover:has(.dashboard-project-settings-button:focus-visible) {
+.new-project-card:not(.skeleton):hover:has(.dashboard-project-settings-button:hover),
+.new-project-card:not(.skeleton):hover:has(.dashboard-project-settings-button:focus-visible) {
     filter: none;
 }
-.new-project-card:hover:has(.dashboard-project-settings-button:hover) .new-project-title,
-.new-project-card:hover:has(.dashboard-project-settings-button:focus-visible) .new-project-title {
+.new-project-card:not(.skeleton):hover:has(.dashboard-project-settings-button:hover) .new-project-title,
+.new-project-card:not(.skeleton):hover:has(.dashboard-project-settings-button:focus-visible) .new-project-title {
     text-decoration: none;
 }
-.new-project-card:active {
+.new-project-card:not(.skeleton):active {
     filter: brightness(.8);
     scale: .95;
 }
@@ -258,6 +282,9 @@
     fill: none;
 }
 .new-project-card .new-project-info .new-project-tags .new-tag {
+    background: var(--theme-color-background-content);
+}
+.media-project-card .media-project-body .media-project-tags .new-tag {
     background: var(--theme-color-background-content);
 }
 .new-tag {

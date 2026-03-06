@@ -362,6 +362,7 @@
         "loader": "Loader",
         "categories": "Categories",
         "clearFilters": "Clear Filters",
+        "clearAllFilters": "Clear all filters",
         "placeholders": {
             "search": "Search projects..."
         },

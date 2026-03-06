@@ -362,6 +362,7 @@
         "loader": "Загрузчик",
         "categories": "Категории",
         "clearFilters": "Сбросить фильтры",
+        "clearAllFilters": "Сбросить все фильтры",
         "placeholders": {
             "search": "Поиск проектов..."
         },

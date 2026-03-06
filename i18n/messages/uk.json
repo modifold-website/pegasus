@@ -361,6 +361,7 @@
         "loader": "Лоадер",
         "categories": "Категорії",
         "clearFilters": "Очистити фільтри",
+        "clearAllFilters": "Очистити всі фільтри",
         "placeholders": {
             "search": "Пошук проєктів..."
         },

@@ -6,6 +6,7 @@ import Link from "next/link";
 import axios from "axios";
 import ProjectCard from "../project/ProjectCard";
 import ProjectCardMedia from "../project/ProjectCardMedia";
+import ProjectCardSkeleton from "../ui/ProjectCardSkeleton";
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
@@ -480,8 +481,10 @@ export default function BrowsePage({ projectType }) {
                         </div>
 
                         {loading ? (
-                            <div className="subsite-empty-feed">
-                                <p className="subsite-empty-feed__title">{t("loading")}</p>
+                            <div className="browse-project-list" aria-label={t("loading")} aria-busy="true">
+                                {Array.from({ length: 10 }).map((_, index) => (
+                                    <ProjectCardSkeleton key={index} />
+                                ))}
                             </div>
                         ) : projects.length > 0 ? (
                             <div className={cardView === "media" ? "browse-project-grid" : "browse-project-list"}>

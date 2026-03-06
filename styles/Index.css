@@ -2864,6 +2864,34 @@ input[type="file"]::-webkit-file-upload-button:hover {
         opacity: 0.72;
     }
 }
+.skeleton {
+    animation: skeleton-loading 1s linear alternate infinite;
+    will-change: opacity;
+}
+.skeleton__group:has(.skeleton__group) {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.skeleton-bar {
+    max-width: 100%;
+    height: 10px;
+    background-color: var(--theme-color-border);
+    border-radius: 100px;
+}
+.skeleton-circle {
+    width: 28px;
+    height: 28px;
+    background-color: var(--theme-color-border);
+    border-radius: 50%;
+}
+.skeleton-square {
+    width: 28px;
+    height: 28px;
+    background-color: var(--theme-color-border);
+    border-radius: 16.667px;
+}
 @keyframes skeleton-loading {
     0% {
         opacity: 1;

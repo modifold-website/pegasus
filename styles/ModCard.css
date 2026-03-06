@@ -174,34 +174,34 @@
 .new-project-card .new-stat * {
     pointer-events: auto;
 }
-.new-project-card:hover {
+.new-project-card:not(.skeleton):hover {
     filter: brightness(.95);
     background: var(--theme-color-background-content);
 }
-.new-project-card:hover .new-project-title {
+.new-project-card:not(.skeleton):hover .new-project-title {
     text-decoration: underline;
 }
-.new-project-card:hover:has(.new-project-author a:hover),
-.new-project-card:hover:has(.new-project-author a span:hover) {
+.new-project-card:not(.skeleton):hover:has(.new-project-author a:hover),
+.new-project-card:not(.skeleton):hover:has(.new-project-author a span:hover) {
     filter: none;
 }
-.new-project-card:hover:has(.new-project-author a:hover) .new-project-title,
-.new-project-card:hover:has(.new-project-author a span:hover) .new-project-title {
+.new-project-card:not(.skeleton):hover:has(.new-project-author a:hover) .new-project-title,
+.new-project-card:not(.skeleton):hover:has(.new-project-author a span:hover) .new-project-title {
     text-decoration: none;
 }
-.new-project-card:hover:has(.new-project-author a:hover) .new-project-author a span,
-.new-project-card:hover:has(.new-project-author a span:hover) .new-project-author a span {
+.new-project-card:not(.skeleton):hover:has(.new-project-author a:hover) .new-project-author a span,
+.new-project-card:not(.skeleton):hover:has(.new-project-author a span:hover) .new-project-author a span {
     text-decoration: underline;
 }
-.new-project-card:hover:has(.dashboard-project-settings-button:hover),
-.new-project-card:hover:has(.dashboard-project-settings-button:focus-visible) {
+.new-project-card:not(.skeleton):hover:has(.dashboard-project-settings-button:hover),
+.new-project-card:not(.skeleton):hover:has(.dashboard-project-settings-button:focus-visible) {
     filter: none;
 }
-.new-project-card:hover:has(.dashboard-project-settings-button:hover) .new-project-title,
-.new-project-card:hover:has(.dashboard-project-settings-button:focus-visible) .new-project-title {
+.new-project-card:not(.skeleton):hover:has(.dashboard-project-settings-button:hover) .new-project-title,
+.new-project-card:not(.skeleton):hover:has(.dashboard-project-settings-button:focus-visible) .new-project-title {
     text-decoration: none;
 }
-.new-project-card:active {
+.new-project-card:not(.skeleton):active {
     filter: brightness(.8);
     scale: .95;
 }

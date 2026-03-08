@@ -518,12 +518,14 @@
                 "issueTracker": "Трекер задач",
                 "sourceCode": "Вихідний код",
                 "wiki": "Вікі",
+                "hytaleModdingWiki": "HytaleModding Wiki",
                 "discord": "Discord"
             },
             "placeholders": {
                 "issueTracker": "URL до трекера задач",
                 "sourceCode": "URL до вихідного коду",
                 "wiki": "URL до вікі",
+                "hytaleModdingWiki": "https://wiki.hytalemodding.dev/mod/voile",
                 "discord": "URL до Discord"
             },
             "actions": {

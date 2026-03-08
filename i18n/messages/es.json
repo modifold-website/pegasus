@@ -52,8 +52,7 @@
     },
     "NotFound": {
         "title": "Página no encontrada",
-        "message": "El enlace no existe, fue movido o eliminado.",
-        "joke": "¿Para qué CurseForge? Mejor sube tus mods a Modifold."
+        "message": "El enlace no existe, fue movido o eliminado."
     },
     "HomePage": {
         "title": "El hogar de tus mods de Hytale — Modifold",
@@ -518,12 +517,14 @@
                 "issueTracker": "Seguimiento de incidencias",
                 "sourceCode": "Código fuente",
                 "wiki": "Wiki",
+                "hytaleModdingWiki": "HytaleModding Wiki",
                 "discord": "Discord"
             },
             "placeholders": {
                 "issueTracker": "URL del gestor de incidencias",
                 "sourceCode": "URL del código fuente",
                 "wiki": "URL de la wiki",
+                "hytaleModdingWiki": "https://wiki.hytalemodding.dev/mod/voile",
                 "discord": "URL de Discord"
             },
             "actions": {

@@ -20,8 +20,6 @@ export default async function NotFound() {
                         <h2 className="not-found__title">{t("title")}</h2>
 
                         <p className="not-found__text">{t("message")}</p>
-
-                        <p className="not-found__joke">{t("joke")}</p>
                     </div>
                 </section>
             </div>

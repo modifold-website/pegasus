@@ -52,8 +52,7 @@
     },
     "NotFound": {
         "title": "Страница не найдена",
-        "message": "Ссылка не найдена, перемещена или удалена.",
-        "joke": "Зачем CurseForge? Лучше загружай свои моды на Modifold."
+        "message": "Ссылка не найдена, перемещена или удалена."
     },
     "HomePage": {
         "title": "Дом для ваших модов Hytale — Modifold",
@@ -519,12 +518,14 @@
                 "issueTracker": "Трекер задач",
                 "sourceCode": "Исходный код",
                 "wiki": "Wiki",
+                "hytaleModdingWiki": "HytaleModding Wiki",
                 "discord": "Discord"
             },
             "placeholders": {
                 "issueTracker": "URL трекера задач",
                 "sourceCode": "URL исходного кода",
                 "wiki": "URL Wiki",
+                "hytaleModdingWiki": "https://wiki.hytalemodding.dev/mod/voile",
                 "discord": "URL Discord"
             },
             "actions": {

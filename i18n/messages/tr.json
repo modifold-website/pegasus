@@ -52,8 +52,7 @@
     },
     "NotFound": {
         "title": "Sayfa bulunamadı",
-        "message": "Bağlantı yok, taşınmış ya da silinmiş.",
-        "joke": "CurseForge ne gerek? Modlarını Modifold'a yüklemen daha iyi."
+        "message": "Bağlantı yok, taşınmış ya da silinmiş."
     },
     "HomePage": {
         "title": "Hytale modlarınız için bir yuva - Modifold",
@@ -518,12 +517,14 @@
                 "issueTracker": "Hata/İş takip sistemi",
                 "sourceCode": "Kaynak kodu",
                 "wiki": "Wiki",
+                "hytaleModdingWiki": "HytaleModding Wiki",
                 "discord": "Discord"
             },
             "placeholders": {
                 "issueTracker": "Takip sistemi URL",
                 "sourceCode": "Kaynak kodu URL",
                 "wiki": "Wiki URL",
+                "hytaleModdingWiki": "https://wiki.hytalemodding.dev/mod/voile",
                 "discord": "Discord URL"
             },
             "actions": {

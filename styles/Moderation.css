@@ -4,6 +4,9 @@
     margin-bottom: 15px;
     margin-top: 15px;
 }
+.moderation-page .new-project-card > *:not(.new-project-card__overlay) {
+    pointer-events: auto;
+}
 .moderation-history {
     background: var(--theme-color-background);
     border-radius: var(--layout-island-border-radius);

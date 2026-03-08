@@ -19,6 +19,7 @@ export default function ModerationPage({ authToken, initialProjects, initialTota
     const [projects, setProjects] = useState(initialProjects || []);
     const [totalPages, setTotalPages] = useState(initialTotalPages || 1);
     const [search, setSearch] = useState("");
+    const [searchInput, setSearchInput] = useState("");
     const [projectType, setProjectType] = useState("all");
     const [sort, setSort] = useState("oldest");
     const [page, setPage] = useState(1);
@@ -51,7 +52,7 @@ export default function ModerationPage({ authToken, initialProjects, initialTota
         const fetchProjects = async () => {
             try {
                 const params = {
-                    search,
+                    search: search || undefined,
                     type: projectType === "all" ? undefined : projectType,
                     sort,
                     page,
@@ -70,11 +71,7 @@ export default function ModerationPage({ authToken, initialProjects, initialTota
             }
         };
 
-        const delayDebounce = setTimeout(() => {
-            fetchProjects();
-        }, 300);
-
-        return () => clearTimeout(delayDebounce);
+        fetchProjects();
     }, [isLoggedIn, user, router, authToken, search, projectType, sort, page, t]);
 
     const handleApprove = async (projectId) => {
@@ -119,6 +116,17 @@ export default function ModerationPage({ authToken, initialProjects, initialTota
         setPage(1);
     };
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if(search !== searchInput) {
+                setPage(1);
+                setSearch(searchInput);
+            }
+        }, 350);
+
+        return () => clearTimeout(timer);
+    }, [searchInput, search]);
+
     const typeLabel = projectType === "all" ? t("filters.types.all") : t("filters.types.mod");
     const sortLabel = sort === "oldest" ? t("filters.sort.oldest") : t("filters.sort.newest");
 
@@ -158,7 +166,13 @@ export default function ModerationPage({ authToken, initialProjects, initialTota
                                     <circle cx="11" cy="11" r="8"></circle>
                                 </svg>
 
-                                <input placeholder={t("filters.searchPlaceholder")} className="text-input" type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+                                <input
+                                    placeholder={t("filters.searchPlaceholder")}
+                                    className="text-input"
+                                    type="text"
+                                    value={searchInput}
+                                    onChange={(e) => setSearchInput(e.target.value)}
+                                />
                             </div>
                         </label>
                     </div>

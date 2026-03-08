@@ -807,7 +807,4 @@ body.dark .wiki-powered-by img {
     .wiki-shell {
         grid-template-columns: 1fr;
     }
-    .wiki-powered-by {
-        font-size: 22px;
-    }
 }

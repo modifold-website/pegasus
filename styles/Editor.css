@@ -320,6 +320,7 @@ strong {
 .markdown-body pre {
     background-color: var(--theme-color-background);
     border-radius: 8px;
+    max-width: 100%;
     margin-top: 1rem;
     overflow-x: auto;
     padding: 14px;
@@ -328,6 +329,9 @@ strong {
     border-radius: 0;
     font-size: 80%;
     padding: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 .markdown-body code {
     background-color: var(--theme-color-background);

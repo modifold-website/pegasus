@@ -8,47 +8,25 @@ import { toast } from "react-toastify";
 import { useLocale, useTranslations } from "next-intl";
 import ProjectSettingsSidebar from "@/components/ui/ProjectSettingsSidebar";
 
-export default function ModerationProjectPage({ project, authToken }) {
+export default function ModerationProjectPage({ project, authToken, initialModerationHistory = [] }) {
     const t = useTranslations("SettingsProjectPage");
     const locale = useLocale();
     const { isLoggedIn, user } = useAuth();
     const router = useRouter();
-    const [hasIcon, setHasIcon] = useState(false);
-    const [hasDescription, setHasDescription] = useState(false);
-    const [hasSummary, setHasSummary] = useState(false);
-    const [hasVersions, setHasVersions] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [moderationHistory, setModerationHistory] = useState([]);
+    const [projectStatus, setProjectStatus] = useState(project.status);
+    const [moderationHistory, setModerationHistory] = useState(initialModerationHistory);
+    const hasIcon = !!project.icon_url;
+    const hasDescription = !!project.description;
+    const hasSummary = !!project.summary;
+    const hasVersions = Array.isArray(project?.versions) && project.versions.length > 0;
 
     useEffect(() => {
         if(!isLoggedIn || project.user_id !== user.id) {
             router.push("/");
             return;
         }
-
-        setHasIcon(!!project.icon_url);
-        setHasDescription(!!project.description);
-        setHasSummary(!!project.summary);
-        setHasVersions(Array.isArray(project?.versions) && project.versions.length > 0);
     }, [isLoggedIn, user, project, router]);
-
-    useEffect(() => {
-        const fetchHistory = async () => {
-            try {
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/moderation-history`, {
-                    headers: { Authorization: `Bearer ${authToken}` },
-                });
-
-                setModerationHistory(res.data.history);
-            } catch (err) {
-                console.error("Failed to load moderation history", err);
-            }
-        };
-
-        if(project?.slug) {
-            fetchHistory();
-        }
-    }, [project?.slug, authToken]);
 
     const handleSubmit = async () => {
         if(!hasIcon) {
@@ -80,14 +58,44 @@ export default function ModerationProjectPage({ project, authToken }) {
                 { headers: { Authorization: `Bearer ${authToken}` } }
             );
 
-            router.push(`/mod/${project.slug}/settings/moderation`);
+            toast.success(t("moderation.success.submit"));
+            setProjectStatus("queued");
+            setModerationHistory((prevHistory) => {
+                const hasQueuedEntry = Array.isArray(prevHistory) && prevHistory.some((entry) => entry?.action === "queued");
+                if(hasQueuedEntry) {
+                    return prevHistory;
+                }
+
+                return [
+                    {
+                        id: `queued-local-${Date.now()}`,
+                        action: "queued",
+                        createdAt: new Date().toISOString(),
+                    },
+                    ...prevHistory,
+                ];
+            });
+
+            try {
+                const historyRes = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/moderation-history`, {
+                    headers: { Authorization: `Bearer ${authToken}` },
+                });
+
+                if(Array.isArray(historyRes.data?.history)) {
+                    setModerationHistory(historyRes.data.history);
+                }
+            } catch (historyErr) {
+                console.error("Failed to refresh moderation history", historyErr);
+            }
         } catch (err) {
-            toast.error(t("moderation.errors.submit"));
+            const isAlreadySubmitted = err?.response?.status === 400 || err?.response?.status === 409;
+            toast.error(isAlreadySubmitted ? t("moderation.errors.alreadySubmitted") : t("moderation.errors.submit"));
+        } finally {
             setLoading(false);
         }
     };
 
-    const canSubmit = hasIcon && hasDescription && hasSummary && hasVersions && project.status !== "queued" && project.status !== "approved";
+    const canSubmit = hasIcon && hasDescription && hasSummary && hasVersions && projectStatus !== "queued" && projectStatus !== "approved";
 
     const historyActionLabel = (action) => {
         switch(action) {
@@ -194,24 +202,6 @@ export default function ModerationProjectPage({ project, authToken }) {
                                     </div>
                                 </div>
 
-                                {(project.status === "queued" || project.status === "approved") && (
-                                    <div className="status-banner">
-                                        {project.status === "queued" ? (
-                                            <>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
-
-                                                <span>{t("moderation.status.queued")}</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
-
-                                                <span>{t("moderation.status.approved")}</span>
-                                            </>
-                                        )}
-                                    </div>
-                                )}
-
                                 <div className="moderation-history">
                                     <p className="blog-settings__field-title" style={{ marginBottom: "16px" }}>{t("moderation.history.title")}</p>
 
@@ -245,7 +235,7 @@ export default function ModerationProjectPage({ project, authToken }) {
                                 </div>
 
                                 <button style={{ marginTop: "18px" }} className="button button--size-m button--type-primary" onClick={handleSubmit} disabled={loading || !canSubmit}>
-                                    {loading ? t("moderation.actions.submitting") : project.status === "queued" ? t("moderation.actions.alreadySubmitted") : project.status === "approved" ? t("moderation.actions.approved") : t("moderation.actions.submit")}
+                                    {loading ? t("moderation.actions.submitting") : projectStatus === "queued" ? t("moderation.actions.alreadySubmitted") : projectStatus === "approved" ? t("moderation.actions.approved") : t("moderation.actions.submit")}
                                 </button>
                             </div>
                         </div>

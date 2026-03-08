@@ -21,6 +21,7 @@
         "myProfile": "Mi perfil",
         "moderation": "Moderación",
         "projects": "Proyectos",
+        "organizations": "Organizaciones",
         "notifications": "Notificaciones"
     },
     "CookieBanner": {
@@ -501,7 +502,7 @@
             },
             "title": "Descripción",
             "placeholder": "Introduce la descripción del proyecto (se admite Markdown)",
-            "hint": "Mínimo 50 caracteres. Compatible con formato Markdown.",
+            "hint": "Mínimo 50 caracteres.",
             "editorSupportText": "Este editor admite formato Markdown.",
             "preview": "Vista previa",
             "actions": {
@@ -682,6 +683,7 @@
                 "description": "Añade una descripción para el proyecto",
                 "summary": "Añade un resumen para el proyecto",
                 "versions": "Sube al menos una versión del proyecto",
+                "alreadySubmitted": "El proyecto ya fue enviado a moderación",
                 "submit": "Error al enviar el proyecto a moderación"
             },
             "title": "Moderación",
@@ -729,6 +731,9 @@
                 "alreadySubmitted": "Ya enviado",
                 "approved": "Proyecto aprobado",
                 "submit": "Enviar a moderación"
+            },
+            "success": {
+                "submit": "Proyecto enviado a moderación"
             }
         },
         "members": {

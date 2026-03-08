@@ -502,7 +502,7 @@
             },
             "title": "Description",
             "placeholder": "Enter project description (Markdown supported)",
-            "hint": "Minimum 50 characters. Supports Markdown formatting.",
+            "hint": "Minimum 50 characters.",
             "editorSupportText": "This editor supports Markdown formatting.",
             "preview": "Preview",
             "actions": {
@@ -683,6 +683,7 @@
                 "description": "Please add a description for the project",
                 "summary": "Please add a summary for the project",
                 "versions": "Please upload at least one version for the project",
+                "alreadySubmitted": "Project is already submitted for moderation",
                 "submit": "Error submitting project for moderation"
             },
             "title": "Submit Project for Moderation",
@@ -730,6 +731,9 @@
                 "alreadySubmitted": "Already Submitted",
                 "approved": "Project Approved",
                 "submit": "Submit for Moderation"
+            },
+            "success": {
+                "submit": "Project submitted for moderation"
             }
         },
         "members": {

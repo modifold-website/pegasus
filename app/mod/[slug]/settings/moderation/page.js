@@ -59,9 +59,29 @@ export default async function Page({ params }) {
             Accept: "application/json",
             Authorization: authToken ? `Bearer ${authToken}` : undefined,
         },
+        cache: "no-store",
     });
 
     const project = await resProject.json();
 
-    return <ModerationProjectPage project={project} authToken={authToken} />;
+    let initialModerationHistory = [];
+
+    try {
+        const historyRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/moderation-history`, {
+            headers: {
+                Accept: "application/json",
+                Authorization: `Bearer ${authToken}`,
+            },
+            cache: "no-store",
+        });
+
+        if(historyRes.ok) {
+            const historyData = await historyRes.json();
+            if(Array.isArray(historyData?.history)) {
+                initialModerationHistory = historyData.history;
+            }
+        }
+    } catch {}
+
+    return <ModerationProjectPage project={project} authToken={authToken} initialModerationHistory={initialModerationHistory} />;
 }

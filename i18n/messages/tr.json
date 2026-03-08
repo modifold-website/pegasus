@@ -501,7 +501,7 @@
             },
             "title": "Açıklama",
             "placeholder": "Proje açıklamasını girin (Markdown desteklenir)",
-            "hint": "En az 50 karakter. Markdown biçimlendirme desteklenir.",
+            "hint": "En az 50 karakter.",
             "editorSupportText": "Bu editör Markdown biçimlendirmeyi destekler.",
             "preview": "Önizleme",
             "actions": {
@@ -682,6 +682,7 @@
                 "description": "Lütfen proje için bir açıklama ekleyin",
                 "summary": "Lütfen proje için kısa bir açıklama ekleyin",
                 "versions": "Lütfen proje için en az bir sürüm yükleyin",
+                "alreadySubmitted": "Proje zaten moderasyona gönderildi",
                 "submit": "Proje moderasyona gönderilemedi"
             },
             "title": "Projeyi moderasyona gönder",
@@ -729,6 +730,9 @@
                 "alreadySubmitted": "Zaten gönderildi",
                 "approved": "Proje onaylandı",
                 "submit": "Moderasyona gönder"
+            },
+            "success": {
+                "submit": "Proje moderasyona gönderildi"
             }
         },
         "members": {

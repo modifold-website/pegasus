@@ -164,6 +164,10 @@
         "iconAlt": "Icono del proyecto {title}",
         "ownerAvatarAlt": "Avatar del usuario {username}",
         "editSettings": "Editar ajustes",
+        "status": {
+            "draft": "Borrador",
+            "moderation": "En revisión"
+        },
         "tabs": {
             "description": "Descripción",
             "gallery": "Galería",

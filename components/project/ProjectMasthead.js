@@ -20,6 +20,9 @@ export default function ProjectMasthead({ project, authToken }) {
     const [isReportModalOpen, setIsReportModalOpen] = useState(false);
     const [reportStatus, setReportStatus] = useState({ loading: false, hasReported: false, report: null });
     const mastheadTagsCount = project.tags_count ?? project.tagsCount ?? project.total_tags ?? project.totalTags;
+    const projectStatus = project.status;
+    const isDraftProject = projectStatus === "draft";
+    const isModerationProject = ["queued", "pending", "in_review"].includes(projectStatus);
     const actionsRef = useRef(null);
 
     useEffect(() => {
@@ -163,7 +166,39 @@ export default function ProjectMasthead({ project, authToken }) {
                     </div>
 
                     <div className="masthead-wrapper">
-                        <div className="masthead-name">{project.title}</div>
+                        <div className="masthead-name">
+                            <span>{project.title}</span>
+                            {isDraftProject && (
+                                <span className="masthead-status masthead-status--draft">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-dashed-icon lucide-book-dashed">
+                                        <path d="M12 17h1.5"/>
+                                        <path d="M12 22h1.5"/>
+                                        <path d="M12 2h1.5"/>
+                                        <path d="M17.5 22H19a1 1 0 0 0 1-1"/>
+                                        <path d="M17.5 2H19a1 1 0 0 1 1 1v1.5"/>
+                                        <path d="M20 14v3h-2.5"/>
+                                        <path d="M20 8.5V10"/>
+                                        <path d="M4 10V8.5"/>
+                                        <path d="M4 19.5V14"/>
+                                        <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H8"/>
+                                        <path d="M8 22H6.5a1 1 0 0 1 0-5H8"/>
+                                    </svg>
+
+                                    {t("status.draft")}
+                                </span>
+                            )}
+
+                            {!isDraftProject && isModerationProject && (
+                                <span className="masthead-status masthead-status--moderation">
+                                    <svg class="icon icon--settings" height="20" width="20" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m3 6 3 1m0 0-3 9a5 5 0 0 0 6.001 0M6 7l3 9M6 7l6-2m6 2 3-1m-3 1-3 9a5 5 0 0 0 6.001 0M18 7l3 9m-3-9-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                                    </svg>
+
+                                    {t("status.moderation")}
+                                </span>
+                            )}
+                        </div>
+
                         <div className="masthead-desc">{project.summary}</div>
 
                         <div className="masthead-short">

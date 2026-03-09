@@ -165,6 +165,10 @@
         "iconAlt": "Іконка проєкту {title}",
         "ownerAvatarAlt": "Аватар користувача {username}",
         "editSettings": "Редагувати налаштування",
+        "status": {
+            "draft": "Чернетка",
+            "moderation": "На перевірці"
+        },
         "tabs": {
             "description": "Опис",
             "gallery": "Галерея",

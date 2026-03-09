@@ -3378,8 +3378,8 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .content--browse__preview {
     overflow: hidden;
     position: absolute;
-    right: -45px;
-    bottom: -60px;
+    bottom: -26px;
+    right: -39px;
     height: 100%;
     width: 95%;
     object-fit: cover;

@@ -11,6 +11,7 @@ import "./globals.css";
 import Link from "next/link";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
+import FooterModrinthModal from "@/modal/FooterModrinthModal";
 
 export async function generateMetadata() {
     const resolvedLocale = await getLocale();
@@ -255,10 +256,8 @@ export default async function RootLayout({ children }) {
                                                     
                                                     <span className="footer-announcement__inspired">
                                                         <p>{messages.Footer.inspiredBy}{" "}</p>
-                                                        
-                                                        <a href="https://modrinth.com" target="_blank" rel="noopener noreferrer" className="footer-announcement__link">
-                                                            Modrinth
-                                                        </a>
+
+                                                        <FooterModrinthModal />
                                                     </span>
                                                 </div>
                                             </div>

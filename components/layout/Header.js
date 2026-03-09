@@ -271,7 +271,7 @@ export default function Header({ authToken }) {
                                                 </svg>
                                             </h2>
 
-                                            <img className="content--browse__preview" srcSet="/images/083e2ac1ea322b571d5f571e7d0cd383_10_block_size-no-bg-preview.png" />
+                                            <img className="content--browse__preview" srcSet="/images/ff06cae57e73396bc2f59bac1ddedc3b_02_pillars-no-bg-preview.png?v=1" />
                                         </Link>
                                     </div>
                                 </div>

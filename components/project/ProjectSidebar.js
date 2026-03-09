@@ -41,7 +41,7 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
     ));
 
     return (
-        <div style={{ display: "flex", gap: "12px", flexDirection: "column" }}>
+        <div style={{ display: "flex", gap: "15px", flexDirection: "column" }}>
             <div className="content content--padding">
                 <h2>{t("compatibilityTitle")}</h2>
 

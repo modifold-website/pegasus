@@ -66,8 +66,29 @@
     color: #307df0;
     font-weight: 500;
 }
+.footer-announcement__button {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
 .footer-announcement__link:hover {
     text-decoration: underline;
+}
+.footer-modrinth-modal__quote {
+    margin: 16px 0 0;
+    padding-left: 12px;
+    border-left: 2px solid var(--theme-color-divider, rgb(127 127 127 / 25%));
+    color: var(--theme-color-text-secondary);
+}
+.footer-modrinth-modal__content {
+    line-height: 1.55;
+}
+.footer-modrinth-modal__content p + p {
+    margin-top: 14px;
+}
+.footer-modrinth-modal__content .footer-modrinth-modal__quote p + p {
+    margin-top: 10px;
 }
 .footer-copyright {
     color: var(--theme-color-text-secondary);

@@ -294,7 +294,9 @@
             "copyLink": "Bağlantıyı kopyala",
             "copySuccess": "Bağlantı kopyalandı",
             "copyError": "Bağlantı kopyalanamadı"
-        }
+        },
+        "contents": "İçindekiler",
+        "poweredBy": "Destekleyen"
     },
     "DashboardClient": {
         "userAvatarAlt": "{username} kullanıcı avatarı",

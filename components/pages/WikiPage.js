@@ -71,7 +71,7 @@ export default function WikiPage({ project, authToken, wikiData, wikiError }) {
                             <div className="wiki-shell">
                                 <aside className="wiki-left-rail">
                                     <div className="content content--padding wiki-contents-card">
-                                        <h2>Contents</h2>
+                                        <h2>{t("contents")}</h2>
                                         
                                         {renderPages(wikiData?.pages || [], project.slug, wikiData?.selected_page_slug)}
                                     </div>
@@ -128,7 +128,7 @@ export default function WikiPage({ project, authToken, wikiData, wikiError }) {
                                     </div>
 
                                     <div className="wiki-powered-by">
-                                        <span>Powered by</span>
+                                        <span>{t("poweredBy")}</span>
                                         
                                         <a href="https://wiki.hytalemodding.dev/" target="_blank" style={{ height: "44px" }} rel="noopener noreferrer">
                                             <img src="https://wiki.hytalemodding.dev/banner_transparent_dark.png" alt="HytaleModding" />

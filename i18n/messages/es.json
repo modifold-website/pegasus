@@ -294,7 +294,9 @@
             "copyLink": "Copiar enlace",
             "copySuccess": "Enlace copiado",
             "copyError": "No se pudo copiar el enlace"
-        }
+        },
+        "contents": "Contenido",
+        "poweredBy": "Desarrollado por"
     },
     "DashboardClient": {
         "userAvatarAlt": "Avatar del usuario {username}",

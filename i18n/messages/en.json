@@ -295,7 +295,9 @@
             "copyLink": "Copy link",
             "copySuccess": "Link copied",
             "copyError": "Failed to copy link"
-        }
+        },
+        "contents": "Contents",
+        "poweredBy": "Powered by"
     },
     "DashboardClient": {
         "userAvatarAlt": "User avatar {username}",

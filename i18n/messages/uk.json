@@ -295,7 +295,9 @@
             "copyLink": "Скопіювати посилання",
             "copySuccess": "Посилання скопійовано",
             "copyError": "Не вдалося скопіювати посилання"
-        }
+        },
+        "contents": "Зміст",
+        "poweredBy": "Працює на"
     },
     "DashboardClient": {
         "userAvatarAlt": "Аватар користувача {username}",

@@ -295,7 +295,9 @@
             "copyLink": "Скопировать ссылку",
             "copySuccess": "Ссылка скопирована",
             "copyError": "Не удалось скопировать ссылку"
-        }
+        },
+        "contents": "Содержание",
+        "poweredBy": "Работает на"
     },
     "DashboardClient": {
         "userAvatarAlt": "Аватар пользователя {username}",

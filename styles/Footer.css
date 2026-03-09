@@ -43,8 +43,31 @@
     gap: 12px;
 }
 .footer-announcement {
+    display: flex;
     margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.footer-announcement p {
     opacity: 0.5;
+}
+.footer-announcement__inspired {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}
+.footer-announcement__inspired p {
+    opacity: 0.5;
+}
+.footer-announcement__link {
+    color: #307df0;
+    font-weight: 500;
+}
+.footer-announcement__link:hover {
+    text-decoration: underline;
 }
 .footer-copyright {
     color: var(--theme-color-text-secondary);

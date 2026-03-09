@@ -250,9 +250,17 @@ export default async function RootLayout({ children }) {
                                                     </Link>
                                                 </div>
 
-                                                <p className="footer-announcement">
-                                                    {messages.Footer.notOfficial}
-                                                </p>
+                                                <div className="footer-announcement">
+                                                    <p>{messages.Footer.notOfficial}</p>
+                                                    
+                                                    <span className="footer-announcement__inspired">
+                                                        <p>{messages.Footer.inspiredBy}{" "}</p>
+                                                        
+                                                        <a href="https://modrinth.com" target="_blank" rel="noopener noreferrer" className="footer-announcement__link">
+                                                            Modrinth
+                                                        </a>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

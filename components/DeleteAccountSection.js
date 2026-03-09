@@ -79,7 +79,7 @@ export default function DeleteAccountSection() {
                         </p>
 
                         <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end" }}>
-                            <button type="button" onClick={closeModal} className="button button--size-m button--type-secondary" disabled={isDeleting}>
+                            <button type="button" onClick={closeModal} className="button button--size-m button--type-minimal" disabled={isDeleting}>
                                 {t("cancel")}
                             </button>
 

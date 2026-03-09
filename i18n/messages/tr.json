@@ -47,7 +47,16 @@
         "news": "Haberler",
         "openSourceSoon": "Modifold açık kaynaklıdır.",
         "apiDocs": "API Dokümantasyonu",
-        "inspiredBy": "Şundan ilham alınmıştır:"
+        "inspiredBy": "Şundan ilham alınmıştır:",
+        "modrinthModal": {
+            "openAriaLabel": "Modrinth açıklamasını aç",
+            "closeAriaLabel": "Kapat",
+            "title": "Modrinth ilhamı hakkında",
+            "paragraph1": "Modifold, Modrinth kodunu kopyalamaz veya kullanmaz. Kod tabanımız bağımsız olarak yazılmıştır.",
+            "paragraph2Prefix": "Modrinth ekibinin izniyle",
+            "paragraph2Suffix": "yalnızca görsel blok yerleşiminden ilham alıyoruz (örneğin, bir mod sayfasındaki düzen kalıpları).",
+            "paragraph3": "Ocak 2026'da Modrinth'ten izin istedik ve atfın isteğe bağlı olduğu, kararın bize ait olduğu onayını aldık."
+        }
     },
     "Layout": {
         "stagingBanner": "Staging ortamı: yalnızca dahili testler içindir. Bazı özellikler kullanılamıyor olabilir veya kararsız çalışabilir."

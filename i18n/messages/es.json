@@ -47,7 +47,16 @@
         "news": "Noticias",
         "openSourceSoon": "Modifold es de código abierto.",
         "apiDocs": "Documentación API",
-        "inspiredBy": "Inspirado en"
+        "inspiredBy": "Inspirado en",
+        "modrinthModal": {
+            "openAriaLabel": "Abrir aclaración sobre Modrinth",
+            "closeAriaLabel": "Cerrar",
+            "title": "Sobre la inspiración en Modrinth",
+            "paragraph1": "Modifold no copia ni utiliza el código de Modrinth. Nuestra base de código está escrita de forma independiente.",
+            "paragraph2Prefix": "Con permiso del equipo de",
+            "paragraph2Suffix": "solo tomamos inspiración de la disposición visual de bloques (por ejemplo, patrones de diseño en una página de mod).",
+            "paragraph3": "En enero de 2026, pedimos permiso a Modrinth y recibimos confirmación de que la atribución es opcional y queda a nuestra discreción."
+        }
     },
     "Layout": {
         "stagingBanner": "Entorno de staging: solo para pruebas internas. Algunas funciones pueden no estar disponibles o ser inestables."

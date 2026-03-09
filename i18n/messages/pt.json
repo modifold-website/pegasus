@@ -46,7 +46,8 @@
         "mods": "Mods",
         "news": "Notícias",
         "openSourceSoon": "Modifold é de código aberto.",
-        "apiDocs": "Documentação da API"
+        "apiDocs": "Documentação da API",
+        "inspiredBy": "Inspirado no"
     },
     "Layout": {
         "stagingBanner": "Ambiente de staging: apenas para testes internos. Alguns recursos podem estar indisponíveis ou instáveis."

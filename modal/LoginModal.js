@@ -1,7 +1,6 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
-import { useAuth } from "../components/providers/AuthProvider";
 import Modal from "react-modal";
 import { useTranslations } from "next-intl";
 
@@ -9,131 +8,51 @@ if(typeof window !== "undefined") {
     Modal.setAppElement("body");
 }
 
+function getReturnPath() {
+    if(typeof window === "undefined") {
+        return "/";
+    }
+
+    const path = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    return path.startsWith("/") ? path : "/";
+}
+
+function redirectTo(url, onClose) {
+    onClose();
+    window.location.assign(url);
+}
+
 export default function LoginModal({ isOpen, onClose }) {
     const t = useTranslations("LoginModal");
-    const { telegramLogin, githubLogin, discordLogin } = useAuth();
     const [isDataModalOpen, setIsDataModalOpen] = useState(false);
 
     const handleTelegramClick = () => {
         const botName = "8388910351";
-        const redirectUrl = encodeURIComponent(`${process.env.NEXT_PUBLIC_API_BASE}/auth/telegram-callback`);
-        const url = `https://oauth.telegram.org/auth?bot_id=${botName}&origin=${encodeURIComponent(window.location.origin)}&return_to=${redirectUrl}`;
+        const callbackUrl = new URL(`${process.env.NEXT_PUBLIC_API_BASE}/auth/telegram-callback`);
+        callbackUrl.searchParams.set("next", getReturnPath());
 
-        const popup = window.open(url, "TelegramLogin", "width=600,height=400");
-        window.addEventListener(
-            "message",
-            (event) => {
-                console.log("Received Telegram message:", event.data);
-                try {
-                    const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
-
-                    if(data && data.event === "auth_result" && data.result && data.origin === "https://modifold.com") {
-                        const telegramData = data.result;
-                        telegramLogin(telegramData).then(() => {
-                            onClose();
-                            window.location.reload();
-                        }).catch((error) => {
-                            alert(error.message || t("errors.telegram"));
-                        });
-
-                        popup.close();
-                    } else if(data && data.event === "auth_error" && data.origin === "https://modifold.com") {
-                        alert(data.error || t("errors.telegram"));
-                        popup.close();
-                    } else {
-                        console.warn("Unexpected Telegram message format:", data);
-                        popup.close();
-                    }
-                } catch (error) {
-                    console.error("Error processing Telegram message:", error);
-                    alert(t("errors.telegramProcessing"));
-                    popup.close();
-                }
-            },
-            { once: true }
-        );
+        const url = `https://oauth.telegram.org/auth?bot_id=${botName}&origin=${encodeURIComponent(window.location.origin)}&return_to=${encodeURIComponent(callbackUrl.toString())}`;
+        redirectTo(url, onClose);
     };
 
     const handleGitHubClick = () => {
         const clientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID;
         const redirectUri = encodeURIComponent(`${process.env.NEXT_PUBLIC_API_BASE}/auth/github-callback`);
         const scope = "user:email";
-        const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
+        const state = encodeURIComponent(getReturnPath());
+        const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&state=${state}`;
 
-        const popup = window.open(url, "GitHubLogin", "width=600,height=400");
-        window.addEventListener(
-            "message",
-            (event) => {
-                try {
-                    const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
-
-                    if(data && data.event === "auth_result" && data.result && data.origin === "https://modifold.com") {
-                        const { token, user } = data.result;
-                        githubLogin({ token, user }).then(() => {
-                            onClose();
-                            window.location.reload();
-                        }).catch((error) => {
-                            alert(error.message || t("errors.github"));
-                        });
-
-                        popup.close();
-                    } else if(data && data.event === "auth_error" && data.origin === "https://modifold.com") {
-                        console.error("GitHub auth error:", data.error);
-                        alert(data.error || t("errors.github"));
-                        popup.close();
-                    } else {
-                        console.warn("Unexpected GitHub message format:", data);
-                        popup.close();
-                    }
-                } catch (error) {
-                    console.error("Error processing GitHub message:", error);
-                    alert(t("errors.githubProcessing"));
-                    popup.close();
-                }
-            },
-            { once: true }
-        );
+        redirectTo(url, onClose);
     };
 
     const handleDiscordClick = () => {
         const clientId = process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID;
         const redirectUri = encodeURIComponent(`${process.env.NEXT_PUBLIC_API_BASE}/auth/discord-callback`);
         const scope = encodeURIComponent("identify email");
-        const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
+        const state = encodeURIComponent(getReturnPath());
+        const url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${state}`;
 
-        const popup = window.open(url, "DiscordLogin", "width=600,height=600");
-        window.addEventListener(
-            "message",
-            (event) => {
-                try {
-                    const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
-
-                    if(data && data.event === "auth_result" && data.result && data.origin === "https://modifold.com") {
-                        const { token, user } = data.result;
-                        discordLogin({ token, user }).then(() => {
-                            onClose();
-                            window.location.reload();
-                        }).catch((error) => {
-                            alert(error.message || t("errors.discord"));
-                        });
-
-                        popup.close();
-                    } else if(data && data.event === "auth_error" && data.origin === "https://modifold.com") {
-                        console.error("Discord auth error:", data.error);
-                        alert(data.error || t("errors.discord"));
-                        popup.close();
-                    } else {
-                        console.warn("Unexpected Discord message format:", data);
-                        popup.close();
-                    }
-                } catch (error) {
-                    console.error("Error processing Discord message:", error);
-                    alert(t("errors.discordProcessing"));
-                    popup.close();
-                }
-            },
-            { once: true }
-        );
+        redirectTo(url, onClose);
     };
 
     const openDataModal = () => {

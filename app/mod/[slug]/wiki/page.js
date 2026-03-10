@@ -84,7 +84,7 @@ export default async function Page({ params }) {
 
         if(wikiRes.ok) {
             const wikiIndexData = await wikiRes.json();
-            const firstPageSlug = wikiIndexData?.pages?.[0]?.slug;
+            const firstPageSlug = wikiIndexData?.selected_page_slug || wikiIndexData?.pages?.[0]?.slug;
 
             if(firstPageSlug) {
                 const firstPageRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/wiki/${encodeURIComponent(firstPageSlug)}`, {

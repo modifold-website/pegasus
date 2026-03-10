@@ -494,6 +494,15 @@
     width: 100%;
     min-height: 280px;
 }
+.project-analytics-chart .recharts-wrapper:focus,
+.project-analytics-chart .recharts-wrapper:focus-visible,
+.project-analytics-chart .recharts-surface:focus,
+.project-analytics-chart .recharts-surface:focus-visible,
+.project-analytics-chart [tabindex]:focus,
+.project-analytics-chart [tabindex]:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
 .project-analytics-tooltip {
     padding: 12px 14px;
     border-radius: 14px;

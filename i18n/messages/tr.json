@@ -458,9 +458,7 @@
         },
         "analytics": {
             "metadataTitle": "Analitik - {title} - Modifold",
-            "eyebrow": "Proje istatistikleri",
             "title": "Analitik",
-            "description": "5 dakikalık önbellekle sunucuda oluşturulan proje istatistikleri.",
             "ranges": {
                 "7d": "7 gün",
                 "30d": "30 gün",

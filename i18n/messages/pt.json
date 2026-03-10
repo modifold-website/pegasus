@@ -458,9 +458,7 @@
         },
         "analytics": {
             "metadataTitle": "Analytics — {title} — Modifold",
-            "eyebrow": "Estatísticas do projeto",
             "title": "Analytics",
-            "description": "Estatísticas do projeto renderizadas no servidor com cache de 5 minutos.",
             "ranges": {
                 "7d": "7 dias",
                 "30d": "30 dias",

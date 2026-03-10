@@ -153,12 +153,7 @@ export default function ProjectAnalyticsSettingsPage({ project, analytics, selec
                                     {countries.map((country) => (
                                         <div key={country.country_code} className="project-analytics-country">
                                             <div className="project-analytics-country__identity">
-                                                <img
-                                                    src={`https://flagcdn.com/${country.country_code}.svg`}
-                                                    alt={country.country_code.toUpperCase()}
-                                                    className="project-analytics-country__flag"
-                                                    loading="lazy"
-                                                />
+                                                <img src={`https://flagcdn.com/${country.country_code}.svg`} alt={country.country_code.toUpperCase()} className="project-analytics-country__flag" loading="lazy" />
 
                                                 <div>
                                                     <strong>{regionNames?.of(country.country_code.toUpperCase()) || country.country_code.toUpperCase()}</strong>

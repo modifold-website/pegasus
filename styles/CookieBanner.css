@@ -4,6 +4,7 @@
     left: 20px;
     right: 20px;
     background: var(--theme-color-background-content);
+    box-shadow: var(--theme-shadow-popover);
     border-radius: var(--layout-island-border-radius);
     padding: 16px;
     z-index: 1000;

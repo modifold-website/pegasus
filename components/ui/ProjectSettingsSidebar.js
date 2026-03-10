@@ -82,6 +82,19 @@ export default function ProjectSettingsSidebar({ project, labels, iconAlt }) {
                     {labels.license}
                 </Link>
 
+                <Link href={`${base}/analytics`} className={`sidebar-item ${isActive(`${base}/analytics`) ? "sidebar-item--active" : ""}`} data-ripple>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-chart-no-axes-combined-icon lucide-chart-no-axes-combined">
+                        <path d="M12 16v5"/>
+                        <path d="M16 14v7"/>
+                        <path d="M20 10v11"/>
+                        <path d="m22 3-8.646 8.646a.5.5 0 0 1-.708 0L9.354 8.354a.5.5 0 0 0-.707 0L2 15"/>
+                        <path d="M4 18v3"/>
+                        <path d="M8 14v7"/>
+                    </svg>
+
+                    {labels.analytics}
+                </Link>
+
                 <Link href={`${base}/moderation`} className={`sidebar-item ${isActive(`${base}/moderation`) ? "sidebar-item--active" : ""}`} data-ripple>
                     <svg className="icon icon--settings" height="24" width="24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m3 6 3 1m0 0-3 9a5 5 0 0 0 6.001 0M6 7l3 9M6 7l6-2m6 2 3-1m-3 1-3 9a5 5 0 0 0 6.001 0M18 7l3 9m-3-9-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />

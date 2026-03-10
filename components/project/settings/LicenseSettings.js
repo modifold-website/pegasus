@@ -108,6 +108,7 @@ export default function LicenseSettings({ project, authToken }) {
                         gallery: t("sidebar.gallery"),
                         tags: t("sidebar.tags"),
                         license: t("sidebar.license"),
+                        analytics: t("sidebar.analytics"),
                         moderation: t("sidebar.moderation"),
                     }}
                 />

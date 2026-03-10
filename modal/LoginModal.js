@@ -30,6 +30,7 @@ export default function LoginModal({ isOpen, onClose }) {
         const botName = "8388910351";
         const callbackUrl = new URL(`${process.env.NEXT_PUBLIC_API_BASE}/auth/telegram-callback`);
         callbackUrl.searchParams.set("next", getReturnPath());
+        sessionStorage.setItem("telegramAuthReturnPath", getReturnPath());
 
         const url = `https://oauth.telegram.org/auth?bot_id=${botName}&origin=${encodeURIComponent(window.location.origin)}&return_to=${encodeURIComponent(callbackUrl.toString())}`;
         redirectTo(url, onClose);

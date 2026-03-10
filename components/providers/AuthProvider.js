@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
 const AuthContext = createContext();
@@ -72,6 +72,37 @@ export function AuthProvider({ children, isLoggedIn, userData }) {
         setUser(null);
         window.location.reload();
     };
+
+    useEffect(() => {
+        const handleTelegramAuthResult = async () => {
+            if(typeof window === "undefined" || !window.location.hash.startsWith("#tgAuthResult=")) {
+                return;
+            }
+
+            const encodedPayload = window.location.hash.slice("#tgAuthResult=".length);
+            const fallbackPath = `${window.location.pathname}${window.location.search}`;
+            const nextPath = sessionStorage.getItem("telegramAuthReturnPath") || fallbackPath || "/";
+
+            try {
+                const normalizedPayload = encodedPayload.replace(/-/g, "+").replace(/_/g, "/");
+                const paddedPayload = normalizedPayload.padEnd(Math.ceil(normalizedPayload.length / 4) * 4, "=");
+                const binaryPayload = atob(paddedPayload);
+                const bytes = Uint8Array.from(binaryPayload, (char) => char.charCodeAt(0));
+                const decodedPayload = new TextDecoder().decode(bytes);
+                const telegramData = JSON.parse(decodedPayload);
+
+                await telegramLogin(telegramData);
+                sessionStorage.removeItem("telegramAuthReturnPath");
+                window.location.replace(nextPath);
+            } catch (error) {
+                console.error("Telegram redirect login error:", error);
+                sessionStorage.removeItem("telegramAuthReturnPath");
+                window.history.replaceState(null, "", fallbackPath || "/");
+            }
+        };
+
+        handleTelegramAuthResult();
+    }, []);
 
     return (
         <AuthContext.Provider value={{ isLoggedIn: isLoggedInState, user, setUser, setIsLoggedIn, completeLogin, telegramLogin, githubLogin, discordLogin, logout }}>

@@ -55,11 +55,16 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params, searchParams }) {
     const { slug } = await params;
     const resolvedSearchParams = await searchParams;
+    const requestedTimeRange = Array.isArray(resolvedSearchParams?.time_range) ? resolvedSearchParams.time_range[0] : resolvedSearchParams?.time_range;
     const timeRange = getNormalizedTimeRange(resolvedSearchParams?.time_range);
     const resolvedLocale = await getLocale();
     const tNotFound = await getTranslations({ locale: resolvedLocale, namespace: "NotFound" });
     const cookieStore = await cookies();
     const authToken = cookieStore.get("authToken")?.value;
+
+    if(requestedTimeRange === "7d") {
+        redirect(`/mod/${slug}/settings/analytics`);
+    }
 
     if(!authToken) {
         redirect("/");

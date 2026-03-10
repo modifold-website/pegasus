@@ -444,6 +444,7 @@
             "versions": "Версії",
             "gallery": "Галерея",
             "tags": "Теги",
+            "analytics": "Аналітика",
             "moderation": "Модерація",
             "members": "Учасники",
             "license": "Ліцензія"
@@ -455,6 +456,37 @@
         },
         "metadata": {
             "title": "Налаштування — {title} — Modifold"
+        },
+        "analytics": {
+            "metadataTitle": "Аналітика — {title} — Modifold",
+            "eyebrow": "Статистика проєкту",
+            "title": "Аналітика",
+            "description": "Серверна сторінка зі статистикою проєкту та кешем на 5 хвилин.",
+            "ranges": {
+                "7d": "7 днів",
+                "30d": "30 днів",
+                "90d": "3 місяці"
+            },
+            "stats": {
+                "downloads": "Завантаження",
+                "views": "Перегляди",
+                "countries": "Країни"
+            },
+            "downloads": {
+                "title": "Завантаження версій",
+                "tooltip": "{count, plural, one {# завантаження} few {# завантаження} many {# завантажень} other {# завантаження}}"
+            },
+            "views": {
+                "title": "Перегляди сторінки проєкту",
+                "tooltip": "{count, plural, one {# перегляд} few {# перегляди} many {# переглядів} other {# перегляду}}"
+            },
+            "countries": {
+                "eyebrow": "Регіони",
+                "title": "Завантаження за країнами",
+                "empty": "За вибраний період поки немає завантажень з кодом країни.",
+                "countryCode": "Код: {code}",
+                "downloads": "{count, plural, one {# завантаження} few {# завантаження} many {# завантажень} other {# завантаження}}"
+            }
         },
         "general": {
             "iconAlt": "Іконка проєкту",

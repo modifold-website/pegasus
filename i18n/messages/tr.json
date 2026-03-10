@@ -443,6 +443,7 @@
             "versions": "Sürümler",
             "gallery": "Galeri",
             "tags": "Etiketler",
+            "analytics": "Analitik",
             "moderation": "Moderasyon",
             "members": "Üyeler",
             "license": "Lisans"
@@ -454,6 +455,37 @@
         },
         "metadata": {
             "title": "Ayarlar - {title} - Modifold"
+        },
+        "analytics": {
+            "metadataTitle": "Analitik - {title} - Modifold",
+            "eyebrow": "Proje istatistikleri",
+            "title": "Analitik",
+            "description": "5 dakikalık önbellekle sunucuda oluşturulan proje istatistikleri.",
+            "ranges": {
+                "7d": "7 gün",
+                "30d": "30 gün",
+                "90d": "3 ay"
+            },
+            "stats": {
+                "downloads": "İndirmeler",
+                "views": "Görüntülenmeler",
+                "countries": "Ülkeler"
+            },
+            "downloads": {
+                "title": "Sürüm indirmeleri",
+                "tooltip": "{count, plural, one {# indirme} other {# indirme}}"
+            },
+            "views": {
+                "title": "Proje sayfası görüntülenmeleri",
+                "tooltip": "{count, plural, one {# görüntülenme} other {# görüntülenme}}"
+            },
+            "countries": {
+                "eyebrow": "En iyi bölgeler",
+                "title": "Ülkeye göre indirmeler",
+                "empty": "Seçilen dönemde indirmeler için henüz ülke verisi yok.",
+                "countryCode": "Kod: {code}",
+                "downloads": "{count, plural, one {# indirme} other {# indirme}}"
+            }
         },
         "general": {
             "iconAlt": "Proje simgesi",

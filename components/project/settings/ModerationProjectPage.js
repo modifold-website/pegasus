@@ -126,6 +126,7 @@ export default function ModerationProjectPage({ project, authToken, initialModer
                         gallery: t("sidebar.gallery"),
                         tags: t("sidebar.tags"),
                         license: t("sidebar.license"),
+                        analytics: t("sidebar.analytics"),
                         moderation: t("sidebar.moderation"),
                     }}
                 />

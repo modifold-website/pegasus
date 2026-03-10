@@ -200,6 +200,7 @@ export default function ProjectSettings({ project, organizationOptions: initialO
                         gallery: t("sidebar.gallery"),
                         tags: t("sidebar.tags"),
                         license: t("sidebar.license"),
+                        analytics: t("sidebar.analytics"),
                         moderation: t("sidebar.moderation"),
                     }}
                 />

@@ -443,6 +443,7 @@
             "versions": "Versiones",
             "gallery": "Galería",
             "tags": "Etiquetas",
+            "analytics": "Analítica",
             "moderation": "Moderación",
             "members": "Miembros",
             "license": "Licencia"
@@ -454,6 +455,37 @@
         },
         "metadata": {
             "title": "Ajustes — {title} — Modifold"
+        },
+        "analytics": {
+            "metadataTitle": "Analítica — {title} — Modifold",
+            "eyebrow": "Estadísticas del proyecto",
+            "title": "Analítica",
+            "description": "Estadísticas del proyecto renderizadas en el servidor con caché de 5 minutos.",
+            "ranges": {
+                "7d": "7 días",
+                "30d": "30 días",
+                "90d": "3 meses"
+            },
+            "stats": {
+                "downloads": "Descargas",
+                "views": "Vistas",
+                "countries": "Países"
+            },
+            "downloads": {
+                "title": "Descargas de versiones",
+                "tooltip": "{count, plural, one {# descarga} other {# descargas}}"
+            },
+            "views": {
+                "title": "Vistas de la página del proyecto",
+                "tooltip": "{count, plural, one {# vista} other {# vistas}}"
+            },
+            "countries": {
+                "eyebrow": "Regiones principales",
+                "title": "Descargas por país",
+                "empty": "Todavía no hay datos de país para las descargas en el período seleccionado.",
+                "countryCode": "Código: {code}",
+                "downloads": "{count, plural, one {# descarga} other {# descargas}}"
+            }
         },
         "general": {
             "iconAlt": "Icono del proyecto",

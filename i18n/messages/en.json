@@ -444,6 +444,7 @@
             "versions": "Versions",
             "gallery": "Gallery",
             "tags": "Tags",
+            "analytics": "Analytics",
             "moderation": "Moderation",
             "members": "Members",
             "license": "License"
@@ -455,6 +456,37 @@
         },
         "metadata": {
             "title": "Settings — {title} — Modifold"
+        },
+        "analytics": {
+            "metadataTitle": "Analytics — {title} — Modifold",
+            "eyebrow": "Project insights",
+            "title": "Analytics",
+            "description": "Server-rendered project statistics with a 5 minute cache.",
+            "ranges": {
+                "7d": "7 days",
+                "30d": "30 days",
+                "90d": "3 months"
+            },
+            "stats": {
+                "downloads": "Downloads",
+                "views": "Views",
+                "countries": "Countries"
+            },
+            "downloads": {
+                "title": "Version downloads",
+                "tooltip": "{count, plural, one {# download} other {# downloads}}"
+            },
+            "views": {
+                "title": "Project page views",
+                "tooltip": "{count, plural, one {# view} other {# views}}"
+            },
+            "countries": {
+                "eyebrow": "Top regions",
+                "title": "Downloads by country",
+                "empty": "No country data for downloads in the selected period yet.",
+                "countryCode": "Code: {code}",
+                "downloads": "{count, plural, one {# download} other {# downloads}}"
+            }
         },
         "general": {
             "iconAlt": "Project icon",

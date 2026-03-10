@@ -444,6 +444,7 @@
             "versions": "Версии",
             "gallery": "Галерея",
             "tags": "Теги",
+            "analytics": "Аналитика",
             "moderation": "Модерация",
             "members": "Участники",
             "license": "Лицензия"
@@ -455,6 +456,35 @@
         },
         "metadata": {
             "title": "Настройки — {title} — Modifold"
+        },
+        "analytics": {
+            "metadataTitle": "Аналитика — {title} — Modifold",
+            "title": "Аналитика",
+            "ranges": {
+                "7d": "7 дней",
+                "30d": "30 дней",
+                "90d": "3 месяца"
+            },
+            "stats": {
+                "downloads": "Скачивания",
+                "views": "Просмотры",
+                "countries": "Страны"
+            },
+            "downloads": {
+                "title": "Загрузки версий",
+                "tooltip": "{count, plural, one {# скачивание} few {# скачивания} many {# скачиваний} other {# скачивания}}"
+            },
+            "views": {
+                "title": "Просмотры страницы проекта",
+                "tooltip": "{count, plural, one {# просмотр} few {# просмотра} many {# просмотров} other {# просмотра}}"
+            },
+            "countries": {
+                "eyebrow": "Регионы",
+                "title": "Скачивания по странам",
+                "empty": "За выбранный период пока нет скачиваний с кодом страны.",
+                "countryCode": "Код: {code}",
+                "downloads": "{count, plural, one {# скачивание} few {# скачивания} many {# скачиваний} other {# скачивания}}"
+            }
         },
         "general": {
             "iconAlt": "Иконка проекта",

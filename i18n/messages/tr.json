@@ -480,9 +480,7 @@
             "countries": {
                 "eyebrow": "En iyi bölgeler",
                 "title": "Ülkeye göre indirmeler",
-                "empty": "Seçilen dönemde indirmeler için henüz ülke verisi yok.",
-                "countryCode": "Kod: {code}",
-                "downloads": "{count, plural, one {# indirme} other {# indirme}}"
+                "empty": "Seçilen dönemde indirmeler için henüz ülke verisi yok."
             }
         },
         "general": {

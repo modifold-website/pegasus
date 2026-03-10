@@ -158,11 +158,10 @@ export default function ProjectAnalyticsSettingsPage({ project, analytics, selec
 
                                                 <div>
                                                     <strong>{regionNames?.of(country.country_code.toUpperCase()) || country.country_code.toUpperCase()}</strong>
-                                                    <p>{t("analytics.countries.countryCode", { code: country.country_code.toUpperCase() })}</p>
                                                 </div>
                                             </div>
 
-                                            <strong>{t("analytics.countries.downloads", { count: country.count })}</strong>
+                                            <strong>{country.count}</strong>
                                         </div>
                                     ))}
                                 </div>

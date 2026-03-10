@@ -480,9 +480,7 @@
             "countries": {
                 "eyebrow": "Principais regiões",
                 "title": "Downloads por país",
-                "empty": "Ainda não há dados de país para downloads no período selecionado.",
-                "countryCode": "Código: {code}",
-                "downloads": "{count, plural, one {# download} other {# downloads}}"
+                "empty": "Ainda não há dados de país para downloads no período selecionado."
             }
         },
         "general": {

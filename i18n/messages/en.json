@@ -481,9 +481,7 @@
             "countries": {
                 "eyebrow": "Top regions",
                 "title": "Downloads by country",
-                "empty": "No country data for downloads in the selected period yet.",
-                "countryCode": "Code: {code}",
-                "downloads": "{count, plural, one {# download} other {# downloads}}"
+                "empty": "No country data for downloads in the selected period yet."
             }
         },
         "general": {

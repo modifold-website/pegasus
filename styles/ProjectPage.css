@@ -47,7 +47,28 @@
     font-weight: 600;
     margin-bottom: 8px;
     line-height: 1;
-    display: grid;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.masthead-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+}
+.masthead-status svg {
+    fill: none;
+    flex-shrink: 0;
+}
+.masthead-status--draft {
+    color: var(--theme-color-text-secondary);
+}
+.masthead-status--moderation {
+    color: #f0a530;
 }
 .masthead-desc {
     -webkit-line-clamp: 2;
@@ -699,11 +720,6 @@
     font-weight: 400;
     line-height: 1;
 }
-@media (max-width: 859px) {
-    .project-compatibility__game {
-        font-size: 34px;
-    }
-}
 .project__general--wiki {
     display: block;
 }
@@ -773,7 +789,7 @@
     color: var(--theme-color-text-secondary);
 }
 .wiki-content__body {
-    margin-top: 12px;
+    margin-top: 15px;
 }
 .wiki-powered-by {
     color: var(--theme-color-text-secondary);

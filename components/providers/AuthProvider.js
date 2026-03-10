@@ -9,6 +9,24 @@ export function AuthProvider({ children, isLoggedIn, userData }) {
     const [isLoggedInState, setIsLoggedIn] = useState(isLoggedIn);
     const [user, setUser] = useState(userData);
 
+    const completeLogin = async (token) => {
+        Cookies.set("authToken", token, { expires: 30 });
+        localStorage.setItem("authToken", token);
+
+        const userResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/user`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const freshUserData = await userResponse.json();
+        if(freshUserData.success) {
+            setIsLoggedIn(true);
+            setUser(freshUserData.user);
+            return freshUserData.user;
+        }
+
+        throw new Error("Не удалось получить данные пользователя");
+    };
+
     const telegramLogin = async (telegramData) => {
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/telegram-login`, {
@@ -22,64 +40,25 @@ export function AuthProvider({ children, isLoggedIn, userData }) {
                 throw new Error(data.message);
             }
 
-            Cookies.set("authToken", data.token, { expires: 30 });
-            localStorage.setItem("authToken", data.token);
-
-            const userResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/user`, {
-                headers: { Authorization: `Bearer ${data.token}` },
-            });
-
-            const userData = await userResponse.json();
-            if(userData.success) {
-                setIsLoggedIn(true);
-                setUser(userData.user);
-            } else {
-                throw new Error("Не удалось получить данные пользователя");
-            }
+            await completeLogin(data.token);
         } catch (error) {
             console.error("Telegram Login Error:", error);
             throw error;
         }
     };
 
-    const githubLogin = async ({ token, user }) => {
+    const githubLogin = async ({ token }) => {
         try {
-            Cookies.set("authToken", token, { expires: 30 });
-            localStorage.setItem("authToken", token);
-
-            const userResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/user`, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-
-            const userData = await userResponse.json();
-            if(userData.success) {
-                setIsLoggedIn(true);
-                setUser(userData.user);
-            } else {
-                throw new Error("Не удалось получить данные пользователя");
-            }
+            await completeLogin(token);
         } catch (error) {
             console.error("GitHub Login Error:", error);
             throw error;
         }
     };
 
-    const discordLogin = async ({ token, user }) => {
+    const discordLogin = async ({ token }) => {
         try {
-            Cookies.set("authToken", token, { expires: 30 });
-            localStorage.setItem("authToken", token);
-
-            const userResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/user`, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-
-            const userData = await userResponse.json();
-            if(userData.success) {
-                setIsLoggedIn(true);
-                setUser(userData.user);
-            } else {
-                throw new Error("Не удалось получить данные пользователя");
-            }
+            await completeLogin(token);
         } catch (error) {
             console.error("Discord Login Error:", error);
             throw error;
@@ -95,7 +74,7 @@ export function AuthProvider({ children, isLoggedIn, userData }) {
     };
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn: isLoggedInState, user, setUser, setIsLoggedIn, telegramLogin, githubLogin, discordLogin, logout }}>
+        <AuthContext.Provider value={{ isLoggedIn: isLoggedInState, user, setUser, setIsLoggedIn, completeLogin, telegramLogin, githubLogin, discordLogin, logout }}>
             {children}
         </AuthContext.Provider>
     );

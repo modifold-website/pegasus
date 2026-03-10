@@ -164,6 +164,10 @@
         "iconAlt": "{title} proje simgesi",
         "ownerAvatarAlt": "{username} kullanıcı avatarı",
         "editSettings": "Ayarları düzenle",
+        "status": {
+            "draft": "Taslak",
+            "moderation": "İncelemede"
+        },
         "tabs": {
             "description": "Açıklama",
             "gallery": "Galeri",

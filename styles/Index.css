@@ -997,7 +997,7 @@ body.dark {
     display: none;
 }
 .author__details > *:not(:first-child) {
-    margin-left: 6px;
+    margin-left: 4px;
 }
 .author__details > .icon {
     margin-left: 4px;

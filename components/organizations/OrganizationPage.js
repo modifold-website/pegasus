@@ -116,7 +116,7 @@ export default function OrganizationPage({ organization, members = [], projects 
 
                                                 {isOwnerMember && (
                                                     <Tooltip content={t("page.organizationOwnerTooltip")}>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="lucide lucide-crown" viewBox="0 0 24 24" style={{ color: "#e08325", verticalAlign: "middle", fill: "none" }}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="lucide lucide-crown" viewBox="0 0 24 24" style={{ color: "#e08325", verticalAlign: "middle", fill: "none" }}>
                                                             <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7z"></path>
                                                             <path d="M5 20h14"></path>
                                                         </svg>

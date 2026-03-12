@@ -4512,7 +4512,7 @@ body.light div .image-container::before {
         display: flex;
     }
     .header-mobile__menu.user-menu.open {
-        right: 0 !important;
+        right: 16px !important;
         bottom: 72px !important;
         border-radius: 20px !important;
     }

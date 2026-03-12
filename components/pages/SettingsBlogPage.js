@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useTranslations, useLocale } from "next-intl";
 import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
 import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
+import { SLUG_MAX_LENGTH, normalizeSlugInput, validateSlug } from "@/utils/slug";
 
 const getEmptySocialLinks = () => ({
     youtube: "",
@@ -20,6 +21,7 @@ const getEmptySocialLinks = () => ({
 
 const getInitialFormData = (user) => ({
     username: user?.username || "",
+    slug: user?.slug || "",
     avatar: null,
     description: user?.description || "",
     social_links: user?.social_links || getEmptySocialLinks(),
@@ -27,6 +29,7 @@ const getInitialFormData = (user) => ({
 
 const getSettingsSnapshot = (data) => ({
     username: (data?.username || "").trim(),
+    slug: (data?.slug || "").trim().toLowerCase(),
     description: data?.description || "",
     social_links: {
         youtube: (data?.social_links?.youtube || "").trim(),
@@ -104,6 +107,8 @@ export default function SettingsBlogPage({ initialUser = null }) {
                 ...prev,
                 social_links: { ...prev.social_links, [socialKey]: value },
             }));
+        } else if(name === "slug") {
+            setFormData((prev) => ({ ...prev, slug: normalizeSlugInput(value) }));
         } else {
             setFormData((prev) => ({ ...prev, [name]: value }));
         }
@@ -135,8 +140,15 @@ export default function SettingsBlogPage({ initialUser = null }) {
             return;
         }
 
+        const validation = validateSlug(formData.slug, { currentSlug: savedSettings.slug || effectiveUser?.slug || "" });
+        if(!validation.valid) {
+            toast.error(t(`slug.errors.${validation.reason}`));
+            return;
+        }
+
         const data = new FormData();
         data.append("username", formData.username);
+        data.append("slug", validation.normalized);
 
         if(formData.avatar) {
             data.append("avatar", formData.avatar);
@@ -155,7 +167,7 @@ export default function SettingsBlogPage({ initialUser = null }) {
             setSavedSettings(getSettingsSnapshot(formData));
             toast.success(t("success"));
         } catch (err) {
-            toast.error(t("errors.generic"));
+            toast.error(err.response?.data?.code ? t(`slug.errors.${err.response.data.code}`) : t("errors.generic"));
         } finally {
             setIsSaving(false);
         }
@@ -234,6 +246,14 @@ export default function SettingsBlogPage({ initialUser = null }) {
                             <label style={{ marginBottom: "10px" }} className="field__wrapper">
                                 <input type="text" name="username" value={formData.username} onChange={handleInputChange} placeholder={t("placeholders.username")} className="text-input" maxLength="30" />
                                 <div className="counter">{formData.username.length}</div>
+                            </label>
+                        </div>
+
+                        <p className="blog-settings__field-title">{t("slug.label")}</p>
+                        <div className="field field--default blog-settings__input">
+                            <label style={{ marginBottom: "10px" }} className="field__wrapper">
+                                <input type="text" name="slug" value={formData.slug} onChange={handleInputChange} placeholder={t("slug.placeholder")} className="text-input" maxLength={SLUG_MAX_LENGTH} />
+                                <div className="counter">{formData.slug.length}/{SLUG_MAX_LENGTH}</div>
                             </label>
                         </div>
 

@@ -5,7 +5,7 @@
     right: 20px;
     background: var(--theme-color-background-content);
     box-shadow: var(--theme-shadow-popover);
-    border-radius: var(--layout-island-border-radius);
+    border-radius: 18px;
     padding: 16px;
     z-index: 1000;
     max-width: 600px;

@@ -22,7 +22,8 @@
         "moderation": "Moderación",
         "projects": "Proyectos",
         "organizations": "Organizaciones",
-        "notifications": "Notificaciones"
+        "notifications": "Notificaciones",
+        "appearance": "Tema"
     },
     "CookieBanner": {
         "message": "Usamos cookies para mejorar tu experiencia. Las cookies esenciales son necesarias para que el sitio funcione, mientras que las cookies de analítica nos ayudan a entender cómo usas el sitio.",
@@ -128,6 +129,7 @@
         }
     },
     "ProjectCreationModal": {
+        "title": "Creación de proyecto",
         "close": "Cerrar",
         "name": "Nombre",
         "summary": "Resumen",
@@ -337,6 +339,22 @@
             "organizations": "Organizaciones"
         },
         "username": "Nombre de usuario",
+        "slug": {
+            "label": "URL",
+            "placeholder": "Enter profile URL",
+            "checking": "Checking URL availability...",
+            "available": "This URL is available.",
+            "errors": {
+                "required": "Enter a profile URL",
+                "too_short": "URL must be at least 3 characters",
+                "reserved_word": "URL cannot contain \"modifold\"",
+                "leading_hyphen": "URL cannot start with a hyphen",
+                "trailing_hyphen": "URL cannot end with a hyphen",
+                "invalid_format": "Only English letters, numbers, and hyphens between words are allowed",
+                "slug_taken": "This URL is already taken",
+                "generic": "Failed to check URL"
+            }
+        },
         "description": "Descripción",
         "socialNetworks": "Redes sociales",
         "uploadAvatar": "Subir avatar",
@@ -1370,8 +1388,23 @@
             "fields": {
                 "icon": "Icono",
                 "name": "Nombre",
+                "url": "URL",
                 "slug": "Slug",
                 "summary": "Resumen"
+            },
+            "slug": {
+                "checking": "Checking URL availability...",
+                "available": "This URL is available.",
+                "errors": {
+                    "required": "Enter an organization URL",
+                    "too_short": "URL must be at least 3 characters",
+                    "reserved_word": "URL cannot contain \"modifold\"",
+                    "leading_hyphen": "URL cannot start with a hyphen",
+                    "trailing_hyphen": "URL cannot end with a hyphen",
+                    "invalid_format": "Only English letters, numbers, and hyphens between words are allowed",
+                    "slug_taken": "This URL is already taken",
+                    "generic": "Failed to check URL"
+                }
             },
             "actions": {
                 "uploadIcon": "Subir icono",
@@ -1399,6 +1432,10 @@
                 "title": "Eliminar organización",
                 "description": "Eliminar la organización borra permanentemente miembros, invitaciones y enlaces de proyectos.",
                 "action": "Eliminar organización",
+                "confirmTitle": "¿Estás absolutamente seguro?",
+                "confirmAction": "Sí, eliminar organización",
+                "cancel": "Cancelar",
+                "close": "Cerrar",
                 "deleting": "Eliminando...",
                 "confirm": "¿Eliminar esta organización?",
                 "success": "Organización eliminada",

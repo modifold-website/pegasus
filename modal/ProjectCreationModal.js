@@ -18,7 +18,7 @@ export default function ProjectCreationModal({ isOpen, authToken, onRequestClose
         title: "",
         summary: "",
         visibility: "public",
-        project_type: "",
+        project_type: "mod",
     });
     const [loading, setLoading] = useState(false);
 
@@ -27,25 +27,15 @@ export default function ProjectCreationModal({ isOpen, authToken, onRequestClose
         return null;
     }
 
-    const handleProjectTypeClick = (type) => {
-        setFormData({ ...formData, project_type: type });
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-
-        if(!formData.project_type) {
-            toast.error(t("errors.noProjectType"));
-            setLoading(false);
-            return;
-        }
 
         const data = new FormData();
         data.append("title", formData.title);
         data.append("summary", formData.summary);
         data.append("visibility", formData.visibility);
-        data.append("project_type", formData.project_type);
+        data.append("project_type", "mod");
 
         try {
             const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE}/projects`, data, {
@@ -69,6 +59,8 @@ export default function ProjectCreationModal({ isOpen, authToken, onRequestClose
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
             <div className="modal-window">
                 <div className="modal-window__header">
+                    <h2 className="modal-window__title">{t("title")}</h2>
+                    
                     <button className="icon-button modal-window__close" type="button" onClick={onRequestClose} aria-label={t("close")}>
                         <svg className="icon icon--cross" height="24" width="24">
                             <path fillRule="evenodd" clipRule="evenodd" d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 0 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path>
@@ -95,18 +87,7 @@ export default function ProjectCreationModal({ isOpen, authToken, onRequestClose
                             </label>
                         </div>
 
-                        <p className="blog-settings__field-title">{t("projectType")}</p>
-                        <div className="field field--default blog-settings__input project-type-buttons">
-                            {["mod"].map((type) => (
-                                <button key={type} type="button" className={`button button--size-m ${formData.project_type === type ? "button--type-positive" : "button--type-minimal"}`} onClick={() => handleProjectTypeClick(type)} aria-pressed={formData.project_type === type} disabled={loading}>
-                                    {t(`projectTypes.${type}`)}
-                                </button>
-                            ))}
-
-                            <input type="hidden" name="project_type" value={formData.project_type} required />
-                        </div>
-
-                        <div style={{ display: "flex", gap: "8px", marginTop: "18px" }}>
+                        <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "16px" }}>
                             <button type="submit" className="button button--size-m button--type-primary" disabled={loading}>
                                 {loading ? t("creating") : t("createProject")}
                             </button>

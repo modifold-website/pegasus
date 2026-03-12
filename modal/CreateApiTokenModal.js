@@ -37,14 +37,15 @@ export default function CreateApiTokenModal({ isOpen, onRequestClose, form, onIn
         onRequestClose();
     };
 
-    const handleDurationSelect = (value) => {
-        onSelectDuration(value);
+    const handleDurationSelect = (event, value) => {
+        event.stopPropagation();
         setIsDurationPopoverOpen(false);
+        onSelectDuration(value);
     };
 
     return (
         <Modal isOpen={isOpen} onRequestClose={handleClose} className="modal active" overlayClassName="modal-overlay">
-            <div className="modal-window">
+            <div className="modal-window version-upload-modal">
                 <div className="modal-window__header">
                     <span style={{ fontSize: "18px", fontWeight: "500" }}>{t("createToken")}</span>
                     
@@ -58,14 +59,14 @@ export default function CreateApiTokenModal({ isOpen, onRequestClose, form, onIn
                 <div className="modal-window__content">
                     <form onSubmit={onSubmit}>
                         <p className="blog-settings__field-title">{t("tokenName")}</p>
-                        <div className="field field--default blog-settings__input">
+                        <div className="field field--default">
                             <label style={{ marginBottom: "10px" }} className="field__wrapper">
                                 <input type="text" name="name" value={form.name} onChange={onInputChange} placeholder={t("placeholders.tokenName")} className="text-input" maxLength={60} required disabled={isCreatingToken} />
                             </label>
                         </div>
 
                         <p className="blog-settings__field-title">{t("expiration")}</p>
-                        <div className="field field--default blog-settings__input" ref={durationRef}>
+                        <div className="field field--default" ref={durationRef}>
                             <label className="field__wrapper" onClick={() => setIsDurationPopoverOpen(!isDurationPopoverOpen)} style={{ marginBottom: "10px" }}>
                                 <div className="field__wrapper-body">
                                     <div className="select">
@@ -75,10 +76,10 @@ export default function CreateApiTokenModal({ isOpen, onRequestClose, form, onIn
                             </label>
 
                             {isDurationPopoverOpen && (
-                                <div className="popover">
+                                <div className="popover" onClick={(event) => event.stopPropagation()}>
                                     <div className="context-list" data-scrollable style={{ maxHeight: "280px", overflowY: "auto" }}>
                                         {durations.map((opt) => (
-                                            <div key={opt.value} className={`context-list-option ${form.duration === opt.value ? "context-list-option--selected" : ""}`} onClick={() => handleDurationSelect(opt.value)}>
+                                            <div key={opt.value} className={`context-list-option ${form.duration === opt.value ? "context-list-option--selected" : ""}`} onClick={(event) => handleDurationSelect(event, opt.value)}>
                                                 <div className="context-list-option__label">
                                                     {opt.label}
                                                 </div>
@@ -89,13 +90,13 @@ export default function CreateApiTokenModal({ isOpen, onRequestClose, form, onIn
                             )}
                         </div>
 
-                        <div style={{ display: "flex", gap: "8px", marginTop: "18px" }}>
-                            <button type="submit" className="button button--size-m button--type-primary" disabled={isCreatingToken}>
-                                {isCreatingToken ? t("creating") : t("createToken")}
-                            </button>
-
+                        <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "16px" }}>
                             <button type="button" className="button button--size-m button--type-minimal" onClick={handleClose} disabled={isCreatingToken}>
                                 {t("cancel")}
+                            </button>
+
+                            <button type="submit" className="button button--size-m button--type-primary" disabled={isCreatingToken}>
+                                {isCreatingToken ? t("creating") : t("createToken")}
                             </button>
                         </div>
                     </form>

@@ -120,7 +120,7 @@ export default function ProjectReportModal({ isOpen, onRequestClose, projectSlug
                             {t("commentCounter", { count: comment.length, max: COMMENT_MAX_LENGTH })}
                         </div>
 
-                        <div style={{ display: "flex", gap: "8px", marginTop: "18px" }}>
+                        <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "16px" }}>
                             <button type="submit" className="button button--size-m button--type-primary" disabled={isSubmitting}>
                                 {isSubmitting ? t("submitting") : t("submit")}
                             </button>

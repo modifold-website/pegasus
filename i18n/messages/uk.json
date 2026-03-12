@@ -22,7 +22,8 @@
         "moderation": "Модерація",
         "projects": "Проєкти",
         "organizations": "Організації",
-        "notifications": "Сповіщення"
+        "notifications": "Сповіщення",
+        "appearance": "Тема"
     },
     "CookieBanner": {
         "message": "Ми використовуємо файли cookie, щоб покращити ваш досвід. Необхідні cookie потрібні для роботи сайту, а аналітичні cookie допомагають нам зрозуміти, як ви користуєтеся сайтом.",
@@ -129,6 +130,7 @@
         }
     },
     "ProjectCreationModal": {
+        "title": "Створення проєкту",
         "close": "Закрити",
         "name": "Назва",
         "summary": "Короткий опис",
@@ -337,7 +339,23 @@
             "verification": "Верифікація",
             "organizations": "Організації"
         },
-        "username": "Ім’я користувача",
+        "username": "Ім'я користувача",
+        "slug": {
+            "label": "URL",
+            "placeholder": "Enter profile URL",
+            "checking": "Checking URL availability...",
+            "available": "This URL is available.",
+            "errors": {
+                "required": "Enter a profile URL",
+                "too_short": "URL must be at least 3 characters",
+                "reserved_word": "URL cannot contain \"modifold\"",
+                "leading_hyphen": "URL cannot start with a hyphen",
+                "trailing_hyphen": "URL cannot end with a hyphen",
+                "invalid_format": "Only English letters, numbers, and hyphens between words are allowed",
+                "slug_taken": "This URL is already taken",
+                "generic": "Failed to check URL"
+            }
+        },
         "description": "Опис",
         "socialNetworks": "Соціальні мережі",
         "uploadAvatar": "Завантажити аватар",
@@ -1371,8 +1389,23 @@
             "fields": {
                 "icon": "Іконка",
                 "name": "Назва",
+                "url": "URL",
                 "slug": "Слаг",
                 "summary": "Короткий опис"
+            },
+            "slug": {
+                "checking": "Checking URL availability...",
+                "available": "This URL is available.",
+                "errors": {
+                    "required": "Enter an organization URL",
+                    "too_short": "URL must be at least 3 characters",
+                    "reserved_word": "URL cannot contain \"modifold\"",
+                    "leading_hyphen": "URL cannot start with a hyphen",
+                    "trailing_hyphen": "URL cannot end with a hyphen",
+                    "invalid_format": "Only English letters, numbers, and hyphens between words are allowed",
+                    "slug_taken": "This URL is already taken",
+                    "generic": "Failed to check URL"
+                }
             },
             "actions": {
                 "uploadIcon": "Завантажити іконку",
@@ -1400,6 +1433,10 @@
                 "title": "Видалення організації",
                 "description": "Видалення організації назавжди видалить учасників, запрошення та прив'язки проєктів.",
                 "action": "Видалити організацію",
+                "confirmTitle": "Ви абсолютно впевнені?",
+                "confirmAction": "Так, видалити організацію",
+                "cancel": "Скасувати",
+                "close": "Закрити",
                 "deleting": "Видалення...",
                 "confirm": "Видалити цю організацію?",
                 "success": "Організацію видалено",

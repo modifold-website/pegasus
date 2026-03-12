@@ -4,12 +4,13 @@ import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Modal from "react-modal";
 import { useTranslations } from "next-intl";
 import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
 import OrganizationSettingsSidebar from "@/components/organizations/settings/OrganizationSettingsSidebar";
 import { SLUG_MAX_LENGTH, normalizeSlugInput, validateSlug } from "@/utils/slug";
 
-const DEFAULT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
+Modal.setAppElement("body");
 
 export default function OrganizationOverviewSettingsPage({ authToken, organization, my_permissions }) {
     const t = useTranslations("Organizations");
@@ -22,18 +23,19 @@ export default function OrganizationOverviewSettingsPage({ authToken, organizati
     const [savedName, setSavedName] = useState(organization?.name || "");
     const [savedSlug, setSavedSlug] = useState(organization?.slug || "");
     const [savedSummary, setSavedSummary] = useState(organization?.summary || "");
-    const [iconUrl, setIconUrl] = useState(organization?.icon_url || DEFAULT_ICON_URL);
-    const [savedIconUrl, setSavedIconUrl] = useState(organization?.icon_url || DEFAULT_ICON_URL);
+    const [iconUrl, setIconUrl] = useState(organization?.icon_url || "https://media.modifold.com/static/no-project-icon.svg");
+    const [savedIconUrl, setSavedIconUrl] = useState(organization?.icon_url || "https://media.modifold.com/static/no-project-icon.svg");
     const [iconFile, setIconFile] = useState(null);
-    const [previewIcon, setPreviewIcon] = useState(organization?.icon_url || DEFAULT_ICON_URL);
+    const [previewIcon, setPreviewIcon] = useState(organization?.icon_url || "https://media.modifold.com/static/no-project-icon.svg");
     const [isSaving, setIsSaving] = useState(false);
     const [isDeletingOrganization, setIsDeletingOrganization] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const iconInputRef = useRef(null);
 
     const canEditDetails = Boolean(my_permissions?.is_owner || my_permissions?.organization_permissions?.includes("organization_edit_details"));
     const canDeleteOrganization = Boolean(my_permissions?.is_owner || my_permissions?.organization_permissions?.includes("organization_delete"));
     const isDirty = name !== savedName || slug !== savedSlug || summary !== savedSummary || Boolean(iconFile);
-    const currentOrganization = { ...organization, slug: savedSlug || organization?.slug, name, icon_url: iconUrl || DEFAULT_ICON_URL };
+    const currentOrganization = { ...organization, slug: savedSlug || organization?.slug, name, icon_url: iconUrl || "https://media.modifold.com/static/no-project-icon.svg" };
 
     const handleSave = async () => {
         if(isSaving) {
@@ -102,10 +104,6 @@ export default function OrganizationOverviewSettingsPage({ authToken, organizati
             return;
         }
 
-        if(!window.confirm(t("settings.delete.confirm"))) {
-            return;
-        }
-
         setIsDeletingOrganization(true);
 
         try {
@@ -116,6 +114,7 @@ export default function OrganizationOverviewSettingsPage({ authToken, organizati
             });
 
             toast.success(t("settings.delete.success"));
+            setIsDeleteModalOpen(false);
             router.push("/dashboard/organizations");
         } catch (error) {
             toast.error(error.response?.data?.message || t("settings.delete.error"));
@@ -205,12 +204,42 @@ export default function OrganizationOverviewSettingsPage({ authToken, organizati
                             <h2 style={{ marginTop: 0 }}>{t("settings.delete.title")}</h2>
                             <p style={{ marginBottom: "12px", color: "var(--theme-color-text-secondary)" }}>{t("settings.delete.description")}</p>
                             
-                            <button type="button" className="button button--size-m button--type-danger" onClick={handleDeleteOrganization} disabled={isDeletingOrganization}>
-                                {isDeletingOrganization ? t("settings.delete.deleting") : t("settings.delete.action")}
+                            <button type="button" className="button button--size-m button--type-danger" onClick={() => setIsDeleteModalOpen(true)} disabled={isDeletingOrganization}>
+                                {t("settings.delete.action")}
                             </button>
                         </div>
                     )}
                 </div>
+
+                <Modal isOpen={isDeleteModalOpen} onRequestClose={() => setIsDeleteModalOpen(false)} className="modal active" overlayClassName="modal-overlay">
+                    <div className="modal-window">
+                        <div className="modal-window__header">
+                            <button className="icon-button modal-window__close" type="button" onClick={() => setIsDeleteModalOpen(false)} disabled={isDeletingOrganization} aria-label={t("settings.delete.close")}>
+                                <svg className="icon icon--cross" height="24" width="24">
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 0 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div className="modal-window__content">
+                            <p className="blog-settings__field-title">{t("settings.delete.confirmTitle")}</p>
+
+                            <p style={{ lineHeight: 1.5, margin: "16px 0 24px" }}>
+                                {t("settings.delete.description")}
+                            </p>
+
+                            <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end" }}>
+                                <button type="button" onClick={() => setIsDeleteModalOpen(false)} className="button button--size-m button--type-minimal" disabled={isDeletingOrganization}>
+                                    {t("settings.delete.cancel")}
+                                </button>
+
+                                <button type="button" onClick={handleDeleteOrganization} className="button button--size-m button--type-danger" disabled={isDeletingOrganization}>
+                                    {isDeletingOrganization ? t("settings.delete.deleting") : t("settings.delete.confirmAction")}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </Modal>
 
                 {canEditDetails && (
                     <UnsavedChangesBar
@@ -222,7 +251,7 @@ export default function OrganizationOverviewSettingsPage({ authToken, organizati
                             setSlug(savedSlug);
                             setSummary(savedSummary);
                             setIconFile(null);
-                            setPreviewIcon(savedIconUrl || iconUrl || DEFAULT_ICON_URL);
+                            setPreviewIcon(savedIconUrl || iconUrl || "https://media.modifold.com/static/no-project-icon.svg");
                             if(iconInputRef.current) {
                                 iconInputRef.current.value = "";
                             }

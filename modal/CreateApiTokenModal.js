@@ -89,7 +89,7 @@ export default function CreateApiTokenModal({ isOpen, onRequestClose, form, onIn
                             )}
                         </div>
 
-                        <div style={{ display: "flex", gap: "8px", marginTop: "18px" }}>
+                        <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "16px" }}>
                             <button type="submit" className="button button--size-m button--type-primary" disabled={isCreatingToken}>
                                 {isCreatingToken ? t("creating") : t("createToken")}
                             </button>

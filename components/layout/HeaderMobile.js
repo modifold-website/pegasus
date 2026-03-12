@@ -111,7 +111,7 @@ export default function HeaderMobile({ authToken }) {
     useEffect(() => {
         const handleClickOutside = (event) => {
             if(isMenuOpen && menuRef.current && !menuRef.current.contains(event.target) && buttonRef.current && !buttonRef.current.contains(event.target)) {
-                setIsMenuOpen(false);
+                closeAccountMenu();
             }
         };
 

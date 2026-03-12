@@ -22,7 +22,8 @@
         "moderation": "Moderación",
         "projects": "Proyectos",
         "organizations": "Organizaciones",
-        "notifications": "Notificaciones"
+        "notifications": "Notificaciones",
+        "appearance": "Tema"
     },
     "CookieBanner": {
         "message": "Usamos cookies para mejorar tu experiencia. Las cookies esenciales son necesarias para que el sitio funcione, mientras que las cookies de analítica nos ayudan a entender cómo usas el sitio.",

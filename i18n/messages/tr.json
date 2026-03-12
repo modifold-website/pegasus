@@ -22,7 +22,8 @@
         "moderation": "Moderasyon",
         "projects": "Projeler",
         "organizations": "Organizasyonlar",
-        "notifications": "Bildirimler"
+        "notifications": "Bildirimler",
+        "appearance": "Tema"
     },
     "CookieBanner": {
         "message": "Deneyiminizi geliştirmek için çerezleri kullanıyoruz. Gerekli çerezler sitenin çalışması için zorunludur; analiz çerezleri ise siteyi nasıl kullandığınızı anlamamıza yardımcı olur.",

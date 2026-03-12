@@ -1,4 +1,5 @@
 ﻿import Header from "@/components/layout/Header";
+import HeaderMobile from "@/components/layout/HeaderMobile";
 import { AuthProvider } from "@/components/providers/AuthProvider";
 import { cookies, headers } from "next/headers";
 import Script from "next/script";
@@ -169,6 +170,7 @@ export default async function RootLayout({ children }) {
                         <ClientProvider>
                             <NextIntlClientProvider locale={resolvedLocale} messages={messages}>
                                 <Header authToken={token} />
+                                <HeaderMobile authToken={token} />
 
                                 {children}
 

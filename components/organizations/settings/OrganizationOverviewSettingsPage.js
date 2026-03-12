@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
 import OrganizationSettingsSidebar from "@/components/organizations/settings/OrganizationSettingsSidebar";
+import { SLUG_MAX_LENGTH, normalizeSlugInput, validateSlug } from "@/utils/slug";
 
 const DEFAULT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
@@ -32,9 +33,16 @@ export default function OrganizationOverviewSettingsPage({ authToken, organizati
     const canEditDetails = Boolean(my_permissions?.is_owner || my_permissions?.organization_permissions?.includes("organization_edit_details"));
     const canDeleteOrganization = Boolean(my_permissions?.is_owner || my_permissions?.organization_permissions?.includes("organization_delete"));
     const isDirty = name !== savedName || slug !== savedSlug || summary !== savedSummary || Boolean(iconFile);
+    const currentOrganization = { ...organization, slug: savedSlug || organization?.slug, name, icon_url: iconUrl || DEFAULT_ICON_URL };
 
     const handleSave = async () => {
         if(isSaving) {
+            return;
+        }
+
+        const validation = validateSlug(slug, { currentSlug: savedSlug });
+        if(!validation.valid) {
+            toast.error(t(`settings.slug.errors.${validation.reason}`));
             return;
         }
 
@@ -61,7 +69,7 @@ export default function OrganizationOverviewSettingsPage({ authToken, organizati
 
             await axios.put(`${process.env.NEXT_PUBLIC_API_BASE}/organizations/${organization.slug}/settings`, {
                 name,
-                slug,
+                slug: validation.normalized,
                 summary,
             }, {
                 headers: {
@@ -78,6 +86,10 @@ export default function OrganizationOverviewSettingsPage({ authToken, organizati
             }
 
             toast.success(t("settings.successSaved"));
+            if(slug !== organization.slug) {
+                router.push(`/organization/${slug}/settings`);
+                router.refresh();
+            }
         } catch (error) {
             toast.error(error.response?.data?.message || t("settings.errors.save"));
         } finally {
@@ -139,7 +151,8 @@ export default function OrganizationOverviewSettingsPage({ authToken, organizati
     return (
         <div className="layout">
             <div className="page-content settings-page">
-                <OrganizationSettingsSidebar organization={{ ...organization, icon_url: iconUrl || DEFAULT_ICON_URL }} />
+                <OrganizationSettingsSidebar organization={currentOrganization} />
+
 
                 <div className="settings-content" style={{ display: "grid", gap: "16px" }}>
                     <div className="settings-wrapper blog-settings">
@@ -170,10 +183,11 @@ export default function OrganizationOverviewSettingsPage({ authToken, organizati
                                 </label>
                             </div>
 
-                            <p className="blog-settings__field-title">{t("settings.fields.slug")}</p>
+                            <p className="blog-settings__field-title">{t("settings.fields.url")}</p>
                             <div className="field field--default blog-settings__input">
-                                <label className="field__wrapper">
-                                    <input className="text-input" value={slug} onChange={(event) => setSlug(event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""))} disabled={!canEditDetails} />
+                                <label style={{ marginBottom: "10px" }} className="field__wrapper">
+                                    <input className="text-input" value={slug} onChange={(event) => setSlug(normalizeSlugInput(event.target.value))} disabled={!canEditDetails} maxLength={SLUG_MAX_LENGTH} />
+                                    <div className="counter">{slug.length}/{SLUG_MAX_LENGTH}</div>
                                 </label>
                             </div>
 

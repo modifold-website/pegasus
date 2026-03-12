@@ -337,6 +337,22 @@
             "organizations": "Organizações"
         },
         "username": "Nome de usuário",
+        "slug": {
+            "label": "URL",
+            "placeholder": "Enter profile URL",
+            "checking": "Checking URL availability...",
+            "available": "This URL is available.",
+            "errors": {
+                "required": "Enter a profile URL",
+                "too_short": "URL must be at least 3 characters",
+                "reserved_word": "URL cannot contain \"modifold\"",
+                "leading_hyphen": "URL cannot start with a hyphen",
+                "trailing_hyphen": "URL cannot end with a hyphen",
+                "invalid_format": "Only English letters, numbers, and hyphens between words are allowed",
+                "slug_taken": "This URL is already taken",
+                "generic": "Failed to check URL"
+            }
+        },
         "description": "Descrição",
         "socialNetworks": "Redes sociais",
         "uploadAvatar": "Enviar avatar",
@@ -1370,8 +1386,23 @@
             "fields": {
                 "icon": "Ícone",
                 "name": "Nome",
+                "url": "URL",
                 "slug": "Slug",
                 "summary": "Resumo"
+            },
+            "slug": {
+                "checking": "Checking URL availability...",
+                "available": "This URL is available.",
+                "errors": {
+                    "required": "Enter an organization URL",
+                    "too_short": "URL must be at least 3 characters",
+                    "reserved_word": "URL cannot contain \"modifold\"",
+                    "leading_hyphen": "URL cannot start with a hyphen",
+                    "trailing_hyphen": "URL cannot end with a hyphen",
+                    "invalid_format": "Only English letters, numbers, and hyphens between words are allowed",
+                    "slug_taken": "This URL is already taken",
+                    "generic": "Failed to check URL"
+                }
             },
             "actions": {
                 "uploadIcon": "Enviar ícone",

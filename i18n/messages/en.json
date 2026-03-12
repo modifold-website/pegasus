@@ -338,6 +338,22 @@
             "organizations": "Organizations"
         },
         "username": "Username",
+        "slug": {
+            "label": "URL",
+            "placeholder": "Enter profile URL",
+            "checking": "Checking URL availability...",
+            "available": "This URL is available.",
+            "errors": {
+                "required": "Enter a profile URL",
+                "too_short": "URL must be at least 3 characters",
+                "reserved_word": "URL cannot contain \"modifold\"",
+                "leading_hyphen": "URL cannot start with a hyphen",
+                "trailing_hyphen": "URL cannot end with a hyphen",
+                "invalid_format": "Only English letters, numbers, and hyphens between words are allowed",
+                "slug_taken": "This URL is already taken",
+                "generic": "Failed to check URL"
+            }
+        },
         "description": "Description",
         "socialNetworks": "Social Networks",
         "uploadAvatar": "Upload avatar",
@@ -1371,8 +1387,23 @@
             "fields": {
                 "icon": "Icon",
                 "name": "Name",
+                "url": "URL",
                 "slug": "Slug",
                 "summary": "Summary"
+            },
+            "slug": {
+                "checking": "Checking URL availability...",
+                "available": "This URL is available.",
+                "errors": {
+                    "required": "Enter an organization URL",
+                    "too_short": "URL must be at least 3 characters",
+                    "reserved_word": "URL cannot contain \"modifold\"",
+                    "leading_hyphen": "URL cannot start with a hyphen",
+                    "trailing_hyphen": "URL cannot end with a hyphen",
+                    "invalid_format": "Only English letters, numbers, and hyphens between words are allowed",
+                    "slug_taken": "This URL is already taken",
+                    "generic": "Failed to check URL"
+                }
             },
             "actions": {
                 "uploadIcon": "Upload icon",

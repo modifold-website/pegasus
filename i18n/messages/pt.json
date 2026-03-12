@@ -128,6 +128,7 @@
         }
     },
     "ProjectCreationModal": {
+        "title": "Criacao de projeto",
         "close": "Fechar",
         "name": "Nome",
         "summary": "Resumo",

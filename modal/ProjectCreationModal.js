@@ -59,7 +59,7 @@ export default function ProjectCreationModal({ isOpen, authToken, onRequestClose
         <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
             <div className="modal-window">
                 <div className="modal-window__header">
-                    <h2 className="modal-window__title">111</h2>
+                    <h2 className="modal-window__title">{t("title")}</h2>
                     
                     <button className="icon-button modal-window__close" type="button" onClick={onRequestClose} aria-label={t("close")}>
                         <svg className="icon icon--cross" height="24" width="24">

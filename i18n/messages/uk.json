@@ -129,6 +129,7 @@
         }
     },
     "ProjectCreationModal": {
+        "title": "Створення проєкту",
         "close": "Закрити",
         "name": "Назва",
         "summary": "Короткий опис",

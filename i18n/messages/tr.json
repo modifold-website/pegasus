@@ -128,6 +128,7 @@
         }
     },
     "ProjectCreationModal": {
+        "title": "Proje olusturma",
         "close": "Kapat",
         "name": "Ad",
         "summary": "Kısa açıklama",

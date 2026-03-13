@@ -928,7 +928,7 @@ body.dark {
     position: relative;
     overflow: hidden;
 }
-body.light .sidebar-item .ripple-effect {
+body.light .ripple-effect {
     opacity: .07;
 }
 .ripple-effect {

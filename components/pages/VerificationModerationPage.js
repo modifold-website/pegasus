@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { useAuth } from "../providers/AuthProvider";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Link from "next/link";
@@ -29,8 +28,6 @@ const getSafeExternalUrl = (value) => {
 export default function VerificationModerationPage({ authToken, initialRequests, initialTotalPages }) {
     const t = useTranslations("VerificationModerationPage");
     const locale = useLocale();
-    const { isLoggedIn, user } = useAuth();
-    const router = useRouter();
     const pathname = usePathname();
     const isActive = (href) => pathname === href;
     const [requests, setRequests] = useState(initialRequests || []);
@@ -41,11 +38,6 @@ export default function VerificationModerationPage({ authToken, initialRequests,
     const statusPopoverRef = useRef(null);
 
     useEffect(() => {
-        if(!isLoggedIn || (user.isRole !== "admin" && user.isRole !== "moderator")) {
-            router.push("/");
-            return;
-        }
-
         const fetchRequests = async () => {
             try {
                 const params = { page, limit: 15 };
@@ -66,7 +58,7 @@ export default function VerificationModerationPage({ authToken, initialRequests,
         };
 
         fetchRequests();
-    }, [isLoggedIn, user, router, authToken, page, statusFilter, t]);
+    }, [authToken, page, statusFilter, t]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -105,23 +97,23 @@ export default function VerificationModerationPage({ authToken, initialRequests,
                 <h1 className="moderation--title">{t("title")}</h1>
 
                 <nav className="pagination">
-                    <Link href="/moderation" className={`pagination__button ${isActive("/moderation") ? "pagination__button--active" : ""}`}>
+                    <Link href="/moderation" data-ripple className={`pagination__button ${isActive("/moderation") ? "pagination__button--active" : ""}`}>
                         {t("tabs.projects")}
                     </Link>
 
-                    <Link href="/moderation/reports" className={`pagination__button ${isActive("/moderation/reports") ? "pagination__button--active" : ""}`}>
+                    <Link href="/moderation/reports" data-ripple className={`pagination__button ${isActive("/moderation/reports") ? "pagination__button--active" : ""}`}>
                         {t("tabs.reports")}
                     </Link>
 
-                    <Link href="/moderation/statistics" className={`pagination__button ${isActive("/moderation/statistics") ? "pagination__button--active" : ""}`}>
+                    <Link href="/moderation/statistics" data-ripple className={`pagination__button ${isActive("/moderation/statistics") ? "pagination__button--active" : ""}`}>
                         {t("tabs.statistics")}
                     </Link>
 
-                    <Link href="/moderation/users" className={`pagination__button ${isActive("/moderation/users") ? "pagination__button--active" : ""}`}>
+                    <Link href="/moderation/users" data-ripple className={`pagination__button ${isActive("/moderation/users") ? "pagination__button--active" : ""}`}>
                         {t("tabs.users")}
                     </Link>
 
-                    <Link href="/moderation/verification" className={`pagination__button ${isActive("/moderation/verification") ? "pagination__button--active" : ""}`}>
+                    <Link href="/moderation/verification" data-ripple className={`pagination__button ${isActive("/moderation/verification") ? "pagination__button--active" : ""}`}>
                         {t("tabs.verification")}
                     </Link>
                 </nav>

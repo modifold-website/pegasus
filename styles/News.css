@@ -251,6 +251,16 @@
 .news-page--author:hover {
     text-decoration: underline;
 }
+.markdown-body .video-wrapper {
+    margin-bottom: 32px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+.markdown-body .video-wrapper video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 @media (max-width: 859px) {
     .latest-news {
         padding-left: 12px;

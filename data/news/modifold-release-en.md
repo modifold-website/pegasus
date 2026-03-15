@@ -4,7 +4,7 @@ description: "Modifold is out of beta. A full release built with community feedb
 author: ["modifold"]
 date: 2026-02-07
 slug: /news/modifold-release
-image: https://media.modifold.com/news/Modifold%20Release.png
+image: https://media.modifold.com/news/og_banner.png
 featured: false
 locale: en
 ---
@@ -56,4 +56,3 @@ We value every new author on Modifold and we are happy to see your interest in t
 We would be grateful if you share Modifold or mention it on social media, show the platform to friends, or recommend it to popular modders.
 
 There is a lot ahead. We are currently forming our update roadmap while continuing to ship improvements: bug fixes, new creator features, and upgrades or redesigns of existing parts of the platform.
-

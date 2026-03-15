@@ -4,7 +4,7 @@ description: "Modifold betadan çıkıyor ve tam sürüme geçiyor: topluluk ger
 author: ["modifold"]
 date: 2026-02-07
 slug: /news/modifold-release
-image: https://media.modifold.com/news/Modifold%20Release.png
+image: https://media.modifold.com/news/og_banner.png
 featured: false
 locale: tr
 ---

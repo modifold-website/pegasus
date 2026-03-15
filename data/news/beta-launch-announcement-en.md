@@ -4,7 +4,7 @@ description: "Welcome to the beta version of Modifold — a community-driven pla
 author: ["modifold"]
 date: 2026-01-10
 slug: /news/beta-launch-announcement
-image: https://modifold.com/images/banner.png?v=3
+image: https://media.modifold.com/news/og_banner.png
 featured: false
 locale: en
 ---

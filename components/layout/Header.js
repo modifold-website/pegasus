@@ -255,28 +255,26 @@ export default function Header({ authToken }) {
                             </svg>
                         </button>
 
-                        {isBrowseMenuOpen && (
-                            <div id="browse-menu" className="bubble account-menu-root user-menu browse-menu open" style={{ textAlign: "left", right: "auto", width: "auto" }}>
-                                <div className="account-menu">
-                                    <div className="account-menu__title">{t("discoverContent")}</div>
-                                    
-                                    <div class="browse-grid">
-                                        <Link href="/mods" className="content content--padding content--browse" onClick={() => setIsBrowseMenuOpen(false)}>
-                                            <h2 style={{ zIndex: 1, position: "relative", display: "flex", alignItems: "center", gap: "10px" }}>
-                                                {t("mods")}
-                                                
-                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-move-right-icon lucide-move-right">
-                                                    <path d="M18 8L22 12L18 16" />
-                                                    <path d="M2 12H22" />
-                                                </svg>
-                                            </h2>
+                        <div id="browse-menu" className={`bubble account-menu-root user-menu browse-menu ${isBrowseMenuOpen ? "open" : ""}`} style={{ textAlign: "left", right: "auto", width: "auto" }}>
+                            <div className="account-menu">
+                                <div className="account-menu__title">{t("discoverContent")}</div>
+                                
+                                <div class="browse-grid">
+                                    <Link href="/mods" className="content content--padding content--browse" onClick={() => setIsBrowseMenuOpen(false)}>
+                                        <h2 style={{ zIndex: 1, position: "relative", display: "flex", alignItems: "center", gap: "10px" }}>
+                                            {t("mods")}
+                                            
+                                            <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-move-right-icon lucide-move-right">
+                                                <path d="M18 8L22 12L18 16" />
+                                                <path d="M2 12H22" />
+                                            </svg>
+                                        </h2>
 
-                                            <img className="content--browse__preview" srcSet="/images/ff06cae57e73396bc2f59bac1ddedc3b_02_pillars-no-bg-preview.png?v=1" />
-                                        </Link>
-                                    </div>
+                                        <img className="content--browse__preview" src="/images/ff06cae57e73396bc2f59bac1ddedc3b_02_pillars-no-bg-preview.png?v=1" alt="" />
+                                    </Link>
                                 </div>
                             </div>
-                        )}
+                        </div>
                     </div>
 
                     <div className="header__right">

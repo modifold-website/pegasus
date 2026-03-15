@@ -3549,6 +3549,17 @@ input[type="file"]::-webkit-file-upload-button:hover {
     background: var(--theme-color-background-content);
     top: calc(var(--layout-header-height) - 10px);
     border-radius: 25px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-4px);
+    transition: opacity .15s ease, visibility .15s ease, transform .15s ease;
+}
+.browse-menu.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
     animation: show-dropdown .2s ease forwards;
 }
 @keyframes show-dropdown {

@@ -79,7 +79,7 @@ export default async function Page({ params }) {
     try {
         const wikiRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/wiki`, {
             headers: { Accept: "application/json" },
-            next: { revalidate: 60, tags: [`project:${slug}:wiki`] },
+            cache: "no-store",
         });
 
         if(wikiRes.ok) {
@@ -89,7 +89,7 @@ export default async function Page({ params }) {
             if(firstPageSlug) {
                 const firstPageRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/wiki/${encodeURIComponent(firstPageSlug)}`, {
                     headers: { Accept: "application/json" },
-                    next: { revalidate: 60, tags: [`project:${slug}:wiki`] },
+                    cache: "no-store",
                 });
 
                 if(firstPageRes.ok) {

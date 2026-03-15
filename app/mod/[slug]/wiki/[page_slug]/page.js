@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
     try {
         const wikiRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/wiki/${encodeURIComponent(page_slug)}`, {
             headers: { Accept: "application/json" },
-            next: { revalidate: 60, tags: [`project:${slug}:wiki`] },
+            cache: "no-store",
         });
 
         if(wikiRes.ok) {
@@ -95,7 +95,7 @@ export default async function Page({ params }) {
     try {
         const wikiRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/wiki/${encodeURIComponent(page_slug)}`, {
             headers: { Accept: "application/json" },
-            next: { revalidate: 60, tags: [`project:${slug}:wiki`] },
+            cache: "no-store",
         });
 
         if(wikiRes.ok) {

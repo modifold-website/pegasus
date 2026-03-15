@@ -5,7 +5,7 @@ author: ["modifold"]
 date: 2026-02-28
 slug: /news/organizations-on-modifold
 image: https://media.modifold.com/news/organizations banner.png
-featured: true
+featured: false
 locale: pt
 ---
 

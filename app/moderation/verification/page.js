@@ -36,6 +36,27 @@ export default async function VerificationModerationServer() {
     const authToken = cookieStore.get("authToken")?.value;
 
     if(!authToken) {
+        redirect("/403");
+    }
+
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/user`, {
+            headers: { Authorization: `Bearer ${authToken}` },
+            cache: "no-store",
+        });
+
+        if(!response.ok) {
+            redirect("/");
+        }
+
+        const data = await response.json().catch(() => ({}));
+        const role = data?.user?.isRole;
+
+        if(role !== "admin" && role !== "moderator") {
+            redirect("/403");
+        }
+    } catch (error) {
+        console.error("Error checking moderation access:", error);
         redirect("/");
     }
 

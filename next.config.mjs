@@ -12,6 +12,7 @@ const nextConfig = {
                 hostname: "**",
             },
         ],
+        minimumCacheTTL: 2678400,
     },
     env: {
         NEXT_PUBLIC_API_BASE: process.env.STAGING === 'true' ? 'https://staging-api.modifold.com' : (process.env.NEXT_PUBLIC_API_BASE || 'https://api.modifold.com')

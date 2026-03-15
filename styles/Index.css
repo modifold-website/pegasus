@@ -928,7 +928,7 @@ body.dark {
     position: relative;
     overflow: hidden;
 }
-body.light .sidebar-item .ripple-effect {
+body.light .ripple-effect {
     opacity: .07;
 }
 .ripple-effect {
@@ -3470,6 +3470,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     font-size: 15px;
     line-height: 20px;
     padding: 4px;
+    gap: 4px;
     background: var(--theme-color-background-content);
     border-radius: 9999px;
     overflow: clip;
@@ -3479,20 +3480,21 @@ input[type="file"]::-webkit-file-upload-button:hover {
     position: relative;
 }
 .pagination__button {
-    font-weight: 500;
-    padding-bottom: .5rem;
-    padding-top: .5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    gap: .5rem;
+    display: flex;
     align-items: center;
     flex-direction: row;
-    display: flex;
+    font-weight: 500;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+}
+.pagination__button:not(.pagination__button--active):hover {
+    color: var(--theme-color-text-primary);;
+    background: var(--theme-color-button-minimal);
 }
 .pagination__button--active {
-    color: #4772ff;
-    background: rgb(71 114 255 / 25%);
-    border-radius: 999px;
+    color: #307df0;
+    background: rgb(48 125 240 / 25%);
     font-weight: 600;
 }
 .author-card {

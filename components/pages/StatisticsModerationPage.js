@@ -37,6 +37,8 @@ const EMPTY_ANALYTICS = {
     totalApproved: 0,
     totalPending: 0,
     totalUsers: 0,
+    totalProjectVersions: 0,
+    totalProjectDownloads: 0,
 };
 
 export default function StatisticsModerationPage({ authToken, initialAnalytics }) {
@@ -90,6 +92,33 @@ export default function StatisticsModerationPage({ authToken, initialAnalytics }
                     </Link>
                 </nav>
 
+                <div className="analytics-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(220px, 1fr))", gap: "15px", marginBottom: "15px" }}>
+                    <div className="content content--padding">
+                        <h3>{t("stats.totalApproved")}</h3>
+                        <p style={{ fontSize: "2rem", margin: "10px 0" }}>{analytics.totalApproved}</p>
+                    </div>
+
+                    <div className="content content--padding">
+                        <h3>{t("stats.totalUsers")}</h3>
+                        <p style={{ fontSize: "2rem", margin: "10px 0" }}>{analytics.totalUsers}</p>
+                    </div>
+
+                    <div className="content content--padding">
+                        <h3>{t("stats.pending")}</h3>
+                        <p style={{ fontSize: "2rem", margin: "10px 0" }}>{analytics.totalPending}</p>
+                    </div>
+
+                    <div className="content content--padding">
+                        <h3>{t("stats.totalProjectVersions")}</h3>
+                        <p style={{ fontSize: "2rem", margin: "10px 0" }}>{analytics.totalProjectVersions}</p>
+                    </div>
+
+                    <div className="content content--padding">
+                        <h3>{t("stats.totalProjectDownloads")}</h3>
+                        <p style={{ fontSize: "2rem", margin: "10px 0" }}>{analytics.totalProjectDownloads}</p>
+                    </div>
+                </div>
+
                 <div className="content content--padding" style={{ marginBottom: "15px" }}>
                     <h3>{t("charts.approvedProjects")}</h3>
 
@@ -108,23 +137,6 @@ export default function StatisticsModerationPage({ authToken, initialAnalytics }
                             <Area type="monotone" dataKey="count" stroke="#307df0" fillOpacity={1} fill="url(#colorApprovedProjects)" />
                         </AreaChart>
                     </ResponsiveContainer>
-                </div>
-
-                <div className="analytics-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(auto, 1fr))", gap: "15px", marginBottom: "15px" }}>
-                    <div className="content content--padding">
-                        <h3>{t("stats.totalApproved")}</h3>
-                        <p style={{ fontSize: "2rem", margin: "10px 0" }}>{analytics.totalApproved}</p>
-                    </div>
-
-                    <div className="content content--padding">
-                        <h3>{t("stats.totalUsers")}</h3>
-                        <p style={{ fontSize: "2rem", margin: "10px 0" }}>{analytics.totalUsers}</p>
-                    </div>
-
-                    <div className="content content--padding">
-                        <h3>{t("stats.pending")}</h3>
-                        <p style={{ fontSize: "2rem", margin: "10px 0" }}>{analytics.totalPending}</p>
-                    </div>
                 </div>
 
                 <div className="content content--padding" style={{ marginBottom: "15px" }}>

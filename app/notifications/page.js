@@ -20,5 +20,42 @@ export default async function Page() {
         redirect("/403");
     }
 
-    return <NotificationsPage authToken={authToken} />;
+    let initialNotifications = [];
+    let initialPage = 1;
+    let initialTotalPages = 1;
+    let initialDataLoaded = false;
+
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/notifications?page=1&limit=20`, {
+            headers: {
+                Accept: "application/json",
+                Authorization: `Bearer ${authToken}`,
+            },
+            cache: "no-store",
+        });
+
+        if(response.status === 401 || response.status === 403) {
+            redirect("/403");
+        }
+
+        if(response.ok) {
+            const data = await response.json().catch(() => ({}));
+            initialNotifications = Array.isArray(data?.notifications) ? data.notifications : [];
+            initialPage = Number(data?.pagination?.page) || 1;
+            initialTotalPages = Number(data?.pagination?.totalPages) || 1;
+            initialDataLoaded = true;
+        }
+    } catch (error) {
+        console.error("Error fetching notifications page data:", error);
+    }
+
+    return (
+        <NotificationsPage
+            authToken={authToken}
+            initialNotifications={initialNotifications}
+            initialPage={initialPage}
+            initialTotalPages={initialTotalPages}
+            initialDataLoaded={initialDataLoaded}
+        />
+    );
 }

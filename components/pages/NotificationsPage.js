@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../providers/AuthProvider";
 import Link from "next/link";
@@ -9,23 +9,21 @@ import { useLocale, useTranslations } from "next-intl";
 import UserName from "../ui/UserName";
 import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
 
-const PAGE_LIMIT = 20;
-const DEFAULT_AVATAR_URL = "https://media.modifold.com/static/no-project-icon.svg";
-
 const getDayKey = (date) => `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 
-export default function NotificationsPage({ authToken }) {
+export default function NotificationsPage({ authToken, initialNotifications = [], initialPage = 1, initialTotalPages = 1, initialDataLoaded = false }) {
     const t = useTranslations("NotificationsPage");
     const tSidebar = useTranslations("SettingsBlogPage.sidebar");
     const locale = useLocale();
     const { isLoggedIn, user } = useAuth();
-    const [notifications, setNotifications] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [notifications, setNotifications] = useState(initialNotifications);
+    const [loading, setLoading] = useState(!initialDataLoaded);
     const [loadingMore, setLoadingMore] = useState(false);
     const [error, setError] = useState("");
-    const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
+    const [page, setPage] = useState(initialPage);
+    const [totalPages, setTotalPages] = useState(initialTotalPages);
     const router = useRouter();
+    const hasMarkedInitialRead = useRef(false);
 
     const dateFormatter = useMemo(() => (
         new Intl.DateTimeFormat(locale || undefined, {
@@ -61,7 +59,7 @@ export default function NotificationsPage({ authToken }) {
                 headers: { Authorization: `Bearer ${token}` },
                 params: {
                     page: nextPage,
-                    limit: PAGE_LIMIT,
+                    limit: 20,
                 },
             });
 
@@ -95,14 +93,52 @@ export default function NotificationsPage({ authToken }) {
         }
     };
 
+    const markAllRead = async () => {
+        const token = authToken || localStorage.getItem("authToken");
+        if(!token) {
+            return;
+        }
+
+        try {
+            await axios.post(`${process.env.NEXT_PUBLIC_API_BASE}/notifications/mark-all-read`, {}, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+
+            if(typeof window !== "undefined") {
+                window.dispatchEvent(new CustomEvent("notifications:updated", {
+                    detail: { unreadCount: 0 },
+                }));
+            }
+        } catch (markReadError) {
+            console.error("Error marking notifications as read:", markReadError);
+        }
+    };
+
     useEffect(() => {
         if(!isLoggedIn) {
             router.push("/403");
             return;
         }
 
+        if(initialDataLoaded) {
+            setNotifications(initialNotifications);
+            setPage(initialPage);
+            setTotalPages(initialTotalPages);
+            setLoading(false);
+            return;
+        }
+
         loadNotifications(1, false);
-    }, [isLoggedIn, router]);
+    }, [initialDataLoaded, initialNotifications, initialPage, initialTotalPages, isLoggedIn, router]);
+
+    useEffect(() => {
+        if(!isLoggedIn || !initialDataLoaded || hasMarkedInitialRead.current || initialPage !== 1) {
+            return;
+        }
+
+        hasMarkedInitialRead.current = true;
+        markAllRead();
+    }, [initialDataLoaded, initialPage, isLoggedIn]);
 
     const sections = useMemo(() => {
         const now = new Date();
@@ -247,10 +283,10 @@ export default function NotificationsPage({ authToken }) {
                         {notification.actors?.slice(0, 3).map((actor) => (
                             actor.slug ? (
                                 <Link key={actor.id} href={`/user/${actor.slug}`}>
-                                    <img src={actor.avatar || DEFAULT_AVATAR_URL} alt={actor.username} className="notification-avatars-stack__avatar" loading="lazy" />
+                                    <img src={actor.avatar || "https://media.modifold.com/static/no-project-icon.svg"} alt={actor.username} className="notification-avatars-stack__avatar" loading="lazy" />
                                 </Link>
                             ) : (
-                                <img key={actor.id} src={actor.avatar || DEFAULT_AVATAR_URL} alt={actor.username} className="notification-avatars-stack__avatar" loading="lazy" />
+                                <img key={actor.id} src={actor.avatar || "https://media.modifold.com/static/no-project-icon.svg"} alt={actor.username} className="notification-avatars-stack__avatar" loading="lazy" />
                             )
                         ))}
 

@@ -994,7 +994,9 @@
         "stats": {
             "totalApproved": "Toplam onaylanan projeler",
             "totalUsers": "Toplam kullanıcılar",
-            "pending": "Bekleyen projeler"
+            "pending": "Bekleyen projeler",
+            "totalProjectVersions": "Toplam proje sürümleri",
+            "totalProjectDownloads": "Toplam proje indirmeleri"
         },
         "filters": {
             "searchPlaceholder": "Proje adına göre ara...",

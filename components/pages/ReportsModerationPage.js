@@ -139,7 +139,7 @@ export default function ReportsModerationPage({ authToken, initialReports, initi
                     </Link>
                 </nav>
 
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", alignItems: "center", marginBottom: "14px" }}>
+                <div className="moderation-toolbar">
                     <div className="field field--large" style={{ width: "100%", maxWidth: "420px" }}>
                         <label className="field__wrapper" style={{ background: "var(--theme-color-background-content)" }}>
                             <div className="field__wrapper-body">
@@ -153,88 +153,90 @@ export default function ReportsModerationPage({ authToken, initialReports, initi
                         </label>
                     </div>
 
-                    <div className="field field--default blog-settings__input" style={{ width: "220px" }} ref={statusPopoverRef}>
-                        <label className="field__wrapper" onClick={() => setIsStatusPopoverOpen((v) => !v)} style={{ cursor: "pointer", background: "var(--theme-color-background-content)" }}>
-                            <div className="field__wrapper-body">
-                                <div className="select">
-                                    <div className="select__selected">
-                                        {t(`filters.status.${statusFilter}`)}
+                    <div className="moderation-toolbar__controls">
+                        <div className="field field--default blog-settings__input" style={{ width: "220px" }} ref={statusPopoverRef}>
+                            <label className="field__wrapper" onClick={() => setIsStatusPopoverOpen((v) => !v)} style={{ cursor: "pointer", background: "var(--theme-color-background-content)" }}>
+                                <div className="field__wrapper-body">
+                                    <div className="select">
+                                        <div className="select__selected">
+                                            {t(`filters.status.${statusFilter}`)}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <svg style={{ fill: "none" }} className={`icon icon--chevron_down ${isStatusPopoverOpen ? "rotate" : ""}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
-                        </label>
+                                
+                                <svg style={{ fill: "none" }} className={`icon icon--chevron_down ${isStatusPopoverOpen ? "rotate" : ""}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                            </label>
 
-                        {isStatusPopoverOpen && (
-                            <div className="popover">
-                                <div className="context-list">
-                                    {statusOptions.map((value) => (
-                                        <div key={value} className={`context-list-option ${statusFilter === value ? "context-list-option--selected" : ""}`} onClick={() => { setStatusFilter(value); setPage(1); setIsStatusPopoverOpen(false); }}>
-                                            <div className="context-list-option__label">
-                                                {t(`filters.status.${value}`)}
+                            {isStatusPopoverOpen && (
+                                <div className="popover">
+                                    <div className="context-list">
+                                        {statusOptions.map((value) => (
+                                            <div key={value} className={`context-list-option ${statusFilter === value ? "context-list-option--selected" : ""}`} onClick={() => { setStatusFilter(value); setPage(1); setIsStatusPopoverOpen(false); }}>
+                                                <div className="context-list-option__label">
+                                                    {t(`filters.status.${value}`)}
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="field field--default blog-settings__input" style={{ width: "220px" }} ref={reasonPopoverRef}>
-                        <label className="field__wrapper" onClick={() => setIsReasonPopoverOpen((v) => !v)} style={{ cursor: "pointer", background: "var(--theme-color-background-content)" }}>
-                            <div className="field__wrapper-body">
-                                <div className="select">
-                                    <div className="select__selected">
-                                        {t(`filters.reasons.${reasonFilter}`)}
+                                        ))}
                                     </div>
                                 </div>
-                            </div>
+                            )}
+                        </div>
 
-                            <svg style={{ fill: "none" }} className={`icon icon--chevron_down ${isReasonPopoverOpen ? "rotate" : ""}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
-                        </label>
-
-                        {isReasonPopoverOpen && (
-                            <div className="popover">
-                                <div className="context-list" data-scrollable style={{ maxHeight: "240px", overflowY: "auto" }}>
-                                    {reasonOptions.map((value) => (
-                                        <div key={value} className={`context-list-option ${reasonFilter === value ? "context-list-option--selected" : ""}`} onClick={() => { setReasonFilter(value); setPage(1); setIsReasonPopoverOpen(false); }}>
-                                            <div className="context-list-option__label">
-                                                {t(`filters.reasons.${value}`)}
-                                            </div>
+                        <div className="field field--default blog-settings__input" style={{ width: "220px" }} ref={reasonPopoverRef}>
+                            <label className="field__wrapper" onClick={() => setIsReasonPopoverOpen((v) => !v)} style={{ cursor: "pointer", background: "var(--theme-color-background-content)" }}>
+                                <div className="field__wrapper-body">
+                                    <div className="select">
+                                        <div className="select__selected">
+                                            {t(`filters.reasons.${reasonFilter}`)}
                                         </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="field field--default blog-settings__input" style={{ width: "220px" }} ref={sortPopoverRef}>
-                        <label className="field__wrapper" onClick={() => setIsSortPopoverOpen((v) => !v)} style={{ cursor: "pointer", background: "var(--theme-color-background-content)" }}>
-                            <div className="field__wrapper-body">
-                                <div className="select">
-                                    <div className="select__selected">
-                                        {t(`filters.sort.${sort}`)}
                                     </div>
                                 </div>
-                            </div>
 
-                            <svg style={{ fill: "none" }} className={`icon icon--chevron_down ${isSortPopoverOpen ? "rotate" : ""}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
-                        </label>
+                                <svg style={{ fill: "none" }} className={`icon icon--chevron_down ${isReasonPopoverOpen ? "rotate" : ""}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                            </label>
 
-                        {isSortPopoverOpen && (
-                            <div className="popover">
-                                <div className="context-list">
-                                    {sortOptions.map((value) => (
-                                        <div key={value} className={`context-list-option ${sort === value ? "context-list-option--selected" : ""}`} onClick={() => { setSort(value); setPage(1); setIsSortPopoverOpen(false); }}>
-                                            <div className="context-list-option__label">
-                                                {t(`filters.sort.${value}`)}
+                            {isReasonPopoverOpen && (
+                                <div className="popover">
+                                    <div className="context-list" data-scrollable style={{ maxHeight: "240px", overflowY: "auto" }}>
+                                        {reasonOptions.map((value) => (
+                                            <div key={value} className={`context-list-option ${reasonFilter === value ? "context-list-option--selected" : ""}`} onClick={() => { setReasonFilter(value); setPage(1); setIsReasonPopoverOpen(false); }}>
+                                                <div className="context-list-option__label">
+                                                    {t(`filters.reasons.${value}`)}
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        )}
+                            )}
+                        </div>
+
+                        <div className="field field--default blog-settings__input" style={{ width: "220px" }} ref={sortPopoverRef}>
+                            <label className="field__wrapper" onClick={() => setIsSortPopoverOpen((v) => !v)} style={{ cursor: "pointer", background: "var(--theme-color-background-content)" }}>
+                                <div className="field__wrapper-body">
+                                    <div className="select">
+                                        <div className="select__selected">
+                                            {t(`filters.sort.${sort}`)}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <svg style={{ fill: "none" }} className={`icon icon--chevron_down ${isSortPopoverOpen ? "rotate" : ""}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                            </label>
+
+                            {isSortPopoverOpen && (
+                                <div className="popover">
+                                    <div className="context-list">
+                                        {sortOptions.map((value) => (
+                                            <div key={value} className={`context-list-option ${sort === value ? "context-list-option--selected" : ""}`} onClick={() => { setSort(value); setPage(1); setIsSortPopoverOpen(false); }}>
+                                                <div className="context-list-option__label">
+                                                    {t(`filters.sort.${value}`)}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
 

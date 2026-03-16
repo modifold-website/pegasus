@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import ProjectTags from "../ui/ProjectTags";
-const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
 export default function ModerationPage({ authToken, initialProjects, initialTotalPages }) {
     const t = useTranslations("ModerationPage");
@@ -149,7 +148,7 @@ export default function ModerationPage({ authToken, initialProjects, initialTota
                     </Link>
                 </nav>
 
-                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: "14px" }}>
+                <div className="moderation-toolbar">
                     <div className="field field--large" style={{ width: "100%", maxWidth: "400px" }}>
                         <label className="field__wrapper" style={{ background: "var(--theme-color-background-content)" }}>
                             <div className="field__wrapper-body">
@@ -169,7 +168,7 @@ export default function ModerationPage({ authToken, initialProjects, initialTota
                         </label>
                     </div>
 
-                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "10px" }}>
+                    <div className="moderation-toolbar__controls">
                         <div className="field field--default blog-settings__input" style={{ width: "200px" }} ref={typePopoverRef}>
                             <label className="field__wrapper" onClick={() => setIsTypePopoverOpen(!isTypePopoverOpen)} style={{ cursor: "pointer", background: "var(--theme-color-background-content)" }}>
                                 <div className="field__wrapper-body">
@@ -221,14 +220,16 @@ export default function ModerationPage({ authToken, initialProjects, initialTota
                 </div>
 
                 {projects.length === 0 ? (
-                    <p>{t("empty")}</p>
+                    <div className="content content--padding">
+                        <p>{t("empty")}</p>
+                    </div>
                 ) : (
                     <div className="projects-grid">
                         {projects.map((project) => (
                             <div key={project.id} className="new-projects-list">
                                 <div className="new-project-card" id={project.slug}>
                                     <Link href={`/mod/${project.slug}`} style={{ height: "96px" }}>
-                                        <img className="new-project-icon" alt={project.title} src={project.icon_url || DEFAULT_PROJECT_ICON_URL} />
+                                        <img className="new-project-icon" alt={project.title} src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} />
                                     </Link>
 
                                     <div className="new-project-info">

@@ -118,7 +118,7 @@ export default function VerificationModerationPage({ authToken, initialRequests,
                     </Link>
                 </nav>
 
-                <div className="field field--default blog-settings__input" style={{ width: "220px", marginBottom: "12px" }} ref={statusPopoverRef}>
+                <div className="field field--default blog-settings__input moderation-verification-filter" ref={statusPopoverRef}>
                     <label className="field__wrapper" onClick={() => setIsStatusPopoverOpen(!isStatusPopoverOpen)} style={{ cursor: "pointer", background: "var(--theme-color-background-content)" }}>
                         <div className="field__wrapper-body">
                             <div className="select">

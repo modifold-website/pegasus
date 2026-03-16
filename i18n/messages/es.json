@@ -994,7 +994,9 @@
         "stats": {
             "totalApproved": "Total de proyectos aprobados",
             "totalUsers": "Total de usuarios",
-            "pending": "Proyectos pendientes"
+            "pending": "Proyectos pendientes",
+            "totalProjectVersions": "Total de versiones de proyectos",
+            "totalProjectDownloads": "Total de descargas de proyectos"
         },
         "filters": {
             "searchPlaceholder": "Buscar por título del proyecto...",

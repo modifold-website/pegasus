@@ -31,6 +31,8 @@ async function fetchAnalytics(authToken) {
             totalApproved: 0,
             totalPending: 0,
             totalUsers: 0,
+            totalProjectVersions: 0,
+            totalProjectDownloads: 0,
         };
     }
 }

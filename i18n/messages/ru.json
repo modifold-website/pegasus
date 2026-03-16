@@ -995,7 +995,9 @@
         "stats": {
             "totalApproved": "Всего одобрено проектов",
             "totalUsers": "Всего пользователей",
-            "pending": "Проекты на модерации"
+            "pending": "Проекты на модерации",
+            "totalProjectVersions": "Всего версий проектов",
+            "totalProjectDownloads": "Всего скачиваний проектов"
         },
         "filters": {
             "searchPlaceholder": "Поиск по названию проекта...",

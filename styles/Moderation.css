@@ -4,6 +4,45 @@
     margin-bottom: 15px;
     margin-top: 15px;
 }
+.moderation-page .pagination {
+    max-width: 100%;
+}
+.moderation-page .pagination__button {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+.moderation-toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    gap: 12px;
+}
+.moderation-toolbar__controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+.moderation-verification-filter {
+    width: 220px;
+    margin-bottom: 12px;
+}
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.analytics-grid > * {
+    min-width: 0;
+}
+.moderation-chart-card {
+    min-width: 0;
+    overflow: hidden;
+}
 .moderation-page .new-project-card > *:not(.new-project-card__overlay) {
     pointer-events: auto;
 }
@@ -142,4 +181,64 @@
 }
 .status-banner svg {
     fill: none;
+}
+@media (max-width: 860px) {
+    .moderation-page .pagination {
+        overflow-x: auto;
+        overflow-y: hidden;
+        width: 100%;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .moderation-page .pagination::-webkit-scrollbar {
+        display: none;
+    }
+    .analytics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .moderation-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+    .moderation-toolbar__controls {
+        width: 100%;
+        flex-shrink: 1;
+    }
+    .moderation-reports-toolbar {
+        align-items: stretch;
+    }
+    .moderation-verification-filter {
+        width: 100%;
+        max-width: 320px;
+    }
+    .moderation-page {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .moderation-page .content {
+        border-radius: 22px;
+    }
+}
+@media (max-width: 640px) {
+    .moderation--title {
+        font-size: 28px;
+        line-height: 1.05;
+        overflow-wrap: anywhere;
+    }
+    .analytics-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .moderation-toolbar__controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .moderation-toolbar__controls .field {
+        width: 100% !important;
+    }
+    .moderation-verification-filter {
+        max-width: none;
+    }
+    .moderation-chart-card {
+        padding: 16px;
+    }
 }

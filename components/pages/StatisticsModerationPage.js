@@ -92,7 +92,7 @@ export default function StatisticsModerationPage({ authToken, initialAnalytics }
                     </Link>
                 </nav>
 
-                <div className="analytics-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(220px, 1fr))", gap: "15px", marginBottom: "15px" }}>
+                <div className="analytics-grid">
                     <div className="content content--padding">
                         <h3>{t("stats.totalApproved")}</h3>
                         <p style={{ fontSize: "2rem", margin: "10px 0" }}>{analytics.totalApproved}</p>
@@ -119,7 +119,7 @@ export default function StatisticsModerationPage({ authToken, initialAnalytics }
                     </div>
                 </div>
 
-                <div className="content content--padding" style={{ marginBottom: "15px" }}>
+                <div className="content content--padding moderation-chart-card" style={{ marginBottom: "15px" }}>
                     <h3>{t("charts.approvedProjects")}</h3>
 
                     <ResponsiveContainer width="100%" height={300}>
@@ -139,7 +139,7 @@ export default function StatisticsModerationPage({ authToken, initialAnalytics }
                     </ResponsiveContainer>
                 </div>
 
-                <div className="content content--padding" style={{ marginBottom: "15px" }}>
+                <div className="content content--padding moderation-chart-card" style={{ marginBottom: "15px" }}>
                     <h3>{t("charts.userRegistrations")}</h3>
 
                     <ResponsiveContainer width="100%" height={300}>

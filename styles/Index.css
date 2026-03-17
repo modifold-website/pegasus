@@ -2641,6 +2641,13 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .version-upload-modal .field .popover {
     z-index: 40;
 }
+.license-modal .modal-window {
+    max-height: min(80dvh, 900px);
+    overflow: hidden;
+}
+.license-modal__content {
+    min-height: 0;
+}
 .version-upload-steps {
     display: flex;
     align-items: center;

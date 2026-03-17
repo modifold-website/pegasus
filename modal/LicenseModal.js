@@ -64,9 +64,9 @@ export default function LicenseModal({ isOpen, licenseId, onRequestClose }) {
                     </button>
                 </div>
 
-                <div className="modal-window__content">
+                <div className="modal-window__content license-modal__content">
                     {!loading && license && (
-                        <span className="license-body">{license.body}</span>
+                        <span>{license.body}</span>
                     )}
 
                     {!loading && !license && <p className="no-data">{t("empty")}</p>}

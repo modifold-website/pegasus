@@ -954,7 +954,7 @@ body.light .ripple-effect {
 }
 .header-mobile .bar--bottom {
     --bar-bottom-padding-x: var(--layout-content-offset-x);
-    --bar-bottom-padding-top: calc(var(--layout-content-offset-x) / 2);
+    --bar-bottom-padding-top: var(--layout-content-offset-x);
     --bar-bottom-padding-bottom: calc(var(--bar-bottom-padding-top) + env(safe-area-inset-bottom));
     --bar-bottom-padding-left: calc(var(--bar-bottom-padding-x) + env(safe-area-inset-left));
     --bar-bottom-padding-right: calc(var(--bar-bottom-padding-x) + env(safe-area-inset-right));

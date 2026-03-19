@@ -292,7 +292,7 @@ svg {
     --layout-z-modal-overlay: 100;
     --layout-z-index-feed: 1;
     --layout-z-alerts: calc(var(--layout-z-index-header) + 2);
-    --layout-island-border-radius: 0px;
+    --layout-island-border-radius: 22px;
     --layout-tabbar-height: 50px;
     --layout-header-height: 82px;
     --layout-page-header-height: 58px;
@@ -331,7 +331,7 @@ svg {
 }
 @media all and (min-width: 640px) {
     :root {
-        --layout-island-border-radius: 18px;
+    --layout-island-border-radius: 22px;
         --layout-content-offset-x: 24px;
         --layout-view-offset-y: 16px;
         --layout-content-banner-height: 108px;
@@ -364,7 +364,7 @@ svg {
     --theme-color-signal-negative-default: #f0303d;
     --theme-color-signal-negative-dark: #e02d39;
     --theme-color-signal-negative-darkest: #d12a35;
-    --theme-color-background: #F4F5F6;
+    --theme-color-background: #f5f5f5;
     --theme-color-background-active: #e5f0ff;
     --theme-color-background-active-hover: #d1e3ff;
     --theme-color-background-content: var(--color-white);
@@ -954,7 +954,7 @@ body.light .ripple-effect {
 }
 .header-mobile .bar--bottom {
     --bar-bottom-padding-x: var(--layout-content-offset-x);
-    --bar-bottom-padding-top: calc(var(--layout-content-offset-x) / 2);
+    --bar-bottom-padding-top: var(--layout-content-offset-x);
     --bar-bottom-padding-bottom: calc(var(--bar-bottom-padding-top) + env(safe-area-inset-bottom));
     --bar-bottom-padding-left: calc(var(--bar-bottom-padding-x) + env(safe-area-inset-left));
     --bar-bottom-padding-right: calc(var(--bar-bottom-padding-x) + env(safe-area-inset-right));
@@ -4737,7 +4737,7 @@ body.light div .image-container::before {
 }
 @media (max-width: 859px) {
     .layout {
-        padding: 0 0 16px;
+        padding: 0px 12px 16px;
     }
     .showcase-visual .browse-project-list .new-project-card {
         border-radius: 20px;

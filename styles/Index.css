@@ -364,7 +364,7 @@ svg {
     --theme-color-signal-negative-default: #f0303d;
     --theme-color-signal-negative-dark: #e02d39;
     --theme-color-signal-negative-darkest: #d12a35;
-    --theme-color-background: #F4F5F6;
+    --theme-color-background: #f5f5f5;
     --theme-color-background-active: #e5f0ff;
     --theme-color-background-active-hover: #d1e3ff;
     --theme-color-background-content: var(--color-white);

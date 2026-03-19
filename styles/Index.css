@@ -292,7 +292,7 @@ svg {
     --layout-z-modal-overlay: 100;
     --layout-z-index-feed: 1;
     --layout-z-alerts: calc(var(--layout-z-index-header) + 2);
-    --layout-island-border-radius: 0px;
+    --layout-island-border-radius: 22px;
     --layout-tabbar-height: 50px;
     --layout-header-height: 82px;
     --layout-page-header-height: 58px;

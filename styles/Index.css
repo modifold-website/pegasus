@@ -4737,7 +4737,7 @@ body.light div .image-container::before {
 }
 @media (max-width: 859px) {
     .layout {
-        padding: 0 0 16px;
+        padding: 0px 12px 16px;
     }
     .showcase-visual .browse-project-list .new-project-card {
         border-radius: 20px;

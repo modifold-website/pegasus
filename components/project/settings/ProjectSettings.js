@@ -256,7 +256,7 @@ export default function ProjectSettings({ project, organizationOptions: initialO
                                     <p className="blog-settings__field-title">{t("general.fields.summary")}</p>
                                     <div className="field field--default textarea blog-settings__input">
                                         <label style={{ marginBottom: "10px" }} className="field__wrapper">
-                                            <textarea name="summary" value={formData.summary} onChange={handleInputChange} placeholder={t("general.placeholders.summary")} className="autosize textarea__input" style={{ height: "256px" }} minLength={30} />
+                                            <textarea name="summary" value={formData.summary} onChange={handleInputChange} placeholder={t("general.placeholders.summary")} className="autosize textarea__input" style={{ height: "256px" }} minLength={30} maxLength={256} />
                                         </label>
 
                                         <p>{t("general.hints.summary")}</p>

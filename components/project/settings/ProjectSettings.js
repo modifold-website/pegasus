@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
 import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
 import ProjectSettingsSidebar from "@/components/ui/ProjectSettingsSidebar";
+import { validateSlug } from "@/utils/slug";
 
 const getInitialFormData = (project) => ({
     title: project?.title || "",
@@ -126,6 +127,13 @@ export default function ProjectSettings({ project, organizationOptions: initialO
         setIsSaving(true);
 
         try {
+            const slugValidation = validateSlug(formData.slug, { currentSlug: savedFormData.slug });
+            if(!slugValidation.valid) {
+                toast.error(slugValidation.reason === "too_short" ? "URL must be at least 4 characters" : t("general.errors.save"));
+                setIsSaving(false);
+                return;
+            }
+
             await axios.put(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.id}`, data, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -147,9 +155,10 @@ export default function ProjectSettings({ project, organizationOptions: initialO
 
             setSavedFormData({
                 ...formData,
+                slug: slugValidation.normalized,
                 icon: null,
             });
-            setFormData((prev) => ({ ...prev, icon: null }));
+            setFormData((prev) => ({ ...prev, slug: slugValidation.normalized, icon: null }));
             setSavedPreviewIcon(previewIcon);
             toast.success(t("general.success.saved"));
         } catch (err) {

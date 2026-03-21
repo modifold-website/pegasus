@@ -1,6 +1,7 @@
 "use client";
 
 export const SLUG_MAX_LENGTH = 30;
+export const SLUG_MIN_LENGTH = 4;
 
 export const normalizeSlugInput = (value, maxLength = SLUG_MAX_LENGTH) => String(value ?? "").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, maxLength);
 
@@ -17,7 +18,7 @@ export const validateSlug = (value, { currentSlug = "" } = {}) => {
         return { valid: true, normalized, reason: null };
     }
 
-    if(normalized.length < 3) {
+    if(normalized.length < SLUG_MIN_LENGTH) {
         return { valid: false, normalized, reason: "too_short" };
     }
 

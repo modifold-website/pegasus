@@ -346,7 +346,7 @@
             "available": "This URL is available.",
             "errors": {
                 "required": "Enter a profile URL",
-                "too_short": "URL must be at least 3 characters",
+                "too_short": "URL must be at least 4 characters",
                 "reserved_word": "URL cannot contain \"modifold\"",
                 "leading_hyphen": "URL cannot start with a hyphen",
                 "trailing_hyphen": "URL cannot end with a hyphen",
@@ -1399,7 +1399,7 @@
                 "available": "This URL is available.",
                 "errors": {
                     "required": "Enter an organization URL",
-                    "too_short": "URL must be at least 3 characters",
+                    "too_short": "URL must be at least 4 characters",
                     "reserved_word": "URL cannot contain \"modifold\"",
                     "leading_hyphen": "URL cannot start with a hyphen",
                     "trailing_hyphen": "URL cannot end with a hyphen",

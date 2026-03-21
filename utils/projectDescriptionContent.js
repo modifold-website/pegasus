@@ -97,7 +97,9 @@ export const getSafeMarkdownImageSrc = (src) => {
             return null;
         }
 
-        return parsed.toString();
+        const proxyBase = `https://api.modifold.com/media/markdown-image?url=`;
+
+        return `${proxyBase}${encodeURIComponent(parsed.toString())}`;
     } catch {
         return null;
     }

@@ -83,7 +83,7 @@ export default function ProjectCreationModal({ isOpen, authToken, onRequestClose
                         
                         <div className="field field--default textarea">
                             <label className="field__wrapper">
-                                <textarea name="summary" value={formData.summary} onChange={(e) => setFormData({ ...formData, summary: e.target.value })} placeholder={t("placeholders.summary")} className="autosize textarea__input" style={{ height: "128px" }} required minLength={30} disabled={loading} />
+                                <textarea name="summary" value={formData.summary} onChange={(e) => setFormData({ ...formData, summary: e.target.value })} placeholder={t("placeholders.summary")} className="autosize textarea__input" style={{ height: "128px" }} required minLength={30} maxLength={256} disabled={loading} />
                             </label>
                         </div>
 

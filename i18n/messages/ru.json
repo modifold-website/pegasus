@@ -347,7 +347,7 @@
             "available": "Этот URL свободен.",
             "errors": {
                 "required": "Введите URL профиля",
-                "too_short": "URL должен быть не короче 3 символов",
+                "too_short": "URL должен быть не короче 4 символов",
                 "reserved_word": "URL не может содержать \"modifold\"",
                 "leading_hyphen": "URL не может начинаться с дефиса",
                 "trailing_hyphen": "URL не может заканчиваться дефисом",
@@ -1400,7 +1400,7 @@
                 "available": "Этот URL свободен.",
                 "errors": {
                     "required": "Введите URL организации",
-                    "too_short": "URL должен быть не короче 3 символов",
+                    "too_short": "URL должен быть не короче 4 символов",
                     "reserved_word": "URL не может содержать \"modifold\"",
                     "leading_hyphen": "URL не может начинаться с дефиса",
                     "trailing_hyphen": "URL не может заканчиваться дефисом",

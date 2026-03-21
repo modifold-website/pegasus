@@ -54,7 +54,8 @@ export default function LinksSettings({ project, authToken }) {
                 setSavedFormData({ ...formData });
                 toast.success(t("links.success"));
             } else {
-                toast.error(t("links.errors.save"));
+                const data = await response.json().catch(() => null);
+                toast.error(data?.message || t("links.errors.save"));
             }
         } catch (err) {
             toast.error(t("links.errors.save"));

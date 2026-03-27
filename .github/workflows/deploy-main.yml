@@ -31,4 +31,4 @@ jobs:
             git pull --ff-only origin main
             bun install
             bun run build
-            pm2 restart pegasus --update-env
+            PORT=3121 NODE_ENV=production pm2 restart pegasus --update-env

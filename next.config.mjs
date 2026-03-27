@@ -4,6 +4,7 @@ import { routing } from "./i18n/routing.js";
 const withNextIntl = createNextIntlPlugin(routing);
 
 const nextConfig = {
+    allowedDevOrigins: ['staging.modifold.com'],
     output: 'standalone',
     images: {
         remotePatterns: [

@@ -365,6 +365,7 @@ export default function NotificationsPage({ authToken, initialNotifications = []
                 <UserSettingsSidebar
                     user={user}
                     profileIconAlt={t("sidebarAvatarAlt", { username: user?.username || "" })}
+                    mode="dashboard"
                     labels={{
                         projects: tSidebar("projects"),
                         organizations: tSidebar("organizations"),

@@ -15,43 +15,13 @@ export default function Header({ authToken }) {
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [projectModalOpen, setProjectModalOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
     const [isBrowseMenuOpen, setIsBrowseMenuOpen] = useState(false);
     const [unreadCount, setUnreadCount] = useState(0);
-    const [theme, setThemeState] = useState("system");
     const menuRef = useRef(null);
     const buttonRef = useRef(null);
-    const themeButtonRef = useRef(null);
-    const themeMenuRef = useRef(null);
     const browseWrapperRef = useRef(null);
     const browseCloseTimeoutRef = useRef(null);
 
-    const applyTheme = (nextTheme) => {
-        const resolvedTheme = nextTheme === "system" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : nextTheme === "dark" ? "dark" : "light";
-
-        document.body.classList.remove("light", "dark", "system");
-        document.body.classList.add(resolvedTheme);
-        document.body.dataset.themePreference = nextTheme;
-    };
-
-    useEffect(() => {
-        const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
-            const [rawName, ...rest] = cookie.split("=");
-            const name = rawName?.trim();
-            if(!name) {
-                return acc;
-            }
-
-            acc[name] = decodeURIComponent(rest.join("=") || "");
-            return acc;
-        }, {});
-
-        const themeFromDataset = document.body?.dataset?.themePreference;
-        const savedTheme = cookies.theme === "dark" || cookies.theme === "light" || cookies.theme === "system" ? cookies.theme : themeFromDataset === "dark" || themeFromDataset === "light" || themeFromDataset === "system" ? themeFromDataset : "light";
-
-        setThemeState(savedTheme);
-        applyTheme(savedTheme);
-    }, []);
 
     useEffect(() => {
         return () => {
@@ -128,10 +98,6 @@ export default function Header({ authToken }) {
                 setIsMenuOpen(false);
             }
 
-            if(isThemeMenuOpen && themeMenuRef.current && !themeMenuRef.current.contains(event.target) && themeButtonRef.current && !themeButtonRef.current.contains(event.target)) {
-                setIsThemeMenuOpen(false);
-            }
-
             if(isBrowseMenuOpen && browseWrapperRef.current && !browseWrapperRef.current.contains(event.target)) {
                 setIsBrowseMenuOpen(false);
             }
@@ -139,7 +105,7 @@ export default function Header({ authToken }) {
 
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [isMenuOpen, isThemeMenuOpen, isBrowseMenuOpen]);
+    }, [isMenuOpen, isBrowseMenuOpen]);
 
     const openBrowseMenu = () => {
         if(browseCloseTimeoutRef.current) {
@@ -168,10 +134,6 @@ export default function Header({ authToken }) {
         setIsMenuOpen(false);
     };
 
-    const toggleThemeMenu = () => {
-        setIsThemeMenuOpen((prev) => !prev);
-    };
-
     const toggleBrowseMenu = () => {
         setIsBrowseMenuOpen((prev) => !prev);
     };
@@ -195,27 +157,6 @@ export default function Header({ authToken }) {
     const closeModals = () => {
         setLoginModalOpen(false);
         setProjectModalOpen(false);
-    };
-
-    useEffect(() => {
-        if(theme !== "system") {
-            return;
-        }
-
-        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-        const handleChange = () => applyTheme("system");
-        mediaQuery.addEventListener("change", handleChange);
-
-        return () => {
-            mediaQuery.removeEventListener("change", handleChange);
-        };
-    }, [theme]);
-
-    const setTheme = (newTheme) => {
-        document.cookie = `theme=${newTheme}; path=/; max-age=31536000; samesite=lax`;
-        setThemeState(newTheme);
-        applyTheme(newTheme);
-        setIsThemeMenuOpen(false);
     };
 
     const isStaging = process.env.NEXT_PUBLIC_API_BASE?.includes("staging");
@@ -278,38 +219,6 @@ export default function Header({ authToken }) {
                     </div>
 
                     <div className="header__right">
-                        <div className="theme-switcher" style={{ position: "relative" }}>
-                            <svg ref={themeButtonRef} onClick={toggleThemeMenu} style={{ fill: "none", cursor: "pointer" }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon button--active-transform">
-                                <path d="M12 8a2.83 2.83 0 0 0 4 4 4 4 0 1 1-4-4" />
-                                <path d="M12 2v2" />
-                                <path d="M12 20v2" />
-                                <path d="m4.9 4.9 1.4 1.4" />
-                                <path d="m17.7 17.7 1.4 1.4" />
-                                <path d="M2 12h2" />
-                                <path d="M20 12h2" />
-                                <path d="m6.3 17.7-1.4 1.4" />
-                                <path d="m19.1 4.9-1.4 1.4" />
-                            </svg>
-
-                            {isThemeMenuOpen && (
-                                <div className="popover theme-switcher__popover theme-switcher__popover--open-up" tabIndex={0} style={{ top: "40px", "--width": "160px" }} ref={themeMenuRef}>
-                                    <div className="popover__scrollable" style={{ "--max-height": "auto" }}>
-                                        <div onClick={() => setTheme("light")} className={`popover-option ${theme === "light" ? "popover-option--selected" : ""}`}>
-                                            <div className="popover-option__label">{t("theme.light")}</div>
-                                        </div>
-
-                                        <div onClick={() => setTheme("dark")} className={`popover-option ${theme === "dark" ? "popover-option--selected" : ""}`}>
-                                            <div className="popover-option__label">{t("theme.dark")}</div>
-                                        </div>
-
-                                        <div onClick={() => setTheme("system")} className={`popover-option ${theme === "system" ? "popover-option--selected" : ""}`}>
-                                            <div className="popover-option__label">{t("theme.system")}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
                         {isLoggedIn ? (
                             <>
                                 <button className="button button--size-m button--type-primary button--active-transform button--with-icon" onClick={openProjectModal}>

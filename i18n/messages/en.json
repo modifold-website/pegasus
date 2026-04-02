@@ -339,7 +339,11 @@
             "settings": "Settings",
             "apiTokens": "API Tokens",
             "verification": "Verification",
-            "organizations": "Organizations"
+            "organizations": "Organizations",
+            "profile": "Profile",
+            "appearance": "Appearance",
+            "language": "Language",
+            "accountSecurity": "Security"
         },
         "username": "Username",
         "slug": {
@@ -377,7 +381,10 @@
             "spanish": "Spanish",
             "portuguese": "Portuguese",
             "ukrainian": "Ukrainian",
-            "turkish": "Turkish"
+            "turkish": "Turkish",
+            "notice": "Changing the site language may cause some content to appear in English if a translation is not available. The site is not yet fully translated, so some content may remain in English for certain languages.",
+            "description": "Choose your preferred language for the site.",
+            "standard": "Standard languages"
         },
         "save": "Save",
         "errors": {
@@ -391,6 +398,18 @@
         "unsavedBar": {
             "message": "You have unsaved profile changes.",
             "reset": "Reset"
+        },
+        "tabs": {
+            "profile": "Profile",
+            "language": "Language"
+        },
+        "appearance": {
+            "title": "Appearance",
+            "description": "Choose how Modifold looks on this device."
+        },
+        "accountSecurity": {
+            "title": "Security",
+            "description": "Manage sensitive account actions."
         }
     },
     "BrowsePage": {

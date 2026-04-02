@@ -22,6 +22,7 @@ export default function OrganizationsDashboardPage({ authToken, initialOrganizat
                 <UserSettingsSidebar
                     user={user}
                     profileIconAlt={tSidebar("profileIconAlt")}
+                    mode="dashboard"
                     labels={{
                         projects: tSidebar("projects"),
                         organizations: tSidebar("organizations"),

@@ -84,6 +84,7 @@ export default function DashboardClient({ initialProjects, initialTotalPages, in
                 <UserSettingsSidebar
                     user={user}
                     profileIconAlt={t("userAvatarAlt", { username: user.username })}
+                    mode="dashboard"
                     labels={{
                         projects: tSidebar("projects"),
                         organizations: tSidebar("organizations"),

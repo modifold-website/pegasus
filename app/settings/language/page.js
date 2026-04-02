@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
-import SettingsBlogPage from "@/components/pages/SettingsBlogPage";
+import SettingsLanguagePage from "@/components/pages/SettingsLanguagePage";
 
 export async function generateMetadata() {
     const resolvedLocale = await getLocale();
@@ -49,5 +49,5 @@ export default async function Page() {
         redirect("/403");
     }
 
-    return <SettingsBlogPage initialUser={initialUser} />;
+    return <SettingsLanguagePage initialUser={initialUser} />;
 }

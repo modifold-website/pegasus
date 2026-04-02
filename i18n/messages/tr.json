@@ -338,7 +338,11 @@
             "settings": "Ayarlar",
             "apiTokens": "API token’ları",
             "verification": "Doğrulama",
-            "organizations": "Organizasyonlar"
+            "organizations": "Organizasyonlar",
+            "profile": "Profil",
+            "appearance": "Görünüm",
+            "language": "Dil",
+            "accountSecurity": "Güvenlik"
         },
         "username": "Kullanıcı adı",
         "slug": {
@@ -376,7 +380,10 @@
             "spanish": "İspanyolca",
             "portuguese": "Portekizce",
             "ukrainian": "Ukraynaca",
-            "turkish": "Türkçe"
+            "turkish": "Türkçe",
+            "notice": "Site dilini değiştirmek, çeviri yoksa bazı içeriklerin İngilizce görünmesine neden olabilir. Site henüz tamamen çevrilmediği için bazı içerikler İngilizce kalabilir.",
+            "description": "Site için tercih ettiğiniz dili seçin.",
+            "standard": "Standart diller"
         },
         "save": "Kaydet",
         "errors": {
@@ -390,6 +397,18 @@
         "unsavedBar": {
             "message": "Kaydedilmemis profil degisiklikleriniz var.",
             "reset": "Sifirla"
+        },
+        "tabs": {
+            "profile": "Profil",
+            "language": "Dil"
+        },
+        "appearance": {
+            "title": "Görünüm",
+            "description": "Modifold’un bu cihazda nasıl görüneceğini seçin."
+        },
+        "accountSecurity": {
+            "title": "Güvenlik",
+            "description": "Hassas hesap işlemlerini yönetin."
         }
     },
     "BrowsePage": {

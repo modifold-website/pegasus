@@ -75,11 +75,12 @@ export default function SettingsVerificationPage() {
                 <UserSettingsSidebar
                     user={user}
                     profileIconAlt={t("sidebar.profileIconAlt")}
+                    mode="settings"
                     labels={{
-                        projects: tSidebar("projects"),
-                        organizations: tSidebar("organizations"),
-                        notifications: tSidebar("notifications"),
-                        settings: tSidebar("settings"),
+                        profile: tSidebar("profile"),
+                        appearance: tSidebar("appearance"),
+                        language: tSidebar("language"),
+                        accountSecurity: tSidebar("accountSecurity"),
                         apiTokens: tSidebar("apiTokens"),
                         verification: tSidebar("verification"),
                     }}

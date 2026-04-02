@@ -244,7 +244,7 @@ export default function ProjectComments({
 
                                     {menuOpenId === comment.id && (
                                         <div id="popover-overlay" className="popover-overlay">
-                                            <div className="popover" tabindex="0" style={{ "--width": "max-content", "--top": "40px", "--position": "absolute", "--left": "auto", "--right": "0", "--bottom": "auto", "--distance": "8px" }}>
+                                            <div className="popover" tabIndex="0" style={{ "--width": "max-content", "--top": "40px", "--position": "absolute", "--left": "auto", "--right": "0", "--bottom": "auto", "--distance": "8px" }}>
                                                 <div className="popover__scrollable" style={{ "--max-height": "auto" }}>
                                                     {canDelete && (
                                                         <div className="context-list-option context-list-option--with-art" onClick={() => moderateComment(comment.id, "delete")}>

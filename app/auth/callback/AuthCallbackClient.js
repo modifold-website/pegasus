@@ -32,11 +32,19 @@ export default function AuthCallbackClient() {
     useEffect(() => {
         const params = parseHashParams();
         const token = params.get("token");
+        const twoFactorRequired = params.get("twofactor");
+        const twoFactorToken = params.get("twofactor_token");
         const error = params.get("error");
         const nextPath = getSafeNextPath(params.get("next"));
 
         if(error) {
             setErrorMessage(error);
+            return;
+        }
+
+        if(twoFactorRequired && twoFactorToken) {
+            const hash = new URLSearchParams({ token: twoFactorToken, next: nextPath }).toString();
+            window.location.replace(`/auth/two-factor#${hash}`);
             return;
         }
 

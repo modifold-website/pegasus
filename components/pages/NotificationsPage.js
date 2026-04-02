@@ -282,11 +282,13 @@ export default function NotificationsPage({ authToken, initialNotifications = []
                     <div className="notification-avatars-stack">
                         {notification.actors?.slice(0, 3).map((actor) => (
                             actor.slug ? (
-                                <Link key={actor.id} href={`/user/${actor.slug}`}>
+                                <Link key={actor.id} href={`/user/${actor.slug}`} className="notification-avatars-stack__item">
                                     <img src={actor.avatar || "https://media.modifold.com/static/no-project-icon.svg"} alt={actor.username} className="notification-avatars-stack__avatar" loading="lazy" />
                                 </Link>
                             ) : (
-                                <img key={actor.id} src={actor.avatar || "https://media.modifold.com/static/no-project-icon.svg"} alt={actor.username} className="notification-avatars-stack__avatar" loading="lazy" />
+                                <span key={actor.id} className="notification-avatars-stack__item">
+                                    <img src={actor.avatar || "https://media.modifold.com/static/no-project-icon.svg"} alt={actor.username} className="notification-avatars-stack__avatar" loading="lazy" />
+                                </span>
                             )
                         ))}
 
@@ -365,6 +367,7 @@ export default function NotificationsPage({ authToken, initialNotifications = []
                 <UserSettingsSidebar
                     user={user}
                     profileIconAlt={t("sidebarAvatarAlt", { username: user?.username || "" })}
+                    mode="dashboard"
                     labels={{
                         projects: tSidebar("projects"),
                         organizations: tSidebar("organizations"),

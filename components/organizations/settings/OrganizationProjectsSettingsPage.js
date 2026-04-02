@@ -7,8 +7,6 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import OrganizationSettingsSidebar from "@/components/organizations/settings/OrganizationSettingsSidebar";
 
-const DEFAULT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
-
 const PROJECT_SETTINGS_PERMISSIONS = [
     "project_edit_details",
     "project_edit_body",
@@ -78,7 +76,7 @@ export default function OrganizationProjectsSettingsPage({ authToken, organizati
                         projectItems.map((project) => (
                             <div key={project.id} className="content content--padding" style={{ display: "grid", gap: "12px" }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                                    <img src={project.icon_url || DEFAULT_ICON_URL} alt={project.title} style={{ width: "60px", height: "60px", borderRadius: "12px", objectFit: "cover" }} />
+                                    <img src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} alt={project.title} style={{ width: "60px", height: "60px", borderRadius: "12px", objectFit: "cover" }} />
                                     
                                     <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
                                         <Link href={`/mod/${project.slug}`} style={{ fontWeight: 600, lineHeight: "normal" }}>
@@ -96,7 +94,7 @@ export default function OrganizationProjectsSettingsPage({ authToken, organizati
                                 <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                                     {canOpenProjectSettings && (
                                         <Link href={`/mod/${project.slug}/settings`} className="button button--size-m button--with-icon button--type-minimal button--active-transform">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-settings-icon lucide-settings">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-settings-icon lucide-settings">
                                                 <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"></path>
                                                 <circle cx="12" cy="12" r="3"></circle>
                                             </svg>

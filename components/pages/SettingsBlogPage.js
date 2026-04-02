@@ -3,11 +3,10 @@
 import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../providers/AuthProvider";
 import { useRouter } from "next/navigation";
-import DeleteAccountSection from "../DeleteAccountSection";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
 import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
 import { SLUG_MAX_LENGTH, normalizeSlugInput, validateSlug } from "@/utils/slug";
@@ -44,7 +43,6 @@ const areSnapshotsEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 export default function SettingsBlogPage({ initialUser = null }) {
     const t = useTranslations("SettingsBlogPage");
     const tSidebar = useTranslations("SettingsBlogPage.sidebar");
-    const locale = useLocale();
     const { isLoggedIn, user, setUser } = useAuth();
     const router = useRouter();
     const effectiveUser = user || initialUser;
@@ -55,18 +53,6 @@ export default function SettingsBlogPage({ initialUser = null }) {
 
     const [previewAvatar, setPreviewAvatar] = useState(effectiveUser?.avatar || "");
     const avatarInputRef = useRef(null);
-    const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
-    const languageButtonRef = useRef(null);
-    const languageMenuRef = useRef(null);
-    const [selectedLocale, setSelectedLocale] = useState(locale || "en");
-    const languageLabels = {
-        en: t("language.english"),
-        es: t("language.spanish"),
-        pt: t("language.portuguese"),
-        ru: t("language.russian"),
-        uk: t("language.ukrainian"),
-        tr: t("language.turkish"),
-    };
 
     useEffect(() => {
         if(!isLoggedIn && !initialUser) {
@@ -83,21 +69,6 @@ export default function SettingsBlogPage({ initialUser = null }) {
         setSavedSettings(getSettingsSnapshot(getInitialFormData(effectiveUser)));
         setPreviewAvatar(effectiveUser.avatar || "");
     }, [effectiveUser]);
-
-    useEffect(() => {
-        setSelectedLocale(locale || "en");
-    }, [locale]);
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if(isLanguageMenuOpen && languageMenuRef.current && !languageMenuRef.current.contains(event.target) && languageButtonRef.current && !languageButtonRef.current.contains(event.target)) {
-                setIsLanguageMenuOpen(false);
-            }
-        };
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [isLanguageMenuOpen]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -177,17 +148,6 @@ export default function SettingsBlogPage({ initialUser = null }) {
         avatarInputRef.current?.click();
     };
 
-    const toggleLanguageMenu = () => {
-        setIsLanguageMenuOpen((prev) => !prev);
-    };
-
-    const setLanguage = (newLocale) => {
-        setSelectedLocale(newLocale);
-        document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`;
-        setIsLanguageMenuOpen(false);
-        window.location.reload();
-    };
-
     if(!isLoggedIn && !effectiveUser) {
         return null;
     }
@@ -212,11 +172,12 @@ export default function SettingsBlogPage({ initialUser = null }) {
                 <UserSettingsSidebar
                     user={effectiveUser}
                     profileIconAlt={t("sidebar.profileIconAlt")}
+                    mode="settings"
                     labels={{
-                        projects: tSidebar("projects"),
-                        organizations: tSidebar("organizations"),
-                        notifications: tSidebar("notifications"),
-                        settings: tSidebar("settings"),
+                        profile: tSidebar("profile"),
+                        appearance: tSidebar("appearance"),
+                        language: tSidebar("language"),
+                        accountSecurity: tSidebar("accountSecurity"),
                         apiTokens: tSidebar("apiTokens"),
                         verification: tSidebar("verification"),
                     }}
@@ -264,33 +225,6 @@ export default function SettingsBlogPage({ initialUser = null }) {
                             </label>
                         </div>
 
-                        <p className="blog-settings__field-title">{t("language.title")}</p>
-                        <div className="field field--default blog-settings__input" ref={languageMenuRef}>
-                            <label className="field__wrapper" onClick={toggleLanguageMenu} ref={languageButtonRef} style={{ cursor: "pointer" }}>
-                                <div className="field__wrapper-body">
-                                    <div className="select">
-                                        <div className="select__selected">
-                                            {languageLabels[selectedLocale] || t("language.english")}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <svg style={{ fill: "none" }} className={`icon icon--chevron_down ${isLanguageMenuOpen ? "rotate" : ""}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
-                            </label>
-
-                            {isLanguageMenuOpen && (
-                                <div className="popover">
-                                    <div className="context-list" data-scrollable style={{ maxHeight: "200px", overflowY: "auto" }}>
-                                        {Object.entries(languageLabels).map(([code, label]) => (
-                                            <div key={code} className={`context-list-option ${selectedLocale === code ? "context-list-option--selected" : ""}`} onClick={() => setLanguage(code)}>
-                                                <div className="context-list-option__label">{label}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
                         <p className="blog-settings__field-title">{t("socialNetworks")}</p>
                         <div className="field field--default blog-settings__input">
                             <label style={{ marginBottom: "10px" }} className="field__wrapper">
@@ -316,7 +250,6 @@ export default function SettingsBlogPage({ initialUser = null }) {
                             </label>
                         </div>
 
-                        <DeleteAccountSection />
                     </div>
                 </form>
 

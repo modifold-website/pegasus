@@ -9,14 +9,18 @@ import { useLocale, useTranslations } from "next-intl";
 import VerificationRequestModal from "../../modal/VerificationRequestModal";
 import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
 
-export default function SettingsVerificationPage() {
+export default function SettingsVerificationPage({ initialUser = null, initialVerification = null }) {
     const t = useTranslations("SettingsVerificationPage");
     const tSidebar = useTranslations("SettingsBlogPage.sidebar");
     const locale = useLocale();
     const { isLoggedIn, user } = useAuth();
     const router = useRouter();
 
-    const [verificationStatus, setVerificationStatus] = useState({ isVerified: false, request: null, loading: true });
+    const [verificationStatus, setVerificationStatus] = useState(() => ({
+        isVerified: initialVerification?.isVerified || false,
+        request: initialVerification?.request || null,
+        loading: !initialVerification,
+    }));
     const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
 
     const fetchVerificationStatus = async () => {
@@ -37,15 +41,17 @@ export default function SettingsVerificationPage() {
     };
 
     useEffect(() => {
-        if(!isLoggedIn) {
+        if(!isLoggedIn && !initialUser) {
             router.push("/403");
             return;
         }
 
-        fetchVerificationStatus();
-    }, [isLoggedIn, router]);
+        if(!initialVerification) {
+            fetchVerificationStatus();
+        }
+    }, [isLoggedIn, initialUser, initialVerification, router]);
 
-    if(!isLoggedIn) {
+    if(!isLoggedIn && !initialUser) {
         return null;
     }
 
@@ -73,13 +79,14 @@ export default function SettingsVerificationPage() {
         <div className="layout">
             <div className="page-content settings-page">
                 <UserSettingsSidebar
-                    user={user}
+                    user={user || initialUser}
                     profileIconAlt={t("sidebar.profileIconAlt")}
+                    mode="settings"
                     labels={{
-                        projects: tSidebar("projects"),
-                        organizations: tSidebar("organizations"),
-                        notifications: tSidebar("notifications"),
-                        settings: tSidebar("settings"),
+                        profile: tSidebar("profile"),
+                        appearance: tSidebar("appearance"),
+                        language: tSidebar("language"),
+                        accountSecurity: tSidebar("accountSecurity"),
                         apiTokens: tSidebar("apiTokens"),
                         verification: tSidebar("verification"),
                     }}
@@ -87,7 +94,7 @@ export default function SettingsVerificationPage() {
 
                 <div className="settings-wrapper blog-settings" style={{ height: "max-content" }}>
                     <div className="blog-settings__body">
-                        <p class="blog-settings__field-title">{t("title")}</p>
+                        <p className="blog-settings__field-title">{t("title")}</p>
                         
                         <p style={{ marginBottom: "14px", color: "var(--theme-color-text-secondary)" }}>
                             {t("benefitsNote")}
@@ -95,7 +102,7 @@ export default function SettingsVerificationPage() {
 
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
                             <div>
-                                <p class="blog-settings__field-title" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                                <p className="blog-settings__field-title" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
                                     <span>{t("statusLabel")}: {statusLabel}</span>
                                     {verificationStatus.isVerified && (
                                         <img src="/badges/verified.png" alt={t("status.verified")} width="18" height="18" style={{ display: "inline-block" }} />

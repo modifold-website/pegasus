@@ -10,36 +10,39 @@ import { useTranslations } from "next-intl";
 import CreateApiTokenModal from "../../modal/CreateApiTokenModal";
 import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
 
-export default function SettingsAPIPage() {
+export default function SettingsAPIPage({ initialUser = null, initialTokens = null, authToken = null }) {
     const t = useTranslations("SettingsAPIPage");
     const tSidebar = useTranslations("SettingsBlogPage.sidebar");
     const { isLoggedIn, user } = useAuth();
     const router = useRouter();
+    const effectiveUser = user || initialUser;
 
-    const [tokens, setTokens] = useState([]);
+    const [tokens, setTokens] = useState(initialTokens || []);
     const [newToken, setNewToken] = useState(null);
     const [form, setForm] = useState({
         name: "",
         duration: "1m",
     });
-    const [isTokensLoading, setIsTokensLoading] = useState(false);
+    const [isTokensLoading, setIsTokensLoading] = useState(initialTokens === null);
     const [isCreatingToken, setIsCreatingToken] = useState(false);
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
     useEffect(() => {
-        if(!isLoggedIn) {
+        if(!isLoggedIn && !initialUser) {
             router.push("/403");
             return;
         }
 
-        loadTokens();
-    }, [isLoggedIn, router]);
+        if(initialTokens === null) {
+            loadTokens();
+        }
+    }, [isLoggedIn, router, initialTokens, initialUser]);
 
     const loadTokens = async () => {
         try {
             setIsTokensLoading(true);
             const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE}/api-tokens`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+                headers: { Authorization: `Bearer ${authToken || localStorage.getItem("authToken")}` },
             });
 
             setTokens(res.data.tokens || []);
@@ -70,7 +73,7 @@ export default function SettingsAPIPage() {
         try {
             setIsCreatingToken(true);
             const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE}/api-tokens`, form, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+                headers: { Authorization: `Bearer ${authToken || localStorage.getItem("authToken")}` },
             });
 
             setNewToken(res.data);
@@ -99,7 +102,7 @@ export default function SettingsAPIPage() {
 
         try {
             await axios.delete(`${process.env.NEXT_PUBLIC_API_BASE}/api-tokens/${tokenId}`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+                headers: { Authorization: `Bearer ${authToken || localStorage.getItem("authToken")}` },
             });
 
             toast.success(t("success.revoked"));
@@ -109,7 +112,7 @@ export default function SettingsAPIPage() {
         }
     };
 
-    if(!isLoggedIn) {
+    if(!isLoggedIn && !effectiveUser) {
         return null;
     }
 
@@ -117,105 +120,104 @@ export default function SettingsAPIPage() {
         <div className="layout">
             <div className="page-content settings-page">
                 <UserSettingsSidebar
-                    user={user}
+                    user={effectiveUser}
                     profileIconAlt={t("sidebar.profileIconAlt")}
+                    mode="settings"
                     labels={{
-                        projects: tSidebar("projects"),
-                        organizations: tSidebar("organizations"),
-                        notifications: tSidebar("notifications"),
-                        settings: tSidebar("settings"),
+                        profile: tSidebar("profile"),
+                        appearance: tSidebar("appearance"),
+                        language: tSidebar("language"),
+                        accountSecurity: tSidebar("accountSecurity"),
                         apiTokens: tSidebar("apiTokens"),
                         verification: tSidebar("verification"),
                     }}
                 />
 
-                <div className="settings-wrapper blog-settings">
-                    <div className="blog-settings__body">
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
-                            <p className="blog-settings__field-title" style={{ marginBottom: "0" }}>{t("title")}</p>
-                            
-                            <button type="button" className="button button--size-m button--type-primary button--active-transform" onClick={() => setIsCreateModalOpen(true)}>
-                                {t("createToken")}
-                            </button>
-                        </div>
+                <div>
+                    <div className="settings-wrapper blog-settings">
+                        <div className="blog-settings__body">
+                            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
+                                <p className="blog-settings__field-title" style={{ marginBottom: "0" }}>{t("title")}</p>
+                                
+                                <button type="button" className="button button--size-m button--type-primary button--active-transform" onClick={() => setIsCreateModalOpen(true)}>
+                                    {t("createToken")}
+                                </button>
+                            </div>
 
-                        <p>{t("description")}</p>
+                            <p>{t("description")}</p>
 
-                        {newToken && (
-                            <div className="new-token-alert">
-                                <h3>{t("newTokenTitle")}</h3>
-                                <div className="token-display">
-                                    <code>{newToken.token}</code>
+                            {newToken && (
+                                <div className="new-token-alert">
+                                    <h3>{t("newTokenTitle")}</h3>
+                                    <div className="token-display">
+                                        <code>{newToken.token}</code>
 
-                                    <button onClick={handleCopyToken} className="button button--size-s button--type-primary">
-                                        {t("copy")}
-                                    </button>
+                                        <button onClick={handleCopyToken} className="button button--size-s button--type-primary">
+                                            {t("copy")}
+                                        </button>
+                                    </div>
+
+                                    <p style={{ marginBottom: "8px" }}>
+                                        <strong>{t("importantLabel")}</strong> {t("importantBody")}
+                                    </p>
+
+                                    <p>
+                                        {t("expiresLabel")} {newToken.expires_at ? new Date(newToken.expires_at).toLocaleString() : t("never")}
+                                    </p>
                                 </div>
+                            )}
 
-                                <p style={{ marginBottom: "12px" }}>
-                                    <strong>{t("importantLabel")}</strong> {t("importantBody")}
-                                </p>
-
+                            <div className="api-docs-link">
                                 <p>
-                                    {t("expiresLabel")} {newToken.expires_at ? new Date(newToken.expires_at).toLocaleString() : t("never")}
+                                    {t("docsPrompt")} {" "}
+                                    <a href={`${process.env.NEXT_PUBLIC_API_BASE}/api-docs`} target="_blank">
+                                        {t("docsLink")}
+                                    </a>
                                 </p>
                             </div>
-                        )}
+                        </div>
+                    </div>
 
-                        <div className="tokens-list" style={{ marginTop: "16px" }}>
-                            <p className="blog-settings__field-title">{t("tokensTitle")}</p>
+                    <div className="tokens-list">
+                        <p className="blog-settings__field-title">{t("tokensTitle")}</p>
 
-                            {isTokensLoading ? (
-                                <p style={{ marginBottom: "12px" }}>{t("loadingTokens")}</p>
-                            ) : tokens.length === 0 ? (
-                                <p style={{ marginBottom: "12px" }}>{t("noTokens")}</p>
-                            ) : (
-                                <table className="tokens-table">
-                                    <thead>
-                                        <tr>
-                                            <th>{t("table.name")}</th>
-                                            <th>{t("table.token")}</th>
-                                            <th>{t("table.created")}</th>
-                                            <th>{t("table.expires")}</th>
-                                            <th>{t("table.lastUsed")}</th>
-                                            <th></th>
+                        {isTokensLoading ? (
+                            <p>{t("loadingTokens")}</p>
+                        ) : tokens.length === 0 ? (
+                            <p>{t("noTokens")}</p>
+                        ) : (
+                            <table className="tokens-table">
+                                <thead>
+                                    <tr>
+                                        <th>{t("table.name")}</th>
+                                        <th>{t("table.token")}</th>
+                                        <th>{t("table.created")}</th>
+                                        <th>{t("table.expires")}</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {tokens.map((token) => (
+                                        <tr key={token.id}>
+                                            <td>{token.name}</td>
+                                            <td>
+                                                <code>{token.token}</code>
+                                            </td>
+                                            <td>{new Date(token.created_at).toLocaleDateString()}</td>
+                                            <td>
+                                                {token.expires_at ? new Date(token.expires_at).toLocaleDateString() : t("never")}
+                                            </td>
+                                            <td>
+                                                <button onClick={() => handleRevokeToken(token.id)} className="button button--size-s button--type-danger">
+                                                    {t("revoke")}
+                                                </button>
+                                            </td>
                                         </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        {tokens.map((token) => (
-                                            <tr key={token.id}>
-                                                <td>{token.name}</td>
-                                                <td>
-                                                    <code>{token.token}</code>
-                                                </td>
-                                                <td>{new Date(token.created_at).toLocaleDateString()}</td>
-                                                <td>
-                                                    {token.expires_at ? new Date(token.expires_at).toLocaleDateString() : t("never")}
-                                                </td>
-                                                <td>
-                                                    {token.last_used_at ? new Date(token.last_used_at).toLocaleString() : t("never")}
-                                                </td>
-                                                <td>
-                                                    <button onClick={() => handleRevokeToken(token.id)} className="button button--size-s button--type-danger">
-                                                        {t("revoke")}
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            )}
-                        </div>
-
-                        <div className="api-docs-link">
-                            <p>
-                                {t("docsPrompt")} {" "}
-                                <a href={`${process.env.NEXT_PUBLIC_API_BASE}/api-docs`} target="_blank">
-                                    {t("docsLink")}
-                                </a>
-                            </p>
-                        </div>
+                                    ))}
+                                </tbody>
+                            </table>
+                        )}
                     </div>
                 </div>
             </div>

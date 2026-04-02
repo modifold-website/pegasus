@@ -1,11 +1,11 @@
-﻿import { cookies } from "next/headers";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
-import SettingsAPIPage from "@/components/pages/SettingsAPIPage";
+import SettingsAccountSecurityPage from "@/components/pages/SettingsAccountSecurityPage";
 
 export async function generateMetadata() {
     const resolvedLocale = await getLocale();
-    const t = await getTranslations({ locale: resolvedLocale, namespace: "SettingsAPIPage" });
+    const t = await getTranslations({ locale: resolvedLocale, namespace: "SettingsBlogPage" });
 
     return {
         title: t("metadata.title"),
@@ -21,10 +21,10 @@ export default async function Page() {
     }
 
     let initialUser = null;
-    let initialTokens = null;
+    let initialTwoFactor = null;
 
     try {
-        const [userResponse, tokensResponse] = await Promise.all([
+        const [userResponse, twoFactorResponse] = await Promise.all([
             fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/user`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
@@ -32,7 +32,7 @@ export default async function Page() {
                 },
                 cache: "no-store",
             }),
-            fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api-tokens`, {
+            fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/2fa/status`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     Accept: "application/json",
@@ -52,17 +52,17 @@ export default async function Page() {
             }
         }
 
-        if(tokensResponse.ok) {
-            const data = await tokensResponse.json().catch(() => ({}));
-            initialTokens = data?.tokens || [];
+        if(twoFactorResponse.ok) {
+            const data = await twoFactorResponse.json().catch(() => ({}));
+            initialTwoFactor = { enabled: Boolean(data?.enabled) };
         }
     } catch (error) {
-        console.error("Failed to preload API tokens:", error);
+        console.error("Failed to preload user settings:", error);
     }
 
     if(!initialUser) {
         redirect("/403");
     }
 
-    return <SettingsAPIPage initialUser={initialUser} initialTokens={initialTokens} authToken={authToken} />;
+    return <SettingsAccountSecurityPage initialUser={initialUser} initialTwoFactor={initialTwoFactor} authToken={authToken} />;
 }

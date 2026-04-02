@@ -9,7 +9,6 @@ import { useAuth } from "../providers/AuthProvider";
 import { useTranslations } from "next-intl";
 import ProjectTags from "../ui/ProjectTags";
 import ProjectReportModal from "@/modal/ProjectReportModal";
-const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
 export default function ProjectMasthead({ project, authToken }) {
     const t = useTranslations("ProjectPage");
@@ -77,7 +76,7 @@ export default function ProjectMasthead({ project, authToken }) {
 
     const handleLikeToggle = async () => {
         if(!isLoggedIn) {
-            alert(t("loginRequired"));
+            toast.error(t("loginRequired"));
             return;
         }
 
@@ -100,7 +99,7 @@ export default function ProjectMasthead({ project, authToken }) {
             }
         } catch (error) {
             console.error("Error toggling like:", error);
-            alert(t("likeError"));
+            toast.error(t("likeError"));
         }
     };
 
@@ -161,7 +160,7 @@ export default function ProjectMasthead({ project, authToken }) {
                 <div className="masthead-info">
                     <div className="masthead-avatar">
                         <div className="avatar avatar-s-masthead">
-                            <Image src={project.icon_url || DEFAULT_PROJECT_ICON_URL} className="avatar-image" alt={project.title} width={100} height={100} priority />
+                            <Image src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} className="avatar-image" alt={project.title} width={100} height={100} priority />
                         </div>
                     </div>
 
@@ -170,7 +169,7 @@ export default function ProjectMasthead({ project, authToken }) {
                             <span>{project.title}</span>
                             {isDraftProject && (
                                 <span className="masthead-status masthead-status--draft">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-dashed-icon lucide-book-dashed">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-book-dashed-icon lucide-book-dashed">
                                         <path d="M12 17h1.5"/>
                                         <path d="M12 22h1.5"/>
                                         <path d="M12 2h1.5"/>
@@ -190,8 +189,8 @@ export default function ProjectMasthead({ project, authToken }) {
 
                             {!isDraftProject && isModerationProject && (
                                 <span className="masthead-status masthead-status--moderation">
-                                    <svg class="icon icon--settings" height="20" width="20" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="m3 6 3 1m0 0-3 9a5 5 0 0 0 6.001 0M6 7l3 9M6 7l6-2m6 2 3-1m-3 1-3 9a5 5 0 0 0 6.001 0M18 7l3 9m-3-9-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                                    <svg className="icon icon--settings" height="20" width="20" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="m3 6 3 1m0 0-3 9a5 5 0 0 0 6.001 0M6 7l3 9M6 7l6-2m6 2 3-1m-3 1-3 9a5 5 0 0 0 6.001 0M18 7l3 9m-3-9-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
                                     </svg>
 
                                     {t("status.moderation")}
@@ -242,7 +241,7 @@ export default function ProjectMasthead({ project, authToken }) {
                 <div className="masthead-buttons">
                     {user && (project.permissions?.can_edit_details || project.user_id === user.id) && (
                         <Link className="button button--size-l button--with-icon button--active-transform button--type-minimal" href={`/mod/${project.slug}/settings`}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-settings-icon lucide-settings">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-settings-icon lucide-settings">
                                 <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/>
                                 <circle cx="12" cy="12" r="3"/>
                             </svg>
@@ -274,7 +273,7 @@ export default function ProjectMasthead({ project, authToken }) {
                                     <div className="popover__scrollable" style={{ "--max-height": "auto" }}>
                                         <button style={{ width: "100%" }} type="button" className="context-list-option context-list-option--with-art" onClick={handleCopyProjectLink}>
                                             <div className="context-list-option__art context-list-option__art--icon">
-                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link-icon lucide-link">
+                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-link-icon lucide-link">
                                                     <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
                                                     <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
                                                 </svg>
@@ -287,7 +286,7 @@ export default function ProjectMasthead({ project, authToken }) {
 
                                         <button style={{ width: "100%" }} type="button" className={`context-list-option context-list-option--with-art ${reportStatus.hasReported ? "context-list-option--selected" : ""}`} onClick={openReportModal} disabled={reportStatus.hasReported || reportStatus.loading}>
                                             <div className="context-list-option__art context-list-option__art--icon">
-                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flag-icon lucide-flag">
+                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-flag-icon lucide-flag">
                                                     <path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"/>
                                                 </svg>
                                             </div>

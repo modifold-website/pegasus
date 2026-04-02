@@ -98,6 +98,7 @@ const formatDate = (timestamp, locale) => {
 
 export default function ProfilePage({ user, isBanned, isSubscribed: initialSubscribed, subscriptionId: initialSubId, authToken, projects = [], organizations = [], currentPage = 1, totalPages = 1 }) {
     const t = useTranslations("ProfilePage");
+    const tLinks = useTranslations("Organizations.settings.links");
     const locale = useLocale();
     const { isLoggedIn, user: currentUser } = useAuth();
     const [isSubscribed, setIsSubscribed] = useState(initialSubscribed);
@@ -192,54 +193,6 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
         return buttons;
     };
 
-    const socialIcons = {
-        youtube: (
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.6 15.4988V8.50128L15.84 12L9.6 15.4988Z" fill="white"/>
-                <path d="M23.4937 6.38795C23.3571 5.89505 23.0897 5.44564 22.7181 5.08471C22.3466 4.72377 21.884 4.46396 21.3766 4.33129C19.5082 3.84003 12 3.84003 12 3.84003C12 3.84003 4.49183 3.84003 2.62336 4.33129C2.11599 4.46396 1.6534 4.72377 1.28186 5.08471C0.910331 5.44564 0.642899 5.89505 0.506332 6.38795C0.157447 8.23915 -0.0118575 10.1181 0.00064491 12C-0.0118575 13.882 0.157447 15.7609 0.506332 17.6121C0.642899 18.105 0.910331 18.5544 1.28186 18.9153C1.6534 19.2763 2.11599 19.5361 2.62336 19.6688C4.49183 20.16 12 20.16 12 20.16C12 20.16 19.5082 20.16 21.3766 19.6688C21.884 19.5361 22.3466 19.2763 22.7181 18.9153C23.0897 18.5544 23.3571 18.105 23.4937 17.6121C23.8426 15.7609 24.0119 13.882 23.9994 12C24.0119 10.1181 23.8426 8.23915 23.4937 6.38795ZM9.60013 15.4972V8.50288L15.8312 12L9.60013 15.4972Z" fill="#307df0"/>
-            </svg>
-        ),
-        telegram: (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_201_1367)">
-            <path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="url(#paint0_linear_201_1367)"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.43189 11.8733C8.93014 10.3492 11.2628 9.3444 12.43 8.85893C15.7626 7.47282 16.455 7.23203 16.9064 7.22408C17.0056 7.22234 17.2276 7.24694 17.3714 7.3636C17.4928 7.46211 17.5262 7.59518 17.5422 7.68857C17.5581 7.78197 17.578 7.99473 17.5622 8.16097C17.3816 10.0585 16.6002 14.6631 16.2027 16.7884C16.0345 17.6876 15.7032 17.9891 15.3826 18.0186C14.6857 18.0828 14.1566 17.5581 13.4816 17.1157C12.4255 16.4233 11.8288 15.9924 10.8036 15.3168C9.61884 14.536 10.3869 14.1069 11.0621 13.4056C11.2388 13.2221 14.3092 10.4294 14.3686 10.176C14.376 10.1443 14.3829 10.0262 14.3128 9.96385C14.2426 9.90148 14.139 9.92281 14.0643 9.93977C13.9584 9.96381 12.2712 11.079 9.00264 13.2853C8.52373 13.6142 8.08994 13.7744 7.70129 13.766C7.27283 13.7568 6.44864 13.5238 5.83594 13.3246C5.08444 13.0803 4.48716 12.9512 4.53917 12.5363C4.56626 12.3202 4.86383 12.0992 5.43189 11.8733Z" fill="white"/>
-            </g>
-            <defs>
-            <linearGradient id="paint0_linear_201_1367" x1="12" y1="0" x2="12" y2="23.822" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#307df0"/>
-            <stop offset="1" stop-color="#307df0"/>
-            </linearGradient>
-            <clipPath id="clip0_201_1367">
-            <rect width="24" height="24" fill="#307df0"/>
-            </clipPath>
-            </defs>
-            </svg>
-        ),
-        x: (
-            <svg width="20" height="21" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.0180316 25H2.10969L10.296 15.3012L16.8054 25H24L14.299 10.6172L23.2066 0H21.0789L13.3434 9.18442L7.1405 0H0L9.37641 13.9236L0.0180316 25ZM2.88505 1.63483H6.1127L21.0969 23.457H17.8332L2.88505 1.63483Z" fill="#307df0"/>
-            </svg>
-        ),
-        discord: (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_5_26)">
-                    <path d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12Z" fill="url(#paint0_linear_5_26)"/>
-                    <path d="M17.6488 6.75727C16.6152 6.29239 15.496 5.95498 14.3303 5.76003C14.3201 5.75972 14.3099 5.76157 14.3005 5.76546C14.2911 5.76934 14.2827 5.77517 14.2759 5.78253C14.136 6.02996 13.9728 6.35238 13.864 6.59981C12.6275 6.41986 11.3701 6.41986 10.1336 6.59981C10.0248 6.34488 9.8616 6.02996 9.71393 5.78253C9.70616 5.76753 9.68285 5.76003 9.65953 5.76003C8.49379 5.95498 7.38244 6.29239 6.34104 6.75727C6.33327 6.75727 6.3255 6.76477 6.31773 6.77227C4.20384 9.82397 3.62097 12.7932 3.90852 15.7324C3.90852 15.7474 3.91629 15.7624 3.93183 15.7699C5.33073 16.7597 6.67522 17.3595 8.00417 17.7569C8.02749 17.7644 8.0508 17.7569 8.05857 17.7419C8.36944 17.3295 8.64922 16.8946 8.89014 16.4372C8.90568 16.4072 8.89014 16.3773 8.85905 16.3698C8.41607 16.2048 7.9964 16.0099 7.5845 15.7849C7.55342 15.7699 7.55342 15.7249 7.57673 15.7024C7.66222 15.6424 7.74771 15.575 7.8332 15.515C7.84874 15.5 7.87206 15.5 7.8876 15.5075C10.561 16.6847 13.4443 16.6847 16.0867 15.5075C16.1022 15.5 16.1255 15.5 16.1411 15.515C16.2266 15.5825 16.3121 15.6424 16.3975 15.7099C16.4286 15.7324 16.4286 15.7774 16.3898 15.7924C15.9856 16.0248 15.5582 16.2123 15.1152 16.3773C15.0841 16.3848 15.0764 16.4222 15.0841 16.4447C15.3328 16.9021 15.6126 17.337 15.9157 17.7494C15.939 17.7569 15.9623 17.7644 15.9856 17.7569C17.3224 17.3595 18.6669 16.7597 20.0658 15.7699C20.0813 15.7624 20.0891 15.7474 20.0891 15.7324C20.431 12.3358 19.5217 9.38908 17.6799 6.77227C17.6721 6.76477 17.6643 6.75727 17.6488 6.75727ZM9.29427 13.9404C8.49379 13.9404 7.82542 13.2281 7.82542 12.3508C7.82542 11.4735 8.47824 10.7612 9.29427 10.7612C10.1181 10.7612 10.7709 11.481 10.7631 12.3508C10.7631 13.2281 10.1103 13.9404 9.29427 13.9404ZM14.7111 13.9404C13.9106 13.9404 13.2423 13.2281 13.2423 12.3508C13.2423 11.4735 13.8951 10.7612 14.7111 10.7612C15.5349 10.7612 16.1877 11.481 16.1799 12.3508C16.1799 13.2281 15.5349 13.9404 14.7111 13.9404Z" fill="white"/>
-                </g>
-                <defs>
-                    <linearGradient id="paint0_linear_5_26" x1="12" y1="0" x2="12" y2="24" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#307df0"/>
-                        <stop offset="1" stop-color="#307df0"/>
-                    </linearGradient>
-                    <clipPath id="clip0_5_26">
-                        <rect width="24" height="24" fill="#307df0"/>
-                    </clipPath>
-                </defs>
-            </svg>
-        ),
-    };
-
     return (
         <>
             <div className="layout">
@@ -309,11 +262,11 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
 
                                 <p className="subsite-header__description">{desc}</p>
 
-                                <div class="subsite-header__cols">
-                                    <div class="subsite-header__date-created">{t("joined")} {formatDate(user.created_at, locale)}</div>
+                                <div className="subsite-header__cols">
+                                    <div className="subsite-header__date-created">{t("joined")} {formatDate(user.created_at, locale)}</div>
                                 </div>
 
-                                <div class="subsite-followers">
+                                <div className="subsite-followers">
                                     <button type="button" className={`subsite-followers__item subsite-followers__item--button ${countSubs < 1 ? "subsite-followers__item--disabled" : ""}`} onClick={() => handleOpenFollowModal("subscribers")} disabled={countSubs < 1}>
                                         <span>{countSubs}</span> {t("subscribersLabel", { count: countSubs })}
                                     </button>
@@ -322,28 +275,71 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                                         <span>{countUserSubs}</span> {t("subscriptionsLabel", { count: countUserSubs })}
                                     </button>
                                 </div>
-
-                                {user.social_links && Object.keys(user.social_links).length > 0 && (
-                                    <div className="subsite-social-links">
-                                        <div className="social-links__list">
-                                            {Object.entries(user.social_links).map(([key, url]) => {
-                                                const safeUrl = getSafeExternalUrl(url);
-                                                return safeUrl ? (
-                                                    <a key={key} href={safeUrl} target="_blank" rel="noopener noreferrer" className="social-links__item button--active-transform" title={key.charAt(0).toUpperCase() + key.slice(1)}>
-                                                        {socialIcons[key] || (
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                                                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                                                            </svg>
-                                                        )}
-                                                    </a>
-                                                ) : null;
-                                            })}
-                                        </div>
-                                    </div>
-                                )}
                             </div>
                         </div>
+
+                        {(user?.social_links?.discord || user?.social_links?.x || user?.social_links?.telegram || user?.social_links?.youtube) && (
+                            <div className="content content--padding">
+                                <h2>{t("linksTitle")}</h2>
+
+                                <ul className="links-list">
+                                    {user?.social_links?.discord && (
+                                        <li>
+                                            <a href={getSafeExternalUrl(user?.social_links?.discord)} target="_blank" rel="noopener noreferrer">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="71" height="55" fill="none" viewBox="0 0 71 55" className="shrink" aria-hidden="true"><g clipPath="url(#a)"><path fill="currentColor" d="M60.105 4.898A58.6 58.6 0 0 0 45.653.415a.22.22 0 0 0-.233.11 41 41 0 0 0-1.8 3.697c-5.456-.817-10.885-.817-16.23 0-.485-1.164-1.201-2.587-1.828-3.697a.23.23 0 0 0-.233-.11 58.4 58.4 0 0 0-14.451 4.483.2.2 0 0 0-.095.082C1.578 18.73-.944 32.144.293 45.39a.24.24 0 0 0 .093.167c6.073 4.46 11.955 7.167 17.729 8.962a.23.23 0 0 0 .249-.082 42 42 0 0 0 3.627-5.9.225.225 0 0 0-.123-.312 39 39 0 0 1-5.539-2.64.228.228 0 0 1-.022-.378c.372-.279.744-.569 1.1-.862a.22.22 0 0 1 .23-.03c11.619 5.304 24.198 5.304 35.68 0a.22.22 0 0 1 .233.027c.356.293.728.586 1.103.865a.228.228 0 0 1-.02.378 36.4 36.4 0 0 1-5.54 2.637.227.227 0 0 0-.121.315 47 47 0 0 0 3.624 5.897.225.225 0 0 0 .249.084c5.801-1.794 11.684-4.502 17.757-8.961a.23.23 0 0 0 .092-.164c1.48-15.315-2.48-28.618-10.497-40.412a.18.18 0 0 0-.093-.084m-36.38 32.427c-3.497 0-6.38-3.211-6.38-7.156s2.827-7.156 6.38-7.156c3.583 0 6.438 3.24 6.382 7.156 0 3.945-2.827 7.156-6.381 7.156m23.593 0c-3.498 0-6.38-3.211-6.38-7.156s2.826-7.156 6.38-7.156c3.582 0 6.437 3.24 6.38 7.156 0 3.945-2.798 7.156-6.38 7.156"></path></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h71v55H0z"></path></clipPath></defs></svg>
+                                                
+                                                {tLinks("fields.discord")}
+                                                
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                                            </a>
+                                        </li>
+                                    )}
+
+                                    {user?.social_links?.x && (
+                                        <li>
+                                            <a href={getSafeExternalUrl(user?.social_links?.x)} target="_blank" rel="noopener noreferrer">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                                    <path fill="currentColor" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path>
+                                                </svg>
+
+                                                {tLinks("fields.twitter")}
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                                            </a>
+                                        </li>
+                                    )}
+
+                                    {user?.social_links?.telegram && (
+                                        <li>
+                                            <a href={getSafeExternalUrl(user?.social_links?.telegram)} target="_blank" rel="noopener noreferrer">
+                                                <svg width="24" height="24" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M22.122 10.040c0.006-0 0.014-0 0.022-0 0.209 0 0.403 0.065 0.562 0.177l-0.003-0.002c0.116 0.101 0.194 0.243 0.213 0.403l0 0.003c0.020 0.122 0.031 0.262 0.031 0.405 0 0.065-0.002 0.129-0.007 0.193l0-0.009c-0.225 2.369-1.201 8.114-1.697 10.766-0.21 1.123-0.623 1.499-1.023 1.535-0.869 0.081-1.529-0.574-2.371-1.126-1.318-0.865-2.063-1.403-3.342-2.246-1.479-0.973-0.52-1.51 0.322-2.384 0.221-0.23 4.052-3.715 4.127-4.031 0.004-0.019 0.006-0.040 0.006-0.062 0-0.078-0.029-0.149-0.076-0.203l0 0c-0.052-0.034-0.117-0.053-0.185-0.053-0.045 0-0.088 0.009-0.128 0.024l0.002-0.001q-0.198 0.045-6.316 4.174c-0.445 0.351-1.007 0.573-1.619 0.599l-0.006 0c-0.867-0.105-1.654-0.298-2.401-0.573l0.074 0.024c-0.938-0.306-1.683-0.467-1.619-0.985q0.051-0.404 1.114-0.827 6.548-2.853 8.733-3.761c1.607-0.853 3.47-1.555 5.429-2.010l0.157-0.031zM15.93 1.025c-8.302 0.020-15.025 6.755-15.025 15.060 0 8.317 6.742 15.060 15.060 15.060s15.060-6.742 15.060-15.060c0-8.305-6.723-15.040-15.023-15.060h-0.002q-0.035-0-0.070 0z" fill="currentColor"></path>
+                                                </svg>
+
+                                                {tLinks("fields.telegram")}
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                                            </a>
+                                        </li>
+                                    )}
+
+                                    {user?.social_links?.youtube && (
+                                        <li>
+                                            <a href={getSafeExternalUrl(user?.social_links?.youtube)} target="_blank" rel="noopener noreferrer">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M9.6 15.4988V8.50128L15.84 12L9.6 15.4988Z" fill="white"></path>
+                                                    <path d="M23.4937 6.38795C23.3571 5.89505 23.0897 5.44564 22.7181 5.08471C22.3466 4.72377 21.884 4.46396 21.3766 4.33129C19.5082 3.84003 12 3.84003 12 3.84003C12 3.84003 4.49183 3.84003 2.62336 4.33129C2.11599 4.46396 1.6534 4.72377 1.28186 5.08471C0.910331 5.44564 0.642899 5.89505 0.506332 6.38795C0.157447 8.23915 -0.0118575 10.1181 0.00064491 12C-0.0118575 13.882 0.157447 15.7609 0.506332 17.6121C0.642899 18.105 0.910331 18.5544 1.28186 18.9153C1.6534 19.2763 2.11599 19.5361 2.62336 19.6688C4.49183 20.16 12 20.16 12 20.16C12 20.16 19.5082 20.16 21.3766 19.6688C21.884 19.5361 22.3466 19.2763 22.7181 18.9153C23.0897 18.5544 23.3571 18.105 23.4937 17.6121C23.8426 15.7609 24.0119 13.882 23.9994 12C24.0119 10.1181 23.8426 8.23915 23.4937 6.38795ZM9.60013 15.4972V8.50288L15.8312 12L9.60013 15.4972Z" fill="currentColor"></path>
+                                                </svg>
+
+                                                {tLinks("fields.youtube")}
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                                            </a>
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
+                        )}
 
                         {organizations.length > 0 && (
                             <div className="content content--padding">

@@ -988,8 +988,7 @@
             "name": "Name",
             "token": "Token (masked)",
             "created": "Created",
-            "expires": "Expires",
-            "lastUsed": "Last used"
+            "expires": "Expires"
         },
         "metadata": {
             "title": "API Tokens — Modifold"

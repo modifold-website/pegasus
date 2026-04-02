@@ -988,8 +988,7 @@
             "name": "Назва",
             "token": "Токен (приховано)",
             "created": "Створено",
-            "expires": "Дійсний до",
-            "lastUsed": "Останнє використання"
+            "expires": "Дійсний до"
         },
         "metadata": {
             "title": "API-токени — Modifold"

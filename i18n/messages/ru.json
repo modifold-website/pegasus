@@ -988,8 +988,7 @@
             "name": "Название",
             "token": "Токен (скрыт)",
             "created": "Создан",
-            "expires": "Истекает",
-            "lastUsed": "Последнее использование"
+            "expires": "Истекает"
         },
         "metadata": {
             "title": "API токены — Modifold"

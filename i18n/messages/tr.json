@@ -987,8 +987,7 @@
             "name": "Ad",
             "token": "Token (gizli)",
             "created": "Oluşturulma",
-            "expires": "Bitiş",
-            "lastUsed": "Son kullanım"
+            "expires": "Bitiş"
         },
         "metadata": {
             "title": "API token’ları - Modifold"

@@ -499,7 +499,8 @@
       "frozen": "Hesap donduruldu - Modifold"
     },
     "remove": "Kaldır",
-    "organizationsTitle": "Organizasyonlar"
+    "organizationsTitle": "Organizasyonlar",
+    "linksTitle": "Bağlantılar"
   },
   "SettingsProjectPage": {
     "sidebar": {

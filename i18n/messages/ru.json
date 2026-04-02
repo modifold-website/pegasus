@@ -500,7 +500,8 @@
       "frozen": "Аккаунт заморожен — Modifold"
     },
     "remove": "Убрать",
-    "organizationsTitle": "Организации"
+    "organizationsTitle": "Организации",
+    "linksTitle": "Ссылки"
   },
   "SettingsProjectPage": {
     "sidebar": {

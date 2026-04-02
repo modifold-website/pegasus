@@ -410,6 +410,33 @@
         "accountSecurity": {
             "title": "Безпека",
             "description": "Керуйте важливими діями облікового запису."
+        },
+        "twoFactor": {
+            "title": "Двофакторна автентифікація",
+            "description": "Додайте ще один рівень безпеки під час входу.",
+            "enable": "Підключити автентифікатор",
+            "disable": "Вимкнути 2FA",
+            "modalTitle": "Підключити автентифікатор",
+            "step1": "Скануйте QR‑код у Google Authenticator, Authy або Microsoft Authenticator.",
+            "manualKey": "Якщо QR не сканується, введіть ключ вручну",
+            "continue": "Продовжити",
+            "back": "Назад",
+            "cancel": "Скасувати",
+            "step2Title": "Код підтвердження",
+            "step2Description": "Введіть одноразовий код із застосунку.",
+            "codePlaceholder": "Введіть код...",
+            "confirm": "Підтвердити",
+            "submitting": "Збереження...",
+            "success": "Двофакторну автентифікацію увімкнено",
+            "disabled": "Двофакторну автентифікацію вимкнено",
+            "disableTitle": "Вимкнути двофакторну автентифікацію",
+            "disableDescription": "Введіть код із застосунку, щоб вимкнути 2FA.",
+            "close": "Закрити",
+            "errors": {
+                "setup": "Не вдалося розпочати налаштування 2FA",
+                "missingCode": "Введіть код",
+                "invalidCode": "Невірний код"
+            }
         }
     },
     "BrowsePage": {
@@ -1500,6 +1527,21 @@
                 "organization_add_project": "Додавати проєкти",
                 "organization_remove_project": "Видаляти проєкти"
             }
+        }
+    },
+    "TwoFactorLogin": {
+        "title": "Двофакторна автентифікація",
+        "description": "Введіть одноразовий код із застосунку.",
+        "codeLabel": "Код підтвердження",
+        "codePlaceholder": "Введіть код...",
+        "submit": "Продовжити",
+        "submitting": "Перевірка...",
+        "errors": {
+            "missingToken": "Відсутній токен 2FA.",
+            "missingCode": "Введіть код.",
+            "invalidCode": "Невірний код.",
+            "invalidResponse": "Невірна відповідь сервера.",
+            "generic": "Не вдалося перевірити код."
         }
     }
 }

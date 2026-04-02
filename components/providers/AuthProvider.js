@@ -40,7 +40,12 @@ export function AuthProvider({ children, isLoggedIn, userData }) {
                 throw new Error(data.message);
             }
 
+            if(data.twoFactorRequired && data.twoFactorToken) {
+                return { twoFactorRequired: true, twoFactorToken: data.twoFactorToken };
+            }
+
             await completeLogin(data.token);
+            return { twoFactorRequired: false };
         } catch (error) {
             console.error("Telegram Login Error:", error);
             throw error;
@@ -91,8 +96,15 @@ export function AuthProvider({ children, isLoggedIn, userData }) {
                 const decodedPayload = new TextDecoder().decode(bytes);
                 const telegramData = JSON.parse(decodedPayload);
 
-                await telegramLogin(telegramData);
+                const result = await telegramLogin(telegramData);
                 sessionStorage.removeItem("telegramAuthReturnPath");
+
+                if(result?.twoFactorRequired && result?.twoFactorToken) {
+                    const hash = new URLSearchParams({ token: result.twoFactorToken, next: nextPath }).toString();
+                    window.location.replace(`/auth/two-factor#${hash}`);
+                    return;
+                }
+
                 window.location.replace(nextPath);
             } catch (error) {
                 console.error("Telegram redirect login error:", error);

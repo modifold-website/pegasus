@@ -410,6 +410,33 @@
         "accountSecurity": {
             "title": "Security",
             "description": "Manage sensitive account actions."
+        },
+        "twoFactor": {
+            "title": "Two-factor authentication",
+            "description": "Add an extra layer of security when signing in.",
+            "enable": "Connect authenticator",
+            "disable": "Disable 2FA",
+            "modalTitle": "Connect authenticator",
+            "step1": "Scan the QR code in Google Authenticator, Authy, or Microsoft Authenticator.",
+            "manualKey": "If the QR code does not scan, enter the key manually",
+            "continue": "Continue",
+            "back": "Back",
+            "cancel": "Cancel",
+            "step2Title": "Verification code",
+            "step2Description": "Enter the one-time code from your app.",
+            "codePlaceholder": "Enter code...",
+            "confirm": "Confirm",
+            "submitting": "Saving...",
+            "success": "Two-factor authentication enabled",
+            "disabled": "Two-factor authentication disabled",
+            "disableTitle": "Disable two-factor authentication",
+            "disableDescription": "Enter the code from your app to disable 2FA.",
+            "close": "Close",
+            "errors": {
+                "setup": "Failed to start 2FA setup",
+                "missingCode": "Enter the code",
+                "invalidCode": "Invalid code"
+            }
         }
     },
     "BrowsePage": {
@@ -1500,6 +1527,21 @@
                 "organization_add_project": "Add project",
                 "organization_remove_project": "Remove project"
             }
+        }
+    },
+    "TwoFactorLogin": {
+        "title": "Two-factor authentication",
+        "description": "Enter the one-time code from your authenticator app.",
+        "codeLabel": "Verification code",
+        "codePlaceholder": "Enter code...",
+        "submit": "Continue",
+        "submitting": "Verifying...",
+        "errors": {
+            "missingToken": "Two-factor token is missing.",
+            "missingCode": "Enter the code.",
+            "invalidCode": "Invalid code.",
+            "invalidResponse": "Invalid response from server.",
+            "generic": "Failed to verify code."
         }
     }
 }

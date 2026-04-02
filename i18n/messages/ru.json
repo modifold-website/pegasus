@@ -410,6 +410,33 @@
         "accountSecurity": {
             "title": "Безопасность",
             "description": "Управляйте важными действиями аккаунта."
+        },
+        "twoFactor": {
+            "title": "Двухфакторная аутентификация",
+            "description": "Добавьте ещё один уровень безопасности при входе.",
+            "enable": "Привязать аутентификатор",
+            "disable": "Отключить 2ФА",
+            "modalTitle": "Привязать аутентификатор",
+            "step1": "Отсканируйте QR‑код в Google Authenticator, Authy или Microsoft Authenticator.",
+            "manualKey": "Если QR не сканируется, введите ключ вручную",
+            "continue": "Продолжить",
+            "back": "Назад",
+            "cancel": "Отмена",
+            "step2Title": "Код подтверждения",
+            "step2Description": "Введите одноразовый код из приложения.",
+            "codePlaceholder": "Введите код...",
+            "confirm": "Подтвердить",
+            "submitting": "Сохранение...",
+            "success": "Двухфакторная аутентификация включена",
+            "disabled": "Двухфакторная аутентификация отключена",
+            "disableTitle": "Отключить двухфакторную аутентификацию",
+            "disableDescription": "Введите код из приложения, чтобы отключить 2ФА.",
+            "close": "Закрыть",
+            "errors": {
+                "setup": "Не удалось начать настройку 2ФА",
+                "missingCode": "Введите код",
+                "invalidCode": "Неверный код"
+            }
         }
     },
     "BrowsePage": {
@@ -1500,6 +1527,21 @@
                 "organization_add_project": "Добавлять проекты",
                 "organization_remove_project": "Удалять проекты"
             }
+        }
+    },
+    "TwoFactorLogin": {
+        "title": "Двухфакторная аутентификация",
+        "description": "Введите одноразовый код из приложения.",
+        "codeLabel": "Код подтверждения",
+        "codePlaceholder": "Введите код...",
+        "submit": "Продолжить",
+        "submitting": "Проверка...",
+        "errors": {
+            "missingToken": "Отсутствует токен 2ФА.",
+            "missingCode": "Введите код.",
+            "invalidCode": "Неверный код.",
+            "invalidResponse": "Неверный ответ сервера.",
+            "generic": "Не удалось проверить код."
         }
     }
 }

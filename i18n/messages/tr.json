@@ -409,6 +409,33 @@
         "accountSecurity": {
             "title": "Güvenlik",
             "description": "Hassas hesap işlemlerini yönetin."
+        },
+        "twoFactor": {
+            "title": "İki faktörlü doğrulama",
+            "description": "Girişte ekstra bir güvenlik katmanı ekleyin.",
+            "enable": "Doğrulayıcı bağla",
+            "disable": "2FA’yı devre dışı bırak",
+            "modalTitle": "Doğrulayıcı bağla",
+            "step1": "QR kodunu Google Authenticator, Authy veya Microsoft Authenticator ile tarayın.",
+            "manualKey": "QR okunmazsa anahtarı manuel girin",
+            "continue": "Devam",
+            "back": "Geri",
+            "cancel": "İptal",
+            "step2Title": "Doğrulama kodu",
+            "step2Description": "Uygulamadan tek kullanımlık kodu girin.",
+            "codePlaceholder": "Kodu girin...",
+            "confirm": "Onayla",
+            "submitting": "Kaydediliyor...",
+            "success": "İki faktörlü doğrulama etkinleştirildi",
+            "disabled": "İki faktörlü doğrulama devre dışı bırakıldı",
+            "disableTitle": "İki faktörlü doğrulamayı kapat",
+            "disableDescription": "2FA’yı kapatmak için uygulama kodunu girin.",
+            "close": "Kapat",
+            "errors": {
+                "setup": "2FA kurulumu başlatılamadı",
+                "missingCode": "Kodu girin",
+                "invalidCode": "Geçersiz kod"
+            }
         }
     },
     "BrowsePage": {
@@ -1499,6 +1526,21 @@
                 "organization_add_project": "Proje ekle",
                 "organization_remove_project": "Projeyi kaldır"
             }
+        }
+    },
+    "TwoFactorLogin": {
+        "title": "İki faktörlü doğrulama",
+        "description": "Uygulamadan tek kullanımlık kodu girin.",
+        "codeLabel": "Doğrulama kodu",
+        "codePlaceholder": "Kodu girin...",
+        "submit": "Devam",
+        "submitting": "Doğrulanıyor...",
+        "errors": {
+            "missingToken": "2FA belirteci eksik.",
+            "missingCode": "Kodu girin.",
+            "invalidCode": "Geçersiz kod.",
+            "invalidResponse": "Sunucudan geçersiz yanıt.",
+            "generic": "Kod doğrulanamadı."
         }
     }
 }

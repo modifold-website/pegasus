@@ -409,6 +409,33 @@
         "accountSecurity": {
             "title": "Segurança",
             "description": "Gerencie ações sensíveis da conta."
+        },
+        "twoFactor": {
+            "title": "Autenticação de dois fatores",
+            "description": "Adicione uma camada extra de segurança ao entrar.",
+            "enable": "Vincular autenticador",
+            "disable": "Desativar 2FA",
+            "modalTitle": "Vincular autenticador",
+            "step1": "Escaneie o QR no Google Authenticator, Authy ou Microsoft Authenticator.",
+            "manualKey": "Se o QR não funcionar, insira a chave manualmente",
+            "continue": "Continuar",
+            "back": "Voltar",
+            "cancel": "Cancelar",
+            "step2Title": "Código de verificação",
+            "step2Description": "Digite o código de uso único do app.",
+            "codePlaceholder": "Digite o código...",
+            "confirm": "Confirmar",
+            "submitting": "Salvando...",
+            "success": "Autenticação de dois fatores ativada",
+            "disabled": "Autenticação de dois fatores desativada",
+            "disableTitle": "Desativar autenticação de dois fatores",
+            "disableDescription": "Digite o código do app para desativar 2FA.",
+            "close": "Fechar",
+            "errors": {
+                "setup": "Falha ao iniciar a configuração de 2FA",
+                "missingCode": "Digite o código",
+                "invalidCode": "Código inválido"
+            }
         }
     },
     "BrowsePage": {
@@ -1499,6 +1526,21 @@
                 "organization_add_project": "Adicionar projeto",
                 "organization_remove_project": "Remover projeto"
             }
+        }
+    },
+    "TwoFactorLogin": {
+        "title": "Autenticação de dois fatores",
+        "description": "Digite o código de uso único do app.",
+        "codeLabel": "Código de verificação",
+        "codePlaceholder": "Digite o código...",
+        "submit": "Continuar",
+        "submitting": "Verificando...",
+        "errors": {
+            "missingToken": "Token de 2FA ausente.",
+            "missingCode": "Digite o código.",
+            "invalidCode": "Código inválido.",
+            "invalidResponse": "Resposta inválida do servidor.",
+            "generic": "Falha ao verificar o código."
         }
     }
 }

@@ -21,25 +21,40 @@ export default async function Page() {
     }
 
     let initialUser = null;
+    let initialTwoFactor = null;
 
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/user`, {
-            headers: {
-                Authorization: `Bearer ${authToken}`,
-                Accept: "application/json",
-            },
-            cache: "no-store",
-        });
+        const [userResponse, twoFactorResponse] = await Promise.all([
+            fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/user`, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    Accept: "application/json",
+                },
+                cache: "no-store",
+            }),
+            fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/2fa/status`, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                    Accept: "application/json",
+                },
+                cache: "no-store",
+            }),
+        ]);
 
-        if(response.status === 401 || response.status === 403) {
+        if(userResponse.status === 401 || userResponse.status === 403) {
             redirect("/403");
         }
 
-        if(response.ok) {
-            const data = await response.json().catch(() => ({}));
+        if(userResponse.ok) {
+            const data = await userResponse.json().catch(() => ({}));
             if(data?.success && data?.user) {
                 initialUser = data.user;
             }
+        }
+
+        if(twoFactorResponse.ok) {
+            const data = await twoFactorResponse.json().catch(() => ({}));
+            initialTwoFactor = { enabled: Boolean(data?.enabled) };
         }
     } catch (error) {
         console.error("Failed to preload user settings:", error);
@@ -49,5 +64,5 @@ export default async function Page() {
         redirect("/403");
     }
 
-    return <SettingsAccountSecurityPage initialUser={initialUser} />;
+    return <SettingsAccountSecurityPage initialUser={initialUser} initialTwoFactor={initialTwoFactor} authToken={authToken} />;
 }

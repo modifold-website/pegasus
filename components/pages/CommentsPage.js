@@ -31,7 +31,7 @@ export default function CommentsPage({ project, authToken, initialComments, init
                             />
                         </div>
 
-                        <ProjectSidebar project={project} showLicense={false} showLinks={false} />
+                        <ProjectSidebar project={project} showLicense={true} showLinks={false} />
                     </div>
                 </div>
             </div>

@@ -9,7 +9,6 @@ import { useAuth } from "../providers/AuthProvider";
 import { useTranslations } from "next-intl";
 import ProjectTags from "../ui/ProjectTags";
 import ProjectReportModal from "@/modal/ProjectReportModal";
-const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
 export default function ProjectMasthead({ project, authToken }) {
     const t = useTranslations("ProjectPage");
@@ -77,7 +76,7 @@ export default function ProjectMasthead({ project, authToken }) {
 
     const handleLikeToggle = async () => {
         if(!isLoggedIn) {
-            alert(t("loginRequired"));
+            toast.error(t("loginRequired"));
             return;
         }
 
@@ -100,7 +99,7 @@ export default function ProjectMasthead({ project, authToken }) {
             }
         } catch (error) {
             console.error("Error toggling like:", error);
-            alert(t("likeError"));
+            toast.error(t("likeError"));
         }
     };
 
@@ -161,7 +160,7 @@ export default function ProjectMasthead({ project, authToken }) {
                 <div className="masthead-info">
                     <div className="masthead-avatar">
                         <div className="avatar avatar-s-masthead">
-                            <Image src={project.icon_url || DEFAULT_PROJECT_ICON_URL} className="avatar-image" alt={project.title} width={100} height={100} priority />
+                            <Image src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} className="avatar-image" alt={project.title} width={100} height={100} priority />
                         </div>
                     </div>
 

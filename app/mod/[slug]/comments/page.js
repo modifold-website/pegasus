@@ -24,7 +24,6 @@ export async function generateMetadata({ params }) {
     }
 
     const description = project.summary.length > 160 ? `${project.summary.substring(0, 157)}...` : project.summary;
-    const baseUrl = "https://modifold.com";
 
     return {
         title: `${project.title} — Modifold`,
@@ -33,8 +32,8 @@ export async function generateMetadata({ params }) {
         author: project.owner.username,
         robots: "index, follow",
         alternates: {
-            canonical: `${baseUrl}/mod/${project.slug}/comments`,
-            "x-default": `${baseUrl}/mod/${project.slug}/comments`,
+            canonical: `https://modifold.com/mod/${project.slug}/comments`,
+            "x-default": `https://modifold.com/mod/${project.slug}/comments`,
         },
         openGraph: {
             title: `${project.title} — Modifold`,
@@ -47,7 +46,7 @@ export async function generateMetadata({ params }) {
                     alt: `${project.title} Hytale Mod`,
                 },
             ],
-            url: `${baseUrl}/mod/${project.slug}/comments`,
+            url: `https://modifold.com/mod/${project.slug}/comments`,
             type: "website",
             locale: ogLocale,
         },
@@ -90,7 +89,14 @@ export default async function Page({ params }) {
     });
 
     const members = membersRes.ok ? await membersRes.json() : [];
-    const baseUrl = "https://modifold.com";
+    const commentsRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/comments`, {
+        headers: {
+            Accept: "application/json",
+            Authorization: authToken ? `Bearer ${authToken}` : undefined,
+        },
+        cache: "no-store",
+    });
+    const commentsData = commentsRes.ok ? await commentsRes.json() : { comments: [], canModerate: false };
 
     return (
         <>
@@ -103,15 +109,21 @@ export default async function Page({ params }) {
                     "operatingSystem": "Hytale",
                     "author": { "@type": "Person", "name": project.owner.username },
                     "description": project.summary,
-                    "url": `${baseUrl}/mod/${project.slug}/comments`,
+                    "url": `https://modifold.com/mod/${project.slug}/comments`,
                     "image": project.icon_url || DEFAULT_PROJECT_ICON_URL,
                     "inLanguage": resolvedLocale,
                 })}
             </Script>
 
-            <link rel="alternate" hrefLang="x-default" href={`${baseUrl}/mod/${project.slug}/comments`} />
+            <link rel="alternate" hrefLang="x-default" href={`https://modifold.com/mod/${project.slug}/comments`} />
 
-            <CommentsPage project={{ ...project, members }} authToken={authToken} />
+            <CommentsPage
+                project={{ ...project, members }}
+                authToken={authToken}
+                initialComments={commentsData.comments || []}
+                initialCanModerate={!!commentsData.canModerate}
+                initialCommentsLoaded={commentsRes.ok}
+            />
         </>
     );
 }

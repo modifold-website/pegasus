@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
@@ -5,17 +7,23 @@ import { useAuth } from "../providers/AuthProvider";
 import { toast } from "react-toastify";
 import UserName from "../ui/UserName";
 
-export default function ProjectComments({ project, authToken }) {
+export default function ProjectComments({
+    project,
+    authToken,
+    initialComments = [],
+    initialCanModerate = false,
+    initialCommentsLoaded = false,
+}) {
     const t = useTranslations("ProjectPage");
     const locale = useLocale();
     const { isLoggedIn, user } = useAuth();
-    const [comments, setComments] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [comments, setComments] = useState(initialCommentsLoaded ? initialComments : []);
+    const [loading, setLoading] = useState(!initialCommentsLoaded);
     const [isPosting, setIsPosting] = useState(false);
     const [commentText, setCommentText] = useState("");
     const [replyTo, setReplyTo] = useState(null);
     const [replyText, setReplyText] = useState("");
-    const [canModerate, setCanModerate] = useState(false);
+    const [canModerate, setCanModerate] = useState(!!initialCanModerate);
     const [menuOpenId, setMenuOpenId] = useState(null);
 
     const formatDate = (timestamp) => {
@@ -49,8 +57,15 @@ export default function ProjectComments({ project, authToken }) {
     };
 
     useEffect(() => {
+        if(initialCommentsLoaded) {
+            setComments(initialComments);
+            setCanModerate(!!initialCanModerate);
+            setLoading(false);
+            return;
+        }
+
         fetchComments();
-    }, [project.slug]);
+    }, [project.slug, initialCommentsLoaded, initialComments, initialCanModerate]);
 
     useEffect(() => {
         if(menuOpenId === null) {

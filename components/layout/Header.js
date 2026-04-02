@@ -243,7 +243,7 @@ export default function Header({ authToken }) {
 
                     <div className="browse-menu-wrapper" ref={browseWrapperRef} onMouseEnter={openBrowseMenu} onMouseLeave={scheduleCloseBrowseMenu}>
                         <button style={{ "--button-font-size": "16px" }} className={`button button--size-m button--type-secondary button__browse--with-icon button--active-transform ${isBrowseMenuOpen ? "active" : ""}`} onClick={toggleBrowseMenu} aria-expanded={isBrowseMenuOpen} aria-controls="browse-menu">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-compass-icon lucide-compass">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-compass-icon lucide-compass">
                                 <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/>
                                 <circle cx="12" cy="12" r="10"/>
                             </svg>
@@ -259,7 +259,7 @@ export default function Header({ authToken }) {
                             <div className="account-menu">
                                 <div className="account-menu__title">{t("discoverContent")}</div>
                                 
-                                <div class="browse-grid">
+                                <div className="browse-grid">
                                     <Link href="/mods" className="content content--padding content--browse" onClick={() => setIsBrowseMenuOpen(false)}>
                                         <h2 style={{ zIndex: 1, position: "relative", display: "flex", alignItems: "center", gap: "10px" }}>
                                             {t("mods")}
@@ -313,7 +313,7 @@ export default function Header({ authToken }) {
                         {isLoggedIn ? (
                             <>
                                 <button className="button button--size-m button--type-primary button--active-transform button--with-icon" onClick={openProjectModal}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-plus-icon lucide-plus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-plus-icon lucide-plus">
                                         <path d="M5 12h14"/>
                                         <path d="M12 5v14"/>
                                     </svg>
@@ -430,7 +430,7 @@ export default function Header({ authToken }) {
                             </>
                         ) : (
                             <button onClick={openLoginModal} className="button button--size-l button--type-primary button--rounded button--with-icon button--active-transform" type="button">
-                                <svg style={{ width: "18px", height: "18px" }}xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in-icon lucide-log-in">
+                                <svg style={{ width: "18px", height: "18px" }}xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-log-in-icon lucide-log-in">
                                     <path d="m10 17 5-5-5-5"/>
                                     <path d="M15 12H3"/>
                                     <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>

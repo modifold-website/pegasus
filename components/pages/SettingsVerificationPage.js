@@ -87,7 +87,7 @@ export default function SettingsVerificationPage() {
 
                 <div className="settings-wrapper blog-settings" style={{ height: "max-content" }}>
                     <div className="blog-settings__body">
-                        <p class="blog-settings__field-title">{t("title")}</p>
+                        <p className="blog-settings__field-title">{t("title")}</p>
                         
                         <p style={{ marginBottom: "14px", color: "var(--theme-color-text-secondary)" }}>
                             {t("benefitsNote")}
@@ -95,7 +95,7 @@ export default function SettingsVerificationPage() {
 
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
                             <div>
-                                <p class="blog-settings__field-title" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                                <p className="blog-settings__field-title" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
                                     <span>{t("statusLabel")}: {statusLabel}</span>
                                     {verificationStatus.isVerified && (
                                         <img src="/badges/verified.png" alt={t("status.verified")} width="18" height="18" style={{ display: "inline-block" }} />

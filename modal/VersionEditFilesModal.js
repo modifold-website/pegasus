@@ -117,7 +117,7 @@ export default function VersionEditFilesModal({ isOpen, onRequestClose, editLoad
                         <p className="blog-settings__field-title" style={{ marginTop: "0" }}>{tProject("file")}</p>
                         <div className="version-edit-file-card">
                             <div className="svg-green">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24">
                                     <path d="M20 6 9 17l-5-5"></path>
                                 </svg>
                             </div>

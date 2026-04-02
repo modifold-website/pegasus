@@ -168,27 +168,27 @@ export default function ProjectComments({ project, authToken }) {
 
         return (
             <div key={comment.id} className={`comment-item`}>
-                <div class="comment" style={{ "--branches-count": branchDepth }}>
-                    <div class="comment__branches">
-                        <div class="comment-branches"></div>
+                <div className="comment" style={{ "--branches-count": branchDepth }}>
+                    <div className="comment__branches">
+                        <div className="comment-branches"></div>
                     </div>
 
-                    <div class="comment__content">
-                        <div class="author" style={{ "--1ebedaf6": "36px" }}>
-                            <Link class="author__avatar" href={`/user/${comment.author?.slug || ""}`}>
-                                <div class="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "36px", height: "36px", maxWidth: "none", "--background-color": "#33302c" }}>
+                    <div className="comment__content">
+                        <div className="author" style={{ "--1ebedaf6": "36px" }}>
+                            <Link className="author__avatar" href={`/user/${comment.author?.slug || ""}`}>
+                                <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "36px", height: "36px", maxWidth: "none", "--background-color": "#33302c" }}>
                                     <picture>
                                         <img src={comment.author?.avatar || "https://cdn.modifold.com/default_avatar.png"} alt={comment.author?.username || ""} />
                                     </picture>
                                 </div>
                             </Link>
 
-                            <Link class="author__main" href={`/user/${comment.author?.slug || ""}`} style={{ fontWeight: "500" }}>
+                            <Link className="author__main" href={`/user/${comment.author?.slug || ""}`} style={{ fontWeight: "500" }}>
                                 <UserName user={comment.author} />
                             </Link>
 
-                            <div class="author__details">
-                                <span class="comment__detail">
+                            <div className="author__details">
+                                <span className="comment__detail">
                                     <time>{formatDate(comment.created_at)}</time>
                                 </span>
 
@@ -202,73 +202,73 @@ export default function ProjectComments({ project, authToken }) {
                             </div>
                         </div>
 
-                        <div class="comment__break comment__break--author"></div>
+                        <div className="comment__break comment__break--author"></div>
 
                         {isDeleted ? (
-                            <div class="comment__text">
+                            <div className="comment__text">
                                 <p>{t("comments.deleted")}</p>
                             </div>
                         ) : (
-                            <div class="comment__text">
+                            <div className="comment__text">
                                 <p>{comment.content}</p>
                             </div>
                         )}
 
-                        <div class="comment__actions">
+                        <div className="comment__actions">
                             {isLoggedIn && !isDeleted && (
-                                <button type="button" class="comment__action comment__action--reply" onClick={() => setReplyTo(comment.id)}>
+                                <button type="button" className="comment__action comment__action--reply" onClick={() => setReplyTo(comment.id)}>
                                     {t("comments.reply")}
                                 </button>
                             )}
 
                             {canShowMenu && !isDeleted && (
-                                <div class="comment-menu" style={{ height: "26px" }}>
-                                    <button type="button" class="icon-button" aria-label="More actions" onClick={() => setMenuOpenId(menuOpenId === comment.id ? null : comment.id)}>
-                                        <svg viewBox="0 0 24 24" class="icon icon--dots" height="20" width="20"><path fill-rule="evenodd" clip-rule="evenodd" d="M5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM19 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor"></path></svg>
+                                <div className="comment-menu" style={{ height: "26px" }}>
+                                    <button type="button" className="icon-button" aria-label="More actions" onClick={() => setMenuOpenId(menuOpenId === comment.id ? null : comment.id)}>
+                                        <svg viewBox="0 0 24 24" className="icon icon--dots" height="20" width="20"><path fillRule="evenodd" clipRule="evenodd" d="M5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM19 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor"></path></svg>
                                     </button>
 
                                     {menuOpenId === comment.id && (
-                                        <div id="popover-overlay" class="popover-overlay">
-                                            <div class="popover" tabindex="0" style={{ "--width": "210px", "--top": "40px", "--position": "absolute", "--left": "auto", "--right": "0", "--bottom": "auto", "--distance": "8px" }}>
-                                                <div class="popover__scrollable" style={{ "--max-height": "auto" }}>
+                                        <div id="popover-overlay" className="popover-overlay">
+                                            <div className="popover" tabindex="0" style={{ "--width": "210px", "--top": "40px", "--position": "absolute", "--left": "auto", "--right": "0", "--bottom": "auto", "--distance": "8px" }}>
+                                                <div className="popover__scrollable" style={{ "--max-height": "auto" }}>
                                                     {canDelete && (
-                                                        <div class="context-list-option context-list-option--with-art" onClick={() => moderateComment(comment.id, "delete")}>
-                                                            <div class="context-list-option__art context-list-option__art--icon">
-                                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                                        <div className="context-list-option context-list-option--with-art" onClick={() => moderateComment(comment.id, "delete")}>
+                                                            <div className="context-list-option__art context-list-option__art--icon">
+                                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                                                             </div>
                                                             
-                                                            <div class="context-list-option__label">{t("comments.delete")}</div>
+                                                            <div className="context-list-option__label">{t("comments.delete")}</div>
                                                         </div>
                                                     )}
 
                                                     {canModerate && (
                                                         <>
                                                             {comment.status === "visible" ? (
-                                                                <div class="context-list-option context-list-option--with-art" onClick={() => moderateComment(comment.id, "hide")}>
-                                                                    <div class="context-list-option__art context-list-option__art--icon">
-                                                                        <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-eye-off-icon lucide-eye-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+                                                                <div className="context-list-option context-list-option--with-art" onClick={() => moderateComment(comment.id, "hide")}>
+                                                                    <div className="context-list-option__art context-list-option__art--icon">
+                                                                        <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-eye-off-icon lucide-eye-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
                                                                     </div>
 
-                                                                    <div class="context-list-option__label">{t("comments.hide")}</div>
+                                                                    <div className="context-list-option__label">{t("comments.hide")}</div>
                                                                 </div>
                                                             ) : (
-                                                                <div class="context-list-option context-list-option--with-art" onClick={() => moderateComment(comment.id, "show")}>
-                                                                    <div class="context-list-option__art context-list-option__art--icon">
-                                                                        <svg style={{ fill: "none" }}xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                                                                <div className="context-list-option context-list-option--with-art" onClick={() => moderateComment(comment.id, "show")}>
+                                                                    <div className="context-list-option__art context-list-option__art--icon">
+                                                                        <svg style={{ fill: "none" }}xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
                                                                     </div>
 
-                                                                    <div class="context-list-option__label">{t("comments.show")}</div>
+                                                                    <div className="context-list-option__label">{t("comments.show")}</div>
                                                                 </div>
                                                             )}
                                                         </>
                                                     )}
 
-                                                    <div class="context-list-option context-list-option--with-art">
-                                                        <div class="context-list-option__art context-list-option__art--icon">
-                                                            <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon lucide lucide-languages-icon lucide-languages"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+                                                    <div className="context-list-option context-list-option--with-art">
+                                                        <div className="context-list-option__art context-list-option__art--icon">
+                                                            <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-languages-icon lucide-languages"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
                                                         </div>
 
-                                                        <div class="context-list-option__label">Test</div>
+                                                        <div className="context-list-option__label">Test</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -281,20 +281,20 @@ export default function ProjectComments({ project, authToken }) {
                 </div>
 
                 {replyTo === comment.id && (
-                    <div class="comment comment--writing comment--writing-main comment--writing-reply" style={{ "--branches-count": branchDepth, "--comment-display-level": "1" }}>
-                        <div class="comment__branches">
-                            <div class="comment-branches"></div>
+                    <div className="comment comment--writing comment--writing-main comment--writing-reply" style={{ "--branches-count": branchDepth, "--comment-display-level": "1" }}>
+                        <div className="comment__branches">
+                            <div className="comment-branches"></div>
                         </div>
 
-                        <div class="comment__content">
-                            <div class="comments-form">
-                                <textarea name="comment" class="autosize comments-form__field" value={replyText} onChange={(event) => setReplyText(event.target.value)} placeholder={t("comments.placeholder")} style={{ height: "54px" }} rows="1"></textarea>
+                        <div className="comment__content">
+                            <div className="comments-form">
+                                <textarea name="comment" className="autosize comments-form__field" value={replyText} onChange={(event) => setReplyText(event.target.value)} placeholder={t("comments.placeholder")} style={{ height: "54px" }} rows="1"></textarea>
 
-                                <div class="comments-form__footer">
-                                    <div class="comments-form__buttons">
-                                        <button class="button button--size-m button--type-secondary" type="button" onClick={() => { setReplyTo(null); setReplyText(""); }}>{t("comments.cancel")}</button>
+                                <div className="comments-form__footer">
+                                    <div className="comments-form__buttons">
+                                        <button className="button button--size-m button--type-secondary" type="button" onClick={() => { setReplyTo(null); setReplyText(""); }}>{t("comments.cancel")}</button>
                                         
-                                        <button class="button button--size-m button--type-primary" type="button" disabled={isPosting} onClick={() => submitComment(replyText, comment.id)}>{t("comments.submit")}</button>
+                                        <button className="button button--size-m button--type-primary" type="button" disabled={isPosting} onClick={() => submitComment(replyText, comment.id)}>{t("comments.submit")}</button>
                                     </div>
                                 </div>
                             </div>
@@ -311,21 +311,21 @@ export default function ProjectComments({ project, authToken }) {
 
     return (
         <div className="project-comments">
-            <div class="comments">
-                <div class="comments__header">
-                    <div class="comments__title">{t("comments.title")}</div>
+            <div className="comments">
+                <div className="comments__header">
+                    <div className="comments__title">{t("comments.title")}</div>
                 </div>
 
                 {isLoggedIn && (
-                    <div class="comment comment--writing comment--writing-main" style={{ "--branches-count": "0" }}>
-                        <div class="comment-branches"></div>
+                    <div className="comment comment--writing comment--writing-main" style={{ "--branches-count": "0" }}>
+                        <div className="comment-branches"></div>
                         
-                        <div class="comment__content">
-                            <div class="comments-form">
-                                <textarea name="comment" value={commentText} onChange={(event) => setCommentText(event.target.value)} class="autosize comments-form__field" placeholder={t("comments.placeholder")} style={{ height: "54px" }} rows="1"></textarea>
+                        <div className="comment__content">
+                            <div className="comments-form">
+                                <textarea name="comment" value={commentText} onChange={(event) => setCommentText(event.target.value)} className="autosize comments-form__field" placeholder={t("comments.placeholder")} style={{ height: "54px" }} rows="1"></textarea>
                                 
-                                <div class="comments-form__buttons">
-                                    <button type="submit" disabled={isPosting} onClick={() => submitComment(commentText)} class="button button--size-m button--type-primary">
+                                <div className="comments-form__buttons">
+                                    <button type="submit" disabled={isPosting} onClick={() => submitComment(commentText)} className="button button--size-m button--type-primary">
                                         {t("comments.submit")}
                                     </button>
                                 </div>

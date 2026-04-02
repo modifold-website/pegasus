@@ -186,15 +186,15 @@ export default function VersionsPage({ project, authToken }) {
                                         <button style={{ display: "flex", gap: "4px" }} type="button" className="button button--size-m button--type-secondary" onClick={toggleFilterGameVersionsPopover} aria-label={t("filters.gameVersionsAria")}>
                                             {t("tabs.gameVersion")}
 
-                                            <svg class="icon icon--chevron_down " width="20" height="20" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.707 8.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L12 13.086l4.293-4.293a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
+                                            <svg className="icon icon--chevron_down " width="20" height="20" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" d="M17.707 8.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L12 13.086l4.293-4.293a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
                                         </button>
 
                                         {isFilterGameVersionsPopoverOpen && (
                                             <div className="popover">
-                                                <div class="context-list" style={{ maxHeight: "200px" }}>
+                                                <div className="context-list" style={{ maxHeight: "200px" }}>
                                                     {availableGameVersions.map((version) => (
                                                         <div key={version} className={`context-list-option ${filterGameVersions.includes(version) ? "context-list-option--selected" : ""}`} onClick={() => handleToggleFilterGameVersion(version)}>
-                                                            <div class="context-list-option__label">{version}</div>
+                                                            <div className="context-list-option__label">{version}</div>
                                                         </div>
                                                     ))}
                                                 </div>
@@ -206,15 +206,15 @@ export default function VersionsPage({ project, authToken }) {
                                         <button style={{ display: "flex", gap: "4px" }} type="button" className="button button--size-m button--type-secondary" onClick={toggleFilterChannelsPopover} aria-label={t("filters.channelsAria")}>
                                             {t("tabs.gameChannel")}
 
-                                            <svg class="icon icon--chevron_down " width="20" height="20" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.707 8.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L12 13.086l4.293-4.293a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
+                                            <svg className="icon icon--chevron_down " width="20" height="20" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" d="M17.707 8.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L12 13.086l4.293-4.293a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
                                         </button>
 
                                         {isFilterChannelsPopoverOpen && (
                                             <div className="popover">
-                                                <div class="context-list" style={{ maxHeight: "200px" }}>
+                                                <div className="context-list" style={{ maxHeight: "200px" }}>
                                                     {availableChannels.map((channel) => (
                                                         <div key={channel} className={`context-list-option ${filterChannels.includes(channel) ? "context-list-option--selected" : ""}`} onClick={() => handleToggleFilterChannel(channel)}>
-                                                            <div class="context-list-option__label">{channel.charAt(0).toUpperCase() + channel.slice(1)}</div>
+                                                            <div className="context-list-option__label">{channel.charAt(0).toUpperCase() + channel.slice(1)}</div>
                                                         </div>
                                                     ))}
                                                 </div>
@@ -226,7 +226,7 @@ export default function VersionsPage({ project, authToken }) {
                                         <button style={{ display: "flex", gap: "4px" }} type="button" className="button button--size-m button--type-secondary" onClick={toggleFilterLoadersPopover} aria-label={t("filters.loadersAria")}>
                                             {t("tabs.loader") || "Loader"}
 
-                                            <svg class="icon icon--chevron_down " width="20" height="20" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.707 8.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L12 13.086l4.293-4.293a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
+                                            <svg className="icon icon--chevron_down " width="20" height="20" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" d="M17.707 8.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L12 13.086l4.293-4.293a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
                                         </button>
 
                                         {isFilterLoadersPopoverOpen && (

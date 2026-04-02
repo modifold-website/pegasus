@@ -108,7 +108,7 @@ export default function VersionPage({ project, version, authToken }) {
                                 <div className="version-page__changelog content content--padding">
                                     <h3>{t("changesTitle")}</h3>
 
-                                    <div class="markdown-body">
+                                    <div className="markdown-body">
                                         {version.changelog ? (
                                             <ReactMarkdown
                                                 remarkPlugins={[remarkGfm]}
@@ -136,12 +136,12 @@ export default function VersionPage({ project, version, authToken }) {
                                     </div>
                                 </div>
 
-                                <div class="version-page__files content content--padding">
+                                <div className="version-page__files content content--padding">
                                     <h3>{t("filesTitle")}</h3>
 
                                     {version.files?.map((file, index) => (
                                         <div key={index} className="file">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z"></path><path d="M14 2v6h6"></path></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z"></path><path d="M14 2v6h6"></path></svg>
                                             
                                             <span className="filename">
                                                 {versionDisplayName}
@@ -150,7 +150,7 @@ export default function VersionPage({ project, version, authToken }) {
                                             </span>
 
                                             <a style={{ marginLeft: "auto", "--button-radius": "100px", "--button-padding": "0 16px" }} className="button button--size-m button--type-secondary button--active-transform button-with-icon" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation}>
-                                                <svg class="masthead-stats__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <svg className="masthead-stats__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                     <path d="M12 15V3"></path>
                                                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                                     <path d="m7 10 5 5 5-5"></path>

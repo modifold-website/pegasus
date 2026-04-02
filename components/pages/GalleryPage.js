@@ -175,7 +175,7 @@ export default function GalleryPage({ project, authToken }) {
 
                                                 <div className="gallery-settings-card__body">
                                                     {(image.title || image.description) &&
-                                                        <div class="gallery-settings-card__info">
+                                                        <div className="gallery-settings-card__info">
                                                             {image.title && <h2>{image.title}</h2>}
 
                                                             {image.description && <p>{image.description}</p>}

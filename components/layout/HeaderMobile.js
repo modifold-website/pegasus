@@ -258,7 +258,7 @@ export default function HeaderMobile({ authToken }) {
                             </>
                         ) : (
                             <button type="button" className={`tabbar__item ${animatingItem === "login" ? "tabbar__item--animating" : ""}`} onPointerDown={() => triggerTabAnimation("login")} onClick={() => setLoginModalOpen(true)} aria-label={t("login")} data-ripple="center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tabbar__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="tabbar__icon">
                                     <path d="m10 17 5-5-5-5"/>
                                     <path d="M15 12H3"/>
                                     <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
@@ -338,7 +338,7 @@ export default function HeaderMobile({ authToken }) {
                                     <div className="account-action">
                                         <div onClick={cycleTheme} className="account-action__wrapper button--active-transform">
                                             {theme === "light" && (
-                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon account-action__icon lucide lucide-sun-icon lucide-sun">
+                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon account-action__icon lucide lucide-sun-icon lucide-sun">
                                                     <circle cx="12" cy="12" r="4"/>
                                                     <path d="M12 2v2"/>
                                                     <path d="M12 20v2"/>
@@ -352,13 +352,13 @@ export default function HeaderMobile({ authToken }) {
                                             )}
 
                                             {theme === "dark" && (
-                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon account-action__icon lucide lucide-moon-icon lucide-moon">
+                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon account-action__icon lucide lucide-moon-icon lucide-moon">
                                                     <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/>
                                                 </svg>
                                             )}
 
                                             {theme === "system" && (
-                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon account-action__icon lucide lucide-sun-moon-icon lucide-sun-moon">
+                                                <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon account-action__icon lucide lucide-sun-moon-icon lucide-sun-moon">
                                                     <path d="M12 2v2"/>
                                                     <path d="M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715"/>
                                                     <path d="M16 12a4 4 0 0 0-4-4"/>

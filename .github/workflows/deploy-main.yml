@@ -29,6 +29,6 @@ jobs:
             cd ${{ secrets.PROD_APP_DIR }}
             git checkout main
             git pull --ff-only origin main
-            bun install
-            bun run build
+            $HOME/.bun/bin/bun install
+            $HOME/.bun/bin/bun run build
             PORT=3121 NODE_ENV=production pm2 restart pegasus --update-env

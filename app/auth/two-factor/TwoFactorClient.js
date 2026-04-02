@@ -90,21 +90,18 @@ export default function TwoFactorClient() {
 
     return (
         <div style={{ minHeight: "60vh", display: "grid", placeItems: "center", padding: "32px 16px" }}>
-            <div style={{ maxWidth: "420px", width: "100%" }}>
-                <h1 style={{ fontSize: "24px", fontWeight: "600", marginBottom: "8px" }}>{t("title")}</h1>
+            <div style={{ maxWidth: "420px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <h1 style={{ fontSize: "24px", fontWeight: "500", marginBottom: "8px" }}>{t("title")}</h1>
                 <p style={{ marginBottom: "16px", color: "var(--theme-color-text-secondary)" }}>{t("description")}</p>
 
                 <form onSubmit={handleSubmit} className="content content--padding" style={{ borderRadius: "16px" }}>
-                    <label style={{ display: "block", marginBottom: "10px" }}>{t("codeLabel")}</label>
-                    <input
-                        type="text"
-                        value={code}
-                        onChange={(event) => setCode(event.target.value)}
-                        placeholder={t("codePlaceholder")}
-                        className="text-input"
-                        style={{ width: "100%", marginBottom: "12px" }}
-                        inputMode="numeric"
-                    />
+                    <label style={{ display: "block", marginBottom: "12px" }}>{t("codeLabel")}</label>
+
+                    <div className="field field--default">
+                        <label className="field__wrapper" style={{ marginBottom: "12px" }}>
+                            <input value={code} inputMode="numeric" placeholder={t("codePlaceholder")} onChange={(event) => setCode(event.target.value)} className="text-input" type="text" />
+                        </label>
+                    </div>
 
                     {errorMessage && (
                         <div style={{ color: "#e11d48", marginBottom: "12px" }}>{errorMessage}</div>

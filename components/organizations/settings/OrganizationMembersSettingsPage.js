@@ -24,8 +24,6 @@ const ORGANIZATION_PERMISSION_KEYS = [
     "organization_remove_project",
 ];
 
-const DEFAULT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
-
 const normalizePermissions = (permissions) => Array.from(new Set(Array.isArray(permissions) ? permissions.filter((item) => typeof item === "string") : [])).sort();
 
 const buildDraftMember = (member) => ({
@@ -287,7 +285,7 @@ export default function OrganizationMembersSettingsPage({ authToken, organizatio
                                     t={t}
                                     projectPermissionKeys={PROJECT_PERMISSION_KEYS}
                                     organizationPermissionKeys={ORGANIZATION_PERMISSION_KEYS}
-                                    defaultIconUrl={DEFAULT_ICON_URL}
+                                    defaultIconUrl={"https://media.modifold.com/static/no-project-icon.svg"}
                                     isOwner={isOwnerMember}
                                 />
                             );

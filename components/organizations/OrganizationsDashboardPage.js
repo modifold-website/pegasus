@@ -7,8 +7,6 @@ import { useTranslations } from "next-intl";
 import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
 import CreateOrganizationModal from "@/modal/CreateOrganizationModal";
 
-const DEFAULT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
-
 export default function OrganizationsDashboardPage({ authToken, initialOrganizations = [] }) {
     const { user } = useAuth();
     const t = useTranslations("Organizations");
@@ -51,7 +49,7 @@ export default function OrganizationsDashboardPage({ authToken, initialOrganizat
                             <div style={{ display: "grid", gap: "12px" }}>
                                 {organizations.map((organization) => (
                                     <Link key={organization.id} href={`/organization/${organization.slug}`} className="new-project-card" style={{ textDecoration: "none", background: "var(--theme-color-background)" }}>
-                                        <img className="new-project-icon" src={organization.icon_url || DEFAULT_ICON_URL} alt={organization.name} />
+                                        <img className="new-project-icon" src={organization.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} alt={organization.name} />
                                         
                                         <div className="new-project-info">
                                             <div className="new-project-header">

@@ -4,8 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 
-const DEFAULT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
-
 export default function OrganizationSettingsSidebar({ organization }) {
     const pathname = usePathname();
     const t = useTranslations("Organizations");
@@ -17,7 +15,7 @@ export default function OrganizationSettingsSidebar({ organization }) {
         <div className="sidebar">
             <div className="sidebar__main">
                 <Link href={`/organization/${organization.slug}`} className="sidebar-item" data-ripple>
-                    <img src={organization.icon_url || DEFAULT_ICON_URL} alt={t("settings.iconAlt", { name: organization.name })} className="icon" width="28" height="28" style={{ borderRadius: "8px" }} />
+                    <img src={organization.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} alt={t("settings.iconAlt", { name: organization.name })} className="icon" width="28" height="28" style={{ borderRadius: "8px" }} />
                     
                     <span>{organization.name}</span>
                 </Link>
@@ -41,6 +39,15 @@ export default function OrganizationSettingsSidebar({ organization }) {
                     </svg>
 
                     {t("settings.navMembers")}
+                </Link>
+
+                <Link href={`${basePath}/links`} className={`sidebar-item ${isActive(`${basePath}/links`) ? "sidebar-item--active" : ""}`} data-ripple>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-link-icon lucide-link">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                    </svg>
+
+                    {t("settings.navLinks")}
                 </Link>
 
                 <Link href={`${basePath}/projects`} className={`sidebar-item ${isActive(`${basePath}/projects`) ? "sidebar-item--active" : ""}`} data-ripple>

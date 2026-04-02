@@ -9,14 +9,18 @@ import { useLocale, useTranslations } from "next-intl";
 import VerificationRequestModal from "../../modal/VerificationRequestModal";
 import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
 
-export default function SettingsVerificationPage() {
+export default function SettingsVerificationPage({ initialUser = null, initialVerification = null }) {
     const t = useTranslations("SettingsVerificationPage");
     const tSidebar = useTranslations("SettingsBlogPage.sidebar");
     const locale = useLocale();
     const { isLoggedIn, user } = useAuth();
     const router = useRouter();
 
-    const [verificationStatus, setVerificationStatus] = useState({ isVerified: false, request: null, loading: true });
+    const [verificationStatus, setVerificationStatus] = useState(() => ({
+        isVerified: initialVerification?.isVerified || false,
+        request: initialVerification?.request || null,
+        loading: !initialVerification,
+    }));
     const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
 
     const fetchVerificationStatus = async () => {
@@ -37,15 +41,17 @@ export default function SettingsVerificationPage() {
     };
 
     useEffect(() => {
-        if(!isLoggedIn) {
+        if(!isLoggedIn && !initialUser) {
             router.push("/403");
             return;
         }
 
-        fetchVerificationStatus();
-    }, [isLoggedIn, router]);
+        if(!initialVerification) {
+            fetchVerificationStatus();
+        }
+    }, [isLoggedIn, initialUser, initialVerification, router]);
 
-    if(!isLoggedIn) {
+    if(!isLoggedIn && !initialUser) {
         return null;
     }
 
@@ -73,7 +79,7 @@ export default function SettingsVerificationPage() {
         <div className="layout">
             <div className="page-content settings-page">
                 <UserSettingsSidebar
-                    user={user}
+                    user={user || initialUser}
                     profileIconAlt={t("sidebar.profileIconAlt")}
                     mode="settings"
                     labels={{

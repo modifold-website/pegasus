@@ -7,13 +7,7 @@ import { useAuth } from "../providers/AuthProvider";
 import { toast } from "react-toastify";
 import UserName from "../ui/UserName";
 
-export default function ProjectComments({
-    project,
-    authToken,
-    initialComments = [],
-    initialCanModerate = false,
-    initialCommentsLoaded = false,
-}) {
+export default function ProjectComments({ project, authToken, initialComments = [], initialCanModerate = false, initialCommentsLoaded = false }) {
     const t = useTranslations("ProjectPage");
     const locale = useLocale();
     const { isLoggedIn, user } = useAuth();
@@ -179,7 +173,6 @@ export default function ProjectComments({
         const canDelete = isOwn || canModerate;
         const canShowMenu = canDelete || canModerate;
         const branchDepth = Math.min(depth, 10);
-        const indent = branchDepth * 20;
 
         return (
             <div key={comment.id} className={`comment-item`}>

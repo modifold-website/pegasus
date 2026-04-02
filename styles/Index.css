@@ -1404,19 +1404,17 @@ body.light .ripple-effect {
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 12px;
-    border: 1px solid var(--theme-color-border);
     background: var(--theme-color-background);
     border-radius: 12px;
     padding: 12px 14px;
     text-align: left;
     cursor: pointer;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .settings-language-item:hover {
-    border-color: var(--theme-color-signal-active-default);
+    background: var(--theme-color-popover-item-bg-active);
 }
 .settings-language-item.is-active {
-    border-color: var(--theme-color-signal-active-default);
+    background: var(--theme-color-popover-item-bg-active);
 }
 .settings-language-radio {
     width: 18px;
@@ -1432,7 +1430,7 @@ body.light .ripple-effect {
     box-shadow: inset 0 0 0 4px var(--theme-color-signal-active-default);
 }
 .settings-language-name {
-    font-weight: 600;
+    font-weight: 500;
     color: var(--theme-color-text-primary);
 }
 .settings-language-english {

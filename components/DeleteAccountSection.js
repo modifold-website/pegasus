@@ -50,7 +50,7 @@ export default function DeleteAccountSection() {
     };
 
     return (
-        <div className="delete-account-section" style={{ marginTop: "30px" }}>
+        <div className="delete-account-section">
             <p className="blog-settings__field-title" style={{ color: "var(--theme-color-signal-negative-default)" }}>{t("title")}</p>
 
             <p style={{ marginBottom: "16px" }}>

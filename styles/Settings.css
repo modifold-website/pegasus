@@ -568,3 +568,9 @@
         align-items: flex-start;
     }
 }
+.delete-account-section {
+    margin-top: 12px;
+    background: var(--theme-color-background-content);
+    border-radius: var(--layout-island-border-radius);
+    padding: 20px 24px;
+}

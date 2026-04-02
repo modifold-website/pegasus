@@ -64,41 +64,43 @@ export default function SettingsAccountSecurityPage({ initialUser = null, initia
                     }}
                 />
 
-                <div className="settings-wrapper blog-settings">
-                    <div className="blog-settings__body">
-                        <p className="blog-settings__field-title">{t("accountSecurity.title")}</p>
-                        <p style={{ marginBottom: "14px", color: "var(--theme-color-text-secondary)" }}>{t("accountSecurity.description")}</p>
+                <div>
+                    <div className="settings-wrapper blog-settings">
+                        <div className="blog-settings__body">
+                            <p className="blog-settings__field-title">{t("accountSecurity.title")}</p>
+                            <p style={{ marginBottom: "14px", color: "var(--theme-color-text-secondary)" }}>{t("accountSecurity.description")}</p>
 
-                        <div className="settings-twofactor-card">
-                            <div>
-                                <div className="settings-twofactor-title">{t("twoFactor.title")}</div>
-                                
-                                <div className="settings-twofactor-description">{t("twoFactor.description")}</div>
+                            <div className="settings-twofactor-card">
+                                <div>
+                                    <div className="settings-twofactor-title">{t("twoFactor.title")}</div>
+                                    
+                                    <div className="settings-twofactor-description">{t("twoFactor.description")}</div>
+                                </div>
+
+                                {twoFactorEnabled ? (
+                                    <button type="button" className="button button--size-m button--with-icon button--type-minimal" onClick={() => setIsDisableOpen(true)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-minus-icon lucide-shield-minus">
+                                            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+                                            <path d="M9 12h6"/>
+                                        </svg>
+                                        
+                                        {t("twoFactor.disable")}
+                                    </button>
+                                ) : (
+                                    <button type="button" className="button button--size-m button--with-icon button--type-minimal" onClick={() => setIsSetupOpen(true)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus-icon lucide-plus">
+                                            <path d="M5 12h14"/>
+                                            <path d="M12 5v14"/>
+                                        </svg>
+                                        
+                                        {t("twoFactor.enable")}
+                                    </button>
+                                )}
                             </div>
-
-                            {twoFactorEnabled ? (
-                                <button type="button" className="button button--size-m button--with-icon button--type-minimal" onClick={() => setIsDisableOpen(true)}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-minus-icon lucide-shield-minus">
-                                        <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
-                                        <path d="M9 12h6"/>
-                                    </svg>
-                                    
-                                    {t("twoFactor.disable")}
-                                </button>
-                            ) : (
-                                <button type="button" className="button button--size-m button--with-icon button--type-minimal" onClick={() => setIsSetupOpen(true)}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus-icon lucide-plus">
-                                        <path d="M5 12h14"/>
-                                        <path d="M12 5v14"/>
-                                    </svg>
-                                    
-                                    {t("twoFactor.enable")}
-                                </button>
-                            )}
                         </div>
-
-                        <DeleteAccountSection />
                     </div>
+                    
+                    <DeleteAccountSection />
                 </div>
             </div>
 

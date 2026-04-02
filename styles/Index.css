@@ -1293,12 +1293,14 @@ body.light .ripple-effect {
     align-items: center;
     color: var(--theme-color-text-secondary);
     -webkit-tap-highlight-color: transparent;
-    transition: color 0.15s;
 }
 .tabs__tab:not(:last-child) {
     margin-right: 16px;
 }
 .tabs__tab--active {
+    border-color: #307df0;
+    border-style: solid;
+    border-bottom-width: 3px;
     color: var(--theme-color-text-primary);
 }
 .settings-theme-grid {

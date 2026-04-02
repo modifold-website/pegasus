@@ -298,7 +298,9 @@
                 "deleted": "Eliminado"
             },
             "emptyLoggedIn": "Aún no hay comentarios. ¡Deja la primera reseña de este mod!",
-            "emptyGuest": "Aún no hay comentarios. Inicia sesión para dejar una reseña de este mod."
+            "emptyGuest": "Aún no hay comentarios. Inicia sesión para dejar una reseña de este mod.",
+            "guestPromptTitle": "Inicia sesión para dejar un comentario sobre este proyecto.",
+            "guestPromptNote": "(Por favor, respeta a los demás y sigue las normas de la comunidad.)"
         },
         "report": {
             "moreActions": "Más acciones",

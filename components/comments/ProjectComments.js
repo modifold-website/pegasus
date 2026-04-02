@@ -244,7 +244,7 @@ export default function ProjectComments({
 
                                     {menuOpenId === comment.id && (
                                         <div id="popover-overlay" className="popover-overlay">
-                                            <div className="popover" tabindex="0" style={{ "--width": "210px", "--top": "40px", "--position": "absolute", "--left": "auto", "--right": "0", "--bottom": "auto", "--distance": "8px" }}>
+                                            <div className="popover" tabindex="0" style={{ "--width": "max-content", "--top": "40px", "--position": "absolute", "--left": "auto", "--right": "0", "--bottom": "auto", "--distance": "8px" }}>
                                                 <div className="popover__scrollable" style={{ "--max-height": "auto" }}>
                                                     {canDelete && (
                                                         <div className="context-list-option context-list-option--with-art" onClick={() => moderateComment(comment.id, "delete")}>
@@ -278,13 +278,6 @@ export default function ProjectComments({
                                                         </>
                                                     )}
 
-                                                    <div className="context-list-option context-list-option--with-art">
-                                                        <div className="context-list-option__art context-list-option__art--icon">
-                                                            <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-languages-icon lucide-languages"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
-                                                        </div>
-
-                                                        <div className="context-list-option__label">Test</div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

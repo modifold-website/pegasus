@@ -1081,7 +1081,6 @@
     "metadata": {
       "title": "Kullanıcı moderasyonu - Modifold"
     },
-    "title": "Kullanıcı moderasyonu",
     "tabs": {
       "projects": "Projeler",
       "users": "Kullanıcılar",
@@ -1206,7 +1205,6 @@
     "metadata": {
       "title": "Doğrulama Başvuruları — Modifold"
     },
-    "title": "Doğrulama Başvuruları",
     "tabs": {
       "projects": "Projeler",
       "users": "Kullanıcılar",
@@ -1320,7 +1318,6 @@
     "metadata": {
       "title": "Proje şikayetleri moderasyonu — Modifold"
     },
-    "title": "Şikayetler",
     "tabs": {
       "projects": "Projeler",
       "reports": "Şikayetler",

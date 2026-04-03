@@ -1,17 +1,13 @@
 ﻿"use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import ProjectTags from "../ui/ProjectTags";
 
 export default function ModerationPage({ authToken, initialProjects, initialTotalPages }) {
     const t = useTranslations("ModerationPage");
-    const pathname = usePathname();
-    const isActive = (href) => pathname === href;
     const [projects, setProjects] = useState(initialProjects || []);
     const [totalPages, setTotalPages] = useState(initialTotalPages || 1);
     const [search, setSearch] = useState("");
@@ -122,35 +118,10 @@ export default function ModerationPage({ authToken, initialProjects, initialTota
     const sortLabel = sort === "oldest" ? t("filters.sort.oldest") : t("filters.sort.newest");
 
     return (
-        <div className="layout">
-            <div className="page-content moderation-page">
-                <h1 className="moderation--title">{t("title")}</h1>
-
-                <nav className="pagination">
-                    <Link href="/moderation" data-ripple className={`pagination__button ${isActive("/moderation") ? "pagination__button--active" : ""}`}>
-                        {t("tabs.projects")}
-                    </Link>
-
-                    <Link href="/moderation/reports" data-ripple className={`pagination__button ${isActive("/moderation/reports") ? "pagination__button--active" : ""}`}>
-                        {t("tabs.reports")}
-                    </Link>
-
-                    <Link href="/moderation/statistics" data-ripple className={`pagination__button ${isActive("/moderation/statistics") ? "pagination__button--active" : ""}`}>
-                        {t("tabs.statistics")}
-                    </Link>
-
-                    <Link href="/moderation/users" data-ripple className={`pagination__button ${isActive("/moderation/users") ? "pagination__button--active" : ""}`}>
-                        {t("tabs.users")}
-                    </Link>
-
-                    <Link href="/moderation/verification" data-ripple className={`pagination__button ${isActive("/moderation/verification") ? "pagination__button--active" : ""}`}>
-                        {t("tabs.verification")}
-                    </Link>
-                </nav>
-
-                <div className="moderation-toolbar">
-                    <div className="field field--large" style={{ width: "100%", maxWidth: "400px" }}>
-                        <label className="field__wrapper" style={{ background: "var(--theme-color-background-content)" }}>
+        <>
+            <div className="moderation-toolbar">
+                <div className="field field--large" style={{ width: "100%", maxWidth: "400px" }}>
+                    <label className="field__wrapper" style={{ background: "var(--theme-color-background-content)" }}>
                             <div className="field__wrapper-body">
                                 <svg className="icon icon--search field__icon field__icon--left" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="m21 21-4.34-4.34"></path>
@@ -272,7 +243,6 @@ export default function ModerationPage({ authToken, initialProjects, initialTota
                         </button>
                     </div>
                 )}
-            </div>
-        </div>
+        </>
     );
 }

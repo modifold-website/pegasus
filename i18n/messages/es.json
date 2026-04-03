@@ -1081,7 +1081,6 @@
     "metadata": {
       "title": "Moderación de usuarios — Modifold"
     },
-    "title": "Moderación de usuarios",
     "tabs": {
       "projects": "Proyectos",
       "users": "Usuarios",
@@ -1206,7 +1205,6 @@
     "metadata": {
       "title": "Solicitudes de verificación — Modifold"
     },
-    "title": "Solicitudes de verificación",
     "tabs": {
       "projects": "Proyectos",
       "users": "Usuarios",
@@ -1320,7 +1318,6 @@
     "metadata": {
       "title": "Moderación de reportes de proyectos — Modifold"
     },
-    "title": "Reportes de proyectos",
     "tabs": {
       "projects": "Proyectos",
       "reports": "Reportes",

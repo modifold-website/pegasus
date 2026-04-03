@@ -3518,18 +3518,14 @@ input[type="file"]::-webkit-file-upload-button:hover {
     align-items: center;
     flex-direction: row;
     font-weight: 500;
+    color: var(--theme-color-text-secondary);
     gap: 8px;
     padding: 8px 16px;
     border-radius: 999px;
+    transition: transform .05s ease-in-out;
 }
-.pagination__button:not(.pagination__button--active):hover {
-    color: var(--theme-color-text-primary);;
-    background: var(--theme-color-button-minimal);
-}
-.pagination__button--active {
-    color: #307df0;
-    background: rgb(48 125 240 / 25%);
-    font-weight: 600;
+.pagination__button:active {
+    transform: scale(.95);
 }
 .author-card {
     border-radius: 20px;

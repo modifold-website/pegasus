@@ -338,15 +338,24 @@ export default function Header({ authToken }) {
                                 </div>
                             </>
                         ) : (
-                            <button onClick={openLoginModal} className="button button--size-l button--type-primary button--rounded button--with-icon button--active-transform" type="button">
-                                <svg style={{ width: "18px", height: "18px" }}xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-log-in-icon lucide-log-in">
-                                    <path d="m10 17 5-5-5-5"/>
-                                    <path d="M15 12H3"/>
-                                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-                                </svg>
-                                
-                                {t("login")}
-                            </button>
+                            <>
+                                <button onClick={openLoginModal} className="button button--size-l button--type-primary button--rounded button--with-icon button--active-transform" type="button">
+                                    <svg style={{ width: "18px", height: "18px" }}xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-log-in-icon lucide-log-in">
+                                        <path d="m10 17 5-5-5-5"/>
+                                        <path d="M15 12H3"/>
+                                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                                    </svg>
+                                    
+                                    {t("login")}
+                                </button>
+
+                                <Link href="/settings/appearance" className="button button--size-l button--type-minimal button--rounded button--icon-only button--active-transform" aria-label={t("settings")} style={{ width: "42px" }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-settings-icon lucide-settings" style={{ fill: "none" }}>
+                                        <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </Link>
+                            </>
                         )}
                     </div>
                 </div>

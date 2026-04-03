@@ -9,21 +9,24 @@ export default function UserSettingsSidebar({ user, labels, profileIconAlt, mode
     const isActive = (href) => pathname === href;
     const showDashboard = mode === "all" || mode === "dashboard";
     const showSettings = mode === "all" || mode === "settings";
+    const showPublicSettings = mode === "public-settings";
 
     return (
         <div className="sidebar">
             <div className="sidebar__main">
-                <Link href={`/user/${user?.slug || ""}`} scroll={false} className="sidebar-item sidebar-item--profile" data-ripple>
-                    <img src={user?.avatar || "https://media.modifold.com/static/no-project-icon.svg"} alt={profileIconAlt} className="icon" width="28" height="28" style={{ borderRadius: "100px" }} />
+                {!showPublicSettings && (
+                    <Link href={`/user/${user?.slug || ""}`} scroll={false} className="sidebar-item sidebar-item--profile" data-ripple>
+                        <img src={user?.avatar || "https://media.modifold.com/static/no-project-icon.svg"} alt={profileIconAlt} className="icon" width="28" height="28" style={{ borderRadius: "100px" }} />
 
-                    <UserName user={user} />
-                </Link>
+                        <UserName user={user} />
+                    </Link>
+                )}
 
-                {(showDashboard || showSettings) && (
+                {!showPublicSettings && (showDashboard || showSettings) && (
                     <div className="sidebar-separator-view _theme_default _size_s"></div>
                 )}
 
-                {showDashboard && (
+                {showDashboard && !showPublicSettings && (
                     <>
                         <Link href="/dashboard" scroll={false} className={`sidebar-item ${isActive("/dashboard") ? "sidebar-item--active" : ""}`} data-ripple>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-box-icon lucide-box">
@@ -58,11 +61,11 @@ export default function UserSettingsSidebar({ user, labels, profileIconAlt, mode
                     </>
                 )}
 
-                {showDashboard && showSettings && (
+                {showDashboard && showSettings && !showPublicSettings && (
                     <div className="sidebar-separator-view _theme_default _size_s"></div>
                 )}
 
-                {showSettings && (
+                {showSettings && !showPublicSettings && (
                     <>
                         <Link href="/settings" scroll={false} className={`sidebar-item ${isActive("/settings") ? "sidebar-item--active" : ""}`} data-ripple>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-user-icon lucide-user">
@@ -122,6 +125,35 @@ export default function UserSettingsSidebar({ user, labels, profileIconAlt, mode
                             </svg>
 
                             {labels.verification}
+                        </Link>
+                    </>
+                )}
+
+                {showPublicSettings && (
+                    <>
+                        <Link href="/settings/appearance" scroll={false} className={`sidebar-item ${isActive("/settings/appearance") ? "sidebar-item--active" : ""}`} data-ripple>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-palette-icon lucide-palette">
+                                <path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/>
+                                <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+                                <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+                                <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+                                <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+                            </svg>
+
+                            {labels.appearance}
+                        </Link>
+
+                        <Link href="/settings/language" scroll={false} className={`sidebar-item ${isActive("/settings/language") ? "sidebar-item--active" : ""}`} data-ripple>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-languages-icon lucide-languages">
+                                <path d="m5 8 6 6"/>
+                                <path d="m4 14 6-6 2-3"/>
+                                <path d="M2 5h12"/>
+                                <path d="M7 2h1"/>
+                                <path d="m22 22-5-10-5 10"/>
+                                <path d="M14 18h6"/>
+                            </svg>
+
+                            {labels.language}
                         </Link>
                     </>
                 )}

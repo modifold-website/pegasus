@@ -8,11 +8,9 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
 import CreateApiTokenModal from "../../modal/CreateApiTokenModal";
-import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
 
 export default function SettingsAPIPage({ initialUser = null, initialTokens = null, authToken = null }) {
     const t = useTranslations("SettingsAPIPage");
-    const tSidebar = useTranslations("SettingsBlogPage.sidebar");
     const { isLoggedIn, user } = useAuth();
     const router = useRouter();
     const effectiveUser = user || initialUser;
@@ -117,112 +115,96 @@ export default function SettingsAPIPage({ initialUser = null, initialTokens = nu
     }
 
     return (
-        <div className="layout">
-            <div className="page-content settings-page">
-                <UserSettingsSidebar
-                    user={effectiveUser}
-                    profileIconAlt={t("sidebar.profileIconAlt")}
-                    mode="settings"
-                    labels={{
-                        profile: tSidebar("profile"),
-                        appearance: tSidebar("appearance"),
-                        language: tSidebar("language"),
-                        accountSecurity: tSidebar("accountSecurity"),
-                        apiTokens: tSidebar("apiTokens"),
-                        verification: tSidebar("verification"),
-                    }}
-                />
+        <>
+            <div>
+                <div className="settings-wrapper blog-settings">
+                    <div className="blog-settings__body">
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
+                            <p className="blog-settings__field-title" style={{ marginBottom: "0" }}>{t("title")}</p>
+                            
+                            <button type="button" className="button button--size-m button--type-primary button--active-transform" onClick={() => setIsCreateModalOpen(true)}>
+                                {t("createToken")}
+                            </button>
+                        </div>
 
-                <div>
-                    <div className="settings-wrapper blog-settings">
-                        <div className="blog-settings__body">
-                            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
-                                <p className="blog-settings__field-title" style={{ marginBottom: "0" }}>{t("title")}</p>
-                                
-                                <button type="button" className="button button--size-m button--type-primary button--active-transform" onClick={() => setIsCreateModalOpen(true)}>
-                                    {t("createToken")}
-                                </button>
-                            </div>
+                        <p>{t("description")}</p>
 
-                            <p>{t("description")}</p>
+                        {newToken && (
+                            <div className="new-token-alert">
+                                <h3>{t("newTokenTitle")}</h3>
+                                <div className="token-display">
+                                    <code>{newToken.token}</code>
 
-                            {newToken && (
-                                <div className="new-token-alert">
-                                    <h3>{t("newTokenTitle")}</h3>
-                                    <div className="token-display">
-                                        <code>{newToken.token}</code>
-
-                                        <button onClick={handleCopyToken} className="button button--size-s button--type-primary">
-                                            {t("copy")}
-                                        </button>
-                                    </div>
-
-                                    <p style={{ marginBottom: "8px" }}>
-                                        <strong>{t("importantLabel")}</strong> {t("importantBody")}
-                                    </p>
-
-                                    <p>
-                                        {t("expiresLabel")} {newToken.expires_at ? new Date(newToken.expires_at).toLocaleString() : t("never")}
-                                    </p>
+                                    <button onClick={handleCopyToken} className="button button--size-s button--type-primary">
+                                        {t("copy")}
+                                    </button>
                                 </div>
-                            )}
 
-                            <div className="api-docs-link">
+                                <p style={{ marginBottom: "8px" }}>
+                                    <strong>{t("importantLabel")}</strong> {t("importantBody")}
+                                </p>
+
                                 <p>
-                                    {t("docsPrompt")} {" "}
-                                    <a href={`${process.env.NEXT_PUBLIC_API_BASE}/api-docs`} target="_blank">
-                                        {t("docsLink")}
-                                    </a>
+                                    {t("expiresLabel")} {newToken.expires_at ? new Date(newToken.expires_at).toLocaleString() : t("never")}
                                 </p>
                             </div>
+                        )}
+
+                        <div className="api-docs-link">
+                            <p>
+                                {t("docsPrompt")} {" "}
+                                <a href={`${process.env.NEXT_PUBLIC_API_BASE}/api-docs`} target="_blank">
+                                    {t("docsLink")}
+                                </a>
+                            </p>
                         </div>
                     </div>
+                </div>
 
-                    <div className="tokens-list">
-                        <p className="blog-settings__field-title">{t("tokensTitle")}</p>
+                <div className="tokens-list">
+                    <p className="blog-settings__field-title">{t("tokensTitle")}</p>
 
-                        {isTokensLoading ? (
-                            <p>{t("loadingTokens")}</p>
-                        ) : tokens.length === 0 ? (
-                            <p>{t("noTokens")}</p>
-                        ) : (
-                            <table className="tokens-table">
-                                <thead>
-                                    <tr>
-                                        <th>{t("table.name")}</th>
-                                        <th>{t("table.token")}</th>
-                                        <th>{t("table.created")}</th>
-                                        <th>{t("table.expires")}</th>
-                                        <th></th>
+                    {isTokensLoading ? (
+                        <p>{t("loadingTokens")}</p>
+                    ) : tokens.length === 0 ? (
+                        <p>{t("noTokens")}</p>
+                    ) : (
+                        <table className="tokens-table">
+                            <thead>
+                                <tr>
+                                    <th>{t("table.name")}</th>
+                                    <th>{t("table.token")}</th>
+                                    <th>{t("table.created")}</th>
+                                    <th>{t("table.expires")}</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {tokens.map((token) => (
+                                    <tr key={token.id}>
+                                        <td>{token.name}</td>
+                                        <td>
+                                            <code>{token.token}</code>
+                                        </td>
+                                        <td>{new Date(token.created_at).toLocaleDateString()}</td>
+                                        <td>
+                                            {token.expires_at ? new Date(token.expires_at).toLocaleDateString() : t("never")}
+                                        </td>
+                                        <td>
+                                            <button onClick={() => handleRevokeToken(token.id)} className="button button--size-s button--type-danger">
+                                                {t("revoke")}
+                                            </button>
+                                        </td>
                                     </tr>
-                                </thead>
-
-                                <tbody>
-                                    {tokens.map((token) => (
-                                        <tr key={token.id}>
-                                            <td>{token.name}</td>
-                                            <td>
-                                                <code>{token.token}</code>
-                                            </td>
-                                            <td>{new Date(token.created_at).toLocaleDateString()}</td>
-                                            <td>
-                                                {token.expires_at ? new Date(token.expires_at).toLocaleDateString() : t("never")}
-                                            </td>
-                                            <td>
-                                                <button onClick={() => handleRevokeToken(token.id)} className="button button--size-s button--type-danger">
-                                                    {t("revoke")}
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        )}
-                    </div>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
                 </div>
             </div>
 
             <CreateApiTokenModal isOpen={isCreateModalOpen} onRequestClose={() => setIsCreateModalOpen(false)} form={form} onInputChange={handleInputChange} onSelectDuration={handleSelectDuration} onSubmit={handleCreateToken} isCreatingToken={isCreatingToken} />
-        </div>
+        </>
     );
 }

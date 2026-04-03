@@ -4,8 +4,6 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import ProjectMasthead from "../project/ProjectMasthead";
-import ProjectTabs from "../project/ProjectTabs";
 import ProjectSidebar from "../project/ProjectSidebar";
 import { getSafeMarkdownHref, getSafeMarkdownImageSrc, prepareProjectDescriptionMarkdown } from "@/utils/projectDescriptionContent";
 
@@ -28,60 +26,46 @@ export default function ProjectPage({ project, authToken }) {
         url: `https://modifold.com/mod/${project.slug}`,
     };
 
-    const featuredImage = project.gallery?.find(image => image.featured === 1);
-
     return (
         <>
-            {featuredImage && (
-                <img src={featuredImage.url} className="fixed-background-teleport"></img>
-            )}
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 
-            <div className="layout">
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-                
-                <div className="project-page">
-                    <ProjectMasthead project={project} authToken={authToken} />
+            <div className="project__general">
+                <div>
+                    <div className="content content--padding markdown-body">
+                        <ReactMarkdown
+                            remarkPlugins={[remarkGfm]}
+                            rehypePlugins={[rehypeRaw]}
+                            components={{
+                                a: ({ href, children }) => {
+                                    const safeHref = getSafeMarkdownHref(href);
+                                    if(!safeHref) {
+                                        return <>{children}</>;
+                                    }
 
-                    <div className="project__general">
-                        <div>
-                            <ProjectTabs project={project} />
+                                    const isExternal = /^https?:\/\//i.test(safeHref);
+                                    return (
+                                        <a href={safeHref} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
+                                            {children}
+                                        </a>
+                                    );
+                                },
+                                img: ({ src, alt, title }) => {
+                                    const safeSrc = getSafeMarkdownImageSrc(src);
+                                    if(!safeSrc) {
+                                        return null;
+                                    }
 
-                            <div className="content content--padding markdown-body">
-                                <ReactMarkdown
-                                    remarkPlugins={[remarkGfm]}
-                                    rehypePlugins={[rehypeRaw]}
-                                    components={{
-                                        a: ({ href, children }) => {
-                                            const safeHref = getSafeMarkdownHref(href);
-                                            if(!safeHref) {
-                                                return <>{children}</>;
-                                            }
-
-                                            const isExternal = /^https?:\/\//i.test(safeHref);
-                                            return (
-                                                <a href={safeHref} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
-                                                    {children}
-                                                </a>
-                                            );
-                                        },
-                                        img: ({ src, alt, title }) => {
-                                            const safeSrc = getSafeMarkdownImageSrc(src);
-                                            if(!safeSrc) {
-                                                return null;
-                                            }
-
-                                            return <img src={safeSrc} alt={alt || ""} title={title} loading="lazy" />;
-                                        },
-                                    }}
-                                >
-                                    {safeDescription}
-                                </ReactMarkdown>
-                            </div>
-                        </div>
-
-                        <ProjectSidebar project={project} />
+                                    return <img src={safeSrc} alt={alt || ""} title={title} loading="lazy" />;
+                                },
+                            }}
+                        >
+                            {safeDescription}
+                        </ReactMarkdown>
                     </div>
                 </div>
+
+                <ProjectSidebar project={project} />
             </div>
         </>
     );

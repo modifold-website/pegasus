@@ -378,10 +378,8 @@ export default function NotificationsPage({ authToken, initialNotifications = []
                     }}
                 />
 
-                <div className="notifications">
-                    <div className="notifications__header">
-                        <span className="notifications__header-text">{t("title")}</span>
-                    </div>
+                <div className="notifications settings-wrapper--narrow">
+                    <span className="notifications__header-text">{t("title")}</span>
 
                     {loading ? (
                         <div className="subsite-empty-feed">

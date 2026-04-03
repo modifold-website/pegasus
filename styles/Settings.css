@@ -495,7 +495,7 @@
 }
 .project-analytics-card__title {
     margin: 0 !important;
-    font-size: 21px;
+    font-size: 18px !important;
     line-height: 1.1;
 }
 .project-analytics-chart {

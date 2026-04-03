@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useAuth } from "../providers/AuthProvider";
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 const applyTheme = (nextTheme) => {
@@ -31,19 +29,10 @@ const getSavedTheme = () => {
     return savedTheme;
 };
 
-export default function SettingsAppearancePage({ initialUser = null }) {
+export default function SettingsAppearancePage() {
     const t = useTranslations("SettingsBlogPage");
     const tHeader = useTranslations("Header");
-    const { isLoggedIn, user } = useAuth();
-    const router = useRouter();
-    const effectiveUser = user || initialUser;
     const [theme, setThemeState] = useState("system");
-
-    useEffect(() => {
-        if(!isLoggedIn && !initialUser) {
-            router.push("/403");
-        }
-    }, [initialUser, isLoggedIn, router]);
 
     useEffect(() => {
         const savedTheme = getSavedTheme();
@@ -56,10 +45,6 @@ export default function SettingsAppearancePage({ initialUser = null }) {
         applyTheme(nextTheme);
         document.cookie = `theme=${nextTheme}; path=/; max-age=31536000; samesite=lax`;
     };
-
-    if(!isLoggedIn && !effectiveUser) {
-        return null;
-    }
 
     return (
         <div className="settings-wrapper blog-settings settings-wrapper--narrow">

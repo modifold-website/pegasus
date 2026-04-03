@@ -1,16 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useAuth } from "../providers/AuthProvider";
-import { useRouter } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 
-export default function SettingsLanguagePage({ initialUser = null }) {
+export default function SettingsLanguagePage() {
     const t = useTranslations("SettingsBlogPage");
     const locale = useLocale();
-    const { isLoggedIn, user } = useAuth();
-    const router = useRouter();
-    const effectiveUser = user || initialUser;
 
     const [selectedLocale, setSelectedLocale] = useState(locale || "en");
     const languages = useMemo(() => ([
@@ -23,12 +18,6 @@ export default function SettingsLanguagePage({ initialUser = null }) {
     ]), []);
 
     useEffect(() => {
-        if(!isLoggedIn && !initialUser) {
-            router.push("/403");
-        }
-    }, [initialUser, isLoggedIn, router]);
-
-    useEffect(() => {
         setSelectedLocale(locale || "en");
     }, [locale]);
 
@@ -37,10 +26,6 @@ export default function SettingsLanguagePage({ initialUser = null }) {
         document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`;
         window.location.reload();
     };
-
-    if(!isLoggedIn && !effectiveUser) {
-        return null;
-    }
 
     return (
         <div className="settings-wrapper blog-settings settings-wrapper--narrow">

@@ -7,7 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
 import { LICENSES } from "../../Licenses";
 import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
-import ProjectSettingsSidebar from "@/components/ui/ProjectSettingsSidebar";
 
 export default function LicenseSettings({ project, authToken }) {
     const t = useTranslations("SettingsProjectPage");
@@ -95,88 +94,70 @@ export default function LicenseSettings({ project, authToken }) {
     const currentLicenseName = LICENSES.find((l) => l.key === selectedLicense)?.name || t("license.noSelection");
 
     return (
-        <div className="layout">
-            <div className="page-content settings-page">
-                <ProjectSettingsSidebar
-                    project={project}
-                    iconAlt={t("general.iconAlt")}
-                    labels={{
-                        general: t("sidebar.general"),
-                        description: t("sidebar.description"),
-                        links: t("sidebar.links"),
-                        versions: t("sidebar.versions"),
-                        gallery: t("sidebar.gallery"),
-                        tags: t("sidebar.tags"),
-                        license: t("sidebar.license"),
-                        analytics: t("sidebar.analytics"),
-                        moderation: t("sidebar.moderation"),
-                    }}
-                />
+        <>
+            <div className="settings-wrapper settings-wrapper--narrow">
+                <div className="settings-content">
+                    <div className="blog-settings">
+                        <div className="blog-settings__body">
+                            <p className="blog-settings__field-title">{t("license.title")}</p>
 
-                <div className="settings-wrapper settings-wrapper--narrow">
-                    <div className="settings-content">
-                        <div className="blog-settings">
-                            <div className="blog-settings__body">
-                                <p className="blog-settings__field-title">{t("license.title")}</p>
-
-                                <form onSubmit={handleSubmit}>
-                                    <div className="field field--default blog-settings__input" ref={licenseRef}>
-                                        <label className="field__wrapper" onClick={toggleLicensePopover}>
-                                            <div className="field__wrapper-body">
-                                                <div className="select">
-                                                    <div className="select__selected">{currentLicenseName}</div>
-                                                </div>
+                            <form onSubmit={handleSubmit}>
+                                <div className="field field--default blog-settings__input" ref={licenseRef}>
+                                    <label className="field__wrapper" onClick={toggleLicensePopover}>
+                                        <div className="field__wrapper-body">
+                                            <div className="select">
+                                                <div className="select__selected">{currentLicenseName}</div>
                                             </div>
-                                        </label>
-
-                                        {isLicensePopoverOpen && (
-                                            <div className="popover">
-                                                <div className="context-list" data-scrollable style={{ maxHeight: "280px", overflowY: "auto" }}>
-                                                    {LICENSES.map((license) => (
-                                                        <div key={license.id} className={`context-list-option ${selectedLicense === license.key ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleSelectLicense(license.key)}>
-                                                            <div className="context-list-option__label">
-                                                                {license.name}
-                                                            </div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <button type="button" className="button button--size-m button--type-minimal" style={{ marginTop: "18px" }} onClick={handleClear}>
-                                        {t("license.actions.clear")}
-                                    </button>
-                                </form>
-
-                                <p className="blog-settings__field-title">{t("license.current")}</p>
-                                <div className="tags-list">
-                                    {LICENSES.some((license) => license.key === selectedLicense) ? (
-                                        <div className="button button--size-m button--type-minimal">
-                                            {currentLicenseName}
                                         </div>
-                                    ) : (
-                                        <p>{t("license.noSelection")}</p>
+                                    </label>
+
+                                    {isLicensePopoverOpen && (
+                                        <div className="popover">
+                                            <div className="context-list" data-scrollable style={{ maxHeight: "280px", overflowY: "auto" }}>
+                                                {LICENSES.map((license) => (
+                                                    <div key={license.id} className={`context-list-option ${selectedLicense === license.key ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleSelectLicense(license.key)}>
+                                                        <div className="context-list-option__label">
+                                                            {license.name}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
                                     )}
                                 </div>
+
+                                <button type="button" className="button button--size-m button--type-minimal" style={{ marginTop: "18px" }} onClick={handleClear}>
+                                    {t("license.actions.clear")}
+                                </button>
+                            </form>
+
+                            <p className="blog-settings__field-title">{t("license.current")}</p>
+                            <div className="tags-list">
+                                {LICENSES.some((license) => license.key === selectedLicense) ? (
+                                    <div className="button button--size-m button--type-minimal">
+                                        {currentLicenseName}
+                                    </div>
+                                ) : (
+                                    <p>{t("license.noSelection")}</p>
+                                )}
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <UnsavedChangesBar
-                    isDirty={isDirty}
-                    isSaving={isSaving}
-                    onSave={handleSubmit}
-                    onReset={() => {
-                        setSelectedLicense(savedLicense);
-                        setIsLicensePopoverOpen(false);
-                    }}
-                    saveLabel={t("license.actions.save")}
-                    resetLabel={t("unsavedBar.reset")}
-                    message={t("unsavedBar.message")}
-                />
             </div>
-        </div>
+
+            <UnsavedChangesBar
+                isDirty={isDirty}
+                isSaving={isSaving}
+                onSave={handleSubmit}
+                onReset={() => {
+                    setSelectedLicense(savedLicense);
+                    setIsLicensePopoverOpen(false);
+                }}
+                saveLabel={t("license.actions.save")}
+                resetLabel={t("unsavedBar.reset")}
+                message={t("unsavedBar.message")}
+            />
+        </>
     );
 }

@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
 import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
-import ProjectSettingsSidebar from "@/components/ui/ProjectSettingsSidebar";
 
 const TAGS_BY_TYPE = {
     mod: [
@@ -119,85 +118,67 @@ export default function TagsSettings({ project, authToken }) {
     const selectionLabel = selectedTags.length > 0 ? t("tags.selected", { count: selectedTags.length }) : t("tags.select");
 
     return (
-        <div className="layout">
-            <div className="page-content settings-page">
-                <ProjectSettingsSidebar
-                    project={project}
-                    iconAlt={t("general.iconAlt")}
-                    labels={{
-                        general: t("sidebar.general"),
-                        description: t("sidebar.description"),
-                        links: t("sidebar.links"),
-                        versions: t("sidebar.versions"),
-                        gallery: t("sidebar.gallery"),
-                        tags: t("sidebar.tags"),
-                        license: t("sidebar.license"),
-                        analytics: t("sidebar.analytics"),
-                        moderation: t("sidebar.moderation"),
-                    }}
-                />
-
-                <div className="settings-wrapper settings-wrapper--narrow">
-                    <div className="settings-content">
-                        <div className="blog-settings">
-                            <div className="blog-settings__body">
-                                <p className="blog-settings__field-title">{t("tags.title")}</p>
-                                <form onSubmit={handleSubmit}>
-                                    <div className="field field--default blog-settings__input" ref={tagsRef}>
-                                        <label className="field__wrapper" onClick={toggleTagsPopover}>
-                                            <div className="field__wrapper-body">
-                                                <div className="select">
-                                                    <div className="select__selected">{selectionLabel}</div>
-                                                </div>
+        <>
+            <div className="settings-wrapper settings-wrapper--narrow">
+                <div className="settings-content">
+                    <div className="blog-settings">
+                        <div className="blog-settings__body">
+                            <p className="blog-settings__field-title">{t("tags.title")}</p>
+                            <form onSubmit={handleSubmit}>
+                                <div className="field field--default blog-settings__input" ref={tagsRef}>
+                                    <label className="field__wrapper" onClick={toggleTagsPopover}>
+                                        <div className="field__wrapper-body">
+                                            <div className="select">
+                                                <div className="select__selected">{selectionLabel}</div>
                                             </div>
-                                        </label>
+                                        </div>
+                                    </label>
 
-                                        {isTagsPopoverOpen && (
-                                            <div className="popover">
-                                                <div className="context-list" data-scrollable style={{ maxHeight: "200px", overflowY: "auto" }}>
-                                                    {TAGS_BY_TYPE[project.project_type]?.map((tag) => (
-                                                        <div key={tag} className={`context-list-option ${selectedTags.includes(tag) ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleToggleTag(tag)}>
-                                                            <div className="context-list-option__label">{getTagLabel(tag)}</div>
-                                                        </div>
-                                                    ))}
-                                                </div>
+                                    {isTagsPopoverOpen && (
+                                        <div className="popover">
+                                            <div className="context-list" data-scrollable style={{ maxHeight: "200px", overflowY: "auto" }}>
+                                                {TAGS_BY_TYPE[project.project_type]?.map((tag) => (
+                                                    <div key={tag} className={`context-list-option ${selectedTags.includes(tag) ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleToggleTag(tag)}>
+                                                        <div className="context-list-option__label">{getTagLabel(tag)}</div>
+                                                    </div>
+                                                ))}
                                             </div>
-                                        )}
-                                    </div>
-
-                                    <button type="button" className="button button--size-m button--type-minimal" style={{ marginTop: "18px" }} onClick={() => setSelectedTags([])}>
-                                        {t("tags.actions.clear")}
-                                    </button>
-                                </form>
-
-                                <p className="blog-settings__field-title">{t("tags.current")}</p>
-                                <div className="tags-list">
-                                    {selectedTags.length > 0 ? (
-                                        selectedTags.map((tag) => (
-                                            <div key={tag} className="button button--size-m button--type-minimal">{getTagLabel(tag)}</div>
-                                        ))
-                                    ) : (
-                                        <p>{t("tags.none")}</p>
+                                        </div>
                                     )}
                                 </div>
+
+                                <button type="button" className="button button--size-m button--type-minimal" style={{ marginTop: "18px" }} onClick={() => setSelectedTags([])}>
+                                    {t("tags.actions.clear")}
+                                </button>
+                            </form>
+
+                            <p className="blog-settings__field-title">{t("tags.current")}</p>
+                            <div className="tags-list">
+                                {selectedTags.length > 0 ? (
+                                    selectedTags.map((tag) => (
+                                        <div key={tag} className="button button--size-m button--type-minimal">{getTagLabel(tag)}</div>
+                                    ))
+                                ) : (
+                                    <p>{t("tags.none")}</p>
+                                )}
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <UnsavedChangesBar
-                    isDirty={isDirty}
-                    isSaving={isSaving}
-                    onSave={handleSubmit}
-                    onReset={() => {
-                        setSelectedTags([...savedTags]);
-                        setIsTagsPopoverOpen(false);
-                    }}
-                    saveLabel={t("tags.actions.save")}
-                    resetLabel={t("unsavedBar.reset")}
-                    message={t("unsavedBar.message")}
-                />
             </div>
-        </div>
+
+            <UnsavedChangesBar
+                isDirty={isDirty}
+                isSaving={isSaving}
+                onSave={handleSubmit}
+                onReset={() => {
+                    setSelectedTags([...savedTags]);
+                    setIsTagsPopoverOpen(false);
+                }}
+                saveLabel={t("tags.actions.save")}
+                resetLabel={t("unsavedBar.reset")}
+                message={t("unsavedBar.message")}
+            />
+        </>
     );
 }

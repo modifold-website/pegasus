@@ -10,18 +10,6 @@ const getNormalizedTimeRange = (value) => {
     return ALLOWED_TIME_RANGES.has(timeRange) ? timeRange : "7d";
 };
 
-async function fetchProjectSettings(slug, authToken) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/settings`, {
-        headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${authToken}`,
-        },
-        cache: "no-store",
-    });
-
-    return response;
-}
-
 async function fetchProjectAnalytics(slug, authToken, timeRange) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/analytics?time_range=${timeRange}`, {
         headers: {
@@ -70,16 +58,18 @@ export default async function Page({ params, searchParams }) {
         redirect("/");
     }
 
-    const [settingsResponse, analyticsResponse] = await Promise.all([
-        fetchProjectSettings(slug, authToken),
+    const [projectResponse, analyticsResponse] = await Promise.all([
+        fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, {
+            headers: {
+                Accept: "application/json",
+                Authorization: authToken ? `Bearer ${authToken}` : undefined,
+            },
+            cache: "no-store",
+        }),
         fetchProjectAnalytics(slug, authToken, timeRange),
     ]);
 
-    if(settingsResponse.status === 401 || settingsResponse.status === 403 || analyticsResponse.status === 401 || analyticsResponse.status === 403) {
-        redirect("/403");
-    }
-
-    if(!settingsResponse.ok || !analyticsResponse.ok) {
+    if(!projectResponse.ok || !analyticsResponse.ok) {
         return (
             <div className="layout">
                 <div className="view">
@@ -89,12 +79,8 @@ export default async function Page({ params, searchParams }) {
         );
     }
 
-    const settingsData = await settingsResponse.json();
+    const project = await projectResponse.json();
     const analytics = await analyticsResponse.json();
-    const project = {
-        ...settingsData,
-        organization: settingsData?.organization || null,
-    };
 
     return (
         <ProjectAnalyticsSettingsPage

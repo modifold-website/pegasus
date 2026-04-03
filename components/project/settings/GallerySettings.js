@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
-import ProjectSettingsSidebar from "@/components/ui/ProjectSettingsSidebar";
 import GalleryUploadModal from "@/modal/GalleryUploadModal";
 import GalleryEditModal from "@/modal/GalleryEditModal";
 
@@ -446,71 +445,53 @@ export default function GallerySettings({ project, authToken }) {
     };
 
     return (
-        <div className="layout">
-            <div className="page-content settings-page">
-                <ProjectSettingsSidebar
-                    project={project}
-                    iconAlt={t("general.iconAlt")}
-                    labels={{
-                        general: t("sidebar.general"),
-                        description: t("sidebar.description"),
-                        links: t("sidebar.links"),
-                        versions: t("sidebar.versions"),
-                        gallery: t("sidebar.gallery"),
-                        tags: t("sidebar.tags"),
-                        license: t("sidebar.license"),
-                        analytics: t("sidebar.analytics"),
-                        moderation: t("sidebar.moderation"),
-                    }}
-                />
+        <>
+            <div style={{ width: "100%" }}>
+                <div className="content content--padding" style={{ marginBottom: "12px" }}>
+                    <div className="gallery-upload-bar" role="button" tabIndex={0} onClick={openUploadModal} onKeyDown={handleUploadBarKeyDown}>
+                        <button type="button" className="button button--size-m button--type-primary button--with-icon" style={{ "--icon-size": "17px" }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-upload-icon lucide-upload"><path d="M12 3v12"/><path d="m17 8-5-5-5 5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
 
-                <div style={{ width: "100%" }}>
-                    <div className="content content--padding" style={{ marginBottom: "12px" }}>
-                        <div className="gallery-upload-bar" role="button" tabIndex={0} onClick={openUploadModal} onKeyDown={handleUploadBarKeyDown}>
-                            <button type="button" className="button button--size-m button--type-primary button--with-icon" style={{ "--icon-size": "17px" }}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-upload-icon lucide-upload"><path d="M12 3v12"/><path d="m17 8-5-5-5 5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
-
-                                {t("gallerySettings.actions.add")}
-                            </button>
-                        </div>
+                            {t("gallerySettings.actions.add")}
+                        </button>
                     </div>
+                </div>
 
-                    {galleryImages.length === 0 ? (
-                        <p style={{ color: "var(--theme-color-text-secondary)" }}>{tProject("gallery.noImages")}</p>
-                    ) : (
-                        <div className="gallery-settings-grid">
-                            {galleryImages.map((image) => (
-                                <div key={image.id} className="gallery-settings-card">
-                                    <div className="gallery-settings-card__preview">
-                                        <img src={image.url} alt={image.title || tProject("gallery.image")} className="gallery-settings-card__image" loading={Boolean(Number(image?.featured)) ? "eager" : "lazy"} />
+                {galleryImages.length === 0 ? (
+                    <p style={{ color: "var(--theme-color-text-secondary)" }}>{tProject("gallery.noImages")}</p>
+                ) : (
+                    <div className="gallery-settings-grid">
+                        {galleryImages.map((image) => (
+                            <div key={image.id} className="gallery-settings-card">
+                                <div className="gallery-settings-card__preview">
+                                    <img src={image.url} alt={image.title || tProject("gallery.image")} className="gallery-settings-card__image" loading={Boolean(Number(image?.featured)) ? "eager" : "lazy"} />
+                                </div>
+
+                                <div className="gallery-settings-card__body">
+                                    {(image.title || image.description) &&
+                                        <div className="gallery-settings-card__info">
+                                            {image.title && <h2>{image.title}</h2>}
+
+                                            {image.description && <p>{image.description}</p>}
+                                        </div>
+                                    }
+
+                                    <div className="gallery-settings-card__date">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+
+                                        {formatDate(image.created_at)}
                                     </div>
 
-                                    <div className="gallery-settings-card__body">
-                                        {(image.title || image.description) &&
-                                            <div className="gallery-settings-card__info">
-                                                {image.title && <h2>{image.title}</h2>}
+                                    <div className="gallery-settings-card__actions">
+                                        <button type="button" className="button button--size-m button--type-minimal" onClick={() => openEditModal(image)}>{tProject("gallery.editImage")}</button>
 
-                                                {image.description && <p>{image.description}</p>}
-                                            </div>
-                                        }
-
-                                        <div className="gallery-settings-card__date">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
-
-                                            {formatDate(image.created_at)}
-                                        </div>
-
-                                        <div className="gallery-settings-card__actions">
-                                            <button type="button" className="button button--size-m button--type-minimal" onClick={() => openEditModal(image)}>{tProject("gallery.editImage")}</button>
-
-                                            <button type="button" className="button button--size-m button--type-minimal" onClick={() => handleDeleteById(image.id)}>{tProject("delete")}</button>
-                                        </div>
+                                        <button type="button" className="button button--size-m button--type-minimal" onClick={() => handleDeleteById(image.id)}>{tProject("delete")}</button>
                                     </div>
                                 </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
 
             <GalleryUploadModal
@@ -565,6 +546,6 @@ export default function GallerySettings({ project, authToken }) {
                     tProject={tProject}
                 />
             )}
-        </div>
+        </>
     );
 }

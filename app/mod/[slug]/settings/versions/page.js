@@ -1,5 +1,4 @@
 ﻿import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import VersionsSettings from "@/components/project/settings/VersionsSettings";
 
@@ -28,23 +27,14 @@ export default async function Page({ params }) {
     const cookieStore = await cookies();
     const authToken = cookieStore.get("authToken")?.value;
 
-    if(!authToken) {
-        redirect("/");
-    }
-
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/settings`, {
+    const resProject = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, {
         headers: {
             Accept: "application/json",
-            Authorization: `Bearer ${authToken}`,
+            Authorization: authToken ? `Bearer ${authToken}` : undefined,
         },
-        cache: "no-store",
     });
 
-    if(res.status === 401 || res.status === 403) {
-        redirect("/403");
-    }
-
-    if(!res.ok) {
+    if(!resProject.ok) {
         return (
             <div className="layout">
                 <div className="view">
@@ -53,13 +43,6 @@ export default async function Page({ params }) {
             </div>
         );
     }
-
-    const resProject = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, {
-        headers: {
-            Accept: "application/json",
-            Authorization: authToken ? `Bearer ${authToken}` : undefined,
-        },
-    });
 
     const project = await resProject.json();
 

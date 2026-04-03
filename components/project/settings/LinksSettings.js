@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
 import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
-import ProjectSettingsSidebar from "@/components/ui/ProjectSettingsSidebar";
 
 export default function LinksSettings({ project, authToken }) {
     const t = useTranslations("SettingsProjectPage");
@@ -65,119 +64,101 @@ export default function LinksSettings({ project, authToken }) {
     };
 
     return (
-        <div className="layout">
-            <div className="page-content settings-page">
-                <ProjectSettingsSidebar
-                    project={project}
-                    iconAlt={t("general.iconAlt")}
-                    labels={{
-                        general: t("sidebar.general"),
-                        description: t("sidebar.description"),
-                        links: t("sidebar.links"),
-                        versions: t("sidebar.versions"),
-                        gallery: t("sidebar.gallery"),
-                        tags: t("sidebar.tags"),
-                        license: t("sidebar.license"),
-                        analytics: t("sidebar.analytics"),
-                        moderation: t("sidebar.moderation"),
-                    }}
-                />
+        <>
+            <div className="settings-wrapper settings-wrapper--narrow">
+                <div className="settings-content">
+                    <form onSubmit={handleSubmit}>
+                        <div className="blog-settings">
+                            <div className="blog-settings__body">
+                                <p className="blog-settings__field-title">{t("links.fields.issueTracker")}</p>
+                                <div className="field field--default">
+                                    <label style={{ marginBottom: "10px" }} className="field__wrapper">
+                                        <input
+                                            type="url"
+                                            name="issue_url"
+                                            value={formData.issue_url}
+                                            onChange={(e) => setFormData({ ...formData, issue_url: e.target.value })}
+                                            placeholder={t("links.placeholders.issueTracker")}
+                                            className="text-input"
+                                        />
+                                    </label>
+                                </div>
 
-                <div className="settings-wrapper settings-wrapper--narrow">
-                    <div className="settings-content">
-                        <form onSubmit={handleSubmit}>
-                            <div className="blog-settings">
-                                <div className="blog-settings__body">
-                                    <p className="blog-settings__field-title">{t("links.fields.issueTracker")}</p>
-                                    <div className="field field--default">
-                                        <label style={{ marginBottom: "10px" }} className="field__wrapper">
-                                            <input
-                                                type="url"
-                                                name="issue_url"
-                                                value={formData.issue_url}
-                                                onChange={(e) => setFormData({ ...formData, issue_url: e.target.value })}
-                                                placeholder={t("links.placeholders.issueTracker")}
-                                                className="text-input"
-                                            />
-                                        </label>
-                                    </div>
+                                <p className="blog-settings__field-title">{t("links.fields.sourceCode")}</p>
+                                <div className="field field--default">
+                                    <label style={{ marginBottom: "10px" }} className="field__wrapper">
+                                        <input
+                                            type="url"
+                                            name="source_url"
+                                            value={formData.source_url}
+                                            onChange={(e) => setFormData({ ...formData, source_url: e.target.value })}
+                                            placeholder={t("links.placeholders.sourceCode")}
+                                            className="text-input"
+                                        />
+                                    </label>
+                                </div>
 
-                                    <p className="blog-settings__field-title">{t("links.fields.sourceCode")}</p>
-                                    <div className="field field--default">
-                                        <label style={{ marginBottom: "10px" }} className="field__wrapper">
-                                            <input
-                                                type="url"
-                                                name="source_url"
-                                                value={formData.source_url}
-                                                onChange={(e) => setFormData({ ...formData, source_url: e.target.value })}
-                                                placeholder={t("links.placeholders.sourceCode")}
-                                                className="text-input"
-                                            />
-                                        </label>
-                                    </div>
+                                <p className="blog-settings__field-title">{t("links.fields.wiki")}</p>
+                                <div className="field field--default">
+                                    <label style={{ marginBottom: "10px" }} className="field__wrapper">
+                                        <input
+                                            type="url"
+                                            name="wiki_url"
+                                            value={formData.wiki_url}
+                                            onChange={(e) => setFormData({ ...formData, wiki_url: e.target.value })}
+                                            placeholder={t("links.placeholders.wiki")}
+                                            className="text-input"
+                                        />
+                                    </label>
+                                </div>
 
-                                    <p className="blog-settings__field-title">{t("links.fields.wiki")}</p>
-                                    <div className="field field--default">
-                                        <label style={{ marginBottom: "10px" }} className="field__wrapper">
-                                            <input
-                                                type="url"
-                                                name="wiki_url"
-                                                value={formData.wiki_url}
-                                                onChange={(e) => setFormData({ ...formData, wiki_url: e.target.value })}
-                                                placeholder={t("links.placeholders.wiki")}
-                                                className="text-input"
-                                            />
-                                        </label>
-                                    </div>
+                                <p className="blog-settings__field-title">{t("links.fields.hytaleModdingWiki")}</p>
+                                <div className="field field--default">
+                                    <label style={{ marginBottom: "10px" }} className="field__wrapper">
+                                        <span style={{ whiteSpace: "nowrap", flexShrink: 1, textOverflow: "ellipsis", color: "var(--theme-color-text-secondary)" }}>
+                                            /mod/
+                                        </span>
 
-                                    <p className="blog-settings__field-title">{t("links.fields.hytaleModdingWiki")}</p>
-                                    <div className="field field--default">
-                                        <label style={{ marginBottom: "10px" }} className="field__wrapper">
-                                            <span style={{ whiteSpace: "nowrap", flexShrink: 1, textOverflow: "ellipsis", color: "var(--theme-color-text-secondary)" }}>
-                                                /mod/
-                                            </span>
+                                        <input
+                                            type="text"
+                                            name="hytale_wiki_slug"
+                                            value={formData.hytale_wiki_slug}
+                                            onChange={(e) => setFormData({ ...formData, hytale_wiki_slug: e.target.value })}
+                                            placeholder="voile"
+                                            className="text-input"
+                                            style={{ minWidth: 0 }}
+                                        />
+                                    </label>
+                                </div>
 
-                                            <input
-                                                type="text"
-                                                name="hytale_wiki_slug"
-                                                value={formData.hytale_wiki_slug}
-                                                onChange={(e) => setFormData({ ...formData, hytale_wiki_slug: e.target.value })}
-                                                placeholder="voile"
-                                                className="text-input"
-                                                style={{ minWidth: 0 }}
-                                            />
-                                        </label>
-                                    </div>
-
-                                    <p className="blog-settings__field-title">{t("links.fields.discord")}</p>
-                                    <div className="field field--default">
-                                        <label style={{ marginBottom: "10px" }} className="field__wrapper">
-                                            <input
-                                                type="url"
-                                                name="discord_url"
-                                                value={formData.discord_url}
-                                                onChange={(e) => setFormData({ ...formData, discord_url: e.target.value })}
-                                                placeholder={t("links.placeholders.discord")}
-                                                className="text-input"
-                                            />
-                                        </label>
-                                    </div>
+                                <p className="blog-settings__field-title">{t("links.fields.discord")}</p>
+                                <div className="field field--default">
+                                    <label style={{ marginBottom: "10px" }} className="field__wrapper">
+                                        <input
+                                            type="url"
+                                            name="discord_url"
+                                            value={formData.discord_url}
+                                            onChange={(e) => setFormData({ ...formData, discord_url: e.target.value })}
+                                            placeholder={t("links.placeholders.discord")}
+                                            className="text-input"
+                                        />
+                                    </label>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
-
-                <UnsavedChangesBar
-                    isDirty={isDirty}
-                    isSaving={isSaving}
-                    onSave={handleSubmit}
-                    onReset={() => setFormData({ ...savedFormData })}
-                    saveLabel={t("links.actions.save")}
-                    resetLabel={t("unsavedBar.reset")}
-                    message={t("unsavedBar.message")}
-                />
             </div>
-        </div>
+
+            <UnsavedChangesBar
+                isDirty={isDirty}
+                isSaving={isSaving}
+                onSave={handleSubmit}
+                onReset={() => setFormData({ ...savedFormData })}
+                saveLabel={t("links.actions.save")}
+                resetLabel={t("unsavedBar.reset")}
+                message={t("unsavedBar.message")}
+            />
+        </>
     );
 }

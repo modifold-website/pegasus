@@ -13,8 +13,8 @@ export default function UserSettingsSidebar({ user, labels, profileIconAlt, mode
     return (
         <div className="sidebar">
             <div className="sidebar__main">
-                <Link href={`/user/${user?.slug || ""}`} className="sidebar-item" data-ripple>
-                    <img src={user?.avatar || "https://media.modifold.com/static/no-project-icon.svg"} alt={profileIconAlt} className="icon" width="28" height="28" style={{ borderRadius: "8px" }} />
+                <Link href={`/user/${user?.slug || ""}`} className="sidebar-item sidebar-item--profile" data-ripple>
+                    <img src={user?.avatar || "https://media.modifold.com/static/no-project-icon.svg"} alt={profileIconAlt} className="icon" width="28" height="28" style={{ borderRadius: "100px" }} />
 
                     <UserName user={user} />
                 </Link>

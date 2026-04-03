@@ -11,7 +11,7 @@ export default function ProjectSettingsSidebar({ project, labels, iconAlt }) {
     return (
         <div className="sidebar">
             <div className="sidebar__main">
-                <Link href={`/mod/${project.slug}`} className="sidebar-item" data-ripple>
+                <Link href={`/mod/${project.slug}`} className="sidebar-item sidebar-item--profile" data-ripple>
                     <img src={project.icon_url} alt={iconAlt} className="icon" width="28" height="28" style={{ borderRadius: "8px" }} />
                     
                     {project.title}

@@ -2757,6 +2757,25 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .modal-window__close {
     right: 16px;
 }
+.modal-window__header .modal-window__close {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: var(--theme-color-text-secondary);
+    background-color: var(--theme-color-button-minimal);
+    cursor: pointer;
+    transition: transform .05s ease-in-out;
+}
+.modal-window__header .modal-window__close:hover {
+    opacity: 0.85;
+}
+.modal-window__header .modal-window__close:active {
+    transform: scale(.95);
+}
 .modal-window__content {
     overflow-x: hidden;
     overflow-y: auto;

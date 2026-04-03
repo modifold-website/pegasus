@@ -93,7 +93,9 @@ export default function SettingsVerificationPage({ initialUser = null, initialVe
                                 )}
                             </p>
 
-                            <div style={{ color: "var(--theme-color-text-secondary)" }}>{t("requirements")}</div>
+                            {!verificationStatus.isVerified && (
+                                <div style={{ color: "var(--theme-color-text-secondary)" }}>{t("requirements")}</div>
+                            )}
                             
                             {verificationRequest?.created_at && (
                                 <div style={{ color: "var(--theme-color-text-secondary)", marginTop: "6px" }}>

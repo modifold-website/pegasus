@@ -298,9 +298,7 @@
         "deleted": "Silindi"
       },
       "emptyLoggedIn": "Henüz yorum yok. Bu mod için ilk yorumu sen bırak!",
-      "emptyGuest": "Henüz yorum yok. Bu mod için yorum bırakmak için giriş yapın.",
-      "guestPromptTitle": "Bu proje hakkında yorum bırakmak için giriş yapın.",
-      "guestPromptNote": "(Lütfen insanlara saygılı olun ve topluluk kurallarına uyun.)"
+      "emptyGuest": "Henüz yorum yok. Bu mod için yorum bırakmak için giriş yapın."
     },
     "report": {
       "moreActions": "Ek işlemler",

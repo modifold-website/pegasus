@@ -299,9 +299,7 @@
         "deleted": "Deleted"
       },
       "emptyLoggedIn": "No comments yet. Leave the first review for this mod!",
-      "emptyGuest": "No comments yet. Log in to leave a review for this mod.",
-      "guestPromptTitle": "Log in to leave a comment about this project.",
-      "guestPromptNote": "(Please be respectful and follow the community rules.)"
+      "emptyGuest": "No comments yet. Log in to leave a review for this mod."
     },
     "report": {
       "moreActions": "More actions",

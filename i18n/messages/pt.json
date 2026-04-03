@@ -298,9 +298,7 @@
         "deleted": "Excluído"
       },
       "emptyLoggedIn": "Ainda não há comentários. Deixe a primeira avaliação deste mod!",
-      "emptyGuest": "Ainda não há comentários. Faça login para deixar uma avaliação deste mod.",
-      "guestPromptTitle": "Faça login para deixar um comentário sobre este projeto.",
-      "guestPromptNote": "(Por favor, respeite as pessoas e siga as regras da comunidade.)"
+      "emptyGuest": "Ainda não há comentários. Faça login para deixar uma avaliação deste mod."
     },
     "report": {
       "moreActions": "Mais ações",

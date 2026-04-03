@@ -60,6 +60,15 @@ export default function VersionsPage({ project, authToken }) {
         const urlLoaders = params.getAll("loader").map(l => l.toLowerCase());
         const urlPage = parseInt(params.get("page")) || 1;
 
+        const sameGameVersions = urlVersions.length === filterGameVersions.length && urlVersions.every((v, i) => v === filterGameVersions[i]);
+        const sameChannels = urlChannels.length === filterChannels.length && urlChannels.every((v, i) => v === filterChannels[i]);
+        const sameLoaders = urlLoaders.length === filterLoaders.length && urlLoaders.every((v, i) => v === filterLoaders[i]);
+        const samePage = urlPage === currentPage;
+
+        if(sameGameVersions && sameChannels && sameLoaders && samePage) {
+            return;
+        }
+
         setFilterGameVersions(urlVersions);
         setFilterChannels(urlChannels);
         setFilterLoaders(urlLoaders);
@@ -77,12 +86,17 @@ export default function VersionsPage({ project, authToken }) {
         }
 
         const query = params.toString();
-        router.push(`${pathname}${query ? `?${query}` : ""}`, { scroll: false });
+        const currentQuery = searchParams.toString();
+        if(query === currentQuery) {
+            return;
+        }
+
+        router.replace(`${pathname}${query ? `?${query}` : ""}`, { scroll: false });
     };
 
     useEffect(() => {
         updateUrl();
-    }, [filterGameVersions, filterChannels, filterLoaders, currentPage]);
+    }, [filterGameVersions, filterChannels, filterLoaders, currentPage, searchParams, pathname, router]);
 
     useEffect(() => {
         setCurrentPage(1);

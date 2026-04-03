@@ -1273,6 +1273,14 @@
     "reapply": "Enviar novamente",
     "cooldown": "Disponível em {days} dias",
     "lastRequest": "Última solicitação: {date}",
+    "promoCard": {
+      "text": "Adoro o Modifold, vou mencioná-lo em todo lugar!",
+      "timeNow": "agora",
+      "reply": "Responder",
+      "moreActions": "Mais ações",
+      "avatarAlt": "Avatar do usuário",
+      "usernameFallback": "Usuário"
+    },
     "errors": {
       "fetch": "Não foi possível carregar o status de verificação"
     },

@@ -11,8 +11,9 @@ import VerificationRequestModal from "../../modal/VerificationRequestModal";
 export default function SettingsVerificationPage({ initialUser = null, initialVerification = null }) {
     const t = useTranslations("SettingsVerificationPage");
     const locale = useLocale();
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, user } = useAuth();
     const router = useRouter();
+    const effectiveUser = user || initialUser;
 
     const [verificationStatus, setVerificationStatus] = useState(() => ({
         isVerified: initialVerification?.isVerified || false,
@@ -82,6 +83,55 @@ export default function SettingsVerificationPage({ initialUser = null, initialVe
                     <p style={{ marginBottom: "14px", color: "var(--theme-color-text-secondary)" }}>
                         {t("benefitsNote")}
                     </p>
+
+                    <div className="comment" style={{ "--branches-count": 0, padding: 0, marginBottom: "14px", background: "var(--theme-color-background)", borderRadius: "16px", padding: "16px 22px" }}>
+                        <div className="comment__branches">
+                            <div className="comment-branches"></div>
+                        </div>
+
+                        <div className="comment__content" style={{ padding: 0 }}>
+                            <div className="author" style={{ "--1ebedaf6": "36px" }}>
+                                <div className="author__avatar">
+                                    <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "36px", height: "36px", maxWidth: "none" }}>
+                                        <picture>
+                                            <img alt={t("promoCard.avatarAlt")} src={effectiveUser?.avatar || "https://media.modifold.com/static/no-project-icon.svg"} />
+                                        </picture>
+                                    </div>
+                                </div>
+
+                                <div className="author__main" style={{ fontWeight: 500 }}>
+                                    <span style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                                        <span>{effectiveUser?.username || effectiveUser?.slug || t("promoCard.usernameFallback")}</span>
+                                        
+                                        <img alt={t("status.verified")} src="/badges/verified.png" style={{ width: "18px", height: "18px", display: "inline-block" }} />
+                                    </span>
+                                </div>
+
+                                <div className="author__details">
+                                    <span className="comment__detail"><time>{t("promoCard.timeNow")}</time></span>
+                                </div>
+                            </div>
+
+                            <div className="comment__break comment__break--author"></div>
+                            <div className="comment__text">
+                                <p>{t("promoCard.text")}</p>
+                            </div>
+
+                            <div className="comment__actions">
+                                <div type="button" className="comment__action comment__action--reply">
+                                    {t("promoCard.reply")}
+                                </div>
+                                
+                                <div className="comment-menu" style={{ height: "26px" }}>
+                                    <div type="button" className="icon-button" aria-label={t("promoCard.moreActions")}>
+                                        <svg viewBox="0 0 24 24" className="icon icon--dots" height="20" width="20">
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM19 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="currentColor"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
                         <div>

@@ -1274,6 +1274,14 @@
     "reapply": "Submit again",
     "cooldown": "Available in {days} days",
     "lastRequest": "Last request: {date}",
+    "promoCard": {
+      "text": "I love Modifold, I’ll mention it everywhere!",
+      "timeNow": "just now",
+      "reply": "Reply",
+      "moreActions": "More actions",
+      "avatarAlt": "User avatar",
+      "usernameFallback": "User"
+    },
     "errors": {
       "fetch": "Failed to load verification status"
     },

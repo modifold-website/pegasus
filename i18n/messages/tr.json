@@ -1273,6 +1273,14 @@
     "reapply": "Tekrar gönder",
     "cooldown": "{days} gün sonra kullanılabilir",
     "lastRequest": "Son başvuru: {date}",
+    "promoCard": {
+      "text": "Modifold'u çok seviyorum, her yerde bahsedeceğim!",
+      "timeNow": "şimdi",
+      "reply": "Yanıtla",
+      "moreActions": "Daha fazla işlem",
+      "avatarAlt": "Kullanıcı avatarı",
+      "usernameFallback": "Kullanıcı"
+    },
     "errors": {
       "fetch": "Doğrulama durumu yüklenemedi"
     },

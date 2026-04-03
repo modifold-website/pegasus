@@ -135,7 +135,7 @@ export default function SettingsVerificationPage({ initialUser = null, initialVe
 
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
                         <div>
-                            <p className="blog-settings__field-title" style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                            <p className="blog-settings__field-title" style={{ display: "flex", alignItems: "center", gap: "4px", ...(verificationStatus.isVerified ? { marginBottom: 0 } : {}) }}>
                                 <span>{t("statusLabel")}: {statusLabel}</span>
                                 
                                 {verificationStatus.isVerified && (

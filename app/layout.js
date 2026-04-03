@@ -95,7 +95,7 @@ export default async function RootLayout({ children }) {
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
 
-                <link rel="alternate" hreflang="x-default" href="https://modifold.com/" />
+                <link rel="alternate" hrefLang="x-default" href="https://modifold.com/" />
 
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -119,15 +119,6 @@ export default async function RootLayout({ children }) {
                 <meta property="og:image:height" content="315" />
                 <meta property="og:type" content="website" />
                 <meta property="robots" content="all" />
-
-                {/* Privacy-friendly analytics by Plausible */}
-                <script async src="https://plausible.io/js/pa-BrYrZZl2H2t2KBUwYmESp.js"></script>
-                <script>
-                    {`
-                        window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-                        plausible.init()
-                    `}
-                </script>
 
                 <Script src="https://www.googletagmanager.com/gtag/js?id=G-P5V8PSTGNR" strategy="afterInteractive" />
                 <Script id="google-analytics" strategy="afterInteractive">

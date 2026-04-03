@@ -1,9 +1,8 @@
-﻿import { cookies } from "next/headers";
+﻿import { cookies, headers } from "next/headers";
 import { notFound } from "next/navigation";
-import CommentsPage from "@/components/pages/CommentsPage";
+import ProjectPage from "@/components/pages/ProjectPage";
 import { getLocale } from "next-intl/server";
 import Script from "next/script";
-const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
@@ -12,6 +11,7 @@ export async function generateMetadata({ params }) {
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, {
         headers: { Accept: "application/json" },
+        next: { revalidate: 60, tags: [`project:${slug}`] },
     });
 
     if(!res.ok) {
@@ -19,9 +19,6 @@ export async function generateMetadata({ params }) {
     }
 
     const project = await res.json();
-    if(!project.comments_enabled) {
-        notFound();
-    }
 
     const description = project.summary.length > 160 ? `${project.summary.substring(0, 157)}...` : project.summary;
 
@@ -32,21 +29,21 @@ export async function generateMetadata({ params }) {
         author: project.owner.username,
         robots: "index, follow",
         alternates: {
-            canonical: `https://modifold.com/mod/${project.slug}/comments`,
-            "x-default": `https://modifold.com/mod/${project.slug}/comments`,
+            canonical: `https://modifold.com/mod/${project.slug}`,
+            "x-default": `https://modifold.com/mod/${project.slug}`,
         },
         openGraph: {
             title: `${project.title} — Modifold`,
             description,
             images: [
                 {
-                    url: project.icon_url || DEFAULT_PROJECT_ICON_URL,
+                    url: project.icon_url || "https://media.modifold.com/static/no-project-icon.svg",
                     width: 1200,
                     height: 630,
                     alt: `${project.title} Hytale Mod`,
                 },
             ],
-            url: `https://modifold.com/mod/${project.slug}/comments`,
+            url: `https://modifold.com/mod/${project.slug}`,
             type: "website",
             locale: ogLocale,
         },
@@ -54,49 +51,73 @@ export async function generateMetadata({ params }) {
             card: "summary_large_image",
             title: `${project.title} — Modifold`,
             description,
-            images: [project.icon_url || DEFAULT_PROJECT_ICON_URL],
+            images: [project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"],
         },
     };
 }
 
 export default async function Page({ params }) {
     const { slug } = await params;
+
+    const h = await headers();
+    const xff = h.get("x-forwarded-for");
+    const realIp = h.get("x-real-ip");
+    const clientIp = (xff?.split(",")[0] || realIp || "").trim();
+
     const resolvedLocale = await getLocale();
     const cookieStore = await cookies();
     const authToken = cookieStore.get("authToken")?.value;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, {
+    const projectFetchOptions = authToken ? {
         headers: {
             Accept: "application/json",
-            Authorization: authToken ? `Bearer ${authToken}` : undefined,
+            Authorization: `Bearer ${authToken}`,
         },
-    });
+        cache: "no-store",
+    } : {
+        headers: { Accept: "application/json" },
+        next: { revalidate: 60, tags: [`project:${slug}`] },
+    };
+
+    const membersFetchOptions = authToken ? {
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${authToken}`,
+        },
+        cache: "no-store",
+    } : {
+        headers: { Accept: "application/json" },
+        next: { revalidate: 60, tags: [`project:${slug}:members`] },
+    };
+
+    let res;
+    try {
+        res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, projectFetchOptions);
+    } catch {
+        notFound();
+    }
 
     if(!res.ok) {
         notFound();
     }
 
     const project = await res.json();
-    if(!project.comments_enabled) {
-        notFound();
-    }
-    
-    const membersRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/members`, {
-        headers: {
-            Accept: "application/json",
-            Authorization: authToken ? `Bearer ${authToken}` : undefined,
-        },
-    });
 
-    const members = membersRes.ok ? await membersRes.json() : [];
-    const commentsRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/comments`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/view`, {
+        method: "POST",
         headers: {
-            Accept: "application/json",
-            Authorization: authToken ? `Bearer ${authToken}` : undefined,
+            ...(clientIp ? { "x-forwarded-for": clientIp } : {}),
         },
         cache: "no-store",
-    });
-    const commentsData = commentsRes.ok ? await commentsRes.json() : { comments: [], canModerate: false };
+    }).catch(console.error);
+
+    let members = [];
+    try {
+        const membersRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/members`, membersFetchOptions);
+        if(membersRes.ok) {
+            members = await membersRes.json();
+        }
+    } catch {}
 
     return (
         <>
@@ -109,21 +130,15 @@ export default async function Page({ params }) {
                     "operatingSystem": "Hytale",
                     "author": { "@type": "Person", "name": project.owner.username },
                     "description": project.summary,
-                    "url": `https://modifold.com/mod/${project.slug}/comments`,
-                    "image": project.icon_url || DEFAULT_PROJECT_ICON_URL,
+                    "url": `https://modifold.com/mod/${project.slug}`,
+                    "image": project.icon_url || "https://media.modifold.com/static/no-project-icon.svg",
                     "inLanguage": resolvedLocale,
                 })}
             </Script>
 
-            <link rel="alternate" hrefLang="x-default" href={`https://modifold.com/mod/${project.slug}/comments`} />
+            <link rel="alternate" hrefLang="x-default" href={`https://modifold.com/mod/${project.slug}`} />
 
-            <CommentsPage
-                project={{ ...project, members }}
-                authToken={authToken}
-                initialComments={commentsData.comments || []}
-                initialCanModerate={!!commentsData.canModerate}
-                initialCommentsLoaded={commentsRes.ok}
-            />
+            <ProjectPage project={{ ...project, members }} authToken={authToken} />
         </>
     );
 }

@@ -5,8 +5,6 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import VersionDisplay from "../VersionDisplay";
 import { useTranslations, useLocale } from "next-intl";
-import ProjectMasthead from "../project/ProjectMasthead";
-import ProjectTabs from "../project/ProjectTabs";
 import ProjectSidebar from "../project/ProjectSidebar";
 import showOverTheTopDownloadAnimation from "../ui/showOverTheTopDownloadAnimation";
 
@@ -164,156 +162,140 @@ export default function VersionsPage({ project, authToken }) {
         return buttons;
     };
 
-    const featuredImage = project.gallery?.find(image => image.featured === 1);
-
     return (
         <>
-            {featuredImage && (
-                <img src={featuredImage.url} className="fixed-background-teleport"></img>
-            )}
+            <div className="project__general">
+                <div>
+                    <div className="version-filters" style={{ display: "flex", gap: "8px", marginBottom: "12px", marginTop: "12px" }}>
+                        <div className="field field--default" ref={filterGameVersionsRef}>
+                            <button style={{ display: "flex", gap: "4px" }} type="button" className="button button--size-m button--type-secondary" onClick={toggleFilterGameVersionsPopover} aria-label={t("filters.gameVersionsAria")}>
+                                {t("tabs.gameVersion")}
 
-            <div className="layout">
-                <>
-                    <div className="project-page">
-                        <ProjectMasthead project={project} authToken={authToken} />
+                                <svg className="icon icon--chevron_down " width="20" height="20" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" d="M17.707 8.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L12 13.086l4.293-4.293a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
+                            </button>
 
-                        <div className="project__general">
-                            <div>
-                                <ProjectTabs project={project} />
-
-                                <div className="version-filters" style={{ display: "flex", gap: "8px", marginBottom: "12px", marginTop: "12px" }}>
-                                    <div className="field field--default" ref={filterGameVersionsRef}>
-                                        <button style={{ display: "flex", gap: "4px" }} type="button" className="button button--size-m button--type-secondary" onClick={toggleFilterGameVersionsPopover} aria-label={t("filters.gameVersionsAria")}>
-                                            {t("tabs.gameVersion")}
-
-                                            <svg className="icon icon--chevron_down " width="20" height="20" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" d="M17.707 8.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L12 13.086l4.293-4.293a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
-                                        </button>
-
-                                        {isFilterGameVersionsPopoverOpen && (
-                                            <div className="popover">
-                                                <div className="context-list" style={{ maxHeight: "200px" }}>
-                                                    {availableGameVersions.map((version) => (
-                                                        <div key={version} className={`context-list-option ${filterGameVersions.includes(version) ? "context-list-option--selected" : ""}`} onClick={() => handleToggleFilterGameVersion(version)}>
-                                                            <div className="context-list-option__label">{version}</div>
-                                                        </div>
-                                                    ))}
-                                                </div>
+                            {isFilterGameVersionsPopoverOpen && (
+                                <div className="popover">
+                                    <div className="context-list" style={{ maxHeight: "200px" }}>
+                                        {availableGameVersions.map((version) => (
+                                            <div key={version} className={`context-list-option ${filterGameVersions.includes(version) ? "context-list-option--selected" : ""}`} onClick={() => handleToggleFilterGameVersion(version)}>
+                                                <div className="context-list-option__label">{version}</div>
                                             </div>
-                                        )}
-                                    </div>
-
-                                    <div className="field field--default" ref={filterChannelsRef}>
-                                        <button style={{ display: "flex", gap: "4px" }} type="button" className="button button--size-m button--type-secondary" onClick={toggleFilterChannelsPopover} aria-label={t("filters.channelsAria")}>
-                                            {t("tabs.gameChannel")}
-
-                                            <svg className="icon icon--chevron_down " width="20" height="20" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" d="M17.707 8.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L12 13.086l4.293-4.293a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
-                                        </button>
-
-                                        {isFilterChannelsPopoverOpen && (
-                                            <div className="popover">
-                                                <div className="context-list" style={{ maxHeight: "200px" }}>
-                                                    {availableChannels.map((channel) => (
-                                                        <div key={channel} className={`context-list-option ${filterChannels.includes(channel) ? "context-list-option--selected" : ""}`} onClick={() => handleToggleFilterChannel(channel)}>
-                                                            <div className="context-list-option__label">{channel.charAt(0).toUpperCase() + channel.slice(1)}</div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <div className="field field--default" ref={filterLoadersRef}>
-                                        <button style={{ display: "flex", gap: "4px" }} type="button" className="button button--size-m button--type-secondary" onClick={toggleFilterLoadersPopover} aria-label={t("filters.loadersAria")}>
-                                            {t("tabs.loader") || "Loader"}
-
-                                            <svg className="icon icon--chevron_down " width="20" height="20" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" d="M17.707 8.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L12 13.086l4.293-4.293a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
-                                        </button>
-
-                                        {isFilterLoadersPopoverOpen && (
-                                            <div className="popover">
-                                                <div className="context-list" style={{ maxHeight: "200px" }}>
-                                                    {availableLoaders.map((loader) => (
-                                                        <div key={loader} className={`context-list-option ${filterLoaders.includes(loader) ? "context-list-option--selected" : ""}`} onClick={() => handleToggleFilterLoader(loader)}>
-                                                            <div className="context-list-option__label">
-                                                                {loader.charAt(0).toUpperCase() + loader.slice(1)}
-                                                            </div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
+                                        ))}
                                     </div>
                                 </div>
+                            )}
+                        </div>
 
-                                <div className="all-versions">
-                                    <div className="card-header">
-                                        <div></div>
-                                        <div>{t("versions.headers.version")}</div>
-                                        <div>{t("versions.headers.statistics")}</div>
-                                    </div>
+                        <div className="field field--default" ref={filterChannelsRef}>
+                            <button style={{ display: "flex", gap: "4px" }} type="button" className="button button--size-m button--type-secondary" onClick={toggleFilterChannelsPopover} aria-label={t("filters.channelsAria")}>
+                                {t("tabs.gameChannel")}
 
-                                    {currentVersions.map((version) => (
-                                        <div key={version.id} className="version-button button--active-transform">
-                                            <a className="download-button" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation}>
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-4-4 4m0 0-4-4m4 4V4"></path>
-                                                </svg>
-                                            </a>
+                                <svg className="icon icon--chevron_down " width="20" height="20" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" d="M17.707 8.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L12 13.086l4.293-4.293a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
+                            </button>
 
-                                            <Link href={`/mod/${project.slug}/version/${version.id}`}>
-                                                <span className="version__title">
-                                                    {version.version_number}
-
-                                                    {version.loaders && version.loaders.trim() && version.loaders !== "null" ? (
-                                                        version.loaders.split(",").map((loader, index) => (
-                                                            <span key={index} className="version__game-platform">
-                                                                {loader.trim()}
-                                                            </span>
-                                                        ))
-                                                    ) : (
-                                                        <span className="version__game-platform">{t("versions.notSpecified")}</span>
-                                                    )}
-                                                    
-                                                    <VersionDisplay gameVersions={version.game_versions ? version.game_versions.split(",").map((v) => v.trim()) : []} />
-                                                </span>
-
-                                                <div className="version__metadata">
-                                                    <span className={`version__badge type--${version.release_channel}`}>
-                                                        <span className="circle"></span>
-                                                        {t("versions.published")}
-                                                    </span>
-                                                    <span className="divider"></span>
-                                                    <span className="version_number">{formatDate(version.created_at)}</span>
-                                                </div>
-                                            </Link>
-
-                                            <div className="version__stats">
-                                                <strong>{version.downloads}</strong>
-                                                <span>{t("versions.downloads")}</span>
+                            {isFilterChannelsPopoverOpen && (
+                                <div className="popover">
+                                    <div className="context-list" style={{ maxHeight: "200px" }}>
+                                        {availableChannels.map((channel) => (
+                                            <div key={channel} className={`context-list-option ${filterChannels.includes(channel) ? "context-list-option--selected" : ""}`} onClick={() => handleToggleFilterChannel(channel)}>
+                                                <div className="context-list-option__label">{channel.charAt(0).toUpperCase() + channel.slice(1)}</div>
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {totalPages > 1 && (
-                                    <div className="pagination-controls">
-                                        <button className="button button--size-m button--type-secondary" onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))} disabled={currentPage === 1} aria-disabled={currentPage === 1}>
-                                            {t("previous")}
-                                        </button>
-
-                                        {getPageButtons()}
-
-                                        <button className="button button--size-m button--type-secondary" onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))} disabled={currentPage === totalPages} aria-disabled={currentPage === totalPages}>
-                                            {t("next")}
-                                        </button>
+                                        ))}
                                     </div>
-                                )}
-                            </div>
+                                </div>
+                            )}
+                        </div>
 
-                            <ProjectSidebar project={project} />
+                        <div className="field field--default" ref={filterLoadersRef}>
+                            <button style={{ display: "flex", gap: "4px" }} type="button" className="button button--size-m button--type-secondary" onClick={toggleFilterLoadersPopover} aria-label={t("filters.loadersAria")}>
+                                {t("tabs.loader") || "Loader"}
+
+                                <svg className="icon icon--chevron_down " width="20" height="20" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" d="M17.707 8.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L12 13.086l4.293-4.293a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
+                            </button>
+
+                            {isFilterLoadersPopoverOpen && (
+                                <div className="popover">
+                                    <div className="context-list" style={{ maxHeight: "200px" }}>
+                                        {availableLoaders.map((loader) => (
+                                            <div key={loader} className={`context-list-option ${filterLoaders.includes(loader) ? "context-list-option--selected" : ""}`} onClick={() => handleToggleFilterLoader(loader)}>
+                                                <div className="context-list-option__label">
+                                                    {loader.charAt(0).toUpperCase() + loader.slice(1)}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
-                </>
+
+                    <div className="all-versions">
+                        <div className="card-header">
+                            <div></div>
+                            <div>{t("versions.headers.version")}</div>
+                            <div>{t("versions.headers.statistics")}</div>
+                        </div>
+
+                        {currentVersions.map((version) => (
+                            <div key={version.id} className="version-button button--active-transform">
+                                <a className="download-button" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-4-4 4m0 0-4-4m4 4V4"></path>
+                                    </svg>
+                                </a>
+
+                                <Link href={`/mod/${project.slug}/version/${version.id}`}>
+                                    <span className="version__title">
+                                        {version.version_number}
+
+                                        {version.loaders && version.loaders.trim() && version.loaders !== "null" ? (
+                                            version.loaders.split(",").map((loader, index) => (
+                                                <span key={index} className="version__game-platform">
+                                                    {loader.trim()}
+                                                </span>
+                                            ))
+                                        ) : (
+                                            <span className="version__game-platform">{t("versions.notSpecified")}</span>
+                                        )}
+                                        
+                                        <VersionDisplay gameVersions={version.game_versions ? version.game_versions.split(",").map((v) => v.trim()) : []} />
+                                    </span>
+
+                                    <div className="version__metadata">
+                                        <span className={`version__badge type--${version.release_channel}`}>
+                                            <span className="circle"></span>
+                                            {t("versions.published")}
+                                        </span>
+                                        <span className="divider"></span>
+                                        <span className="version_number">{formatDate(version.created_at)}</span>
+                                    </div>
+                                </Link>
+
+                                <div className="version__stats">
+                                    <strong>{version.downloads}</strong>
+                                    <span>{t("versions.downloads")}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {totalPages > 1 && (
+                        <div className="pagination-controls">
+                            <button className="button button--size-m button--type-secondary" onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))} disabled={currentPage === 1} aria-disabled={currentPage === 1}>
+                                {t("previous")}
+                            </button>
+
+                            {getPageButtons()}
+
+                            <button className="button button--size-m button--type-secondary" onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))} disabled={currentPage === totalPages} aria-disabled={currentPage === totalPages}>
+                                {t("next")}
+                            </button>
+                        </div>
+                    )}
+                </div>
+
+                <ProjectSidebar project={project} />
             </div>
         </>
     );

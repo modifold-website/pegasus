@@ -1,7 +1,6 @@
 ﻿import { cookies } from "next/headers";
 import { getLocale, getTranslations } from "next-intl/server";
 import VersionPage from "@/components/pages/VersionPage";
-const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
 export async function generateMetadata({ params }) {
     const { slug, version_number } = await params;
@@ -30,7 +29,7 @@ export async function generateMetadata({ params }) {
         openGraph: {
             title: t("metadata.version.title", { version: version.version_number, project: projectTitle }),
             description: version.changelog || t("metadata.version.description", { version: version.version_number, project: projectTitle }),
-            images: [project.icon_url || DEFAULT_PROJECT_ICON_URL],
+            images: [project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"],
             url: `https://modifold.com/project/${slug}/version/${version_number}`,
         },
     };

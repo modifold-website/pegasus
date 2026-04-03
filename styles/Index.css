@@ -529,6 +529,7 @@ body.dark {
     grid-column: 1;
     grid-row: 1;
     object-fit: cover;
+    pointer-events: none;
 }
 .andropov-media[data-loaded] .andropov-media__thumbnail {
     opacity: 0;
@@ -1298,10 +1299,18 @@ body.light .ripple-effect {
     margin-right: 16px;
 }
 .tabs__tab--active {
-    border-color: #307df0;
-    border-style: solid;
-    border-bottom-width: 3px;
     color: var(--theme-color-text-primary);
+}
+.tabs__indicator {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    background: #307df0;
+    border-radius: 999px;
+    transition: transform 200ms ease, width 200ms ease, opacity 200ms ease;
+    will-change: transform, width;
+    pointer-events: none;
 }
 .settings-theme-grid {
     display: grid;

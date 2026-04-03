@@ -331,7 +331,7 @@ svg {
 }
 @media all and (min-width: 640px) {
     :root {
-    --layout-island-border-radius: 22px;
+        --layout-island-border-radius: 22px;
         --layout-content-offset-x: 24px;
         --layout-view-offset-y: 16px;
         --layout-content-banner-height: 108px;

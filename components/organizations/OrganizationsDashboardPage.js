@@ -45,9 +45,9 @@ export default function OrganizationsDashboardPage({ authToken, initialOrganizat
                             <p className="subsite-empty-feed__title">{t("dashboard.empty")}</p>
                         </div>
                     ) : (
-                        <div style={{ display: "grid", gap: "12px", padding: "20px" }}>
+                        <div style={{ display: "grid", gap: "12px", marginTop: "12px" }}>
                             {organizations.map((organization) => (
-                                <Link key={organization.id} href={`/organization/${organization.slug}`} className="new-project-card" style={{ textDecoration: "none", background: "var(--theme-color-background)" }}>
+                                <Link key={organization.id} href={`/organization/${organization.slug}`} className="new-project-card" style={{ textDecoration: "none" }}>
                                     <img className="new-project-icon" src={organization.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} style={{ width: "80px", height: "80px" }} alt={organization.name} />
                                     
                                     <div className="new-project-info">

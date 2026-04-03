@@ -183,7 +183,7 @@ export default function SettingsBlogPage({ initialUser = null }) {
                     }}
                 />
 
-                <form className="settings-wrapper blog-settings" onSubmit={handleSubmit}>
+                <form className="settings-wrapper blog-settings settings-wrapper--narrow" onSubmit={handleSubmit}>
                     <div className="blog-settings__body">
                         <div className="subsite-header">
                             <div className="subsite-avatar subsite-header__avatar">

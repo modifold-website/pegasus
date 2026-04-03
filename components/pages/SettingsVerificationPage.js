@@ -92,7 +92,7 @@ export default function SettingsVerificationPage({ initialUser = null, initialVe
                     }}
                 />
 
-                <div className="settings-wrapper blog-settings" style={{ height: "max-content" }}>
+                <div className="settings-wrapper blog-settings settings-wrapper--narrow">
                     <div className="blog-settings__body">
                         <p className="blog-settings__field-title">{t("title")}</p>
                         

@@ -83,13 +83,13 @@ export default function LinksSettings({ project, authToken }) {
                     }}
                 />
 
-                <div className="settings-wrapper" style={{ width: "100%" }}>
+                <div className="settings-wrapper settings-wrapper--narrow">
                     <div className="settings-content">
                         <form onSubmit={handleSubmit}>
                             <div className="blog-settings">
                                 <div className="blog-settings__body">
                                     <p className="blog-settings__field-title">{t("links.fields.issueTracker")}</p>
-                                    <div className="field field--default blog-settings__input">
+                                    <div className="field field--default">
                                         <label style={{ marginBottom: "10px" }} className="field__wrapper">
                                             <input
                                                 type="url"
@@ -103,7 +103,7 @@ export default function LinksSettings({ project, authToken }) {
                                     </div>
 
                                     <p className="blog-settings__field-title">{t("links.fields.sourceCode")}</p>
-                                    <div className="field field--default blog-settings__input">
+                                    <div className="field field--default">
                                         <label style={{ marginBottom: "10px" }} className="field__wrapper">
                                             <input
                                                 type="url"
@@ -117,7 +117,7 @@ export default function LinksSettings({ project, authToken }) {
                                     </div>
 
                                     <p className="blog-settings__field-title">{t("links.fields.wiki")}</p>
-                                    <div className="field field--default blog-settings__input">
+                                    <div className="field field--default">
                                         <label style={{ marginBottom: "10px" }} className="field__wrapper">
                                             <input
                                                 type="url"
@@ -131,7 +131,7 @@ export default function LinksSettings({ project, authToken }) {
                                     </div>
 
                                     <p className="blog-settings__field-title">{t("links.fields.hytaleModdingWiki")}</p>
-                                    <div className="field field--default blog-settings__input">
+                                    <div className="field field--default">
                                         <label style={{ marginBottom: "10px" }} className="field__wrapper">
                                             <span style={{ whiteSpace: "nowrap", flexShrink: 1, textOverflow: "ellipsis", color: "var(--theme-color-text-secondary)" }}>
                                                 /mod/
@@ -150,7 +150,7 @@ export default function LinksSettings({ project, authToken }) {
                                     </div>
 
                                     <p className="blog-settings__field-title">{t("links.fields.discord")}</p>
-                                    <div className="field field--default blog-settings__input">
+                                    <div className="field field--default">
                                         <label style={{ marginBottom: "10px" }} className="field__wrapper">
                                             <input
                                                 type="url"

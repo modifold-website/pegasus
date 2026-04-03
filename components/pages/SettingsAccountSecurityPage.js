@@ -64,7 +64,7 @@ export default function SettingsAccountSecurityPage({ initialUser = null, initia
                     }}
                 />
 
-                <div>
+                <div className="settings-wrapper--narrow">
                     <div className="settings-wrapper blog-settings">
                         <div className="blog-settings__body">
                             <p className="blog-settings__field-title">{t("accountSecurity.title")}</p>

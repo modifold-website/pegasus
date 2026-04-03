@@ -4894,3 +4894,8 @@ body.light div .image-container::before {
 .context-list-option.context-list-option--with-art.color--negative {
     color: var(--theme-color-signal-negative-dark);
 }
+.settings-wrapper--narrow {
+    max-width: 650px;
+    width: 100%;
+    height: max-content;
+}

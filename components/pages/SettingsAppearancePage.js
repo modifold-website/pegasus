@@ -80,7 +80,7 @@ export default function SettingsAppearancePage({ initialUser = null }) {
                     }}
                 />
 
-                <div className="settings-wrapper blog-settings">
+                <div className="settings-wrapper blog-settings settings-wrapper--narrow">
                     <div className="blog-settings__body">
                         <p className="blog-settings__field-title">{t("appearance.title")}</p>
                         <p style={{ marginBottom: "14px", color: "var(--theme-color-text-secondary)" }}>{t("appearance.description")}</p>

@@ -61,7 +61,7 @@ export default function SettingsLanguagePage({ initialUser = null }) {
                     }}
                 />
 
-                <div className="settings-wrapper blog-settings">
+                <div className="settings-wrapper blog-settings settings-wrapper--narrow">
                     <div className="blog-settings__body">
                         <p className="blog-settings__field-title">{t("language.title")}</p>
                         <div className="settings-language-warning">

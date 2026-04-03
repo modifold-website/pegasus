@@ -197,7 +197,7 @@ export default function ProjectSettings({ project, organizationOptions: initialO
 
     return (
         <div className="layout">
-            <div className="page-content settings-page">
+            <div className="page-content settings-page ">
                 <ProjectSettingsSidebar
                     project={project}
                     iconAlt={t("general.iconAlt")}
@@ -214,7 +214,7 @@ export default function ProjectSettings({ project, organizationOptions: initialO
                     }}
                 />
 
-                <div className="settings-wrapper" style={{ width: "100%" }}>
+                <div className="settings-wrapper settings-wrapper--narrow">
                     <div className="settings-content">
                         <form onSubmit={handleSubmit}>
                             <div className="blog-settings">

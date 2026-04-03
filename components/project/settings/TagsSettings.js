@@ -137,7 +137,7 @@ export default function TagsSettings({ project, authToken }) {
                     }}
                 />
 
-                <div className="settings-wrapper" style={{ width: "100%" }}>
+                <div className="settings-wrapper settings-wrapper--narrow">
                     <div className="settings-content">
                         <div className="blog-settings">
                             <div className="blog-settings__body">

@@ -98,89 +98,95 @@ export default function ProjectAnalyticsSettingsPage({ project, analytics, selec
                     }}
                 />
 
-                <div className="content content--padding" style={{ width: "100%" }}>
-                    <div className="project-analytics">
-                        <div className="project-analytics__toolbar">
-                            <h2 style={{ marginBottom: "0" }}>{t("analytics.title")}</h2>
-                            
-                            <div className="project-analytics__ranges">
-                                {RANGE_OPTIONS.map((range) => (
-                                    <Link key={range} href={getTimeRangeHref(project.slug, range)} className={`button button--size-m button--active-transform ${selectedTimeRange === range ? "button--type-primary" : "button--type-minimal"}`}>
-                                        {t(`analytics.ranges.${range}`)}
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="project-analytics__stats">
-                            <div className="content content--padding project-analytics-stat">
-                                <p>{t("analytics.stats.downloads")}</p>
-                                <strong>{totals.downloads || 0}</strong>
-                            </div>
-
-                            <div className="content content--padding project-analytics-stat">
-                                <p>{t("analytics.stats.views")}</p>
-                                <strong>{totals.views || 0}</strong>
-                            </div>
-
-                            <div className="content content--padding project-analytics-stat">
-                                <p>{t("analytics.stats.countries")}</p>
-                                <strong>{countries.length}</strong>
-                            </div>
-                        </div>
-
-                        <AnalyticsChart
-                            title={t("analytics.downloads.title")}
-                            description={t(`analytics.ranges.${selectedTimeRange}`)}
-                            total={totals.downloads || 0}
-                            data={downloads}
-                            locale={locale}
-                            lineColor="#00af5c"
-                            gradientId="projectAnalyticsDownloads"
-                            tooltipLabelKey="analytics.downloads.tooltip"
-                            t={t}
-                        />
-
-                        <section className="content content--padding project-analytics-card">
-                            <div className="project-analytics-card__header">
-                                <div>
-                                    <p className="project-analytics-card__eyebrow">{t("analytics.countries.eyebrow")}</p>
-                                    <h2 className="project-analytics-card__title" style={{ marginBottom: "0" }}>{t("analytics.countries.title")}</h2>
-                                </div>
-                            </div>
-
-                            {countries.length ? (
-                                <div className="project-analytics-countries">
-                                    {countries.map((country) => (
-                                        <div key={country.country_code} className="project-analytics-country">
-                                            <div className="project-analytics-country__identity">
-                                                <img src={`https://flagcdn.com/${country.country_code}.svg`} alt={country.country_code.toUpperCase()} className="project-analytics-country__flag" loading="lazy" />
-
-                                                <div>
-                                                    <strong>{regionNames?.of(country.country_code.toUpperCase()) || country.country_code.toUpperCase()}</strong>
-                                                </div>
-                                            </div>
-
-                                            <strong>{country.count}</strong>
+                <div className="settings-wrapper">
+                    <div className="settings-content">
+                        <div className="blog-settings">
+                            <div className="blog-settings__body">
+                                <div className="project-analytics">
+                                    <div className="project-analytics__toolbar">
+                                        <p className="blog-settings__field-title" style={{ marginBottom: "0" }}>{t("analytics.title")}</p>
+                                        
+                                        <div className="project-analytics__ranges">
+                                            {RANGE_OPTIONS.map((range) => (
+                                                <Link key={range} href={getTimeRangeHref(project.slug, range)} className={`button button--size-m button--active-transform ${selectedTimeRange === range ? "button--type-primary" : "button--type-minimal"}`}>
+                                                    {t(`analytics.ranges.${range}`)}
+                                                </Link>
+                                            ))}
                                         </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <p className="project-analytics-empty">{t("analytics.countries.empty")}</p>
-                            )}
-                        </section>
+                                    </div>
 
-                        <AnalyticsChart
-                            title={t("analytics.views.title")}
-                            description={t(`analytics.ranges.${selectedTimeRange}`)}
-                            total={totals.views || 0}
-                            data={views}
-                            locale={locale}
-                            lineColor="#307df0"
-                            gradientId="projectAnalyticsViews"
-                            tooltipLabelKey="analytics.views.tooltip"
-                            t={t}
-                        />
+                                    <div className="project-analytics__stats">
+                                        <div className="content content--padding project-analytics-stat">
+                                            <p>{t("analytics.stats.downloads")}</p>
+                                            <strong>{totals.downloads || 0}</strong>
+                                        </div>
+
+                                        <div className="content content--padding project-analytics-stat">
+                                            <p>{t("analytics.stats.views")}</p>
+                                            <strong>{totals.views || 0}</strong>
+                                        </div>
+
+                                        <div className="content content--padding project-analytics-stat">
+                                            <p>{t("analytics.stats.countries")}</p>
+                                            <strong>{countries.length}</strong>
+                                        </div>
+                                    </div>
+
+                                    <AnalyticsChart
+                                        title={t("analytics.downloads.title")}
+                                        description={t(`analytics.ranges.${selectedTimeRange}`)}
+                                        total={totals.downloads || 0}
+                                        data={downloads}
+                                        locale={locale}
+                                        lineColor="#00af5c"
+                                        gradientId="projectAnalyticsDownloads"
+                                        tooltipLabelKey="analytics.downloads.tooltip"
+                                        t={t}
+                                    />
+
+                                    <section className="content content--padding project-analytics-card">
+                                        <div className="project-analytics-card__header">
+                                            <div>
+                                                <p className="project-analytics-card__eyebrow">{t("analytics.countries.eyebrow")}</p>
+                                                <h2 className="project-analytics-card__title" style={{ marginBottom: "0" }}>{t("analytics.countries.title")}</h2>
+                                            </div>
+                                        </div>
+
+                                        {countries.length ? (
+                                            <div className="project-analytics-countries">
+                                                {countries.map((country) => (
+                                                    <div key={country.country_code} className="project-analytics-country">
+                                                        <div className="project-analytics-country__identity">
+                                                            <img src={`https://flagcdn.com/${country.country_code}.svg`} alt={country.country_code.toUpperCase()} className="project-analytics-country__flag" loading="lazy" />
+
+                                                            <div>
+                                                                <strong>{regionNames?.of(country.country_code.toUpperCase()) || country.country_code.toUpperCase()}</strong>
+                                                            </div>
+                                                        </div>
+
+                                                        <strong>{country.count}</strong>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <p className="project-analytics-empty">{t("analytics.countries.empty")}</p>
+                                        )}
+                                    </section>
+
+                                    <AnalyticsChart
+                                        title={t("analytics.views.title")}
+                                        description={t(`analytics.ranges.${selectedTimeRange}`)}
+                                        total={totals.views || 0}
+                                        data={views}
+                                        locale={locale}
+                                        lineColor="#307df0"
+                                        gradientId="projectAnalyticsViews"
+                                        tooltipLabelKey="analytics.views.tooltip"
+                                        t={t}
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

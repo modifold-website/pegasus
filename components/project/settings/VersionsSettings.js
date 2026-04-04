@@ -727,8 +727,8 @@ export default function VersionsSettings({ project, authToken }) {
                     </div>
 
                     {filteredVersions.length === 0 ? (
-                        <div style={{ padding: "12px 0", color: "var(--theme-color-text-secondary)" }}>
-                            {tProject("noFiles")}
+                        <div className="subsite-empty-feed">
+                            <p className="subsite-empty-feed__title">{tProject("noFiles")}</p>
                         </div>
                     ) : (
                         filteredVersions.map((version) => (

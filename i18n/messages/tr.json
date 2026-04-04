@@ -5,6 +5,7 @@
   "Header": {
     "home": "Ana sayfa",
     "mods": "Modlar",
+    "modpacks": "Modpackler",
     "login": "Giriş yap",
     "logout": "Çıkış yap",
     "settings": "Ayarlar",
@@ -56,7 +57,10 @@
       "paragraph1": "Modifold, Modrinth kodunu kopyalamaz veya kullanmaz. Kod tabanımız bağımsız olarak yazılmıştır.",
       "paragraph2Prefix": "Modrinth ekibinin izniyle",
       "paragraph2Suffix": "yalnızca görsel blok yerleşiminden ilham alıyoruz (örneğin, bir mod sayfasındaki düzen kalıpları).",
-      "paragraph3": "Ocak 2026'da Modrinth'ten izin istedik ve atfın isteğe bağlı olduğu, kararın bize ait olduğu onayını aldık."
+      "paragraph3": "Ocak 2026'da Modrinth'ten izin istedik ve atfın isteğe bağlı olduğu, kararın bize ait olduğu onayını aldık.",
+      "quote1": "Bununla birlikte internetteki neredeyse her şey başka bir şeyin yeniden yapımıdır ve bunun seni durdurmasına izin vermezdim.",
+      "quote2": "Mantıklı olduğunda ilham al, işlerin nasıl yürümesi gerektiğine dair kendi bakışını oluşturmak için zaman ayır (Modrinth'in kendisinde de geliştirilecek pek çok alan var) ve paylaşmaya değer bir şey inşa etmeye odaklan!",
+      "quote3": "Modrinth'e atıf yapıp yapmamak tamamen sana bağlı."
     }
   },
   "Layout": {
@@ -141,7 +145,8 @@
       "summary": "Bu proje şunu ekler..."
     },
     "projectTypes": {
-      "mod": "Mod"
+      "mod": "Mod",
+      "modpack": "Modpack"
     },
     "createProject": "Proje oluştur",
     "creating": "Oluşturuluyor...",
@@ -298,9 +303,7 @@
         "deleted": "Silindi"
       },
       "emptyLoggedIn": "Henüz yorum yok. Bu mod için ilk yorumu sen bırak!",
-      "emptyGuest": "Henüz yorum yok. Bu mod için yorum bırakmak için giriş yapın.",
-      "guestPromptTitle": "Bu proje hakkında yorum bırakmak için giriş yapın.",
-      "guestPromptNote": "(Lütfen insanlara saygılı olun ve topluluk kurallarına uyun.)"
+      "emptyGuest": "Henüz yorum yok. Bu mod için yorum bırakmak için giriş yapın."
     },
     "report": {
       "moreActions": "Ek işlemler",
@@ -455,7 +458,8 @@
     "noProjects": "Henüz proje yok",
     "previous": "Önceki",
     "next": "Sonraki",
-    "mods": "Modlar"
+    "mods": "Modlar",
+    "modpacks": "Mod paketleri"
   },
   "ProfilePage": {
     "userAvatarAlt": "{username} kullanıcı avatarı",
@@ -672,18 +676,24 @@
       "none": "Etiket seçilmedi.",
       "labels": {
         "adventure": "Macera",
+        "challenging": "Zorlu",
+        "combat": "Savaş",
         "cursed": "Lanetli",
         "decoration": "Dekorasyon",
         "economy": "Ekonomi",
         "equipment": "Ekipman",
         "food": "Yiyecek",
         "game_mechanics": "Oyun mekaniği",
+        "kitchen_sink": "Her Şey",
         "library": "Kütüphane",
+        "lightweight": "Hafif",
         "magic": "Büyü",
         "management": "Yönetim",
         "minigame": "Mini oyun",
         "mobs": "Yaratıklar",
+        "multiplayer": "Çok oyunculu",
         "optimization": "Optimizasyon",
+        "quests": "Görevler",
         "social": "Sosyal",
         "storage": "Depolama",
         "technology": "Teknoloji",
@@ -696,7 +706,8 @@
     "versions": {
       "errors": {
         "selectVersionsAndLoaders": "Lütfen en az bir oyun sürümü ve bir yükleyici seçin",
-        "upload": "Sürüm yüklenemedi"
+        "upload": "Sürüm yüklenemedi",
+        "fileTooLarge": "Dosya çok büyük. Maksimum boyut 100 MB"
       },
       "success": "Sürüm yüklendi",
       "title": "Yeni sürüm yükle",
@@ -1083,7 +1094,6 @@
     "metadata": {
       "title": "Kullanıcı moderasyonu - Modifold"
     },
-    "title": "Kullanıcı moderasyonu",
     "tabs": {
       "projects": "Projeler",
       "users": "Kullanıcılar",
@@ -1208,7 +1218,6 @@
     "metadata": {
       "title": "Doğrulama Başvuruları — Modifold"
     },
-    "title": "Doğrulama Başvuruları",
     "tabs": {
       "projects": "Projeler",
       "users": "Kullanıcılar",
@@ -1273,6 +1282,14 @@
     "reapply": "Tekrar gönder",
     "cooldown": "{days} gün sonra kullanılabilir",
     "lastRequest": "Son başvuru: {date}",
+    "promoCard": {
+      "text": "Modifold'u çok seviyorum, her yerde bahsedeceğim!",
+      "timeNow": "şimdi",
+      "reply": "Yanıtla",
+      "moreActions": "Daha fazla işlem",
+      "avatarAlt": "Kullanıcı avatarı",
+      "usernameFallback": "Kullanıcı"
+    },
     "errors": {
       "fetch": "Doğrulama durumu yüklenemedi"
     },
@@ -1314,7 +1331,6 @@
     "metadata": {
       "title": "Proje şikayetleri moderasyonu — Modifold"
     },
-    "title": "Şikayetler",
     "tabs": {
       "projects": "Projeler",
       "reports": "Şikayetler",

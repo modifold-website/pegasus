@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
 import axios from "axios";
 import ProjectCard from "../project/ProjectCard";
 import ProjectCardMedia from "../project/ProjectCardMedia";
@@ -11,31 +10,6 @@ import BrowseFiltersSidebar from "./browse/BrowseFiltersSidebar";
 import BrowseToolbar from "./browse/BrowseToolbar";
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-
-const tagSets = {
-    mod: [
-        "Adventure",
-        "Cursed",
-        "Decoration",
-        "Economy",
-        "Equipment",
-        "Food",
-        "Game Mechanics",
-        "Library",
-        "Magic",
-        "Management",
-        "Minigame",
-        "Mobs",
-        "Optimization",
-        "Social",
-        "Storage",
-        "Technology",
-        "Transportation",
-        "Utility",
-        "World Generation",
-        "Texture Packs"
-    ],
-};
 
 function parseQueryString(queryString) {
     const params = new URLSearchParams(queryString || "");
@@ -79,7 +53,7 @@ function normalizeInitialState(initialState) {
     };
 }
 
-export default function BrowsePage({ projectType, initialState = null, initialData = null, initialCardView = "list" }) {
+export default function BrowsePage({ projectType, initialState = null, initialData = null, initialCardView = "list", tags = [] }) {
     const t = useTranslations("BrowsePage");
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -267,84 +241,72 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
     };
 
     return (
-        <>
-            <img src="/images/content-upper-1920 (1).jpg" className="fixed-background-teleport"></img>
+        <div className="browse-page">
+            <BrowseFiltersSidebar t={t} tags={tags} selectedTags={selectedTags} onToggleTag={toggleTag} onClearFilters={clearFilters} />
 
-            <div className="layout">
-                <div className="tabs" style={{ paddingLeft: "16px", "--40010a00": "46px", "--58752bc5": "0px", "--b2a58f2e": "0" }}>
-                    <Link href="/mods" className={`tabs__tab ${pathname === "/mods" ? "tabs__tab--active" : ""}`}>
-                        {t("mods")}
-                    </Link>
-                </div>
+            <div className="browse-content">
+                <BrowseToolbar t={t} searchInput={searchInput} onSearchChange={handleSearchChange} cardView={cardView} onToggleCardView={toggleCardView} sort={sort} onSortSelect={handleSortSelect} />
 
-                <div className="browse-page">
-                    <BrowseFiltersSidebar t={t} tags={tagSets[projectType] || []} selectedTags={selectedTags} onToggleTag={toggleTag} onClearFilters={clearFilters} />
+                {selectedTags.length > 0 && (
+                    <div className="browse-selected-filters">
+                        {selectedTags.length > 1 && (
+                            <button className="browse-selected-filter-chip" type="button" onClick={clearSelectedTags}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-x-icon lucide-circle-x">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="m15 9-6 6"/>
+                                    <path d="m9 9 6 6"/>
+                                </svg>
 
-                    <div className="browse-content">
-                        <BrowseToolbar t={t} searchInput={searchInput} onSearchChange={handleSearchChange} cardView={cardView} onToggleCardView={toggleCardView} sort={sort} onSortSelect={handleSortSelect} />
-
-                        {selectedTags.length > 0 && (
-                            <div className="browse-selected-filters">
-                                {selectedTags.length > 1 && (
-                                    <button className="browse-selected-filter-chip" type="button" onClick={clearSelectedTags}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-x-icon lucide-circle-x">
-                                            <circle cx="12" cy="12" r="10"/>
-                                            <path d="m15 9-6 6"/>
-                                            <path d="m9 9 6 6"/>
-                                        </svg>
-
-                                        {t("clearAllFilters")}
-                                    </button>
-                                )}
-
-                                {selectedTags.map((tag) => (
-                                    <button key={tag} className="browse-selected-filter-chip" type="button" onClick={() => toggleTag(tag)}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x-icon lucide-x">
-                                            <path d="M18 6 6 18"/>
-                                            <path d="m6 6 12 12"/>
-                                        </svg>
-
-                                        {tag}
-                                    </button>
-                                ))}
-                            </div>
+                                {t("clearAllFilters")}
+                            </button>
                         )}
 
-                        {loading ? (
-                            <div className={cardView === "media" ? "browse-project-grid" : "browse-project-list"} aria-label={t("loading")} aria-busy="true">
-                                {Array.from({ length: 10 }).map((_, index) => (
-                                    cardView === "media" ? <ProjectCardMediaSkeleton key={index} /> : <ProjectCardSkeleton key={index} />
-                                ))}
-                            </div>
-                        ) : projects.length > 0 ? (
-                            <div className={cardView === "media" ? "browse-project-grid" : "browse-project-list"}>
-                                {projects.map((project) => (
-                                    cardView === "media" ? <ProjectCardMedia key={project.id} project={project} /> : <ProjectCard key={project.id} project={project} />
-                                ))}
-                            </div>
-                        ) : (
-                            <div className="subsite-empty-feed">
-                                <img src="/images/kweebec.png" style={{ width: "200px" }} />
-                                <p className="subsite-empty-feed__title">{t("noProjects")}</p>
-                            </div>
-                        )}
+                        {selectedTags.map((tag) => (
+                            <button key={tag} className="browse-selected-filter-chip" type="button" onClick={() => toggleTag(tag)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x-icon lucide-x">
+                                    <path d="M18 6 6 18"/>
+                                    <path d="m6 6 12 12"/>
+                                </svg>
 
-                        {totalPages > 1 && (
-                            <div className="pagination-controls">
-                                <button className="button button--size-m button--type-secondary" onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))} disabled={currentPage === 1} aria-disabled={currentPage === 1}>
-                                    {t("previous")}
-                                </button>
-
-                                {getPageButtons()}
-
-                                <button className="button button--size-m button--type-secondary" onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))} disabled={currentPage === totalPages} aria-disabled={currentPage === totalPages}>
-                                    {t("next")}
-                                </button>
-                            </div>
-                        )}
+                                {tag}
+                            </button>
+                        ))}
                     </div>
-                </div>
+                )}
+
+                {loading ? (
+                    <div className={cardView === "media" ? "browse-project-grid" : "browse-project-list"} aria-label={t("loading")} aria-busy="true">
+                        {Array.from({ length: 10 }).map((_, index) => (
+                            cardView === "media" ? <ProjectCardMediaSkeleton key={index} /> : <ProjectCardSkeleton key={index} />
+                        ))}
+                    </div>
+                ) : projects.length > 0 ? (
+                    <div className={cardView === "media" ? "browse-project-grid" : "browse-project-list"}>
+                        {projects.map((project) => (
+                            cardView === "media" ? <ProjectCardMedia key={project.id} project={project} /> : <ProjectCard key={project.id} project={project} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="subsite-empty-feed">
+                        <img src="/images/kweebec.png" style={{ width: "200px" }} />
+                        <p className="subsite-empty-feed__title">{t("noProjects")}</p>
+                    </div>
+                )}
+
+                {totalPages > 1 && (
+                    <div className="pagination-controls">
+                        <button className="button button--size-m button--type-secondary" onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))} disabled={currentPage === 1} aria-disabled={currentPage === 1}>
+                            {t("previous")}
+                        </button>
+
+                        {getPageButtons()}
+
+                        <button className="button button--size-m button--type-secondary" onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))} disabled={currentPage === totalPages} aria-disabled={currentPage === totalPages}>
+                            {t("next")}
+                        </button>
+                    </div>
+                )}
             </div>
-        </>
+        </div>
     );
 }

@@ -3,7 +3,7 @@ import { useLocale, useTranslations } from "next-intl";
 import UserName from "../ui/UserName";
 import ProjectTags from "../ui/ProjectTags";
 import Tooltip from "../ui/Tooltip";
-const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
+import { getProjectPath } from "@/utils/projectRoutes";
 
 export default function ProjectCard({ project, maxTags = 5 }) {
     const t = useTranslations("ProjectCard");
@@ -67,9 +67,9 @@ export default function ProjectCard({ project, maxTags = 5 }) {
 
     return (
         <div className="new-project-card" id={project.slug}>
-            <Link className="new-project-card__overlay" href={`/mod/${project.slug}`} aria-label={project.title} />
+            <Link className="new-project-card__overlay" href={getProjectPath(project)} aria-label={project.title} />
 
-            <img className="new-project-icon" alt={t("projectIconAlt", { title: project.title })} src={project.icon_url || DEFAULT_PROJECT_ICON_URL} />
+            <img className="new-project-icon" alt={t("projectIconAlt", { title: project.title })} src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} />
 
             <div className="new-project-info">
                 <div className="new-project-header">

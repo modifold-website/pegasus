@@ -1,10 +1,12 @@
 {
   "pageTitle": {
-    "mods": "Mods — Modifold"
+    "mods": "Mods — Modifold",
+    "modpacks": "Modpacks — Modifold"
   },
   "Header": {
     "home": "Início",
     "mods": "Mods",
+    "modpacks": "Modpacks",
     "login": "Entrar",
     "logout": "Sair",
     "settings": "Configurações",
@@ -56,7 +58,10 @@
       "paragraph1": "O Modifold não copia nem usa o código do Modrinth. Nossa base de código foi escrita de forma independente.",
       "paragraph2Prefix": "Com permissão da equipe do",
       "paragraph2Suffix": "nós usamos apenas inspiração no posicionamento visual dos blocos (por exemplo, padrões de layout em uma página de mod).",
-      "paragraph3": "Em janeiro de 2026, pedimos permissão ao Modrinth e recebemos a confirmação de que a atribuição é opcional e fica a nosso critério."
+      "paragraph3": "Em janeiro de 2026, pedimos permissão ao Modrinth e recebemos a confirmação de que a atribuição é opcional e fica a nosso critério.",
+      "quote1": "Dito isso, quase tudo na internet é uma recriação de outra coisa, e eu não deixaria que isso te impedisse.",
+      "quote2": "Inspire-se onde fizer sentido, reserve tempo para formar sua própria visão de como as coisas devem funcionar (o próprio Modrinth tem muitas áreas a melhorar) e foque em construir algo que valha a pena compartilhar!",
+      "quote3": "Cabe inteiramente a você decidir se vai ou não creditar o Modrinth."
     }
   },
   "Layout": {
@@ -141,7 +146,8 @@
       "summary": "Este projeto adiciona..."
     },
     "projectTypes": {
-      "mod": "Mod"
+      "mod": "Mod",
+      "modpack": "Modpack"
     },
     "createProject": "Criar projeto",
     "creating": "Criando...",
@@ -298,9 +304,7 @@
         "deleted": "Excluído"
       },
       "emptyLoggedIn": "Ainda não há comentários. Deixe a primeira avaliação deste mod!",
-      "emptyGuest": "Ainda não há comentários. Faça login para deixar uma avaliação deste mod.",
-      "guestPromptTitle": "Faça login para deixar um comentário sobre este projeto.",
-      "guestPromptNote": "(Por favor, respeite as pessoas e siga as regras da comunidade.)"
+      "emptyGuest": "Ainda não há comentários. Faça login para deixar uma avaliação deste mod."
     },
     "report": {
       "moreActions": "Mais ações",
@@ -455,7 +459,8 @@
     "noProjects": "Nenhum projeto encontrado",
     "previous": "Anterior",
     "next": "Próximo",
-    "mods": "Mods"
+    "mods": "Mods",
+    "modpacks": "Pacotes de mods"
   },
   "ProfilePage": {
     "userAvatarAlt": "Avatar do usuário {username}",
@@ -672,18 +677,24 @@
       "none": "Nenhuma etiqueta selecionada.",
       "labels": {
         "adventure": "Aventura",
+        "challenging": "Desafiadores",
+        "combat": "Combate",
         "cursed": "Amaldiçoado",
         "decoration": "Decoração",
         "economy": "Economia",
         "equipment": "Equipamento",
         "food": "Comida",
         "game_mechanics": "Mecânicas de jogo",
+        "kitchen_sink": "Tudo em um",
         "library": "Biblioteca",
+        "lightweight": "Leves",
         "magic": "Magia",
         "management": "Gestão",
         "minigame": "Minijogo",
         "mobs": "Mobs",
+        "multiplayer": "Multijogador",
         "optimization": "Otimização",
+        "quests": "Missões",
         "social": "Social",
         "storage": "Armazenamento",
         "technology": "Tecnologia",
@@ -696,7 +707,8 @@
     "versions": {
       "errors": {
         "selectVersionsAndLoaders": "Selecione pelo menos uma versão do jogo e um loader",
-        "upload": "Erro ao enviar versão"
+        "upload": "Erro ao enviar versão",
+        "fileTooLarge": "O arquivo é muito grande. O tamanho máximo é 100 MB"
       },
       "success": "Versão enviada",
       "title": "Versões",
@@ -1083,7 +1095,6 @@
     "metadata": {
       "title": "Moderação de usuários — Modifold"
     },
-    "title": "Moderação de usuários",
     "tabs": {
       "projects": "Projetos",
       "users": "Usuários",
@@ -1208,7 +1219,6 @@
     "metadata": {
       "title": "Solicitações de verificação — Modifold"
     },
-    "title": "Solicitações de verificação",
     "tabs": {
       "projects": "Projetos",
       "users": "Usuários",
@@ -1273,6 +1283,14 @@
     "reapply": "Enviar novamente",
     "cooldown": "Disponível em {days} dias",
     "lastRequest": "Última solicitação: {date}",
+    "promoCard": {
+      "text": "Adoro o Modifold, vou mencioná-lo em todo lugar!",
+      "timeNow": "agora",
+      "reply": "Responder",
+      "moreActions": "Mais ações",
+      "avatarAlt": "Avatar do usuário",
+      "usernameFallback": "Usuário"
+    },
     "errors": {
       "fetch": "Não foi possível carregar o status de verificação"
     },
@@ -1314,7 +1332,6 @@
     "metadata": {
       "title": "Moderação de denúncias de projetos — Modifold"
     },
-    "title": "Denúncias de projetos",
     "tabs": {
       "projects": "Projetos",
       "reports": "Denúncias",

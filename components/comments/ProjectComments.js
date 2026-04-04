@@ -317,24 +317,6 @@ export default function ProjectComments({ project, authToken, initialComments = 
                     <div className="comments__title">{t("comments.title")}</div>
                 </div>
 
-                {!isLoggedIn && (
-                    <div className="comment-list">
-                        <div className="comment-item__placeholder" style={{ display: "flex", alignItems: "center", gap: "16px", padding: "16px var(--layout-content-offset-x)" }}>
-                            <img src="/images/kweebec.png" alt="" style={{ width: "70px", height: "auto" }} />
-                            
-                            <div>
-                                <div style={{ fontSize: "18px", fontWeight: 500, color: "var(--theme-color-text-primary)" }}>
-                                    {t("comments.guestPromptTitle")}
-                                </div>
-
-                                <div style={{ color: "var(--theme-color-text-secondary)", fontSize: "14px" }}>
-                                    {t("comments.guestPromptNote")}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
-
                 {isLoggedIn && (
                     <div className="comment comment--writing comment--writing-main" style={{ "--branches-count": "0" }}>
                         <div className="comment-branches"></div>

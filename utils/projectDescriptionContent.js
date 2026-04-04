@@ -97,9 +97,23 @@ export const getSafeMarkdownImageSrc = (src) => {
             return null;
         }
 
-        const proxyBase = `https://api.modifold.com/media/markdown-image?url=`;
+        const allowedHostnames = new Set([
+            "imgur.com",
+            "i.imgur.com",
+            "github.com",
+            "raw.githubusercontent.com",
+            "img.shields.io",
+            "i.postimg.cc",
+            "wsrv.nl",
+            "cf.way2muchnoise.eu",
+            "bstats.org",
+        ]);
 
-        return `${proxyBase}${encodeURIComponent(parsed.toString())}`;
+        if(allowedHostnames.has(parsed.hostname)) {
+            return parsed.toString();
+        }
+
+        return `https://api.modifold.com/media/markdown-image?url=${encodeURIComponent(parsed.toString())}`;
     } catch {
         return null;
     }

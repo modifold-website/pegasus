@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import UserName from "../ui/UserName";
 import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
+import { getProjectPath } from "@/utils/projectRoutes";
 
 const getDayKey = (date) => `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 
@@ -222,7 +223,7 @@ export default function NotificationsPage({ authToken, initialNotifications = []
         if(notification.eventType === "project_like") {
             const projectTitle = notification.project?.title || t("messages.projectFallback");
             const projectTitleView = notification.project?.slug ? (
-                <Link href={`/mod/${notification.project.slug}`}><b>{projectTitle}</b></Link>
+                <Link href={getProjectPath(notification.project)}><b>{projectTitle}</b></Link>
             ) : (
                 <b>{projectTitle}</b>
             );
@@ -331,7 +332,7 @@ export default function NotificationsPage({ authToken, initialNotifications = []
                 {notification.eventType === "project_like" && notification.project?.iconUrl && (
                     <div className="notification-item__etc">
                         {notification.project?.slug ? (
-                            <Link href={`/mod/${notification.project.slug}`}>
+                            <Link href={getProjectPath(notification.project)}>
                                 <img src={notification.project.iconUrl} alt={notification.project.title} className="notification-project-thumb" loading="lazy" />
                             </Link>
                         ) : (

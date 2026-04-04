@@ -95,7 +95,7 @@ export default async function RootLayout({ children }) {
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
 
-                <link rel="alternate" hreflang="x-default" href="https://modifold.com/" />
+                <link rel="alternate" hrefLang="x-default" href="https://modifold.com/" />
 
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -119,15 +119,6 @@ export default async function RootLayout({ children }) {
                 <meta property="og:image:height" content="315" />
                 <meta property="og:type" content="website" />
                 <meta property="robots" content="all" />
-
-                {/* Privacy-friendly analytics by Plausible */}
-                <script async src="https://plausible.io/js/pa-BrYrZZl2H2t2KBUwYmESp.js"></script>
-                <script>
-                    {`
-                        window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-                        plausible.init()
-                    `}
-                </script>
 
                 <Script src="https://www.googletagmanager.com/gtag/js?id=G-P5V8PSTGNR" strategy="afterInteractive" />
                 <Script id="google-analytics" strategy="afterInteractive">
@@ -156,21 +147,21 @@ export default async function RootLayout({ children }) {
 
             <body data-font-smoothing="Antialiased" className={initialTheme} data-theme-preference={themePreference}>
                 <div id="app">
-                    {isStaging && (
-                        <div role="note" className="staging__banner">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0M12 9v4M12 17h.01"></path>
-                            </svg>
-                            
-                            {messages.Layout?.stagingBanner || "Staging environment: internal testing only. Some features may be unavailable or unstable."}
-                        </div>
-                    )}
-
                     <AuthProvider isLoggedIn={isLoggedIn} userData={userData}>
                         <ClientProvider>
                             <NextIntlClientProvider locale={resolvedLocale} messages={messages}>
                                 <Header authToken={token} />
                                 <HeaderMobile authToken={token} />
+
+                                {isStaging && (
+                                    <div role="note" className="staging__banner">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0M12 9v4M12 17h.01"></path>
+                                        </svg>
+                                        
+                                        {messages.Layout?.stagingBanner || "Staging environment: internal testing only. Some features may be unavailable or unstable."}
+                                    </div>
+                                )}
 
                                 {children}
 

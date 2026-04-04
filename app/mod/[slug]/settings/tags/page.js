@@ -26,6 +26,7 @@ export default async function Page({ params }) {
     const tNotFound = await getTranslations({ locale: resolvedLocale, namespace: "NotFound" });
     const cookieStore = await cookies();
     const authToken = cookieStore.get("authToken")?.value;
+    let availableTags = [];
 
     const resProject = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, {
         headers: {
@@ -46,5 +47,17 @@ export default async function Page({ params }) {
 
     const project = await resProject.json();
 
-    return <TagsSettings project={project} authToken={authToken} />;
+    try {
+        const tagsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/tags/${project.project_type}`, {
+            next: { revalidate: 300 },
+        });
+        if(tagsResponse.ok) {
+            const data = await tagsResponse.json();
+            availableTags = Array.isArray(data?.tags) ? data.tags : [];
+        }
+    } catch (error) {
+        console.error("Failed to fetch tags:", error);
+    }
+
+    return <TagsSettings project={project} authToken={authToken} availableTags={availableTags} />;
 }

@@ -42,9 +42,9 @@ export default function FooterModrinthModal() {
                         <p>{t("paragraph3")}</p>
 
                         <blockquote className="footer-modrinth-modal__quote">
-                            <p>That said, almost everything on the internet is a recreation of something else, and I wouldn&apos;t let that stop you.</p>
-                            <p>Take inspiration where it makes sense, spend time forming your own perspective on how things should work (Modrinth itself has plenty of areas to improve), and focus on building something worth sharing!</p>
-                            <p>Whether or not you choose to credit Modrinth is entirely up to you.</p>
+                            <p>{t("quote1")}</p>
+                            <p>{t("quote2")}</p>
+                            <p>{t("quote3")}</p>
                         </blockquote>
                     </div>
                 </div>

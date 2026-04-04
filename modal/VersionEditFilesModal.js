@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
+import { toast } from "react-toastify";
 
 if(typeof window !== "undefined") {
     Modal.setAppElement("body");
 }
 
-export default function VersionEditFilesModal({ isOpen, onRequestClose, editLoading, onSubmit, t, tProject, versionFileAccept, currentFileName, formatFileSize }) {
+export default function VersionEditFilesModal({ isOpen, onRequestClose, editLoading, onSubmit, t, tProject, versionFileAccept, maxFileSize, fileTooLargeMessage, currentFileName, formatFileSize }) {
     const [selectedFile, setSelectedFile] = useState(null);
     const [isDragActive, setIsDragActive] = useState(false);
     const fileRef = useRef(null);
@@ -32,7 +33,17 @@ export default function VersionEditFilesModal({ isOpen, onRequestClose, editLoad
     };
 
     const handleFileChange = (event) => {
-        setSelectedFile(event.target.files?.[0] || null);
+        const nextFile = event.target.files?.[0] || null;
+        if(nextFile && maxFileSize && nextFile.size > maxFileSize) {
+            toast.error(fileTooLargeMessage || t("versions.errors.fileTooLarge"));
+            if(fileRef.current) {
+                fileRef.current.value = "";
+            }
+            setSelectedFile(null);
+            return;
+        }
+
+        setSelectedFile(nextFile);
     };
 
     const handleDragOver = (event) => {
@@ -58,6 +69,11 @@ export default function VersionEditFilesModal({ isOpen, onRequestClose, editLoad
 
         const nextFile = event.dataTransfer?.files?.[0] || null;
         if(!nextFile) {
+            return;
+        }
+
+        if(maxFileSize && nextFile.size > maxFileSize) {
+            toast.error(fileTooLargeMessage || t("versions.errors.fileTooLarge"));
             return;
         }
 

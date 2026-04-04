@@ -7,8 +7,8 @@
     display: flex;
     --color-notification-hover: var(--theme-color-popover-item-bg-active);
     background: var(--theme-color-background-content);
-    padding: 12px calc(24px - 6px);
-    border-radius: var(--layout-island-border-radius);
+    padding: 18px;
+    border-radius: 26px;
     align-items: center;
     transition: transform .05s ease-in-out;
 }
@@ -102,8 +102,8 @@
     margin-left: -18px;
 }
 .notification-avatars-stack__avatar {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 999px;
     object-fit: cover;
     background: var(--theme-color-background-active);

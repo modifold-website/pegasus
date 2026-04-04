@@ -7,6 +7,29 @@
 .moderation-page .pagination {
     max-width: 100%;
 }
+.moderation-tabs {
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+}
+.moderation-tabs .pagination__button {
+    position: relative;
+    z-index: 2;
+}
+.moderation-tabs .pagination__button[aria-current="page"] {
+    color: #307df0;
+}
+.moderation-tabs .pagination__indicator {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 0;
+    border-radius: 999px;
+    background: rgb(48 125 240 / 25%);
+    transition: transform 0.22s ease, width 0.22s ease, opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 1;
+}
 .moderation-page .pagination__button {
     flex-shrink: 0;
     white-space: nowrap;

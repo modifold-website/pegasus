@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import ProjectAnalyticsSettingsPage from "@/components/project/settings/ProjectAnalyticsSettingsPage";
+import { getProjectBasePath } from "@/utils/projectRoutes";
 
 const ALLOWED_TIME_RANGES = new Set(["7d", "30d", "90d"]);
 
@@ -50,10 +51,6 @@ export default async function Page({ params, searchParams }) {
     const cookieStore = await cookies();
     const authToken = cookieStore.get("authToken")?.value;
 
-    if(requestedTimeRange === "7d") {
-        redirect(`/mod/${slug}/settings/analytics`);
-    }
-
     if(!authToken) {
         redirect("/");
     }
@@ -81,6 +78,11 @@ export default async function Page({ params, searchParams }) {
 
     const project = await projectResponse.json();
     const analytics = await analyticsResponse.json();
+    const basePath = getProjectBasePath(project.project_type);
+
+    if(requestedTimeRange === "7d") {
+        redirect(`${basePath}/${slug}/settings/analytics`);
+    }
 
     return (
         <ProjectAnalyticsSettingsPage

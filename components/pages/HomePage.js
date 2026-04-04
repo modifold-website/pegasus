@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { getProjectPath } from "@/utils/projectRoutes";
 import { useMemo, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import ProjectCard from "../project/ProjectCard";
 import { useAuth } from "../providers/AuthProvider";
 import LoginModal from "../../modal/LoginModal";
-
-const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
 
 export default function HomePage({ news = [], locale, projects = [], projectsLimit = 20 }) {
     const t = useTranslations("HomePage");
@@ -37,7 +36,7 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
 
     return (
         <>
-            <img src="/images/hytale_cursebreaker_key_art.jpg" className="fixed-background-teleport" alt="" />
+            <img src="/images/background-home.webp" className="fixed-background-teleport" alt="" />
 
             <div className="layout">
                 <section className="hero-section">
@@ -107,8 +106,8 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
                             )}
 
                             {displayedProjects.map((project) => (
-                                <Link href={`/mod/${project.slug}`} key={project.id} className="mod-badge button--active-transform">
-                                    <img src={project.icon_url || DEFAULT_PROJECT_ICON_URL} alt="" className="mod-avatar" width={64} height={64} />
+                                <Link href={getProjectPath(project)} key={project.id} className="mod-badge button--active-transform">
+                                    <img src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} alt="" className="mod-avatar" width={64} height={64} />
                                     <span className="mod-name">{project.title}</span>
                                 </Link>
                             ))}

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
+import { getProjectPath } from "@/utils/projectRoutes";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
@@ -22,6 +23,7 @@ const loaders = [
 
 const releaseChannels = ["release", "beta", "alpha"];
 const VERSION_FILE_ACCEPT = ".jar,.zip,.rar,application/zip, application/x-rar-compressed, application/vnd.rar, application/java-archive";
+const MAX_VERSION_FILE_SIZE = 100 * 1024 * 1024;
 const VERSION_UPLOAD_STEPS = {
     FILES: "files",
     METADATA: "metadata",
@@ -354,6 +356,15 @@ export default function VersionsSettings({ project, authToken }) {
 
     const handleUploadFileChange = (event) => {
         const nextFile = event.target.files?.[0] || null;
+        if(nextFile && nextFile.size > MAX_VERSION_FILE_SIZE) {
+            toast.error(t("versions.errors.fileTooLarge"));
+            if(uploadFileRef.current) {
+                uploadFileRef.current.value = "";
+            }
+            setUploadFile(null);
+            return;
+        }
+
         setUploadFile(nextFile);
 
         if(nextFile) {
@@ -368,6 +379,11 @@ export default function VersionsSettings({ project, authToken }) {
 
         const nextFile = event.dataTransfer?.files?.[0] || null;
         if(nextFile) {
+            if(nextFile.size > MAX_VERSION_FILE_SIZE) {
+                toast.error(t("versions.errors.fileTooLarge"));
+                return;
+            }
+
             setUploadFile(nextFile);
             setUploadStep(VERSION_UPLOAD_STEPS.METADATA);
         }
@@ -726,8 +742,8 @@ export default function VersionsSettings({ project, authToken }) {
                     </div>
 
                     {filteredVersions.length === 0 ? (
-                        <div style={{ padding: "12px 0", color: "var(--theme-color-text-secondary)" }}>
-                            {tProject("noFiles")}
+                        <div className="subsite-empty-feed">
+                            <p className="subsite-empty-feed__title">{tProject("noFiles")}</p>
                         </div>
                     ) : (
                         filteredVersions.map((version) => (
@@ -801,7 +817,7 @@ export default function VersionsSettings({ project, authToken }) {
                                     )}
                                 </div>
 
-                                <Link href={`/mod/${project.slug}/version/${version.id}`}>
+                                <Link href={`${getProjectPath(project)}/version/${version.id}`}>
                                     <span className="version__title">
                                         {version.version_number}
 
@@ -924,6 +940,8 @@ export default function VersionsSettings({ project, authToken }) {
                 t={t}
                 tProject={tProject}
                 versionFileAccept={VERSION_FILE_ACCEPT}
+                maxFileSize={MAX_VERSION_FILE_SIZE}
+                fileTooLargeMessage={t("versions.errors.fileTooLarge")}
                 currentFileName={getFileNameFromUrl(editVersionFile.url)}
                 formatFileSize={formatFileSize}
             />

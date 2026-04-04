@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import Link from "next/link";
+import { getProjectPath } from "@/utils/projectRoutes";
 import { useTranslations, useLocale } from "next-intl";
 import Modal from "react-modal";
 import VersionDisplay from "../VersionDisplay";
@@ -61,7 +62,7 @@ export default function VersionPage({ project, version, authToken }) {
                     <div className="version-page">
                         <div className="version-page__title content content--padding">
                             <div className="version-page__breadcrumb">
-                                <Link href={`/mod/${project.slug}/versions`} className="version-page__back-link button--active-transform">
+                                <Link href={`${getProjectPath(project)}/versions`} className="version-page__back-link button--active-transform">
                                     {t("backToVersions")}
                                 </Link>
 

@@ -4,7 +4,9 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import ProjectTags from "../ui/ProjectTags";
+import { getProjectPath } from "@/utils/projectRoutes";
 
 export default function ModerationPage({ authToken, initialProjects, initialTotalPages }) {
     const t = useTranslations("ModerationPage");

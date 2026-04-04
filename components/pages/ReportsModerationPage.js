@@ -6,6 +6,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useLocale, useTranslations } from "next-intl";
 import UserName from "../ui/UserName";
+import Link from "next/link";
+import { getProjectPathByType } from "@/utils/projectRoutes";
 
 export default function ReportsModerationPage({ authToken, initialReports, initialTotalPages }) {
     const t = useTranslations("ReportsModerationPage");

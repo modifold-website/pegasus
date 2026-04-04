@@ -453,7 +453,8 @@
     "noProjects": "No se encontraron proyectos",
     "previous": "Anterior",
     "next": "Siguiente",
-    "mods": "Mods"
+    "mods": "Mods",
+    "modpacks": "Paquetes de mods"
   },
   "ProfilePage": {
     "userAvatarAlt": "Avatar del usuario {username}",

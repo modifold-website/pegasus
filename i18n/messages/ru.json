@@ -454,7 +454,8 @@
     "noProjects": "Проектов пока нет",
     "previous": "Назад",
     "next": "Вперёд",
-    "mods": "Моды"
+    "mods": "Моды",
+    "modpacks": "Модпаки"
   },
   "ProfilePage": {
     "userAvatarAlt": "Аватар пользователя {username}",

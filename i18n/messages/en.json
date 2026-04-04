@@ -454,7 +454,8 @@
     "noProjects": "No projects yet",
     "previous": "Previous",
     "next": "Next",
-    "mods": "Mods"
+    "mods": "Mods",
+    "modpacks": "Modpacks"
   },
   "ProfilePage": {
     "userAvatarAlt": "User avatar {username}",

@@ -453,7 +453,8 @@
     "noProjects": "Henüz proje yok",
     "previous": "Önceki",
     "next": "Sonraki",
-    "mods": "Modlar"
+    "mods": "Modlar",
+    "modpacks": "Mod paketleri"
   },
   "ProfilePage": {
     "userAvatarAlt": "{username} kullanıcı avatarı",

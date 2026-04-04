@@ -1,6 +1,7 @@
 {
   "pageTitle": {
-    "mods": "Mods — Modifold"
+    "mods": "Mods — Modifold",
+    "modpacks": "Modpacks — Modifold"
   },
   "Header": {
     "home": "Inicio",
@@ -141,7 +142,8 @@
       "summary": "Este proyecto agrega..."
     },
     "projectTypes": {
-      "mod": "Mod"
+      "mod": "Mod",
+      "modpack": "Modpack"
     },
     "createProject": "Crear proyecto",
     "creating": "Creando...",
@@ -671,18 +673,24 @@
       "none": "No hay etiquetas seleccionadas.",
       "labels": {
         "adventure": "Aventura",
+        "challenging": "Desafiantes",
+        "combat": "Combate",
         "cursed": "Maldito",
         "decoration": "Decoración",
         "economy": "Economía",
         "equipment": "Equipamiento",
         "food": "Comida",
         "game_mechanics": "Mecánicas de juego",
+        "kitchen_sink": "Cajón de sastre",
         "library": "Biblioteca",
+        "lightweight": "Ligeros",
         "magic": "Magia",
         "management": "Gestión",
         "minigame": "Minijuego",
         "mobs": "Mobs",
+        "multiplayer": "Multijugador",
         "optimization": "Optimización",
+        "quests": "Misiones",
         "social": "Social",
         "storage": "Almacenamiento",
         "technology": "Tecnología",

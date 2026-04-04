@@ -1,20 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { getProjectBasePath } from "@/utils/projectRoutes";
 
 export default function ProjectTabs({ project }) {
     const t = useTranslations("ProjectPage");
     const pathname = usePathname();
     const tabsRef = useRef(null);
     const [indicatorStyle, setIndicatorStyle] = useState({ width: 0, left: 0, opacity: 0 });
+    const basePath = getProjectBasePath(project?.project_type);
 
     const isActive = (href) => pathname === href;
-    const isWikiActive = pathname === `/mod/${project.slug}/wiki` || pathname.startsWith(`/mod/${project.slug}/wiki/`);
+    const isWikiActive = pathname === `${basePath}/${project.slug}/wiki` || pathname.startsWith(`${basePath}/${project.slug}/wiki/`);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const updateIndicator = () => {
             const container = tabsRef.current;
             if(!container) {
@@ -27,10 +29,9 @@ export default function ProjectTabs({ project }) {
                 return;
             }
 
-            const containerRect = container.getBoundingClientRect();
-            const tabRect = activeTab.getBoundingClientRect();
-            const left = tabRect.left - containerRect.left;
-            setIndicatorStyle({ width: tabRect.width, left, opacity: 1 });
+            const left = activeTab.offsetLeft;
+            const width = activeTab.offsetWidth;
+            setIndicatorStyle({ width, left, opacity: 1 });
         };
 
         const raf = requestAnimationFrame(updateIndicator);
@@ -43,28 +44,28 @@ export default function ProjectTabs({ project }) {
 
     return (
         <div className="tabs" ref={tabsRef} style={{ paddingLeft: "16px", "--40010a00": "46px", "--58752bc5": "0px", "--b2a58f2e": "0" }}>
-            <Link href={`/mod/${project.slug}`} scroll={false} className={`tabs__tab ${isActive(`/mod/${project.slug}`) ? "tabs__tab--active" : ""}`}>
+            <Link href={`${basePath}/${project.slug}`} scroll={false} className={`tabs__tab ${isActive(`${basePath}/${project.slug}`) ? "tabs__tab--active" : ""}`}>
                 {t("tabs.description")}
             </Link>
 
-            <Link href={`/mod/${project.slug}/versions`} scroll={false} className={`tabs__tab ${isActive(`/mod/${project.slug}/versions`) ? "tabs__tab--active" : ""}`}>
+            <Link href={`${basePath}/${project.slug}/versions`} scroll={false} className={`tabs__tab ${isActive(`${basePath}/${project.slug}/versions`) ? "tabs__tab--active" : ""}`}>
                 {t("tabs.versions")}
             </Link>
         
             {project.gallery?.length > 0 && (
-                <Link href={`/mod/${project.slug}/gallery`} scroll={false} className={`tabs__tab ${isActive(`/mod/${project.slug}/gallery`) ? "tabs__tab--active" : ""}`}>
+                <Link href={`${basePath}/${project.slug}/gallery`} scroll={false} className={`tabs__tab ${isActive(`${basePath}/${project.slug}/gallery`) ? "tabs__tab--active" : ""}`}>
                     {t("tabs.gallery")}
                 </Link>
             )}
 
             {project.hytale_wiki_slug && (
-                <Link href={`/mod/${project.slug}/wiki`} scroll={false} className={`tabs__tab ${isWikiActive ? "tabs__tab--active" : ""}`}>
+                <Link href={`${basePath}/${project.slug}/wiki`} scroll={false} className={`tabs__tab ${isWikiActive ? "tabs__tab--active" : ""}`}>
                     {t("wiki")}
                 </Link>
             )}
 
             {project.comments_enabled && (
-                <Link href={`/mod/${project.slug}/comments`} scroll={false} className={`tabs__tab ${isActive(`/mod/${project.slug}/comments`) ? "tabs__tab--active" : ""}`}>
+                <Link href={`${basePath}/${project.slug}/comments`} scroll={false} className={`tabs__tab ${isActive(`${basePath}/${project.slug}/comments`) ? "tabs__tab--active" : ""}`}>
                     {t("tabs.comments")}
                 </Link>
             )}

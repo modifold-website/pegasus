@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { getProjectPath } from "@/utils/projectRoutes";
 import { useTranslations } from "next-intl";
 import OrganizationSettingsSidebar from "@/components/organizations/settings/OrganizationSettingsSidebar";
 
@@ -79,7 +80,7 @@ export default function OrganizationProjectsSettingsPage({ authToken, organizati
                                     <img src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} alt={project.title} style={{ width: "60px", height: "60px", borderRadius: "12px", objectFit: "cover" }} />
                                     
                                     <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                                        <Link href={`/mod/${project.slug}`} style={{ fontWeight: 600, lineHeight: "normal" }}>
+                                        <Link href={getProjectPath(project)} style={{ fontWeight: 600, lineHeight: "normal" }}>
                                             {project.title}
                                         </Link>
 
@@ -93,7 +94,7 @@ export default function OrganizationProjectsSettingsPage({ authToken, organizati
 
                                 <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                                     {canOpenProjectSettings && (
-                                        <Link href={`/mod/${project.slug}/settings`} className="button button--size-m button--with-icon button--type-minimal button--active-transform">
+                                        <Link href={`${getProjectPath(project)}/settings`} className="button button--size-m button--with-icon button--type-minimal button--active-transform">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-settings-icon lucide-settings">
                                                 <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"></path>
                                                 <circle cx="12" cy="12" r="3"></circle>

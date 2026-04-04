@@ -1,6 +1,7 @@
 {
   "pageTitle": {
-    "mods": "Моди — Modifold"
+    "mods": "Моди — Modifold",
+    "modpacks": "Модпаки — Modifold"
   },
   "Header": {
     "home": "Головна",
@@ -142,7 +143,8 @@
       "summary": "Цей проєкт додає..."
     },
     "projectTypes": {
-      "mod": "Мод"
+      "mod": "Мод",
+      "modpack": "Модпак"
     },
     "createProject": "Створити проєкт",
     "creating": "Створення...",
@@ -672,18 +674,24 @@
       "none": "Теги не вибрані.",
       "labels": {
         "adventure": "Пригоди",
+        "challenging": "Складні",
+        "combat": "Бої",
         "cursed": "Прокляте",
         "decoration": "Декор",
         "economy": "Економіка",
         "equipment": "Спорядження",
         "food": "Їжа",
         "game_mechanics": "Механіки гри",
+        "kitchen_sink": "Збірна солянка",
         "library": "Бібліотека",
+        "lightweight": "Легковагові",
         "magic": "Магія",
         "management": "Керування",
         "minigame": "Мінігра",
         "mobs": "Моби",
+        "multiplayer": "Мультиплеєр",
         "optimization": "Оптимізація",
+        "quests": "Квести",
         "social": "Соціальне",
         "storage": "Сховище",
         "technology": "Технології",

@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import ProjectSidebar from "../project/ProjectSidebar";
 import { getSafeMarkdownHref, getSafeMarkdownImageSrc, prepareProjectDescriptionMarkdown } from "@/utils/projectDescriptionContent";
+import { getProjectPath } from "@/utils/projectRoutes";
 
 export default function ProjectPage({ project, authToken }) {
     const safeDescription = prepareProjectDescriptionMarkdown(project.description);
@@ -23,7 +24,7 @@ export default function ProjectPage({ project, authToken }) {
         },
         datePublished: project.created_at,
         image: project.icon_url,
-        url: `https://modifold.com/mod/${project.slug}`,
+        url: `https://modifold.com${getProjectPath(project)}`,
     };
 
     return (

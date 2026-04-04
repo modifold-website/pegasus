@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
+import { getProjectPath } from "@/utils/projectRoutes";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
@@ -801,7 +802,7 @@ export default function VersionsSettings({ project, authToken }) {
                                     )}
                                 </div>
 
-                                <Link href={`/mod/${project.slug}/version/${version.id}`}>
+                                <Link href={`${getProjectPath(project)}/version/${version.id}`}>
                                     <span className="version__title">
                                         {version.version_number}
 

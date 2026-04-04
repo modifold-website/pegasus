@@ -199,13 +199,13 @@ export default function ModerationPage({ authToken, initialProjects, initialTota
                         {projects.map((project) => (
                             <div key={project.id} className="new-projects-list">
                                 <div className="new-project-card" id={project.slug}>
-                                    <Link href={`/mod/${project.slug}`} style={{ height: "96px" }}>
+                                    <Link href={getProjectPath(project)} style={{ height: "96px" }}>
                                         <img className="new-project-icon" alt={project.title} src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} />
                                     </Link>
 
                                     <div className="new-project-info">
                                         <div className="new-project-header">
-                                            <Link href={`/mod/${project.slug}`} className="new-project-title">{project.title}</Link>
+                                            <Link href={getProjectPath(project)} className="new-project-title">{project.title}</Link>
                                         </div>
 
                                         <p className="new-project-description">{project.summary}</p>

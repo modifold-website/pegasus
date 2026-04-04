@@ -1,6 +1,7 @@
 ﻿import { cookies } from "next/headers";
 import { getLocale, getTranslations } from "next-intl/server";
 import VersionPage from "@/components/pages/VersionPage";
+import { getProjectBasePath } from "@/utils/projectRoutes";
 
 export async function generateMetadata({ params }) {
     const { slug, version_number } = await params;
@@ -21,6 +22,7 @@ export async function generateMetadata({ params }) {
     });
 
     const project = projectRes.ok ? await projectRes.json() : {};
+    const basePath = getProjectBasePath(project.project_type);
     const projectTitle = project.title || t("metadata.version.unknownProject");
 
     return {
@@ -30,7 +32,7 @@ export async function generateMetadata({ params }) {
             title: t("metadata.version.title", { version: version.version_number, project: projectTitle }),
             description: version.changelog || t("metadata.version.description", { version: version.version_number, project: projectTitle }),
             images: [project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"],
-            url: `https://modifold.com/project/${slug}/version/${version_number}`,
+            url: `https://modifold.com${basePath}/${slug}/version/${version_number}`,
         },
     };
 }

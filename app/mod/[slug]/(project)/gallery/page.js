@@ -1,6 +1,7 @@
 ﻿import { cookies } from "next/headers";
 import { getLocale, getTranslations } from "next-intl/server";
 import GalleryPage from "@/components/pages/GalleryPage";
+import { getProjectBasePath } from "@/utils/projectRoutes";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
@@ -17,6 +18,7 @@ export async function generateMetadata({ params }) {
     }
 
     const project = await res.json();
+    const basePath = getProjectBasePath(project.project_type);
     return {
         title: `${project.title} — Modifold`,
         description: project.summary,
@@ -24,7 +26,7 @@ export async function generateMetadata({ params }) {
             title: project.title,
             description: project.summary,
             images: [project.icon_url],
-            url: `https://modifold.com/project/${project.slug}`,
+            url: `https://modifold.com${basePath}/${project.slug}/gallery`,
         },
     };
 }

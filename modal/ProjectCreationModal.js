@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "../components/providers/AuthProvider";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { getProjectPathByType } from "@/utils/projectRoutes";
 
 Modal.setAppElement("body");
 
@@ -35,7 +36,7 @@ export default function ProjectCreationModal({ isOpen, authToken, onRequestClose
         data.append("title", formData.title);
         data.append("summary", formData.summary);
         data.append("visibility", formData.visibility);
-        data.append("project_type", "mod");
+        data.append("project_type", formData.project_type);
 
         try {
             const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE}/projects`, data, {
@@ -47,7 +48,7 @@ export default function ProjectCreationModal({ isOpen, authToken, onRequestClose
 
             toast.success(t("success"));
             onRequestClose();
-            router.push(`/mod/${res.data.slug}/settings`);
+            router.push(`${getProjectPathByType({ slug: res.data.slug, projectType: res.data.project_type })}/settings`);
         } catch (err) {
             toast.error(err.response?.data?.message || t("errors.generic"));
         } finally {
@@ -87,13 +88,24 @@ export default function ProjectCreationModal({ isOpen, authToken, onRequestClose
                             </label>
                         </div>
 
-                        <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "16px" }}>
-                            <button type="submit" className="button button--size-m button--type-primary" disabled={loading}>
-                                {loading ? t("creating") : t("createProject")}
+                        <p className="blog-settings__field-title">{t("projectType")}</p>
+                        <div style={{ display: "flex", gap: "10px" }}>
+                            <button type="button" className={`button button--size-m ${formData.project_type === "mod" ? "button--type-primary" : "button--type-minimal"}`} onClick={() => setFormData({ ...formData, project_type: "mod" })} disabled={loading}>
+                                {t("projectTypes.mod")}
                             </button>
+                            
+                            <button type="button" className={`button button--size-m ${formData.project_type === "modpack" ? "button--type-primary" : "button--type-minimal"}`} onClick={() => setFormData({ ...formData, project_type: "modpack" })} disabled={loading}>
+                                {t("projectTypes.modpack")}
+                            </button>
+                        </div>
 
+                        <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "16px" }}>
                             <button type="button" className="button button--size-m button--type-minimal" onClick={onRequestClose} disabled={loading}>
                                 {t("cancel")}
+                            </button>
+                            
+                            <button type="submit" className="button button--size-m button--type-primary" disabled={loading}>
+                                {loading ? t("creating") : t("createProject")}
                             </button>
                         </div>
                     </form>

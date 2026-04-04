@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { getProjectPath } from "@/utils/projectRoutes";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import VersionDisplay from "../VersionDisplay";
 import { useTranslations, useLocale } from "next-intl";
@@ -259,7 +260,7 @@ export default function VersionsPage({ project, authToken }) {
                                     </svg>
                                 </a>
 
-                                <Link href={`/mod/${project.slug}/version/${version.id}`}>
+                                <Link href={`${getProjectPath(project)}/version/${version.id}`}>
                                     <span className="version__title">
                                         {version.version_number}
 

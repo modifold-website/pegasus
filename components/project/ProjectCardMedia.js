@@ -2,7 +2,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import UserName from "../ui/UserName";
 import ProjectTags from "../ui/ProjectTags";
-const DEFAULT_PROJECT_ICON_URL = "https://media.modifold.com/static/no-project-icon.svg";
+import { getProjectPath } from "@/utils/projectRoutes";
 const MAX_RGB_INT = 16777215;
 
 const clampByte = (value) => Math.max(0, Math.min(255, Math.round(value)));
@@ -88,7 +88,7 @@ export default function ProjectCardMedia({ project }) {
 
     return (
         <div className="media-project-card" id={project.slug}>
-            <Link className="media-project-card__overlay" href={`/mod/${project.slug}`} aria-label={project.title} />
+            <Link className="media-project-card__overlay" href={getProjectPath(project)} aria-label={project.title} />
 
             <div className={`media-project-cover ${!coverUrl ? "media-project-cover--fallback" : ""}`} style={fallbackCoverStyle}>
                 {coverUrl && (
@@ -98,7 +98,7 @@ export default function ProjectCardMedia({ project }) {
 
             <div className="media-project-body">
                 <div className="media-project-header">
-                    <img className="media-project-icon" alt={t("projectIconAlt", { title: project.title })} src={project.icon_url || DEFAULT_PROJECT_ICON_URL} />
+                    <img className="media-project-icon" alt={t("projectIconAlt", { title: project.title })} src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} />
 
                     <div className="media-project-header-text">
                         <div className="media-project-title-row">

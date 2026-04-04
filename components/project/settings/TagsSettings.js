@@ -7,34 +7,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
 import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
 
-const TAGS_BY_TYPE = {
-    mod: [
-        "Adventure",
-        "Cursed",
-        "Decoration",
-        "Economy",
-        "Equipment",
-        "Food",
-        "Game Mechanics",
-        "Library",
-        "Magic",
-        "Management",
-        "Minigame",
-        "Mobs",
-        "Optimization",
-        "Social",
-        "Storage",
-        "Technology",
-        "Transportation",
-        "Utility",
-        "World Generation",
-        "Texture Packs",
-    ],
-};
-
 const normalizeTagKey = (tag) => tag.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
 
-export default function TagsSettings({ project, authToken }) {
+const normalizeTags = (tags) => tags.map((tag) => (typeof tag === "string" ? { name: tag } : tag)).filter((tag) => tag && typeof tag.name === "string");
+
+export default function TagsSettings({ project, authToken, availableTags = [] }) {
     const t = useTranslations("SettingsProjectPage");
     const { slug } = useParams();
 
@@ -44,6 +21,7 @@ export default function TagsSettings({ project, authToken }) {
     const [isTagsPopoverOpen, setIsTagsPopoverOpen] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const tagsRef = useRef(null);
+    const [tagOptions, setTagOptions] = useState(() => normalizeTags(availableTags));
     const isDirty = JSON.stringify(selectedTags) !== JSON.stringify(savedTags);
 
     useEffect(() => {
@@ -56,6 +34,34 @@ export default function TagsSettings({ project, authToken }) {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+
+    useEffect(() => {
+        if(tagOptions.length > 0 || !project?.project_type) {
+            return;
+        }
+
+        const controller = new AbortController();
+        const fetchTags = async () => {
+            try {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/tags/${project.project_type}`, {
+                    signal: controller.signal,
+                });
+                if(response.ok) {
+                    const data = await response.json();
+                    const normalized = normalizeTags(Array.isArray(data?.tags) ? data.tags : []);
+                    setTagOptions(normalized);
+                }
+            } catch (err) {
+                if(!controller.signal.aborted) {
+                    console.error("Error fetching tags:", err);
+                }
+            }
+        };
+
+        fetchTags();
+
+        return () => controller.abort();
+    }, [project?.project_type, tagOptions.length]);
 
     const toggleTagsPopover = () => {
         setIsTagsPopoverOpen((prev) => !prev);
@@ -137,9 +143,9 @@ export default function TagsSettings({ project, authToken }) {
                                     {isTagsPopoverOpen && (
                                         <div className="popover">
                                             <div className="context-list" data-scrollable style={{ maxHeight: "200px", overflowY: "auto" }}>
-                                                {TAGS_BY_TYPE[project.project_type]?.map((tag) => (
-                                                    <div key={tag} className={`context-list-option ${selectedTags.includes(tag) ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleToggleTag(tag)}>
-                                                        <div className="context-list-option__label">{getTagLabel(tag)}</div>
+                                                {tagOptions.map((tag) => (
+                                                    <div key={tag.name} className={`context-list-option ${selectedTags.includes(tag.name) ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleToggleTag(tag.name)}>
+                                                        <div className="context-list-option__label">{getTagLabel(tag.name)}</div>
                                                     </div>
                                                 ))}
                                             </div>

@@ -2171,6 +2171,15 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .sidebar-item--profile {
     color: var(--theme-color-text-primary);
 }
+.sidebar-item--profile .sidebar-item__label {
+    display: block;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 160px;
+}
 .sidebar-item:not(:last-child) {
     margin-bottom: 4px;
 }
@@ -3858,6 +3867,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     top: 100%;
     right: 0;
     z-index: 3;
+    --width: max-content;
 }
 .dropdown__label .icon.open {
     transform: rotate(180deg);
@@ -3867,7 +3877,6 @@ input[type="file"]::-webkit-file-upload-button:hover {
     background: #ffedd5;
     color: #713f12;
     font-weight: 500;
-    margin-bottom: 30px;
     display: flex;
     padding: 8px 12px;
     font-size: 14px;

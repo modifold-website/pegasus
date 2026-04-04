@@ -3,9 +3,13 @@
 import Link from "next/link";
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useLocale, useTranslations } from "next-intl";
+import { getProjectPath } from "@/utils/projectRoutes";
 
 const RANGE_OPTIONS = ["7d", "30d", "90d"];
-const getTimeRangeHref = (slug, range) => (range === "7d" ? `/mod/${slug}/settings/analytics` : `/mod/${slug}/settings/analytics?time_range=${range}`);
+const getTimeRangeHref = (project, range) => {
+    const base = getProjectPath(project, "/settings/analytics");
+    return range === "7d" ? base : `${base}?time_range=${range}`;
+};
 
 const formatChartDate = (date, locale) => {
     const value = new Date(`${date}T00:00:00Z`);
@@ -89,7 +93,7 @@ export default function ProjectAnalyticsSettingsPage({ project, analytics, selec
                                 
                                 <div className="project-analytics__ranges">
                                     {RANGE_OPTIONS.map((range) => (
-                                        <Link key={range} href={getTimeRangeHref(project.slug, range)} className={`button button--size-m button--active-transform ${selectedTimeRange === range ? "button--type-primary" : "button--type-minimal"}`}>
+                                        <Link key={range} href={getTimeRangeHref(project, range)} className={`button button--size-m button--active-transform ${selectedTimeRange === range ? "button--type-primary" : "button--type-minimal"}`}>
                                             {t(`analytics.ranges.${range}`)}
                                         </Link>
                                     ))}

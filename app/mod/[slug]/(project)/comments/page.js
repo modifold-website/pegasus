@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import CommentsPage from "@/components/pages/CommentsPage";
 import { getLocale } from "next-intl/server";
 import Script from "next/script";
+import { getProjectBasePath } from "@/utils/projectRoutes";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
@@ -21,6 +22,7 @@ export async function generateMetadata({ params }) {
     if(!project.comments_enabled) {
         notFound();
     }
+    const basePath = getProjectBasePath(project.project_type);
 
     const description = project.summary.length > 160 ? `${project.summary.substring(0, 157)}...` : project.summary;
 
@@ -31,8 +33,8 @@ export async function generateMetadata({ params }) {
         author: project.owner.username,
         robots: "index, follow",
         alternates: {
-            canonical: `https://modifold.com/mod/${project.slug}/comments`,
-            "x-default": `https://modifold.com/mod/${project.slug}/comments`,
+            canonical: `https://modifold.com${basePath}/${project.slug}/comments`,
+            "x-default": `https://modifold.com${basePath}/${project.slug}/comments`,
         },
         openGraph: {
             title: `${project.title} — Modifold`,
@@ -45,7 +47,7 @@ export async function generateMetadata({ params }) {
                     alt: `${project.title} Hytale Mod`,
                 },
             ],
-            url: `https://modifold.com/mod/${project.slug}/comments`,
+            url: `https://modifold.com${basePath}/${project.slug}/comments`,
             type: "website",
             locale: ogLocale,
         },
@@ -79,6 +81,7 @@ export default async function Page({ params }) {
     if(!project.comments_enabled) {
         notFound();
     }
+    const basePath = getProjectBasePath(project.project_type);
     
     const membersRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/members`, {
         headers: {
@@ -108,13 +111,13 @@ export default async function Page({ params }) {
                     "operatingSystem": "Hytale",
                     "author": { "@type": "Person", "name": project.owner.username },
                     "description": project.summary,
-                    "url": `https://modifold.com/mod/${project.slug}/comments`,
+                    "url": `https://modifold.com${basePath}/${project.slug}/comments`,
                     "image": project.icon_url || "https://media.modifold.com/static/no-project-icon.svg",
                     "inLanguage": resolvedLocale,
                 })}
             </Script>
 
-            <link rel="alternate" hrefLang="x-default" href={`https://modifold.com/mod/${project.slug}/comments`} />
+            <link rel="alternate" hrefLang="x-default" href={`https://modifold.com${basePath}/${project.slug}/comments`} />
 
             <CommentsPage
                 project={{ ...project, members }}

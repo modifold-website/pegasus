@@ -141,7 +141,8 @@
       "summary": "Bu proje şunu ekler..."
     },
     "projectTypes": {
-      "mod": "Mod"
+      "mod": "Mod",
+      "modpack": "Modpack"
     },
     "createProject": "Proje oluştur",
     "creating": "Oluşturuluyor...",
@@ -671,18 +672,24 @@
       "none": "Etiket seçilmedi.",
       "labels": {
         "adventure": "Macera",
+        "challenging": "Zorlu",
+        "combat": "Savaş",
         "cursed": "Lanetli",
         "decoration": "Dekorasyon",
         "economy": "Ekonomi",
         "equipment": "Ekipman",
         "food": "Yiyecek",
         "game_mechanics": "Oyun mekaniği",
+        "kitchen_sink": "Her Şey",
         "library": "Kütüphane",
+        "lightweight": "Hafif",
         "magic": "Büyü",
         "management": "Yönetim",
         "minigame": "Mini oyun",
         "mobs": "Yaratıklar",
+        "multiplayer": "Çok oyunculu",
         "optimization": "Optimizasyon",
+        "quests": "Görevler",
         "social": "Sosyal",
         "storage": "Depolama",
         "technology": "Teknoloji",

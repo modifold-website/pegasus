@@ -1,4 +1,4 @@
-﻿import { getLocale, getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { cookies } from "next/headers";
 import BrowsePage from "@/components/pages/BrowsePage";
 
@@ -7,7 +7,7 @@ export async function generateMetadata() {
     const t = await getTranslations({ locale: resolvedLocale, namespace: "pageTitle" });
 
     return {
-        title: t("mods"),
+        title: t("modpacks"),
     };
 }
 
@@ -47,14 +47,14 @@ function parseBrowseSearchParams(searchParams) {
     };
 }
 
-export default async function ModsPage({ searchParams }) {
+export default async function ModpacksPage({ searchParams }) {
     const cookieStore = await cookies();
     const resolvedSearchParams = await searchParams;
     const initialState = parseBrowseSearchParams(resolvedSearchParams);
-    const initialCardView = cookieStore.get("browse_card_view_mod")?.value === "media" ? "media" : "list";
+    const initialCardView = cookieStore.get("browse_card_view_modpack")?.value === "media" ? "media" : "list";
     const sortedTags = [...initialState.tags].sort();
     const apiParams = {
-        type: "mod",
+        type: "modpack",
         sort: initialState.sort,
         search: initialState.search,
         tags: sortedTags.join(","),
@@ -63,6 +63,7 @@ export default async function ModsPage({ searchParams }) {
     };
     const initialApiKey = JSON.stringify(apiParams);
     let initialData = null;
+    let initialTags = [];
 
     try {
         const requestParams = new URLSearchParams({
@@ -87,11 +88,23 @@ export default async function ModsPage({ searchParams }) {
                 timestamp: Date.now(),
             };
         } else {
-            console.error("Failed to fetch mods browse data:", response.status);
+            console.error("Failed to fetch modpacks browse data:", response.status);
         }
     } catch (error) {
-        console.error("Failed to fetch mods browse data:", error);
+        console.error("Failed to fetch modpacks browse data:", error);
     }
 
-    return <BrowsePage projectType="mod" initialState={initialState} initialData={initialData} initialCardView={initialCardView} />;
+    try {
+        const tagsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/tags/modpack`, {
+            next: { revalidate: 300 },
+        });
+        if(tagsResponse.ok) {
+            const data = await tagsResponse.json();
+            initialTags = Array.isArray(data?.tags) ? data.tags : [];
+        }
+    } catch (error) {
+        console.error("Failed to fetch modpack tags:", error);
+    }
+
+    return <BrowsePage projectType="modpack" initialState={initialState} initialData={initialData} initialCardView={initialCardView} tags={initialTags} />;
 }

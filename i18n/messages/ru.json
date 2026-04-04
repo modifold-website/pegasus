@@ -1,6 +1,7 @@
 {
   "pageTitle": {
-    "mods": "Моды — Modifold"
+    "mods": "Моды — Modifold",
+    "modpacks": "Модпаки — Modifold"
   },
   "Header": {
     "home": "Главная",
@@ -141,7 +142,8 @@
       "summary": "Этот проект добавляет..."
     },
     "projectTypes": {
-      "mod": "Мод"
+      "mod": "Мод",
+      "modpack": "Модпак"
     },
     "createProject": "Создать проект",
     "creating": "Создание...",
@@ -672,18 +674,24 @@
       "none": "Теги не выбраны.",
       "labels": {
         "adventure": "Приключения",
+        "challenging": "Сложные",
+        "combat": "Бои",
         "cursed": "Проклятое",
         "decoration": "Декор",
         "economy": "Экономика",
         "equipment": "Снаряжение",
         "food": "Еда",
         "game_mechanics": "Механики",
+        "kitchen_sink": "Сборная солянка",
         "library": "Библиотека",
+        "lightweight": "Легковесные",
         "magic": "Магия",
         "management": "Менеджмент",
         "minigame": "Мини-игры",
         "mobs": "Мобы",
+        "multiplayer": "Мультиплеер",
         "optimization": "Оптимизация",
+        "quests": "Квесты",
         "social": "Социальное",
         "storage": "Хранилище",
         "technology": "Технологии",

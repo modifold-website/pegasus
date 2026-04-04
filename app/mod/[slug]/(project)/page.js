@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import ProjectPage from "@/components/pages/ProjectPage";
 import { getLocale } from "next-intl/server";
 import Script from "next/script";
+import { getProjectBasePath } from "@/utils/projectRoutes";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
@@ -19,6 +20,7 @@ export async function generateMetadata({ params }) {
     }
 
     const project = await res.json();
+    const basePath = getProjectBasePath(project.project_type);
 
     const description = project.summary.length > 160 ? `${project.summary.substring(0, 157)}...` : project.summary;
 
@@ -29,8 +31,8 @@ export async function generateMetadata({ params }) {
         author: project.owner.username,
         robots: "index, follow",
         alternates: {
-            canonical: `https://modifold.com/mod/${project.slug}`,
-            "x-default": `https://modifold.com/mod/${project.slug}`,
+            canonical: `https://modifold.com${basePath}/${project.slug}`,
+            "x-default": `https://modifold.com${basePath}/${project.slug}`,
         },
         openGraph: {
             title: `${project.title} — Modifold`,
@@ -43,7 +45,7 @@ export async function generateMetadata({ params }) {
                     alt: `${project.title} Hytale Mod`,
                 },
             ],
-            url: `https://modifold.com/mod/${project.slug}`,
+            url: `https://modifold.com${basePath}/${project.slug}`,
             type: "website",
             locale: ogLocale,
         },
@@ -102,6 +104,7 @@ export default async function Page({ params }) {
     }
 
     const project = await res.json();
+    const basePath = getProjectBasePath(project.project_type);
 
     fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/view`, {
         method: "POST",
@@ -130,13 +133,13 @@ export default async function Page({ params }) {
                     "operatingSystem": "Hytale",
                     "author": { "@type": "Person", "name": project.owner.username },
                     "description": project.summary,
-                    "url": `https://modifold.com/mod/${project.slug}`,
+                    "url": `https://modifold.com${basePath}/${project.slug}`,
                     "image": project.icon_url || "https://media.modifold.com/static/no-project-icon.svg",
                     "inLanguage": resolvedLocale,
                 })}
             </Script>
 
-            <link rel="alternate" hrefLang="x-default" href={`https://modifold.com/mod/${project.slug}`} />
+            <link rel="alternate" hrefLang="x-default" href={`https://modifold.com${basePath}/${project.slug}`} />
 
             <ProjectPage project={{ ...project, members }} authToken={authToken} />
         </>

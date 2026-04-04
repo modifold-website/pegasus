@@ -220,7 +220,7 @@ export default function ReportsModerationPage({ authToken, initialReports, initi
                             <div key={report.id} className="content content--padding" style={{ background: "var(--theme-color-background)", display: "flex", flexDirection: "column", gap: "10px" }}>
                                 <div style={{ display: "flex", justifyContent: "space-between", gap: "10px", flexWrap: "wrap" }}>
                                     <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-                                        <Link href={`/mod/${report.project_slug}`} style={{ fontWeight: 600 }}>{report.project_title || report.project_slug}</Link>
+                                        <Link href={`${getProjectPathByType({ slug: report.project_slug, projectType: report.project_type })}`} style={{ fontWeight: 600 }}>{report.project_title || report.project_slug}</Link>
                                     </div>
 
                                     <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>

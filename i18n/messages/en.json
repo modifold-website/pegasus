@@ -708,7 +708,8 @@
     "versions": {
       "errors": {
         "selectVersionsAndLoaders": "Please select at least one game version and loader",
-        "upload": "Error uploading version"
+        "upload": "Error uploading version",
+        "fileTooLarge": "File is too large. Maximum size is 100 MB"
       },
       "success": "Version uploaded",
       "title": "Upload New Version",

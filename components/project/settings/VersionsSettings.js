@@ -23,6 +23,7 @@ const loaders = [
 
 const releaseChannels = ["release", "beta", "alpha"];
 const VERSION_FILE_ACCEPT = ".jar,.zip,.rar,application/zip, application/x-rar-compressed, application/vnd.rar, application/java-archive";
+const MAX_VERSION_FILE_SIZE = 100 * 1024 * 1024;
 const VERSION_UPLOAD_STEPS = {
     FILES: "files",
     METADATA: "metadata",
@@ -355,6 +356,15 @@ export default function VersionsSettings({ project, authToken }) {
 
     const handleUploadFileChange = (event) => {
         const nextFile = event.target.files?.[0] || null;
+        if(nextFile && nextFile.size > MAX_VERSION_FILE_SIZE) {
+            toast.error(t("versions.errors.fileTooLarge"));
+            if(uploadFileRef.current) {
+                uploadFileRef.current.value = "";
+            }
+            setUploadFile(null);
+            return;
+        }
+
         setUploadFile(nextFile);
 
         if(nextFile) {
@@ -369,6 +379,11 @@ export default function VersionsSettings({ project, authToken }) {
 
         const nextFile = event.dataTransfer?.files?.[0] || null;
         if(nextFile) {
+            if(nextFile.size > MAX_VERSION_FILE_SIZE) {
+                toast.error(t("versions.errors.fileTooLarge"));
+                return;
+            }
+
             setUploadFile(nextFile);
             setUploadStep(VERSION_UPLOAD_STEPS.METADATA);
         }
@@ -925,6 +940,8 @@ export default function VersionsSettings({ project, authToken }) {
                 t={t}
                 tProject={tProject}
                 versionFileAccept={VERSION_FILE_ACCEPT}
+                maxFileSize={MAX_VERSION_FILE_SIZE}
+                fileTooLargeMessage={t("versions.errors.fileTooLarge")}
                 currentFileName={getFileNameFromUrl(editVersionFile.url)}
                 formatFileSize={formatFileSize}
             />

@@ -707,7 +707,8 @@
     "versions": {
       "errors": {
         "selectVersionsAndLoaders": "Selecione pelo menos uma versão do jogo e um loader",
-        "upload": "Erro ao enviar versão"
+        "upload": "Erro ao enviar versão",
+        "fileTooLarge": "O arquivo é muito grande. O tamanho máximo é 100 MB"
       },
       "success": "Versão enviada",
       "title": "Versões",

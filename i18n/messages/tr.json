@@ -706,7 +706,8 @@
     "versions": {
       "errors": {
         "selectVersionsAndLoaders": "Lütfen en az bir oyun sürümü ve bir yükleyici seçin",
-        "upload": "Sürüm yüklenemedi"
+        "upload": "Sürüm yüklenemedi",
+        "fileTooLarge": "Dosya çok büyük. Maksimum boyut 100 MB"
       },
       "success": "Sürüm yüklendi",
       "title": "Yeni sürüm yükle",

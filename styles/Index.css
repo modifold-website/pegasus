@@ -3552,42 +3552,11 @@ input[type="file"]::-webkit-file-upload-button:hover {
     display: inline-flex;
     align-items: center;
 }
-.content--browse {
-    position: relative;
-    overflow: hidden;
-    background: var(--theme-color-background);
-    border-radius: 30px !important;
-    box-shadow: none;
-    width: 250px;
-    height: 180px;
-    transition: background-color .2s ease, color .2s ease, transform .05s ease-in-out;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-}
-.content--browse:active {
-    transform: scale(.95);
-}
-.content--browse:hover img {
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 500ms;
-    transform: translate(0, 0) rotate(1deg) skewX(0) skewY(0) scaleX(1.05) scaleY(1.05);
-}
-.content--browse__preview {
-    overflow: hidden;
-    position: absolute;
-    bottom: -26px;
-    right: -39px;
-    height: 100%;
-    width: 95%;
-    object-fit: cover;
-    pointer-events: none;
-}
 .browse-menu {
     background: var(--theme-color-background-content);
     top: calc(var(--layout-header-height) - 10px);
-    border-radius: 25px;
+    border-radius: 20px;
+    padding: 12px 8px 8px;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;

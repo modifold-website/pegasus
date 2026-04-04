@@ -6,6 +6,7 @@
   "Header": {
     "home": "Home",
     "mods": "Mods",
+    "modpacks": "Modpacks",
     "login": "Sign in",
     "logout": "Log out",
     "settings": "Settings",

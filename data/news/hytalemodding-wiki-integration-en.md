@@ -5,7 +5,7 @@ author: ["modifold"]
 date: 2026-03-15
 slug: /news/hytalemodding-wiki-integration
 image: https://media.modifold.com/news/wiki_hytalemodding_update_v3.png
-featured: true
+featured: false
 locale: en
 ---
 

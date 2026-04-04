@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,22 +18,9 @@ export default function TagsSettings({ project, authToken, availableTags = [] })
     const initialTags = project.tags ? project.tags.split(",") : [];
     const [selectedTags, setSelectedTags] = useState(initialTags);
     const [savedTags, setSavedTags] = useState(initialTags);
-    const [isTagsPopoverOpen, setIsTagsPopoverOpen] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
-    const tagsRef = useRef(null);
     const [tagOptions, setTagOptions] = useState(() => normalizeTags(availableTags));
     const isDirty = JSON.stringify(selectedTags) !== JSON.stringify(savedTags);
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if(tagsRef.current && !tagsRef.current.contains(event.target)) {
-                setIsTagsPopoverOpen(false);
-            }
-        };
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
 
     useEffect(() => {
         if(tagOptions.length > 0 || !project?.project_type) {
@@ -62,10 +49,6 @@ export default function TagsSettings({ project, authToken, availableTags = [] })
 
         return () => controller.abort();
     }, [project?.project_type, tagOptions.length]);
-
-    const toggleTagsPopover = () => {
-        setIsTagsPopoverOpen((prev) => !prev);
-    };
 
     const handleToggleTag = (tag) => {
         setSelectedTags((prev) => {
@@ -122,6 +105,12 @@ export default function TagsSettings({ project, authToken, availableTags = [] })
     };
 
     const selectionLabel = selectedTags.length > 0 ? t("tags.selected", { count: selectedTags.length }) : t("tags.select");
+    const tagIconByName = tagOptions.reduce((acc, tag) => {
+        if(tag?.name && tag.icon) {
+            acc[tag.name] = tag.icon;
+        }
+        return acc;
+    }, {});
 
     return (
         <>
@@ -131,26 +120,23 @@ export default function TagsSettings({ project, authToken, availableTags = [] })
                         <div className="blog-settings__body">
                             <p className="blog-settings__field-title">{t("tags.title")}</p>
                             <form onSubmit={handleSubmit}>
-                                <div className="field field--default blog-settings__input" ref={tagsRef}>
-                                    <label className="field__wrapper" onClick={toggleTagsPopover}>
-                                        <div className="field__wrapper-body">
-                                            <div className="select">
-                                                <div className="select__selected">{selectionLabel}</div>
-                                            </div>
-                                        </div>
-                                    </label>
+                                <div className="tag-selector">
+                                    <p style={{ color: "var(--theme-color-text-secondary)" }}>{selectionLabel}</p>
 
-                                    {isTagsPopoverOpen && (
-                                        <div className="popover">
-                                            <div className="context-list" data-scrollable style={{ maxHeight: "200px", overflowY: "auto" }}>
-                                                {tagOptions.map((tag) => (
-                                                    <div key={tag.name} className={`context-list-option ${selectedTags.includes(tag.name) ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleToggleTag(tag.name)}>
-                                                        <div className="context-list-option__label">{getTagLabel(tag.name)}</div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
+                                    <div className="tag-selector__list">
+                                        {tagOptions.map((tag) => {
+                                            const isSelected = selectedTags.includes(tag.name);
+                                            return (
+                                                <button key={tag.name} type="button" className={`button button--size-m ${isSelected ? "button--type-primary" : "button--type-minimal"} tag-selector__button`} onClick={() => handleToggleTag(tag.name)}>
+                                                    {tag.icon && (
+                                                        <span className="tag-selector__icon" aria-hidden="true" dangerouslySetInnerHTML={{ __html: tag.icon }} />
+                                                    )}
+
+                                                    <span className="tag-selector__label">{getTagLabel(tag.name)}</span>
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
                                 </div>
 
                                 <button type="button" className="button button--size-m button--type-minimal" style={{ marginTop: "18px" }} onClick={() => setSelectedTags([])}>
@@ -162,7 +148,12 @@ export default function TagsSettings({ project, authToken, availableTags = [] })
                             <div className="tags-list">
                                 {selectedTags.length > 0 ? (
                                     selectedTags.map((tag) => (
-                                        <div key={tag} className="button button--size-m button--type-minimal">{getTagLabel(tag)}</div>
+                                        <div key={tag} className="button button--size-m button--type-minimal tag-selector__button">
+                                            {tagIconByName[tag] && (
+                                                <span className="tag-selector__icon" aria-hidden="true" dangerouslySetInnerHTML={{ __html: tagIconByName[tag] }} />
+                                            )}
+                                            <span className="tag-selector__label">{getTagLabel(tag)}</span>
+                                        </div>
                                     ))
                                 ) : (
                                     <p>{t("tags.none")}</p>
@@ -179,7 +170,6 @@ export default function TagsSettings({ project, authToken, availableTags = [] })
                 onSave={handleSubmit}
                 onReset={() => {
                     setSelectedTags([...savedTags]);
-                    setIsTagsPopoverOpen(false);
                 }}
                 saveLabel={t("tags.actions.save")}
                 resetLabel={t("unsavedBar.reset")}

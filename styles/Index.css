@@ -3704,6 +3704,35 @@ input[type="file"]::-webkit-file-upload-button:hover {
     flex-wrap: wrap;
     gap: 10px;
 }
+.tag-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.tag-selector__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.tag-selector__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform .05s ease-in-out;
+}
+.tag-selector__button:active {
+    transform: scale(.95);
+}
+.tag-selector__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.tag-selector__icon svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+}
 .category-list {
     list-style: none;
     padding: 0;

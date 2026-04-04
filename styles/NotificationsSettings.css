@@ -102,8 +102,8 @@
     margin-left: -18px;
 }
 .notification-avatars-stack__avatar {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 999px;
     object-fit: cover;
     background: var(--theme-color-background-active);

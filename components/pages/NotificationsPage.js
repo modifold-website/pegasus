@@ -25,6 +25,7 @@ export default function NotificationsPage({ authToken, initialNotifications = []
     const [totalPages, setTotalPages] = useState(initialTotalPages);
     const router = useRouter();
     const hasMarkedInitialRead = useRef(false);
+    const hasRefreshedWithTimezone = useRef(false);
 
     const dateFormatter = useMemo(() => (
         new Intl.DateTimeFormat(locale || undefined, {
@@ -41,17 +42,20 @@ export default function NotificationsPage({ authToken, initialNotifications = []
         })
     ), [locale]);
 
-    const loadNotifications = async (nextPage = 1, append = false) => {
+    const loadNotifications = async (nextPage = 1, append = false, silent = false) => {
         const token = authToken || localStorage.getItem("authToken");
         if(!token) {
             setError(t("errors.noToken"));
-            setLoading(false);
+            if(!silent) {
+                setLoading(false);
+            }
+            
             return;
         }
 
         if(append) {
             setLoadingMore(true);
-        } else {
+        } else if(!silent) {
             setLoading(true);
         }
 
@@ -61,6 +65,7 @@ export default function NotificationsPage({ authToken, initialNotifications = []
                 params: {
                     page: nextPage,
                     limit: 20,
+                    tzOffset: new Date().getTimezoneOffset(),
                 },
             });
 
@@ -89,7 +94,10 @@ export default function NotificationsPage({ authToken, initialNotifications = []
             console.error("Error fetching notifications:", fetchError);
             setError(t("errors.fetch"));
         } finally {
-            setLoading(false);
+            if(!silent) {
+                setLoading(false);
+            }
+
             setLoadingMore(false);
         }
     };
@@ -126,6 +134,11 @@ export default function NotificationsPage({ authToken, initialNotifications = []
             setPage(initialPage);
             setTotalPages(initialTotalPages);
             setLoading(false);
+            if(!hasRefreshedWithTimezone.current) {
+                hasRefreshedWithTimezone.current = true;
+                loadNotifications(1, false, true);
+            }
+
             return;
         }
 

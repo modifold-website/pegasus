@@ -654,6 +654,11 @@ body.dark {
     grid-row: span 2;
     flex-shrink: 0;
 }
+.account-menu__name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
 .account-menu__name-label {
     font-weight: 500;
 }

@@ -142,7 +142,11 @@ export default function DashboardClient({ initialProjects, initialTotalPages, in
                             ))}
                         </div>
                     ) : (
-                        <p>{t("noProjects")}</p>
+                        <div className="notifications">
+                            <div className="subsite-empty-feed">
+                                <p className="subsite-empty-feed__title">{t("noProjects")}</p>
+                            </div>
+                        </div>
                     )}
 
                     {totalPages > 1 && (

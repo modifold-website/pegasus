@@ -4025,13 +4025,18 @@ body.light div .image-container::before {
         grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
     }
 }
+body.light div .fixed-background-teleport {
+    opacity: .20 !important;
+}
+body.dark div .fixed-background-teleport {
+    opacity: .15 !important;
+}
 .fixed-background-teleport {
     object-fit: cover;
     position: absolute;
     height: 320px;
     -webkit-mask-image: linear-gradient(180deg, #000, transparent);
     mask-image: linear-gradient(180deg, #000000, #ff000000);
-    opacity: .25 !important;
     pointer-events: none;
     width: 100%;
     inset: 0;

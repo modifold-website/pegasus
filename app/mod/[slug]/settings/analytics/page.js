@@ -5,6 +5,7 @@ import ProjectAnalyticsSettingsPage from "@/components/project/settings/ProjectA
 import { getProjectBasePath } from "@/utils/projectRoutes";
 
 const ALLOWED_TIME_RANGES = new Set(["7d", "30d", "90d"]);
+const ONLINE_RANGE_DAYS = { "7d": 7, "30d": 30, "90d": 90 };
 
 const getNormalizedTimeRange = (value) => {
     const timeRange = Array.isArray(value) ? value[0] : value;
@@ -17,6 +18,24 @@ async function fetchProjectAnalytics(slug, authToken, timeRange) {
             Accept: "application/json",
             Authorization: `Bearer ${authToken}`,
         },
+        cache: "no-store",
+    });
+
+    return response;
+}
+
+async function fetchOnlineNow(slug) {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/analytics/${slug}/online-now`, {
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+    });
+
+    return response;
+}
+
+async function fetchOnlineSeries(slug, days) {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/analytics/${slug}/chart/daily-joins?days=${days}`, {
+        headers: { Accept: "application/json" },
         cache: "no-store",
     });
 
@@ -55,7 +74,7 @@ export default async function Page({ params, searchParams }) {
         redirect("/");
     }
 
-    const [projectResponse, analyticsResponse] = await Promise.all([
+    const [projectResponse, analyticsResponse, onlineNowResponse, onlineSeriesResponse] = await Promise.all([
         fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, {
             headers: {
                 Accept: "application/json",
@@ -63,7 +82,10 @@ export default async function Page({ params, searchParams }) {
             },
             cache: "no-store",
         }),
+        
         fetchProjectAnalytics(slug, authToken, timeRange),
+        fetchOnlineNow(slug),
+        fetchOnlineSeries(slug, ONLINE_RANGE_DAYS[timeRange] || 7),
     ]);
 
     if(!projectResponse.ok || !analyticsResponse.ok) {
@@ -78,6 +100,13 @@ export default async function Page({ params, searchParams }) {
 
     const project = await projectResponse.json();
     const analytics = await analyticsResponse.json();
+    const onlineNowPayload = onlineNowResponse.ok ? await onlineNowResponse.json() : null;
+    const onlineSeriesPayload = onlineSeriesResponse.ok ? await onlineSeriesResponse.json() : null;
+    const onlineSeries = Array.isArray(onlineSeriesPayload?.points) ? onlineSeriesPayload.points.map((point) => ({
+        date: String(point.day || "").slice(0, 10),
+        count: Number(point.joins) || 0,
+    })).filter((point) => Boolean(point.date)) : [];
+    const onlineNow = typeof onlineNowPayload?.onlineNow === "number" ? onlineNowPayload.onlineNow : 0;
     const basePath = getProjectBasePath(project.project_type);
 
     if(requestedTimeRange === "7d") {
@@ -89,6 +118,8 @@ export default async function Page({ params, searchParams }) {
             project={project}
             analytics={analytics}
             selectedTimeRange={timeRange}
+            onlineNow={onlineNow}
+            onlineSeries={onlineSeries}
         />
     );
 }

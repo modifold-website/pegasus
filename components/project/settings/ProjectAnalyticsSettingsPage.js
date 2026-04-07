@@ -12,7 +12,8 @@ const getTimeRangeHref = (project, range) => {
 };
 
 const formatChartDate = (date, locale) => {
-    const value = new Date(`${date}T00:00:00Z`);
+    const normalized = typeof date === "string" && date.includes("T") ? date : `${date}T00:00:00Z`;
+    const value = new Date(normalized);
     return value.toLocaleDateString(locale, { day: "numeric", month: "short" });
 };
 
@@ -73,13 +74,14 @@ function AnalyticsChart({ title, description, total, data, locale, lineColor, gr
     );
 }
 
-export default function ProjectAnalyticsSettingsPage({ project, analytics, selectedTimeRange }) {
+export default function ProjectAnalyticsSettingsPage({ project, analytics, selectedTimeRange, onlineNow = 0, onlineSeries = [] }) {
     const t = useTranslations("SettingsProjectPage");
     const locale = useLocale();
     const regionNames = typeof Intl.DisplayNames === "function" ? new Intl.DisplayNames([locale], { type: "region" }) : null;
     const downloads = Array.isArray(analytics?.downloads) ? analytics.downloads : [];
     const views = Array.isArray(analytics?.views) ? analytics.views : [];
     const countries = Array.isArray(analytics?.countries) ? analytics.countries : [];
+    const hasOnline = onlineSeries.length > 0;
     const totals = analytics?.totals || {};
 
     return (
@@ -112,10 +114,24 @@ export default function ProjectAnalyticsSettingsPage({ project, analytics, selec
                                 </div>
 
                                 <div className="content content--padding project-analytics-stat">
-                                    <p>{t("analytics.stats.countries")}</p>
-                                    <strong>{countries.length}</strong>
+                                    <p>{t("analytics.stats.onlineNow")}</p>
+                                    <strong>{onlineNow}</strong>
                                 </div>
                             </div>
+
+                            {hasOnline ? (
+                                <AnalyticsChart
+                                    title={t("analytics.online.title")}
+                                    description={t(`analytics.ranges.${selectedTimeRange}`)}
+                                    total={0}
+                                    data={onlineSeries}
+                                    locale={locale}
+                                    lineColor="#ff8a00"
+                                    gradientId="projectAnalyticsOnline"
+                                    tooltipLabelKey="analytics.online.tooltip"
+                                    t={t}
+                                />
+                            ) : null}
 
                             <AnalyticsChart
                                 title={t("analytics.downloads.title")}

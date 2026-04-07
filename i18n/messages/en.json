@@ -540,7 +540,12 @@
       "stats": {
         "downloads": "Downloads",
         "views": "Views",
-        "countries": "Countries"
+        "countries": "Countries",
+        "onlineNow": "Online now"
+      },
+      "online": {
+        "title": "Players by day",
+        "tooltip": "{count, plural, one {# player} other {# players}}"
       },
       "downloads": {
         "title": "Version downloads",

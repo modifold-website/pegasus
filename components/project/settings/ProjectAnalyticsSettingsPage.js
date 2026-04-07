@@ -64,7 +64,7 @@ function AnalyticsChart({ title, description, total, data, locale, lineColor, gr
                             axisLine={false}
                             style={{ fontSize: "12px" }}
                         />
-                        <YAxis allowDecimals={false} tickLine={false} axisLine={false} width={36} style={{ fontSize: "12px" }} />
+                        <YAxis allowDecimals={false} tickLine={false} axisLine={false} width={24} tickMargin={4} style={{ fontSize: "12px" }} />
                         <Tooltip content={<AnalyticsTooltip locale={locale} labelKey={tooltipLabelKey} t={t} />} />
                         <Area type="monotone" dataKey="count" stroke={lineColor} strokeWidth={3} fill={`url(#${gradientId})`} />
                     </AreaChart>

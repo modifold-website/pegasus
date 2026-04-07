@@ -539,12 +539,7 @@
       "stats": {
         "downloads": "Descargas",
         "views": "Vistas",
-        "countries": "Países",
-        "onlineNow": "En línea ahora"
-      },
-      "online": {
-        "title": "Jugadores por día",
-        "tooltip": "{count, plural, one {# jugador} other {# jugadores}}"
+        "countries": "Países"
       },
       "downloads": {
         "title": "Descargas de versiones",

@@ -540,12 +540,7 @@
       "stats": {
         "downloads": "Скачивания",
         "views": "Просмотры",
-        "countries": "Страны",
-        "onlineNow": "Онлайн сейчас"
-      },
-      "online": {
-        "title": "Игроки по дням",
-        "tooltip": "{count, plural, one {# игрок} few {# игрока} many {# игроков} other {# игроков}}"
+        "countries": "Страны"
       },
       "downloads": {
         "title": "Загрузки версий",

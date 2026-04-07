@@ -538,12 +538,7 @@
       "stats": {
         "downloads": "İndirmeler",
         "views": "Görüntülenmeler",
-        "countries": "Ülkeler",
-        "onlineNow": "Şu an çevrimiçi"
-      },
-      "online": {
-        "title": "Günlere göre oyuncular",
-        "tooltip": "{count, plural, one {# oyuncu} other {# oyuncu}}"
+        "countries": "Ülkeler"
       },
       "downloads": {
         "title": "Sürüm indirmeleri",

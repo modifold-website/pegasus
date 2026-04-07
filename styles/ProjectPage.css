@@ -808,10 +808,10 @@
 body.dark .wiki-powered-by img {
     filter: brightness(0) invert(1);
 }
-.wiki-powered-by img:hover {
+.wiki-powered-by a:hover {
     opacity: 0.85;
 }
-.wiki-powered-by img:active {
+.wiki-powered-by a:active {
     transform: scale(.95);
 }
 @media (max-width: 859px) {

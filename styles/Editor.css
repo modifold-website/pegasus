@@ -339,6 +339,20 @@ strong {
     font-size: 80%;
     padding: 0.2em 0.4em;
 }
+.markdown-body .markdown-mermaid {
+    margin: 16px 0;
+    padding: 16px;
+    background: var(--theme-color-background);
+    border-radius: 14px;
+    overflow-x: auto;
+}
+.markdown-body .markdown-mermaid svg {
+    max-width: 100%;
+    height: auto;
+}
+.markdown-body .markdown-mermaid__error {
+    margin-top: 12px;
+}
 .news .markdown-body code {
     background-color: var(--theme-color-background-content);
 }

@@ -62,6 +62,7 @@ function AnalyticsChart({ title, description, total, data, locale, lineColor, gr
                             minTickGap={24}
                             tickLine={false}
                             axisLine={false}
+                            tickMargin={8}
                             style={{ fontSize: "12px" }}
                         />
                         <YAxis allowDecimals={false} tickLine={false} axisLine={false} width={24} tickMargin={4} style={{ fontSize: "12px" }} />

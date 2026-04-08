@@ -16,10 +16,11 @@ export default function CreateOrganizationModal({ isOpen, authToken, onRequestCl
         summary: "",
     });
     const [loading, setLoading] = useState(false);
+    const isFormValid = formData.name.trim().length > 0 && formData.summary.trim().length > 0;
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if(loading) {
+        if(loading || !isFormValid) {
             return;
         }
 
@@ -81,7 +82,7 @@ export default function CreateOrganizationModal({ isOpen, authToken, onRequestCl
                         <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "16px" }}>
                             <button type="button" className="button button--size-m button--type-minimal" onClick={onRequestClose} disabled={loading}>{t("create.actions.cancel")}</button>
                             
-                            <button type="submit" className="button button--size-m button--type-primary" disabled={loading}>
+                            <button type="submit" className="button button--size-m button--type-primary" disabled={loading || !isFormValid}>
                                 {loading ? t("create.actions.creating") : t("create.actions.create")}
                             </button>
                         </div>

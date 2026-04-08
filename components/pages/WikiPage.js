@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { useLocale, useTranslations } from "next-intl";
+import MermaidDiagram from "@/utils/MermaidDiagram";
 import { getSafeMarkdownHref, getSafeMarkdownImageSrc } from "@/utils/projectDescriptionContent";
 import { getProjectBasePath } from "@/utils/projectRoutes";
 
@@ -88,6 +89,28 @@ export default function WikiPage({ project, authToken, wikiData, wikiError }) {
                                         remarkPlugins={[remarkGfm]}
                                         rehypePlugins={[rehypeRaw]}
                                         components={{
+                                            pre: ({ children }) => {
+                                                const child = Array.isArray(children) ? children[0] : children;
+                                                if(React.isValidElement(child) && typeof child.props?.className === "string" && child.props.className.includes("language-mermaid")) {
+                                                    return <>{child}</>;
+                                                }
+
+                                                return <pre>{children}</pre>;
+                                            },
+                                            code: ({ inline, className, children, ...props }) => {
+                                                const language = className?.match(/language-(\S+)/)?.[1];
+                                                const content = String(children ?? "").replace(/\n$/, "");
+
+                                                if(!inline && language === "mermaid") {
+                                                    return <MermaidDiagram code={content} />;
+                                                }
+
+                                                return (
+                                                    <code className={className} {...props}>
+                                                        {children}
+                                                    </code>
+                                                );
+                                            },
                                             a: ({ href, children }) => {
                                                 const safeHref = getSafeMarkdownHref(href);
                                                 if(!safeHref) {
@@ -120,7 +143,7 @@ export default function WikiPage({ project, authToken, wikiData, wikiError }) {
                                 <span>{t("poweredBy")}</span>
                                 
                                 <a href="https://wiki.hytalemodding.dev/?utm_source=modifold&utm_medium=link&utm_campaign=wiki-page" target="_blank" style={{ height: "44px" }} rel="noopener noreferrer">
-                                    <img src="https://wiki.hytalemodding.dev/banner_transparent_dark.png" alt="HytaleModding" />
+                                    <img src="https://wiki.hytalemodding.dev/banner_transparent_dark.png" alt="HytaleModding" style={{ pointerEvents: "none" }} />
                                 </a>
                             </div>
                         </section>

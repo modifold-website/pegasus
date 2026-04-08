@@ -15,26 +15,6 @@ export function RoleBadge({ role, labels }) {
         );
     }
 
-    if(role === "admin") {
-        return (
-            <span className="badge--admin" style={{ width: "fit-content", marginBottom: "8px" }}>
-                <div className="circle"></div>
-
-                {labels.team}
-            </span>
-        );
-    }
-
-    if(role === "moderator") {
-        return (
-            <span className="badge--moderator" style={{ width: "fit-content", marginBottom: "8px" }}>
-                <div className="circle"></div>
-
-                {labels.team}
-            </span>
-        );
-    }
-
     return null;
 }
 

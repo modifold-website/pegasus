@@ -225,7 +225,7 @@
     width: 100%;
 }
 .gallery-settings-card__image {
-    transition: filter 0.25s ease-in-out;
+    transition: filter 150ms ease;
 }
 .gallery-settings-card__image:hover {
     filter: brightness(0.7);

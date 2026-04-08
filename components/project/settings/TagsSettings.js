@@ -6,13 +6,13 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslations } from "next-intl";
 import UnsavedChangesBar from "@/components/ui/UnsavedChangesBar";
-
-const normalizeTagKey = (tag) => tag.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+import { getCategoryLabel } from "@/utils/categoryLabels";
 
 const normalizeTags = (tags) => tags.map((tag) => (typeof tag === "string" ? { name: tag } : tag)).filter((tag) => tag && typeof tag.name === "string");
 
 export default function TagsSettings({ project, authToken, availableTags = [] }) {
     const t = useTranslations("SettingsProjectPage");
+    const tLabels = useTranslations("CategoryLabels");
     const { slug } = useParams();
 
     const initialTags = project.tags ? project.tags.split(",") : [];
@@ -95,14 +95,7 @@ export default function TagsSettings({ project, authToken, availableTags = [] })
         }
     };
 
-    const getTagLabel = (tag) => {
-        const key = normalizeTagKey(tag);
-        try {
-            return t(`tags.labels.${key}`);
-        } catch (err) {
-            return tag;
-        }
-    };
+    const getTagLabel = (tag) => getCategoryLabel(tLabels, tag);
 
     const selectionLabel = selectedTags.length > 0 ? t("tags.selected", { count: selectedTags.length }) : t("tags.select");
     const tagIconByName = tagOptions.reduce((acc, tag) => {

@@ -23,6 +23,7 @@ async function fetchProjectAnalytics(slug, authToken, timeRange) {
     return response;
 }
 
+
 export async function generateMetadata({ params }) {
     const { slug } = await params;
     const resolvedLocale = await getLocale();

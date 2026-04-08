@@ -4,7 +4,7 @@ import CategoryIcon from "@/utils/CategoryIcon";
 
 const normalizeTags = (tags) => tags.map((tag) => (typeof tag === "string" ? { name: tag } : tag)).filter((tag) => tag && typeof tag.name === "string");
 
-export default function BrowseFiltersSidebar({ t, tags = [], selectedTags = [], onToggleTag, onClearFilters }) {
+export default function BrowseFiltersSidebar({ t, tags = [], selectedTags = [], onToggleTag, onClearFilters, getCategoryLabel = (label) => label }) {
     const normalizedTags = normalizeTags(tags);
 
     return (
@@ -24,7 +24,7 @@ export default function BrowseFiltersSidebar({ t, tags = [], selectedTags = [], 
                                     )}
                                 </span>
 
-                                <span className="category-option__label">{tag.name}</span>
+                                <span className="category-option__label">{getCategoryLabel(tag.name)}</span>
                             </span>
 
                             {selectedTags.includes(tag.name) && (

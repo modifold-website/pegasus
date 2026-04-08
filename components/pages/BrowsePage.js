@@ -10,6 +10,7 @@ import BrowseFiltersSidebar from "./browse/BrowseFiltersSidebar";
 import BrowseToolbar from "./browse/BrowseToolbar";
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { getCategoryLabel } from "@/utils/categoryLabels";
 
 function parseQueryString(queryString) {
     const params = new URLSearchParams(queryString || "");
@@ -55,6 +56,7 @@ function normalizeInitialState(initialState) {
 
 export default function BrowsePage({ projectType, initialState = null, initialData = null, initialCardView = "list", tags = [] }) {
     const t = useTranslations("BrowsePage");
+    const tLabels = useTranslations("CategoryLabels");
     const router = useRouter();
     const searchParams = useSearchParams();
     const pathname = usePathname();
@@ -210,6 +212,8 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
         setCurrentPage(1);
     };
 
+    const formatCategoryLabel = (tag) => getCategoryLabel(tLabels, tag);
+
     const handleSortSelect = (sortOption) => {
         setSort(sortOption);
         setCurrentPage(1);
@@ -242,7 +246,7 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
 
     return (
         <div className="browse-page">
-            <BrowseFiltersSidebar t={t} tags={tags} selectedTags={selectedTags} onToggleTag={toggleTag} onClearFilters={clearFilters} />
+            <BrowseFiltersSidebar t={t} tags={tags} selectedTags={selectedTags} onToggleTag={toggleTag} onClearFilters={clearFilters} getCategoryLabel={formatCategoryLabel} />
 
             <div className="browse-content">
                 <BrowseToolbar t={t} searchInput={searchInput} onSearchChange={handleSearchChange} cardView={cardView} onToggleCardView={toggleCardView} sort={sort} onSortSelect={handleSortSelect} />
@@ -268,7 +272,7 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
                                     <path d="m6 6 12 12"/>
                                 </svg>
 
-                                {tag}
+                                {formatCategoryLabel(tag)}
                             </button>
                         ))}
                     </div>

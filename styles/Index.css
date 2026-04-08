@@ -940,7 +940,7 @@ body.light .ripple-effect {
 .ripple-effect {
     position: absolute;
     border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0.2);
     background-color: currentColor;
     opacity: 0.22;
     pointer-events: none;
@@ -2426,7 +2426,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     line-height: 22px;
     position: relative;
     color: var(--theme-color-text-primary);
-    transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    transition: color 0.25s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .categories > li > a:after {
     content: "";
@@ -2435,7 +2435,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     left: 0;
     height: 2.5px;
     width: 100%;
-    transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    transition: opacity 0.25s cubic-bezier(0.23, 1, 0.32, 1);
     background-color: #307df0;
     opacity: 0;
 }
@@ -2566,7 +2566,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     will-change: opacity;
-    animation: underlay-in 0.2s ease;
+    animation: underlay-in 0.2s cubic-bezier(0.23, 1, 0.32, 1);
     --window-radius: 20px;
     display: grid;
     overflow: hidden;
@@ -2597,7 +2597,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .modal-window {
     outline: none;
     border: 0;
-    animation: modal-enter-slide 0.15s ease;
+    animation: modal-enter-slide 0.18s cubic-bezier(0.23, 1, 0.32, 1);
     will-change: transform;
 }
 @media all and (min-width: 640px) {

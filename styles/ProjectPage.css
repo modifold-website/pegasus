@@ -193,6 +193,7 @@
     justify-content: left;
     padding: 0.75rem;
     align-items: center;
+    transition: background-color .2s ease, filter .2s ease, outline .2s ease, transform 120ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .all-versions .version-button .download-button {
     cursor: pointer;
@@ -210,7 +211,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: scale .125s ease-in-out, background .25s ease-in-out, color .25s ease-in-out;
+    transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms ease, color 200ms ease;
 }
 .all-versions .version-button .version-actions {
     grid-area: download;
@@ -233,6 +234,9 @@
 .version-button .download-button:hover {
     color: #ffffff !important;
     background: #00af5c !important;
+}
+.version-button .download-button:active {
+    transform: scale(0.97);
 }
 .version-button .download-button.version-actions__trigger:hover {
     color: var(--theme-color-text-primary) !important;
@@ -400,7 +404,6 @@
 }
 .version-button:hover {
     background-color: var(--theme-color-background);
-    transition: background-color .2s ease-in-out, filter .2s ease-in-out, scale .02s ease-in-out, outline .2s ease-in-out;
     border-radius: 12px;
 }
 .version__game-versions {

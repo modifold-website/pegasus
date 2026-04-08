@@ -35,6 +35,7 @@
     width: 50%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
+    transition: filter 150ms ease, opacity 150ms ease;
 }
 .featured-content {
     display: flex;
@@ -63,10 +64,6 @@
     margin-top: auto;
 }
 .featured-article:hover img {
-    transition: opacity .5s ease-in-out, filter .2s ease-in-out, scale .05s ease-in-out, outline .2s ease-in-out;
-    transition-timing-function: cubic-bezier(.4,0,.2,1);
-    transition-duration: .15s;
-    transition-property: all;
     filter: brightness(0.95);
 }
 .featured-article:hover h3 {
@@ -94,6 +91,7 @@
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: 16px;
+    transition: filter 150ms ease, opacity 150ms ease;
 }
 .article h4 {
     font-size: 16px;
@@ -122,10 +120,6 @@
     }
 }
 .article:hover img {
-    transition: opacity .5s ease-in-out, filter .2s ease-in-out, scale .05s ease-in-out, outline .2s ease-in-out;
-    transition-timing-function: cubic-bezier(.4,0,.2,1);
-    transition-duration: .15s;
-    transition-property: all;
     filter: brightness(0.95);
 }
 .article:hover h4 {

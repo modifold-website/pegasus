@@ -183,7 +183,8 @@
       "gameVersion": "Versiones del juego",
       "gameChannel": "Canales",
       "loader": "Loaders",
-      "comments": "Comentarios"
+      "comments": "Comentarios",
+      "issues": "Issues"
     },
     "creators": "Creadores",
     "owner": "Propietario",
@@ -544,6 +545,7 @@
       "gallery": "Galería",
       "tags": "Etiquetas",
       "analytics": "Analítica",
+      "issues": "Issues",
       "moderation": "Moderación",
       "members": "Miembros",
       "license": "Licencia"
@@ -617,12 +619,6 @@
         "unlisted": "No listado",
         "private": "Privado"
       },
-      "comments": {
-        "title": "Comentarios",
-        "enabled": "Activados",
-        "disabled": "Desactivados",
-        "hint": "Oculta la pestaña de comentarios y bloquea nuevos comentarios."
-      },
       "actions": {
         "save": "Guardar",
         "delete": "Eliminar proyecto"
@@ -647,7 +643,6 @@
       "title": "Descripción",
       "placeholder": "Introduce la descripción del proyecto (se admite Markdown)",
       "hint": "Mínimo 50 caracteres.",
-      "editorSupportText": "Este editor admite formato Markdown.",
       "preview": "Vista previa",
       "actions": {
         "save": "Guardar"
@@ -1569,6 +1564,160 @@
         "organization_add_project": "Agregar proyecto",
         "organization_remove_project": "Eliminar proyecto"
       }
+    }
+  },
+  "Issues": {
+    "title": "Incidencias",
+    "status": {
+      "open": "Abierta",
+      "closed": "Cerrada"
+    },
+    "filters": {
+      "open": "Abiertas",
+      "closed": "Cerradas",
+      "newest": "Más nuevas",
+      "oldest": "Más antiguas"
+    },
+    "pagination": {
+      "prev": "Anterior",
+      "next": "Siguiente"
+    },
+    "empty": "Aún no hay incidencias. Sé el primero en iniciar la discusión.",
+    "newIssue": {
+      "button": "Nueva incidencia",
+      "loginRequired": "Inicia sesión para crear una incidencia.",
+      "selectTitle": "Crear nueva incidencia",
+      "blankTitle": "Incidencia personalizada",
+      "blankDesc": "Empezar desde una plantilla en blanco",
+      "noDescription": "Sin descripción",
+      "createTitle": "Crear nueva incidencia",
+      "createWith": "Crear nueva incidencia: {name}",
+      "titleLabel": "Título",
+      "titlePlaceholder": "Resumen breve",
+      "labelsTitle": "Etiquetas",
+      "bodyLabel": "Detalles",
+      "bodyPlaceholder": "Describe el error o la idea en detalle.",
+      "markdownHint": "Se admite Markdown.",
+      "createButton": "Crear incidencia",
+      "titleRequired": "El título de la incidencia es obligatorio.",
+      "createError": "No se pudo crear la incidencia."
+    },
+    "meta": {
+      "by": "by"
+    },
+    "actions": {
+      "close": "Cerrar incidencia",
+      "reopen": "Reabrir incidencia",
+      "pin": "Fijar incidencia",
+      "unpin": "Quitar fijación"
+    },
+    "history": {
+      "opened": "{name} abrió esta incidencia",
+      "closed": "{name} cerró esta incidencia",
+      "reopened": "{name} reabrió esta incidencia",
+      "labelAdded": "{name} añadió la etiqueta {label}",
+      "labelRemoved": "{name} eliminó la etiqueta {label}",
+      "generic": "{name} actualizó la incidencia",
+      "system": "Sistema",
+      "unknownLabel": "etiqueta",
+      "empty": "Aún no hay historial."
+    },
+    "comments": {
+      "title": "Comentarios",
+      "placeholder": "Dejar un comentario",
+      "send": "Comentar",
+      "reply": "Responder",
+      "replyPlaceholder": "Escribe una respuesta",
+      "deleted": "Comentario eliminado",
+      "unknown": "Usuario desconocido",
+      "closed": "Esta incidencia está cerrada. Los comentarios están deshabilitados."
+    },
+    "sidebar": {
+      "status": "Estado",
+      "labels": "Etiquetas",
+      "noLabels": "Aún no hay etiquetas",
+      "manageLabels": "Gestionar etiquetas",
+      "details": "Detalles",
+      "created": "Creado",
+      "updated": "Actualizado"
+    },
+    "details": {
+      "emptyBody": "No se proporcionó descripción."
+    },
+    "errors": {
+      "loadIssue": "Failed to load issue.",
+      "comment": "Failed to send comment.",
+      "rateLimited": "You're doing that too fast. Try again soon.",
+      "status": "Failed to update issue status.",
+      "labels": "Failed to update labels.",
+      "pin": "No se pudo actualizar la fijación."
+    },
+    "common": {
+      "close": "Close",
+      "cancel": "Cancel",
+      "creating": "Creating...",
+      "sending": "Sending..."
+    }
+  },
+  "IssueSettings": {
+    "overview": {
+      "title": "Issues setup",
+      "body": "Create templates and labels to help users submit clear and structured issues."
+    },
+    "template": {
+      "sectionTitle": "Templates",
+      "create": "New template",
+      "createTitle": "Create template",
+      "editTitle": "Edit template",
+      "name": "Template name",
+      "namePlaceholder": "Bug report",
+      "about": "About",
+      "aboutPlaceholder": "Create a report to help us improve",
+      "content": "Template content",
+      "contentPlaceholder": "Describe the bug and provide steps to reproduce.",
+      "markdownHint": "Styling with Markdown is supported.",
+      "defaultTitle": "Issue default title",
+      "defaultTitlePlaceholder": "Add a suggested title",
+      "titlePlaceholder": "Title placeholder",
+      "titlePlaceholderPlaceholder": "Short summary",
+      "defaultLabels": "Default labels",
+      "noLabels": "Create labels to use them here.",
+      "save": "Save template",
+      "edit": "Preview and edit",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this template?",
+      "saved": "Template saved.",
+      "deleted": "Template deleted.",
+      "empty": "No templates yet.",
+      "noDescription": "No description"
+    },
+    "labels": {
+      "sectionTitle": "Labels",
+      "create": "New label",
+      "createTitle": "Create label",
+      "editTitle": "Edit label",
+      "name": "Label name",
+      "namePlaceholder": "Bug",
+      "color": "Label color",
+      "save": "Save label",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this label?",
+      "saved": "Label saved.",
+      "deleted": "Label deleted.",
+      "empty": "No labels yet."
+    },
+    "errors": {
+      "templateSave": "Failed to save template.",
+      "templateDelete": "Failed to delete template.",
+      "labelSave": "Failed to save label.",
+      "labelDelete": "Failed to delete label."
+    },
+    "common": {
+      "backToSettings": "Volver a configuración",
+      "close": "Close",
+      "cancel": "Cancel",
+      "saving": "Saving..."
     }
   },
   "TwoFactorLogin": {

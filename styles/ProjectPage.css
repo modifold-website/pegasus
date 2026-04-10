@@ -165,7 +165,7 @@
     column-gap: .5rem;
     display: grid;
     font-size: 1.125rem;
-    font-weight: 700;
+    font-weight: 600;
     grid-template: "download title stats";
     grid-template-columns: calc(2.80rem + .5rem) 3.95fr 1fr;
     justify-content: left;

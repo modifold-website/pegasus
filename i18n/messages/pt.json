@@ -183,7 +183,8 @@
       "gameVersion": "Versões do jogo",
       "gameChannel": "Canais",
       "loader": "Loaders",
-      "comments": "Comentários"
+      "comments": "Comentários",
+      "issues": "Issues"
     },
     "creators": "Criadores",
     "owner": "Proprietário",
@@ -544,6 +545,7 @@
       "gallery": "Galeria",
       "tags": "Etiquetas",
       "analytics": "Analytics",
+      "issues": "Issues",
       "moderation": "Moderação",
       "members": "Membros",
       "license": "Licença"
@@ -617,12 +619,6 @@
         "unlisted": "Não listado",
         "private": "Privado"
       },
-      "comments": {
-        "title": "Comentários",
-        "enabled": "Ativados",
-        "disabled": "Desativados",
-        "hint": "Oculta a aba de comentários e bloqueia novos comentários."
-      },
       "actions": {
         "save": "Salvar",
         "delete": "Excluir projeto"
@@ -647,7 +643,6 @@
       "title": "Descrição",
       "placeholder": "Digite a descrição do projeto (suporta Markdown)",
       "hint": "Mínimo de 50 caracteres.",
-      "editorSupportText": "Este editor suporta formatação Markdown.",
       "preview": "Prévia",
       "actions": {
         "save": "Salvar"
@@ -1569,6 +1564,160 @@
         "organization_add_project": "Adicionar projeto",
         "organization_remove_project": "Remover projeto"
       }
+    }
+  },
+  "Issues": {
+    "title": "Problemas",
+    "status": {
+      "open": "Aberta",
+      "closed": "Fechada"
+    },
+    "filters": {
+      "open": "Abertas",
+      "closed": "Fechadas",
+      "newest": "Mais recentes",
+      "oldest": "Mais antigas"
+    },
+    "pagination": {
+      "prev": "Anterior",
+      "next": "Próxima"
+    },
+    "empty": "Ainda não há issues. Seja o primeiro a iniciar a discussão.",
+    "newIssue": {
+      "button": "Novo problema",
+      "loginRequired": "Faça login para criar um problema.",
+      "selectTitle": "Criar novo problema",
+      "blankTitle": "Problema personalizado",
+      "blankDesc": "Começar com um modelo em branco",
+      "noDescription": "Sem descrição",
+      "createTitle": "Criar novo problema",
+      "createWith": "Criar novo problema: {name}",
+      "titleLabel": "Título",
+      "titlePlaceholder": "Resumo curto",
+      "labelsTitle": "Etiquetas",
+      "bodyLabel": "Detalhes",
+      "bodyPlaceholder": "Descreva o bug ou a ideia em detalhes.",
+      "markdownHint": "Markdown é suportado.",
+      "createButton": "Criar problema",
+      "titleRequired": "O título do problema é obrigatório.",
+      "createError": "Falha ao criar o problema."
+    },
+    "meta": {
+      "by": "by"
+    },
+    "actions": {
+      "close": "Fechar problema",
+      "reopen": "Reabrir problema",
+      "pin": "Fixar problema",
+      "unpin": "Desafixar problema"
+    },
+    "history": {
+      "opened": "{name} abriu este problema",
+      "closed": "{name} fechou este problema",
+      "reopened": "{name} reabriu este problema",
+      "labelAdded": "{name} adicionou a etiqueta {label}",
+      "labelRemoved": "{name} removeu a etiqueta {label}",
+      "generic": "{name} atualizou o problema",
+      "system": "Sistema",
+      "unknownLabel": "etiqueta",
+      "empty": "Ainda não há histórico."
+    },
+    "comments": {
+      "title": "Comentários",
+      "placeholder": "Deixar um comentário",
+      "send": "Comentar",
+      "reply": "Responder",
+      "replyPlaceholder": "Escreva uma resposta",
+      "deleted": "Comentário excluído",
+      "unknown": "Usuário desconhecido",
+      "closed": "Este problema está fechado. Comentários desativados."
+    },
+    "sidebar": {
+      "status": "Status",
+      "labels": "Etiquetas",
+      "noLabels": "Ainda não há etiquetas",
+      "manageLabels": "Gerenciar etiquetas",
+      "details": "Detalhes",
+      "created": "Criado",
+      "updated": "Atualizado"
+    },
+    "details": {
+      "emptyBody": "Nenhuma descrição fornecida."
+    },
+    "errors": {
+      "loadIssue": "Failed to load issue.",
+      "comment": "Failed to send comment.",
+      "rateLimited": "You're doing that too fast. Try again soon.",
+      "status": "Failed to update issue status.",
+      "labels": "Failed to update labels.",
+      "pin": "Falha ao atualizar a fixação."
+    },
+    "common": {
+      "close": "Close",
+      "cancel": "Cancel",
+      "creating": "Creating...",
+      "sending": "Sending..."
+    }
+  },
+  "IssueSettings": {
+    "overview": {
+      "title": "Configuração de problemas",
+      "body": "Crie modelos e etiquetas para ajudar os usuários a enviar problemas claros e estruturados."
+    },
+    "template": {
+      "sectionTitle": "Modelos",
+      "create": "Novo modelo",
+      "createTitle": "Criar modelo",
+      "editTitle": "Editar modelo",
+      "name": "Nome do modelo",
+      "namePlaceholder": "Relato de bug",
+      "about": "Sobre",
+      "aboutPlaceholder": "Crie uma descrição para nos ajudar a melhorar",
+      "content": "Conteúdo do modelo",
+      "contentPlaceholder": "Descreva o bug e forneça as etapas para reproduzir.",
+      "markdownHint": "A formatação Markdown é suportada.",
+      "defaultTitle": "Título padrão do problema",
+      "defaultTitlePlaceholder": "Adicione um título sugerido",
+      "titlePlaceholder": "Espaço reservado do título",
+      "titlePlaceholderPlaceholder": "Resumo curto",
+      "defaultLabels": "Etiquetas padrão",
+      "noLabels": "Crie etiquetas para usá-las aqui.",
+      "save": "Salvar modelo",
+      "edit": "Visualizar e editar",
+      "delete": "Excluir",
+      "deleteConfirm": "Excluir este modelo?",
+      "saved": "Modelo salvo.",
+      "deleted": "Modelo excluído.",
+      "empty": "Ainda não há modelos.",
+      "noDescription": "Sem descrição"
+    },
+    "labels": {
+      "sectionTitle": "Etiquetas",
+      "create": "Nova etiqueta",
+      "createTitle": "Criar etiqueta",
+      "editTitle": "Editar etiqueta",
+      "name": "Nome da etiqueta",
+      "namePlaceholder": "Bug",
+      "color": "Cor da etiqueta",
+      "save": "Salvar etiqueta",
+      "edit": "Editar",
+      "delete": "Excluir",
+      "deleteConfirm": "Excluir esta etiqueta?",
+      "saved": "Etiqueta salva.",
+      "deleted": "Etiqueta excluída.",
+      "empty": "Ainda não há etiquetas."
+    },
+    "errors": {
+      "templateSave": "Falha ao salvar o modelo.",
+      "templateDelete": "Falha ao excluir o modelo.",
+      "labelSave": "Falha ao salvar a etiqueta.",
+      "labelDelete": "Falha ao excluir a etiqueta."
+    },
+    "common": {
+      "backToSettings": "Voltar às configurações",
+      "close": "Fechar",
+      "cancel": "Cancelar",
+      "saving": "Salvando..."
     }
   },
   "TwoFactorLogin": {

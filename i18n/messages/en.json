@@ -183,7 +183,8 @@
       "gameVersion": "Game Versions",
       "gameChannel": "Channels",
       "loader": "Loaders",
-      "comments": "Comments"
+      "comments": "Comments",
+      "issues": "Issues"
     },
     "creators": "Creators",
     "owner": "Owner",
@@ -545,6 +546,7 @@
       "gallery": "Gallery",
       "tags": "Tags",
       "analytics": "Analytics",
+      "issues": "Issues",
       "moderation": "Moderation",
       "members": "Members",
       "license": "License"
@@ -618,12 +620,6 @@
         "unlisted": "Unlisted",
         "private": "Private"
       },
-      "comments": {
-        "title": "Comments",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "hint": "Hide the comments tab and block new comments."
-      },
       "actions": {
         "save": "Save",
         "delete": "Delete Project"
@@ -648,7 +644,6 @@
       "title": "Description",
       "placeholder": "Enter project description (Markdown supported)",
       "hint": "Minimum 50 characters.",
-      "editorSupportText": "This editor supports Markdown formatting.",
       "preview": "Preview",
       "actions": {
         "save": "Save"
@@ -1570,6 +1565,160 @@
         "organization_add_project": "Add project",
         "organization_remove_project": "Remove project"
       }
+    }
+  },
+  "Issues": {
+    "title": "Issues",
+    "status": {
+      "open": "Open",
+      "closed": "Closed"
+    },
+    "filters": {
+      "open": "Open",
+      "closed": "Closed",
+      "newest": "Newest",
+      "oldest": "Oldest"
+    },
+    "pagination": {
+      "prev": "Previous",
+      "next": "Next"
+    },
+    "empty": "No issues yet. Be the first to start the discussion.",
+    "newIssue": {
+      "button": "New issue",
+      "loginRequired": "Please log in to create an issue.",
+      "selectTitle": "Create new issue",
+      "blankTitle": "Custom issue",
+      "blankDesc": "Start from a blank template",
+      "noDescription": "No description",
+      "createTitle": "Create new issue",
+      "createWith": "Create new issue: {name}",
+      "titleLabel": "Title",
+      "titlePlaceholder": "Short summary",
+      "labelsTitle": "Labels",
+      "bodyLabel": "Details",
+      "bodyPlaceholder": "Describe the bug or idea in detail.",
+      "markdownHint": "Markdown is supported.",
+      "createButton": "Create issue",
+      "titleRequired": "Issue title is required.",
+      "createError": "Failed to create issue."
+    },
+    "meta": {
+      "by": "by"
+    },
+    "actions": {
+      "close": "Close issue",
+      "reopen": "Reopen issue",
+      "pin": "Pin issue",
+      "unpin": "Unpin issue"
+    },
+    "history": {
+      "opened": "{name} opened this issue",
+      "closed": "{name} closed this issue",
+      "reopened": "{name} reopened this issue",
+      "labelAdded": "{name} added label {label}",
+      "labelRemoved": "{name} removed label {label}",
+      "generic": "{name} updated the issue",
+      "system": "System",
+      "unknownLabel": "label",
+      "empty": "No history yet."
+    },
+    "comments": {
+      "title": "Comments",
+      "placeholder": "Leave a comment",
+      "send": "Comment",
+      "reply": "Reply",
+      "replyPlaceholder": "Write a reply",
+      "deleted": "Comment deleted",
+      "unknown": "Unknown user",
+      "closed": "This issue is closed. Comments are disabled."
+    },
+    "sidebar": {
+      "status": "Status",
+      "labels": "Labels",
+      "noLabels": "No labels yet",
+      "manageLabels": "Manage labels",
+      "details": "Details",
+      "created": "Created",
+      "updated": "Updated"
+    },
+    "details": {
+      "emptyBody": "No description provided."
+    },
+    "errors": {
+      "loadIssue": "Failed to load issue.",
+      "comment": "Failed to send comment.",
+      "rateLimited": "You're doing that too fast. Try again soon.",
+      "status": "Failed to update issue status.",
+      "labels": "Failed to update labels.",
+      "pin": "Failed to update pin."
+    },
+    "common": {
+      "close": "Close",
+      "cancel": "Cancel",
+      "creating": "Creating...",
+      "sending": "Sending..."
+    }
+  },
+  "IssueSettings": {
+    "overview": {
+      "title": "Issues setup",
+      "body": "Create templates and labels to help users submit clear and structured issues."
+    },
+    "template": {
+      "sectionTitle": "Templates",
+      "create": "New template",
+      "createTitle": "Create template",
+      "editTitle": "Edit template",
+      "name": "Template name",
+      "namePlaceholder": "Bug report",
+      "about": "About",
+      "aboutPlaceholder": "Create a report to help us improve",
+      "content": "Template content",
+      "contentPlaceholder": "Describe the bug and provide steps to reproduce.",
+      "markdownHint": "Styling with Markdown is supported.",
+      "defaultTitle": "Issue default title",
+      "defaultTitlePlaceholder": "Add a suggested title",
+      "titlePlaceholder": "Title placeholder",
+      "titlePlaceholderPlaceholder": "Short summary",
+      "defaultLabels": "Default labels",
+      "noLabels": "Create labels to use them here.",
+      "save": "Save template",
+      "edit": "Preview and edit",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this template?",
+      "saved": "Template saved.",
+      "deleted": "Template deleted.",
+      "empty": "No templates yet.",
+      "noDescription": "No description"
+    },
+    "labels": {
+      "sectionTitle": "Labels",
+      "create": "New label",
+      "createTitle": "Create label",
+      "editTitle": "Edit label",
+      "name": "Label name",
+      "namePlaceholder": "Bug",
+      "color": "Label color",
+      "save": "Save label",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this label?",
+      "saved": "Label saved.",
+      "deleted": "Label deleted.",
+      "empty": "No labels yet."
+    },
+    "errors": {
+      "templateSave": "Failed to save template.",
+      "templateDelete": "Failed to delete template.",
+      "labelSave": "Failed to save label.",
+      "labelDelete": "Failed to delete label."
+    },
+    "common": {
+      "backToSettings": "Back to settings",
+      "close": "Close",
+      "cancel": "Cancel",
+      "saving": "Saving..."
     }
   },
   "TwoFactorLogin": {

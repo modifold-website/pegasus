@@ -182,7 +182,8 @@
       "gameVersion": "Oyun sürümleri",
       "gameChannel": "Kanallar",
       "loader": "Yükleyiciler",
-      "comments": "Yorumlar"
+      "comments": "Yorumlar",
+      "issues": "Issues"
     },
     "creators": "Üreticiler",
     "owner": "Sahip",
@@ -543,6 +544,7 @@
       "gallery": "Galeri",
       "tags": "Etiketler",
       "analytics": "Analitik",
+      "issues": "Issues",
       "moderation": "Moderasyon",
       "members": "Üyeler",
       "license": "Lisans"
@@ -616,12 +618,6 @@
         "unlisted": "Liste dışı",
         "private": "Özel"
       },
-      "comments": {
-        "title": "Yorumlar",
-        "enabled": "Açık",
-        "disabled": "Kapalı",
-        "hint": "Yorumlar sekmesini gizler ve yeni yorumları engeller."
-      },
       "actions": {
         "save": "Kaydet",
         "delete": "Projeyi sil"
@@ -646,7 +642,6 @@
       "title": "Açıklama",
       "placeholder": "Proje açıklamasını girin (Markdown desteklenir)",
       "hint": "En az 50 karakter.",
-      "editorSupportText": "Bu editör Markdown biçimlendirmeyi destekler.",
       "preview": "Önizleme",
       "actions": {
         "save": "Kaydet"
@@ -1568,6 +1563,160 @@
         "organization_add_project": "Proje ekle",
         "organization_remove_project": "Projeyi kaldır"
       }
+    }
+  },
+  "Issues": {
+    "title": "Sorunlar",
+    "status": {
+      "open": "Açık",
+      "closed": "Kapalı"
+    },
+    "filters": {
+      "open": "Açık",
+      "closed": "Kapalı",
+      "newest": "En yeni",
+      "oldest": "En eski"
+    },
+    "pagination": {
+      "prev": "Önceki",
+      "next": "Sonraki"
+    },
+    "empty": "Henüz issue yok. Tartışmayı başlatan ilk kişi olun.",
+    "newIssue": {
+      "button": "Yeni sorun",
+      "loginRequired": "Sorun oluşturmak için giriş yapın.",
+      "selectTitle": "Yeni sorun oluştur",
+      "blankTitle": "Özel sorun",
+      "blankDesc": "Boş bir şablondan başla",
+      "noDescription": "Açıklama yok",
+      "createTitle": "Yeni sorun oluştur",
+      "createWith": "Yeni sorun oluştur: {name}",
+      "titleLabel": "Başlık",
+      "titlePlaceholder": "Kısa özet",
+      "labelsTitle": "Etiketler",
+      "bodyLabel": "Ayrıntılar",
+      "bodyPlaceholder": "Hatanızı veya fikrinizi ayrıntılı açıklayın.",
+      "markdownHint": "Markdown desteklenir.",
+      "createButton": "Sorun oluştur",
+      "titleRequired": "Sorun başlığı gerekli.",
+      "createError": "Sorun oluşturulamadı."
+    },
+    "meta": {
+      "by": "by"
+    },
+    "actions": {
+      "close": "Sorunu kapat",
+      "reopen": "Sorunu yeniden aç",
+      "pin": "Sorunu sabitle",
+      "unpin": "Sabitliği kaldır"
+    },
+    "history": {
+      "opened": "{name} bu sorunu açtı",
+      "closed": "{name} bu sorunu kapattı",
+      "reopened": "{name} bu sorunu yeniden açtı",
+      "labelAdded": "{name} {label} etiketini ekledi",
+      "labelRemoved": "{name} {label} etiketini kaldırdı",
+      "generic": "{name} sorunu güncelledi",
+      "system": "Sistem",
+      "unknownLabel": "etiket",
+      "empty": "Henüz geçmiş yok."
+    },
+    "comments": {
+      "title": "Yorumlar",
+      "placeholder": "Yorum bırak",
+      "send": "Yorum yap",
+      "reply": "Yanıtla",
+      "replyPlaceholder": "Bir yanıt yazın",
+      "deleted": "Yorum silindi",
+      "unknown": "Bilinmeyen kullanıcı",
+      "closed": "Bu sorun kapalı. Yorumlar devre dışı."
+    },
+    "sidebar": {
+      "status": "Durum",
+      "labels": "Etiketler",
+      "noLabels": "Henüz etiket yok",
+      "manageLabels": "Etiketleri yönet",
+      "details": "Detaylar",
+      "created": "Oluşturuldu",
+      "updated": "Güncellendi"
+    },
+    "details": {
+      "emptyBody": "Açıklama yok."
+    },
+    "errors": {
+      "loadIssue": "Failed to load issue.",
+      "comment": "Failed to send comment.",
+      "rateLimited": "You're doing that too fast. Try again soon.",
+      "status": "Failed to update issue status.",
+      "labels": "Failed to update labels.",
+      "pin": "Sabitleme güncellenemedi."
+    },
+    "common": {
+      "close": "Close",
+      "cancel": "Cancel",
+      "creating": "Creating...",
+      "sending": "Sending..."
+    }
+  },
+  "IssueSettings": {
+    "overview": {
+      "title": "Sorunlar ayarı",
+      "body": "Kullanıcıların açık ve yapılandırılmış sorunlar göndermesine yardımcı olmak için şablonlar ve etiketler oluşturun."
+    },
+    "template": {
+      "sectionTitle": "Şablonlar",
+      "create": "Yeni şablon",
+      "createTitle": "Şablon oluştur",
+      "editTitle": "Şablonu düzenle",
+      "name": "Şablon adı",
+      "namePlaceholder": "Hata raporu",
+      "about": "Hakkında",
+      "aboutPlaceholder": "Geliştirmemize yardımcı olmak için bir açıklama oluşturun",
+      "content": "Şablon içeriği",
+      "contentPlaceholder": "Hatayı açıklayın ve yeniden üretme adımlarını belirtin.",
+      "markdownHint": "Markdown biçimlendirmesi desteklenir.",
+      "defaultTitle": "Varsayılan sorun başlığı",
+      "defaultTitlePlaceholder": "Önerilen bir başlık ekleyin",
+      "titlePlaceholder": "Başlık yer tutucusu",
+      "titlePlaceholderPlaceholder": "Kısa özet",
+      "defaultLabels": "Varsayılan etiketler",
+      "noLabels": "Burada kullanmak için etiketler oluşturun.",
+      "save": "Şablonu kaydet",
+      "edit": "Önizle ve düzenle",
+      "delete": "Sil",
+      "deleteConfirm": "Bu şablon silinsin mi?",
+      "saved": "Şablon kaydedildi.",
+      "deleted": "Şablon silindi.",
+      "empty": "Henüz şablon yok.",
+      "noDescription": "Açıklama yok"
+    },
+    "labels": {
+      "sectionTitle": "Etiketler",
+      "create": "Yeni etiket",
+      "createTitle": "Etiket oluştur",
+      "editTitle": "Etiketi düzenle",
+      "name": "Etiket adı",
+      "namePlaceholder": "Hata",
+      "color": "Etiket rengi",
+      "save": "Etiketi kaydet",
+      "edit": "Düzenle",
+      "delete": "Sil",
+      "deleteConfirm": "Bu etiket silinsin mi?",
+      "saved": "Etiket kaydedildi.",
+      "deleted": "Etiket silindi.",
+      "empty": "Henüz etiket yok."
+    },
+    "errors": {
+      "templateSave": "Şablon kaydedilemedi.",
+      "templateDelete": "Şablon silinemedi.",
+      "labelSave": "Etiket kaydedilemedi.",
+      "labelDelete": "Etiket silinemedi."
+    },
+    "common": {
+      "backToSettings": "Ayarlar'a dön",
+      "close": "Kapat",
+      "cancel": "İptal",
+      "saving": "Kaydediliyor..."
     }
   },
   "TwoFactorLogin": {

@@ -369,6 +369,7 @@ svg {
     --theme-color-background-active-hover: #d1e3ff;
     --theme-color-background-content: var(--color-white);
     --theme-color-background-search: var(--color-white);
+    --theme-color-background-issue-card-hover: #ffffff94;
     --theme-color-media-background: rgb(255 255 255 / 70%);
     --theme-color-border: #e5e5e5;
     --theme-color-shadow-over-background: rgba(0, 0, 0, 0.08);
@@ -477,6 +478,7 @@ body.dark {
     --theme-color-background-active-hover: #424243;
     --theme-color-background-content: #232324;
     --theme-color-background-search: #15192a;
+    --theme-color-background-issue-card-hover: #232324a8;
     --theme-color-media-background: rgb(35 35 36 / 70%);
     --theme-color-border: rgba(255, 255, 255, 0.16);
     --theme-color-shadow-over-background: rgba(255, 255, 255, 0.16);
@@ -842,6 +844,7 @@ body.dark {
     --button-padding: 0px;
 }
 .button--icon-only svg {
+    fill: none;
     width: var(--icon-size);
     height: var(--icon-size);
 }
@@ -1299,6 +1302,14 @@ body.light .ripple-effect {
     align-items: center;
     color: var(--theme-color-text-secondary);
     -webkit-tap-highlight-color: transparent;
+}
+.tabs__count {
+    margin-left: 8px;
+    line-height: normal;
+    background: var(--theme-color-background-content);
+    border-radius: 100px;
+    padding: 2px 7px;
+    font-size: 12px;
 }
 .tabs__tab:not(:last-child) {
     margin-right: 16px;
@@ -2582,7 +2593,6 @@ input[type="file"]::-webkit-file-upload-button:hover {
         align-content: center;
         grid-template-columns: minmax(0, var(--layout-modal-view-width));
     }
-
     .modal-overlay--version-details-wide {
         grid-template-columns: minmax(0, 800px);
     }

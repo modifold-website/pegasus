@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin(routing);
 const nextConfig = {
     allowedDevOrigins: ['staging.modifold.com'],
     output: 'standalone',
+    devIndicators: false,
     images: {
         remotePatterns: [
             {

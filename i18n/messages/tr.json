@@ -1622,6 +1622,7 @@
       "empty": "Henüz geçmiş yok."
     },
     "comments": {
+      "title": "Yorumlar",
       "placeholder": "Yorum bırak",
       "send": "Yorum yap",
       "reply": "Yanıtla",
@@ -1676,8 +1677,6 @@
       "markdownHint": "Markdown biçimlendirmesi desteklenir.",
       "defaultTitle": "Varsayılan sorun başlığı",
       "defaultTitlePlaceholder": "Önerilen bir başlık ekleyin",
-      "titlePrefix": "Başlık öneki",
-      "titlePrefixPlaceholder": "[BUG]",
       "titlePlaceholder": "Başlık yer tutucusu",
       "titlePlaceholderPlaceholder": "Kısa özet",
       "defaultLabels": "Varsayılan etiketler",

@@ -1624,6 +1624,7 @@
       "empty": "История пока пуста."
     },
     "comments": {
+      "title": "Комментарии",
       "placeholder": "Оставить комментарий",
       "send": "Комментировать",
       "reply": "Ответить",
@@ -1678,8 +1679,6 @@
       "markdownHint": "Поддерживается оформление Markdown.",
       "defaultTitle": "Заголовок проблемы по умолчанию",
       "defaultTitlePlaceholder": "Добавьте предлагаемый заголовок",
-      "titlePrefix": "Префикс заголовка",
-      "titlePrefixPlaceholder": "[BUG]",
       "titlePlaceholder": "Подсказка заголовка",
       "titlePlaceholderPlaceholder": "Короткое описание",
       "defaultLabels": "Метки по умолчанию",

@@ -1623,6 +1623,7 @@
       "empty": "Aún no hay historial."
     },
     "comments": {
+      "title": "Comentarios",
       "placeholder": "Dejar un comentario",
       "send": "Comentar",
       "reply": "Responder",
@@ -1677,8 +1678,6 @@
       "markdownHint": "Styling with Markdown is supported.",
       "defaultTitle": "Issue default title",
       "defaultTitlePlaceholder": "Add a suggested title",
-      "titlePrefix": "Title prefix",
-      "titlePrefixPlaceholder": "[BUG]",
       "titlePlaceholder": "Title placeholder",
       "titlePlaceholderPlaceholder": "Short summary",
       "defaultLabels": "Default labels",

@@ -1624,6 +1624,7 @@
       "empty": "Історія поки порожня."
     },
     "comments": {
+      "title": "Коментарі",
       "placeholder": "Залишити коментар",
       "send": "Коментувати",
       "reply": "Відповісти",
@@ -1678,8 +1679,6 @@
       "markdownHint": "Підтримується оформлення Markdown.",
       "defaultTitle": "Заголовок проблеми за замовчуванням",
       "defaultTitlePlaceholder": "Додайте рекомендований заголовок",
-      "titlePrefix": "Префікс заголовка",
-      "titlePrefixPlaceholder": "[BUG]",
       "titlePlaceholder": "Підказка заголовка",
       "titlePlaceholderPlaceholder": "Короткий опис",
       "defaultLabels": "Мітки за замовчуванням",

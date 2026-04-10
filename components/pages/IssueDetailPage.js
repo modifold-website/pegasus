@@ -470,7 +470,7 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
 
                 {issue.status === "open" ? (
                     <div className="issue-comment-form">
-                        <h2>Комментарии</h2>
+                        <h2>{t("comments.title")}</h2>
 
                         <textarea
                             className="text-input"

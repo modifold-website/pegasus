@@ -1623,6 +1623,7 @@
       "empty": "Ainda não há histórico."
     },
     "comments": {
+      "title": "Comentários",
       "placeholder": "Deixar um comentário",
       "send": "Comentar",
       "reply": "Responder",
@@ -1677,8 +1678,6 @@
       "markdownHint": "A formatação Markdown é suportada.",
       "defaultTitle": "Título padrão do problema",
       "defaultTitlePlaceholder": "Adicione um título sugerido",
-      "titlePrefix": "Prefixo do título",
-      "titlePrefixPlaceholder": "[BUG]",
       "titlePlaceholder": "Espaço reservado do título",
       "titlePlaceholderPlaceholder": "Resumo curto",
       "defaultLabels": "Etiquetas padrão",

@@ -1609,7 +1609,8 @@
       "close": "Cerrar incidencia",
       "reopen": "Reabrir incidencia",
       "pin": "Fijar incidencia",
-      "unpin": "Quitar fijación"
+      "unpin": "Quitar fijación",
+      "edit": "Editar"
     },
     "history": {
       "opened": "{name} abrió esta incidencia",
@@ -1627,6 +1628,7 @@
       "placeholder": "Dejar un comentario",
       "send": "Comentar",
       "reply": "Responder",
+      "edit": "Editar",
       "replyPlaceholder": "Escribe una respuesta",
       "deleted": "Comentario eliminado",
       "unknown": "Usuario desconocido",

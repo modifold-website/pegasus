@@ -1608,7 +1608,8 @@
       "close": "Sorunu kapat",
       "reopen": "Sorunu yeniden aç",
       "pin": "Sorunu sabitle",
-      "unpin": "Sabitliği kaldır"
+      "unpin": "Sabitliği kaldır",
+      "edit": "Düzenle"
     },
     "history": {
       "opened": "{name} bu sorunu açtı",
@@ -1626,6 +1627,7 @@
       "placeholder": "Yorum bırak",
       "send": "Yorum yap",
       "reply": "Yanıtla",
+      "edit": "Düzenle",
       "replyPlaceholder": "Bir yanıt yazın",
       "deleted": "Yorum silindi",
       "unknown": "Bilinmeyen kullanıcı",

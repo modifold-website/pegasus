@@ -1609,7 +1609,8 @@
       "close": "Fechar problema",
       "reopen": "Reabrir problema",
       "pin": "Fixar problema",
-      "unpin": "Desafixar problema"
+      "unpin": "Desafixar problema",
+      "edit": "Editar"
     },
     "history": {
       "opened": "{name} abriu este problema",
@@ -1627,6 +1628,7 @@
       "placeholder": "Deixar um comentário",
       "send": "Comentar",
       "reply": "Responder",
+      "edit": "Editar",
       "replyPlaceholder": "Escreva uma resposta",
       "deleted": "Comentário excluído",
       "unknown": "Usuário desconhecido",

@@ -1610,7 +1610,8 @@
       "close": "Close issue",
       "reopen": "Reopen issue",
       "pin": "Pin issue",
-      "unpin": "Unpin issue"
+      "unpin": "Unpin issue",
+      "edit": "Edit"
     },
     "history": {
       "opened": "{name} opened this issue",
@@ -1628,6 +1629,7 @@
       "placeholder": "Leave a comment",
       "send": "Comment",
       "reply": "Reply",
+      "edit": "Edit",
       "replyPlaceholder": "Write a reply",
       "deleted": "Comment deleted",
       "unknown": "Unknown user",

@@ -556,7 +556,7 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
 
                 {canEditThisComment && !isEditingThisComment && (
                     <button type="button" className="comment__action comment__action--reply" onClick={() => startCommentEdit(comment)}>
-                        Edit
+                        {t("comments.edit")}
                     </button>
                 )}
 
@@ -667,7 +667,7 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                                                     <path d="m15 5 4 4"/>
                                                 </svg>
                                                 
-                                                Edit
+                                                {t("actions.edit")}
                                             </button>
                                         )}
                                     </>

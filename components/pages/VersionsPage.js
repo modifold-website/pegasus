@@ -181,7 +181,7 @@ export default function VersionsPage({ project, authToken }) {
         <>
             <div className="project__general">
                 <div>
-                    <div className="version-filters" style={{ display: "flex", gap: "8px", marginBottom: "12px", marginTop: "12px" }}>
+                    <div className="version-filters" style={{ display: "flex", gap: "8px", marginBottom: "12px" }}>
                         <div className="field field--default" ref={filterGameVersionsRef}>
                             <button style={{ display: "flex", gap: "4px" }} type="button" className="button button--size-m button--type-secondary" onClick={toggleFilterGameVersionsPopover} aria-label={t("filters.gameVersionsAria")}>
                                 {t("tabs.gameVersion")}

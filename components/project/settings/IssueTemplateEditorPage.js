@@ -26,6 +26,16 @@ export default function IssueTemplateEditorPage({ project, authToken, labels = [
     const [selectedLabels, setSelectedLabels] = useState(Array.isArray(template?.default_labels) ? template.default_labels : []);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    const resizeTextarea = () => {
+        const textarea = textareaRef.current;
+        if(!textarea) {
+            return;
+        }
+
+        textarea.style.height = "auto";
+        textarea.style.height = `${Math.max(textarea.scrollHeight, 260)}px`;
+    };
+
     const updateTextareaValue = (nextValue, selectionStart, selectionEnd) => {
         setContent(nextValue);
 
@@ -34,6 +44,7 @@ export default function IssueTemplateEditorPage({ project, authToken, labels = [
                 return;
             }
 
+            resizeTextarea();
             textareaRef.current.focus();
             if(typeof selectionStart === "number" && typeof selectionEnd === "number") {
                 textareaRef.current.setSelectionRange(selectionStart, selectionEnd);
@@ -142,6 +153,16 @@ export default function IssueTemplateEditorPage({ project, authToken, labels = [
         }
     };
 
+    React.useEffect(() => {
+        if(isPreviewVisible) {
+            return;
+        }
+
+        requestAnimationFrame(() => {
+            resizeTextarea();
+        });
+    }, [content, isPreviewVisible]);
+
     return (
         <div className="settings-wrapper settings-wrapper--narrow">
             <div className="settings-content">
@@ -243,8 +264,10 @@ export default function IssueTemplateEditorPage({ project, authToken, labels = [
                                                 ref={textareaRef}
                                                 value={content}
                                                 onChange={(event) => setContent(event.target.value)}
+                                                onInput={resizeTextarea}
                                                 placeholder={t("template.contentPlaceholder")}
                                                 className="autosize textarea__input markdown-editor__textarea"
+                                                style={{ minHeight: "260px", overflow: "hidden", resize: "none" }}
                                             />
                                         </label>
                                     </div>
@@ -252,7 +275,7 @@ export default function IssueTemplateEditorPage({ project, authToken, labels = [
 
                                 {isPreviewVisible && (
                                     <div className="markdown-editor__preview markdown-editor__panel markdown-body">
-                                        <div className="markdown-editor__preview-scroll">
+                                        <div className="markdown-editor__preview-scroll" style={{ maxHeight: "fit-content" }}>
                                             <ReactMarkdown
                                                 remarkPlugins={[remarkGfm]}
                                                 rehypePlugins={[rehypeRaw]}

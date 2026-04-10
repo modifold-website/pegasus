@@ -40,6 +40,16 @@ export default function IssueCreatePage({ project, authToken, template, labels =
         setBody(template?.content || "");
     }, [template?.id]);
 
+    const resizeTextarea = () => {
+        const textarea = textareaRef.current;
+        if(!textarea) {
+            return;
+        }
+
+        textarea.style.height = "auto";
+        textarea.style.height = `${Math.max(textarea.scrollHeight, 260)}px`;
+    };
+
     const updateTextareaValue = (nextValue, selectionStart, selectionEnd) => {
         setBody(nextValue);
 
@@ -48,6 +58,7 @@ export default function IssueCreatePage({ project, authToken, template, labels =
                 return;
             }
 
+            resizeTextarea();
             textareaRef.current.focus();
             if(typeof selectionStart === "number" && typeof selectionEnd === "number") {
                 textareaRef.current.setSelectionRange(selectionStart, selectionEnd);
@@ -151,6 +162,16 @@ export default function IssueCreatePage({ project, authToken, template, labels =
     const headerTitle = template?.name ? t("newIssue.createWith", { name: template.name }) : t("newIssue.createTitle");
     const titlePlaceholder = template?.title_placeholder || t("newIssue.titlePlaceholder");
     const isSubmitDisabled = isSubmitting || !title.trim();
+
+    useEffect(() => {
+        if(isPreviewVisible) {
+            return;
+        }
+
+        requestAnimationFrame(() => {
+            resizeTextarea();
+        });
+    }, [body, isPreviewVisible]);
 
     return (
         <div className="project__general">
@@ -257,8 +278,10 @@ export default function IssueCreatePage({ project, authToken, template, labels =
                                             ref={textareaRef}
                                             value={body}
                                             onChange={(event) => setBody(event.target.value)}
+                                            onInput={resizeTextarea}
                                             placeholder={t("newIssue.bodyPlaceholder")}
                                             className="autosize textarea__input markdown-editor__textarea"
+                                            style={{ minHeight: "260px", overflow: "hidden", resize: "none" }}
                                         />
                                     </label>
                                 </div>
@@ -266,7 +289,7 @@ export default function IssueCreatePage({ project, authToken, template, labels =
 
                             {isPreviewVisible && (
                                 <div className="markdown-editor__preview markdown-editor__panel markdown-body">
-                                    <div className="markdown-editor__preview-scroll">
+                                    <div className="markdown-editor__preview-scroll" style={{ maxHeight: "fit-content" }}>
                                         <ReactMarkdown
                                             remarkPlugins={[remarkGfm]}
                                             rehypePlugins={[rehypeRaw]}

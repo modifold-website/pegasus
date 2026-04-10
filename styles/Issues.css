@@ -165,6 +165,26 @@
     opacity: 0.6;
     cursor: default;
 }
+.issue-card__delete {
+    padding: 4px;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: transform .05s ease-in-out;
+    margin-right: 4px;
+}
+@media (hover: hover) {
+    .issue-card__delete:hover {
+        background: var(--theme-color-button-minimal);
+        color: #d44040;
+    }
+}
+.issue-card__delete:active {
+    transform: scale(.95);
+}
+.issue-card__delete:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
 .issue-card__comments svg {
     fill: none;
 }
@@ -294,7 +314,7 @@
 }
 .issue-labels-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 8px;
     font-size: 16px;
     line-height: normal;

@@ -1609,7 +1609,11 @@
       "close": "Cerrar incidencia",
       "reopen": "Reabrir incidencia",
       "pin": "Fijar incidencia",
-      "unpin": "Quitar fijación"
+      "unpin": "Quitar fijación",
+      "edit": "Editar",
+      "delete": "Eliminar incidencia",
+      "deleteConfirm": "¿Eliminar esta incidencia?",
+      "deleteSuccess": "Incidencia eliminada."
     },
     "history": {
       "opened": "{name} abrió esta incidencia",
@@ -1627,6 +1631,7 @@
       "placeholder": "Dejar un comentario",
       "send": "Comentar",
       "reply": "Responder",
+      "edit": "Editar",
       "replyPlaceholder": "Escribe una respuesta",
       "deleted": "Comentario eliminado",
       "unknown": "Usuario desconocido",
@@ -1650,7 +1655,8 @@
       "rateLimited": "You're doing that too fast. Try again soon.",
       "status": "Failed to update issue status.",
       "labels": "Failed to update labels.",
-      "pin": "No se pudo actualizar la fijación."
+      "pin": "No se pudo actualizar la fijación.",
+      "delete": "No se pudo eliminar la incidencia."
     },
     "common": {
       "close": "Close",

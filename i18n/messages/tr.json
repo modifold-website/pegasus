@@ -1608,7 +1608,11 @@
       "close": "Sorunu kapat",
       "reopen": "Sorunu yeniden aç",
       "pin": "Sorunu sabitle",
-      "unpin": "Sabitliği kaldır"
+      "unpin": "Sabitliği kaldır",
+      "edit": "Düzenle",
+      "delete": "Sorunu sil",
+      "deleteConfirm": "Bu sorun silinsin mi?",
+      "deleteSuccess": "Sorun silindi."
     },
     "history": {
       "opened": "{name} bu sorunu açtı",
@@ -1626,6 +1630,7 @@
       "placeholder": "Yorum bırak",
       "send": "Yorum yap",
       "reply": "Yanıtla",
+      "edit": "Düzenle",
       "replyPlaceholder": "Bir yanıt yazın",
       "deleted": "Yorum silindi",
       "unknown": "Bilinmeyen kullanıcı",
@@ -1649,7 +1654,8 @@
       "rateLimited": "You're doing that too fast. Try again soon.",
       "status": "Failed to update issue status.",
       "labels": "Failed to update labels.",
-      "pin": "Sabitleme güncellenemedi."
+      "pin": "Sabitleme güncellenemedi.",
+      "delete": "Sorun silinemedi."
     },
     "common": {
       "close": "Close",

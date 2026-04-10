@@ -1610,7 +1610,11 @@
       "close": "Закрыть проблему",
       "reopen": "Переоткрыть проблему",
       "pin": "Закрепить проблему",
-      "unpin": "Открепить проблему"
+      "unpin": "Открепить проблему",
+      "edit": "Редактировать",
+      "delete": "Удалить проблему",
+      "deleteConfirm": "Удалить эту проблему?",
+      "deleteSuccess": "Проблема удалена."
     },
     "history": {
       "opened": "{name} открыл(а) проблему",
@@ -1628,6 +1632,7 @@
       "placeholder": "Оставить комментарий",
       "send": "Комментировать",
       "reply": "Ответить",
+      "edit": "Редактировать",
       "replyPlaceholder": "Напишите ответ",
       "deleted": "Комментарий удален",
       "unknown": "Неизвестный пользователь",
@@ -1651,7 +1656,8 @@
       "rateLimited": "You're doing that too fast. Try again soon.",
       "status": "Failed to update issue status.",
       "labels": "Failed to update labels.",
-      "pin": "Не удалось обновить закрепление."
+      "pin": "Не удалось обновить закрепление.",
+      "delete": "Не удалось удалить проблему."
     },
     "common": {
       "close": "Close",

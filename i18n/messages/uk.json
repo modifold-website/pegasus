@@ -1610,7 +1610,11 @@
       "close": "Закрити проблему",
       "reopen": "Відкрити знову",
       "pin": "Закріпити проблему",
-      "unpin": "Відкріпити проблему"
+      "unpin": "Відкріпити проблему",
+      "edit": "Редагувати",
+      "delete": "Видалити проблему",
+      "deleteConfirm": "Видалити цю проблему?",
+      "deleteSuccess": "Проблему видалено."
     },
     "history": {
       "opened": "{name} відкрив(ла) проблему",
@@ -1628,6 +1632,7 @@
       "placeholder": "Залишити коментар",
       "send": "Коментувати",
       "reply": "Відповісти",
+      "edit": "Редагувати",
       "replyPlaceholder": "Напишіть відповідь",
       "deleted": "Коментар видалено",
       "unknown": "Невідомий користувач",
@@ -1651,7 +1656,8 @@
       "rateLimited": "You're doing that too fast. Try again soon.",
       "status": "Failed to update issue status.",
       "labels": "Failed to update labels.",
-      "pin": "Не вдалося оновити закріплення."
+      "pin": "Не вдалося оновити закріплення.",
+      "delete": "Не вдалося видалити проблему."
     },
     "common": {
       "close": "Close",

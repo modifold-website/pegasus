@@ -494,6 +494,7 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
         const isDeleted = comment.status === "deleted" && !comment.content;
         const isEditingThisComment = editingCommentId === comment.id;
         const canEditThisComment = isLoggedIn && user?.id && Number(user.id) === Number(comment.author?.id) && !isDeleted;
+        const isEdited = !isDeleted && Number(comment.updated_at || 0) > Number(comment.created_at || 0);
         
         return (
             <div key={comment.id} className="issue-comment" style={{ marginLeft: `${Math.min(depth, 4) * 20}px` }}>
@@ -507,6 +508,17 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                     </Link>
 
                     <span className="issue-comment__time">{formatDateTime(comment.created_at, locale)}</span>
+
+                    {isEdited && (
+                        <Tooltip content={formatDateTimeFull(comment.updated_at, locale)}>
+                            <span className="issue-comment__time">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>
+                                    <path d="m15 5 4 4"/>
+                                </svg>
+                            </span>
+                        </Tooltip>
+                    )}
                 </div>
 
                 <div className="issue-comment__content markdown-body">

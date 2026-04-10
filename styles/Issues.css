@@ -256,6 +256,9 @@
 .issue-comment__time {
     color: var(--theme-color-text-secondary);
 }
+.issue-comment__time svg {
+    fill: none;
+}
 .issue-comment__content {
     margin-bottom: 4px;
 }

@@ -1611,7 +1611,10 @@
       "reopen": "Відкрити знову",
       "pin": "Закріпити проблему",
       "unpin": "Відкріпити проблему",
-      "edit": "Редагувати"
+      "edit": "Редагувати",
+      "delete": "Видалити проблему",
+      "deleteConfirm": "Видалити цю проблему?",
+      "deleteSuccess": "Проблему видалено."
     },
     "history": {
       "opened": "{name} відкрив(ла) проблему",
@@ -1653,7 +1656,8 @@
       "rateLimited": "You're doing that too fast. Try again soon.",
       "status": "Failed to update issue status.",
       "labels": "Failed to update labels.",
-      "pin": "Не вдалося оновити закріплення."
+      "pin": "Не вдалося оновити закріплення.",
+      "delete": "Не вдалося видалити проблему."
     },
     "common": {
       "close": "Close",

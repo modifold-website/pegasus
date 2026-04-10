@@ -1610,7 +1610,10 @@
       "reopen": "Reabrir problema",
       "pin": "Fixar problema",
       "unpin": "Desafixar problema",
-      "edit": "Editar"
+      "edit": "Editar",
+      "delete": "Excluir problema",
+      "deleteConfirm": "Excluir este problema?",
+      "deleteSuccess": "Problema excluído."
     },
     "history": {
       "opened": "{name} abriu este problema",
@@ -1652,7 +1655,8 @@
       "rateLimited": "You're doing that too fast. Try again soon.",
       "status": "Failed to update issue status.",
       "labels": "Failed to update labels.",
-      "pin": "Falha ao atualizar a fixação."
+      "pin": "Falha ao atualizar a fixação.",
+      "delete": "Falha ao excluir o problema."
     },
     "common": {
       "close": "Close",

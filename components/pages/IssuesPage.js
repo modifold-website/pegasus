@@ -44,6 +44,7 @@ export default function IssuesPage({ project, initialIssues, templates = [] }) {
     const basePath = getProjectBasePath(project.project_type);
     const [issueItems, setIssueItems] = useState(initialIssues.issues || []);
     const [isPinUpdating, setIsPinUpdating] = useState(null);
+    const [isDeleteUpdating, setIsDeleteUpdating] = useState(null);
 
     useEffect(() => {
         setIssueItems(initialIssues.issues || []);
@@ -138,6 +139,53 @@ export default function IssuesPage({ project, initialIssues, templates = [] }) {
             toast.error(error.message || t("errors.pin"));
         } finally {
             setIsPinUpdating(null);
+        }
+    };
+
+    const handleDeleteIssue = async (event, issueId) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if(!initialIssues.canManage) {
+            return;
+        }
+
+        if(!confirm(t("actions.deleteConfirm"))) {
+            return;
+        }
+
+        try {
+            setIsDeleteUpdating(issueId);
+            const token = localStorage.getItem("authToken");
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/issues/${issueId}`, {
+                method: "DELETE",
+                headers: token ? {
+                    Accept: "application/json",
+                    Authorization: `Bearer ${token}`,
+                } : { Accept: "application/json" },
+            });
+
+            if(!res.ok) {
+                const data = await res.json().catch(() => ({}));
+                throw new Error(data.message || "Failed");
+            }
+
+            const issuesRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/issues?status=${encodeURIComponent(status)}&sort=${encodeURIComponent(sort)}&page=${encodeURIComponent(pagination.currentPage)}&limit=${encodeURIComponent(initialIssues.limit || 20)}`, {
+                headers: token ? {
+                    Accept: "application/json",
+                    Authorization: `Bearer ${token}`,
+                } : { Accept: "application/json" },
+            });
+
+            const data = issuesRes.ok ? await issuesRes.json() : null;
+            if(data?.issues) {
+                setIssueItems(data.issues);
+            }
+            toast.success(t("actions.deleteSuccess"));
+        } catch (error) {
+            toast.error(error.message || t("errors.delete"));
+        } finally {
+            setIsDeleteUpdating(null);
         }
     };
 
@@ -246,10 +294,22 @@ export default function IssuesPage({ project, initialIssues, templates = [] }) {
 
                                 <div className="issue-card__comments">
                                     {initialIssues.canManage && (
-                                        <button type="button" className={`issue-card__pin ${issue.is_pinned ? "is-pinned" : ""}`} onClick={(event) => handleTogglePin(event, issue.id, issue.is_pinned)} aria-label={issue.is_pinned ? t("actions.unpin") : t("actions.pin")} title={issue.is_pinned ? t("actions.unpin") : t("actions.pin")} aria-pressed={issue.is_pinned} disabled={isPinUpdating === issue.id}>
+                                        <button type="button" className={`issue-card__pin ${issue.is_pinned ? "is-pinned" : ""}`} onClick={(event) => handleTogglePin(event, issue.id, issue.is_pinned)} aria-label={issue.is_pinned ? t("actions.unpin") : t("actions.pin")} title={issue.is_pinned ? t("actions.unpin") : t("actions.pin")} aria-pressed={issue.is_pinned} disabled={isPinUpdating === issue.id || isDeleteUpdating === issue.id}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M12 17v5"/>
                                                 <path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/>
+                                            </svg>
+                                        </button>
+                                    )}
+
+                                    {initialIssues.canManage && (
+                                        <button type="button" className="issue-card__delete" onClick={(event) => handleDeleteIssue(event, issue.id)} aria-label={t("actions.delete")} title={t("actions.delete")} disabled={isDeleteUpdating === issue.id || isPinUpdating === issue.id}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M10 11v6"/>
+                                                <path d="M14 11v6"/>
+                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
+                                                <path d="M3 6h18"/>
+                                                <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
                                             </svg>
                                         </button>
                                     )}

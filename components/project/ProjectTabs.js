@@ -121,7 +121,7 @@ export default function ProjectTabs({ project }) {
             <Link href={`${basePath}/${project.slug}/issues`} scroll={false} className={`tabs__tab ${isIssuesActive ? "tabs__tab--active" : ""}`}>
                 {t("tabs.issues")}
                 
-                {issuesCount !== null && (
+                {issuesCount > 0 && (
                     <span className="tabs__count">{formatCount(issuesCount)}</span>
                 )}
             </Link>

@@ -183,7 +183,8 @@
       "gameVersion": "Версии игры",
       "gameChannel": "Каналы",
       "loader": "Загрузчики",
-      "comments": "Комментарии"
+      "comments": "Комментарии",
+      "issues": "Проблемы"
     },
     "creators": "Авторы",
     "owner": "Владелец",
@@ -545,6 +546,7 @@
       "gallery": "Галерея",
       "tags": "Теги",
       "analytics": "Аналитика",
+      "issues": "Проблемы",
       "moderation": "Модерация",
       "members": "Участники",
       "license": "Лицензия"
@@ -618,12 +620,6 @@
         "unlisted": "Скрытый",
         "private": "Приватный"
       },
-      "comments": {
-        "title": "Комментарии",
-        "enabled": "Включены",
-        "disabled": "Выключены",
-        "hint": "Скрывает вкладку комментариев и запрещает новые комментарии."
-      },
       "actions": {
         "save": "Сохранить",
         "delete": "Удалить проект"
@@ -648,7 +644,6 @@
       "title": "Описание",
       "placeholder": "Введите описание проекта (поддерживается Markdown)",
       "hint": "Минимум 50 символов.",
-      "editorSupportText": "Редактор поддерживает Markdown-разметку.",
       "preview": "Предпросмотр",
       "actions": {
         "save": "Сохранить"
@@ -1570,6 +1565,161 @@
         "organization_add_project": "Добавлять проекты",
         "organization_remove_project": "Удалять проекты"
       }
+    }
+  },
+  "Issues": {
+    "title": "Проблемы",
+    "status": {
+      "open": "Открыта",
+      "closed": "Закрыта"
+    },
+    "filters": {
+      "open": "Открытые",
+      "closed": "Закрытые",
+      "newest": "Новые",
+      "oldest": "Старые"
+    },
+    "pagination": {
+      "prev": "Предыдущая",
+      "next": "Следующая"
+    },
+    "empty": "Пока нет проблем. Будьте первым, кто начнет обсуждение.",
+    "newIssue": {
+      "button": "Новая проблема",
+      "loginRequired": "Войдите, чтобы создать проблему.",
+      "selectTitle": "Создать новую проблему",
+      "blankTitle": "Своя проблема",
+      "blankDesc": "Начать с пустого шаблона",
+      "noDescription": "Без описания",
+      "createTitle": "Создать новую проблему",
+      "createWith": "Создать новую проблему: {name}",
+      "titleLabel": "Заголовок",
+      "titlePlaceholder": "Короткое описание",
+      "labelsTitle": "Метки",
+      "bodyLabel": "Детали",
+      "bodyPlaceholder": "Опишите баг или идею подробно.",
+      "markdownHint": "Поддерживается Markdown.",
+      "createButton": "Создать проблему",
+      "titleRequired": "Заголовок проблемы обязателен.",
+      "createError": "Не удалось создать проблему."
+    },
+    "meta": {
+      "by": "от"
+    },
+    "actions": {
+      "close": "Закрыть проблему",
+      "reopen": "Переоткрыть проблему",
+      "pin": "Закрепить проблему",
+      "unpin": "Открепить проблему"
+    },
+    "history": {
+      "opened": "{name} открыл(а) проблему",
+      "closed": "{name} закрыл(а) проблему",
+      "reopened": "{name} переоткрыл(а) проблему",
+      "labelAdded": "{name} добавил(а) метку {label}",
+      "labelRemoved": "{name} удалил(а) метку {label}",
+      "generic": "{name} обновил(а) проблему",
+      "system": "Система",
+      "unknownLabel": "метка",
+      "empty": "История пока пуста."
+    },
+    "comments": {
+      "placeholder": "Оставить комментарий",
+      "send": "Комментировать",
+      "reply": "Ответить",
+      "replyPlaceholder": "Напишите ответ",
+      "deleted": "Комментарий удален",
+      "unknown": "Неизвестный пользователь",
+      "closed": "Эта проблема закрыта. Комментарии отключены."
+    },
+    "sidebar": {
+      "status": "Статус",
+      "labels": "Метки",
+      "noLabels": "Меток пока нет",
+      "manageLabels": "Управлять метками",
+      "details": "Детали",
+      "created": "Создан",
+      "updated": "Обновлен"
+    },
+    "details": {
+      "emptyBody": "Описание отсутствует."
+    },
+    "errors": {
+      "loadIssue": "Failed to load issue.",
+      "comment": "Failed to send comment.",
+      "rateLimited": "You're doing that too fast. Try again soon.",
+      "status": "Failed to update issue status.",
+      "labels": "Failed to update labels.",
+      "pin": "Не удалось обновить закрепление."
+    },
+    "common": {
+      "close": "Close",
+      "cancel": "Cancel",
+      "creating": "Creating...",
+      "sending": "Sending..."
+    }
+  },
+  "IssueSettings": {
+    "overview": {
+      "title": "Настройка проблем",
+      "body": "Создавайте шаблоны и метки, чтобы пользователи отправляли понятные и структурированные проблемы."
+    },
+    "template": {
+      "sectionTitle": "Шаблоны",
+      "create": "Новый шаблон",
+      "createTitle": "Создать шаблон",
+      "editTitle": "Редактировать шаблон",
+      "name": "Название шаблона",
+      "namePlaceholder": "Отчет об ошибке",
+      "about": "Описание",
+      "aboutPlaceholder": "Создайте репорт, чтобы стать нам лучше",
+      "content": "Содержимое шаблона",
+      "contentPlaceholder": "Опишите ошибку и укажите шаги воспроизведения.",
+      "markdownHint": "Поддерживается оформление Markdown.",
+      "defaultTitle": "Заголовок проблемы по умолчанию",
+      "defaultTitlePlaceholder": "Добавьте предлагаемый заголовок",
+      "titlePrefix": "Префикс заголовка",
+      "titlePrefixPlaceholder": "[BUG]",
+      "titlePlaceholder": "Подсказка заголовка",
+      "titlePlaceholderPlaceholder": "Короткое описание",
+      "defaultLabels": "Метки по умолчанию",
+      "noLabels": "Создайте метки, чтобы использовать их здесь.",
+      "save": "Сохранить шаблон",
+      "edit": "Просмотреть и редактировать",
+      "delete": "Удалить",
+      "deleteConfirm": "Удалить этот шаблон?",
+      "saved": "Шаблон сохранен.",
+      "deleted": "Шаблон удален.",
+      "empty": "Шаблонов пока нет.",
+      "noDescription": "Без описания"
+    },
+    "labels": {
+      "sectionTitle": "Метки",
+      "create": "Новая метка",
+      "createTitle": "Создать метку",
+      "editTitle": "Редактировать метку",
+      "name": "Название метки",
+      "namePlaceholder": "Баг",
+      "color": "Цвет метки",
+      "save": "Сохранить метку",
+      "edit": "Редактировать",
+      "delete": "Удалить",
+      "deleteConfirm": "Удалить эту метку?",
+      "saved": "Метка сохранена.",
+      "deleted": "Метка удалена.",
+      "empty": "Меток пока нет."
+    },
+    "errors": {
+      "templateSave": "Не удалось сохранить шаблон.",
+      "templateDelete": "Не удалось удалить шаблон.",
+      "labelSave": "Не удалось сохранить метку.",
+      "labelDelete": "Не удалось удалить метку."
+    },
+    "common": {
+      "backToSettings": "Назад к настройкам",
+      "close": "Закрыть",
+      "cancel": "Отмена",
+      "saving": "Сохранение..."
     }
   },
   "TwoFactorLogin": {

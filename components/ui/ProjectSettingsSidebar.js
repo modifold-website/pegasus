@@ -6,7 +6,8 @@ import { getProjectBasePath } from "@/utils/projectRoutes";
 
 export default function ProjectSettingsSidebar({ project, labels, iconAlt }) {
     const pathname = usePathname();
-    const isActive = (href) => pathname === href;
+    const isActive = (href) => pathname === href || pathname.startsWith(`${href}/`);
+    const isExact = (href) => pathname === href;
     const basePath = getProjectBasePath(project?.project_type);
     const baseProjectPath = `${basePath}/${project.slug}`;
 
@@ -21,7 +22,7 @@ export default function ProjectSettingsSidebar({ project, labels, iconAlt }) {
 
                 <div className="sidebar-separator-view _theme_default _size_s"></div>
 
-                <Link href={`${baseProjectPath}/settings`} scroll={false} className={`sidebar-item ${isActive(`${baseProjectPath}/settings`) ? "sidebar-item--active" : ""}`} data-ripple>
+                <Link href={`${baseProjectPath}/settings`} scroll={false} className={`sidebar-item ${isExact(`${baseProjectPath}/settings`) ? "sidebar-item--active" : ""}`} data-ripple>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide-settings-icon lucide-settings">
                         <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
                         <circle cx="12" cy="12" r="3" />
@@ -82,6 +83,16 @@ export default function ProjectSettingsSidebar({ project, labels, iconAlt }) {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon--settings"><circle cx="12" cy="12" r="10"/><path d="M14.83 14.83a4 4 0 1 1 0-5.66"/></svg>
                     
                     {labels.license}
+                </Link>
+
+                <Link href={`${baseProjectPath}/settings/issues`} scroll={false} className={`sidebar-item ${isActive(`${baseProjectPath}/settings/issues`) ? "sidebar-item--active" : ""}`} data-ripple>
+                    <svg className="icon icon--info" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4"/>
+                        <path d="M12 8h.01"/>
+                    </svg>
+
+                    {labels.issues}
                 </Link>
 
                 <Link href={`${baseProjectPath}/settings/analytics`} scroll={false} className={`sidebar-item ${isActive(`${baseProjectPath}/settings/analytics`) ? "sidebar-item--active" : ""}`} data-ripple>

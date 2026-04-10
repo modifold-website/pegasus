@@ -16,7 +16,6 @@ const getInitialFormData = (project) => ({
     visibility: project?.visibility || "public",
     slug: project?.slug || "",
     icon: null,
-    comments_enabled: project?.comments_enabled !== false,
 });
 
 export default function ProjectSettings({ project, organizationOptions: initialOrganizationOptions = [] }) {
@@ -31,13 +30,10 @@ export default function ProjectSettings({ project, organizationOptions: initialO
     const [previewIcon, setPreviewIcon] = useState("");
     const [savedPreviewIcon, setSavedPreviewIcon] = useState(project?.icon_url || "");
     const iconInputRef = useRef(null);
-    const [isCommentsMenuOpen, setIsCommentsMenuOpen] = useState(false);
     const [organizationOptions, setOrganizationOptions] = useState(() => initialOrganizationOptions);
     const [selectedOrganizationSlug, setSelectedOrganizationSlug] = useState(project?.organization?.slug || "");
     const [savedOrganizationSlug, setSavedOrganizationSlug] = useState(project?.organization?.slug || "");
     const [isOrganizationMenuOpen, setIsOrganizationMenuOpen] = useState(false);
-    const commentsButtonRef = useRef(null);
-    const commentsMenuRef = useRef(null);
     const organizationButtonRef = useRef(null);
     const organizationMenuRef = useRef(null);
 
@@ -63,7 +59,6 @@ export default function ProjectSettings({ project, organizationOptions: initialO
         formData.summary !== savedFormData.summary ||
         formData.visibility !== savedFormData.visibility ||
         formData.slug !== savedFormData.slug ||
-        formData.comments_enabled !== savedFormData.comments_enabled ||
         selectedOrganizationSlug !== savedOrganizationSlug ||
         Boolean(formData.icon)
     );
@@ -91,10 +86,6 @@ export default function ProjectSettings({ project, organizationOptions: initialO
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if(isCommentsMenuOpen && !commentsMenuRef.current?.contains(event.target) && !commentsButtonRef.current?.contains(event.target)) {
-                setIsCommentsMenuOpen(false);
-            }
-
             if(isOrganizationMenuOpen && !organizationMenuRef.current?.contains(event.target) && !organizationButtonRef.current?.contains(event.target)) {
                 setIsOrganizationMenuOpen(false);
             }
@@ -102,7 +93,7 @@ export default function ProjectSettings({ project, organizationOptions: initialO
 
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [isCommentsMenuOpen, isOrganizationMenuOpen]);
+    }, [isOrganizationMenuOpen]);
 
     const handleSubmit = async (e) => {
         if(e) {
@@ -118,7 +109,6 @@ export default function ProjectSettings({ project, organizationOptions: initialO
         data.append("summary", formData.summary);
         data.append("visibility", formData.visibility);
         data.append("slug", formData.slug);
-        data.append("comments_enabled", formData.comments_enabled ? "1" : "0");
         if(formData.icon) {
             data.append("icon", formData.icon);
         }
@@ -190,7 +180,6 @@ export default function ProjectSettings({ project, organizationOptions: initialO
         return null;
     }
 
-    const toggleCommentsMenu = () => setIsCommentsMenuOpen((prev) => !prev);
     const toggleOrganizationMenu = () => setIsOrganizationMenuOpen((prev) => !prev);
     const selectedOrganization = organizationOptions.find((organization) => organization.slug === selectedOrganizationSlug);
 
@@ -266,37 +255,6 @@ export default function ProjectSettings({ project, organizationOptions: initialO
                                     </label>
 
                                     <p>{t("general.hints.visibility")}</p>
-                                </div>
-
-                                <p className="blog-settings__field-title">{t("general.comments.title")}</p>
-                                <div className="field field--default blog-settings__input" ref={commentsMenuRef}>
-                                    <label style={{ marginBottom: "10px" }} className="field__wrapper" onClick={toggleCommentsMenu} ref={commentsButtonRef}>
-                                        <div className="field__wrapper-body">
-                                            <div className="select">
-                                                <div className="select__selected">
-                                                    {formData.comments_enabled ? t("general.comments.enabled") : t("general.comments.disabled")}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <svg style={{ fill: "none" }} className={`icon icon--chevron_down ${isCommentsMenuOpen ? "rotate" : ""}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
-                                    </label>
-
-                                    {isCommentsMenuOpen && (
-                                        <div className="popover">
-                                            <div className="context-list" data-scrollable>
-                                                <div className={`context-list-option ${formData.comments_enabled ? "context-list-option--selected" : ""}`} onClick={() => { setFormData((prev) => ({ ...prev, comments_enabled: true })); setIsCommentsMenuOpen(false); }}>
-                                                    <div className="context-list-option__label">{t("general.comments.enabled")}</div>
-                                                </div>
-
-                                                <div className={`context-list-option ${!formData.comments_enabled ? "context-list-option--selected" : ""}`} onClick={() => { setFormData((prev) => ({ ...prev, comments_enabled: false })); setIsCommentsMenuOpen(false); }}>
-                                                    <div className="context-list-option__label">{t("general.comments.disabled")}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    <p>{t("general.comments.hint")}</p>
                                 </div>
 
                                 <p className="blog-settings__field-title">{t("general.organization.title")}</p>

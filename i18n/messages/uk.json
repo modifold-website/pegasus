@@ -184,7 +184,8 @@
       "gameVersion": "Версії гри",
       "gameChannel": "Канали",
       "loader": "Лоадери",
-      "comments": "Коментарі"
+      "comments": "Коментарі",
+      "issues": "Проблеми"
     },
     "creators": "Автори",
     "owner": "Власник",
@@ -545,6 +546,7 @@
       "gallery": "Галерея",
       "tags": "Теги",
       "analytics": "Аналітика",
+      "issues": "Проблеми",
       "moderation": "Модерація",
       "members": "Учасники",
       "license": "Ліцензія"
@@ -618,12 +620,6 @@
         "unlisted": "Непублічний",
         "private": "Приватний"
       },
-      "comments": {
-        "title": "Коментарі",
-        "enabled": "Увімкнено",
-        "disabled": "Вимкнено",
-        "hint": "Приховує вкладку коментарів і блокує нові коментарі."
-      },
       "actions": {
         "save": "Зберегти",
         "delete": "Видалити проєкт"
@@ -648,7 +644,6 @@
       "title": "Опис",
       "placeholder": "Введіть опис проєкту (підтримується Markdown)",
       "hint": "Мінімум 50 символів.",
-      "editorSupportText": "Цей редактор підтримує Markdown-розмітку.",
       "preview": "Попередній перегляд",
       "actions": {
         "save": "Зберегти"
@@ -1570,6 +1565,161 @@
         "organization_add_project": "Додавати проєкти",
         "organization_remove_project": "Видаляти проєкти"
       }
+    }
+  },
+  "Issues": {
+    "title": "Проблеми",
+    "status": {
+      "open": "Відкрита",
+      "closed": "Закрита"
+    },
+    "filters": {
+      "open": "Відкриті",
+      "closed": "Закриті",
+      "newest": "Найновіші",
+      "oldest": "Найстаріші"
+    },
+    "pagination": {
+      "prev": "Попередня",
+      "next": "Наступна"
+    },
+    "empty": "Ще немає проблем. Будьте першим, хто почне обговорення.",
+    "newIssue": {
+      "button": "Нова проблема",
+      "loginRequired": "Увійдіть, щоб створити проблему.",
+      "selectTitle": "Створити нову проблему",
+      "blankTitle": "Власна проблема",
+      "blankDesc": "Почати з порожнього шаблону",
+      "noDescription": "Без опису",
+      "createTitle": "Створити нову проблему",
+      "createWith": "Створити нову проблему: {name}",
+      "titleLabel": "Заголовок",
+      "titlePlaceholder": "Короткий опис",
+      "labelsTitle": "Мітки",
+      "bodyLabel": "Деталі",
+      "bodyPlaceholder": "Опишіть помилку або ідею детально.",
+      "markdownHint": "Підтримується Markdown.",
+      "createButton": "Створити проблему",
+      "titleRequired": "Заголовок проблеми обов’язковий.",
+      "createError": "Не вдалося створити проблему."
+    },
+    "meta": {
+      "by": "від"
+    },
+    "actions": {
+      "close": "Закрити проблему",
+      "reopen": "Відкрити знову",
+      "pin": "Закріпити проблему",
+      "unpin": "Відкріпити проблему"
+    },
+    "history": {
+      "opened": "{name} відкрив(ла) проблему",
+      "closed": "{name} закрив(ла) проблему",
+      "reopened": "{name} повторно відкрив(ла) проблему",
+      "labelAdded": "{name} додав(ла) мітку {label}",
+      "labelRemoved": "{name} видалив(ла) мітку {label}",
+      "generic": "{name} оновив(ла) проблему",
+      "system": "Система",
+      "unknownLabel": "мітка",
+      "empty": "Історія поки порожня."
+    },
+    "comments": {
+      "placeholder": "Залишити коментар",
+      "send": "Коментувати",
+      "reply": "Відповісти",
+      "replyPlaceholder": "Напишіть відповідь",
+      "deleted": "Коментар видалено",
+      "unknown": "Невідомий користувач",
+      "closed": "Цю проблему закрито. Коментарі вимкнено."
+    },
+    "sidebar": {
+      "status": "Статус",
+      "labels": "Мітки",
+      "noLabels": "Ще немає міток",
+      "manageLabels": "Керувати мітками",
+      "details": "Деталі",
+      "created": "Створено",
+      "updated": "Оновлено"
+    },
+    "details": {
+      "emptyBody": "Опис відсутній."
+    },
+    "errors": {
+      "loadIssue": "Failed to load issue.",
+      "comment": "Failed to send comment.",
+      "rateLimited": "You're doing that too fast. Try again soon.",
+      "status": "Failed to update issue status.",
+      "labels": "Failed to update labels.",
+      "pin": "Не вдалося оновити закріплення."
+    },
+    "common": {
+      "close": "Close",
+      "cancel": "Cancel",
+      "creating": "Creating...",
+      "sending": "Sending..."
+    }
+  },
+  "IssueSettings": {
+    "overview": {
+      "title": "Налаштування проблем",
+      "body": "Створюйте шаблони та мітки, щоб користувачі подавали зрозумілі та структуровані проблеми."
+    },
+    "template": {
+      "sectionTitle": "Шаблони",
+      "create": "Новий шаблон",
+      "createTitle": "Створити шаблон",
+      "editTitle": "Редагувати шаблон",
+      "name": "Назва шаблону",
+      "namePlaceholder": "Звіт про помилку",
+      "about": "Опис",
+      "aboutPlaceholder": "Створіть опис, щоб допомогти нам покращити",
+      "content": "Вміст шаблону",
+      "contentPlaceholder": "Опишіть помилку та наведіть кроки відтворення.",
+      "markdownHint": "Підтримується оформлення Markdown.",
+      "defaultTitle": "Заголовок проблеми за замовчуванням",
+      "defaultTitlePlaceholder": "Додайте рекомендований заголовок",
+      "titlePrefix": "Префікс заголовка",
+      "titlePrefixPlaceholder": "[BUG]",
+      "titlePlaceholder": "Підказка заголовка",
+      "titlePlaceholderPlaceholder": "Короткий опис",
+      "defaultLabels": "Мітки за замовчуванням",
+      "noLabels": "Створіть мітки, щоб використовувати їх тут.",
+      "save": "Зберегти шаблон",
+      "edit": "Переглянути та редагувати",
+      "delete": "Видалити",
+      "deleteConfirm": "Видалити цей шаблон?",
+      "saved": "Шаблон збережено.",
+      "deleted": "Шаблон видалено.",
+      "empty": "Ще немає шаблонів.",
+      "noDescription": "Без опису"
+    },
+    "labels": {
+      "sectionTitle": "Мітки",
+      "create": "Нова мітка",
+      "createTitle": "Створити мітку",
+      "editTitle": "Редагувати мітку",
+      "name": "Назва мітки",
+      "namePlaceholder": "Помилка",
+      "color": "Колір мітки",
+      "save": "Зберегти мітку",
+      "edit": "Редагувати",
+      "delete": "Видалити",
+      "deleteConfirm": "Видалити цю мітку?",
+      "saved": "Мітку збережено.",
+      "deleted": "Мітку видалено.",
+      "empty": "Ще немає міток."
+    },
+    "errors": {
+      "templateSave": "Не вдалося зберегти шаблон.",
+      "templateDelete": "Не вдалося видалити шаблон.",
+      "labelSave": "Не вдалося зберегти мітку.",
+      "labelDelete": "Не вдалося видалити мітку."
+    },
+    "common": {
+      "backToSettings": "Назад до налаштувань",
+      "close": "Закрити",
+      "cancel": "Скасувати",
+      "saving": "Збереження..."
     }
   },
   "TwoFactorLogin": {

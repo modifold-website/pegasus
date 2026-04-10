@@ -178,7 +178,7 @@
 .issue-detail-layout {
     display: grid;
     grid-template-columns: 2.5fr 1fr;
-    gap: 20px;
+    gap: 36px;
 }
 .issue-detail-header {
     display: flex;

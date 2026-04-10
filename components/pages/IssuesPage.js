@@ -16,7 +16,10 @@ const formatDate = (timestamp, locale) => {
     }
 
     const date = new Date(Number(timestamp));
-    return date.toLocaleDateString(locale, { day: "numeric", month: "short", year: "numeric" });
+    const isCurrentYear = date.getFullYear() === new Date().getFullYear();
+    const options = isCurrentYear ? { day: "numeric", month: "short" } : { day: "numeric", month: "short", year: "numeric" };
+
+    return date.toLocaleDateString(locale, options);
 };
 
 const applyLabelStyle = (label) => ({

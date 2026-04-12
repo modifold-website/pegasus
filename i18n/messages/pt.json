@@ -65,7 +65,7 @@
     }
   },
   "Layout": {
-    "stagingBanner": "Ambiente de staging: apenas para testes internos. Alguns recursos podem estar indisponíveis ou instáveis."
+    "stagingBanner": "Ambiente de staging: alguns recursos podem não funcionar ou ficar instáveis."
   },
   "NotFound": {
     "title": "Página não encontrada",

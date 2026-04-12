@@ -64,7 +64,7 @@
     }
   },
   "Layout": {
-    "stagingBanner": "Staging ortamı: yalnızca dahili testler içindir. Bazı özellikler kullanılamıyor olabilir veya kararsız çalışabilir."
+    "stagingBanner": "Staging ortamı: bazı özellikler çalışmayabilir veya kararsız olabilir."
   },
   "NotFound": {
     "title": "Sayfa bulunamadı",

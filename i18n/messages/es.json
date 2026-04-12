@@ -65,7 +65,7 @@
     }
   },
   "Layout": {
-    "stagingBanner": "Entorno de staging: solo para pruebas internas. Algunas funciones pueden no estar disponibles o ser inestables."
+    "stagingBanner": "Entorno de staging: algunas funciones pueden no funcionar o ser inestables."
   },
   "NotFound": {
     "title": "Página no encontrada",

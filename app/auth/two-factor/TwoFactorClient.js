@@ -90,9 +90,9 @@ export default function TwoFactorClient() {
 
     return (
         <div style={{ minHeight: "60vh", display: "grid", placeItems: "center", padding: "32px 16px" }}>
-            <div style={{ maxWidth: "420px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div style={{ maxWidth: "460px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <h1 style={{ fontSize: "24px", fontWeight: "500", marginBottom: "8px" }}>{t("title")}</h1>
-                <p style={{ marginBottom: "16px", color: "var(--theme-color-text-secondary)" }}>{t("description")}</p>
+                <p style={{ marginBottom: "16px", color: "var(--theme-color-text-secondary)", textAlign: "center" }}>{t("description")}</p>
 
                 <form onSubmit={handleSubmit} className="content content--padding" style={{ borderRadius: "16px", width: "100%" }}>
                     <label style={{ display: "block", marginBottom: "12px" }}>{t("codeLabel")}</label>

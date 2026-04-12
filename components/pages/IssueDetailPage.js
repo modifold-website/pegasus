@@ -606,74 +606,6 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                         ) : (
                             <h1>{issue.title}</h1>
                         )}
-
-                        {(canManage || canEditIssue) && (
-                            <div style={{ display: "flex", gap: "8px", marginLeft: "auto" }}>
-                                {isEditingIssue ? (
-                                    <>
-                                        <button
-                                            type="button"
-                                            className="button button--size-m button--type-minimal button--with-icon"
-                                            style={{ "--icon-size": "16px" }}
-                                            onClick={() => {
-                                                setIsEditingIssue(false);
-                                                setIsIssuePreviewVisible(false);
-                                                setEditIssueTitle(issue.title || "");
-                                                setEditIssueBody(issue.body || "");
-                                            }}
-                                            disabled={isIssueSaving}
-                                        >
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                <circle cx="12" cy="12" r="10"/>
-                                                <path d="m15 9-6 6"/>
-                                                <path d="m9 9 6 6"/>
-                                            </svg>
-
-                                            {t("common.cancel")}
-                                        </button>
-
-                                        <button type="button" className="button button--size-m button--type-primary" onClick={handleIssueSave} disabled={isIssueSaving}>
-                                            {isIssueSaving ? "Saving..." : "Save"}
-                                        </button>
-                                    </>
-                                ) : (
-                                    <>
-                                        {canManage && (
-                                            issue.status === "open" ? (
-                                                <button type="button" className="button button--size-m button--type-minimal button--with-icon" style={{ "--icon-size": "16px" }} onClick={() => handleStatusChange("close")} disabled={isRefreshing}>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
-                                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                                                    </svg>
-
-                                                    {t("actions.close")}
-                                                </button>
-                                            ) : (
-                                                <button type="button" className="button button--size-m button--type-primary button--with-icon" style={{ "--icon-size": "16px" }} onClick={() => handleStatusChange("reopen")} disabled={isRefreshing}>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
-                                                        <path d="M7 11V7a5 5 0 0 1 9.9-1"/>
-                                                    </svg>
-
-                                                    {t("actions.reopen")}
-                                                </button>
-                                            )
-                                        )}
-
-                                        {canEditIssue && (
-                                            <button type="button" className="button button--size-m button--type-minimal button--with-icon" style={{ "--icon-size": "16px" }} onClick={() => { setIsEditingIssue(true); setIsIssuePreviewVisible(false); }}>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                    <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>
-                                                    <path d="m15 5 4 4"/>
-                                                </svg>
-                                                
-                                                {t("actions.edit")}
-                                            </button>
-                                        )}
-                                    </>
-                                )}
-                            </div>
-                        )}
                     </div>
 
                     <div className="issue-detail-meta">
@@ -862,6 +794,74 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
             </div>
 
             <aside className="issue-sidebar">
+                {(canManage || canEditIssue) && (
+                    <div style={{ display: "flex", gap: "8px", justifyContent: "space-between" }}>
+                        {isEditingIssue ? (
+                            <>
+                                <button
+                                    type="button"
+                                    className="button button--size-m button--type-secondary button--with-icon"
+                                    style={{ "--icon-size": "16px" }}
+                                    onClick={() => {
+                                        setIsEditingIssue(false);
+                                        setIsIssuePreviewVisible(false);
+                                        setEditIssueTitle(issue.title || "");
+                                        setEditIssueBody(issue.body || "");
+                                    }}
+                                    disabled={isIssueSaving}
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="m15 9-6 6"/>
+                                        <path d="m9 9 6 6"/>
+                                    </svg>
+
+                                    {t("common.cancel")}
+                                </button>
+
+                                <button type="button" className="button button--size-m button--type-primary" onClick={handleIssueSave} disabled={isIssueSaving}>
+                                    {isIssueSaving ? "Saving..." : "Save"}
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                {canManage && (
+                                    issue.status === "open" ? (
+                                        <button type="button" className="button button--size-m button--type-secondary button--with-icon" style={{ "--icon-size": "16px" }} onClick={() => handleStatusChange("close")} disabled={isRefreshing}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                            </svg>
+
+                                            {t("actions.close")}
+                                        </button>
+                                    ) : (
+                                        <button type="button" className="button button--size-m button--type-primary button--with-icon" style={{ "--icon-size": "16px" }} onClick={() => handleStatusChange("reopen")} disabled={isRefreshing}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                                                <path d="M7 11V7a5 5 0 0 1 9.9-1"/>
+                                            </svg>
+
+                                            {t("actions.reopen")}
+                                        </button>
+                                    )
+                                )}
+
+                                {canEditIssue && (
+                                    <button type="button" className="button button--size-m button--type-secondary button--with-icon" style={{ "--icon-size": "16px" }} onClick={() => { setIsEditingIssue(true); setIsIssuePreviewVisible(false); }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>
+                                            <path d="m15 5 4 4"/>
+                                        </svg>
+                                        
+                                        {t("actions.edit")}
+                                    </button>
+                                )}
+                            </>
+                        )}
+                    </div>
+                )}
+
                 <div className="content content--padding">
                     <h2>{t("sidebar.status")}</h2>
                     

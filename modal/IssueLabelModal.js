@@ -51,7 +51,7 @@ export default function IssueLabelModal({ isOpen, label, onSubmit, onRequestClos
     const t = useTranslations("IssueSettings");
     const [name, setName] = useState("");
     const [color, setColor] = useState("#2ca84f");
-    const [userSelectable, setUserSelectable] = useState(false);
+    const [userSelectable, setUserSelectable] = useState(true);
     const [isPaletteOpen, setIsPaletteOpen] = useState(false);
     const popoverRef = useRef(null);
     const triggerRef = useRef(null);
@@ -63,7 +63,7 @@ export default function IssueLabelModal({ isOpen, label, onSubmit, onRequestClos
 
         setName(label?.name || "");
         setColor(label?.color || "#2ca84f");
-        setUserSelectable(!!label?.user_selectable);
+        setUserSelectable(typeof label?.user_selectable === "boolean" ? label.user_selectable : true);
         setIsPaletteOpen(false);
     }, [isOpen, label]);
 

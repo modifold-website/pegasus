@@ -203,8 +203,10 @@ export default function IssuesSettings({ project, authToken, initialTemplates = 
 
                             {sortedLabels.map((label) => (
                                 <div key={label.id} className="issue-label-card">
-                                    <div className="issue-label-chip" style={applyLabelStyle(label)}>
-                                        <span>{label.name}</span>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+                                        <div className="issue-label-chip" style={applyLabelStyle(label)}>
+                                            <span>{label.name}</span>
+                                        </div>
                                     </div>
 
                                     <div className="issue-label-actions" data-label-actions="true">

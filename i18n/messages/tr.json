@@ -64,7 +64,7 @@
     }
   },
   "Layout": {
-    "stagingBanner": "Staging ortamı: yalnızca dahili testler içindir. Bazı özellikler kullanılamıyor olabilir veya kararsız çalışabilir."
+    "stagingBanner": "Staging ortamı: bazı özellikler çalışmayabilir veya kararsız olabilir."
   },
   "NotFound": {
     "title": "Sayfa bulunamadı",
@@ -1704,6 +1704,9 @@
       "name": "Etiket adı",
       "namePlaceholder": "Hata",
       "color": "Etiket rengi",
+      "applyAccessTitle": "Bu etiket kim tarafından uygulanabilir",
+      "applyAccessEveryone": "Herkes",
+      "applyAccessTeamOnly": "Yalnızca proje ekibi",
       "save": "Etiketi kaydet",
       "edit": "Düzenle",
       "delete": "Sil",

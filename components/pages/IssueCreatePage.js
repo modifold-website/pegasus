@@ -12,12 +12,6 @@ import ProjectSidebar from "@/components/project/ProjectSidebar";
 import { getProjectBasePath } from "@/utils/projectRoutes";
 import { getSafeMarkdownHref, getSafeMarkdownImageSrc, prepareProjectDescriptionMarkdown } from "@/utils/projectDescriptionContent";
 
-const applyLabelStyle = (label) => ({
-    background: `${label.color}22`,
-    color: label.color,
-    border: `1px solid ${label.color}44`,
-});
-
 export default function IssueCreatePage({ project, authToken, template, labels = [] }) {
     const t = useTranslations("Issues");
     const tSettings = useTranslations("SettingsProjectPage");
@@ -29,16 +23,30 @@ export default function IssueCreatePage({ project, authToken, template, labels =
     const [body, setBody] = useState(template?.content || "");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isPreviewVisible, setIsPreviewVisible] = useState(false);
+    const [selectedLabelIds, setSelectedLabelIds] = useState([]);
 
     const basePath = getProjectBasePath(project.project_type);
     const templateId = template?.id || null;
-    const templateLabelIds = Array.isArray(template?.default_labels) ? template.default_labels : [];
-    const templateLabels = templateLabelIds.length > 0 ? labels.filter((label) => templateLabelIds.includes(label.id)) : [];
+    const templateLabelIds = Array.isArray(template?.default_labels) ? [...new Set(
+        template.default_labels.map((id) => Number(id)).filter((id) => Number.isInteger(id) && id > 0)
+    )] : [];
+    const labelIdsSet = new Set(labels.map((label) => Number(label.id)).filter((id) => Number.isInteger(id) && id > 0));
 
     useEffect(() => {
         setTitle("");
         setBody(template?.content || "");
+        setSelectedLabelIds(templateLabelIds.filter((id) => labelIdsSet.has(id)));
     }, [template?.id]);
+
+    const handleToggleLabel = (labelId) => {
+        setSelectedLabelIds((prev) => {
+            if(prev.includes(labelId)) {
+                return prev.filter((item) => item !== labelId);
+            }
+
+            return [...prev, labelId];
+        });
+    };
 
     const resizeTextarea = () => {
         const textarea = textareaRef.current;
@@ -142,7 +150,7 @@ export default function IssueCreatePage({ project, authToken, template, labels =
                     "Content-Type": "application/json",
                     Authorization: authToken ? `Bearer ${authToken}` : `Bearer ${localStorage.getItem("authToken")}`,
                 },
-                body: JSON.stringify({ title, body, template_id: templateId }),
+                body: JSON.stringify({ title, body, template_id: templateId, label_ids: selectedLabelIds }),
             });
 
             if(!res.ok) {
@@ -198,15 +206,21 @@ export default function IssueCreatePage({ project, authToken, template, labels =
                             </label>
                         </div>
 
-                        {templateLabels.length > 0 && (
+                        {labels.length > 0 && (
                             <>
                                 <p className="blog-settings__field-title">{t("newIssue.labelsTitle")}</p>
-                                <div className="issue-card__labels">
-                                    {templateLabels.map((label) => (
-                                        <span key={label.id} className="issue-label" style={applyLabelStyle(label)}>
-                                            {label.name}
-                                        </span>
-                                    ))}
+                                <div className="issue-label-grid">
+                                    {labels.map((label) => {
+                                        const labelId = Number(label.id);
+                                        const isSelected = selectedLabelIds.includes(labelId);
+
+                                        return (
+                                            <button key={label.id} type="button" className={`issue-label-chip issue-label-chip--selectable ${isSelected ? "is-selected" : ""}`} onClick={() => handleToggleLabel(labelId)}>
+                                                <span className="issue-label-chip__color" style={{ background: label.color }}></span>
+                                                <span>{label.name}</span>
+                                            </button>
+                                        );
+                                    })}
                                 </div>
                             </>
                         )}

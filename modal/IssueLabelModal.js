@@ -51,6 +51,7 @@ export default function IssueLabelModal({ isOpen, label, onSubmit, onRequestClos
     const t = useTranslations("IssueSettings");
     const [name, setName] = useState("");
     const [color, setColor] = useState("#2ca84f");
+    const [userSelectable, setUserSelectable] = useState(true);
     const [isPaletteOpen, setIsPaletteOpen] = useState(false);
     const popoverRef = useRef(null);
     const triggerRef = useRef(null);
@@ -62,6 +63,7 @@ export default function IssueLabelModal({ isOpen, label, onSubmit, onRequestClos
 
         setName(label?.name || "");
         setColor(label?.color || "#2ca84f");
+        setUserSelectable(typeof label?.user_selectable === "boolean" ? label.user_selectable : true);
         setIsPaletteOpen(false);
     }, [isOpen, label]);
 
@@ -90,7 +92,7 @@ export default function IssueLabelModal({ isOpen, label, onSubmit, onRequestClos
     const handleSubmit = (event) => {
         event.preventDefault();
         const normalized = normalizeHex(color) || "#2ca84f";
-        onSubmit({ id: label?.id || null, name, color: normalized });
+        onSubmit({ id: label?.id || null, name, color: normalized, user_selectable: userSelectable });
     };
 
     const resolvedColor = normalizeHex(color) || "#2ca84f";
@@ -164,6 +166,17 @@ export default function IssueLabelModal({ isOpen, label, onSubmit, onRequestClos
                                     </div>
                                 </div>
                             )}
+                        </div>
+
+                        <p className="blog-settings__field-title">{t("labels.applyAccessTitle")}</p>
+                        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                            <button type="button" className={`button button--size-m ${userSelectable ? "button--type-primary" : "button--type-minimal"}`} onClick={() => setUserSelectable(true)}>
+                                {t("labels.applyAccessEveryone")}
+                            </button>
+
+                            <button type="button" className={`button button--size-m ${!userSelectable ? "button--type-primary" : "button--type-minimal"}`} onClick={() => setUserSelectable(false)}>
+                                {t("labels.applyAccessTeamOnly")}
+                            </button>
                         </div>
 
                         <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "16px" }}>

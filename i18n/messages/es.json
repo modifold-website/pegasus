@@ -65,7 +65,7 @@
     }
   },
   "Layout": {
-    "stagingBanner": "Entorno de staging: solo para pruebas internas. Algunas funciones pueden no estar disponibles o ser inestables."
+    "stagingBanner": "Entorno de staging: algunas funciones pueden no funcionar o ser inestables."
   },
   "NotFound": {
     "title": "Página no encontrada",
@@ -1705,6 +1705,9 @@
       "name": "Label name",
       "namePlaceholder": "Bug",
       "color": "Label color",
+      "applyAccessTitle": "Who can apply this label",
+      "applyAccessEveryone": "Everyone",
+      "applyAccessTeamOnly": "Project team only",
       "save": "Save label",
       "edit": "Edit",
       "delete": "Delete",

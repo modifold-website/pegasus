@@ -65,7 +65,7 @@
     }
   },
   "Layout": {
-    "stagingBanner": "Staging environment: internal testing only. Some features may be unavailable or unstable."
+    "stagingBanner": "Staging environment: some features may not work or may be unstable."
   },
   "NotFound": {
     "title": "Page not found",
@@ -1706,6 +1706,9 @@
       "name": "Label name",
       "namePlaceholder": "Bug",
       "color": "Label color",
+      "applyAccessTitle": "Who can apply this label",
+      "applyAccessEveryone": "Everyone",
+      "applyAccessTeamOnly": "Project team only",
       "save": "Save label",
       "edit": "Edit",
       "delete": "Delete",

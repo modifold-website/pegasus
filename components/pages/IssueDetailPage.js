@@ -48,6 +48,7 @@ const applyLabelStyle = (label) => ({
     background: `${label.color}22`,
     color: label.color,
     border: `1px solid ${label.color}44`,
+    padding: "3px 10px"
 });
 
 const buildCommentTree = (comments) => {
@@ -432,6 +433,15 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
         }
     };
 
+    const getEventLabel = (event) => {
+        const labelId = event?.meta?.label_id;
+        if(labelId === undefined || labelId === null) {
+            return null;
+        }
+
+        return labelLookup.get(labelId) || labelLookup.get(Number(labelId)) || labelLookup.get(String(labelId)) || null;
+    };
+
     const renderEvent = (event) => {
         if(event.type === "issue_opened") {
             return t("history.opened", { name: event.actor?.username || t("history.system") });
@@ -456,6 +466,28 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
         }
 
         return t("history.generic", { name: event.actor?.username || t("history.system") });
+    };
+
+    const renderEventMessage = (event) => {
+        if(event.type !== "label_added" && event.type !== "label_removed") {
+            return <span style={{ fontWeight: "500" }}>{renderEvent(event)}</span>;
+        }
+
+        const label = getEventLabel(event);
+        const actorName = event.actor?.username || t("history.system");
+        const labelName = label?.name || t("history.unknownLabel");
+        const historyKey = event.type === "label_added" ? "history.labelAdded" : "history.labelRemoved";
+        const rawMessage = t(historyKey, { name: actorName, label: labelName });
+        const messageWithoutLabel = rawMessage.replace(labelName, "").replace(/\s{2,}/g, " ").replace(/\s+([.,!?])/g, "$1").trim();
+
+        return (
+            <span style={{ fontWeight: "500", display: "inline-flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
+                <span>{messageWithoutLabel}</span>
+                <span className="issue-label" style={label ? applyLabelStyle(label) : undefined}>
+                    {labelName}
+                </span>
+            </span>
+        );
     };
 
     const renderMarkdown = (value) => (
@@ -534,12 +566,12 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                             />
 
                             <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}>
-                                <button type="button" className="button button--size-m button--type-minimal" onClick={cancelCommentEdit} disabled={isCommentSaving}>
+                                <button type="button" className="button button--size-m button--type-minimal button--active-transform" onClick={cancelCommentEdit} disabled={isCommentSaving}>
                                     {t("common.cancel")}
                                 </button>
 
-                                <button type="button" className="button button--size-m button--type-primary" disabled={isCommentSaving} onClick={() => handleCommentEditSubmit(comment.id)}>
-                                    {isCommentSaving ? "Saving..." : "Save"}
+                                <button type="button" className="button button--size-m button--type-primary button--active-transform" disabled={isCommentSaving} onClick={() => handleCommentEditSubmit(comment.id)}>
+                                    {isCommentSaving ? t("common.saving") : t("common.save")}
                                 </button>
                             </div>
                         </div>
@@ -570,11 +602,11 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                         />
 
                         <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}>
-                            <button type="button" className="button button--size-m button--type-minimal" onClick={() => { setReplyTo(null); setReplyText(""); }}>
+                            <button type="button" className="button button--size-m button--type-minimal button--active-transform" onClick={() => { setReplyTo(null); setReplyText(""); }}>
                                 {t("common.cancel")}
                             </button>
 
-                            <button type="button" className="button button--size-m button--type-primary" disabled={isPosting} onClick={() => handleCommentSubmit(replyText, comment.id)}>
+                            <button type="button" className="button button--size-m button--type-primary button--active-transform" disabled={isPosting} onClick={() => handleCommentSubmit(replyText, comment.id)}>
                                 {isPosting ? t("common.sending") : t("comments.send")}
                             </button>
                         </div>
@@ -590,50 +622,48 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
         <div className="issue-detail-layout">
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
                 <div className="content content--padding issue-detail-header">
-                    <div className="issue-card__title">
-                        <span className={`issue-status-badge issue-status-badge--${issue.status === "closed" ? "closed" : "open"}`}>
-                            {issue.status === "closed" ? t("status.closed") : t("status.open")}
-                        </span>
+                    <svg className={`issue-badge--${issue.status === "closed" ? "closed" : "open"}`} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" color="currentColor">
+                        <path d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2" stroke="currentColor" strokeLinecap="round" strokeWidth="2"></path>
+                        <path d="M4.64856 5.07876C4.7869 4.93211 4.92948 4.7895 5.0761 4.65111M7.94733 2.72939C8.12884 2.6478 8.31313 2.57128 8.5 2.5M2.5 8.5C2.57195 8.31127 2.64925 8.12518 2.73172 7.94192" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
+                        <path d="M12 8V16M16 12L8 12" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
+                    </svg>
 
-                        {isEditingIssue ? (
-                            <input
-                                className="text-input"
-                                value={editIssueTitle}
-                                onChange={(event) => setEditIssueTitle(event.target.value)}
-                                maxLength={120}
-                                style={{ maxWidth: "500px", fontSize: "20px", fontWeight: "500", marginTop: "-1px" }}
-                            />
-                        ) : (
-                            <h1>{issue.title}</h1>
-                        )}
-                    </div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                        <div className="issue-card__title">
+                            {isEditingIssue ? (
+                                <input
+                                    className="text-input"
+                                    value={editIssueTitle}
+                                    onChange={(event) => setEditIssueTitle(event.target.value)}
+                                    maxLength={120}
+                                    style={{ maxWidth: "500px", fontSize: "20px", fontWeight: "500" }}
+                                />
+                            ) : (
+                                <h1>{issue.title}</h1>
+                            )}
+                        </div>
 
-                    <div className="issue-detail-meta">
-                        {(issue.labels || []).length > 0 && (
-                            (issue.labels || []).map((label) => (
-                                <span key={label.id} className="issue-label" style={applyLabelStyle(label)}>
-                                    {label.name}
-                                </span>
-                            ))
-                        )}
-
-                        <span>#{issue.id}</span>
-
-                        {issue.author && (
-                            <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
-                                {t("meta.by")}
-
-                                <Link href={issue.author.profile_url || `/user/${issue.author.slug || ""}`} className="issue-comment__author" style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
-                                    {issue.author.avatar && (
-                                        <img src={issue.author.avatar} alt={issue.author.username} style={{ width: "18px", height: "18px", borderRadius: "50%" }} />
-                                    )}
-
-                                    {issue.author.username}
-                                </Link>
+                        <div className="issue-detail-meta">
+                            <span className={`issue-status-badge issue-status-badge--${issue.status === "closed" ? "closed" : "open"}`}>
+                                {issue.status === "closed" ? t("status.closed") : t("status.open")}
                             </span>
-                        )}
 
-                        <span>{formatDateShort(issue.created_at, locale)}</span>
+                            {issue.author && (
+                                <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                                    {t("meta.by")}
+
+                                    <Link href={issue.author.profile_url || `/user/${issue.author.slug || ""}`} className="issue-comment__author" style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                                        {issue.author.avatar && (
+                                            <img src={issue.author.avatar} alt={issue.author.username} style={{ width: "18px", height: "18px", borderRadius: "50%" }} />
+                                        )}
+
+                                        {issue.author.username}
+                                    </Link>
+                                </span>
+                            )}
+
+                            <span>{formatDateShort(issue.created_at, locale)}</span>
+                        </div>
                     </div>
                 </div>
 
@@ -762,7 +792,7 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                                     </div>
 
                                     <div className="issue-event__info">
-                                        <span style={{ fontWeight: "500" }}>{renderEvent(event)}</span>
+                                        {renderEventMessage(event)}
                                         <span style={{ color: "var(--theme-color-text-secondary)" }}>{formatDateTime(event.created_at, locale)}</span>
                                     </div>
                                 </div>
@@ -783,7 +813,7 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                         />
 
                         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                            <button type="button" className="button button--size-m button--type-primary" disabled={isPosting} onClick={() => handleCommentSubmit(commentText)}>
+                            <button type="button" className="button button--size-m button--type-primary button--active-transform" disabled={isPosting} onClick={() => handleCommentSubmit(commentText)}>
                                 {isPosting ? t("common.sending") : t("comments.send")}
                             </button>
                         </div>
@@ -800,7 +830,7 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                             <>
                                 <button
                                     type="button"
-                                    className="button button--size-m button--type-secondary button--with-icon"
+                                    className="button button--size-m button--type-secondary button--with-icon button--active-transform"
                                     style={{ "--icon-size": "16px" }}
                                     onClick={() => {
                                         setIsEditingIssue(false);
@@ -819,15 +849,15 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                                     {t("common.cancel")}
                                 </button>
 
-                                <button type="button" className="button button--size-m button--type-primary" onClick={handleIssueSave} disabled={isIssueSaving}>
-                                    {isIssueSaving ? "Saving..." : "Save"}
+                                <button type="button" className="button button--size-m button--type-primary button--active-transform" onClick={handleIssueSave} disabled={isIssueSaving}>
+                                    {isIssueSaving ? t("common.saving") : t("common.save")}
                                 </button>
                             </>
                         ) : (
                             <>
                                 {canManage && (
                                     issue.status === "open" ? (
-                                        <button type="button" className="button button--size-m button--type-secondary button--with-icon" style={{ "--icon-size": "16px" }} onClick={() => handleStatusChange("close")} disabled={isRefreshing}>
+                                        <button type="button" className="button button--size-m button--type-secondary button--with-icon button--active-transform" style={{ "--icon-size": "16px" }} onClick={() => handleStatusChange("close")} disabled={isRefreshing}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
                                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
@@ -836,7 +866,7 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                                             {t("actions.close")}
                                         </button>
                                     ) : (
-                                        <button type="button" className="button button--size-m button--type-primary button--with-icon" style={{ "--icon-size": "16px" }} onClick={() => handleStatusChange("reopen")} disabled={isRefreshing}>
+                                        <button type="button" className="button button--size-m button--type-primary button--with-icon button--active-transform" style={{ "--icon-size": "16px" }} onClick={() => handleStatusChange("reopen")} disabled={isRefreshing}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
                                                 <path d="M7 11V7a5 5 0 0 1 9.9-1"/>
@@ -848,7 +878,7 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                                 )}
 
                                 {canEditIssue && (
-                                    <button type="button" className="button button--size-m button--type-secondary button--with-icon" style={{ "--icon-size": "16px" }} onClick={() => { setIsEditingIssue(true); setIsIssuePreviewVisible(false); }}>
+                                    <button type="button" className="button button--size-m button--type-secondary button--with-icon button--active-transform" style={{ "--icon-size": "16px" }} onClick={() => { setIsEditingIssue(true); setIsIssuePreviewVisible(false); }}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>
                                             <path d="m15 5 4 4"/>
@@ -861,14 +891,6 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                         )}
                     </div>
                 )}
-
-                <div className="content content--padding">
-                    <h2>{t("sidebar.status")}</h2>
-                    
-                    <span className={`issue-status-badge issue-status-badge--${issue.status === "closed" ? "closed" : "open"}`}>
-                        {issue.status === "closed" ? t("status.closed") : t("status.open")}
-                    </span>
-                </div>
 
                 <div className="content content--padding" ref={labelMenuRef}>
                     <h2>{t("sidebar.labels")}</h2>
@@ -887,7 +909,7 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
 
                     {canManage && (
                         <div className="issue-label-manage" style={{ position: "relative" }}>
-                            <button type="button" className="button button--size-m button--type-minimal" onClick={() => setLabelMenuOpen((prev) => !prev)}>
+                            <button type="button" className="button button--size-m button--type-minimal button--active-transform" onClick={() => setLabelMenuOpen((prev) => !prev)}>
                                 {t("sidebar.manageLabels")}
                             </button>
 
@@ -940,6 +962,17 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                                 </Tooltip>
                             </div>
                         )}
+
+                        <div className="license">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="4" x2="20" y1="9" y2="9"></line>
+                                <line x1="4" x2="20" y1="15" y2="15"></line>
+                                <line x1="10" x2="8" y1="3" y2="21"></line>
+                                <line x1="16" x2="14" y1="3" y2="21"></line>
+                            </svg>
+                            
+                            <span>ID: {issue.id}</span>
+                        </div>
                     </div>
                 </div>
             </aside>

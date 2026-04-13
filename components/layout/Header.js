@@ -248,7 +248,7 @@ export default function Header({ authToken }) {
                                             <div className="header--bell__unread-count counter-label">{unreadLabel}</div>
                                         )}
                                         
-                                        <div data-loaded="true" className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--has-preview andropov-image" style={{ aspectRatio: "1 / 1", width: "40px", height: "40px", maxWidth: "none", "--background-color": "var(--theme-color-background)" }}>
+                                        <div data-loaded="true" className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--has-preview andropov-image" style={{ aspectRatio: "1 / 1", width: "34px", height: "34px", maxWidth: "none", "--background-color": "var(--theme-color-background)" }}>
                                             <Image width={40} height={40} src={user?.avatar} alt="" loading="lazy" />
                                         </div>
 

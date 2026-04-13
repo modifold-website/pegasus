@@ -26,6 +26,16 @@ export default function DescriptionSettings({ project, authToken }) {
         setSavedDescription(nextDescription);
     }, [project.description]);
 
+    const resizeTextarea = () => {
+        const textarea = textareaRef.current;
+        if(!textarea) {
+            return;
+        }
+
+        textarea.style.height = "auto";
+        textarea.style.height = `${Math.max(textarea.scrollHeight, 260)}px`;
+    };
+
     const handleSubmit = async (e) => {
         if(e) {
             e.preventDefault();
@@ -69,6 +79,7 @@ export default function DescriptionSettings({ project, authToken }) {
                 return;
             }
 
+            resizeTextarea();
             textareaRef.current.focus();
             if(typeof selectionStart === "number" && typeof selectionEnd === "number") {
                 textareaRef.current.setSelectionRange(selectionStart, selectionEnd);
@@ -130,6 +141,16 @@ export default function DescriptionSettings({ project, authToken }) {
         const nextValue = `${description.slice(0, lineStart)}${transformed}${description.slice(end)}`;
         updateTextareaValue(nextValue, lineStart, lineStart + transformed.length);
     };
+
+    useEffect(() => {
+        if(isPreviewVisible) {
+            return;
+        }
+
+        requestAnimationFrame(() => {
+            resizeTextarea();
+        });
+    }, [description, isPreviewVisible]);
 
     return (
         <>
@@ -203,19 +224,16 @@ export default function DescriptionSettings({ project, authToken }) {
                                         <>
                                             <div className="field field--default textarea markdown-editor__panel">
                                                 <label style={{ marginBottom: "0" }} className="field__wrapper">
-                                                    <textarea ref={textareaRef} value={description} onChange={(e) => setDescription(e.target.value)} placeholder={t("description.placeholder")} className="autosize textarea__input markdown-editor__textarea" minLength={50} />
+                                                    <textarea ref={textareaRef} value={description} onChange={(e) => setDescription(e.target.value)} onInput={resizeTextarea} placeholder={t("description.placeholder")} className="autosize textarea__input markdown-editor__textarea" minLength={50} />
                                                 </label>
                                             </div>
 
-                                            <p className="markdown-editor__support">
-                                                {t("description.editorSupportText")}
-                                            </p>
                                         </>
                                     )}
 
                                     {isPreviewVisible && (
                                         <div className="markdown-editor__preview markdown-editor__panel markdown-body">
-                                            <div className="markdown-editor__preview-scroll">
+                                            <div className="markdown-editor__preview-scroll" style={{ maxHeight: "fit-content" }}>
                                                 <ReactMarkdown
                                                     remarkPlugins={[remarkGfm]}
                                                     rehypePlugins={[rehypeRaw]}

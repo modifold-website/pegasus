@@ -122,13 +122,13 @@ export default function VerificationRequestModal({ isOpen, onRequestClose, onSub
                             <span>{t("confirm")}</span>
                         </label>
 
-                        <div style={{ display: "flex", gap: "8px", marginTop: "18px" }}>
-                            <button type="submit" className="button button--size-m button--type-primary" disabled={isSubmitting}>
-                                {isSubmitting ? t("submitting") : t("submit")}
-                            </button>
-
+                        <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "16px" }}>
                             <button type="button" className="button button--size-m button--type-minimal" onClick={onRequestClose}>
                                 {t("cancel")}
+                            </button>
+
+                            <button type="submit" className="button button--size-m button--type-primary" disabled={isSubmitting}>
+                                {isSubmitting ? t("submitting") : t("submit")}
                             </button>
                         </div>
                     </form>

@@ -25,6 +25,7 @@ const applyLabelStyle = (label) => ({
     background: `${label.color}22`,
     color: label.color,
     border: `1px solid ${label.color}44`,
+    padding: "3px 10px"
 });
 
 export default function IssuesPage({ project, initialIssues, templates = [] }) {
@@ -341,32 +342,11 @@ export default function IssuesPage({ project, initialIssues, templates = [] }) {
 
                                 {t("newIssue.button")}
                             </button>
-
-                            {initialIssues.canManage && (
-                                <Link href={`${basePath}/${project.slug}/settings/issues`} className="button button--size-m button--type-minimal button--active-transform button--with-icon" data-ripple>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/>
-                                        <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/>
-                                    </svg>
-
-                                    {t("sidebar.manageLabels")}
-                                </Link>
-                            )}
                         </div>
                     </div>
                 </aside>
 
                 <section className="issues-content">
-                    <div className="content content--padding issues-header">
-                        <div className="issues-title-row">
-                            <div className="issues-title-block">
-                                <h1>{t("title")}</h1>
-
-                                <p>{status === "closed" ? t("filters.closed") : t("filters.open")} · {issueItems.length}</p>
-                            </div>
-                        </div>
-                    </div>
-
                     <div className="issues-list">
                         {issueItems.length === 0 ? (
                             <div className="issues-empty">{t("empty")}</div>
@@ -376,30 +356,42 @@ export default function IssuesPage({ project, initialIssues, templates = [] }) {
                                     <Link className="issue-card__overlay" href={`${basePath}/${project.slug}/issues/${issue.id}`} aria-label={issue.title} />
 
                                     <div className="issue-card__main">
-                                        <div className="issue-card__title">
-                                            <span className={`issue-status-badge issue-status-badge--${issue.status === "closed" ? "closed" : "open"}`}>
-                                                {issue.status === "closed" ? t("status.closed") : t("status.open")}
-                                            </span>
+                                        <svg className={`issue-badge--${issue.status === "closed" ? "closed" : "open"}`} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" color="currentColor">
+                                            <path d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2" stroke="currentColor" strokeLinecap="round" strokeWidth="2"></path>
+                                            <path d="M4.64856 5.07876C4.7869 4.93211 4.92948 4.7895 5.0761 4.65111M7.94733 2.72939C8.12884 2.6478 8.31313 2.57128 8.5 2.5M2.5 8.5C2.57195 8.31127 2.64925 8.12518 2.73172 7.94192" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
+                                            <path d="M12 8V16M16 12L8 12" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
+                                        </svg>
 
-                                            <p>{issue.title}</p>
-                                        </div>
+                                        <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                                            <div className="issue-card__title">
+                                                <p>{issue.title}</p>
+                                            </div>
 
-                                        <div className="issue-card__meta">
-                                            {(issue.labels || []).length > 0 && (
-                                                (issue.labels || []).map((label) => (
-                                                    <span key={label.id} className="issue-label" style={applyLabelStyle(label)}>
-                                                        {label.name}
-                                                    </span>
-                                                ))
-                                            )}
+                                            <div className="issue-card__meta">
+                                                {(issue.labels || []).length > 0 && (
+                                                    (issue.labels || []).map((label) => (
+                                                        <span key={label.id} className="issue-label" style={applyLabelStyle(label)}>
+                                                            {label.name}
+                                                        </span>
+                                                    ))
+                                                )}
 
-                                            <span>#{issue.id}</span>
+                                                ·
 
-                                            {issue.author && (
-                                                <span>{t("meta.by")} {issue.author.username}</span>
-                                            )}
+                                                {issue.author && (
+                                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "6px" }}>                                                        
+                                                        {issue.author.avatar && (
+                                                            <img src={issue.author.avatar} alt={issue.author.username} style={{ width: "18px", height: "18px", borderRadius: "50%" }} />
+                                                        )}
+                                                        
+                                                        {issue.author.username}
+                                                    </div>
+                                                )}
 
-                                            <span>{formatDate(issue.created_at, locale)}</span>
+                                                ·
+
+                                                <span>{formatDate(issue.created_at, locale)}</span>
+                                            </div>
                                         </div>
                                     </div>
 

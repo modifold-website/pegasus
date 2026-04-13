@@ -458,7 +458,9 @@ export default function GallerySettings({ project, authToken }) {
                 </div>
 
                 {galleryImages.length === 0 ? (
-                    <p style={{ color: "var(--theme-color-text-secondary)" }}>{tProject("gallery.noImages")}</p>
+                    <div className="subsite-empty-feed">
+                        <p className="subsite-empty-feed__title">{tProject("gallery.noImages")}</p>
+                    </div>
                 ) : (
                     <div className="gallery-settings-grid">
                         {galleryImages.map((image) => (

@@ -167,7 +167,7 @@
     font-size: 1.125rem;
     font-weight: 600;
     grid-template: "download title stats";
-    grid-template-columns: calc(2.80rem + .5rem) 3.95fr 1fr;
+    grid-template-columns: calc(2.25rem + .5rem) minmax(0, 2.35fr) minmax(120px, 1fr);
     justify-content: left;
     margin-inline: .75rem;
     margin-bottom: .5rem;
@@ -178,8 +178,9 @@
 .all-versions .card-header div:nth-child(2) {
     grid-area: title;
 }
-.all-versions .card-header div:nth-child(4) {
+.all-versions .card-header div:nth-child(3) {
     grid-area: stats;
+    text-align: center;
 }
 .all-versions .version-button {
     -moz-column-gap: 1rem;
@@ -189,7 +190,7 @@
         "download title stats"
         "download metadata stats"
         "download dummy stats";
-    grid-template-columns: calc(2.25rem + .5rem) 2.35fr 1fr;
+    grid-template-columns: calc(2.25rem + .5rem) minmax(0, 2.35fr) minmax(120px, 1fr);
     justify-content: left;
     padding: 0.75rem;
     align-items: center;
@@ -821,4 +822,17 @@ body.dark .wiki-powered-by img {
     .wiki-shell {
         grid-template-columns: 1fr;
     }
+}
+.fixed-background-teleport-color {
+    background: linear-gradient(to bottom, var(--_color), transparent);
+    height: 60rem;
+    opacity: .075;
+    pointer-events: none;
+    z-index: -1;
+    width: 100%;
+    position: absolute;
+    inset: 0;
+}
+body.dark .fixed-background-teleport-color {
+    opacity: 0.02;
 }

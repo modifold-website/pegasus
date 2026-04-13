@@ -150,7 +150,7 @@ export default function IssuesSettings({ project, authToken, initialTemplates = 
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
                             <p className="blog-settings__field-title" style={{ marginBottom: "0" }}>{t("template.sectionTitle")}</p>
                             
-                            <Link className="button button--size-m button--type-primary button--active-transform" href={getProjectPath(project, "/settings/issues/templates/new")}>
+                            <Link className="button button--size-m button--type-minimal button--active-transform" href={getProjectPath(project, "/settings/issues/templates/new")}>
                                 {t("template.create")}
                             </Link>
                         </div>
@@ -191,7 +191,7 @@ export default function IssuesSettings({ project, authToken, initialTemplates = 
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
                             <p className="blog-settings__field-title" style={{ marginBottom: "0" }}>{t("labels.sectionTitle")}</p>
                             
-                            <button className="button button--size-m button--type-primary button--active-transform" onClick={() => openLabelModal()}>
+                            <button className="button button--size-m button--type-minimal button--active-transform" onClick={() => openLabelModal()}>
                                 {t("labels.create")}
                             </button>
                         </div>

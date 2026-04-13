@@ -1660,6 +1660,8 @@
     "common": {
       "close": "Close",
       "cancel": "Cancel",
+      "save": "Kaydet",
+      "saving": "Kaydediliyor...",
       "creating": "Creating...",
       "sending": "Sending..."
     }

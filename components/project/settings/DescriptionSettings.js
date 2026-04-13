@@ -207,9 +207,6 @@ export default function DescriptionSettings({ project, authToken }) {
                                                 </label>
                                             </div>
 
-                                            <p className="markdown-editor__support">
-                                                {t("description.editorSupportText")}
-                                            </p>
                                         </>
                                     )}
 

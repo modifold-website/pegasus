@@ -42,7 +42,7 @@ export default function ModerationTabs() {
     }, [pathname]);
 
     return (
-        <nav className="pagination moderation-tabs" ref={tabsRef} aria-label={t("tabs.ariaLabel") || "Moderation sections"}>
+        <nav className="pagination moderation-tabs" ref={tabsRef} aria-label="Moderation sections">
             <Link href="/moderation" data-ripple className="pagination__button" aria-current={pathname === "/moderation" ? "page" : undefined}>
                 {t("tabs.projects")}
             </Link>

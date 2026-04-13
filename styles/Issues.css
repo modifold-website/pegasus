@@ -143,13 +143,13 @@
 }
 .issue-card__main {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: row;
+    gap: 10px;
     min-width: 0;
     position: relative;
 }
 .issue-card__title {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     margin: 0;
     display: flex;
@@ -160,7 +160,7 @@
 .issue-card__meta {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
     font-size: 14px;
     color: var(--theme-color-text-secondary);
@@ -190,9 +190,9 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
-    padding: 4px 12px;
+    padding: 4px 10px;
     line-height: normal;
     border-radius: 999px;
 }
@@ -201,8 +201,18 @@
     color: #2ca84f;
 }
 .issue-status-badge--closed {
-    background: rgba(212, 64, 64, 0.16);
-    color: #d44040;
+    color: #ad46ff;
+    background: rgb(173 70 255 / 10%);
+}
+.issue-badge--open {
+    fill: none;
+    color: #2ca84f;
+    margin-top: 3px;
+}
+.issue-badge--closed {
+    fill: none;
+    color: #ad46ff;
+    margin-top: 3px;
 }
 .issue-card__comments {
     display: inline-flex;
@@ -272,7 +282,7 @@
 }
 .issue-detail-header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
 }
 .issue-detail-header h1 {

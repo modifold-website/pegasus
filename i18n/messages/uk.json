@@ -1662,6 +1662,8 @@
     "common": {
       "close": "Close",
       "cancel": "Cancel",
+      "save": "Зберегти",
+      "saving": "Збереження...",
       "creating": "Creating...",
       "sending": "Sending..."
     }

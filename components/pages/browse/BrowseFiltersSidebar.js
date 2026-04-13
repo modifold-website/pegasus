@@ -9,7 +9,7 @@ export default function BrowseFiltersSidebar({ t, tags = [], selectedTags = [], 
 
     return (
         <div className="content content--padding sidebar--browse">
-            <h2 style={{ fontSize: "18px", marginBottom: "6px", fontWeight: "700" }}>{t("categories")}</h2>
+            <h2 style={{ fontSize: "18px", marginBottom: "6px", fontWeight: "600" }}>{t("categories")}</h2>
 
             <ul className="category-list" role="list">
                 {normalizedTags.map((tag) => (

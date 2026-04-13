@@ -197,7 +197,9 @@ export default function ModerationProjectPage({ project, authToken, initialModer
                 <p className="blog-settings__field-title" style={{ marginBottom: "8px" }}>{t("moderation.history.title")}</p>
 
                 {moderationHistory.length === 0 ? (
-                    <p>{t("moderation.history.empty")}</p>
+                    <div className="subsite-empty-feed">
+                        <p className="subsite-empty-feed__title">{t("moderation.history.empty")}</p>
+                    </div>
                 ) : (
                     <div className="history-list">
                         {moderationHistory.map((entry) => (

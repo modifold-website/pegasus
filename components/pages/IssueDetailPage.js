@@ -432,6 +432,15 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
         }
     };
 
+    const getEventLabel = (event) => {
+        const labelId = event?.meta?.label_id;
+        if(labelId === undefined || labelId === null) {
+            return null;
+        }
+
+        return labelLookup.get(labelId) || labelLookup.get(Number(labelId)) || labelLookup.get(String(labelId)) || null;
+    };
+
     const renderEvent = (event) => {
         if(event.type === "issue_opened") {
             return t("history.opened", { name: event.actor?.username || t("history.system") });
@@ -456,6 +465,28 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
         }
 
         return t("history.generic", { name: event.actor?.username || t("history.system") });
+    };
+
+    const renderEventMessage = (event) => {
+        if(event.type !== "label_added" && event.type !== "label_removed") {
+            return <span style={{ fontWeight: "500" }}>{renderEvent(event)}</span>;
+        }
+
+        const label = getEventLabel(event);
+        const actorName = event.actor?.username || t("history.system");
+        const labelName = label?.name || t("history.unknownLabel");
+        const historyKey = event.type === "label_added" ? "history.labelAdded" : "history.labelRemoved";
+        const rawMessage = t(historyKey, { name: actorName, label: labelName });
+        const messageWithoutLabel = rawMessage.replace(labelName, "").replace(/\s{2,}/g, " ").replace(/\s+([.,!?])/g, "$1").trim();
+
+        return (
+            <span style={{ fontWeight: "500", display: "inline-flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
+                <span>{messageWithoutLabel}</span>
+                <span className="issue-label" style={label ? applyLabelStyle(label) : undefined}>
+                    {labelName}
+                </span>
+            </span>
+        );
     };
 
     const renderMarkdown = (value) => (
@@ -762,7 +793,7 @@ export default function IssueDetailPage({ project, authToken, initialIssue, init
                                     </div>
 
                                     <div className="issue-event__info">
-                                        <span style={{ fontWeight: "500" }}>{renderEvent(event)}</span>
+                                        {renderEventMessage(event)}
                                         <span style={{ color: "var(--theme-color-text-secondary)" }}>{formatDateTime(event.created_at, locale)}</span>
                                     </div>
                                 </div>

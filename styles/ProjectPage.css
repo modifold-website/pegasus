@@ -822,3 +822,16 @@ body.dark .wiki-powered-by img {
         grid-template-columns: 1fr;
     }
 }
+.fixed-background-teleport-color {
+    background: linear-gradient(to bottom, var(--_color), transparent);
+    height: 60rem;
+    opacity: .075;
+    pointer-events: none;
+    z-index: -1;
+    width: 100%;
+    position: absolute;
+    inset: 0;
+}
+body.dark .fixed-background-teleport-color {
+    opacity: 0.02;
+}

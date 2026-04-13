@@ -31,12 +31,13 @@ export default async function Layout({ children, params }) {
     }
 
     const project = await projectRes.json();
-    const featuredImage = project.gallery?.find((image) => image.featured === 1 || image.featured === true);
+    const projectColorValue = Number(project?.color);
+    const projectColorHex = Number.isFinite(projectColorValue) ? `#${Math.max(0, Math.min(0xFFFFFF, Math.round(projectColorValue))).toString(16).padStart(6, "0").toUpperCase()}` : null;
 
     return (
         <>
-            {featuredImage && (
-                <img src={featuredImage.url} className="fixed-background-teleport" alt="" />
+            {projectColorHex && (
+                <div className="fixed-background-teleport-color" style={{ "--_color": projectColorHex }} />
             )}
 
             <div className="layout">

@@ -346,7 +346,8 @@
       "profile": "Profil",
       "appearance": "Görünüm",
       "language": "Dil",
-      "accountSecurity": "Güvenlik"
+      "accountSecurity": "Güvenlik",
+      "featureFlags": "Feature flags"
     },
     "username": "Kullanıcı adı",
     "slug": {
@@ -409,6 +410,15 @@
     "appearance": {
       "title": "Görünüm",
       "description": "Modifold’un bu cihazda nasıl görüneceğini seçin."
+    },
+    "flags": {
+      "title": "Feature flags",
+      "metadata": {
+        "title": "Feature flags — Modifold"
+      },
+      "defaultLabel": "Default:",
+      "defaultValue": "false",
+      "ariaLabelToggle": "Toggle"
     },
     "accountSecurity": {
       "title": "Güvenlik",
@@ -601,7 +611,8 @@
         "name": "Ad",
         "summary": "Kısa açıklama",
         "url": "URL",
-        "visibility": "Görünürlük"
+        "visibility": "Görünürlük",
+        "issues": "Issues"
       },
       "placeholders": {
         "name": "Proje adı",
@@ -611,7 +622,12 @@
       "hints": {
         "summary": "En az 30 karakter.",
         "url": "URL küçük harf olmalı, yalnızca harf ve rakam içermeli ve tire içerebilir. Maksimum 30 karakter.",
-        "visibility": "Herkese açık: aramada ve profillerde görünür. Liste dışı: yayınlı ama aramada görünmez. Özel: yalnızca üyelere açık."
+        "visibility": "Herkese açık: aramada ve profillerde görünür. Liste dışı: yayınlı ama aramada görünmez. Özel: yalnızca üyelere açık.",
+        "issues": "Controls whether the Issues tab and issue pages are available for this project."
+      },
+      "issues": {
+        "enabled": "Enabled",
+        "disabled": "Disabled"
       },
       "visibility": {
         "public": "Herkese açık",

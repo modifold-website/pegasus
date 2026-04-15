@@ -2,10 +2,12 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { useRouter } from "next/navigation";
 
 export default function SettingsLanguagePage() {
     const t = useTranslations("SettingsBlogPage");
     const locale = useLocale();
+    const router = useRouter();
 
     const [selectedLocale, setSelectedLocale] = useState(locale || "en");
     const languages = useMemo(() => ([
@@ -22,9 +24,13 @@ export default function SettingsLanguagePage() {
     }, [locale]);
 
     const setLanguage = (newLocale) => {
+        if(newLocale === locale) {
+            return;
+        }
+
         setSelectedLocale(newLocale);
         document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`;
-        window.location.reload();
+        router.refresh();
     };
 
     return (

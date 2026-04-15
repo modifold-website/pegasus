@@ -13,6 +13,7 @@ export default function ProjectTabs({ project }) {
     const [indicatorStyle, setIndicatorStyle] = useState({ width: 0, left: 0, opacity: 0 });
     const basePath = getProjectBasePath(project?.project_type);
     const [issuesCount, setIssuesCount] = useState(null);
+    const showIssuesTab = project?.issues_enabled;
 
     const isActive = (href) => pathname === href;
     const isWikiActive = pathname === `${basePath}/${project.slug}/wiki` || pathname.startsWith(`${basePath}/${project.slug}/wiki/`);
@@ -39,7 +40,7 @@ export default function ProjectTabs({ project }) {
     };
 
     useEffect(() => {
-        if(!project?.slug) {
+        if(!project?.slug || !showIssuesTab) {
             setIssuesCount(null);
             return;
         }
@@ -68,7 +69,7 @@ export default function ProjectTabs({ project }) {
 
         loadCount();
         return () => controller.abort();
-    }, [project?.slug]);
+    }, [project?.slug, showIssuesTab]);
 
     useLayoutEffect(() => {
         const updateIndicator = () => {
@@ -94,7 +95,7 @@ export default function ProjectTabs({ project }) {
             cancelAnimationFrame(raf);
             window.removeEventListener("resize", updateIndicator);
         };
-    }, [pathname, issuesCount, project?.gallery?.length, project?.hytale_wiki_slug]);
+    }, [pathname, issuesCount, project?.gallery?.length, project?.hytale_wiki_slug, showIssuesTab]);
 
     return (
         <div className="tabs" ref={tabsRef} style={{ paddingLeft: "16px", "--40010a00": "46px", "--58752bc5": "0px", "--b2a58f2e": "0" }}>
@@ -118,13 +119,15 @@ export default function ProjectTabs({ project }) {
                 </Link>
             )}
 
-            <Link href={`${basePath}/${project.slug}/issues`} scroll={false} className={`tabs__tab ${isIssuesActive ? "tabs__tab--active" : ""}`}>
-                {t("tabs.issues")}
-                
-                {issuesCount > 0 && (
-                    <span className="tabs__count">{formatCount(issuesCount)}</span>
-                )}
-            </Link>
+            {showIssuesTab && (
+                <Link href={`${basePath}/${project.slug}/issues`} scroll={false} className={`tabs__tab ${isIssuesActive ? "tabs__tab--active" : ""}`}>
+                    {t("tabs.issues")}
+                    
+                    {issuesCount > 0 && (
+                        <span className="tabs__count">{formatCount(issuesCount)}</span>
+                    )}
+                </Link>
+            )}
 
             <span className="tabs__indicator" aria-hidden="true" style={{ width: `${indicatorStyle.width}px`, transform: `translateX(${indicatorStyle.left}px)`, opacity: indicatorStyle.opacity }} />
         </div>

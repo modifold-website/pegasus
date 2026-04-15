@@ -2,10 +2,13 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
+import { isDeveloperModeEnabledFromCookieValue } from "@/utils/featureFlags";
 
 export default async function Layout({ children }) {
-    const cookieStore = await cookies();
-    const authToken = cookieStore.get("authToken")?.value;
+	const cookieStore = await cookies();
+	const authToken = cookieStore.get("authToken")?.value;
+	const featureFlagsCookie = cookieStore.get("featureFlags")?.value;
+	const isFeatureFlagsVisible = isDeveloperModeEnabledFromCookieValue(featureFlagsCookie);
 
     if(!authToken) {
         redirect("/403");
@@ -51,15 +54,17 @@ export default async function Layout({ children }) {
                     user={initialUser}
                     profileIconAlt={t("sidebar.profileIconAlt")}
                     mode="settings"
-                    labels={{
-                        profile: tSidebar("profile"),
-                        appearance: tSidebar("appearance"),
-                        language: tSidebar("language"),
-                        accountSecurity: tSidebar("accountSecurity"),
-                        apiTokens: tSidebar("apiTokens"),
-                        verification: tSidebar("verification"),
-                    }}
-                />
+					labels={{
+						profile: tSidebar("profile"),
+						appearance: tSidebar("appearance"),
+						language: tSidebar("language"),
+						accountSecurity: tSidebar("accountSecurity"),
+						apiTokens: tSidebar("apiTokens"),
+						verification: tSidebar("verification"),
+						featureFlags: tSidebar("featureFlags"),
+					}}
+					isFeatureFlagsVisible={isFeatureFlagsVisible}
+				/>
 
                 {children}
             </div>

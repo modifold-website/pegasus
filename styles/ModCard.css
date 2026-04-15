@@ -36,7 +36,7 @@
     pointer-events: auto;
 }
 .media-project-card:hover {
-    filter: brightness(.95);
+    filter: brightness(.98);
     background: var(--theme-color-background-content);
 }
 .media-project-card:hover .media-project-title {
@@ -199,7 +199,7 @@
     pointer-events: auto;
 }
 .new-project-card:not(.skeleton):hover {
-    filter: brightness(.95);
+    filter: brightness(.98);
     background: var(--theme-color-background-content);
 }
 .new-project-card:not(.skeleton):hover .new-project-title {

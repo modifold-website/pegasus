@@ -347,7 +347,8 @@
       "profile": "Perfil",
       "appearance": "Apariencia",
       "language": "Idioma",
-      "accountSecurity": "Seguridad"
+      "accountSecurity": "Seguridad",
+      "featureFlags": "Feature flags"
     },
     "username": "Nombre de usuario",
     "slug": {
@@ -410,6 +411,15 @@
     "appearance": {
       "title": "Apariencia",
       "description": "Elige cómo se ve Modifold en este dispositivo."
+    },
+    "flags": {
+      "title": "Feature flags",
+      "metadata": {
+        "title": "Feature flags — Modifold"
+      },
+      "defaultLabel": "Default:",
+      "defaultValue": "false",
+      "ariaLabelToggle": "Toggle"
     },
     "accountSecurity": {
       "title": "Seguridad",
@@ -602,7 +612,8 @@
         "name": "Nombre",
         "summary": "Resumen",
         "url": "URL",
-        "visibility": "Visibilidad"
+        "visibility": "Visibilidad",
+        "issues": "Issues"
       },
       "placeholders": {
         "name": "Nombre del proyecto",
@@ -612,7 +623,12 @@
       "hints": {
         "summary": "Mínimo 30 caracteres.",
         "url": "La URL debe estar en minúsculas, contener solo letras y números, y puede incluir guiones. Máximo 30 caracteres.",
-        "visibility": "Público: Visible en búsqueda y perfiles. No listado: Publicado pero no aparece en búsquedas. Privado: Solo accesible para miembros."
+        "visibility": "Público: Visible en búsqueda y perfiles. No listado: Publicado pero no aparece en búsquedas. Privado: Solo accesible para miembros.",
+        "issues": "Controls whether the Issues tab and issue pages are available for this project."
+      },
+      "issues": {
+        "enabled": "Enabled",
+        "disabled": "Disabled"
       },
       "visibility": {
         "public": "Público",

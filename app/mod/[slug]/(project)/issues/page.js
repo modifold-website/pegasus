@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { getLocale, getTranslations } from "next-intl/server";
+import { notFound } from "next/navigation";
 import IssuesPage from "@/components/pages/IssuesPage";
 import { getProjectBasePath } from "@/utils/projectRoutes";
 
@@ -18,6 +19,10 @@ export async function generateMetadata({ params }) {
     }
 
     const project = await res.json();
+    if(!project.issues_enabled) {
+        return { title: t("metadata.notFound") };
+    }
+
     const basePath = getProjectBasePath(project.project_type);
     return {
         title: `${project.title} — Issues — Modifold`,
@@ -65,6 +70,9 @@ export default async function Page({ params, searchParams }) {
     }
 
     const project = await projectRes.json();
+    if(!project.issues_enabled) {
+        notFound();
+    }
 
     const issuesRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/issues?status=${encodeURIComponent(status)}&sort=${encodeURIComponent(sort)}&page=${encodeURIComponent(page)}&limit=20`, {
         headers: {

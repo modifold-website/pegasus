@@ -7,8 +7,6 @@ import { getProjectBasePath } from "@/utils/projectRoutes";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
-    const resolvedLocale = await getLocale();
-    const ogLocale = resolvedLocale === "ru" ? "ru_RU" : "en_US";
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, {
         headers: { Accept: "application/json" },
@@ -49,7 +47,7 @@ export async function generateMetadata({ params }) {
             ],
             url: `https://modifold.com${basePath}/${project.slug}/comments`,
             type: "website",
-            locale: ogLocale,
+            locale: "en_US",
         },
         twitter: {
             card: "summary_large_image",

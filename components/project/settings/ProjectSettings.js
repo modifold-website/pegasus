@@ -14,6 +14,7 @@ const getInitialFormData = (project) => ({
     title: project?.title || "",
     summary: project?.summary || "",
     visibility: project?.visibility || "public",
+    issues_enabled: project?.issues_enabled === false || project?.issues_enabled === 0 ? false : true,
     slug: project?.slug || "",
     icon: null,
 });
@@ -34,8 +35,14 @@ export default function ProjectSettings({ project, organizationOptions: initialO
     const [selectedOrganizationSlug, setSelectedOrganizationSlug] = useState(project?.organization?.slug || "");
     const [savedOrganizationSlug, setSavedOrganizationSlug] = useState(project?.organization?.slug || "");
     const [isOrganizationMenuOpen, setIsOrganizationMenuOpen] = useState(false);
+    const [isIssuesMenuOpen, setIsIssuesMenuOpen] = useState(false);
+    const [isVisibilityMenuOpen, setIsVisibilityMenuOpen] = useState(false);
     const organizationButtonRef = useRef(null);
     const organizationMenuRef = useRef(null);
+    const issuesButtonRef = useRef(null);
+    const issuesMenuRef = useRef(null);
+    const visibilityButtonRef = useRef(null);
+    const visibilityMenuRef = useRef(null);
 
     useEffect(() => {
         if(!isLoggedIn) {
@@ -58,6 +65,7 @@ export default function ProjectSettings({ project, organizationOptions: initialO
         formData.title !== savedFormData.title ||
         formData.summary !== savedFormData.summary ||
         formData.visibility !== savedFormData.visibility ||
+        formData.issues_enabled !== savedFormData.issues_enabled ||
         formData.slug !== savedFormData.slug ||
         selectedOrganizationSlug !== savedOrganizationSlug ||
         Boolean(formData.icon)
@@ -89,11 +97,19 @@ export default function ProjectSettings({ project, organizationOptions: initialO
             if(isOrganizationMenuOpen && !organizationMenuRef.current?.contains(event.target) && !organizationButtonRef.current?.contains(event.target)) {
                 setIsOrganizationMenuOpen(false);
             }
+
+            if(isIssuesMenuOpen && !issuesMenuRef.current?.contains(event.target) && !issuesButtonRef.current?.contains(event.target)) {
+                setIsIssuesMenuOpen(false);
+            }
+
+            if(isVisibilityMenuOpen && !visibilityMenuRef.current?.contains(event.target) && !visibilityButtonRef.current?.contains(event.target)) {
+                setIsVisibilityMenuOpen(false);
+            }
         };
 
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [isOrganizationMenuOpen]);
+    }, [isIssuesMenuOpen, isOrganizationMenuOpen, isVisibilityMenuOpen]);
 
     const handleSubmit = async (e) => {
         if(e) {
@@ -108,6 +124,7 @@ export default function ProjectSettings({ project, organizationOptions: initialO
         data.append("title", formData.title);
         data.append("summary", formData.summary);
         data.append("visibility", formData.visibility);
+        data.append("issues_enabled", formData.issues_enabled ? "1" : "0");
         data.append("slug", formData.slug);
         if(formData.icon) {
             data.append("icon", formData.icon);
@@ -245,16 +262,69 @@ export default function ProjectSettings({ project, organizationOptions: initialO
                                 </div>
 
                                 <p className="blog-settings__field-title">{t("general.fields.visibility")}</p>
-                                <div className="field field--default blog-settings__input">
-                                    <label style={{ marginBottom: "10px" }} className="field__wrapper">
-                                        <select name="visibility" value={formData.visibility} onChange={handleInputChange} className="text-input">
-                                            <option value="public">{t("general.visibility.public")}</option>
-                                            <option value="unlisted">{t("general.visibility.unlisted")}</option>
-                                            <option value="private">{t("general.visibility.private")}</option>
-                                        </select>
+                                <div className="field field--default blog-settings__input" ref={visibilityMenuRef}>
+                                    <label style={{ marginBottom: "10px" }} className="field__wrapper" onClick={() => setIsVisibilityMenuOpen((prev) => !prev)} ref={visibilityButtonRef}>
+                                        <div className="field__wrapper-body">
+                                            <div className="select">
+                                                <div className="select__selected">
+                                                    {t(`general.visibility.${formData.visibility}`)}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <svg style={{ fill: "none" }} className={`icon icon--chevron_down ${isVisibilityMenuOpen ? "rotate" : ""}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
                                     </label>
 
+                                    {isVisibilityMenuOpen && (
+                                        <div className="popover">
+                                            <div className="context-list" data-scrollable>
+                                                <div className={`context-list-option ${formData.visibility === "public" ? "context-list-option--selected" : ""}`} onClick={() => { setFormData((prev) => ({ ...prev, visibility: "public" })); setIsVisibilityMenuOpen(false); }}>
+                                                    <div className="context-list-option__label">{t("general.visibility.public")}</div>
+                                                </div>
+
+                                                <div className={`context-list-option ${formData.visibility === "unlisted" ? "context-list-option--selected" : ""}`} onClick={() => { setFormData((prev) => ({ ...prev, visibility: "unlisted" })); setIsVisibilityMenuOpen(false); }}>
+                                                    <div className="context-list-option__label">{t("general.visibility.unlisted")}</div>
+                                                </div>
+
+                                                <div className={`context-list-option ${formData.visibility === "private" ? "context-list-option--selected" : ""}`} onClick={() => { setFormData((prev) => ({ ...prev, visibility: "private" })); setIsVisibilityMenuOpen(false); }}>
+                                                    <div className="context-list-option__label">{t("general.visibility.private")}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
                                     <p>{t("general.hints.visibility")}</p>
+                                </div>
+
+                                <p className="blog-settings__field-title">{t("general.fields.issues")}</p>
+                                <div className="field field--default blog-settings__input" ref={issuesMenuRef}>
+                                    <label style={{ marginBottom: "10px" }} className="field__wrapper" onClick={() => setIsIssuesMenuOpen((prev) => !prev)} ref={issuesButtonRef}>
+                                        <div className="field__wrapper-body">
+                                            <div className="select">
+                                                <div className="select__selected">
+                                                    {formData.issues_enabled ? t("general.issues.enabled") : t("general.issues.disabled")}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <svg style={{ fill: "none" }} className={`icon icon--chevron_down ${isIssuesMenuOpen ? "rotate" : ""}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                                    </label>
+
+                                    {isIssuesMenuOpen && (
+                                        <div className="popover">
+                                            <div className="context-list" data-scrollable>
+                                                <div className={`context-list-option ${formData.issues_enabled ? "context-list-option--selected" : ""}`} onClick={() => { setFormData((prev) => ({ ...prev, issues_enabled: true })); setIsIssuesMenuOpen(false); }}>
+                                                    <div className="context-list-option__label">{t("general.issues.enabled")}</div>
+                                                </div>
+                                                
+                                                <div className={`context-list-option ${!formData.issues_enabled ? "context-list-option--selected" : ""}`} onClick={() => { setFormData((prev) => ({ ...prev, issues_enabled: false })); setIsIssuesMenuOpen(false); }}>
+                                                    <div className="context-list-option__label">{t("general.issues.disabled")}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <p>{t("general.hints.issues")}</p>
                                 </div>
 
                                 <p className="blog-settings__field-title">{t("general.organization.title")}</p>
@@ -309,8 +379,9 @@ export default function ProjectSettings({ project, organizationOptions: initialO
                     setFormData({ ...savedFormData, icon: null });
                     setPreviewIcon(savedPreviewIcon);
                     setSelectedOrganizationSlug(savedOrganizationSlug);
-                    setIsCommentsMenuOpen(false);
                     setIsOrganizationMenuOpen(false);
+                    setIsIssuesMenuOpen(false);
+                    setIsVisibilityMenuOpen(false);
                     if(iconInputRef.current) {
                         iconInputRef.current.value = "";
                     }

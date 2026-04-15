@@ -573,6 +573,7 @@
       "metadataTitle": "Аналитика — {title} — Modifold",
       "title": "Аналитика",
       "ranges": {
+        "3d": "3 дня",
         "7d": "7 дней",
         "30d": "30 дней",
         "90d": "3 месяца"
@@ -580,7 +581,25 @@
       "stats": {
         "downloads": "Скачивания",
         "views": "Просмотры",
-        "countries": "Страны"
+        "countries": "Страны",
+        "onlineNow": "Онлайн сейчас"
+      },
+      "live": {
+        "activeServers": "Активные серверы"
+      },
+      "online": {
+        "title": "Онлайн серверов и игроков",
+        "legendServers": "Серверы",
+        "legendPlayers": "Игроки",
+        "tooltipServers": "{count, plural, one {# сервер} few {# сервера} many {# серверов} other {# сервера}}",
+        "tooltipPlayers": "{count, plural, one {# игрок} few {# игрока} many {# игроков} other {# игроков}}"
+      },
+      "onlineInfo": {
+        "closeAriaLabel": "Закрыть модалку",
+        "paragraph1Prefix": "Любой моддер может интегрировать аналитический мод",
+        "paragraph1Suffix": "в свой проект и смотреть на Modifold детальную статистику.",
+        "paragraph2": "Например: сколько игроков онлайн прямо сейчас, как меняется онлайн со временем и сколько активных серверов.",
+        "installationLabel": "Подробнее об установке:"
       },
       "downloads": {
         "title": "Загрузки версий",

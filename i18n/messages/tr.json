@@ -571,6 +571,7 @@
       "metadataTitle": "Analitik - {title} - Modifold",
       "title": "Analitik",
       "ranges": {
+        "3d": "3 gün",
         "7d": "7 gün",
         "30d": "30 gün",
         "90d": "3 ay"
@@ -578,7 +579,25 @@
       "stats": {
         "downloads": "İndirmeler",
         "views": "Görüntülenmeler",
-        "countries": "Ülkeler"
+        "countries": "Ülkeler",
+        "onlineNow": "Şu an çevrimiçi"
+      },
+      "live": {
+        "activeServers": "Aktif sunucular"
+      },
+      "online": {
+        "title": "Çevrimiçi sunucular ve oyuncular",
+        "legendServers": "Servers",
+        "legendPlayers": "Players",
+        "tooltipServers": "{count, plural, one {# sunucu} other {# sunucu}}",
+        "tooltipPlayers": "{count, plural, one {# oyuncu} other {# oyuncu}}"
+      },
+      "onlineInfo": {
+        "closeAriaLabel": "Modalı kapat",
+        "paragraph1Prefix": "Her mod geliştiricisi analytics modunu",
+        "paragraph1Suffix": "projesine entegre edip Modifold üzerinde detaylı istatistikleri görebilir.",
+        "paragraph2": "Örneğin: şu anda kaç oyuncunun çevrimiçi olduğu, çevrimiçi sayısının zamanla nasıl değiştiği ve kaç aktif sunucu olduğu.",
+        "installationLabel": "Kurulum hakkında daha fazla bilgi:"
       },
       "downloads": {
         "title": "Sürüm indirmeleri",

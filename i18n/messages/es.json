@@ -572,6 +572,7 @@
       "metadataTitle": "Analítica — {title} — Modifold",
       "title": "Analítica",
       "ranges": {
+        "3d": "3 días",
         "7d": "7 días",
         "30d": "30 días",
         "90d": "3 meses"
@@ -579,7 +580,25 @@
       "stats": {
         "downloads": "Descargas",
         "views": "Vistas",
-        "countries": "Países"
+        "countries": "Países",
+        "onlineNow": "En línea ahora"
+      },
+      "live": {
+        "activeServers": "Servidores activos"
+      },
+      "online": {
+        "title": "Servidores y jugadores en línea",
+        "legendServers": "Servers",
+        "legendPlayers": "Players",
+        "tooltipServers": "{count, plural, one {# servidor} other {# servidores}}",
+        "tooltipPlayers": "{count, plural, one {# jugador} other {# jugadores}}"
+      },
+      "onlineInfo": {
+        "closeAriaLabel": "Cerrar modal",
+        "paragraph1Prefix": "Cualquier modder puede integrar el mod de analítica",
+        "paragraph1Suffix": "en su proyecto y ver estadísticas detalladas en Modifold.",
+        "paragraph2": "Por ejemplo: cuántos jugadores están en línea ahora mismo, cómo cambia el estado en línea con el tiempo y cuántos servidores activos hay.",
+        "installationLabel": "Más información sobre la instalación:"
       },
       "downloads": {
         "title": "Descargas de versiones",

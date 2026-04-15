@@ -4,12 +4,31 @@ import { getLocale, getTranslations } from "next-intl/server";
 import ProjectAnalyticsSettingsPage from "@/components/project/settings/ProjectAnalyticsSettingsPage";
 import { getProjectBasePath } from "@/utils/projectRoutes";
 
-const ALLOWED_TIME_RANGES = new Set(["7d", "30d", "90d"]);
+const ALLOWED_TIME_RANGES = new Set(["3d", "7d", "30d", "90d"]);
+const ONLINE_RANGE_DAYS = { "3d": 3, "7d": 7, "30d": 30, "90d": 90 };
 
 const getNormalizedTimeRange = (value) => {
     const timeRange = Array.isArray(value) ? value[0] : value;
     return ALLOWED_TIME_RANGES.has(timeRange) ? timeRange : "7d";
 };
+
+async function fetchOnlineNow(slug) {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/analytics/${slug}/online-now`, {
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+    });
+
+    return response;
+}
+
+async function fetchOnlineSeries(slug, days) {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/analytics/${slug}/chart/daily-joins?days=${days}`, {
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+    });
+
+    return response;
+}
 
 async function fetchProjectAnalytics(slug, authToken, timeRange) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/analytics?time_range=${timeRange}`, {
@@ -56,7 +75,7 @@ export default async function Page({ params, searchParams }) {
         redirect("/");
     }
 
-    const [projectResponse, analyticsResponse] = await Promise.all([
+    const [projectResponse, analyticsResponse, onlineNowResponse, onlineSeriesResponse] = await Promise.all([
         fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}`, {
             headers: {
                 Accept: "application/json",
@@ -64,7 +83,10 @@ export default async function Page({ params, searchParams }) {
             },
             cache: "no-store",
         }),
+        
         fetchProjectAnalytics(slug, authToken, timeRange),
+        fetchOnlineNow(slug),
+        fetchOnlineSeries(slug, ONLINE_RANGE_DAYS[timeRange] || 7),
     ]);
 
     if(!projectResponse.ok || !analyticsResponse.ok) {
@@ -79,17 +101,30 @@ export default async function Page({ params, searchParams }) {
 
     const project = await projectResponse.json();
     const analytics = await analyticsResponse.json();
-    const basePath = getProjectBasePath(project.project_type);
+    const onlineNowPayload = onlineNowResponse.ok ? await onlineNowResponse.json() : null;
+	const onlineSeriesPayload = onlineSeriesResponse.ok ? await onlineSeriesResponse.json() : null;
+	const onlineSeries = Array.isArray(onlineSeriesPayload?.points) ? onlineSeriesPayload.points.map((point) => ({
+		date: String(point.day || "").slice(0, 19),
+		players: Number(point.players ?? point.joins) || 0,
+		servers: Number(point.servers) || 0,
+	})).filter((point) => Boolean(point.date)) : [];
+	const onlineSummary = {
+		playersOnlineNow: Number(onlineNowPayload?.playersOnlineNow ?? onlineNowPayload?.onlineNow) || 0,
+		activeServersNow: Number(onlineNowPayload?.activeServersNow) || 0,
+	};
+	const basePath = getProjectBasePath(project.project_type);
 
     if(requestedTimeRange === "7d") {
         redirect(`${basePath}/${slug}/settings/analytics`);
     }
 
     return (
-        <ProjectAnalyticsSettingsPage
-            project={project}
-            analytics={analytics}
-            selectedTimeRange={timeRange}
-        />
-    );
+		<ProjectAnalyticsSettingsPage
+			project={project}
+			analytics={analytics}
+			selectedTimeRange={timeRange}
+			onlineSummary={onlineSummary}
+			onlineSeries={onlineSeries}
+		/>
+	);
 }

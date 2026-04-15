@@ -196,7 +196,7 @@ export default function Header({ authToken }) {
                             </svg>
                         </button>
 
-                        <div id="browse-menu" className={`bubble account-menu-root user-menu browse-menu ${isBrowseMenuOpen ? "open" : ""}`} style={{ width: "240px", right: "auto" }}>
+                        <div id="browse-menu" className={`bubble account-menu-root user-menu browse-menu ${isBrowseMenuOpen ? "open" : ""}`} style={{ width: "210px", right: "auto" }}>
                             <div className="account-menu">
                                 <div className="account-menu__title" style={{ marginBottom: "6px" }}>{t("discoverContent")}</div>
                                 

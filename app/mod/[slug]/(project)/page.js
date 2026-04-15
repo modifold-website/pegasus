@@ -21,11 +21,12 @@ export async function generateMetadata({ params }) {
 
     const project = await res.json();
     const basePath = getProjectBasePath(project.project_type);
+    const projectTypeTitle = project.project_type === "modpack" ? "Hytale Modpack" : "Hytale Mod";
 
     const description = project.summary.length > 160 ? `${project.summary.substring(0, 157)}...` : project.summary;
 
     return {
-        title: `${project.title} — Modifold`,
+        title: `${project.title} — ${projectTypeTitle} — Modifold`,
         description,
         keywords: `${project.title}, Hytale, mods, shaders, resource packs, modpacks, download mods Hytale, Modifold`,
         author: project.owner.username,
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }) {
             "x-default": `https://modifold.com${basePath}/${project.slug}`,
         },
         openGraph: {
-            title: `${project.title} — Modifold`,
+            title: `${project.title} — ${projectTypeTitle} — Modifold`,
             description,
             images: [
                 {
@@ -51,7 +52,7 @@ export async function generateMetadata({ params }) {
         },
         twitter: {
             card: "summary_large_image",
-            title: `${project.title} — Modifold`,
+            title: `${project.title} — ${projectTypeTitle} — Modifold`,
             description,
             images: [project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"],
         },

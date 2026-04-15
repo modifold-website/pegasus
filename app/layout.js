@@ -17,7 +17,6 @@ import FooterModrinthModal from "@/modal/FooterModrinthModal";
 export async function generateMetadata() {
     const resolvedLocale = await getLocale();
     const messages = (await import(`../i18n/messages/${resolvedLocale}.json`)).default;
-    const ogLocale = resolvedLocale === "ru" ? "ru_RU" : "en_US";
 
     return {
         title: messages.HomePage.title,
@@ -29,7 +28,7 @@ export async function generateMetadata() {
             description: messages.HomePage.description,
             url: "https://modifold.com/",
             site_name: "Modifold",
-            locale: ogLocale,
+            locale: "en_US",
             type: "website",
             images: [
                 {

@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { getLocale, getTranslations } from "next-intl/server";
+import { notFound } from "next/navigation";
 import IssueCreatePage from "@/components/pages/IssueCreatePage";
 import { getProjectBasePath } from "@/utils/projectRoutes";
 
@@ -18,6 +19,10 @@ export async function generateMetadata({ params, searchParams }) {
     }
 
     const project = await res.json();
+    if(!project.issues_enabled) {
+        return { title: tProject("metadata.notFound") };
+    }
+
     const basePath = getProjectBasePath(project.project_type);
     const templateId = (await searchParams)?.template;
 
@@ -57,6 +62,9 @@ export default async function Page({ params, searchParams }) {
     }
 
     const project = await resProject.json();
+    if(!project.issues_enabled) {
+        notFound();
+    }
 
     const templatesRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/issues/templates`, {
         headers: {

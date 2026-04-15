@@ -613,7 +613,8 @@
         "name": "Назва",
         "summary": "Короткий опис",
         "url": "URL",
-        "visibility": "Видимість"
+        "visibility": "Видимість",
+        "issues": "Issues"
       },
       "placeholders": {
         "name": "Назва проєкту",
@@ -623,7 +624,12 @@
       "hints": {
         "summary": "Мінімум 30 символів.",
         "url": "URL має бути в нижньому регістрі, містити лише літери й цифри та може включати дефіси. Максимум 30 символів.",
-        "visibility": "Публічний: видимий у пошуку та профілях. Непублічний: опублікований, але не в пошуку. Приватний: доступний лише учасникам."
+        "visibility": "Публічний: видимий у пошуку та профілях. Непублічний: опублікований, але не в пошуку. Приватний: доступний лише учасникам.",
+        "issues": "Controls whether the Issues tab and issue pages are available for this project."
+      },
+      "issues": {
+        "enabled": "Enabled",
+        "disabled": "Disabled"
       },
       "visibility": {
         "public": "Публічний",

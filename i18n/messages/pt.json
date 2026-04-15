@@ -612,7 +612,8 @@
         "name": "Nome",
         "summary": "Resumo",
         "url": "URL",
-        "visibility": "Visibilidade"
+        "visibility": "Visibilidade",
+        "issues": "Issues"
       },
       "placeholders": {
         "name": "Nome do projeto",
@@ -622,7 +623,12 @@
       "hints": {
         "summary": "Mínimo de 30 caracteres.",
         "url": "A URL deve estar em letras minúsculas, conter apenas letras e números e pode incluir hífens. Máximo de 30 caracteres.",
-        "visibility": "Público: Visível na busca e nos perfis. Não listado: Publicado, mas não aparece na busca. Privado: Acessível apenas para membros."
+        "visibility": "Público: Visível na busca e nos perfis. Não listado: Publicado, mas não aparece na busca. Privado: Acessível apenas para membros.",
+        "issues": "Controls whether the Issues tab and issue pages are available for this project."
+      },
+      "issues": {
+        "enabled": "Enabled",
+        "disabled": "Disabled"
       },
       "visibility": {
         "public": "Público",

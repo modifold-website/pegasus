@@ -348,7 +348,8 @@
       "profile": "Профіль",
       "appearance": "Зовнішній вигляд",
       "language": "Мова",
-      "accountSecurity": "Безпека"
+      "accountSecurity": "Безпека",
+      "featureFlags": "Feature flags"
     },
     "username": "Ім'я користувача",
     "slug": {
@@ -411,6 +412,15 @@
     "appearance": {
       "title": "Зовнішній вигляд",
       "description": "Оберіть, як Modifold виглядає на цьому пристрої."
+    },
+    "flags": {
+      "title": "Feature flags",
+      "metadata": {
+        "title": "Feature flags — Modifold"
+      },
+      "defaultLabel": "Default:",
+      "defaultValue": "false",
+      "ariaLabelToggle": "Toggle"
     },
     "accountSecurity": {
       "title": "Безпека",

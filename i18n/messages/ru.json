@@ -348,7 +348,8 @@
       "profile": "Профиль",
       "appearance": "Внешний вид",
       "language": "Язык",
-      "accountSecurity": "Безопасность"
+      "accountSecurity": "Безопасность",
+      "featureFlags": "Флаги функций"
     },
     "username": "Имя пользователя",
     "slug": {
@@ -411,6 +412,15 @@
     "appearance": {
       "title": "Внешний вид",
       "description": "Выберите, как Modifold выглядит на этом устройстве."
+    },
+    "flags": {
+      "title": "Флаги функций",
+      "metadata": {
+        "title": "Флаги функций — Modifold"
+      },
+      "defaultLabel": "По умолчанию:",
+      "defaultValue": "false",
+      "ariaLabelToggle": "Переключить"
     },
     "accountSecurity": {
       "title": "Безопасность",

@@ -348,7 +348,8 @@
       "profile": "Profile",
       "appearance": "Appearance",
       "language": "Language",
-      "accountSecurity": "Security"
+      "accountSecurity": "Security",
+      "featureFlags": "Feature flags"
     },
     "username": "Username",
     "slug": {
@@ -411,6 +412,15 @@
     "appearance": {
       "title": "Appearance",
       "description": "Choose how Modifold looks on this device."
+    },
+    "flags": {
+      "title": "Feature flags",
+      "metadata": {
+        "title": "Feature flags — Modifold"
+      },
+      "defaultLabel": "Default:",
+      "defaultValue": "false",
+      "ariaLabelToggle": "Toggle"
     },
     "accountSecurity": {
       "title": "Security",

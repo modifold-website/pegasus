@@ -1,15 +1,25 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import UserName from "./UserName";
+import { getCookieValue, isDeveloperModeEnabledFromCookieValue } from "@/utils/featureFlags";
 
-export default function UserSettingsSidebar({ user, labels, profileIconAlt, mode = "all" }) {
+export default function UserSettingsSidebar({ user, labels, profileIconAlt, mode = "all", isFeatureFlagsVisible = false }) {
     const pathname = usePathname();
     const isActive = (href) => pathname === href;
     const showDashboard = mode === "all" || mode === "dashboard";
     const showSettings = mode === "all" || mode === "settings";
     const showPublicSettings = mode === "public-settings";
+    const [isFeatureFlagsVisibleOnClient, setIsFeatureFlagsVisibleOnClient] = useState(isFeatureFlagsVisible);
+    const isFlagsPage = isActive("/settings/flags");
+    const shouldShowFeatureFlags = isFlagsPage || isFeatureFlagsVisible || isFeatureFlagsVisibleOnClient;
+
+    useEffect(() => {
+        const featureFlagsCookieValue = getCookieValue(document.cookie, "featureFlags");
+        setIsFeatureFlagsVisibleOnClient(isDeveloperModeEnabledFromCookieValue(featureFlagsCookieValue));
+    }, []);
 
     return (
         <div className="sidebar">
@@ -100,6 +110,17 @@ export default function UserSettingsSidebar({ user, labels, profileIconAlt, mode
 
                             {labels.language}
                         </Link>
+                        
+                        {shouldShowFeatureFlags && (
+                            <Link href="/settings/flags" scroll={false} className={`sidebar-item ${isFlagsPage ? "sidebar-item--active" : ""}`} data-ripple>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-toggle-right-icon lucide-toggle-right">
+                                    <circle cx="15" cy="12" r="3"/>
+                                    <rect width="20" height="14" x="2" y="5" rx="7"/>
+                                </svg>
+
+                                {labels.featureFlags}
+                            </Link>
+                        )}
 
                         <Link href="/settings/account-security" scroll={false} className={`sidebar-item ${isActive("/settings/account-security") ? "sidebar-item--active" : ""}`} data-ripple>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-shield-icon lucide-shield">
@@ -155,6 +176,17 @@ export default function UserSettingsSidebar({ user, labels, profileIconAlt, mode
 
                             {labels.language}
                         </Link>
+
+                        {shouldShowFeatureFlags && (
+                            <Link href="/settings/flags" scroll={false} className={`sidebar-item ${isFlagsPage ? "sidebar-item--active" : ""}`} data-ripple>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-toggle-right-icon lucide-toggle-right">
+                                    <circle cx="15" cy="12" r="3"/>
+                                    <rect width="20" height="14" x="2" y="5" rx="7"/>
+                                </svg>
+
+                                {labels.featureFlags}
+                            </Link>
+                        )}
                     </>
                 )}
             </div>

@@ -13,6 +13,7 @@ import Link from "next/link";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
 import FooterModrinthModal from "@/modal/FooterModrinthModal";
+import { parseFeatureFlagsCookieValue } from "@/utils/featureFlags";
 
 export async function generateMetadata() {
     const resolvedLocale = await getLocale();
@@ -55,6 +56,9 @@ export default async function RootLayout({ children }) {
     const requestHeaders = await headers();
     const token = cookieStore.get("authToken")?.value || null;
     const themeCookie = cookieStore.get("theme")?.value;
+    const featureFlagsCookie = cookieStore.get("featureFlags")?.value;
+    const featureFlags = parseFeatureFlagsCookieValue(featureFlagsCookie);
+    const isFrostedMenusEnabled = featureFlags.frostedMenus === true;
     const messages = (await import(`../i18n/messages/${resolvedLocale}.json`)).default;
     const isStaging = process.env.NEXT_PUBLIC_API_BASE?.includes("staging");
 
@@ -144,7 +148,7 @@ export default async function RootLayout({ children }) {
                 </Script>
             </head>
 
-            <body data-font-smoothing="Antialiased" className={initialTheme} data-theme-preference={themePreference}>
+            <body data-font-smoothing="Antialiased" className={initialTheme} data-theme-preference={themePreference} data-feature-flag-frosted-menus={isFrostedMenusEnabled ? "true" : "false"}>
                 <div id="app">
                     <AuthProvider isLoggedIn={isLoggedIn} userData={userData}>
                         <ClientProvider>

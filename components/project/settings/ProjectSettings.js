@@ -36,10 +36,13 @@ export default function ProjectSettings({ project, organizationOptions: initialO
     const [savedOrganizationSlug, setSavedOrganizationSlug] = useState(project?.organization?.slug || "");
     const [isOrganizationMenuOpen, setIsOrganizationMenuOpen] = useState(false);
     const [isIssuesMenuOpen, setIsIssuesMenuOpen] = useState(false);
+    const [isVisibilityMenuOpen, setIsVisibilityMenuOpen] = useState(false);
     const organizationButtonRef = useRef(null);
     const organizationMenuRef = useRef(null);
     const issuesButtonRef = useRef(null);
     const issuesMenuRef = useRef(null);
+    const visibilityButtonRef = useRef(null);
+    const visibilityMenuRef = useRef(null);
 
     useEffect(() => {
         if(!isLoggedIn) {
@@ -98,11 +101,15 @@ export default function ProjectSettings({ project, organizationOptions: initialO
             if(isIssuesMenuOpen && !issuesMenuRef.current?.contains(event.target) && !issuesButtonRef.current?.contains(event.target)) {
                 setIsIssuesMenuOpen(false);
             }
+
+            if(isVisibilityMenuOpen && !visibilityMenuRef.current?.contains(event.target) && !visibilityButtonRef.current?.contains(event.target)) {
+                setIsVisibilityMenuOpen(false);
+            }
         };
 
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [isIssuesMenuOpen, isOrganizationMenuOpen]);
+    }, [isIssuesMenuOpen, isOrganizationMenuOpen, isVisibilityMenuOpen]);
 
     const handleSubmit = async (e) => {
         if(e) {
@@ -255,14 +262,36 @@ export default function ProjectSettings({ project, organizationOptions: initialO
                                 </div>
 
                                 <p className="blog-settings__field-title">{t("general.fields.visibility")}</p>
-                                <div className="field field--default blog-settings__input">
-                                    <label style={{ marginBottom: "10px" }} className="field__wrapper">
-                                        <select name="visibility" value={formData.visibility} onChange={handleInputChange} className="text-input">
-                                            <option value="public">{t("general.visibility.public")}</option>
-                                            <option value="unlisted">{t("general.visibility.unlisted")}</option>
-                                            <option value="private">{t("general.visibility.private")}</option>
-                                        </select>
+                                <div className="field field--default blog-settings__input" ref={visibilityMenuRef}>
+                                    <label style={{ marginBottom: "10px" }} className="field__wrapper" onClick={() => setIsVisibilityMenuOpen((prev) => !prev)} ref={visibilityButtonRef}>
+                                        <div className="field__wrapper-body">
+                                            <div className="select">
+                                                <div className="select__selected">
+                                                    {t(`general.visibility.${formData.visibility}`)}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <svg style={{ fill: "none" }} className={`icon icon--chevron_down ${isVisibilityMenuOpen ? "rotate" : ""}`} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
                                     </label>
+
+                                    {isVisibilityMenuOpen && (
+                                        <div className="popover">
+                                            <div className="context-list" data-scrollable>
+                                                <div className={`context-list-option ${formData.visibility === "public" ? "context-list-option--selected" : ""}`} onClick={() => { setFormData((prev) => ({ ...prev, visibility: "public" })); setIsVisibilityMenuOpen(false); }}>
+                                                    <div className="context-list-option__label">{t("general.visibility.public")}</div>
+                                                </div>
+
+                                                <div className={`context-list-option ${formData.visibility === "unlisted" ? "context-list-option--selected" : ""}`} onClick={() => { setFormData((prev) => ({ ...prev, visibility: "unlisted" })); setIsVisibilityMenuOpen(false); }}>
+                                                    <div className="context-list-option__label">{t("general.visibility.unlisted")}</div>
+                                                </div>
+
+                                                <div className={`context-list-option ${formData.visibility === "private" ? "context-list-option--selected" : ""}`} onClick={() => { setFormData((prev) => ({ ...prev, visibility: "private" })); setIsVisibilityMenuOpen(false); }}>
+                                                    <div className="context-list-option__label">{t("general.visibility.private")}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
 
                                     <p>{t("general.hints.visibility")}</p>
                                 </div>
@@ -352,6 +381,7 @@ export default function ProjectSettings({ project, organizationOptions: initialO
                     setSelectedOrganizationSlug(savedOrganizationSlug);
                     setIsOrganizationMenuOpen(false);
                     setIsIssuesMenuOpen(false);
+                    setIsVisibilityMenuOpen(false);
                     if(iconInputRef.current) {
                         iconInputRef.current.value = "";
                     }

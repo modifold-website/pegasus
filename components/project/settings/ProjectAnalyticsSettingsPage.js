@@ -1,16 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Area, AreaChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useLocale, useTranslations } from "next-intl";
 import { getProjectPath } from "@/utils/projectRoutes";
 import AnalyticsOnlineInfoModal from "@/modal/AnalyticsOnlineInfoModal";
 
-const RANGE_OPTIONS = ["3d", "7d", "30d", "90d"];
 const getTimeRangeHref = (project, range) => {
-    const base = getProjectPath(project, "/settings/analytics");
-    return range === "7d" ? base : `${base}?time_range=${range}`;
+	const base = getProjectPath(project, "/settings/analytics");
+	return range === "7d" ? base : `${base}?time_range=${range}`;
 };
 
 const formatChartDate = (date, locale) => {
@@ -194,7 +193,10 @@ function OnlineChart({ title, data, locale, t }) {
 export default function ProjectAnalyticsSettingsPage({ project, analytics, selectedTimeRange, onlineSummary = null, onlineSeries = [] }) {
 	const t = useTranslations("SettingsProjectPage");
 	const locale = useLocale();
+	const router = useRouter();
+	const [isSortOpen, setIsSortOpen] = useState(false);
 	const [isOnlineInfoModalOpen, setIsOnlineInfoModalOpen] = useState(false);
+	const sortRef = useRef(null);
 	const regionNames = typeof Intl.DisplayNames === "function" ? new Intl.DisplayNames([locale], { type: "region" }) : null;
 	const downloads = Array.isArray(analytics?.downloads) ? analytics.downloads : [];
 	const views = Array.isArray(analytics?.views) ? analytics.views : [];
@@ -203,31 +205,76 @@ export default function ProjectAnalyticsSettingsPage({ project, analytics, selec
 	const totals = analytics?.totals || {};
 	const activeServersNow = Number(onlineSummary?.activeServersNow) || 0;
 	const playersOnlineNow = Number(onlineSummary?.playersOnlineNow) || 0;
+	const currentTimeRange = selectedTimeRange || "7d";
+
+	useEffect(() => {
+		const handleClickOutside = (event) => {
+			if(sortRef.current && !sortRef.current.contains(event.target)) {
+				setIsSortOpen(false);
+			}
+		};
+
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => document.removeEventListener("mousedown", handleClickOutside);
+	}, []);
+
+	const handleSortOptionClick = (nextSort) => {
+		router.push(getTimeRangeHref(project, nextSort));
+		setIsSortOpen(false);
+	};
 
 	return (
 		<div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-            <div className="settings-wrapper">
-                <div className="settings-content">
-                    <div className="blog-settings">
-                        <div className="blog-settings__body">
-                            <div className="project-analytics">
-                                <div className="project-analytics__toolbar">
-                                    <p className="blog-settings__field-title" style={{ marginBottom: "0" }}>{t("analytics.title")}</p>
-                                    
-                                    <div className="project-analytics__ranges">
-                                        {RANGE_OPTIONS.map((range) => (
-                                            <Link key={range} href={getTimeRangeHref(project, range)} className={`button button--size-m button--active-transform ${selectedTimeRange === range ? "button--type-primary" : "button--type-minimal"}`}>
-                                                {t(`analytics.ranges.${range}`)}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
+			<div className="settings-wrapper">
+				<div className="settings-content">
+					<div className="blog-settings">
+						<div className="blog-settings__body">
+							<div className="project-analytics">
+								<div className="project-analytics__toolbar">
+									<p className="blog-settings__field-title" style={{ marginBottom: "0" }}>{t("analytics.title")}</p>
+
+									<div className="project-analytics__ranges">
+										<div className="sort-wrapper" ref={sortRef}>
+											<div className="dropdown">
+												<button className="dropdown__label" onClick={() => setIsSortOpen((prev) => !prev)} aria-expanded={isSortOpen} type="button">
+													{currentTimeRange === "3d" && t("analytics.ranges.3d")}
+													{currentTimeRange === "7d" && t("analytics.ranges.7d")}
+													{currentTimeRange === "30d" && t("analytics.ranges.30d")}
+													{currentTimeRange === "90d" && t("analytics.ranges.90d")}
+
+													<svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" className={`icon icon--chevron_up ${isSortOpen ? "open" : ""}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+														<path d="m6 9 6 6 6-6"/>
+													</svg>
+												</button>
+											</div>
+
+											{isSortOpen && (
+												<div className="popover popover--sort">
+													<div className="context-list" data-scrollable="" style={{ maxHeight: "none" }}>
+														<div className={`context-list-option ${currentTimeRange === "3d" ? "context-list-option--selected" : ""}`} onClick={() => handleSortOptionClick("3d")}>
+															<div className="context-list-option__label">{t("analytics.ranges.3d")}</div>
+														</div>
+														<div className={`context-list-option ${currentTimeRange === "7d" ? "context-list-option--selected" : ""}`} onClick={() => handleSortOptionClick("7d")}>
+															<div className="context-list-option__label">{t("analytics.ranges.7d")}</div>
+														</div>
+														<div className={`context-list-option ${currentTimeRange === "30d" ? "context-list-option--selected" : ""}`} onClick={() => handleSortOptionClick("30d")}>
+															<div className="context-list-option__label">{t("analytics.ranges.30d")}</div>
+														</div>
+														<div className={`context-list-option ${currentTimeRange === "90d" ? "context-list-option--selected" : ""}`} onClick={() => handleSortOptionClick("90d")}>
+															<div className="context-list-option__label">{t("analytics.ranges.90d")}</div>
+														</div>
+													</div>
+												</div>
+											)}
+										</div>
+									</div>
+								</div>
 
 								<div className="project-analytics__stats">
 									<div className="content content--padding project-analytics-stat">
-                                        <p>{t("analytics.stats.downloads")}</p>
-                                        <strong>{totals.downloads || 0}</strong>
-                                    </div>
+										<p>{t("analytics.stats.downloads")}</p>
+										<strong>{totals.downloads || 0}</strong>
+									</div>
 
 									<div className="content content--padding project-analytics-stat">
 										<p>{t("analytics.live.activeServers")}</p>
@@ -251,11 +298,11 @@ export default function ProjectAnalyticsSettingsPage({ project, analytics, selec
 										<strong>{playersOnlineNow}</strong>
 									</div>
 								</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			{hasOnline ? (
 				<OnlineChart
@@ -271,15 +318,15 @@ export default function ProjectAnalyticsSettingsPage({ project, analytics, selec
 				onRequestClose={() => setIsOnlineInfoModalOpen(false)}
 			/>
 
-            <AnalyticsChart
-                title={t("analytics.downloads.title")}
-                data={downloads}
-                locale={locale}
-                lineColor="#00af5c"
-                gradientId="projectAnalyticsDownloads"
-                tooltipLabelKey="analytics.downloads.tooltip"
-                t={t}
-            />
+			<AnalyticsChart
+				title={t("analytics.downloads.title")}
+				data={downloads}
+				locale={locale}
+				lineColor="#00af5c"
+				gradientId="projectAnalyticsDownloads"
+				tooltipLabelKey="analytics.downloads.tooltip"
+				t={t}
+			/>
 
 			{countries.length ? (
 				<section className="content content--padding" style={{ padding: "24px" }}>
@@ -308,15 +355,15 @@ export default function ProjectAnalyticsSettingsPage({ project, analytics, selec
 				</section>
 			) : null}
 
-            <AnalyticsChart
-                title={t("analytics.views.title")}
-                data={views}
-                locale={locale}
-                lineColor="#307df0"
-                gradientId="projectAnalyticsViews"
-                tooltipLabelKey="analytics.views.tooltip"
-                t={t}
-            />
-        </div>
-    );
+			<AnalyticsChart
+				title={t("analytics.views.title")}
+				data={views}
+				locale={locale}
+				lineColor="#307df0"
+				gradientId="projectAnalyticsViews"
+				tooltipLabelKey="analytics.views.tooltip"
+				t={t}
+			/>
+		</div>
+	);
 }

@@ -107,6 +107,10 @@ export const getSafeMarkdownImageSrc = (src) => {
             "wsrv.nl",
             "cf.way2muchnoise.eu",
             "bstats.org",
+            "hstats.dev",
+            "api.hstats.dev",
+            "staging-api.modifold.com",
+            "api.modifold.com",
         ]);
 
         if(allowedHostnames.has(parsed.hostname)) {

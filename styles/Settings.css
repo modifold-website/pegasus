@@ -466,11 +466,33 @@
 }
 .project-analytics-stat {
     background: var(--theme-color-background);
+    border-radius: 18px;
 }
 .project-analytics-stat p {
     margin: 0 0 10px;
     color: var(--theme-color-text-secondary);
     font-size: 16px;
+}
+.project-analytics-stat__label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.project-analytics-info {
+	display: inline-flex;
+	align-items: center;
+    cursor: pointer;
+}
+.project-analytics-info:hover {
+    opacity: 0.8;
+}
+.project-analytics-info svg {
+	fill: none;
+    color: #e6833f;
+}
+.analytics-online-info-modal__content {
+	display: grid;
+	gap: 10px;
 }
 .project-analytics-stat strong {
     font-size: 32px;
@@ -512,11 +534,13 @@
     box-shadow: none;
 }
 .project-analytics-tooltip {
-    padding: 12px 14px;
-    border-radius: 14px;
+    display: flex;
+    gap: 4px;
     background: var(--theme-color-background-content);
     box-shadow: var(--theme-shadow-popover);
     border-radius: var(--layout-island-border-radius);
+    padding: 12px 14px;
+    flex-direction: column;
 }
 .project-analytics-tooltip p,
 .project-analytics-tooltip strong {
@@ -526,10 +550,36 @@
 .project-analytics-tooltip p {
     color: var(--theme-color-text-secondary);
     font-size: 14px;
-    margin-bottom: 4px;
 }
 .project-analytics-tooltip span {
     font-weight: 500;
+}
+.project-analytics-chart .recharts-legend-item {
+    display: flex !important;
+    flex-direction: row;
+    width: max-content;
+    align-items: center;
+    font-size: 14px;
+    line-height: normal;
+    cursor: pointer;
+    user-select: none;
+    margin-right: 0 !important;
+}
+.project-analytics-legend__label {
+    transition: opacity 0.15s ease;
+}
+.project-analytics-legend__label--inactive {
+    opacity: 0.5;
+}
+.recharts-default-legend {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+.recharts-legend-wrapper {
+    bottom: -3px !important;
 }
 .project-analytics-countries {
     display: grid;

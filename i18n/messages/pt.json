@@ -191,6 +191,7 @@
     "organizationOwner": "Organização",
     "created": "Criado",
     "updated": "Atualizado",
+    "playersLast14dTooltip": "{count} jogadores usaram este mod nos ultimos 14 dias",
     "id": "ID:",
     "notFound": "Projeto não encontrado",
     "metadata": {
@@ -572,6 +573,7 @@
       "metadataTitle": "Analytics — {title} — Modifold",
       "title": "Analytics",
       "ranges": {
+        "3d": "3 dias",
         "7d": "7 dias",
         "30d": "30 dias",
         "90d": "3 meses"
@@ -579,7 +581,25 @@
       "stats": {
         "downloads": "Downloads",
         "views": "Views",
-        "countries": "Países"
+        "countries": "Países",
+        "onlineNow": "Online agora"
+      },
+      "live": {
+        "activeServers": "Servidores ativos"
+      },
+      "online": {
+        "title": "Servidores e jogadores online",
+        "legendServers": "Servers",
+        "legendPlayers": "Players",
+        "tooltipServers": "{count, plural, one {# servidor} other {# servidores}}",
+        "tooltipPlayers": "{count, plural, one {# jogador} other {# jogadores}}"
+      },
+      "onlineInfo": {
+        "closeAriaLabel": "Fechar modal",
+        "paragraph1Prefix": "Qualquer modder pode integrar o mod de analytics",
+        "paragraph1Suffix": "ao seu projeto e ver estatísticas detalhadas no Modifold.",
+        "paragraph2": "Por exemplo: quantos jogadores estão online agora, como o online muda com o tempo e quantos servidores ativos existem.",
+        "installationLabel": "Mais detalhes sobre a instalação:"
       },
       "downloads": {
         "title": "Downloads das versões",
@@ -613,7 +633,8 @@
         "summary": "Resumo",
         "url": "URL",
         "visibility": "Visibilidade",
-        "issues": "Issues"
+        "issues": "Issues",
+        "playersCount": "Mostrar numero de jogadores"
       },
       "placeholders": {
         "name": "Nome do projeto",
@@ -624,7 +645,12 @@
         "summary": "Mínimo de 30 caracteres.",
         "url": "A URL deve estar em letras minúsculas, conter apenas letras e números e pode incluir hífens. Máximo de 30 caracteres.",
         "visibility": "Público: Visível na busca e nos perfis. Não listado: Publicado, mas não aparece na busca. Privado: Acessível apenas para membros.",
-        "issues": "Controls whether the Issues tab and issue pages are available for this project."
+        "issues": "Controls whether the Issues tab and issue pages are available for this project.",
+        "playersCount": "Permite mostrar no card do projeto o total de entradas no jogo com seu mod nas ultimas 2 semanas."
+      },
+      "playersCount": {
+        "enabled": "Sim",
+        "disabled": "Nao"
       },
       "issues": {
         "enabled": "Enabled",
@@ -1041,6 +1067,7 @@
     "downloads": "downloads",
     "followers": "seguidores",
     "updated": "Atualizado",
+    "playersLast14dTooltip": "{count} jogadores usaram este mod nos ultimos 14 dias",
     "projectIconAlt": "Ícone do projeto {title}"
   },
   "ModerationPage": {

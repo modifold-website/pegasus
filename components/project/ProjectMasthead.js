@@ -6,13 +6,15 @@ import Link from "next/link";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useAuth } from "../providers/AuthProvider";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import ProjectTags from "../ui/ProjectTags";
+import Tooltip from "../ui/Tooltip";
 import ProjectReportModal from "@/modal/ProjectReportModal";
 import { getProjectPath } from "@/utils/projectRoutes";
 
 export default function ProjectMasthead({ project, authToken }) {
     const t = useTranslations("ProjectPage");
+    const locale = useLocale();
     const { isLoggedIn, user } = useAuth();
     const [followers, setFollowers] = useState(project.followers || 0);
     const [isLiked, setIsLiked] = useState(project.is_liked || false);
@@ -23,7 +25,11 @@ export default function ProjectMasthead({ project, authToken }) {
     const projectStatus = project.status;
     const isDraftProject = projectStatus === "draft";
     const isModerationProject = ["queued", "pending", "in_review"].includes(projectStatus);
+    const playersLast14Days = Math.max(0, Number(project?.players_last_14d) || 0);
+    const showPlayersLast14Days = project?.show_players_last_14d === true || project?.show_players_last_14d === 1 || project?.show_players_last_14d === "1";
     const actionsRef = useRef(null);
+
+    const formatFullNumber = (num) => new Intl.NumberFormat(locale).format(Math.max(0, Number(num) || 0));
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -214,6 +220,22 @@ export default function ProjectMasthead({ project, authToken }) {
                                 </div>
 
                                 <div className="masthead-stats__divider">•</div>
+
+                                {showPlayersLast14Days && (
+                                    <>
+                                        <div className="masthead-stats__item">
+                                            <svg className="masthead-stats__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24">
+                                                <path d="m5 3 14 9-14 9z"></path>
+                                            </svg>
+
+                                            <Tooltip content={t("playersLast14dTooltip", { count: formatFullNumber(playersLast14Days) })}>
+                                                <div className="masthead-stats__quantity">{formatFullNumber(playersLast14Days)}</div>
+                                            </Tooltip>
+                                        </div>
+
+                                        <div className="masthead-stats__divider">•</div>
+                                    </>
+                                )}
 
                                 <div className="masthead-stats__item">
                                     <svg className="masthead-stats__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -2,6 +2,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import UserName from "../ui/UserName";
 import ProjectTags from "../ui/ProjectTags";
+import Tooltip from "../ui/Tooltip";
 import { getProjectPath } from "@/utils/projectRoutes";
 const MAX_RGB_INT = 16777215;
 
@@ -25,6 +26,8 @@ export default function ProjectCardMedia({ project }) {
     const t = useTranslations("ProjectCard");
     const locale = useLocale();
     const rtf = new Intl.RelativeTimeFormat(locale, { numeric: "auto" });
+    const playersLast14Days = Math.max(0, Number(project?.players_last_14d) || 0);
+    const showPlayersLast14Days = project?.show_players_last_14d === true || project?.show_players_last_14d === 1 || project?.show_players_last_14d === "1";
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -58,6 +61,10 @@ export default function ProjectCardMedia({ project }) {
         }
 
         return rtf.format(years, "year");
+    };
+
+    const formatFullNumber = (num) => {
+        return new Intl.NumberFormat(locale).format(Math.max(0, Number(num) || 0));
     };
 
     const formatNumber = (num) => {
@@ -112,11 +119,25 @@ export default function ProjectCardMedia({ project }) {
                     </div>
                 </div>
 
-                {project?.tags?.length > 0 && (
-                    <div className="media-project-tags">
-                        <ProjectTags tags={project.tags} />
-                    </div>
-                )}
+                <div className="media-project-center">
+                    {showPlayersLast14Days && (
+                        <div className="new-project-players">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24">
+                                <path d="m5 3 14 9-14 9z"></path>
+                            </svg>
+
+                            <Tooltip content={t("playersLast14dTooltip", { count: formatFullNumber(playersLast14Days) })}>
+                                <span>{formatFullNumber(playersLast14Days)}</span>
+                            </Tooltip>
+                        </div>
+                    )}
+                    
+                    {project?.tags?.length > 0 && (
+                        <div className="media-project-tags">
+                            <ProjectTags tags={project.tags} />
+                        </div>
+                    )}
+                </div>
 
                 <div className="media-project-stats">
                     <div className="media-project-stat" title={t("downloads")}>

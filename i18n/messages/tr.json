@@ -190,6 +190,7 @@
     "organizationOwner": "Organizasyon",
     "created": "Oluşturulma",
     "updated": "Güncellendi",
+    "playersLast14dTooltip": "Son 14 gunde bu modu {count} oyuncu kullandi",
     "id": "ID:",
     "notFound": "Proje bulunamadı",
     "metadata": {
@@ -631,7 +632,8 @@
         "summary": "Kısa açıklama",
         "url": "URL",
         "visibility": "Görünürlük",
-        "issues": "Issues"
+        "issues": "Issues",
+        "playersCount": "Oyuncu sayisini goster"
       },
       "placeholders": {
         "name": "Proje adı",
@@ -642,7 +644,12 @@
         "summary": "En az 30 karakter.",
         "url": "URL küçük harf olmalı, yalnızca harf ve rakam içermeli ve tire içerebilir. Maksimum 30 karakter.",
         "visibility": "Herkese açık: aramada ve profillerde görünür. Liste dışı: yayınlı ama aramada görünmez. Özel: yalnızca üyelere açık.",
-        "issues": "Controls whether the Issues tab and issue pages are available for this project."
+        "issues": "Controls whether the Issues tab and issue pages are available for this project.",
+        "playersCount": "Proje kartinda, modunuzla son 2 haftadaki toplam oyun giris sayisini gostermeyi saglar."
+      },
+      "playersCount": {
+        "enabled": "Evet",
+        "disabled": "Hayir"
       },
       "issues": {
         "enabled": "Enabled",
@@ -1059,6 +1066,7 @@
     "downloads": "indirme",
     "followers": "takipçi",
     "updated": "Güncellendi",
+    "playersLast14dTooltip": "Son 14 gunde bu modu {count} oyuncu kullandi",
     "projectIconAlt": "{title} proje simgesi"
   },
   "ModerationPage": {

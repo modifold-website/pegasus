@@ -214,7 +214,7 @@ export default async function RootLayout({ children }) {
                                                         {messages.Footer.news}
                                                     </Link>
 
-                                                    <a href="https://discord.gg/modifold" className="footer-link" target="_blank" rel="noopener noreferrer">
+                                                    <a href="https://discord.gg/PgVCEBkwzH" className="footer-link" target="_blank" rel="noopener noreferrer">
                                                         Discord
                                                     </a>
 

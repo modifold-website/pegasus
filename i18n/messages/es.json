@@ -191,6 +191,7 @@
     "organizationOwner": "Organización",
     "created": "Creado",
     "updated": "Actualizado",
+    "playersLast14dTooltip": "{count} jugadores usaron este mod en los ultimos 14 dias",
     "id": "ID:",
     "notFound": "Proyecto no encontrado",
     "metadata": {
@@ -632,7 +633,8 @@
         "summary": "Resumen",
         "url": "URL",
         "visibility": "Visibilidad",
-        "issues": "Issues"
+        "issues": "Issues",
+        "playersCount": "Mostrar numero de jugadores"
       },
       "placeholders": {
         "name": "Nombre del proyecto",
@@ -643,7 +645,12 @@
         "summary": "Mínimo 30 caracteres.",
         "url": "La URL debe estar en minúsculas, contener solo letras y números, y puede incluir guiones. Máximo 30 caracteres.",
         "visibility": "Público: Visible en búsqueda y perfiles. No listado: Publicado pero no aparece en búsquedas. Privado: Solo accesible para miembros.",
-        "issues": "Controls whether the Issues tab and issue pages are available for this project."
+        "issues": "Controls whether the Issues tab and issue pages are available for this project.",
+        "playersCount": "Permite mostrar en la tarjeta del proyecto el numero total de inicios del juego con tu mod en las ultimas 2 semanas."
+      },
+      "playersCount": {
+        "enabled": "Si",
+        "disabled": "No"
       },
       "issues": {
         "enabled": "Enabled",
@@ -1060,6 +1067,7 @@
     "downloads": "descargas",
     "followers": "seguidores",
     "updated": "Actualizado",
+    "playersLast14dTooltip": "{count} jugadores usaron este mod en los ultimos 14 dias",
     "projectIconAlt": "Icono del proyecto {title}"
   },
   "ModerationPage": {

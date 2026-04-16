@@ -192,6 +192,7 @@
     "organizationOwner": "Організація",
     "created": "Створено",
     "updated": "Оновлено",
+    "playersLast14dTooltip": "За останнi 14 днiв з цим модом грало {count} гравцiв",
     "id": "ID:",
     "notFound": "Проєкт не знайдено",
     "metadata": {
@@ -633,7 +634,8 @@
         "summary": "Короткий опис",
         "url": "URL",
         "visibility": "Видимість",
-        "issues": "Issues"
+        "issues": "Issues",
+        "playersCount": "Показувати кiлькiсть гравцiв"
       },
       "placeholders": {
         "name": "Назва проєкту",
@@ -644,7 +646,12 @@
         "summary": "Мінімум 30 символів.",
         "url": "URL має бути в нижньому регістрі, містити лише літери й цифри та може включати дефіси. Максимум 30 символів.",
         "visibility": "Публічний: видимий у пошуку та профілях. Непублічний: опублікований, але не в пошуку. Приватний: доступний лише учасникам.",
-        "issues": "Controls whether the Issues tab and issue pages are available for this project."
+        "issues": "Controls whether the Issues tab and issue pages are available for this project.",
+        "playersCount": "Дозволяє показувати у картцi проєкту загальну кiлькiсть входiв у гру з вашим модом за останнi 2 тижнi."
+      },
+      "playersCount": {
+        "enabled": "Так",
+        "disabled": "Нi"
       },
       "issues": {
         "enabled": "Enabled",
@@ -1061,6 +1068,7 @@
     "downloads": "завантажень",
     "followers": "підписників",
     "updated": "Оновлено",
+    "playersLast14dTooltip": "За останнi 14 днiв з цим модом грало {count} гравцiв",
     "projectIconAlt": "Іконка проєкту {title}"
   },
   "ModerationPage": {

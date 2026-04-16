@@ -255,6 +255,9 @@
     height: auto;
     display: block;
 }
+.news .markdown-body pre {
+    background-color: var(--theme-color-background-content);
+}
 @media (max-width: 859px) {
     .latest-news {
         padding-left: 12px;

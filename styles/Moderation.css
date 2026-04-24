@@ -55,8 +55,8 @@
 }
 .analytics-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
     margin-bottom: 15px;
 }
 .analytics-grid > * {

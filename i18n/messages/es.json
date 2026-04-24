@@ -1094,7 +1094,9 @@
       "totalUsers": "Total de usuarios",
       "pending": "Proyectos pendientes",
       "totalProjectVersions": "Total de versiones de proyectos",
-      "totalProjectDownloads": "Total de descargas de proyectos"
+      "totalProjectDownloads": "Total de descargas de proyectos",
+      "modsPlayersOnlineNow": "Jugadores de mods en linea ahora",
+      "modServersOnlineNow": "Servidores activos ahora"
     },
     "filters": {
       "searchPlaceholder": "Buscar por título del proyecto...",

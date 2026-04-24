@@ -1095,7 +1095,9 @@
       "totalUsers": "Всего пользователей",
       "pending": "Проекты на модерации",
       "totalProjectVersions": "Всего версий проектов",
-      "totalProjectDownloads": "Всего скачиваний проектов"
+      "totalProjectDownloads": "Всего скачиваний проектов",
+      "modsPlayersOnlineNow": "Онлайн игроков модов сейчас",
+      "modServersOnlineNow": "Активных серверов сейчас"
     },
     "filters": {
       "searchPlaceholder": "Поиск по названию проекта...",

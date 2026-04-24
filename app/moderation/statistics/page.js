@@ -33,6 +33,13 @@ async function fetchAnalytics(authToken) {
             totalUsers: 0,
             totalProjectVersions: 0,
             totalProjectDownloads: 0,
+            totalPlayersOnlineNow: 0,
+            totalActiveServersNow: 0,
+            onlineSummary: {
+                playersOnlineNow: 0,
+                activeServersNow: 0,
+            },
+            globalOnlineSeries: [],
         };
     }
 }

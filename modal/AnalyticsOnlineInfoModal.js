@@ -11,7 +11,7 @@ export default function AnalyticsOnlineInfoModal({ isOpen, onRequestClose }) {
 	const t = useTranslations("SettingsProjectPage.analytics.onlineInfo");
 
 	return (
-		<Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
+		<Modal closeTimeoutMS={150} isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
 			<div className="modal-window">
 				<div className="modal-window__header">
 					<h2 className="modal-window__title">Modifold Analytics</h2>

@@ -193,7 +193,7 @@ export default function GalleryPage({ project, authToken }) {
                     <ImageLightbox isOpen={lightboxOpen} image={lightboxImage} onClose={closeLightbox} dialogLabel={t("gallery.lightboxLabel")} closeLabel={t("close")} openInNewTabLabel={t("gallery.openInNewTab")} fallbackAlt={t("gallery.image")} />
 
                     {editModalOpen && selectedImage && (
-                        <Modal isOpen={editModalOpen} onRequestClose={closeEditModal} className="modal active" overlayClassName="modal-overlay">
+                        <Modal closeTimeoutMS={150} isOpen={editModalOpen} onRequestClose={closeEditModal} className="modal active" overlayClassName="modal-overlay">
                             <div className="modal-window">
                                 <div className="modal-window__header">
                                     <span>{t("gallery.editImage")}</span>

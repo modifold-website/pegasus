@@ -415,7 +415,7 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                 type={activeFollowModal}
             />
 
-            <Modal isOpen={isVerifiedModalOpen} onRequestClose={() => setIsVerifiedModalOpen(false)} className="modal active" overlayClassName="modal-overlay">
+            <Modal closeTimeoutMS={150} isOpen={isVerifiedModalOpen} onRequestClose={() => setIsVerifiedModalOpen(false)} className="modal active" overlayClassName="modal-overlay">
                 <div className="modal-window">
                     <div className="modal-window__header">
                         <button className="icon-button modal-window__close" type="button" onClick={() => setIsVerifiedModalOpen(false)} aria-label="Close">
@@ -435,7 +435,7 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                 </div>
             </Modal>
 
-            <Modal isOpen={isModifoldVerifiedModalOpen} onRequestClose={() => setIsModifoldVerifiedModalOpen(false)} className="modal active" overlayClassName="modal-overlay">
+            <Modal closeTimeoutMS={150} isOpen={isModifoldVerifiedModalOpen} onRequestClose={() => setIsModifoldVerifiedModalOpen(false)} className="modal active" overlayClassName="modal-overlay">
                 <div className="modal-window">
                     <div className="modal-window__header">
                         <button className="icon-button modal-window__close" type="button" onClick={() => setIsModifoldVerifiedModalOpen(false)} aria-label="Close">

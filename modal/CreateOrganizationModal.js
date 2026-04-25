@@ -44,7 +44,7 @@ export default function CreateOrganizationModal({ isOpen, authToken, onRequestCl
     };
 
     return (
-        <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
+        <Modal closeTimeoutMS={150} isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
             <div className="modal-window">
                 <div className="modal-window__header">
                     <span style={{ fontSize: "18px", fontWeight: "500" }}>{t("create.title")}</span>

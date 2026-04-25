@@ -408,6 +408,7 @@ svg {
     --content-header-label-background: #fffbe0;
     --content-header-label-color: #000;
     --content-footer--sticky-background: rgb(255 255 255 / 90%);
+    --theme-modal-overlay-background: rgb(180 180 182 / 50%);
 
     --theme-andropov-border-color: rgba(0, 0, 0, 0.1);
 
@@ -454,6 +455,7 @@ body.dark {
 
     --backgroundColorAuthor: #323232;
 
+    --theme-modal-overlay-background: rgb(0 0 0 / 50%);
     --content-footer--sticky-background: rgb(32 36 53 / 90%);
     --theme-color-background-popular-reel: rgba(0, 0, 0, 0.6);
     --content-header-label-background: #333333;
@@ -2166,15 +2168,33 @@ input[type="file"]::-webkit-file-upload-button:hover {
     font: inherit;
 }
 .modal {
+    transform-origin: center;
+    transform: scale(0.95);
     opacity: 0;
-    visibility: hidden;
+    pointer-events: none;
+    transition:
+        transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 300ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
 }
 .modal.active,
 .overlay.active {
     opacity: 1;
-    visibility: visible;
     outline: none;
     border: 0;
+}
+.modal.ReactModal__Content--after-open {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal.ReactModal__Content--before-close {
+    transform: scale(0.96);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        transform 150ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 150ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .list {
     overflow-y: auto;
@@ -2643,11 +2663,10 @@ input[type="file"]::-webkit-file-upload-button:hover {
     right: 0;
     top: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
+    background: var(--theme-modal-overlay-background);
     will-change: opacity;
-    animation: underlay-in 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    transition: opacity 300ms cubic-bezier(0.22, 1, 0.36, 1);
     --window-radius: 20px;
     display: grid;
     overflow: hidden;
@@ -2656,6 +2675,13 @@ input[type="file"]::-webkit-file-upload-button:hover {
     align-content: end;
     justify-content: center;
     padding-top: var(--layout-header-height);
+}
+.modal-overlay.ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+.modal-overlay.ReactModal__Overlay--before-close {
+    opacity: 0;
+    transition: opacity 150ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 @media all and (min-width: 640px) {
     .modal-overlay {
@@ -2677,12 +2703,11 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .modal-window {
     outline: none;
     border: 0;
-    animation: modal-enter-slide 0.18s cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: transform;
+    will-change: auto;
 }
 @media all and (min-width: 640px) {
     .modal-window {
-        animation-name: modal-enter;
+        animation-name: none;
     }
 }
 .modal-window {
@@ -3035,7 +3060,13 @@ input[type="file"]::-webkit-file-upload-button:hover {
 }
 @media all and (min-width: 640px) {
     .modal-fullpage__inner {
-        animation-name: modal-enter;
+        animation-name: none;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .modal,
+    .modal-overlay {
+        transition: none !important;
     }
 }
 @media all and (min-width: 925px) {

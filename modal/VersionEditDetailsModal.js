@@ -93,7 +93,7 @@ export default function VersionEditDetailsModal({ isOpen, onRequestClose, editLo
     };
 
     return (
-        <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay modal-overlay--version-details-wide">
+        <Modal closeTimeoutMS={150} isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay modal-overlay--version-details-wide">
             <div className="modal-window version-upload-modal version-edit-details-modal">
                 <div className="modal-window__header">
                     <p className="modal-window__title">{t("versions.modal.editDetailsTitle")}</p>

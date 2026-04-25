@@ -9,7 +9,7 @@ export default function IssueTemplatePickerModal({ isOpen, templates = [], onSel
     const t = useTranslations("Issues");
 
     return (
-        <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
+        <Modal closeTimeoutMS={150} isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
             <div className="modal-window">
                 <div className="modal-window__header">
                     <h2 className="modal-window__title">{t("newIssue.selectTitle")}</h2>

@@ -8,7 +8,7 @@ if(typeof window !== "undefined") {
 
 export default function VersionEditMetadataModal({ isOpen, onRequestClose, editLoading, onSubmit, t, tProject, editFormData, editGameVersionsRef, toggleEditGameVersionsPopover, isEditGameVersionsPopoverOpen, gameVersions, handleEditToggleGameVersion, editGameVersionsLabel, editLoadersRef, toggleEditLoadersPopover, isEditLoadersPopoverOpen, loaders, handleEditToggleLoader, editLoadersLabel }) {
     return (
-        <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
+        <Modal closeTimeoutMS={150} isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
             <div className="modal-window version-upload-modal">
                 <div className="modal-window__header">
                     <p className="modal-window__title">{t("versions.modal.editMetadataTitle")}</p>

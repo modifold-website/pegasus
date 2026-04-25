@@ -44,7 +44,7 @@ export default function CreateApiTokenModal({ isOpen, onRequestClose, form, onIn
     };
 
     return (
-        <Modal isOpen={isOpen} onRequestClose={handleClose} className="modal active" overlayClassName="modal-overlay">
+        <Modal closeTimeoutMS={150} isOpen={isOpen} onRequestClose={handleClose} className="modal active" overlayClassName="modal-overlay">
             <div className="modal-window version-upload-modal">
                 <div className="modal-window__header">
                     <span style={{ fontSize: "18px", fontWeight: "500" }}>{t("createToken")}</span>

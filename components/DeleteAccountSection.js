@@ -61,7 +61,7 @@ export default function DeleteAccountSection() {
                 {t("deleteButton")}
             </button>
 
-            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal active" overlayClassName="modal-overlay">
+            <Modal closeTimeoutMS={150} isOpen={modalIsOpen} onRequestClose={closeModal} className="modal active" overlayClassName="modal-overlay">
                 <div className="modal-window">
                     <div className="modal-window__header">
                         <button className="icon-button modal-window__close" type="button" onClick={closeModal}>

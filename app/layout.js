@@ -14,6 +14,12 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
 import FooterModrinthModal from "@/modal/FooterModrinthModal";
 import { parseFeatureFlagsCookieValue } from "@/utils/featureFlags";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+	subsets: ["latin", "cyrillic"],
+	display: "swap",
+});
 
 export async function generateMetadata() {
     const resolvedLocale = await getLocale();
@@ -100,9 +106,6 @@ export default async function RootLayout({ children }) {
 
                 <link rel="alternate" hrefLang="x-default" href="https://modifold.com/" />
 
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                
                 <link rel="shortcut icon" href="/images/favicon.ico" />
                 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png" />
                 <link rel="icon" type="image/png" href="/images/apple-touch-icon-180x180.png" />
@@ -115,8 +118,6 @@ export default async function RootLayout({ children }) {
                 <meta name="theme-color" content="#307df0" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 
-                <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
-
                 <meta property="og:site_name" content="Modifold" />
                 <meta property="og:image:width" content="600" />
                 <meta property="og:image:height" content="315" />
@@ -148,7 +149,7 @@ export default async function RootLayout({ children }) {
                 </Script>
             </head>
 
-            <body data-font-smoothing="Antialiased" className={initialTheme} data-theme-preference={themePreference} data-feature-flag-frosted-menus={isFrostedMenusEnabled ? "true" : "false"}>
+            <body data-font-smoothing="Antialiased" className={`${inter.className} ${initialTheme}`} data-theme-preference={themePreference} data-feature-flag-frosted-menus={isFrostedMenusEnabled ? "true" : "false"}>
                 <div id="app">
                     <AuthProvider isLoggedIn={isLoggedIn} userData={userData}>
                         <ClientProvider>

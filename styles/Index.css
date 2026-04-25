@@ -290,33 +290,16 @@ svg {
     --layout-z-index-header: 10;
     --layout-z-index-navbar: 2;
     --layout-z-modal-overlay: 100;
-    --layout-z-index-feed: 1;
-    --layout-z-alerts: calc(var(--layout-z-index-header) + 2);
     --layout-island-border-radius: 22px;
     --layout-tabbar-height: 50px;
     --layout-header-height: 82px;
-    --layout-page-header-height: 58px;
     --layout-tabs-height: 50px;
     --layout-view-offset-y: 0px;
     --layout-max-width: 640px;
-    --layout-max-content-width: 640px;
     --layout-content-offset-x: 16px;
-    --layout-left-aside-width: 220px;
-    --layout-left-aside-offset: 10px;
-    --layout-right-aside-width: 320px;
-    --layout-right-aside-offset: 20px;
     --layout-island-gap-y: 24px;
     --layout-modal-view-width: 520px;
-    --layout-modal-view-height: 562px;
-    --layout-content-gap-default: 12px;
-    --layout-content-gap-media: 20px;
-    --layout-content-gap-header: 20px;
-    --safe-tabbar-height: calc(var(--layout-tabbar-height) + env(safe-area-inset-bottom));
     --layout-settings-input-max-width: 390px;
-    --layout-updates-button-size: 32px;
-    --layout-content-banner-height: 188px;
-    --layout-vertical-banner-height: 400px;
-    --layout-vertical-banner-width: 320px;
 }
 @media all and (min-width: 925px) {
     :root {
@@ -334,28 +317,16 @@ svg {
         --layout-island-border-radius: 22px;
         --layout-content-offset-x: 24px;
         --layout-view-offset-y: 16px;
-        --layout-content-banner-height: 108px;
     }
 }
 :root {
     color-scheme: light;
 
-    --searchBackgroundColor: #fff;
-
-    --backgroundColorAuthor: #f5f5f5;
-
-    --subs-select: rgba(32, 35, 51, 0.07);
-
     --theme-sidebar-separator-color-background: rgb(0 0 0 / 5%);
-    --theme-color-background-popular-reel: rgba(255, 255, 255, 0.6);
-    --brand-color: #00ccff;
     --theme-color-brand-primary: #067aff;
-    --theme-color-brand-header: rgb(255 255 255 / 80%);
-    --theme-color-brand-background: #fff;
     --theme-color-brand-logo: #000;
     --theme-color-signal-active-default: #307df0;
     --theme-color-signal-active-dark: #2d75e0;
-    --theme-color-signal-active-darkest: #2a6dd1;
     --theme-color-signal-active-light: #b3d1ff;
     --theme-color-signal-active-lightest: #e6effd;
     --theme-color-signal-positive-default: #30b03d;
@@ -369,12 +340,9 @@ svg {
     --theme-color-background-active-hover: #d1e3ff;
     --theme-color-background-content: var(--color-white);
     --theme-color-background-content-blur: rgb(255 255 255 / 90%);
-    --theme-color-background-search: var(--color-white);
     --theme-color-background-issue-card-hover: #ffffff94;
     --theme-color-media-background: rgb(255 255 255 / 70%);
     --theme-color-border: #e5e5e5;
-    --theme-color-shadow-over-background: rgba(0, 0, 0, 0.08);
-    --theme-color-border-over-background: #dadada;
     --theme-color-text-primary: var(--color-black);
     --theme-color-text-secondary: #595959;
     --theme-color-text-secondary-light: #808080;
@@ -385,87 +353,56 @@ svg {
     --theme-color-button-secondary-shadow-hover: 0px 2px 4px rgba(0, 0, 0, 0.09), inset 0px -1px 0px rgba(0, 0, 0, 0.06);
     --theme-color-button-secondary-shadow-active: 0px 0px 2px rgba(0, 0, 0, 0.05), inset 0px -1px 0px rgba(0, 0, 0, 0.06);
     --theme-color-button-minimal: #f0f0f0;
-    --theme-color-button-maximal: rgb(245 245 245);
     --theme-color-button-minimal-hover: #e6e6e6;
     --theme-color-button-minimal-active: #dbdbdb;
     --theme-color-button-transparent-hover: rgba(0, 0, 0, 0.04);
     --theme-color-button-transparent-active: rgba(0, 0, 0, 0.06);
-    --theme-color-check-background-default: #f0f0f0;
-    --theme-color-check-border-disabled: #dddddd;
     --theme-color-field-background-default: #f5f5f5;
-    --theme-color-search-background-default: #ffffff;
     --theme-color-field-background-hover: var(--color-white);
-    --theme-color-field-background-error: #ffeced;
     --theme-color-field-background-disabled: #f7f7f7;
     --theme-color-field-border-default: rgba(0, 0, 0, 0.03);
-    --theme-color-field-icon-default: var(--color-white);
     --theme-color-field-icon-disabled: #b8b8b8;
     --theme-color-popover-item-bg-active: #dfebff;
     --theme-color-popover-item-bg-active-hover: #d2e4ff;
     --theme-shadow-popover: 0px 4px 20px rgba(0, 0, 0, 0.08), 0px 0px 1px rgba(0, 0, 0, 0.16);
     --theme-color-popover-background: var(--color-white);
-    --theme-color-updates-shadow: 0.5px 0px 0px rgba(0, 0, 0, 0.1), -0.5px 0px 0px rgba(0, 0, 0, 0.1), 0px -0.5px 0px rgba(0, 0, 0, 0.05), 0px 4px 7px rgba(0, 0, 0, 0.08), 0px 1px 1px rgba(0, 0, 0, 0.1);
-    --content-header-label-background: #fffbe0;
-    --content-header-label-color: #000;
-    --content-footer--sticky-background: rgb(255 255 255 / 90%);
+    --theme-modal-overlay-background: rgb(180 180 182 / 50%);
 
     --theme-andropov-border-color: rgba(0, 0, 0, 0.1);
 
     --theme-color-content-footer-button-hover-background: rgba(48, 125, 240, 0.12);
 
-    --account-menu-background: rgb(255 255 255 / 90%);
-
     --tabbar-background: rgb(255 255 255 / 75%);
     --tabbar-boxshadow: inset 0 0 0 1px rgba(218, 218, 218, .31), inset 1px 1px #ffffff1a, inset -1px -1px #ffffff1a;
-
-    --feed-sorting-background: rgb(242 242 242 / 90%);
-    --feed-sorting-shadow: 0 1px #0000001c;
 
     --comment-selected: rgb(204 239 222 / 50%);
 
     --project_card-box-shadow: rgba(50,50,100,.1) 0px 2px 4px 0px;
 
     --banner-warning-bg: #ffedd5;
-    --banner-warning-border: 1px solid rgb(249 115 22 / 16%);
     --banner-warning-color: #713f12;
 }
 body.dark {
     color-scheme: dark;
 
     --banner-warning-bg: #453425;
-    --banner-warning-border: 1px solid rgb(249 115 22 / 16%);
     --banner-warning-color: #e4d9ca;
 
     --project_card-box-shadow: rgba(0,0,0,.25) 0px 2px 4px 0px;
 
     --comment-selected: rgb(0 255 131 / 7%);
 
-    --feed-sorting-background: rgb(21 24 36 / 90%);
-    --feed-sorting-shadow: 0 1px #ffffff14;
-
     --tabbar-background: rgb(35 35 36 / 75%);
     --tabbar-boxshadow: inset 0 0 0 1px rgba(255, 255, 255, .01), inset 1px 1px #ffffff1a,inset -1px -1px #ffffff1a;
 
-    --account-menu-background: rgb(29 33 49);
-
     --theme-andropov-border-color: rgba(0, 0, 0, 0.1);
 
-    --searchBackgroundColor: #1F1F1F;
-
-    --backgroundColorAuthor: #323232;
-
-    --content-footer--sticky-background: rgb(32 36 53 / 90%);
-    --theme-color-background-popular-reel: rgba(0, 0, 0, 0.6);
-    --content-header-label-background: #333333;
-    --content-header-label-color: #969da0;
+    --theme-modal-overlay-background: rgb(0 0 0 / 50%);
     --theme-sidebar-separator-color-background: rgb(255 255 255 / 3%);
     --theme-color-brand-logo: #fff;
     --theme-color-brand-primary: #307df0;
-    --theme-color-brand-header: rgb(38 41 47 / 90%);
-    --theme-color-brand-background: #2d2d2e;
     --theme-color-signal-active-default: #3375d6;
     --theme-color-signal-active-dark: #336dc6;
-    --theme-color-signal-active-darkest: #3367b5;
     --theme-color-signal-active-light: #334e64;
     --theme-color-signal-active-lightest: rgba(255, 255, 255, 0.06);
     --theme-color-signal-positive-default: #33a03e;
@@ -479,12 +416,9 @@ body.dark {
     --theme-color-background-active-hover: #424243;
     --theme-color-background-content: #232324;
     --theme-color-background-content-blur: rgb(35 35 36 / 90%);
-    --theme-color-background-search: #15192a;
     --theme-color-background-issue-card-hover: #232324a8;
     --theme-color-media-background: rgb(35 35 36 / 70%);
     --theme-color-border: rgba(255, 255, 255, 0.16);
-    --theme-color-shadow-over-background: rgba(255, 255, 255, 0.16);
-    --theme-color-border-over-background: #363636;
     --theme-color-link: #45a2f3;
     --theme-color-link-hover: #6cb1ff;
     --theme-color-text-primary: #eeeeee;
@@ -497,12 +431,6 @@ body.dark {
     --theme-color-button-secondary-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02), 0 1px 3px rgba(0, 0, 0, 0.14);
     --theme-color-button-secondary-shadow-hover: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 1px 4px rgba(0, 0, 0, 0.22);
     --theme-color-button-secondary-shadow-active: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 1px 4px rgba(0, 0, 0, 0.29);
-    --theme-color-button-translucent: rgba(0, 0, 0, 0.3);
-    --theme-color-button-translucent-hover: rgba(0, 0, 0, 0.45);
-    --theme-color-button-translucent-active: rgba(0, 0, 0, 0.6);
-    --theme-color-check-background-default: #1c1c1c;
-    --theme-color-check-border-disabled: #2e2e2e;
-    --theme-color-search-background-default: #15192a;
     --theme-color-field-background-default: #2c2c2d;
     --theme-color-field-background-hover: #1e1d1e;
     --theme-color-field-background-disabled: #333;
@@ -510,7 +438,6 @@ body.dark {
     --theme-color-popover-item-bg-active-hover: #3a3a3a;
     --theme-shadow-popover: 0px 4px 20px rgba(0, 0, 0, 0.32), 0 0 0 1px #363636;
     --theme-color-popover-background: #1F1F1F;
-    --theme-color-updates-shadow: 0.5px 0px 0px #363636, -0.5px 0px 0px #363636, 0px -0.5px 0px #363636, 0px 4px 7px rgba(0, 0, 0, 0.12), 0px 1px 1px #363636;
     --theme-color-content-footer-button-hover-background: rgba(48, 125, 240, 0.12);
 }
 .andropov-media {
@@ -1979,9 +1906,6 @@ body[data-feature-flag-frosted-menus="true"] .popover {
     top: 100%;
     bottom: auto;
 }
-:root {
-    --safe-tabbar-height: calc(var(--layout-tabbar-height) + env(safe-area-inset-bottom));
-}
 @-webkit-keyframes underlay-in {
     0% {
         opacity: 0;
@@ -2166,15 +2090,33 @@ input[type="file"]::-webkit-file-upload-button:hover {
     font: inherit;
 }
 .modal {
+    transform-origin: center;
+    transform: scale(0.95);
     opacity: 0;
-    visibility: hidden;
+    pointer-events: none;
+    transition:
+        transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 300ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
 }
 .modal.active,
 .overlay.active {
     opacity: 1;
-    visibility: visible;
     outline: none;
     border: 0;
+}
+.modal.ReactModal__Content--after-open {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal.ReactModal__Content--before-close {
+    transform: scale(0.96);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        transform 150ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 150ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .list {
     overflow-y: auto;
@@ -2643,11 +2585,10 @@ input[type="file"]::-webkit-file-upload-button:hover {
     right: 0;
     top: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
+    background: var(--theme-modal-overlay-background);
     will-change: opacity;
-    animation: underlay-in 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    transition: opacity 300ms cubic-bezier(0.22, 1, 0.36, 1);
     --window-radius: 20px;
     display: grid;
     overflow: hidden;
@@ -2656,6 +2597,13 @@ input[type="file"]::-webkit-file-upload-button:hover {
     align-content: end;
     justify-content: center;
     padding-top: var(--layout-header-height);
+}
+.modal-overlay.ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+.modal-overlay.ReactModal__Overlay--before-close {
+    opacity: 0;
+    transition: opacity 150ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 @media all and (min-width: 640px) {
     .modal-overlay {
@@ -2677,12 +2625,11 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .modal-window {
     outline: none;
     border: 0;
-    animation: modal-enter-slide 0.18s cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: transform;
+    will-change: auto;
 }
 @media all and (min-width: 640px) {
     .modal-window {
-        animation-name: modal-enter;
+        animation-name: none;
     }
 }
 .modal-window {
@@ -3035,7 +2982,13 @@ input[type="file"]::-webkit-file-upload-button:hover {
 }
 @media all and (min-width: 640px) {
     .modal-fullpage__inner {
-        animation-name: modal-enter;
+        animation-name: none;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .modal,
+    .modal-overlay {
+        transition: none !important;
     }
 }
 @media all and (min-width: 925px) {
@@ -4779,16 +4732,13 @@ body.light div .image-container::before {
 .over-the-top-download-animation {
     align-items: center;
     display: flex;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset: 0;
     justify-content: center;
     opacity: 1;
     pointer-events: none;
     position: fixed;
     scale: .5;
-    transition: all .3s ease-out;
+    transition: all .5s ease-out;
     z-index: 100;
 }
 .over-the-top-download-animation>div {
@@ -4808,7 +4758,7 @@ body.light div .image-container::before {
     transition: all .2s ease-out;
     width: 20rem;
 }
-.over-the-top-download-animation .animation-ring-3 {
+.over-the-top-download-animation div .animation-ring-3 {
     height: 100rem;
     width: 100rem;
     background-color: rgb(0 175 92 / 25%);
@@ -4821,7 +4771,7 @@ body.light div .image-container::before {
     align-items: center;
     display: flex;
 }
-.over-the-top-download-animation .animation-ring-2 {
+.over-the-top-download-animation div .animation-ring-2 {
     height: 50rem;
     width: 50rem;
     background-color: rgb(0 175 92 / 25%);
@@ -4834,7 +4784,7 @@ body.light div .image-container::before {
     align-items: center;
     display: flex;
 }
-.over-the-top-download-animation .animation-ring-1 {
+.over-the-top-download-animation div .animation-ring-1 {
     height: 25rem;
     width: 25rem;
     background-color: rgb(0 175 92 / 25%);
@@ -4847,7 +4797,7 @@ body.light div .image-container::before {
     align-items: center;
     display: flex;
 }
-.over-the-top-download-animation .animation-ring-1 svg {
+.over-the-top-download-animation div .animation-ring-1 svg {
     fill: none;
     color: var(--theme-color-text-primary);
     width: 5rem;

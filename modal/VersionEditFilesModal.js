@@ -106,7 +106,7 @@ export default function VersionEditFilesModal({ isOpen, onRequestClose, editLoad
     };
 
     return (
-        <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
+        <Modal closeTimeoutMS={150} isOpen={isOpen} onRequestClose={onRequestClose} className="modal active" overlayClassName="modal-overlay">
             <div className="modal-window version-upload-modal">
                 <div className="modal-window__header">
                     <p className="modal-window__title">{t("versions.modal.editFilesTitle")}</p>

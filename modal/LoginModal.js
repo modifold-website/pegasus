@@ -66,7 +66,7 @@ export default function LoginModal({ isOpen, onClose }) {
 
     return (
         <>
-            <Modal isOpen={isOpen} onRequestClose={onClose} className="modal active" overlayClassName="modal-overlay">
+            <Modal closeTimeoutMS={150} isOpen={isOpen} onRequestClose={onClose} className="modal active" overlayClassName="modal-overlay">
                 <div className="modal-window">
                     <div className="modal-window__header">
                         <button className="icon-button modal-window__close" type="button" onClick={onClose} aria-label={t("close")}>
@@ -128,7 +128,7 @@ export default function LoginModal({ isOpen, onClose }) {
                 </div>
             </Modal>
 
-            <Modal isOpen={isDataModalOpen} onRequestClose={closeDataModal} className="modal active" overlayClassName="modal-overlay">
+            <Modal closeTimeoutMS={150} isOpen={isDataModalOpen} onRequestClose={closeDataModal} className="modal active" overlayClassName="modal-overlay">
                 <div className="modal-window">
                     <div className="modal-window__header">
                         <button className="icon-button modal-window__close" type="button" onClick={closeDataModal} aria-label={t("close")}>

@@ -243,7 +243,7 @@ export default function Header({ authToken }) {
                                 </button>
 
                                 <div className="account-button" ref={buttonRef}>
-                                    <div className="account-button__inner" onClick={toggleMenu}>
+                                    <div className="account-button__inner button--active-transform" onClick={toggleMenu}>
                                         {unreadCount > 0 && (
                                             <div className="header--bell__unread-count counter-label">{unreadLabel}</div>
                                         )}

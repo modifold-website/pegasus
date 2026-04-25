@@ -18,7 +18,7 @@ export default function FooterModrinthModal() {
                 Modrinth
             </button>
 
-            <Modal isOpen={isOpen} onRequestClose={() => setIsOpen(false)} className="modal active" overlayClassName="modal-overlay">
+            <Modal closeTimeoutMS={150} isOpen={isOpen} onRequestClose={() => setIsOpen(false)} className="modal active" overlayClassName="modal-overlay">
                 <div className="modal-window">
                     <div className="modal-window__header">
                         <h2 className="modal-window__title">{t("title")}</h2>

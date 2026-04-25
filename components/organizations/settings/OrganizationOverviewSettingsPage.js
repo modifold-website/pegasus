@@ -211,7 +211,7 @@ export default function OrganizationOverviewSettingsPage({ authToken, organizati
                     )}
                 </div>
 
-                <Modal isOpen={isDeleteModalOpen} onRequestClose={() => setIsDeleteModalOpen(false)} className="modal active" overlayClassName="modal-overlay">
+                <Modal closeTimeoutMS={150} isOpen={isDeleteModalOpen} onRequestClose={() => setIsDeleteModalOpen(false)} className="modal active" overlayClassName="modal-overlay">
                     <div className="modal-window">
                         <div className="modal-window__header">
                             <button className="icon-button modal-window__close" type="button" onClick={() => setIsDeleteModalOpen(false)} disabled={isDeletingOrganization} aria-label={t("settings.delete.close")}>

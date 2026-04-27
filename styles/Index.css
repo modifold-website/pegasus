@@ -2693,10 +2693,13 @@ input[type="file"]::-webkit-file-upload-button:hover {
     padding: 0 var(--layout-content-offset-x) 20px;
 }
 .version-upload-modal {
-    overflow: visible;
+    max-height: calc(100dvh - var(--layout-header-height));
+    overflow: hidden;
 }
 .version-upload-modal .modal-window__content {
-    overflow: visible;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 0;
 }
 .version-edit-details-modal {
     max-height: calc(100dvh - var(--layout-header-height));

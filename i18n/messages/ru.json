@@ -248,6 +248,16 @@
         "beta": "Бета",
         "alpha": "Альфа"
       },
+      "dependencies": {
+        "title": "Зависимости",
+        "unknownDependency": "Неизвестная зависимость",
+        "types": {
+          "required": "Обязательная",
+          "optional": "Опциональная",
+          "incompatible": "Несовместимая",
+          "embedded": "Встроенная"
+        }
+      },
       "metadata": {
         "title": "Метаданные",
         "gameVersion": "Версия игры",
@@ -750,6 +760,45 @@
       },
       "success": "Версия загружена",
       "title": "Загрузить новую версию",
+      "dependenciesEditor": {
+        "title": "Добавить зависимость",
+        "description": "Выберите проект, при необходимости версию, тип связи и добавьте в список.",
+        "fields": {
+          "project": "Проект",
+          "version": "Версия",
+          "dependencyRelation": "Тип зависимости"
+        },
+        "dependencyTypes": {
+          "required": "Обязательная",
+          "optional": "Опциональная",
+          "incompatible": "Несовместимая",
+          "embedded": "Встроенная"
+        },
+        "placeholders": {
+          "searchProject": "Поиск по названию или вставка ID...",
+          "selectOrPasteVersionId": "Выберите версию или вставьте ID версии...",
+          "pasteVersionIdOptional": "Вставьте ID версии (необязательно)"
+        },
+        "popover": {
+          "typeAtLeast": "Введите минимум {count} символа(ов) для поиска.",
+          "searching": "Поиск...",
+          "noProjectsFound": "Проекты не найдены. Вы все равно можете вставить точный ID проекта.",
+          "unableToLoadProjects": "Не удалось загрузить проекты",
+          "anyVersion": "Любая версия",
+          "selectProjectToChooseVersions": "Выберите проект, чтобы выбрать одну из его версий.",
+          "loadingVersions": "Загрузка версий...",
+          "noMatchingVersions": "Подходящих версий нет. Вы все равно можете вставить точный ID версии.",
+          "unableToLoadVersions": "Не удалось загрузить версии"
+        },
+        "actions": {
+          "add": "Добавить",
+          "remove": "Удалить"
+        },
+        "list": {
+          "addedDependencies": "Добавленные зависимости",
+          "unknownProject": "неизвестный проект"
+        }
+      },
       "fields": {
         "versionNumber": "Номер версии",
         "changelog": "Список изменений",
@@ -780,7 +829,8 @@
         "steps": {
           "files": "Файлы",
           "metadata": "Метаданные",
-          "compatibility": "Совместимость"
+          "compatibility": "Совместимость",
+          "dependencies": "Зависимости"
         },
         "dropzone": {
           "uploadTitle": "Загрузить файл версии",

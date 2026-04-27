@@ -248,6 +248,16 @@
         "beta": "Beta",
         "alpha": "Alpha"
       },
+      "dependencies": {
+        "title": "Dependencies",
+        "unknownDependency": "Unknown dependency",
+        "types": {
+          "required": "Required",
+          "optional": "Optional",
+          "incompatible": "Incompatible",
+          "embedded": "Embedded"
+        }
+      },
       "metadata": {
         "title": "Metadata",
         "gameVersion": "Game Version",
@@ -750,6 +760,45 @@
       },
       "success": "Version uploaded",
       "title": "Upload New Version",
+      "dependenciesEditor": {
+        "title": "Add dependency",
+        "description": "Choose a project, optional version, relation type, then add to list.",
+        "fields": {
+          "project": "Project",
+          "version": "Version",
+          "dependencyRelation": "Dependency relation"
+        },
+        "dependencyTypes": {
+          "required": "Required",
+          "optional": "Optional",
+          "incompatible": "Incompatible",
+          "embedded": "Embedded"
+        },
+        "placeholders": {
+          "searchProject": "Search by name or paste ID...",
+          "selectOrPasteVersionId": "Select version or paste version ID...",
+          "pasteVersionIdOptional": "Paste version ID (optional)"
+        },
+        "popover": {
+          "typeAtLeast": "Type at least {count} characters to search.",
+          "searching": "Searching...",
+          "noProjectsFound": "No projects found. You can still paste exact project ID.",
+          "unableToLoadProjects": "Unable to load projects",
+          "anyVersion": "Any version",
+          "selectProjectToChooseVersions": "Select project to choose from project versions.",
+          "loadingVersions": "Loading versions...",
+          "noMatchingVersions": "No matching versions. You can still paste exact version ID.",
+          "unableToLoadVersions": "Unable to load versions"
+        },
+        "actions": {
+          "add": "Add",
+          "remove": "Remove"
+        },
+        "list": {
+          "addedDependencies": "Added dependencies",
+          "unknownProject": "unknown project"
+        }
+      },
       "fields": {
         "versionNumber": "Version Number",
         "changelog": "Changelog",
@@ -780,7 +829,8 @@
         "steps": {
           "files": "Files",
           "metadata": "Metadata",
-          "compatibility": "Compatibility"
+          "compatibility": "Compatibility",
+          "dependencies": "Dependencies"
         },
         "dropzone": {
           "uploadTitle": "Upload version file",

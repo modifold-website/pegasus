@@ -508,6 +508,7 @@
     grid-template:
         "title" auto
         "changelog" auto
+        "dependencies" auto
         "metadata" auto / 1fr;
     column-gap: .75rem;
 }
@@ -569,6 +570,15 @@
     overflow-x: hidden;
 }
 .version-page__changelog h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.version-page__dependencies {
+    grid-area: dependencies;
+    overflow-x: hidden;
+}
+.version-page__dependencies h3 {
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 8px;
@@ -657,6 +667,7 @@
         grid-template:
         "title title" auto
         "changelog metadata" auto
+        "dependencies metadata" auto
         "files metadata" auto
         "dummy metadata" 1fr / 1fr 20rem;
     }

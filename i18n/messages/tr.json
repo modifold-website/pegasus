@@ -246,6 +246,16 @@
         "beta": "Beta",
         "alpha": "Alfa"
       },
+      "dependencies": {
+        "title": "Bağımlılıklar",
+        "unknownDependency": "Bilinmeyen bağımlılık",
+        "types": {
+          "required": "Zorunlu",
+          "optional": "İsteğe bağlı",
+          "incompatible": "Uyumsuz",
+          "embedded": "Gömülü"
+        }
+      },
       "metadata": {
         "title": "Meta verileri",
         "gameVersion": "Oyun sürümü",
@@ -748,6 +758,45 @@
       },
       "success": "Sürüm yüklendi",
       "title": "Yeni sürüm yükle",
+      "dependenciesEditor": {
+        "title": "Bağımlılık ekle",
+        "description": "Bir proje seçin, isteğe bağlı bir sürüm ve ilişki türü belirleyin, ardından listeye ekleyin.",
+        "fields": {
+          "project": "Proje",
+          "version": "Sürüm",
+          "dependencyRelation": "Bağımlılık ilişkisi"
+        },
+        "dependencyTypes": {
+          "required": "Zorunlu",
+          "optional": "İsteğe bağlı",
+          "incompatible": "Uyumsuz",
+          "embedded": "Gömülü"
+        },
+        "placeholders": {
+          "searchProject": "Ada göre ara veya ID yapıştır...",
+          "selectOrPasteVersionId": "Sürüm seçin veya sürüm ID'si yapıştırın...",
+          "pasteVersionIdOptional": "Sürüm ID'si yapıştırın (isteğe bağlı)"
+        },
+        "popover": {
+          "typeAtLeast": "Aramak için en az {count} karakter yazın.",
+          "searching": "Aranıyor...",
+          "noProjectsFound": "Proje bulunamadı. Yine de tam proje ID'sini yapıştırabilirsiniz.",
+          "unableToLoadProjects": "Projeler yüklenemedi",
+          "anyVersion": "Herhangi bir sürüm",
+          "selectProjectToChooseVersions": "Sürümlerden seçim yapmak için bir proje seçin.",
+          "loadingVersions": "Sürümler yükleniyor...",
+          "noMatchingVersions": "Eşleşen sürüm yok. Yine de tam sürüm ID'sini yapıştırabilirsiniz.",
+          "unableToLoadVersions": "Sürümler yüklenemedi"
+        },
+        "actions": {
+          "add": "Ekle",
+          "remove": "Kaldır"
+        },
+        "list": {
+          "addedDependencies": "Eklenen bağımlılıklar",
+          "unknownProject": "bilinmeyen proje"
+        }
+      },
       "fields": {
         "versionNumber": "Sürüm numarası",
         "changelog": "Değişiklik günlüğü",
@@ -778,7 +827,8 @@
         "steps": {
           "files": "Dosyalar",
           "metadata": "Meta veriler",
-          "compatibility": "Uyumluluk"
+          "compatibility": "Uyumluluk",
+          "dependencies": "Bağımlılıklar"
         },
         "dropzone": {
           "uploadTitle": "Sürüm dosyası yükle",

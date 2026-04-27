@@ -1,12 +1,13 @@
 "use client";
 
 import Modal from "react-modal";
+import VersionDependenciesEditor from "./VersionDependenciesEditor";
 
 if(typeof window !== "undefined") {
     Modal.setAppElement("body");
 }
 
-export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoading, uploadStep, uploadSteps, uploadFile, isUploadDragActive, uploadFileRef, versionFileAccept, openUploadFilePicker, handleUploadDragOver, handleUploadDragLeave, handleUploadDrop, handleUploadFileChange, formatFileSize, goToUploadCompatibilityStep, goToUploadFilesStep, goToUploadMetadataStepBack, handleSubmit, formData, handleInputChange, releaseChannels, handleSelectReleaseChannel, gameVersionsRef, toggleGameVersionsPopover, isGameVersionsPopoverOpen, gameVersions, handleToggleGameVersion, gameVersionsLabel, loadersRef, toggleLoadersPopover, isLoadersPopoverOpen, loaders, handleToggleLoader, loadersLabel, t, tProject }) {
+export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoading, uploadStep, uploadSteps, uploadFile, isUploadDragActive, uploadFileRef, versionFileAccept, openUploadFilePicker, handleUploadDragOver, handleUploadDragLeave, handleUploadDrop, handleUploadFileChange, formatFileSize, goToUploadCompatibilityStep, goToUploadFilesStep, goToUploadMetadataStepBack, handleSubmit, formData, handleInputChange, releaseChannels, handleSelectReleaseChannel, gameVersionsRef, toggleGameVersionsPopover, isGameVersionsPopoverOpen, gameVersions, handleToggleGameVersion, gameVersionsLabel, loadersRef, toggleLoadersPopover, isLoadersPopoverOpen, loaders, handleToggleLoader, loadersLabel, dependencyTypes, uploadDependencyDraft, handleUploadDependencyDraftChange, handleAddUploadDependency, handleRemoveUploadDependency, t, tProject }) {
     const isFilesStep = uploadStep === uploadSteps.FILES;
     const isMetadataStep = uploadStep === uploadSteps.METADATA;
     const isCompatibilityStep = uploadStep === uploadSteps.COMPATIBILITY;
@@ -29,7 +30,7 @@ export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoadi
                             {t("versions.modal.steps.files")}
                         </button>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" viewBox="0 0 24 24" className="version-upload-steps__separator" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="version-upload-steps__separator" aria-hidden="true">
                             <path d="m9 18 6-6-6-6"></path>
                         </svg>
 
@@ -37,7 +38,7 @@ export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoadi
                             {t("versions.modal.steps.metadata")}
                         </button>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" viewBox="0 0 24 24" className="version-upload-steps__separator" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="version-upload-steps__separator" aria-hidden="true">
                             <path d="m9 18 6-6-6-6"></path>
                         </svg>
 
@@ -166,11 +167,11 @@ export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoadi
                                     </button>
                                 </div>
                             </>
-                        ) : (
+                        ) : isCompatibilityStep ? (
                             <>
                                 <p className="blog-settings__field-title" style={{ marginTop: "0" }}>{t("versions.fields.gameVersions")}</p>
                                 <div className="field field--default" ref={gameVersionsRef}>
-                                    <label className="field__wrapper" onClick={!uploadLoading ? toggleGameVersionsPopover : undefined}>
+                                    <label className="field__wrapper" onClick={!uploadLoading ? toggleGameVersionsPopover : undefined} style={{ cursor: "pointer" }}>
                                         <div className="field__wrapper-body">
                                             <div className="select">
                                                 <div className="select__selected">{gameVersionsLabel}</div>
@@ -182,7 +183,15 @@ export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoadi
                                         <div className="popover">
                                             <div className="context-list" data-scrollable style={{ maxHeight: "200px", overflowY: "auto" }}>
                                                 {gameVersions.map((version) => (
-                                                    <div key={version} className={`context-list-option ${formData.game_versions.includes(version) ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleToggleGameVersion(version)}>
+                                                    <div
+                                                        key={version}
+                                                        className={`context-list-option ${formData.game_versions.includes(version) ? "context-list-option--selected" : ""}`}
+                                                        style={{ "--press-duration": "140ms" }}
+                                                        onClick={() => {
+                                                            handleToggleGameVersion(version);
+                                                            toggleGameVersionsPopover();
+                                                        }}
+                                                    >
                                                         <div className="context-list-option__label">{version}</div>
                                                     </div>
                                                 ))}
@@ -205,13 +214,33 @@ export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoadi
                                         <div className="popover">
                                             <div className="context-list" data-scrollable style={{ maxHeight: "200px", overflowY: "auto" }}>
                                                 {loaders.map((loader) => (
-                                                    <div key={loader} className={`context-list-option ${formData.loaders.includes(loader) ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleToggleLoader(loader)}>
+                                                    <div
+                                                        key={loader}
+                                                        className={`context-list-option ${formData.loaders.includes(loader) ? "context-list-option--selected" : ""}`}
+                                                        style={{ "--press-duration": "140ms" }}
+                                                        onClick={() => {
+                                                            handleToggleLoader(loader);
+                                                            toggleLoadersPopover();
+                                                        }}
+                                                    >
                                                         <div className="context-list-option__label">{loader}</div>
                                                     </div>
                                                 ))}
                                             </div>
                                         </div>
                                     )}
+                                </div>
+
+                                <div style={{ marginTop: "0" }}>
+                                    <VersionDependenciesEditor
+                                        dependencies={formData.dependencies}
+                                        dependencyDraft={uploadDependencyDraft}
+                                        dependencyTypes={dependencyTypes}
+                                        onDraftChange={handleUploadDependencyDraftChange}
+                                        onAddDependency={handleAddUploadDependency}
+                                        onRemoveDependency={handleRemoveUploadDependency}
+                                        disabled={uploadLoading}
+                                    />
                                 </div>
 
                                 <div className="version-upload-actions">
@@ -228,7 +257,7 @@ export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoadi
                                     </button>
                                 </div>
                             </>
-                        )}
+                        ) : null}
                     </form>
                 </div>
             </div>

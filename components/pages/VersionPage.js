@@ -54,6 +54,16 @@ export default function VersionPage({ project, version, authToken }) {
     const knownReleaseChannels = ["release", "beta", "alpha"];
     const hasKnownReleaseChannel = knownReleaseChannels.includes(releaseChannel);
     const releaseChannelLabel = hasKnownReleaseChannel ? t(`versions.channels.${releaseChannel}`) : (version.release_channel || t("versions.notSpecified"));
+    const dependencies = Array.isArray(version.dependencies) ? version.dependencies : [];
+
+    const formatDependencyType = (dependencyType) => {
+        const normalized = String(dependencyType || "").trim().toLowerCase();
+        if(!["required", "optional", "incompatible", "embedded"].includes(normalized)) {
+            return t("versions.dependencies.types.required");
+        }
+
+        return t(`versions.dependencies.types.${normalized}`);
+    };
 
     return (
         <>
@@ -93,11 +103,11 @@ export default function VersionPage({ project, version, authToken }) {
                             </div>
                         </div>
                         
-                        <div className="version-page__changelog content content--padding">
-                            <h3>{t("changesTitle")}</h3>
+                        {version.changelog && (
+                            <div className="version-page__changelog content content--padding">
+                                <h3>{t("changesTitle")}</h3>
 
-                            <div className="markdown-body">
-                                {version.changelog ? (
+                                <div className="markdown-body">
                                     <ReactMarkdown
                                         remarkPlugins={[remarkGfm]}
                                         components={{
@@ -118,11 +128,49 @@ export default function VersionPage({ project, version, authToken }) {
                                     >
                                         {version.changelog}
                                     </ReactMarkdown>
-                                ) : (
-                                    <p>{t("noChanges")}</p>
-                                )}
+                                </div>
                             </div>
-                        </div>
+                        )}
+
+                        {dependencies.length > 0 && (
+                            <div className="version-page__dependencies content content--padding">
+                                <h3>{t("versions.dependencies.title")}</h3>
+
+                                <div style={{ display: "grid", gap: "10px" }}>
+                                    {dependencies.map((dependency, index) => {
+                                        const dependencyProject = dependency.project_slug ? { slug: dependency.project_slug, project_type: dependency.project_type } : null;
+                                        const dependencyProjectPath = dependencyProject ? getProjectPath(dependencyProject) : null;
+                                        const dependencyHref = dependencyProjectPath ? (dependency.version_id ? `${dependencyProjectPath}/version/${dependency.version_id}` : dependencyProjectPath) : null;
+                                        const dependencyName = dependency.project_title || dependency.project_slug || dependency.project_id || t("versions.dependencies.unknownDependency");
+                                        const dependencyType = formatDependencyType(dependency.dependency_type);
+                                        const dependencyIconUrl = dependency.project_icon_url || "https://media.modifold.com/static/no-project-icon.svg";
+
+                                        return (
+                                            <div key={`${dependency.project_id || "none"}:${dependency.version_id || "none"}:${dependencyType}:${index}`} className="file dependency" style={{ backgroundColor: "var(--theme-color-background)", borderRadius: "12px", padding: "10px 14px" }}>
+                                                <Link href={dependencyHref}>
+                                                    <div style={{ display: "flex", alignItems: "center", gap: "10px", minWidth: "0" }}>
+                                                        <img
+                                                            src={dependencyIconUrl}
+                                                            alt=""
+                                                            width="48"
+                                                            height="48"
+                                                            style={{ width: "48px", height: "48px", borderRadius: "10px", objectFit: "cover", flexShrink: 0 }}
+                                                            loading="lazy"
+                                                        />
+
+                                                        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                                                            <span style={{ fontSize: "18px", fontWeight: "500" }}>{dependencyName}</span>
+
+                                                            <span style={{ color: "var(--theme-color-text-secondary)" }}>{dependencyType}</span>
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        )}
 
                         <div className="version-page__files content content--padding">
                             <h3>{t("filesTitle")}</h3>

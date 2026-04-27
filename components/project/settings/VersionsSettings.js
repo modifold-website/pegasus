@@ -227,9 +227,9 @@ export default function VersionsSettings({ project, authToken }) {
         formDataToSend.append("game_versions", JSON.stringify(formData.game_versions));
         formDataToSend.append("loaders", JSON.stringify(formData.loaders));
         formDataToSend.append("dependencies", JSON.stringify((formData.dependencies || []).map((dependency) => ({
-            project_id: dependency.project_id || "",
+            slug: dependency.project_slug || "",
             version_id: dependency.version_id || "",
-            dependency_type: dependency.dependency_type || "required",
+            type: dependency.dependency_type || "required",
         }))));
 
         try {
@@ -598,9 +598,9 @@ export default function VersionsSettings({ project, authToken }) {
         formDataToSend.append("game_versions", JSON.stringify(editFormData.game_versions));
         formDataToSend.append("loaders", JSON.stringify(editFormData.loaders));
         formDataToSend.append("dependencies", JSON.stringify((editFormData.dependencies || []).map((dependency) => ({
-            project_id: dependency.project_id || "",
+            slug: dependency.project_slug || "",
             version_id: dependency.version_id || "",
-            dependency_type: dependency.dependency_type || "required",
+            type: dependency.dependency_type || "required",
         }))));
         const selectedFile = options.file || e?.target?.file?.files?.[0] || null;
         if(selectedFile) {

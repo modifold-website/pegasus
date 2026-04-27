@@ -28,7 +28,7 @@ export default function GalleryEditModal({ isOpen, onRequestClose, editLoading, 
                             {t("gallerySettings.modal.steps.files")}
                         </button>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" viewBox="0 0 24 24" className="version-upload-steps__separator" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="version-upload-steps__separator" aria-hidden="true">
                             <path d="m9 18 6-6-6-6"></path>
                         </svg>
 

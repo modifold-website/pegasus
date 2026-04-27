@@ -22,6 +22,7 @@ const loaders = [
 ];
 
 const releaseChannels = ["release", "beta", "alpha"];
+const dependencyTypes = ["required", "optional", "incompatible", "embedded"];
 const VERSION_FILE_ACCEPT = ".jar,.zip,.rar,application/zip, application/x-rar-compressed, application/vnd.rar, application/java-archive";
 const MAX_VERSION_FILE_SIZE = 100 * 1024 * 1024;
 const VERSION_UPLOAD_STEPS = {
@@ -34,6 +35,15 @@ const EDIT_MODAL_TYPES = {
     DETAILS: "details",
     FILES: "files",
 };
+const createEmptyDependencyDraft = () => ({
+    project_id: "",
+    project_slug: "",
+    project_title: "",
+    project_icon_url: "",
+    version_id: "",
+    version_number: "",
+    dependency_type: "required",
+});
 
 export default function VersionsSettings({ project, authToken }) {
     const t = useTranslations("SettingsProjectPage");
@@ -51,7 +61,9 @@ export default function VersionsSettings({ project, authToken }) {
         release_channel: "release",
         game_versions: [],
         loaders: [],
+        dependencies: [],
     });
+    const [uploadDependencyDraft, setUploadDependencyDraft] = useState(createEmptyDependencyDraft);
 
     const [isGameVersionsPopoverOpen, setIsGameVersionsPopoverOpen] = useState(false);
     const [isLoadersPopoverOpen, setIsLoadersPopoverOpen] = useState(false);
@@ -86,7 +98,9 @@ export default function VersionsSettings({ project, authToken }) {
         release_channel: "release",
         game_versions: [],
         loaders: [],
+        dependencies: [],
     });
+    const [editDependencyDraft, setEditDependencyDraft] = useState(createEmptyDependencyDraft);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -212,6 +226,11 @@ export default function VersionsSettings({ project, authToken }) {
         formDataToSend.append("release_channel", formData.release_channel);
         formDataToSend.append("game_versions", JSON.stringify(formData.game_versions));
         formDataToSend.append("loaders", JSON.stringify(formData.loaders));
+        formDataToSend.append("dependencies", JSON.stringify((formData.dependencies || []).map((dependency) => ({
+            project_id: dependency.project_id || "",
+            version_id: dependency.version_id || "",
+            dependency_type: dependency.dependency_type || "required",
+        }))));
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions`, {
@@ -250,10 +269,104 @@ export default function VersionsSettings({ project, authToken }) {
         return [];
     };
 
+    const normalizeDependency = (dependency) => {
+        if(!dependency || typeof dependency !== "object") {
+            return null;
+        }
+
+        const projectId = String(dependency.project_id || "").trim();
+        const versionId = String(dependency.version_id || "").trim();
+        const dependencyType = String(dependency.dependency_type || "required").trim().toLowerCase();
+        if(!projectId && !versionId) {
+            return null;
+        }
+
+        return {
+            project_id: projectId,
+            version_id: versionId,
+            dependency_type: dependencyTypes.includes(dependencyType) ? dependencyType : "required",
+            project_slug: dependency.project_slug ? String(dependency.project_slug).trim() : "",
+            project_title: dependency.project_title ? String(dependency.project_title).trim() : "",
+            project_icon_url: dependency.project_icon_url ? String(dependency.project_icon_url).trim() : "",
+            project_type: dependency.project_type ? String(dependency.project_type).trim() : "",
+            version_number: dependency.version_number ? String(dependency.version_number).trim() : "",
+        };
+    };
+
+    const parseDependencies = (value) => {
+        if(!Array.isArray(value)) {
+            return [];
+        }
+
+        return value.map((item) => normalizeDependency(item)).filter(Boolean);
+    };
+
+    const getDependencyKey = (dependency) => {
+        const projectId = String(dependency?.project_id || "").trim().toLowerCase();
+        const versionId = String(dependency?.version_id || "").trim().toLowerCase();
+
+        return `${projectId}::${versionId || "__project_only__"}`;
+    };
+
+    const updateDependencyDraft = (setter) => (field, value) => {
+        setter((prev) => ({
+            ...prev,
+            [field]: value,
+        }));
+    };
+
+    const addDependencyToForm = ({ draft, formSetter, draftSetter, duplicateMessage }) => {
+        const normalized = normalizeDependency(draft);
+        if(!normalized) {
+            toast.error("Dependency must include Project ID or Version ID.");
+            return;
+        }
+
+        let wasAdded = false;
+        formSetter((prev) => {
+            const currentDependencies = Array.isArray(prev.dependencies) ? prev.dependencies : [];
+            const nextKey = getDependencyKey(normalized);
+            const hasDuplicate = currentDependencies.some((item) => getDependencyKey(item) === nextKey);
+            if(hasDuplicate) {
+                toast.error(duplicateMessage);
+                return prev;
+            }
+
+            wasAdded = true;
+            return {
+                ...prev,
+                dependencies: [...currentDependencies, normalized],
+            };
+        });
+
+        if(wasAdded) {
+            draftSetter(createEmptyDependencyDraft());
+        }
+    };
+
+    const handleUploadDependencyDraftChange = updateDependencyDraft(setUploadDependencyDraft);
+
+    const handleAddUploadDependency = () => {
+        addDependencyToForm({
+            draft: uploadDependencyDraft,
+            formSetter: setFormData,
+            draftSetter: setUploadDependencyDraft,
+            duplicateMessage: "This dependency is already in the list.",
+        });
+    };
+
+    const handleRemoveUploadDependency = (indexToRemove) => {
+        setFormData((prev) => ({
+            ...prev,
+            dependencies: (prev.dependencies || []).filter((_, index) => index !== indexToRemove),
+        }));
+    };
+
     const openEditModal = async (versionId, modalType) => {
         const selectedVersion = versions.find((version) => version.id === versionId);
         const initialGameVersions = parseVersionList(selectedVersion?.game_versions);
         const initialLoaders = parseVersionList(selectedVersion?.loaders);
+        const initialDependencies = parseDependencies(selectedVersion?.dependencies);
 
         setOpenEditActionsVersionId(null);
         setEditingVersionId(versionId);
@@ -268,7 +381,9 @@ export default function VersionsSettings({ project, authToken }) {
             release_channel: selectedVersion?.release_channel || "release",
             game_versions: initialGameVersions,
             loaders: initialLoaders,
+            dependencies: initialDependencies,
         });
+        setEditDependencyDraft(createEmptyDependencyDraft());
         setEditModalType(modalType);
 
         try {
@@ -279,12 +394,14 @@ export default function VersionsSettings({ project, authToken }) {
             const version = res.data;
             const nextGameVersions = parseVersionList(version.game_versions);
             const nextLoaders = parseVersionList(version.loaders);
+            const nextDependencies = parseDependencies(version.dependencies);
             setEditFormData({
                 version_number: version.version_number || "",
                 changelog: version.changelog || "",
                 release_channel: version.release_channel || "release",
                 game_versions: nextGameVersions,
                 loaders: nextLoaders,
+                dependencies: nextDependencies,
             });
             setEditVersionFile({
                 url: version.file_url || "",
@@ -307,12 +424,14 @@ export default function VersionsSettings({ project, authToken }) {
         setEditVersionFile({ url: "", size: null });
         setIsEditGameVersionsPopoverOpen(false);
         setIsEditLoadersPopoverOpen(false);
+        setEditDependencyDraft(createEmptyDependencyDraft());
         setEditFormData({
             version_number: "",
             changelog: "",
             release_channel: "release",
             game_versions: [],
             loaders: [],
+            dependencies: [],
         });
     };
 
@@ -423,6 +542,24 @@ export default function VersionsSettings({ project, authToken }) {
         setEditFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    const handleEditDependencyDraftChange = updateDependencyDraft(setEditDependencyDraft);
+
+    const handleAddEditDependency = () => {
+        addDependencyToForm({
+            draft: editDependencyDraft,
+            formSetter: setEditFormData,
+            draftSetter: setEditDependencyDraft,
+            duplicateMessage: "This dependency is already in the list.",
+        });
+    };
+
+    const handleRemoveEditDependency = (indexToRemove) => {
+        setEditFormData((prev) => ({
+            ...prev,
+            dependencies: (prev.dependencies || []).filter((_, index) => index !== indexToRemove),
+        }));
+    };
+
     const handleEditToggleGameVersion = (version) => {
         setEditFormData((prev) => ({
             ...prev,
@@ -460,6 +597,11 @@ export default function VersionsSettings({ project, authToken }) {
         formDataToSend.append("release_channel", editFormData.release_channel);
         formDataToSend.append("game_versions", JSON.stringify(editFormData.game_versions));
         formDataToSend.append("loaders", JSON.stringify(editFormData.loaders));
+        formDataToSend.append("dependencies", JSON.stringify((editFormData.dependencies || []).map((dependency) => ({
+            project_id: dependency.project_id || "",
+            version_id: dependency.version_id || "",
+            dependency_type: dependency.dependency_type || "required",
+        }))));
         const selectedFile = options.file || e?.target?.file?.files?.[0] || null;
         if(selectedFile) {
             formDataToSend.append("file", selectedFile);
@@ -560,12 +702,14 @@ export default function VersionsSettings({ project, authToken }) {
             release_channel: "release",
             game_versions: [],
             loaders: [],
+            dependencies: [],
         });
 
         setIsGameVersionsPopoverOpen(false);
         setIsLoadersPopoverOpen(false);
         setIsUploadDragActive(false);
         setUploadFile(null);
+        setUploadDependencyDraft(createEmptyDependencyDraft());
         setUploadStep(VERSION_UPLOAD_STEPS.FILES);
         if(uploadFileRef.current) {
             uploadFileRef.current.value = "";
@@ -890,6 +1034,11 @@ export default function VersionsSettings({ project, authToken }) {
                 loaders={loaders}
                 handleToggleLoader={handleToggleLoader}
                 loadersLabel={loadersLabel}
+                dependencyTypes={dependencyTypes}
+                uploadDependencyDraft={uploadDependencyDraft}
+                handleUploadDependencyDraftChange={handleUploadDependencyDraftChange}
+                handleAddUploadDependency={handleAddUploadDependency}
+                handleRemoveUploadDependency={handleRemoveUploadDependency}
                 t={t}
                 tProject={tProject}
             />
@@ -930,6 +1079,11 @@ export default function VersionsSettings({ project, authToken }) {
                 handleEditInputChange={handleEditInputChange}
                 releaseChannels={releaseChannels}
                 handleSelectEditReleaseChannel={handleSelectEditReleaseChannel}
+                dependencyTypes={dependencyTypes}
+                editDependencyDraft={editDependencyDraft}
+                handleEditDependencyDraftChange={handleEditDependencyDraftChange}
+                handleAddEditDependency={handleAddEditDependency}
+                handleRemoveEditDependency={handleRemoveEditDependency}
             />
 
             <VersionEditFilesModal

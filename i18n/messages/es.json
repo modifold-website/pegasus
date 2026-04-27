@@ -247,6 +247,16 @@
         "beta": "Beta",
         "alpha": "Alfa"
       },
+      "dependencies": {
+        "title": "Dependencias",
+        "unknownDependency": "Dependencia desconocida",
+        "types": {
+          "required": "Requerida",
+          "optional": "Opcional",
+          "incompatible": "Incompatible",
+          "embedded": "Integrada"
+        }
+      },
       "metadata": {
         "title": "Metadatos",
         "gameVersion": "Versión del juego",
@@ -749,6 +759,45 @@
       },
       "success": "Versión subida",
       "title": "Versiones",
+      "dependenciesEditor": {
+        "title": "Añadir dependencia",
+        "description": "Elige un proyecto, una versión opcional, el tipo de relación y luego añádelo a la lista.",
+        "fields": {
+          "project": "Proyecto",
+          "version": "Versión",
+          "dependencyRelation": "Relación de dependencia"
+        },
+        "dependencyTypes": {
+          "required": "Requerida",
+          "optional": "Opcional",
+          "incompatible": "Incompatible",
+          "embedded": "Integrada"
+        },
+        "placeholders": {
+          "searchProject": "Buscar por nombre o pegar ID...",
+          "selectOrPasteVersionId": "Selecciona versión o pega ID de versión...",
+          "pasteVersionIdOptional": "Pega ID de versión (opcional)"
+        },
+        "popover": {
+          "typeAtLeast": "Escribe al menos {count} caracteres para buscar.",
+          "searching": "Buscando...",
+          "noProjectsFound": "No se encontraron proyectos. Aún puedes pegar el ID exacto del proyecto.",
+          "unableToLoadProjects": "No se pudieron cargar los proyectos",
+          "anyVersion": "Cualquier versión",
+          "selectProjectToChooseVersions": "Selecciona un proyecto para elegir entre sus versiones.",
+          "loadingVersions": "Cargando versiones...",
+          "noMatchingVersions": "No hay versiones coincidentes. Aún puedes pegar el ID exacto de la versión.",
+          "unableToLoadVersions": "No se pudieron cargar las versiones"
+        },
+        "actions": {
+          "add": "Añadir",
+          "remove": "Eliminar"
+        },
+        "list": {
+          "addedDependencies": "Dependencias añadidas",
+          "unknownProject": "proyecto desconocido"
+        }
+      },
       "fields": {
         "versionNumber": "Número de versión",
         "changelog": "Registro de cambios",
@@ -779,7 +828,8 @@
         "steps": {
           "files": "Archivos",
           "metadata": "Metadatos",
-          "compatibility": "Compatibilidad"
+          "compatibility": "Compatibilidad",
+          "dependencies": "Dependencias"
         },
         "dropzone": {
           "uploadTitle": "Subir archivo de versión",

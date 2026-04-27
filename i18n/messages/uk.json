@@ -248,6 +248,16 @@
         "beta": "Бета",
         "alpha": "Альфа"
       },
+      "dependencies": {
+        "title": "Залежності",
+        "unknownDependency": "Невідома залежність",
+        "types": {
+          "required": "Обов'язкова",
+          "optional": "Необов'язкова",
+          "incompatible": "Несумісна",
+          "embedded": "Вбудована"
+        }
+      },
       "metadata": {
         "title": "Метадані",
         "gameVersion": "Версія гри",
@@ -750,6 +760,45 @@
       },
       "success": "Версію завантажено",
       "title": "Завантажити нову версію",
+      "dependenciesEditor": {
+        "title": "Додати залежність",
+        "description": "Виберіть проєкт, за потреби версію, тип зв'язку і додайте до списку.",
+        "fields": {
+          "project": "Проєкт",
+          "version": "Версія",
+          "dependencyRelation": "Тип залежності"
+        },
+        "dependencyTypes": {
+          "required": "Обов'язкова",
+          "optional": "Необов'язкова",
+          "incompatible": "Несумісна",
+          "embedded": "Вбудована"
+        },
+        "placeholders": {
+          "searchProject": "Пошук за назвою або вставка ID...",
+          "selectOrPasteVersionId": "Виберіть версію або вставте ID версії...",
+          "pasteVersionIdOptional": "Вставте ID версії (необов'язково)"
+        },
+        "popover": {
+          "typeAtLeast": "Введіть щонайменше {count} символ(и) для пошуку.",
+          "searching": "Пошук...",
+          "noProjectsFound": "Проєкти не знайдено. Ви все одно можете вставити точний ID проєкту.",
+          "unableToLoadProjects": "Не вдалося завантажити проєкти",
+          "anyVersion": "Будь-яка версія",
+          "selectProjectToChooseVersions": "Виберіть проєкт, щоб обрати одну з його версій.",
+          "loadingVersions": "Завантаження версій...",
+          "noMatchingVersions": "Відповідних версій немає. Ви все одно можете вставити точний ID версії.",
+          "unableToLoadVersions": "Не вдалося завантажити версії"
+        },
+        "actions": {
+          "add": "Додати",
+          "remove": "Видалити"
+        },
+        "list": {
+          "addedDependencies": "Додані залежності",
+          "unknownProject": "невідомий проєкт"
+        }
+      },
       "fields": {
         "versionNumber": "Номер версії",
         "changelog": "Список змін",
@@ -780,7 +829,8 @@
         "steps": {
           "files": "Файли",
           "metadata": "Метадані",
-          "compatibility": "Сумісність"
+          "compatibility": "Сумісність",
+          "dependencies": "Залежності"
         },
         "dropzone": {
           "uploadTitle": "Завантажити файл версії",

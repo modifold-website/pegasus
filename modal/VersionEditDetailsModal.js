@@ -6,12 +6,13 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { getSafeMarkdownHref, getSafeMarkdownImageSrc } from "@/utils/projectDescriptionContent";
+import VersionDependenciesEditor from "./VersionDependenciesEditor";
 
 if(typeof window !== "undefined") {
     Modal.setAppElement("body");
 }
 
-export default function VersionEditDetailsModal({ isOpen, onRequestClose, editLoading, onSubmit, t, tProject, editFormData, handleEditInputChange, handleSelectEditReleaseChannel, releaseChannels }) {
+export default function VersionEditDetailsModal({ isOpen, onRequestClose, editLoading, onSubmit, t, tProject, editFormData, handleEditInputChange, handleSelectEditReleaseChannel, releaseChannels, dependencyTypes, editDependencyDraft, handleEditDependencyDraftChange, handleAddEditDependency, handleRemoveEditDependency }) {
     const [isPreviewVisible, setIsPreviewVisible] = useState(false);
     const textareaRef = useRef(null);
     const changelog = editFormData.changelog || "";
@@ -241,6 +242,18 @@ export default function VersionEditDetailsModal({ isOpen, onRequestClose, editLo
                                     </div>
                                 </div>
                             )}
+                        </div>
+
+                        <div style={{ marginTop: "14px" }}>
+                            <VersionDependenciesEditor
+                                dependencies={editFormData.dependencies}
+                                dependencyDraft={editDependencyDraft}
+                                dependencyTypes={dependencyTypes}
+                                onDraftChange={handleEditDependencyDraftChange}
+                                onAddDependency={handleAddEditDependency}
+                                onRemoveDependency={handleRemoveEditDependency}
+                                disabled={editLoading}
+                            />
                         </div>
 
                         <div className="version-upload-actions">

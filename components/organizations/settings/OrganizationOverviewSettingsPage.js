@@ -152,8 +152,7 @@ export default function OrganizationOverviewSettingsPage({ authToken, organizati
             <div className="page-content settings-page">
                 <OrganizationSettingsSidebar organization={currentOrganization} />
 
-
-                <div className="settings-content" style={{ display: "grid", gap: "16px" }}>
+                <div className="settings-content settings-wrapper--narrow" style={{ display: "grid", gap: "16px" }}>
                     <div className="settings-wrapper blog-settings">
                         <div className="blog-settings__body">
                             <div className="subsite-header">

@@ -63,7 +63,7 @@ export default function OrganizationLinksSettingsPage({ authToken, organization 
             <div className="page-content settings-page">
                 <OrganizationSettingsSidebar organization={organization} />
 
-                <div className="settings-wrapper" style={{ width: "100%" }}>
+                <div className="settings-wrapper settings-wrapper--narrow" style={{ width: "100%" }}>
                     <div className="settings-content">
                         <form onSubmit={handleSubmit}>
                             <div className="blog-settings">

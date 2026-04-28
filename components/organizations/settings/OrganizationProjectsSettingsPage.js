@@ -64,7 +64,7 @@ export default function OrganizationProjectsSettingsPage({ authToken, organizati
             <div className="page-content settings-page">
                 <OrganizationSettingsSidebar organization={organization} />
 
-                <div className="settings-content" style={{ display: "grid", gap: "14px" }}>
+                <div className="settings-content" style={{ display: "flex", gap: "14px", flexDirection: "column" }}>
                     <div className="content content--padding">
                         <h2 style={{ marginBottom: 0 }}>{t("settings.projectsTitle")}</h2>
                     </div>

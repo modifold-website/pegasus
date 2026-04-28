@@ -75,7 +75,7 @@ export default async function Page() {
 
     if(apiBase) {
         try {
-            const modResponse = await fetch(`${apiBase}/projects?type=mod&sort=downloads&page=1&limit=${projectsLimit}`, {
+            const modResponse = await fetch(`${apiBase}/projects?type=mod&sort=recent&page=1&limit=${projectsLimit}`, {
                 next: { revalidate: 60 },
             });
             

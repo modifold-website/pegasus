@@ -9,11 +9,12 @@ import { useAuth } from "../providers/AuthProvider";
 import LoginModal from "../../modal/LoginModal";
 
 export default function HomePage({ news = [], locale, projects = [], projectsLimit = 20 }) {
-    const t = useTranslations("HomePage");
-    const { isLoggedIn } = useAuth();
-    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-    const activeLocale = useLocale();
-    const currentLocale = activeLocale || locale || "en";
+	const t = useTranslations("HomePage");
+	const { isLoggedIn } = useAuth();
+	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+	const [isMarqueePaused, setIsMarqueePaused] = useState(false);
+	const activeLocale = useLocale();
+	const currentLocale = activeLocale || locale || "en";
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -98,17 +99,21 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
 
                 <section className="stats-section">
                     <div className="mods-marquee">
-                        <div className="marquee-content">
+                        <div className="marquee-content" style={{ animationPlayState: isMarqueePaused ? "paused" : "running" }}>
                             {displayedProjects.length === 0 && (
-                                <div className="mod-badge" style={{ cursor: "default" }}>
+                                <div className="mod-badge" style={{ cursor: "default" }} onMouseEnter={() => setIsMarqueePaused(true)} onMouseLeave={() => setIsMarqueePaused(false)}>
                                     <span className="mod-name">{t("noProjects")}</span>
                                 </div>
                             )}
 
                             {displayedProjects.map((project) => (
-                                <Link href={getProjectPath(project)} key={project.id} className="mod-badge button--active-transform">
+                                <Link href={getProjectPath(project)} key={project.id} className="mod-badge button--active-transform" onMouseEnter={() => setIsMarqueePaused(true)} onMouseLeave={() => setIsMarqueePaused(false)}>
                                     <img src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} alt="" className="mod-avatar" width={64} height={64} />
-                                    <span className="mod-name">{project.title}</span>
+                                    
+                                    <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                                        <span className="mod-name">{project.title}</span>
+                                        <span className="mod-desc">{project.summary}</span>
+                                    </div>
                                 </Link>
                             ))}
                         </div>

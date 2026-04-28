@@ -96,10 +96,11 @@ export default function VersionPage({ project, version, authToken }) {
                                             <path d="M12 15V3" />
                                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                                             <path d="m7 10 5 5 5-5" />
-                                        </svg>{t("download")}
+                                        </svg>
+                                        
+                                        {t("download")}
                                     </a>
                                 )}
-
                             </div>
                         </div>
                         
@@ -146,22 +147,22 @@ export default function VersionPage({ project, version, authToken }) {
                                         const dependencyIconUrl = dependency.project_icon_url || "https://media.modifold.com/static/no-project-icon.svg";
 
                                         return (
-                                            <div key={`${dependency.project_id || "none"}:${dependency.version_id || "none"}:${dependencyType}:${index}`} className="file dependency" style={{ backgroundColor: "var(--theme-color-background)", borderRadius: "12px", padding: "10px 14px" }}>
+                                            <div key={`${dependency.project_id || "none"}:${dependency.version_id || "none"}:${dependencyType}:${index}`} className="dependencies-content">
                                                 <Link href={dependencyHref}>
                                                     <div style={{ display: "flex", alignItems: "center", gap: "10px", minWidth: "0" }}>
                                                         <img
                                                             src={dependencyIconUrl}
                                                             alt=""
-                                                            width="48"
-                                                            height="48"
-                                                            style={{ width: "48px", height: "48px", borderRadius: "10px", objectFit: "cover", flexShrink: 0 }}
+                                                            width="45"
+                                                            height="45"
                                                             loading="lazy"
+                                                            className="dependencies-content__icon"
                                                         />
 
-                                                        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                                                            <span style={{ fontSize: "18px", fontWeight: "500" }}>{dependencyName}</span>
+                                                        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: "6px" }}>
+                                                            <span style={{ fontSize: "18px", fontWeight: "500", lineHeight: "1" }}>{dependencyName}</span>
 
-                                                            <span style={{ color: "var(--theme-color-text-secondary)" }}>{dependencyType}</span>
+                                                            <span style={{ color: "var(--theme-color-text-secondary)", fontSize: "16px", lineHeight: "1" }}>{dependencyType}</span>
                                                         </div>
                                                     </div>
                                                 </Link>

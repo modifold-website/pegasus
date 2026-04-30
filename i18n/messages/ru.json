@@ -1145,6 +1145,7 @@
       "pending": "Проекты на модерации",
       "totalProjectVersions": "Всего версий проектов",
       "totalProjectDownloads": "Всего скачиваний проектов",
+      "totalUnpublishedProjects": "Неопубликованные проекты",
       "modsPlayersOnlineNow": "Онлайн игроков модов сейчас",
       "modServersOnlineNow": "Активных серверов сейчас"
     },

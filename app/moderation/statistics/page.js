@@ -2,7 +2,6 @@
 import { redirect } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import StatisticsModerationPage from "@/components/pages/StatisticsModerationPage";
-import axios from "axios";
 
 export async function generateMetadata() {
     const resolvedLocale = await getLocale();
@@ -15,12 +14,16 @@ export async function generateMetadata() {
 
 async function fetchAnalytics(authToken) {
     try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE}/moderation/analytics`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/moderation/analytics?time_range=30d`, {
             headers: { Authorization: `Bearer ${authToken}` },
-            params: { time_range: "30d" },
+            next: { revalidate: 60 },
         });
 
-        return response.data;
+        if(!response.ok) {
+            throw new Error(`Failed to fetch analytics: ${response.status}`);
+        }
+
+        return response.json();
     } catch (err) {
         console.error("Error fetching analytics data:", err);
 
@@ -33,6 +36,7 @@ async function fetchAnalytics(authToken) {
             totalUsers: 0,
             totalProjectVersions: 0,
             totalProjectDownloads: 0,
+            totalUnpublishedProjects: 0,
             totalPlayersOnlineNow: 0,
             totalActiveServersNow: 0,
             onlineSummary: {
@@ -75,5 +79,5 @@ export default async function StatisticsModerationServer() {
 
     const analytics = await fetchAnalytics(authToken);
 
-    return <StatisticsModerationPage authToken={authToken} initialAnalytics={analytics} />;
+    return <StatisticsModerationPage initialAnalytics={analytics} />;
 }

@@ -1145,6 +1145,7 @@
       "pending": "Pending Projects",
       "totalProjectVersions": "Total Project Versions",
       "totalProjectDownloads": "Total Project Downloads",
+      "totalUnpublishedProjects": "Unpublished Projects",
       "modsPlayersOnlineNow": "Mod Players Online Now",
       "modServersOnlineNow": "Active Servers Now"
     },

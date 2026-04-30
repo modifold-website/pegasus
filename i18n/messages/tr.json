@@ -1144,6 +1144,7 @@
       "pending": "Bekleyen projeler",
       "totalProjectVersions": "Toplam proje sürümleri",
       "totalProjectDownloads": "Toplam proje indirmeleri",
+      "totalUnpublishedProjects": "Yayimlanmamis projeler",
       "modsPlayersOnlineNow": "Mod oyunculari su an cevrimici",
       "modServersOnlineNow": "Su an aktif sunucular"
     },

@@ -1145,6 +1145,7 @@
       "pending": "Proyectos pendientes",
       "totalProjectVersions": "Total de versiones de proyectos",
       "totalProjectDownloads": "Total de descargas de proyectos",
+      "totalUnpublishedProjects": "Proyectos no publicados",
       "modsPlayersOnlineNow": "Jugadores de mods en linea ahora",
       "modServersOnlineNow": "Servidores activos ahora"
     },

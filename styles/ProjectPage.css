@@ -100,18 +100,14 @@
     margin-right: 12px;
 }
 .masthead-stats__icon {
+    width: 20px;
+    height: 20px;
     fill: none;
     margin-right: 8px;
 }
 .masthead-stats__quantity {
-    font-weight: 500;
-}
-.masthead-stats__quantity {
-    font-weight: 500;
-}
-.masthead-stats__divider {
-    margin-right: 12px;
-    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
 }
 .masthead-stats__item:last-child {
     margin-right: 0;
@@ -119,10 +115,12 @@
 .masthead-tags {
     position: relative;
     display: flex;
-    gap: 4px;
+    gap: 6px;
     align-items: center;
 }
 .masthead-tags .lucide-tags {
+    width: 18px;
+    height: 18px;
     fill: none;
 }
 .masthead-tag {

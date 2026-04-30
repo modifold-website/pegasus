@@ -88,6 +88,17 @@ export default function ProjectCard({ project, maxTags = 5 }) {
                 <p className="new-project-description">{project.summary}</p>
 
                 <div className="new-project-bottom">
+                    <div className="new-stat" style={{ fontWeight: "400" }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download-icon lucide-download">
+                            <path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <path d="m7 10 5 5 5-5"/>
+                        </svg>
+
+                        <Tooltip content={`${formatNumber(project.downloads)} ${t("downloads")}`}>
+                            <span>{formatNumber(project.downloads)}</span>
+                        </Tooltip>
+                    </div>
+
                     {showPlayersLast14Days && (
                         <div className="new-project-players">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24">
@@ -115,29 +126,6 @@ export default function ProjectCard({ project, maxTags = 5 }) {
             </div>
 
             <div className="new-project-stats">
-                <div className="new-project-stats-top">
-                    <div className="new-stat">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download-icon lucide-download">
-                            <path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                            <path d="m7 10 5 5 5-5"/>
-                        </svg>
-
-                        <Tooltip content={`${formatNumber(project.downloads)} ${t("downloads")}`}>
-                            <span>{formatNumber(project.downloads)}</span>
-                        </Tooltip>
-                    </div>
-
-                    <div className="new-stat">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-heart-icon lucide-heart">
-                            <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/>
-                        </svg>
-
-                        <Tooltip content={`${formatNumber(project.followers || 0)} ${t("followers")}`}>
-                            <span>{formatNumber(project.followers || 0)}</span>
-                        </Tooltip>
-                    </div>
-                </div>
-
                 <div className="new-stat new-updated">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="lucide lucide-heart-icon lucide-update">
                         <path d="M3 3v5h5"></path>

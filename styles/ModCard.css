@@ -241,7 +241,7 @@
     box-shadow: var(--project_card-box-shadow);
     width: 100px;
     height: 100px;
-    border-radius: calc(100px * .16667);
+    border-radius: 16px;
     object-fit: cover;
     flex-shrink: 0;
 }
@@ -280,7 +280,7 @@
 .new-project-tags {
     position: relative;
     display: flex;
-    gap: 4px;
+    gap: 6px;
     align-items: center;
 }
 .new-project-tags .lucide-tags {

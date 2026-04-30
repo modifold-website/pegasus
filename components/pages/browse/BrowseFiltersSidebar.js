@@ -37,16 +37,14 @@ export default function BrowseFiltersSidebar({ t, tags = [], selectedTags = [], 
                 ))}
             </ul>
 
-			{selectedTags.length > 0 && (
-				<button className="button button--size-m button--type-minimal button--with-icon" onClick={onClearFilters} style={{ width: "100%", marginTop: "12px" }}>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ margin: "0 6px 0 0" }}>
-						<path d="M18 6 6 18"/>
-						<path d="m6 6 12 12"/>
-					</svg>
+			<button className={`button button--size-m button--type-minimal button--with-icon ${selectedTags.length === 0 ? "disabled" : ""}`} onClick={onClearFilters} style={{ width: "100%", marginTop: "12px", pointerEvents: "auto" }} disabled={selectedTags.length === 0}>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ margin: "0 6px 0 0" }}>
+					<path d="M18 6 6 18"/>
+					<path d="m6 6 12 12"/>
+				</svg>
 
-					{t("clearFilters")}
-				</button>
-			)}
+				{t("clearFilters")}
+			</button>
         </div>
     );
 }

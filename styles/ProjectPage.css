@@ -712,29 +712,6 @@
     flex-direction: column;
     gap: 12px;
 }
-.project-compatibility {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-.project-compatibility__game {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 600;
-}
-.project-compatibility__versions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-}
-.project-compatibility__versions .version__game-versions {
-    background: var(--theme-color-background-content);
-    border: 1px solid var(--theme-color-button-minimal);
-    padding: 4px 8px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1;
-}
 .project__general--wiki {
     display: block;
 }

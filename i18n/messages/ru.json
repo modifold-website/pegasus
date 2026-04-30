@@ -225,7 +225,6 @@
     "confirmDeleteVersion": "Удалить эту версию?",
     "versionDeleted": "Версия удалена",
     "errorOccurred": "Произошла ошибка. Попробуйте ещё раз.",
-    "compatibilityTitle": "Совместимость",
     "detailsTitle": "Сведения",
     "licenseTitle": "Лицензия",
     "licensedAs": "Лицензия {license}",

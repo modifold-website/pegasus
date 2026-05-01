@@ -103,43 +103,53 @@ export default function DashboardClient({ initialProjects, initialTotalPages, in
                         </div>
                     ) : projects.length > 0 ? (
                         <div className="projects-grid">
-                            {projects.map((project) => (
-                                <div key={project.slug} id={project.slug} className="new-project-card">
-                                    <Link className="new-project-card__overlay" href={getProjectPath(project)} aria-label={project.title} />
+                            {projects.map((project) => {
+                                const hasTags = project.tags?.length > 0;
 
-                                    <img className="new-project-icon" alt={t("projectIconAlt", { title: project.title })} src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} />
+                                return (
+                                    <div key={project.slug} id={project.slug} className="new-project-card">
+                                        <Link className="new-project-card__overlay" href={getProjectPath(project)} aria-label={project.title} />
 
-                                    <div className="new-project-info">
-                                        <div className="new-project-header">
-                                            <span className="new-project-title">{project.title}</span>
-                                            
-                                            <span className="new-project-author">
-                                                {project.owner?.type === "organization" ? t("byOrganization", { name: project.owner?.username || "" }) : t("byYou")}
-                                            </span>
+                                        <div style={{ display: "flex", gap: "12px", borderBottom: hasTags ? "1px solid var(--theme-color-border)" : "none", paddingBottom: hasTags ? "12px" : "16px", paddingTop: "16px", paddingRight: "16px", paddingLeft: "16px" }}>
+                                            <img className="new-project-icon" alt={t("projectIconAlt", { title: project.title })} src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} />
+
+                                            <div className="new-project-info">
+                                                <div className="new-project-header">
+                                                    <span className="new-project-title">{project.title}</span>
+                                                    
+                                                    <span className="new-project-author">
+                                                        {project.owner?.type === "organization" ? t("byOrganization", { name: project.owner?.username || "" }) : t("byYou")}
+                                                    </span>
+                                                </div>
+
+                                                <p className="new-project-description">{project.summary}</p>
+                                            </div>
+
+                                            {project.permissions?.can_edit && (
+                                                <div className="new-project-stats">
+                                                    <Link href={`${getProjectPath(project)}/settings`} className="button button--size-m button--type-minimal dashboard-project-settings-button" onClick={(event) => event.stopPropagation()} onMouseDown={(event) => event.stopPropagation()}>
+                                                        <svg style={{ fill: "none", marginRight: "4px" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon--settings"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
+
+                                                        {t("edit")}
+                                                    </Link>
+                                                </div>
+                                            )}
                                         </div>
 
-                                        <p className="new-project-description">{project.summary}</p>
+                                        {hasTags && (
+                                            <div className="new-project-tags" style={{ padding: "8px 16px" }}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-tags-icon lucide-tags">
+                                                    <path d="M13.172 2a2 2 0 0 1 1.414.586l6.71 6.71a2.4 2.4 0 0 1 0 3.408l-4.592 4.592a2.4 2.4 0 0 1-3.408 0l-6.71-6.71A2 2 0 0 1 6 9.172V3a1 1 0 0 1 1-1z"/>
+                                                    <path d="M2 7v6.172a2 2 0 0 0 .586 1.414l6.71 6.71a2.4 2.4 0 0 0 3.191.193"/>
+                                                    <circle cx="10.5" cy="6.5" r=".5" fill="currentColor"/>
+                                                </svg>
 
-                                        {project.tags?.length > 0 && (
-                                            <div className="new-project-tags">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-tags-icon lucide-tags"><path d="M13.172 2a2 2 0 0 1 1.414.586l6.71 6.71a2.4 2.4 0 0 1 0 3.408l-4.592 4.592a2.4 2.4 0 0 1-3.408 0l-6.71-6.71A2 2 0 0 1 6 9.172V3a1 1 0 0 1 1-1z"/><path d="M2 7v6.172a2 2 0 0 0 .586 1.414l6.71 6.71a2.4 2.4 0 0 0 3.191.193"/><circle cx="10.5" cy="6.5" r=".5" fill="currentColor"/></svg>
-
-                                                <ProjectTags tags={project.tags} />
+                                                <ProjectTags limit={5} tags={project.tags} />
                                             </div>
                                         )}
                                     </div>
-
-                                    {project.permissions?.can_edit && (
-                                        <div className="new-project-stats">
-                                            <Link href={`${getProjectPath(project)}/settings`} className="button button--size-m button--type-minimal dashboard-project-settings-button" onClick={(event) => event.stopPropagation()} onMouseDown={(event) => event.stopPropagation()}>
-                                                <svg style={{ fill: "none", marginRight: "4px" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon--settings"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
-
-                                                {t("edit")}
-                                            </Link>
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     ) : (
                         <div className="notifications">

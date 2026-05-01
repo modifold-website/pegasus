@@ -198,37 +198,47 @@ export default function ModerationPage({ authToken, initialProjects, initialTota
                 </div>
             ) : (
                 <div className="projects-grid">
-                    {projects.map((project) => (
-                        <div key={project.id} className="new-projects-list">
-                            <div className="new-project-card" id={project.slug}>
-                                <Link href={getProjectPath(project)} style={{ height: "96px" }}>
-                                    <img className="new-project-icon" alt={project.title} src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} />
-                                </Link>
+                    {projects.map((project) => {
+                        const hasTags = project.tags?.length > 0;
 
-                                <div className="new-project-info">
-                                    <div className="new-project-header">
-                                        <Link href={getProjectPath(project)} className="new-project-title">{project.title}</Link>
+                        return (
+                            <div key={project.id} className="new-projects-list">
+                                <div className="new-project-card" id={project.slug}>
+                                    <div style={{ display: "flex", gap: "12px", borderBottom: hasTags ? "1px solid var(--theme-color-border)" : "none", paddingBottom: hasTags ? "12px" : "16px", paddingTop: "16px", paddingRight: "16px", paddingLeft: "16px" }}>
+                                        <Link href={getProjectPath(project)} style={{ height: "96px" }}>
+                                            <img className="new-project-icon" alt={project.title} src={project.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} />
+                                        </Link>
+
+                                        <div className="new-project-info">
+                                            <div className="new-project-header">
+                                                <Link href={getProjectPath(project)} className="new-project-title">{project.title}</Link>
+                                            </div>
+
+                                            <p className="new-project-description">{project.summary}</p>
+                                        </div>
+                                        
+                                        <div className="new-project-stats">
+                                            <button className="button button--size-m button--type-primary" onClick={() => handleApprove(project.id)}>{t("actions.approve")}</button>
+
+                                            <button className="button button--size-m button--type-minimal" onClick={() => { const reason = prompt(t("actions.rejectPrompt")); if (reason) handleReject(project.id, reason); }}>{t("actions.reject")}</button>
+                                        </div>
                                     </div>
 
-                                    <p className="new-project-description">{project.summary}</p>
-
                                     {project.tags && project.tags.length > 0 && (
-                                        <div className="new-project-tags">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-tags-icon lucide-tags"><path d="M13.172 2a2 2 0 0 1 1.414.586l6.71 6.71a2.4 2.4 0 0 1 0 3.408l-4.592 4.592a2.4 2.4 0 0 1-3.408 0l-6.71-6.71A2 2 0 0 1 6 9.172V3a1 1 0 0 1 1-1z"/><path d="M2 7v6.172a2 2 0 0 0 .586 1.414l6.71 6.71a2.4 2.4 0 0 0 3.191.193"/><circle cx="10.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+                                        <div className="new-project-tags" style={{ padding: "8px 16px" }}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-tags-icon lucide-tags">
+                                                <path d="M13.172 2a2 2 0 0 1 1.414.586l6.71 6.71a2.4 2.4 0 0 1 0 3.408l-4.592 4.592a2.4 2.4 0 0 1-3.408 0l-6.71-6.71A2 2 0 0 1 6 9.172V3a1 1 0 0 1 1-1z"/>
+                                                <path d="M2 7v6.172a2 2 0 0 0 .586 1.414l6.71 6.71a2.4 2.4 0 0 0 3.191.193"/>
+                                                <circle cx="10.5" cy="6.5" r=".5" fill="currentColor"/>
+                                            </svg>
 
-                                            <ProjectTags tags={project.tags} />
+                                            <ProjectTags limit={5} tags={project.tags} />
                                         </div>
                                     )}
                                 </div>
-
-                                <div className="new-project-stats">
-                                    <button className="button button--size-m button--type-primary" onClick={() => handleApprove(project.id)}>{t("actions.approve")}</button>
-
-                                    <button className="button button--size-m button--type-minimal" onClick={() => { const reason = prompt(t("actions.rejectPrompt")); if (reason) handleReject(project.id, reason); }}>{t("actions.reject")}</button>
-                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             )}
 

@@ -47,7 +47,7 @@ export default function OrganizationsDashboardPage({ authToken, initialOrganizat
                     ) : (
                         <div style={{ display: "grid", gap: "12px", marginTop: "12px" }}>
                             {organizations.map((organization) => (
-                                <Link key={organization.id} href={`/organization/${organization.slug}`} className="new-project-card" style={{ textDecoration: "none" }}>
+                                <Link key={organization.id} href={`/organization/${organization.slug}`} className="new-project-card" style={{ textDecoration: "none", flexDirection: "row", padding: "16px", gap: "12px" }}>
                                     <img className="new-project-icon" src={organization.icon_url || "https://media.modifold.com/static/no-project-icon.svg"} style={{ width: "80px", height: "80px" }} alt={organization.name} />
                                     
                                     <div className="new-project-info">

@@ -127,7 +127,7 @@ export default function ProjectCard({ project, maxTags = 5 }) {
 
             <div className="new-project-stats">
                 <div className="new-stat new-updated">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="lucide lucide-heart-icon lucide-update">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="lucide lucide-heart-icon lucide-update">
                         <path d="M3 3v5h5"></path>
                         <path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"></path>
                         <path d="M12 7v5l4 2"></path>

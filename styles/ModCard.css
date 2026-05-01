@@ -152,7 +152,6 @@
     justify-content: space-between;
     gap: 10px;
     font-size: 15px;
-    font-weight: 500;
     line-height: normal;
     margin-top: auto;
 }
@@ -169,6 +168,7 @@
     margin-left: auto;
     justify-content: flex-end;
     white-space: nowrap;
+    font-weight: 500;
 }
 .new-project-card {
     position: relative;
@@ -297,7 +297,7 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1;
     width: fit-content;
 }

@@ -29,39 +29,9 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
     const hasValidDates = Number.isFinite(createdAtTime) && Number.isFinite(updatedAtTime);
     const isSameCreatedUpdated = hasValidDates ? createdAtTime === updatedAtTime : project?.created_at === project?.updated_at;
     const showUpdatedAt = Boolean(project?.updated_at) && !isSameCreatedUpdated;
-    const compatibilityVersions = Array.from(new Set(
-        (Array.isArray(project?.versions) ? project.versions : []).flatMap((version) => {
-            const raw = version?.game_versions;
-            if(Array.isArray(raw)) {
-                return raw.map((item) => String(item || "").trim()).filter(Boolean);
-            }
-
-            return String(raw || "").split(",").map((item) => item.trim()).filter(Boolean);
-        })
-    ));
-
+    
     return (
         <div style={{ display: "flex", gap: "15px", flexDirection: "column" }}>
-            <div className="content content--padding">
-                <h2>{t("compatibilityTitle")}</h2>
-
-                <div className="project-compatibility">
-                    <div className="project-compatibility__game">Hytale</div>
-
-                    <div className="project-compatibility__versions">
-                        {compatibilityVersions.length > 0 ? (
-                            compatibilityVersions.map((gameVersion) => (
-                                <span key={gameVersion} className="version__game-versions">
-                                    {gameVersion}
-                                </span>
-                            ))
-                        ) : (
-                            <span className="version__game-versions">{t("versions.notSpecified")}</span>
-                        )}
-                    </div>
-                </div>
-            </div>
-
             <div className="content content--padding">
                 <h2>{t("creators")}</h2>
 

@@ -1,8 +1,6 @@
 ﻿"use client";
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
+import React, { useState } from "react";
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, Legend } from "recharts";
 import { useLocale, useTranslations } from "next-intl";
 
@@ -146,6 +144,7 @@ const EMPTY_ANALYTICS = {
 	totalUsers: 0,
 	totalProjectVersions: 0,
 	totalProjectDownloads: 0,
+	totalUnpublishedProjects: 0,
 	totalPlayersOnlineNow: 0,
 	totalActiveServersNow: 0,
 	onlineSummary: {
@@ -155,11 +154,11 @@ const EMPTY_ANALYTICS = {
 	globalOnlineSeries: [],
 };
 
-export default function StatisticsModerationPage({ authToken, initialAnalytics }) {
+export default function StatisticsModerationPage({ initialAnalytics }) {
 	const t = useTranslations("ModerationPage");
 	const tSettings = useTranslations("SettingsProjectPage");
 	const locale = useLocale();
-	const [analytics, setAnalytics] = useState(initialAnalytics || EMPTY_ANALYTICS);
+	const [analytics] = useState(initialAnalytics || EMPTY_ANALYTICS);
 	const onlineSummary = analytics?.onlineSummary || {};
 	const playersOnlineNow = Number(onlineSummary.playersOnlineNow ?? analytics?.totalPlayersOnlineNow) || 0;
 	const activeServersNow = Number(onlineSummary.activeServersNow ?? analytics?.totalActiveServersNow) || 0;
@@ -169,29 +168,17 @@ export default function StatisticsModerationPage({ authToken, initialAnalytics }
 		servers: Number(point.servers) || 0,
 	})).filter((point) => Boolean(point.date)) : [];
 
-	useEffect(() => {
-		const fetchAnalytics = async () => {
-			try {
-				const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE}/moderation/analytics`, {
-					headers: { Authorization: `Bearer ${authToken}` },
-					params: { time_range: "30d" },
-				});
-
-				setAnalytics(response.data);
-			} catch (err) {
-				toast.error(t("errors.fetchAnalytics"));
-			}
-		};
-
-		fetchAnalytics();
-	}, [authToken, t]);
-
 	return (
 		<>
 			<div className="analytics-grid">
 				<div className="content content--padding">
 					<h3>{t("stats.totalApproved")}</h3>
 					<p style={{ fontSize: "2rem", margin: "10px 0" }}>{analytics.totalApproved}</p>
+				</div>
+
+				<div className="content content--padding">
+					<h3>{t("stats.totalUnpublishedProjects")}</h3>
+					<p style={{ fontSize: "2rem", margin: "10px 0" }}>{analytics.totalUnpublishedProjects}</p>
 				</div>
 
 				<div className="content content--padding">

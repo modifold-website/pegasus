@@ -225,7 +225,6 @@
     "confirmDeleteVersion": "Удалить эту версию?",
     "versionDeleted": "Версия удалена",
     "errorOccurred": "Произошла ошибка. Попробуйте ещё раз.",
-    "compatibilityTitle": "Совместимость",
     "detailsTitle": "Сведения",
     "licenseTitle": "Лицензия",
     "licensedAs": "Лицензия {license}",
@@ -1146,6 +1145,7 @@
       "pending": "Проекты на модерации",
       "totalProjectVersions": "Всего версий проектов",
       "totalProjectDownloads": "Всего скачиваний проектов",
+      "totalUnpublishedProjects": "Неопубликованные проекты",
       "modsPlayersOnlineNow": "Онлайн игроков модов сейчас",
       "modServersOnlineNow": "Активных серверов сейчас"
     },

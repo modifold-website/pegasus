@@ -225,7 +225,6 @@
     "confirmDeleteVersion": "Are you sure you want to delete this version?",
     "versionDeleted": "Version deleted successfully",
     "errorOccurred": "An error occurred. Please try again.",
-    "compatibilityTitle": "Compatibility",
     "detailsTitle": "Details",
     "licenseTitle": "License",
     "licensedAs": "Licensed {license}",
@@ -1146,6 +1145,7 @@
       "pending": "Pending Projects",
       "totalProjectVersions": "Total Project Versions",
       "totalProjectDownloads": "Total Project Downloads",
+      "totalUnpublishedProjects": "Unpublished Projects",
       "modsPlayersOnlineNow": "Mod Players Online Now",
       "modServersOnlineNow": "Active Servers Now"
     },

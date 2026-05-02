@@ -465,7 +465,7 @@
     gap: 12px;
 }
 .project-analytics-stat {
-    border-radius: 18px;
+    border-radius: var(--layout-island-border-radius);
 }
 .project-analytics-stat p {
     margin: 0 0 10px;

@@ -215,16 +215,10 @@ export default function ModerationProjectPage({ project, authToken, initialModer
                                         {t("moderation.history.reason")}: {entry.reason}
                                     </div>
                                 )}
-
-                                {entry.moderator && (
-                                    <div className="moderator">
-                                        {t("moderation.history.moderator")}: {entry.moderator.username}
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                )}
+							</div>
+						))}
+					</div>
+				)}
             </div>
         </div>
     );

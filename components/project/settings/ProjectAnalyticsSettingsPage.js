@@ -236,7 +236,7 @@ export default function ProjectAnalyticsSettingsPage({ project, analytics, selec
 									<div className="project-analytics__ranges">
 										<div className="sort-wrapper" ref={sortRef}>
 											<div className="dropdown">
-												<button className="dropdown__label" onClick={() => setIsSortOpen((prev) => !prev)} aria-expanded={isSortOpen} type="button">
+												<button className="dropdown__label button--active-transform" onClick={() => setIsSortOpen((prev) => !prev)} aria-expanded={isSortOpen} type="button">
 													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "8px", width: "20px", height: "20px", fill: "none" }}>
 														<path d="M8 2v4"></path>
 														<path d="M16 2v4"></path>

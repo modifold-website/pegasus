@@ -15,7 +15,7 @@ const getNormalizedTimeRange = (value) => {
 async function fetchOnlineNow(slug) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/analytics/${slug}/online-now`, {
         headers: { Accept: "application/json" },
-        cache: "no-store",
+        next: { revalidate: 60 },
     });
 
     return response;
@@ -24,7 +24,7 @@ async function fetchOnlineNow(slug) {
 async function fetchOnlineSeries(slug, days) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/analytics/${slug}/chart/daily-joins?days=${days}`, {
         headers: { Accept: "application/json" },
-        cache: "no-store",
+        next: { revalidate: 60 },
     });
 
     return response;
@@ -36,7 +36,7 @@ async function fetchProjectAnalytics(slug, authToken, timeRange) {
             Accept: "application/json",
             Authorization: `Bearer ${authToken}`,
         },
-        cache: "no-store",
+        next: { revalidate: 60 },
     });
 
     return response;
@@ -81,7 +81,7 @@ export default async function Page({ params, searchParams }) {
                 Accept: "application/json",
                 Authorization: authToken ? `Bearer ${authToken}` : undefined,
             },
-            cache: "no-store",
+            next: { revalidate: 60 },
         }),
         
         fetchProjectAnalytics(slug, authToken, timeRange),

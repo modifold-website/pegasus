@@ -465,7 +465,6 @@
     gap: 12px;
 }
 .project-analytics-stat {
-    background: var(--theme-color-background);
     border-radius: 18px;
 }
 .project-analytics-stat p {

@@ -21,6 +21,11 @@ export const isDeveloperModeEnabledFromCookieValue = (rawValue) => {
 	return flags.developerMode === true;
 };
 
+export const isInlineProjectGalleryEnabledFromCookieValue = (rawValue) => {
+	const flags = parseFeatureFlagsCookieValue(rawValue);
+	return flags.inlineProjectGallery === true;
+};
+
 export const getCookieValue = (cookieString, cookieName) => {
 	if(!cookieString || !cookieName) {
 		return null;

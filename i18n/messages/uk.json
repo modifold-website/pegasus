@@ -482,6 +482,10 @@
     "noProjects": "Поки що немає проєктів",
     "previous": "Попередній",
     "next": "Наступний",
+    "view": {
+      "grid": "Сітка",
+      "list": "Список"
+    },
     "mods": "Моди",
     "modpacks": "Модпаки"
   },
@@ -489,7 +493,7 @@
     "adventure": "Пригоди",
     "challenging": "Складні",
     "combat": "Бої",
-    "cursed": "Прокляте",
+    "cursed": "Абсурдні",
     "decoration": "Декор",
     "economy": "Економіка",
     "equipment": "Спорядження",

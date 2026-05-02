@@ -236,7 +236,14 @@ export default function ProjectAnalyticsSettingsPage({ project, analytics, selec
 									<div className="project-analytics__ranges">
 										<div className="sort-wrapper" ref={sortRef}>
 											<div className="dropdown">
-												<button className="dropdown__label" onClick={() => setIsSortOpen((prev) => !prev)} aria-expanded={isSortOpen} type="button">
+												<button className="dropdown__label button--active-transform" onClick={() => setIsSortOpen((prev) => !prev)} aria-expanded={isSortOpen} type="button">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "8px", width: "20px", height: "20px", fill: "none" }}>
+														<path d="M8 2v4"></path>
+														<path d="M16 2v4"></path>
+														<rect width="18" height="18" x="3" y="4" rx="2"></rect>
+														<path d="M3 10h18"></path>
+													</svg>
+													
 													{currentTimeRange === "3d" && t("analytics.ranges.3d")}
 													{currentTimeRange === "7d" && t("analytics.ranges.7d")}
 													{currentTimeRange === "30d" && t("analytics.ranges.30d")}
@@ -269,38 +276,38 @@ export default function ProjectAnalyticsSettingsPage({ project, analytics, selec
 										</div>
 									</div>
 								</div>
-
-								<div className="project-analytics__stats">
-									<div className="content content--padding project-analytics-stat">
-										<p>{t("analytics.stats.downloads")}</p>
-										<strong>{totals.downloads || 0}</strong>
-									</div>
-
-									<div className="content content--padding project-analytics-stat">
-										<p>{t("analytics.live.activeServers")}</p>
-										<strong>{activeServersNow}</strong>
-									</div>
-
-									<div className="content content--padding project-analytics-stat project-analytics-stat--online">
-										<p className="project-analytics-stat__label">
-											{t("analytics.stats.onlineNow")}
-											
-											{!hasOnline && (
-												<span className="project-analytics-info" onClick={() => setIsOnlineInfoModalOpen(true)}>
-													<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-														<circle cx="12" cy="12" r="10"/>
-														<path d="M12 16v-4"/>
-														<path d="M12 8h.01"/>
-													</svg>
-												</span>
-											)}
-										</p>
-										<strong>{playersOnlineNow}</strong>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+		
+			<div className="project-analytics__stats">
+				<div className="content content--padding project-analytics-stat">
+					<p>{t("analytics.stats.downloads")}</p>
+					<strong>{totals.downloads || 0}</strong>
+				</div>
+
+				<div className="content content--padding project-analytics-stat">
+					<p>{t("analytics.live.activeServers")}</p>
+					<strong>{activeServersNow}</strong>
+				</div>
+
+				<div className="content content--padding project-analytics-stat project-analytics-stat--online">
+					<p className="project-analytics-stat__label">
+						{t("analytics.stats.onlineNow")}
+						
+						{!hasOnline && (
+							<span className="project-analytics-info" onClick={() => setIsOnlineInfoModalOpen(true)}>
+								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+									<circle cx="12" cy="12" r="10"/>
+									<path d="M12 16v-4"/>
+									<path d="M12 8h.01"/>
+								</svg>
+							</span>
+						)}
+					</p>
+					<strong>{playersOnlineNow}</strong>
 				</div>
 			</div>
 

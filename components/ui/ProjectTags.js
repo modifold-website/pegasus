@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { useTranslations } from "next-intl";
+import { getCategoryLabel } from "@/utils/categoryLabels";
 
 const normalizeTags = (tags) => {
     if(Array.isArray(tags)) {
@@ -16,6 +18,7 @@ const normalizeTags = (tags) => {
 };
 
 export default function ProjectTags({ tags, limit = 5, tagClassName = "new-tag", overflowTagClassName = "", popoverClassName = "", totalCount, popoverAlign = "right" }) {
+    const tLabels = useTranslations("CategoryLabels");
     const [isOpen, setIsOpen] = useState(false);
     const [popoverStyle, setPopoverStyle] = useState({});
     const triggerRef = useRef(null);
@@ -126,7 +129,7 @@ export default function ProjectTags({ tags, limit = 5, tagClassName = "new-tag",
         <span ref={popoverRef} className="project-tags-floating-popover" role="tooltip" style={popoverStyle} onMouseEnter={openPopover} onMouseLeave={scheduleClosePopover} onClick={stopPropagationOnly}>
             {hiddenTags.map((tag, index) => (
                 <span key={`${tag}-${index}`} className="new-tag">
-                    {tag}
+                    {getCategoryLabel(tLabels, tag)}
                 </span>
             ))}
         </span>,
@@ -137,7 +140,7 @@ export default function ProjectTags({ tags, limit = 5, tagClassName = "new-tag",
         <>
             {visibleTags.map((tag, index) => (
                 <span key={`${tag}-${index}`} className={tagClassName}>
-                    {tag}
+                    {getCategoryLabel(tLabels, tag)}
                 </span>
             ))}
 

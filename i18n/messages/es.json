@@ -481,6 +481,10 @@
     "noProjects": "No se encontraron proyectos",
     "previous": "Anterior",
     "next": "Siguiente",
+    "view": {
+      "grid": "Cuadrícula",
+      "list": "Lista"
+    },
     "mods": "Mods",
     "modpacks": "Paquetes de mods"
   },

@@ -269,7 +269,7 @@
     fill: none;
 }
 .issues-empty {
-    border: 1px dashed var(--theme-color-border);
+    border: 1px dashed var(--theme-sidebar-separator-color-background);
     border-radius: var(--layout-island-border-radius);
     padding: 24px;
     text-align: center;
@@ -506,7 +506,7 @@
     padding: 12px 14px;
     border-radius: 16px;
     background: var(--theme-color-background);
-    border: 1px dashed var(--theme-color-border);
+    border: 1px dashed var(--theme-sidebar-separator-color-background);
     cursor: pointer;
 }
 @media (hover: hover) {

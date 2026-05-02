@@ -96,8 +96,8 @@ export default function ModerationProjectPage({ project, authToken, initialModer
 
     const canSubmit = hasIcon && hasDescription && hasSummary && hasVersions && projectStatus !== "queued" && projectStatus !== "approved";
 
-    const historyActionLabel = (action) => {
-        switch(action) {
+	const historyActionLabel = (action) => {
+		switch(action) {
             case "queued":
                 return t("moderation.history.actions.queued");
             case "approved":
@@ -108,8 +108,59 @@ export default function ModerationProjectPage({ project, authToken, initialModer
                 return t("moderation.history.actions.changesRequested");
             default:
                 return action;
-        }
-    };
+		}
+	};
+
+	const formatHistoryDate = (value) => {
+		const date = new Date(value);
+		if(Number.isNaN(date.getTime())) {
+			return "";
+		}
+
+		const datePart = new Intl.DateTimeFormat(locale, {
+			day: "numeric",
+			month: "long",
+		}).format(date);
+		const timePart = new Intl.DateTimeFormat(locale, {
+			hour: "2-digit",
+			minute: "2-digit",
+		}).format(date);
+		const between = String(locale || "").toLowerCase().startsWith("ru") ? " в " : " ";
+
+		return `${datePart}${between}${timePart}`;
+	};
+
+	const historyActionIcon = (action) => {
+		switch(action) {
+			case "approved":
+				return (
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="history-item__icon lucide lucide-check-icon lucide-check">
+						<path d="M20 6 9 17l-5-5"></path>
+					</svg>
+				);
+			case "rejected":
+				return (
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="history-item__icon lucide lucide-x-icon lucide-x">
+						<path d="M18 6 6 18"></path>
+						<path d="m6 6 12 12"></path>
+					</svg>
+				);
+			case "queued":
+				return (
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="history-item__icon lucide lucide-history-icon lucide-history">
+						<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+						<path d="M3 3v5h5"></path>
+						<path d="M12 7v5l4 2"></path>
+					</svg>
+				);
+			default:
+				return (
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="history-item__icon lucide lucide-circle-icon lucide-circle">
+						<circle cx="12" cy="12" r="10"></circle>
+					</svg>
+				);
+		}
+	};
 
     return (
         <div>
@@ -200,31 +251,30 @@ export default function ModerationProjectPage({ project, authToken, initialModer
                     <div className="subsite-empty-feed">
                         <p className="subsite-empty-feed__title">{t("moderation.history.empty")}</p>
                     </div>
-                ) : (
-                    <div className="history-list">
-                        {moderationHistory.map((entry) => (
-                            <div key={entry.id} className={`history-item ${entry.action}`}>
-                                <div className="date">{new Date(entry.createdAt).toLocaleString(locale)}</div>
-                                
-                                <div className="action">
-                                    {historyActionLabel(entry.action)}
-                                </div>
+				) : (
+					<div className="history-list">
+						{moderationHistory.map((entry) => (
+							<div key={entry.id} className={`history-item ${entry.action}`}>
+								<div className="history-item__main">
+									{historyActionIcon(entry.action)}
 
-                                {entry.reason && (
-                                    <div className="reason">
-                                        {t("moderation.history.reason")}: {entry.reason}
-                                    </div>
-                                )}
+									<div className="history-item__meta">
+										<div className="date">{formatHistoryDate(entry.createdAt)}</div>
+										<div className="action">
+											{historyActionLabel(entry.action)}
+										</div>
+									</div>
+								</div>
 
-                                {entry.moderator && (
-                                    <div className="moderator">
-                                        {t("moderation.history.moderator")}: {entry.moderator.username}
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                )}
+								{entry.reason && entry.action !== "approved" && (
+									<div className="reason">
+										{t("moderation.history.reason")}: {entry.reason}
+									</div>
+								)}
+							</div>
+						))}
+					</div>
+				)}
             </div>
         </div>
     );

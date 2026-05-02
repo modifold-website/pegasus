@@ -481,6 +481,10 @@
     "noProjects": "Nenhum projeto encontrado",
     "previous": "Anterior",
     "next": "Próximo",
+    "view": {
+      "grid": "Grade",
+      "list": "Lista"
+    },
     "mods": "Mods",
     "modpacks": "Pacotes de mods"
   },

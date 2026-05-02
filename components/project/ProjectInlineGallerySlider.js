@@ -48,6 +48,7 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 	if(preparedImages.length === 0) {
 		return null;
 	}
+	const hasMultipleImages = preparedImages.length > 1;
 
 	const markInteracted = () => {
 		setLastInteractionAt(Date.now());
@@ -107,6 +108,10 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 	};
 
 	const onPointerDown = (event) => {
+		if(!hasMultipleImages) {
+			return;
+		}
+
 		isDraggingRef.current = true;
 		dragStartXRef.current = event.clientX;
 		dragStartTimeRef.current = performance.now();
@@ -164,6 +169,10 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 
 	const onPointerCancel = () => resetDragState();
 	const onTouchStart = (event) => {
+		if(!hasMultipleImages) {
+			return;
+		}
+
 		const touch = event.touches?.[0];
 		if(!touch) {
 			return;
@@ -248,7 +257,7 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 
 	return (
 		<div className="content content--padding project-inline-gallery">
-			<div className="project-inline-gallery__stage" ref={stageRef} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={onPointerCancel} onLostPointerCapture={onPointerCancel} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} onTouchCancel={onPointerCancel} onDragStart={(event) => event.preventDefault()}>
+			<div className={`project-inline-gallery__stage ${!hasMultipleImages ? "is-static" : ""}`} ref={stageRef} onPointerDown={hasMultipleImages ? onPointerDown : undefined} onPointerMove={hasMultipleImages ? onPointerMove : undefined} onPointerUp={hasMultipleImages ? onPointerUp : undefined} onPointerCancel={hasMultipleImages ? onPointerCancel : undefined} onLostPointerCapture={hasMultipleImages ? onPointerCancel : undefined} onTouchStart={hasMultipleImages ? onTouchStart : undefined} onTouchMove={hasMultipleImages ? onTouchMove : undefined} onTouchEnd={hasMultipleImages ? onTouchEnd : undefined} onTouchCancel={hasMultipleImages ? onPointerCancel : undefined} onDragStart={(event) => event.preventDefault()}>
 				<img
 					key={activeImage.id || activeImage.url}
 					src={activeImage.url}
@@ -260,32 +269,30 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 				/>
 			</div>
 
-			{preparedImages.length > 1 && (
-				<div className="project-inline-gallery__thumbs-row">
-					<button type="button" className="project-inline-gallery__arrow project-inline-gallery__arrow--prev" aria-label="Previous image" onClick={goPrev}>
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-							<path d="m15 18-6-6 6-6"></path>
-						</svg>
-					</button>
+			<div className="project-inline-gallery__thumbs-row">
+				<button type="button" className="project-inline-gallery__arrow project-inline-gallery__arrow--prev" aria-label="Previous image" onClick={goPrev} disabled={!hasMultipleImages}>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 26 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+						<path d="m15 18-6-6 6-6"></path>
+					</svg>
+				</button>
 
-					<div className="project-inline-gallery__thumbs" style={{ gridTemplateColumns: `repeat(${Math.max(1, visibleThumbs.length)}, minmax(100px, 1fr))` }}>
-						{visibleThumbs.map((image, offset) => {
-							const index = thumbsWindowStart + offset;
-							return (
-								<button key={image.id || image.url} type="button" className={`project-inline-gallery__thumb ${index === activeIndex ? "is-active" : ""}`} onClick={() => openAt(index)} aria-label={`Open image ${index + 1}`}>
-									<img src={image.url} alt={image.title || `${projectTitle} thumbnail ${index + 1}`} loading="lazy" />
-								</button>
-							);
-						})}
-					</div>
-
-					<button type="button" className="project-inline-gallery__arrow project-inline-gallery__arrow--next" aria-label="Next image" onClick={goNext}>
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-							<path d="m9 18 6-6-6-6"></path>
-						</svg>
-					</button>
+				<div className="project-inline-gallery__thumbs" style={{ "--thumb-count": Math.max(1, visibleThumbs.length) }}>
+					{visibleThumbs.map((image, offset) => {
+						const index = thumbsWindowStart + offset;
+						return (
+							<button key={image.id || image.url} type="button" className={`project-inline-gallery__thumb ${index === activeIndex ? "is-active" : ""}`} onClick={() => openAt(index)} aria-label={`Open image ${index + 1}`}>
+								<img src={image.url} alt={image.title || `${projectTitle} thumbnail ${index + 1}`} loading="lazy" />
+							</button>
+						);
+					})}
 				</div>
-			)}
+
+				<button type="button" className="project-inline-gallery__arrow project-inline-gallery__arrow--next" aria-label="Next image" onClick={goNext} disabled={!hasMultipleImages}>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 22 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+						<path d="m9 18 6-6-6-6"></path>
+					</svg>
+				</button>
+			</div>
 		</div>
 	);
 }

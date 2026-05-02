@@ -4,6 +4,7 @@ import ProjectPage from "@/components/pages/ProjectPage";
 import { getLocale } from "next-intl/server";
 import Script from "next/script";
 import { getProjectBasePath } from "@/utils/projectRoutes";
+import { isInlineProjectGalleryEnabledFromCookieValue } from "@/utils/featureFlags";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
@@ -68,6 +69,8 @@ export default async function Page({ params }) {
     const resolvedLocale = await getLocale();
     const cookieStore = await cookies();
     const authToken = cookieStore.get("authToken")?.value;
+    const featureFlagsCookie = cookieStore.get("featureFlags")?.value;
+    const isInlineProjectGalleryEnabled = isInlineProjectGalleryEnabledFromCookieValue(featureFlagsCookie);
 
     const projectFetchOptions = authToken ? {
         headers: {
@@ -103,6 +106,7 @@ export default async function Page({ params }) {
     }
 
     const project = await res.json();
+    const shouldUseInlineProjectGallery = isInlineProjectGalleryEnabled;
     const basePath = getProjectBasePath(project.project_type);
 
     fetch(`${process.env.NEXT_PUBLIC_API_BASE}/projects/${slug}/view`, {
@@ -140,7 +144,7 @@ export default async function Page({ params }) {
 
             <link rel="alternate" hrefLang="x-default" href={`https://modifold.com${basePath}/${project.slug}`} />
 
-            <ProjectPage project={{ ...project, members }} authToken={authToken} />
+            <ProjectPage project={{ ...project, members }} authToken={authToken} showInlineGallery={shouldUseInlineProjectGallery} />
         </>
     );
 }

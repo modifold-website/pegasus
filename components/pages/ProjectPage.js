@@ -5,10 +5,11 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import ProjectSidebar from "../project/ProjectSidebar";
+import ProjectInlineGallerySlider from "../project/ProjectInlineGallerySlider";
 import { getSafeMarkdownHref, getSafeMarkdownImageSrc, prepareProjectDescriptionMarkdown } from "@/utils/projectDescriptionContent";
 import { getProjectPath } from "@/utils/projectRoutes";
 
-export default function ProjectPage({ project, authToken }) {
+export default function ProjectPage({ project, authToken, showInlineGallery = false }) {
     const safeDescription = prepareProjectDescriptionMarkdown(project.description);
     const structuredData = {
         "@context": "https://schema.org",
@@ -33,6 +34,10 @@ export default function ProjectPage({ project, authToken }) {
 
             <div className="project__general">
                 <div>
+                    {showInlineGallery && (
+                        <ProjectInlineGallerySlider images={project?.gallery || []} projectTitle={project?.title || ""} />
+                    )}
+
                     <div className="content content--padding markdown-body">
                         <ReactMarkdown
                             remarkPlugins={[remarkGfm]}

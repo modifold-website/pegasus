@@ -16,6 +16,7 @@ const saveFlagsToCookie = (flags) => {
 const AVAILABLE_FLAGS = [
 	{ key: "developerMode", title: "DeveloperMode" },
 	{ key: "frostedMenus", title: "FrostedMenus" },
+	{ key: "inlineProjectGallery", title: "InlineProjectGallery" },
 ];
 
 export default function SettingsFlagsPage() {
@@ -23,6 +24,7 @@ export default function SettingsFlagsPage() {
 	const [flagsState, setFlagsState] = useState({
 		developerMode: false,
 		frostedMenus: false,
+		inlineProjectGallery: false,
 	});
 
 	useEffect(() => {
@@ -30,6 +32,7 @@ export default function SettingsFlagsPage() {
 		setFlagsState({
 			developerMode: flags.developerMode === true,
 			frostedMenus: flags.frostedMenus === true,
+			inlineProjectGallery: flags.inlineProjectGallery === true,
 		});
 	}, []);
 

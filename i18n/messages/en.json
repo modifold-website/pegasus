@@ -481,6 +481,10 @@
     "noProjects": "No projects yet",
     "previous": "Previous",
     "next": "Next",
+    "view": {
+      "grid": "Grid",
+      "list": "List"
+    },
     "mods": "Mods",
     "modpacks": "Modpacks"
   },

@@ -480,6 +480,10 @@
     "noProjects": "Henüz proje yok",
     "previous": "Önceki",
     "next": "Sonraki",
+    "view": {
+      "grid": "Izgara",
+      "list": "Liste"
+    },
     "mods": "Modlar",
     "modpacks": "Mod paketleri"
   },

@@ -139,7 +139,7 @@ export default function UserSettingsSidebar({ user, labels, profileIconAlt, mode
                             {labels.apiTokens}
                         </Link>
 
-                        <Link href="/settings/verification" scroll={false} className={`sidebar-item ${isActive("/settings/verification") ? "sidebar-item--active" : ""}`} data-ripple>
+                        <Link href="/settings/creator-badge" scroll={false} className={`sidebar-item ${(isActive("/settings/creator-badge") || isActive("/settings/verification")) ? "sidebar-item--active" : ""}`} data-ripple>
                             <img src="/badges/creator.webp" style={{ width: "24px", marginRight: "12px" }} />
 
                             {labels.verification}

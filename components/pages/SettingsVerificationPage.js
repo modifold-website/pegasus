@@ -91,7 +91,7 @@ export default function SettingsVerificationPage({ initialUser = null, initialVe
 		<>
 			<div className="settings-wrapper blog-settings settings-wrapper--narrow">
 				<div className="blog-settings__body">
-					<div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
+					<div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
 						<img src="/badges/creator.webp" alt={t("badgeAlt")} width="50" style={{ display: "block" }} />
 						
 						<div>
@@ -118,12 +118,12 @@ export default function SettingsVerificationPage({ initialUser = null, initialVe
 							</div>
 						</div>
 
-						<div style={{ marginTop: "12px", color: "var(--theme-color-text-secondary)" }}>
+						<div style={{ marginTop: "8px", color: "var(--theme-color-text-secondary)" }}>
 							{t("benefitsNote")}
 						</div>
 					</div>
 
-					<div style={{ border: "1px solid var(--theme-color-background)", borderRadius: "16px", padding: "16px", marginBottom: "14px" }}>
+					<div style={{ background: "var(--theme-color-background)", borderRadius: "16px", padding: "16px", marginBottom: "14px" }}>
 						<p className="blog-settings__field-title" style={{ marginBottom: "8px" }}>{t("whatYouGetTitle")}</p>
 						<ul style={{ margin: 0, paddingLeft: "18px", color: "var(--theme-color-text-secondary)" }}>
 							<li>{t("whatYouGet.list1")}</li>
@@ -132,7 +132,7 @@ export default function SettingsVerificationPage({ initialUser = null, initialVe
 						</ul>
 					</div>
 
-					<div style={{ border: "1px solid var(--theme-color-background)", borderRadius: "16px", padding: "16px", marginBottom: "14px" }}>
+					<div style={{ background: "var(--theme-color-background)", borderRadius: "16px", padding: "16px", marginBottom: "14px" }}>
 						<p className="blog-settings__field-title" style={{ marginBottom: "8px" }}>{t("requirementsTitle")}</p>
 						<div style={{ display: "grid", gap: "8px" }}>
 							<div style={{ display: "flex", alignItems: "center", gap: "8px", color: "var(--theme-color-text-secondary)" }}>
@@ -167,7 +167,7 @@ export default function SettingsVerificationPage({ initialUser = null, initialVe
 						</div>
 					</div>
 
-					<div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap", border: "1px solid var(--theme-color-background)", borderRadius: "16px", padding: "16px" }}>
+					<div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap", background: "var(--theme-color-background)", borderRadius: "16px", padding: "16px" }}>
 						<div>
 							<p className="blog-settings__field-title" style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "0" }}>
 								<span>{t("statusLabel")}: {statusLabel}</span>

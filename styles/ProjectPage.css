@@ -243,7 +243,7 @@
 	grid-template-columns: auto minmax(0, 1fr) auto;
 	align-items: center;
 	gap: 10px;
-	margin-top: 10px;
+	margin-top: 12px;
 }
 .project-inline-gallery__thumbs {
 	display: grid;

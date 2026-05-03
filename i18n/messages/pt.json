@@ -559,7 +559,12 @@
     },
     "remove": "Remover",
     "organizationsTitle": "Organizações",
-    "linksTitle": "Links"
+    "linksTitle": "Links",
+    "verifiedModal": {
+      "creatorBadgeAlt": "Selo de criador",
+      "creatorBadgeText": "Este criador recebeu o Selo de Criador no Modifold.",
+      "officialBadgeText": "Esta conta é verificada como oficial por representantes do Modifold."
+    }
   },
   "SettingsProjectPage": {
     "sidebar": {
@@ -1281,34 +1286,36 @@
     }
   },
   "VerificationRequestModal": {
-    "title": "Solicitação de verificação",
+    "title": "Solicitação de Selo de Criador",
     "close": "Fechar",
-    "description": "Adicione pelo menos um link (X, YouTube ou CurseForge). Os moderadores analisarão e decidirão.",
+    "description": "A elegibilidade é calculada automaticamente a partir dos seus projetos publicados.",
     "platform": "Plataforma",
     "followers": "Seguidores",
     "downloads": "Downloads",
     "note": "Nota para moderadores",
-    "confirm": "Confirmo que os links são meus.",
-    "submit": "Enviar",
+    "confirm": "Confirmo que envio esta solicitação de boa-fé.",
+    "submit": "Enviar solicitação",
     "submitting": "Enviando...",
     "cancel": "Cancelar",
     "placeholders": {
-      "note": "Onde está o link do Modifold? (opcional)",
+      "note": "Contexto adicional para moderadores (opcional).",
       "xUrl": "https://x.com/yourprofile",
       "youtubeUrl": "https://youtube.com/@yourchannel",
       "curseforgeUrl": "https://curseforge.com/members/you"
     },
     "errors": {
       "missingLinks": "Adicione pelo menos um link do X, YouTube ou CurseForge.",
-      "confirmRequired": "Confirme que adicionou o link do Modifold.",
+      "confirmRequired": "Confirme antes de enviar.",
       "pending": "Você já tem uma solicitação pendente.",
-      "generic": "Erro ao enviar a solicitação de verificação",
-      "cooldown": "Você pode solicitar novamente após 7 dias da rejeição."
+      "generic": "Erro ao enviar solicitação",
+      "cooldown": "Você pode solicitar novamente em 7 dias após a rejeição.",
+      "notEligible": "Os requisitos ainda não foram atendidos."
     },
-    "success": "Solicitação de verificação enviada",
-    "xUrl": "Link do X",
-    "youtubeUrl": "Link do YouTube",
-    "curseforgeUrl": "Link do CurseForge"
+    "success": "Solicitação enviada",
+    "checklist": {
+      "downloads": "Downloads totais: {current} / {required}",
+      "players": "Jogadores nos últimos 14 dias: {current} / {required}"
+    }
   },
   "VerificationModerationPage": {
     "metadata": {
@@ -1361,36 +1368,42 @@
   },
   "SettingsVerificationPage": {
     "metadata": {
-      "title": "Verificação — Modifold"
+      "title": "Selo de Criador — Modifold"
     },
-    "title": "Verificação",
-    "benefitsNote": "A verificação não oferece vantagens extras além de um selo ao lado do nome do perfil. O selo ajuda a identificar modders verificados/populares.",
+    "title": "Selo de Criador",
+    "subtitle": "Status oficial para criadores de mods ativos e confiáveis.",
+    "badgeAlt": "Selo de criador",
+    "benefitsNote": "O Selo de Criador destaca seu perfil, ajuda jogadores a encontrar criadores confiáveis mais rápido e abre oportunidades de promoção prioritária da equipe Modifold.",
     "statusLabel": "Status",
     "status": {
-      "verified": "Verificado",
-      "notVerified": "Não verificado",
-      "pending": "Em análise",
-      "rejected": "Rejeitada"
+      "verified": "Selo ativo",
+      "notVerified": "Selo ainda não ativo"
     },
-    "requirements": "Requisitos: 500+ seguidores no X/YouTube ou 3.000+ downloads no CurseForge. Informe pelo menos um link para análise.",
-    "request": "Enviar solicitação de verificação",
-    "requestPending": "Solicitação em análise",
-    "reapply": "Enviar novamente",
-    "cooldown": "Disponível em {days} dias",
-    "lastRequest": "Última solicitação: {date}",
     "promoCard": {
-      "text": "Adoro o Modifold, vou mencioná-lo em todo lugar!",
-      "timeNow": "agora",
-      "reply": "Responder",
-      "moreActions": "Mais ações",
       "avatarAlt": "Avatar do usuário",
       "usernameFallback": "Usuário"
     },
-    "errors": {
-      "fetch": "Não foi possível carregar o status de verificação"
+    "whatYouGetTitle": "O que você recebe",
+    "whatYouGet": {
+      "list1": "Selo de criador ao lado do nome no perfil e comentários.",
+      "list2": "Mais chance de aparecer em seleções e blocos da página inicial.",
+      "list3": "Prioridade em campanhas e programas de suporte a criadores."
     },
-    "sidebar": {
-      "profileIconAlt": "Ícone do perfil"
+    "requirementsTitle": "Requisitos do selo",
+    "requirementsList": {
+      "projects": "Publicar {required} projetos",
+      "downloads": "Alcançar {required} downloads"
+    },
+    "claim": "Obter Selo de Criador",
+    "claiming": "Aplicando...",
+    "success": {
+      "claimed": "Selo concedido."
+    },
+    "errors": {
+      "fetch": "Não foi possível carregar o status de verificação",
+      "claim": "Falha ao conceder o selo",
+      "notEligible": "Os requisitos ainda não foram atendidos.",
+      "alreadyVerified": "O selo já está ativo."
     }
   },
   "ProjectReportModal": {

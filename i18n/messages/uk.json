@@ -560,7 +560,12 @@
     },
     "remove": "Прибрати",
     "organizationsTitle": "Організації",
-    "linksTitle": "Посилання"
+    "linksTitle": "Посилання",
+    "verifiedModal": {
+      "creatorBadgeAlt": "Значок автора",
+      "creatorBadgeText": "Цей автор отримав значок автора на Modifold.",
+      "officialBadgeText": "Цей акаунт підтверджено як офіційний представниками Modifold."
+    }
   },
   "SettingsProjectPage": {
     "sidebar": {
@@ -1282,34 +1287,36 @@
     }
   },
   "VerificationRequestModal": {
-    "title": "Заявка на верифікацію",
+    "title": "Заявка на значок автора",
     "close": "Закрити",
-    "description": "Додайте принаймні одне посилання (X, YouTube або CurseForge). Модератори перевірять і приймуть рішення.",
+    "description": "Критерії рахуються автоматично за вашими опублікованими проєктами.",
     "platform": "Платформа",
     "followers": "Підписники",
     "downloads": "Завантаження",
     "note": "Коментар модератору",
-    "confirm": "Підтверджую, що посилання належать мені.",
-    "submit": "Надіслати",
-    "submitting": "Надсилаємо...",
+    "confirm": "Підтверджую, що надсилаю цю заявку добросовісно.",
+    "submit": "Надіслати заявку",
+    "submitting": "Надсилання...",
     "cancel": "Скасувати",
     "placeholders": {
-      "note": "Де саме вказане посилання на Modifold (необов’язково)",
+      "note": "Додатковий коментар для модераторів (необов’язково).",
       "xUrl": "https://x.com/yourprofile",
       "youtubeUrl": "https://youtube.com/@yourchannel",
       "curseforgeUrl": "https://curseforge.com/members/you"
     },
     "errors": {
       "missingLinks": "Додайте принаймні одне посилання на X, YouTube або CurseForge.",
-      "confirmRequired": "Підтвердьте, що додали посилання на Modifold.",
+      "confirmRequired": "Підтвердіть перед надсиланням.",
       "pending": "У вас уже є заявка на розгляді.",
-      "generic": "Помилка надсилання заявки на верифікацію",
-      "cooldown": "Повторну заявку можна подати через 7 днів після відмови."
+      "generic": "Помилка під час надсилання заявки",
+      "cooldown": "Повторна заявка доступна через 7 днів після відмови.",
+      "notEligible": "Вимоги ще не виконані."
     },
     "success": "Заявку надіслано",
-    "xUrl": "Посилання на X",
-    "youtubeUrl": "Посилання на YouTube",
-    "curseforgeUrl": "Посилання на CurseForge"
+    "checklist": {
+      "downloads": "Завантаження сумарно: {current} / {required}",
+      "players": "Гравці за 14 днів: {current} / {required}"
+    }
   },
   "VerificationModerationPage": {
     "metadata": {
@@ -1362,36 +1369,42 @@
   },
   "SettingsVerificationPage": {
     "metadata": {
-      "title": "Верифікація — Modifold"
+      "title": "Значок автора — Modifold"
     },
-    "title": "Верифікація",
-    "benefitsNote": "Верифікація не дає додаткових переваг, окрім значка біля імені профілю. Значок допомагає відрізняти перевірених/популярних моддерів.",
+    "title": "Значок автора",
+    "subtitle": "Офіційний статус для активних і надійних моддерів.",
+    "badgeAlt": "Значок автора",
+    "benefitsNote": "Значок автора виділяє профіль, допомагає гравцям швидше знаходити надійних авторів і відкриває пріоритет на промо від команди Modifold.",
     "statusLabel": "Статус",
     "status": {
-      "verified": "Верифіковано",
-      "notVerified": "Не верифіковано",
-      "pending": "На розгляді",
-      "rejected": "Відхилено"
+      "verified": "Значок автора активний",
+      "notVerified": "Значок поки не активний"
     },
-    "requirements": "Вимоги: 500+ підписників в X/YouTube або 3 000+ завантажень на CurseForge. Вкажіть принаймні одне посилання для перевірки.",
-    "request": "Подати заявку на верифікацію",
-    "requestPending": "Заявка на розгляді",
-    "reapply": "Подати повторно",
-    "cooldown": "Доступно через {days} дн.",
-    "lastRequest": "Остання заявка: {date}",
     "promoCard": {
-      "text": "Мені подобається Modifold, буду згадувати його всюди!",
-      "timeNow": "зараз",
-      "reply": "Відповісти",
-      "moreActions": "Більше дій",
       "avatarAlt": "Аватар користувача",
       "usernameFallback": "Користувач"
     },
-    "errors": {
-      "fetch": "Не вдалося завантажити статус верифікації"
+    "whatYouGetTitle": "Що ви отримуєте",
+    "whatYouGet": {
+      "list1": "Значок автора біля імені в профілі та коментарях.",
+      "list2": "Більше шансів потрапити в добірки та блоки на головній.",
+      "list3": "Пріоритет у програмах підтримки та creator-кампаніях."
     },
-    "sidebar": {
-      "profileIconAlt": "Іконка профілю"
+    "requirementsTitle": "Вимоги для значка",
+    "requirementsList": {
+      "projects": "Опублікувати {required} проєкти",
+      "downloads": "Набрати {required} завантажень"
+    },
+    "claim": "Отримати значок автора",
+    "claiming": "Застосування...",
+    "success": {
+      "claimed": "Значок автора надано."
+    },
+    "errors": {
+      "fetch": "Не вдалося завантажити статус верифікації",
+      "claim": "Не вдалося надати значок автора",
+      "notEligible": "Вимоги ще не виконані.",
+      "alreadyVerified": "Значок автора вже активний."
     }
   },
   "ProjectReportModal": {

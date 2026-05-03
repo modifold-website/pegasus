@@ -30,7 +30,7 @@ export default async function Page() {
             const data = await verificationResponse.json().catch(() => ({}));
             initialVerification = {
                 isVerified: data?.isVerified === 1,
-                request: data?.request || null,
+                eligibility: data?.eligibility || null,
             };
         }
     } catch (error) {

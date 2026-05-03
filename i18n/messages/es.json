@@ -559,7 +559,12 @@
     },
     "remove": "Quitar",
     "organizationsTitle": "Organizaciones",
-    "linksTitle": "Enlaces"
+    "linksTitle": "Enlaces",
+    "verifiedModal": {
+      "creatorBadgeAlt": "Insignia de creador",
+      "creatorBadgeText": "Este creador obtuvo la Insignia de Creador en Modifold.",
+      "officialBadgeText": "Esta cuenta está verificada como oficial por representantes de Modifold."
+    }
   },
   "SettingsProjectPage": {
     "sidebar": {
@@ -1281,34 +1286,36 @@
     }
   },
   "VerificationRequestModal": {
-    "title": "Solicitud de verificación",
+    "title": "Solicitud de Insignia de Creador",
     "close": "Cerrar",
-    "description": "Añade al menos un enlace (X, YouTube o CurseForge). Los moderadores revisarán y decidirán.",
+    "description": "Los criterios se calculan automáticamente a partir de tus proyectos publicados.",
     "platform": "Plataforma",
     "followers": "Seguidores",
     "downloads": "Descargas",
-    "note": "Nota para moderadores",
-    "confirm": "Confirmo que los enlaces son míos.",
-    "submit": "Enviar",
+    "note": "Nota para moderación",
+    "confirm": "Confirmo que envío esta solicitud de buena fe.",
+    "submit": "Enviar solicitud",
     "submitting": "Enviando...",
     "cancel": "Cancelar",
     "placeholders": {
-      "note": "¿Dónde está el enlace de Modifold? (opcional)",
+      "note": "Contexto adicional para moderación (opcional).",
       "xUrl": "https://x.com/yourprofile",
       "youtubeUrl": "https://youtube.com/@yourchannel",
       "curseforgeUrl": "https://curseforge.com/members/you"
     },
     "errors": {
       "missingLinks": "Añade al menos un enlace a X, YouTube o CurseForge.",
-      "confirmRequired": "Confirma que añadiste el enlace de Modifold.",
+      "confirmRequired": "Confirma antes de enviar.",
       "pending": "Ya tienes una solicitud pendiente.",
-      "generic": "Error al enviar la solicitud de verificación",
-      "cooldown": "Puedes volver a solicitarla después de 7 días del rechazo."
+      "generic": "Error al enviar la solicitud",
+      "cooldown": "Puedes volver a solicitar en 7 días tras el rechazo.",
+      "notEligible": "Aún no cumples los requisitos."
     },
-    "success": "Solicitud de verificación enviada",
-    "xUrl": "Enlace de X",
-    "youtubeUrl": "Enlace de YouTube",
-    "curseforgeUrl": "Enlace de CurseForge"
+    "success": "Solicitud enviada",
+    "checklist": {
+      "downloads": "Descargas totales: {current} / {required}",
+      "players": "Jugadores en 14 días: {current} / {required}"
+    }
   },
   "VerificationModerationPage": {
     "metadata": {
@@ -1361,36 +1368,42 @@
   },
   "SettingsVerificationPage": {
     "metadata": {
-      "title": "Verificación — Modifold"
+      "title": "Insignia de Creador — Modifold"
     },
-    "title": "Verificación",
-    "benefitsNote": "La verificación no da ventajas adicionales aparte de una insignia junto al nombre del perfil. La insignia ayuda a identificar a modders verificados/populares.",
+    "title": "Insignia de Creador",
+    "subtitle": "Estado oficial para creadores de mods activos y confiables.",
+    "badgeAlt": "Insignia de creador",
+    "benefitsNote": "La Insignia de Creador destaca tu perfil, ayuda a los jugadores a encontrar creadores confiables y abre oportunidades de promoción prioritaria del equipo de Modifold.",
     "statusLabel": "Estado",
     "status": {
-      "verified": "Verificado",
-      "notVerified": "No verificado",
-      "pending": "En revisión",
-      "rejected": "Rechazada"
+      "verified": "Insignia activa",
+      "notVerified": "Insignia aún no activa"
     },
-    "requirements": "Requisitos: 500+ seguidores en X/YouTube o 3.000+ descargas en CurseForge. Proporciona al menos un enlace para revisión.",
-    "request": "Enviar solicitud de verificación",
-    "requestPending": "Solicitud en revisión",
-    "reapply": "Enviar de nuevo",
-    "cooldown": "Disponible en {days} días",
-    "lastRequest": "Última solicitud: {date}",
     "promoCard": {
-      "text": "Me encanta Modifold, ¡lo mencionaré en todas partes!",
-      "timeNow": "ahora",
-      "reply": "Responder",
-      "moreActions": "Más acciones",
       "avatarAlt": "Avatar de usuario",
       "usernameFallback": "Usuario"
     },
-    "errors": {
-      "fetch": "No se pudo cargar el estado de verificación"
+    "whatYouGetTitle": "Qué obtienes",
+    "whatYouGet": {
+      "list1": "Insignia de creador junto a tu nombre en perfil y comentarios.",
+      "list2": "Más posibilidades de aparecer en selecciones y bloques de portada.",
+      "list3": "Prioridad en campañas y programas de apoyo a creadores."
     },
-    "sidebar": {
-      "profileIconAlt": "Icono de perfil"
+    "requirementsTitle": "Requisitos de la insignia",
+    "requirementsList": {
+      "projects": "Publicar {required} proyectos",
+      "downloads": "Alcanzar {required} descargas"
+    },
+    "claim": "Obtener Insignia de Creador",
+    "claiming": "Aplicando...",
+    "success": {
+      "claimed": "Insignia otorgada."
+    },
+    "errors": {
+      "fetch": "No se pudo cargar el estado de verificación",
+      "claim": "No se pudo otorgar la insignia",
+      "notEligible": "Aún no cumples los requisitos.",
+      "alreadyVerified": "La insignia ya está activa."
     }
   },
   "ProjectReportModal": {

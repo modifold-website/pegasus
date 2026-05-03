@@ -59,10 +59,6 @@ export default function ModerationTabs() {
                 {t("tabs.users")}
             </Link>
 
-            <Link href="/moderation/verification" data-ripple className="pagination__button" aria-current={pathname === "/moderation/verification" ? "page" : undefined}>
-                {t("tabs.verification")}
-            </Link>
-
             <span className="pagination__indicator" aria-hidden="true" style={{ width: `${indicatorStyle.width}px`, transform: `translateX(${indicatorStyle.left}px)`, opacity: indicatorStyle.opacity }} />
         </nav>
     );

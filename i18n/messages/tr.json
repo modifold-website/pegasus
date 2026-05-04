@@ -352,7 +352,7 @@
       "notifications": "Bildirimler",
       "settings": "Ayarlar",
       "apiTokens": "API token’ları",
-      "verification": "Doğrulama",
+      "verification": "Creator Rozeti",
       "organizations": "Organizasyonlar",
       "profile": "Profil",
       "appearance": "Görünüm",
@@ -484,6 +484,14 @@
       "grid": "Izgara",
       "list": "Liste"
     },
+    "recommended": {
+      "ariaLabel": "Önerilen modlar",
+      "noSummary": "Henüz açıklama yok",
+      "downloadsTitle": "{count} indirme",
+      "openProject": "Aç",
+      "collapse": "Önerileri daralt",
+      "expand": "Önerileri genişlet"
+    },
     "mods": "Modlar",
     "modpacks": "Mod paketleri"
   },
@@ -558,7 +566,12 @@
     },
     "remove": "Kaldır",
     "organizationsTitle": "Organizasyonlar",
-    "linksTitle": "Bağlantılar"
+    "linksTitle": "Bağlantılar",
+    "verifiedModal": {
+      "creatorBadgeAlt": "Creator rozeti",
+      "creatorBadgeText": "Bu üretici Modifold’da Creator Rozeti aldı.",
+      "officialBadgeText": "Bu hesap, Modifold temsilcileri tarafından resmi olarak doğrulanmıştır."
+    }
   },
   "SettingsProjectPage": {
     "sidebar": {
@@ -1280,34 +1293,36 @@
     }
   },
   "VerificationRequestModal": {
-    "title": "Doğrulama başvurusu",
+    "title": "Creator Rozeti başvurusu",
     "close": "Kapat",
-    "description": "En az bir bağlantı ekleyin (X, YouTube veya CurseForge). Moderatörler inceleyip karar verecek.",
+    "description": "Uygunluk, yayınlanmış projelerinizden otomatik hesaplanır.",
     "platform": "Platform",
     "followers": "Takipçiler",
     "downloads": "İndirmeler",
     "note": "Moderatör notu",
-    "confirm": "Bağlantıların bana ait olduğunu onaylıyorum.",
-    "submit": "Gönder",
+    "confirm": "Bu başvuruyu iyi niyetle gönderdiğimi onaylıyorum.",
+    "submit": "Başvuru gönder",
     "submitting": "Gönderiliyor...",
     "cancel": "İptal",
     "placeholders": {
-      "note": "Modifold bağlantısı nerede? (isteğe bağlı)",
+      "note": "Moderatörler için ek bağlam (isteğe bağlı).",
       "xUrl": "https://x.com/yourprofile",
       "youtubeUrl": "https://youtube.com/@yourchannel",
       "curseforgeUrl": "https://curseforge.com/members/you"
     },
     "errors": {
       "missingLinks": "X, YouTube veya CurseForge için en az bir bağlantı ekleyin.",
-      "confirmRequired": "Modifold bağlantısını eklediğinizi onaylayın.",
+      "confirmRequired": "Lütfen göndermeden önce onaylayın.",
       "pending": "Zaten bekleyen bir başvurunuz var.",
-      "generic": "Doğrulama başvurusu gönderilirken hata oluştu",
-      "cooldown": "Reddedildikten 7 gün sonra yeniden başvurabilirsiniz."
+      "generic": "Başvuru gönderme hatası",
+      "cooldown": "Reddedildikten sonra 7 gün içinde yeniden başvurabilirsiniz.",
+      "notEligible": "Gereksinimler henüz karşılanmadı."
     },
-    "success": "Doğrulama başvurusu gönderildi",
-    "xUrl": "X bağlantısı",
-    "youtubeUrl": "YouTube bağlantısı",
-    "curseforgeUrl": "CurseForge bağlantısı"
+    "success": "Başvuru gönderildi",
+    "checklist": {
+      "downloads": "Toplam indirme: {current} / {required}",
+      "players": "Son 14 gündeki oyuncu: {current} / {required}"
+    }
   },
   "VerificationModerationPage": {
     "metadata": {
@@ -1360,36 +1375,42 @@
   },
   "SettingsVerificationPage": {
     "metadata": {
-      "title": "Doğrulama — Modifold"
+      "title": "Creator Rozeti — Modifold"
     },
-    "title": "Doğrulama",
-    "benefitsNote": "Doğrulama, profil adının yanındaki rozetten başka ek avantaj sağlamaz. Rozet, doğrulanmış/popüler modderları ayırt etmeye yardımcı olur.",
+    "title": "Creator Rozeti",
+    "subtitle": "Aktif ve güvenilir mod üreticileri için resmi statü.",
+    "badgeAlt": "Creator rozeti",
+    "benefitsNote": "Creator Rozeti profilinizi öne çıkarır, oyuncuların güvenilir üreticileri daha hızlı bulmasına yardımcı olur ve Modifold ekibinden öncelikli tanıtım fırsatları sağlar.",
     "statusLabel": "Durum",
     "status": {
-      "verified": "Doğrulandı",
-      "notVerified": "Doğrulanmadı",
-      "pending": "İncelemede",
-      "rejected": "Reddedildi"
+      "verified": "Creator rozeti aktif",
+      "notVerified": "Rozet henüz aktif değil"
     },
-    "requirements": "Gereksinimler: X/YouTube’da 500+ takipçi veya CurseForge’da 3.000+ indirme. İnceleme için en az bir bağlantı ekleyin.",
-    "request": "Doğrulama başvurusu gönder",
-    "requestPending": "Başvuru incelemede",
-    "reapply": "Tekrar gönder",
-    "cooldown": "{days} gün sonra kullanılabilir",
-    "lastRequest": "Son başvuru: {date}",
     "promoCard": {
-      "text": "Modifold'u çok seviyorum, her yerde bahsedeceğim!",
-      "timeNow": "şimdi",
-      "reply": "Yanıtla",
-      "moreActions": "Daha fazla işlem",
       "avatarAlt": "Kullanıcı avatarı",
       "usernameFallback": "Kullanıcı"
     },
-    "errors": {
-      "fetch": "Doğrulama durumu yüklenemedi"
+    "whatYouGetTitle": "Kazandıklarınız",
+    "whatYouGet": {
+      "list1": "Profil ve yorumlarda adınızın yanında creator rozeti.",
+      "list2": "Öne çıkanlar ve ana sayfa bloklarında görünme şansının artması.",
+      "list3": "Üretici destek kampanyalarında ve programlarında öncelik."
     },
-    "sidebar": {
-      "profileIconAlt": "Profil simgesi"
+    "requirementsTitle": "Rozet gereksinimleri",
+    "requirementsList": {
+      "projects": "{required} proje yayınla",
+      "downloads": "{required} indirmeye ulaş"
+    },
+    "claim": "Creator Rozetini Al",
+    "claiming": "Uygulanıyor...",
+    "success": {
+      "claimed": "Rozet verildi."
+    },
+    "errors": {
+      "fetch": "Doğrulama durumu yüklenemedi",
+      "claim": "Rozet verilemedi",
+      "notEligible": "Gereksinimler henüz karşılanmadı.",
+      "alreadyVerified": "Rozet zaten aktif."
     }
   },
   "ProjectReportModal": {

@@ -287,7 +287,7 @@ export default function HeaderMobile({ authToken }) {
                                         <div className="account-menu__name-label">{user?.username}</div>
                                     
                                         {user?.isVerified === 1 && (
-                                            <img src="/badges/verified.png" alt="Verified" style={{ width: "18px", height: "18px", pointerEvents: "none" }} />
+                                            <img src="/badges/creator.webp" alt="Verified" style={{ width: "18px", pointerEvents: "none" }} />
                                         )}
                                     </div>
                                 </Link>

@@ -17,7 +17,7 @@ export default function UserName({ user, className = "", showVerifiedIcon = true
             <span>{user.username}</span>
 
             {isVerified && showVerifiedIcon && (
-                <img src="/badges/verified.png" alt="Verified" style={{ width: "18px", height: "18px", display: "inline-block" }} />
+                <img src="/badges/creator.webp" alt="Verified" style={{ width: "18px", display: "inline-block" }} />
             )}
         </span>
     );

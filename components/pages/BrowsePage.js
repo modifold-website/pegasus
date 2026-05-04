@@ -8,6 +8,7 @@ import ProjectCardSkeleton from "../ui/ProjectCardSkeleton";
 import ProjectCardMediaSkeleton from "../ui/ProjectCardMediaSkeleton";
 import BrowseFiltersSidebar from "./browse/BrowseFiltersSidebar";
 import BrowseToolbar from "./browse/BrowseToolbar";
+import BrowseRecommendedRail from "./browse/BrowseRecommendedRail";
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { getCategoryLabel } from "@/utils/categoryLabels";
@@ -54,7 +55,7 @@ function normalizeInitialState(initialState) {
     };
 }
 
-export default function BrowsePage({ projectType, initialState = null, initialData = null, initialCardView = "list", tags = [] }) {
+export default function BrowsePage({ projectType, initialState = null, initialData = null, initialCardView = "list", tags = [], recommendedProjects = [], initialRecommendedCollapsed = false }) {
     const t = useTranslations("BrowsePage");
     const tLabels = useTranslations("CategoryLabels");
     const router = useRouter();
@@ -249,6 +250,10 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
             <BrowseFiltersSidebar t={t} tags={tags} selectedTags={selectedTags} onToggleTag={toggleTag} onClearFilters={clearFilters} getCategoryLabel={formatCategoryLabel} />
 
             <div className="browse-content">
+                {projectType === "mod" && recommendedProjects.length > 0 && (
+                    <BrowseRecommendedRail projects={recommendedProjects} t={t} projectType={projectType} initialCollapsed={initialRecommendedCollapsed} />
+                )}
+
                 <BrowseToolbar t={t} searchInput={searchInput} onSearchChange={handleSearchChange} cardView={cardView} onToggleCardView={toggleCardView} sort={sort} onSortSelect={handleSortSelect} />
 
                 {selectedTags.length > 0 && (

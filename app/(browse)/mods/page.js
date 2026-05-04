@@ -52,6 +52,7 @@ export default async function ModsPage({ searchParams }) {
     const resolvedSearchParams = await searchParams;
     const initialState = parseBrowseSearchParams(resolvedSearchParams);
     const initialCardView = cookieStore.get("browse_card_view_mod")?.value === "media" ? "media" : "list";
+    const initialRecommendedCollapsed = cookieStore.get("browse_recommended_collapsed_mod")?.value === "1";
     const sortedTags = [...initialState.tags].sort();
     const apiParams = {
         type: "mod",
@@ -64,6 +65,7 @@ export default async function ModsPage({ searchParams }) {
     const initialApiKey = JSON.stringify(apiParams);
     let initialData = null;
     let initialTags = [];
+    let recommendedProjects = [];
 
     try {
         const requestParams = new URLSearchParams({
@@ -98,6 +100,7 @@ export default async function ModsPage({ searchParams }) {
         const tagsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/tags/mod`, {
             next: { revalidate: 300 },
         });
+
         if(tagsResponse.ok) {
             const data = await tagsResponse.json();
             initialTags = Array.isArray(data?.tags) ? data.tags : [];
@@ -106,5 +109,20 @@ export default async function ModsPage({ searchParams }) {
         console.error("Failed to fetch mod tags:", error);
     }
 
-    return <BrowsePage projectType="mod" initialState={initialState} initialData={initialData} initialCardView={initialCardView} tags={initialTags} />;
+    try {
+        const recommendedResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/recommended?type=mod`, {
+            next: { revalidate: 60 },
+        });
+
+        if(recommendedResponse.ok) {
+            const data = await recommendedResponse.json();
+            recommendedProjects = Array.isArray(data?.projects) ? data.projects : [];
+        } else {
+            console.error("Failed to fetch recommended mods:", recommendedResponse.status);
+        }
+    } catch (error) {
+        console.error("Failed to fetch recommended mods:", error);
+    }
+
+    return <BrowsePage projectType="mod" initialState={initialState} initialData={initialData} initialCardView={initialCardView} tags={initialTags} recommendedProjects={recommendedProjects} initialRecommendedCollapsed={initialRecommendedCollapsed} />;
 }

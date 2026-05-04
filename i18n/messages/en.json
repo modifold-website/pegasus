@@ -353,7 +353,7 @@
       "notifications": "Notifications",
       "settings": "Settings",
       "apiTokens": "API Tokens",
-      "verification": "Verification",
+      "verification": "Creator Badge",
       "organizations": "Organizations",
       "profile": "Profile",
       "appearance": "Appearance",
@@ -485,6 +485,14 @@
       "grid": "Grid",
       "list": "List"
     },
+    "recommended": {
+      "ariaLabel": "Recommended mods",
+      "noSummary": "No description yet",
+      "downloadsTitle": "{count} downloads",
+      "openProject": "View",
+      "collapse": "Collapse recommendations",
+      "expand": "Expand recommendations"
+    },
     "mods": "Mods",
     "modpacks": "Modpacks"
   },
@@ -559,7 +567,12 @@
     },
     "remove": "Remove",
     "organizationsTitle": "Organizations",
-    "linksTitle": "Links"
+    "linksTitle": "Links",
+    "verifiedModal": {
+      "creatorBadgeAlt": "Creator badge",
+      "creatorBadgeText": "This creator has earned the Creator Badge on Modifold.",
+      "officialBadgeText": "This account is verified as official by Modifold representatives."
+    }
   },
   "SettingsProjectPage": {
     "sidebar": {
@@ -1281,34 +1294,36 @@
     }
   },
   "VerificationRequestModal": {
-    "title": "Verification request",
+    "title": "Creator Badge application",
     "close": "Close",
-    "description": "Add at least one link (X, YouTube, or CurseForge). Moderators will review and decide.",
+    "description": "Eligibility is calculated automatically from your published projects.",
     "platform": "Platform",
     "followers": "Followers",
     "downloads": "Downloads",
     "note": "Note for moderators",
-    "confirm": "I confirm the links are mine.",
-    "submit": "Submit",
+    "confirm": "I confirm this request is submitted in good faith.",
+    "submit": "Submit application",
     "submitting": "Submitting...",
     "cancel": "Cancel",
     "placeholders": {
-      "note": "Where is the Modifold link placed? (optional)",
+      "note": "Optional context for moderators (optional).",
       "xUrl": "https://x.com/yourprofile",
       "youtubeUrl": "https://youtube.com/@yourchannel",
       "curseforgeUrl": "https://curseforge.com/members/you"
     },
     "errors": {
       "missingLinks": "Add at least one link to X, YouTube, or CurseForge.",
-      "confirmRequired": "Please confirm you added the Modifold link.",
+      "confirmRequired": "Please confirm before submitting.",
       "pending": "You already have a pending request.",
-      "generic": "Error submitting verification request",
-      "cooldown": "You can reapply in 7 days after rejection."
+      "generic": "Error submitting application",
+      "cooldown": "You can reapply in 7 days after rejection.",
+      "notEligible": "Requirements are not met yet."
     },
-    "success": "Verification request submitted",
-    "xUrl": "X link",
-    "youtubeUrl": "YouTube link",
-    "curseforgeUrl": "CurseForge link"
+    "success": "Application submitted",
+    "checklist": {
+      "downloads": "Total downloads: {current} / {required}",
+      "players": "Players in last 14 days: {current} / {required}"
+    }
   },
   "VerificationModerationPage": {
     "metadata": {
@@ -1361,36 +1376,42 @@
   },
   "SettingsVerificationPage": {
     "metadata": {
-      "title": "Verification — Modifold"
+      "title": "Creator Badge — Modifold"
     },
-    "title": "Verification",
-    "benefitsNote": "Verification does not provide extra perks beyond a badge next to your profile name. The badge helps users spot verified/popular modders.",
+    "title": "Creator Badge",
+    "subtitle": "Official status for active and trusted mod creators.",
+    "badgeAlt": "Creator badge",
+    "benefitsNote": "Creator Badge highlights your profile, helps players quickly spot trusted creators, and unlocks priority promotion opportunities from the Modifold team.",
     "statusLabel": "Status",
     "status": {
-      "verified": "Verified",
-      "notVerified": "Not verified",
-      "pending": "Under review",
-      "rejected": "Rejected"
+      "verified": "Creator badge active",
+      "notVerified": "Badge not active yet"
     },
-    "requirements": "Requirements: 500+ followers on X/YouTube or 3,000+ downloads on CurseForge. Provide at least one link for review.",
-    "request": "Submit verification request",
-    "requestPending": "Request pending",
-    "reapply": "Submit again",
-    "cooldown": "Available in {days} days",
-    "lastRequest": "Last request: {date}",
     "promoCard": {
-      "text": "I love Modifold, I’ll mention it everywhere!",
-      "timeNow": "just now",
-      "reply": "Reply",
-      "moreActions": "More actions",
       "avatarAlt": "User avatar",
       "usernameFallback": "User"
     },
-    "errors": {
-      "fetch": "Failed to load verification status"
+    "whatYouGetTitle": "What you get",
+    "whatYouGet": {
+      "list1": "Creator badge next to your profile name and comments.",
+      "list2": "Higher chance to be featured in picks and homepage blocks.",
+      "list3": "Priority for creator support initiatives and campaigns."
     },
-    "sidebar": {
-      "profileIconAlt": "Profile icon"
+    "requirementsTitle": "Badge requirements",
+    "requirementsList": {
+      "projects": "Publish {required} projects",
+      "downloads": "Reach {required} downloads"
+    },
+    "claim": "Get Creator Badge",
+    "claiming": "Applying...",
+    "success": {
+      "claimed": "Creator badge granted."
+    },
+    "errors": {
+      "fetch": "Failed to load verification status",
+      "claim": "Failed to grant creator badge",
+      "notEligible": "Requirements are not met yet.",
+      "alreadyVerified": "Creator badge is already active."
     }
   },
   "ProjectReportModal": {

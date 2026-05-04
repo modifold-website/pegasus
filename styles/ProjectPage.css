@@ -362,7 +362,7 @@
 	overflow: hidden;
 	background: transparent;
 	cursor: pointer;
-	opacity: 0.82;
+	opacity: .7;
 	transition: opacity 140ms ease;
 }
 .project-inline-gallery__thumb img {

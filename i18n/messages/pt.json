@@ -485,6 +485,14 @@
       "grid": "Grade",
       "list": "Lista"
     },
+    "recommended": {
+      "ariaLabel": "Mods recomendados",
+      "noSummary": "Sem descrição ainda",
+      "downloadsTitle": "{count} downloads",
+      "openProject": "Ver",
+      "collapse": "Ocultar recomendações",
+      "expand": "Mostrar recomendações"
+    },
     "mods": "Mods",
     "modpacks": "Pacotes de mods"
   },

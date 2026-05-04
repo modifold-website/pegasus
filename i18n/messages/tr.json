@@ -484,6 +484,14 @@
       "grid": "Izgara",
       "list": "Liste"
     },
+    "recommended": {
+      "ariaLabel": "Önerilen modlar",
+      "noSummary": "Henüz açıklama yok",
+      "downloadsTitle": "{count} indirme",
+      "openProject": "Aç",
+      "collapse": "Önerileri daralt",
+      "expand": "Önerileri genişlet"
+    },
     "mods": "Modlar",
     "modpacks": "Mod paketleri"
   },

@@ -485,6 +485,14 @@
       "grid": "Grid",
       "list": "List"
     },
+    "recommended": {
+      "ariaLabel": "Recommended mods",
+      "noSummary": "No description yet",
+      "downloadsTitle": "{count} downloads",
+      "openProject": "View",
+      "collapse": "Collapse recommendations",
+      "expand": "Expand recommendations"
+    },
     "mods": "Mods",
     "modpacks": "Modpacks"
   },

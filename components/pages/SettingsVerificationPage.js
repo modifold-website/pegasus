@@ -55,7 +55,7 @@ export default function SettingsVerificationPage({ initialUser = null, initialVe
 	const publishedProjects = Number(verificationStatus?.eligibility?.publishedProjects) || 0;
 	const minProjects = Number(verificationStatus?.eligibility?.requirements?.minProjects) || 3;
 	const totalDownloads = Number(verificationStatus?.eligibility?.totalDownloads) || 0;
-	const minDownloads = Number(verificationStatus?.eligibility?.requirements?.minDownloads) || 1000;
+	const minDownloads = Number(verificationStatus?.eligibility?.requirements?.minDownloads) || 500;
 	const hasMinProjects = publishedProjects >= minProjects;
 	const hasMinDownloads = totalDownloads >= minDownloads;
 	const isEligible = Boolean(verificationStatus?.eligibility?.eligible);

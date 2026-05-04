@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-const AUTO_PLAY_MS = 10000;
-const USER_INTERACTION_COOLDOWN_MS = 12000;
+const SLIDE_DURATION_MS = 440;
+const AUTO_PLAY_MS = 6500;
 const SWIPE_TRIGGER_RATIO = 0.55;
 const MIN_SWIPE_TRIGGER_PX = 140;
 const FLICK_MIN_DISTANCE_PX = 22;
@@ -15,8 +15,7 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 	), [images]);
 	const visibleThumbsCount = 5;
 	const [activeIndex, setActiveIndex] = useState(0);
-	const [lastInteractionAt, setLastInteractionAt] = useState(0);
-	const [slideDirection, setSlideDirection] = useState("right");
+	const [transitionState, setTransitionState] = useState(null);
 	const stageRef = useRef(null);
 	const dragStartXRef = useRef(null);
 	const dragStartTimeRef = useRef(0);
@@ -27,31 +26,27 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 		setActiveIndex(0);
 	}, [preparedImages.length]);
 
-	useEffect(() => {
-		if(preparedImages.length < 2) {
-			return undefined;
-		}
-
-		const intervalId = window.setInterval(() => {
-			const now = Date.now();
-			if(lastInteractionAt > 0 && now - lastInteractionAt < USER_INTERACTION_COOLDOWN_MS) {
-				return;
-			}
-
-			setSlideDirection("right");
-			setActiveIndex((current) => (current + 1) % preparedImages.length);
-		}, AUTO_PLAY_MS);
-
-		return () => window.clearInterval(intervalId);
-	}, [lastInteractionAt, preparedImages.length]);
-
 	if(preparedImages.length === 0) {
 		return null;
 	}
 	const hasMultipleImages = preparedImages.length > 1;
+	const isAnimating = transitionState !== null;
 
-	const markInteracted = () => {
-		setLastInteractionAt(Date.now());
+	const startTransition = (nextIndex, direction) => {
+		if(isAnimating || !preparedImages.length || nextIndex === activeIndex) {
+			return;
+		}
+
+		setTransitionState({
+			from: activeIndex,
+			to: nextIndex,
+			direction,
+		});
+
+		window.setTimeout(() => {
+			setActiveIndex(nextIndex);
+			setTransitionState(null);
+		}, SLIDE_DURATION_MS);
 	};
 
 	const openAt = (index) => {
@@ -59,23 +54,29 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 			return;
 		}
 
-		if(index !== activeIndex) {
-			setSlideDirection(index > activeIndex ? "right" : "left");
+		startTransition(index, index > activeIndex ? "right" : "left");
+	};
+
+	const goPrev = () => startTransition((activeIndex - 1 + preparedImages.length) % preparedImages.length, "left");
+	const goNext = () => startTransition((activeIndex + 1) % preparedImages.length, "right");
+
+	useEffect(() => {
+		if(preparedImages.length < 2 || isAnimating) {
+			return;
 		}
 
-		markInteracted();
-		setActiveIndex(index);
-	};
+		const timer = window.setInterval(() => {
+			startTransition((activeIndex + 1) % preparedImages.length, "right");
+		}, AUTO_PLAY_MS);
 
-	const goPrev = () => {
-		setSlideDirection("left");
-		openAt((activeIndex - 1 + preparedImages.length) % preparedImages.length);
-	};
+		return () => window.clearInterval(timer);
+	}, [activeIndex, preparedImages.length, isAnimating]);
 
-	const goNext = () => {
-		setSlideDirection("right");
-		openAt((activeIndex + 1) % preparedImages.length);
-	};
+	useEffect(() => {
+		if(activeIndex > preparedImages.length - 1) {
+			setActiveIndex(0);
+		}
+	}, [activeIndex, preparedImages.length]);
 
 	const resetDragState = () => {
 		dragStartXRef.current = null;
@@ -251,26 +252,54 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 		};
 	}, []);
 	const activeImage = preparedImages[activeIndex];
+	const leavingImage = transitionState ? preparedImages[transitionState.from] : null;
+	const enteringImage = transitionState ? preparedImages[transitionState.to] : null;
 	const lastWindowStart = Math.max(0, preparedImages.length - visibleThumbsCount);
 	const thumbsWindowStart = preparedImages.length <= visibleThumbsCount ? 0 : Math.min(activeIndex, lastWindowStart);
 	const visibleThumbs = preparedImages.slice(thumbsWindowStart, thumbsWindowStart + visibleThumbsCount);
 
 	return (
 		<div className="content content--padding project-inline-gallery">
-			<div className={`project-inline-gallery__stage ${!hasMultipleImages ? "is-static" : ""}`} ref={stageRef} onPointerDown={hasMultipleImages ? onPointerDown : undefined} onPointerMove={hasMultipleImages ? onPointerMove : undefined} onPointerUp={hasMultipleImages ? onPointerUp : undefined} onPointerCancel={hasMultipleImages ? onPointerCancel : undefined} onLostPointerCapture={hasMultipleImages ? onPointerCancel : undefined} onTouchStart={hasMultipleImages ? onTouchStart : undefined} onTouchMove={hasMultipleImages ? onTouchMove : undefined} onTouchEnd={hasMultipleImages ? onTouchEnd : undefined} onTouchCancel={hasMultipleImages ? onPointerCancel : undefined} onDragStart={(event) => event.preventDefault()}>
-				<img
-					key={activeImage.id || activeImage.url}
-					src={activeImage.url}
-					alt={activeImage.title || `${projectTitle} image ${activeIndex + 1}`}
-					className={`project-inline-gallery__main-image project-inline-gallery__main-image--${slideDirection}`}
-					loading="eager"
-					draggable={false}
-					style={dragOffsetX !== 0 ? { transform: `translateX(${dragOffsetX}px)`, transition: "none" } : undefined}
-				/>
+			<div className={`project-inline-gallery__stage ${!hasMultipleImages ? "is-static" : ""}`} ref={stageRef} onPointerDown={hasMultipleImages && !isAnimating ? onPointerDown : undefined} onPointerMove={hasMultipleImages && !isAnimating ? onPointerMove : undefined} onPointerUp={hasMultipleImages && !isAnimating ? onPointerUp : undefined} onPointerCancel={hasMultipleImages ? onPointerCancel : undefined} onLostPointerCapture={hasMultipleImages ? onPointerCancel : undefined} onTouchStart={hasMultipleImages && !isAnimating ? onTouchStart : undefined} onTouchMove={hasMultipleImages && !isAnimating ? onTouchMove : undefined} onTouchEnd={hasMultipleImages && !isAnimating ? onTouchEnd : undefined} onTouchCancel={hasMultipleImages ? onPointerCancel : undefined} onDragStart={(event) => event.preventDefault()}>
+				{transitionState ? (
+					<>
+						<div className={`project-inline-gallery__pane project-inline-gallery__pane--leave ${transitionState.direction === "right" ? "to-left" : "to-right"}`}>
+							<img
+								src={leavingImage.url}
+								alt={leavingImage.title || `${projectTitle} image ${transitionState.from + 1}`}
+								className="project-inline-gallery__main-image"
+								loading="eager"
+								draggable={false}
+							/>
+						</div>
+
+						<div className={`project-inline-gallery__pane project-inline-gallery__pane--enter ${transitionState.direction === "right" ? "from-right" : "from-left"}`}>
+							<img
+								src={enteringImage.url}
+								alt={enteringImage.title || `${projectTitle} image ${transitionState.to + 1}`}
+								className="project-inline-gallery__main-image"
+								loading="eager"
+								draggable={false}
+							/>
+						</div>
+					</>
+				) : (
+					<div className="project-inline-gallery__pane">
+						<img
+							key={activeImage.id || activeImage.url}
+							src={activeImage.url}
+							alt={activeImage.title || `${projectTitle} image ${activeIndex + 1}`}
+							className="project-inline-gallery__main-image"
+							loading="eager"
+							draggable={false}
+							style={dragOffsetX !== 0 ? { transform: `translateX(${dragOffsetX}px)`, transition: "none" } : undefined}
+						/>
+					</div>
+				)}
 			</div>
 
 			<div className="project-inline-gallery__thumbs-row">
-				<button type="button" className="project-inline-gallery__arrow project-inline-gallery__arrow--prev" aria-label="Previous image" onClick={goPrev} disabled={!hasMultipleImages}>
+				<button type="button" className="project-inline-gallery__arrow project-inline-gallery__arrow--prev" aria-label="Previous image" onClick={goPrev} disabled={!hasMultipleImages || isAnimating}>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 26 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
 						<path d="m15 18-6-6 6-6"></path>
 					</svg>
@@ -280,14 +309,14 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 					{visibleThumbs.map((image, offset) => {
 						const index = thumbsWindowStart + offset;
 						return (
-							<button key={image.id || image.url} type="button" className={`project-inline-gallery__thumb ${index === activeIndex ? "is-active" : ""}`} onClick={() => openAt(index)} aria-label={`Open image ${index + 1}`}>
+							<button key={image.id || image.url} type="button" className={`project-inline-gallery__thumb ${index === (transitionState ? transitionState.to : activeIndex) ? "is-active" : ""}`} onClick={() => openAt(index)} aria-label={`Open image ${index + 1}`} disabled={isAnimating}>
 								<img src={image.url} alt={image.title || `${projectTitle} thumbnail ${index + 1}`} loading="lazy" />
 							</button>
 						);
 					})}
 				</div>
 
-				<button type="button" className="project-inline-gallery__arrow project-inline-gallery__arrow--next" aria-label="Next image" onClick={goNext} disabled={!hasMultipleImages}>
+				<button type="button" className="project-inline-gallery__arrow project-inline-gallery__arrow--next" aria-label="Next image" onClick={goNext} disabled={!hasMultipleImages || isAnimating}>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 22 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
 						<path d="m9 18 6-6-6-6"></path>
 					</svg>

@@ -183,30 +183,64 @@
 	-webkit-user-select: none;
 	-webkit-user-drag: none;
 }
-.project-inline-gallery__main-image--right {
-	animation: projectInlineGallerySlideFromRight 620ms cubic-bezier(0.22, 0.61, 0.36, 1);
+.project-inline-gallery__pane {
+	position: absolute;
+    background: var(--theme-color-background);
+	inset: 0;
 }
-.project-inline-gallery__main-image--left {
-	animation: projectInlineGallerySlideFromLeft 620ms cubic-bezier(0.22, 0.61, 0.36, 1);
+.project-inline-gallery__pane--active {
+	transform: translateX(0);
 }
-@keyframes projectInlineGallerySlideFromRight {
-	from {
-		opacity: 0.58;
-		transform: translateX(14%);
+.project-inline-gallery__pane--leave.to-left {
+	animation: project-inline-gallery-pane-leave-left .44s cubic-bezier(.22, .61, .36, 1) forwards;
+}
+.project-inline-gallery__pane--leave.to-right {
+	animation: project-inline-gallery-pane-leave-right .44s cubic-bezier(.22, .61, .36, 1) forwards;
+}
+.project-inline-gallery__pane--enter.from-right {
+	animation: project-inline-gallery-pane-enter-right .44s cubic-bezier(.22, .61, .36, 1) forwards;
+}
+.project-inline-gallery__pane--enter.from-left {
+	animation: project-inline-gallery-pane-enter-left .44s cubic-bezier(.22, .61, .36, 1) forwards;
+}
+@keyframes project-inline-gallery-pane-enter-right {
+	0% {
+		transform: translateX(100%);
+		opacity: 1;
 	}
-	to {
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+@keyframes project-inline-gallery-pane-enter-left {
+	0% {
+		transform: translateX(-100%);
+		opacity: 1;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+@keyframes project-inline-gallery-pane-leave-left {
+	0% {
 		opacity: 1;
 		transform: translateX(0);
 	}
-}
-@keyframes projectInlineGallerySlideFromLeft {
-	from {
-		opacity: 0.58;
-		transform: translateX(-14%);
+	100% {
+		transform: translateX(-28%);
+		opacity: .9;
 	}
-	to {
+}
+@keyframes project-inline-gallery-pane-leave-right {
+	0% {
 		opacity: 1;
 		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(28%);
+		opacity: .9;
 	}
 }
 .project-inline-gallery__arrow {

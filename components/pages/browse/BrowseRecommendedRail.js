@@ -146,7 +146,7 @@ export default function BrowseRecommendedRail({ projects, t, projectType = "mod"
 					{slides.length > 1 && (
 						<>
 							<button className="browse-recommended-hero__arrow browse-recommended-hero__arrow--left" type="button" aria-label={t("previous")} onClick={goPrev} disabled={isAnimating}>
-								<svg style={{ marginRight: "1px" }} xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+								<svg style={{ marginRight: "2px" }} xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
 									<path d="m15 18-6-6 6-6"/>
 								</svg>
 							</button>

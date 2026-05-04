@@ -3953,6 +3953,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 	gap: 8px;
 	width: fit-content;
     background-color: var(--theme-color-background-content);
+    box-shadow: var(--theme-color-button-secondary-shadow);
 	border-radius: 9px;
     line-height: 22px;
     padding: 0 14px;

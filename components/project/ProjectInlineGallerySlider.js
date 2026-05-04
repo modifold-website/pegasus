@@ -254,9 +254,21 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 	const activeImage = preparedImages[activeIndex];
 	const leavingImage = transitionState ? preparedImages[transitionState.from] : null;
 	const enteringImage = transitionState ? preparedImages[transitionState.to] : null;
-	const lastWindowStart = Math.max(0, preparedImages.length - visibleThumbsCount);
-	const thumbsWindowStart = preparedImages.length <= visibleThumbsCount ? 0 : Math.min(activeIndex, lastWindowStart);
+	const getThumbWindowStart = (index) => (
+		(() => {
+			if(preparedImages.length <= visibleThumbsCount) {
+				return 0;
+			}
+
+			return Math.floor(index / visibleThumbsCount) * visibleThumbsCount;
+		})()
+	);
+	const thumbsWindowStart = getThumbWindowStart(activeIndex);
+	const nextThumbsWindowStart = transitionState ? getThumbWindowStart(transitionState.to) : thumbsWindowStart;
+	const isThumbsAnimating = transitionState && thumbsWindowStart !== nextThumbsWindowStart;
 	const visibleThumbs = preparedImages.slice(thumbsWindowStart, thumbsWindowStart + visibleThumbsCount);
+	const nextVisibleThumbs = preparedImages.slice(nextThumbsWindowStart, nextThumbsWindowStart + visibleThumbsCount);
+	const activeThumbIndex = transitionState ? transitionState.to : activeIndex;
 
 	return (
 		<div className="content content--padding project-inline-gallery">
@@ -305,15 +317,42 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 					</svg>
 				</button>
 
-				<div className="project-inline-gallery__thumbs" style={{ "--thumb-count": Math.max(1, visibleThumbs.length) }}>
-					{visibleThumbs.map((image, offset) => {
-						const index = thumbsWindowStart + offset;
-						return (
-							<button key={image.id || image.url} type="button" className={`project-inline-gallery__thumb ${index === (transitionState ? transitionState.to : activeIndex) ? "is-active" : ""}`} onClick={() => openAt(index)} aria-label={`Open image ${index + 1}`} disabled={isAnimating}>
-								<img src={image.url} alt={image.title || `${projectTitle} thumbnail ${index + 1}`} loading="lazy" />
-							</button>
-						);
-					})}
+				<div className="project-inline-gallery__thumbs-viewport" style={{ "--thumb-count": Math.max(1, (isThumbsAnimating ? nextVisibleThumbs : visibleThumbs).length) }}>
+					{isThumbsAnimating ? (
+						<>
+							<div className={`project-inline-gallery__thumbs-track project-inline-gallery__thumbs-track--leave ${transitionState.direction === "right" ? "to-left" : "to-right"}`}>
+								{visibleThumbs.map((image, offset) => {
+									const index = thumbsWindowStart + offset;
+									return (
+										<button key={`leave-${image.id || image.url}-${index}`} type="button" className={`project-inline-gallery__thumb ${index === activeThumbIndex ? "is-active" : ""}`} onClick={() => openAt(index)} aria-label={`Open image ${index + 1}`} disabled={isAnimating}>
+											<img src={image.url} alt={image.title || `${projectTitle} thumbnail ${index + 1}`} loading="lazy" />
+										</button>
+									);
+								})}
+							</div>
+							<div className={`project-inline-gallery__thumbs-track project-inline-gallery__thumbs-track--enter ${transitionState.direction === "right" ? "from-right" : "from-left"}`}>
+								{nextVisibleThumbs.map((image, offset) => {
+									const index = nextThumbsWindowStart + offset;
+									return (
+										<button key={`enter-${image.id || image.url}-${index}`} type="button" className={`project-inline-gallery__thumb ${index === activeThumbIndex ? "is-active" : ""}`} onClick={() => openAt(index)} aria-label={`Open image ${index + 1}`} disabled={isAnimating}>
+											<img src={image.url} alt={image.title || `${projectTitle} thumbnail ${index + 1}`} loading="lazy" />
+										</button>
+									);
+								})}
+							</div>
+						</>
+					) : (
+						<div className="project-inline-gallery__thumbs-track project-inline-gallery__thumbs-track--active">
+							{visibleThumbs.map((image, offset) => {
+								const index = thumbsWindowStart + offset;
+								return (
+									<button key={`${image.id || image.url}-${index}`} type="button" className={`project-inline-gallery__thumb ${index === activeThumbIndex ? "is-active" : ""}`} onClick={() => openAt(index)} aria-label={`Open image ${index + 1}`} disabled={isAnimating}>
+										<img src={image.url} alt={image.title || `${projectTitle} thumbnail ${index + 1}`} loading="lazy" />
+									</button>
+								);
+							})}
+						</div>
+					)}
 				</div>
 
 				<button type="button" className="project-inline-gallery__arrow project-inline-gallery__arrow--next" aria-label="Next image" onClick={goNext} disabled={!hasMultipleImages || isAnimating}>

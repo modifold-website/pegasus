@@ -2489,12 +2489,12 @@ input[type="file"]::-webkit-file-upload-button:hover {
     margin-left: -6px;
 }
 .logreg__logo-container--padding {
-    padding-bottom: 25px;
+    padding-bottom: 18px;
 }
 .logreg__logo-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 .not-found-page__dummy {
     display: flex;

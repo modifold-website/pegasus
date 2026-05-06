@@ -4764,7 +4764,7 @@ body.light div .image-container::before {
 }
 .header--bell__unread-count {
     position: absolute;
-    left: 50%;
+    left: 40%;
     top: 15px;
 }
 .account-menu--bell__unread-count {

@@ -233,28 +233,45 @@ export default function NotificationsPage({ authToken, initialNotifications = []
             );
         }
 
-        if(notification.eventType === "project_like") {
-            const projectTitle = notification.project?.title || t("messages.projectFallback");
-            const projectTitleView = notification.project?.slug ? (
-                <Link href={getProjectPath(notification.project)}><b>{projectTitle}</b></Link>
-            ) : (
-                <b>{projectTitle}</b>
-            );
+		if(notification.eventType === "project_like") {
+			const projectTitle = notification.project?.title || t("messages.projectFallback");
+			const projectTitleView = notification.project?.slug ? (
+				<Link href={getProjectPath(notification.project)}><b>{projectTitle}</b></Link>
+			) : (
+				<b>{projectTitle}</b>
+			);
 
-            if(othersCount > 0) {
-                return (
-                    <>
-                        {firstActorView} {t("messages.projectLikeManyMiddle", { count: othersCount })} {projectTitleView}
-                    </>
-                );
-            }
+			if(othersCount > 0) {
+				return (
+					<>
+						{firstActorView} {t("messages.projectLikeManyMiddle", { count: othersCount })} {projectTitleView}
+					</>
+				);
+			}
 
-            return (
-                <>
-                    {firstActorView} {t("messages.projectLikeOneMiddle")} {projectTitleView}
-                </>
-            );
-        }
+			return (
+				<>
+					{firstActorView} {t("messages.projectLikeOneMiddle")} {projectTitleView}
+				</>
+			);
+		}
+
+		if(notification.eventType === "project_version_release") {
+			const versionProject = notification.projectVersion?.project || null;
+			const projectTitle = versionProject?.title || t("messages.projectFallback");
+			const versionNumber = notification.projectVersion?.versionNumber || t("messages.versionFallback");
+			const projectTitleView = versionProject?.slug ? (
+				<Link href={getProjectPath(versionProject)}><b>{projectTitle}</b></Link>
+			) : (
+				<b>{projectTitle}</b>
+			);
+
+			return (
+				<>
+					{firstActorView} {t("messages.projectVersionReleaseMiddle", { version: versionNumber })} {projectTitleView}
+				</>
+			);
+		}
 
         if(notification.eventType === "organization_invite") {
             const organizationName = notification.organization?.name || t("messages.organizationFallback");
@@ -306,11 +323,18 @@ export default function NotificationsPage({ authToken, initialNotifications = []
                             )
                         ))}
 
-                        {notification.eventType === "project_like" && (
+						{notification.eventType === "project_like" && (
                             <svg className="icon icon--tick_filled notification-item__icon notification-item__icon--red" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
                                 <circle cx="8" cy="8" r="8"/><path fill="#fff" d="M3.115 6.122C3.408 5.1 4.262 4.2 5.705 4.2c.87 0 1.469.306 1.887.533.17.093.31.201.408.267.098-.066.238-.174.408-.267.418-.227 1.018-.533 1.888-.533 1.442 0 2.296.9 2.59 1.922.288 1.007.024 2.266-.711 3.145-.678.81-1.56 1.498-2.345 2.019-.394.262-.76.478-1.048.63-.233.122-.508.284-.782.284-.279 0-.547-.16-.782-.285a13 13 0 0 1-1.049-.629c-.785-.521-1.666-1.21-2.344-2.02-.735-.878-1-2.137-.71-3.144"/>
                             </svg>
-                        )}
+						)}
+
+						{notification.eventType === "project_version_release" && (
+							<svg className="notification-item__icon notification-item__icon--blue" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+								<circle cx="8" cy="8" r="8" fill="currentColor"></circle>
+								<path d="M5 8h6M8 5v6" stroke="#fff" strokeWidth="1.6" strokeLinecap="round"></path>
+							</svg>
+						)}
 
                         {notification.eventType === "follow" && (
                             <svg className="icon icon--tick_filled notification-item__icon notification-item__icon--blue" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
@@ -342,7 +366,7 @@ export default function NotificationsPage({ authToken, initialNotifications = []
                     </div>
                 </div>
 
-                {notification.eventType === "project_like" && notification.project?.iconUrl && (
+				{notification.eventType === "project_like" && notification.project?.iconUrl && (
                     <div className="notification-item__etc">
                         {notification.project?.slug ? (
                             <Link href={getProjectPath(notification.project)}>
@@ -352,9 +376,21 @@ export default function NotificationsPage({ authToken, initialNotifications = []
                             <img src={notification.project.iconUrl} alt={notification.project.title} className="notification-project-thumb" loading="lazy" />
                         )}
                     </div>
-                )}
-            </>
-        );
+				)}
+
+				{notification.eventType === "project_version_release" && notification.projectVersion?.project?.iconUrl && (
+					<div className="notification-item__etc">
+						{notification.projectVersion?.project?.slug ? (
+							<Link href={getProjectPath(notification.projectVersion.project)}>
+								<img src={notification.projectVersion.project.iconUrl} alt={notification.projectVersion.project.title} className="notification-project-thumb" loading="lazy" />
+							</Link>
+						) : (
+							<img src={notification.projectVersion.project.iconUrl} alt={notification.projectVersion.project.title} className="notification-project-thumb" loading="lazy" />
+						)}
+					</div>
+				)}
+			</>
+		);
 
         return (
             <div key={notification.id} className="notification-item">

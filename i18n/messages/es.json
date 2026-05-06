@@ -24,6 +24,7 @@
     "moderation": "Moderación",
     "projects": "Proyectos",
     "organizations": "Organizaciones",
+    "likes": "Me gusta",
     "notifications": "Notificaciones",
     "appearance": "Tema"
   },
@@ -346,10 +347,22 @@
     "byYou": "de ti",
     "byOrganization": "de {name}"
   },
+  "LikesDashboardClient": {
+    "projectIconAlt": "Icono del proyecto {title}",
+    "loading": "Cargando proyectos con me gusta...",
+    "noLikes": "Aún no te gusta ningún proyecto.",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "metadata": {
+      "title": "Proyectos que te gustan — Modifold",
+      "description": "Proyectos a los que diste me gusta en Modifold."
+    }
+  },
   "SettingsBlogPage": {
     "sidebar": {
       "profileIconAlt": "Icono del perfil",
       "projects": "Proyectos",
+      "likes": "Me gusta",
       "notifications": "Notificaciones",
       "settings": "Ajustes",
       "apiTokens": "Tokens API",

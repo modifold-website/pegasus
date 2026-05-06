@@ -24,6 +24,7 @@
     "moderation": "Модерация",
     "projects": "Проекты",
     "organizations": "Организации",
+    "likes": "Понравилось",
     "notifications": "Уведомления",
     "appearance": "Тема"
   },
@@ -346,10 +347,22 @@
     "byYou": "от вас",
     "byOrganization": "от {name}"
   },
+  "LikesDashboardClient": {
+    "projectIconAlt": "Иконка проекта {title}",
+    "loading": "Загрузка понравившихся проектов...",
+    "noLikes": "Вы ещё не лайкнули ни одного проекта.",
+    "previous": "Назад",
+    "next": "Вперёд",
+    "metadata": {
+      "title": "Понравившиеся проекты — Modifold",
+      "description": "Проекты, которые вы лайкнули на Modifold."
+    }
+  },
   "SettingsBlogPage": {
     "sidebar": {
       "profileIconAlt": "Иконка профиля",
       "projects": "Проекты",
+      "likes": "Понравилось",
       "notifications": "Уведомления",
       "settings": "Настройки",
       "apiTokens": "API‑токены",

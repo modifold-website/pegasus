@@ -23,6 +23,7 @@ export default function OrganizationsDashboardPage({ authToken, initialOrganizat
                     mode="dashboard"
                     labels={{
                         projects: tSidebar("projects"),
+                        likes: tSidebar("likes"),
                         organizations: tSidebar("organizations"),
                         notifications: tSidebar("notifications"),
                         settings: tSidebar("settings"),

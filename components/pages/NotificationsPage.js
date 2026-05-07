@@ -210,7 +210,7 @@ export default function NotificationsPage({ authToken, initialNotifications = []
         const firstActor = notification.actors?.[0];
         const firstActorView = firstActor ? (
             firstActor.slug ? (
-                <Link href={`/user/${firstActor.slug}`}><b><UserName user={firstActor} /></b></Link>
+                <Link href={`/user/${firstActor.slug}`} className="notification-item__actor-link"><b><UserName user={firstActor} /></b></Link>
             ) : (
                 <b><UserName user={firstActor} /></b>
             )

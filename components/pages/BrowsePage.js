@@ -20,7 +20,7 @@ function parseQueryString(queryString) {
 
     return {
         tags: params.getAll("c"),
-        sort: ["downloads", "recent"].includes(rawSort) ? rawSort : "downloads",
+        sort: ["downloads", "recent", "updated"].includes(rawSort) ? rawSort : "downloads",
         search: params.get("q") || "",
         page: Number.isFinite(rawPage) && rawPage > 0 ? rawPage : 1,
     };
@@ -49,7 +49,7 @@ function buildQueryString({ sort, search, selectedTags, currentPage }) {
 function normalizeInitialState(initialState) {
     return {
         tags: Array.isArray(initialState?.tags) ? initialState.tags : [],
-        sort: ["downloads", "recent"].includes(initialState?.sort) ? initialState.sort : "downloads",
+        sort: ["downloads", "recent", "updated"].includes(initialState?.sort) ? initialState.sort : "downloads",
         search: typeof initialState?.search === "string" ? initialState.search : "",
         page: Number.isFinite(initialState?.page) && initialState.page > 0 ? initialState.page : 1,
     };

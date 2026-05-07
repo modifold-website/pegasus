@@ -487,7 +487,8 @@
     },
     "sort": {
       "downloads": "En çok indirilen",
-      "recent": "En yeni eklenen"
+      "recent": "En yeni eklenen",
+      "updated": "Son güncellenen"
     },
     "loading": "Projeler yükleniyor...",
     "noProjects": "Henüz proje yok",

@@ -488,7 +488,8 @@
     },
     "sort": {
       "downloads": "Descargas",
-      "recent": "Recientes"
+      "recent": "Recientes",
+      "updated": "Recientemente actualizados"
     },
     "loading": "Cargando...",
     "noProjects": "No se encontraron proyectos",

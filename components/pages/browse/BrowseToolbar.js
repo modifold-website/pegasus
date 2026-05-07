@@ -8,6 +8,7 @@ export default function BrowseToolbar({ t, searchInput, onSearchChange, cardView
     const sortOptions = [
         { value: "downloads", label: t("sort.downloads") },
         { value: "recent", label: t("sort.recent") },
+        { value: "updated", label: t("sort.updated") },
     ];
 
     useEffect(() => {

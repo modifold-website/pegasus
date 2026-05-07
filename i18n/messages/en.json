@@ -488,7 +488,8 @@
     },
     "sort": {
       "downloads": "Most Downloads",
-      "recent": "Recently Added"
+      "recent": "Recently Added",
+      "updated": "Recently Updated"
     },
     "loading": "Loading projects...",
     "noProjects": "No projects yet",

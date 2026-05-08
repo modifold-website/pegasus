@@ -63,12 +63,12 @@ export default function BrowseToolbar({ t, searchInput, onSearchChange, cardView
                     </button>
                 </div>
 
-                <div className="sort-wrapper" ref={sortRef}>
+                <div className="sort-wrapper button button--size-m button--type-secondary" ref={sortRef}>
                     <div className="dropdown">
                         <button className="dropdown__label" onClick={() => setIsSortOpen((prev) => !prev)} aria-expanded={isSortOpen}>
                             {sortOptions.find((option) => option.value === sort)?.label || t("sort.downloads")}
 
-                            <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" className={`icon icon--chevron_up ${isSortOpen ? "open" : ""}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" className={`icon icon--chevron_up ${isSortOpen ? "open" : ""}`} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="m6 9 6 6 6-6"/>
                             </svg>
                         </button>

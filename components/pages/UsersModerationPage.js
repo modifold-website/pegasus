@@ -139,19 +139,6 @@ export default function UsersModerationPage({ authToken, initialUsers, initialTo
         avatarInputRef.current?.click();
     };
 
-    const formatRole = (role) => {
-        switch(role) {
-            case "admin":
-                return t("roles.admin");
-            case "moderator":
-                return t("roles.moderator");
-            case "user":
-                return t("roles.user");
-            default:
-                return role;
-        }
-    };
-
     return (
         <>
             <div className="content content--padding" style={{ marginBottom: "15px" }}>
@@ -165,15 +152,13 @@ export default function UsersModerationPage({ authToken, initialUsers, initialTo
 
                                 <UserName user={user} />
 
-                                <span style={{ color: "var(--theme-color-text-secondary)" }}>({formatRole(user.isRole)})</span>
-
                                 <div style={{ marginLeft: "auto", position: "relative" }} ref={isRolePopoverOpen === user.id ? rolePopoverRef : null}>
                                     <button className="icon-button" onClick={() => setIsRolePopoverOpen(isRolePopoverOpen === user.id ? null : user.id)} aria-label={t("actions.editAria")}>
                                         <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-settings-icon lucide-settings"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
                                     </button>
 
                                     {isRolePopoverOpen === user.id && (
-                                        <div className="popover" style={{ position: "absolute", top: "100%", right: 0, zIndex: 1000 }}>
+                                        <div className="popover" style={{ position: "absolute", width: "max-content", top: "100%", left: "-105px", zIndex: 1000 }}>
                                             <div className="context-list" style={{ maxHeight: "200px", overflowY: "auto" }}>
                                                 <div className="context-list-option" onClick={() => openEditModal(user)} style={{ cursor: "pointer" }}>
                                                     <div className="context-list-option__label">{t("actions.edit")}</div>
@@ -205,9 +190,10 @@ export default function UsersModerationPage({ authToken, initialUsers, initialTo
             </div>
 
             <Modal closeTimeoutMS={150} isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)} className="modal active" overlayClassName="modal-overlay">
-                <div className="modal-window">
+                <div className="modal-window" style={{ maxHeight: "min(900px, 100dvh - 32px)" }}>
                     <div className="modal-window__header">
                         <span style={{ fontSize: "18px", fontWeight: "500" }}>{t("modal.title", { username: selectedUser?.username })}</span>
+                        
                         <button className="icon-button modal-window__close" type="button" onClick={() => setIsModalOpen(false)} aria-label={t("actions.close")}>
                             <svg className="icon icon--cross" height="24" width="24">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 0 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z" />
@@ -272,13 +258,13 @@ export default function UsersModerationPage({ authToken, initialUsers, initialTo
                                 </label>
                             </div>
 
-                            <div style={{ display: "flex", gap: "8px", marginTop: "18px" }}>
-                                <button type="submit" className="button button--size-m button--type-primary">
-                                    {t("actions.save")}
-                                </button>
-
+                            <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end", marginTop: "18px" }}>
                                 <button type="button" className="button button--size-m button--type-minimal" onClick={() => setIsModalOpen(false)}>
                                     {t("actions.cancel")}
+                                </button>
+
+                                <button type="submit" className="button button--size-m button--type-primary">
+                                    {t("actions.save")}
                                 </button>
                             </div>
                         </form>

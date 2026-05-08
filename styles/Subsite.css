@@ -199,9 +199,8 @@
     }
 }
 .profile-followers-modal__state {
-    padding: 12px 0;
     color: var(--theme-color-text-secondary);
-    font-size: 14px;
+    font-size: 16px;
     line-height: 20px;
 }
 .profile-followers-modal__state--loading-more {

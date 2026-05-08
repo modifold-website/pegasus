@@ -24,6 +24,7 @@
     "moderation": "Moderation",
     "projects": "Projects",
     "organizations": "Organizations",
+    "likes": "Liked projects",
     "notifications": "Notifications",
     "appearance": "Theme"
   },
@@ -346,10 +347,22 @@
     "byYou": "by you",
     "byOrganization": "by {name}"
   },
+  "LikesDashboardClient": {
+    "projectIconAlt": "Project icon {title}",
+    "loading": "Loading liked projects...",
+    "noLikes": "You haven't liked any projects yet.",
+    "previous": "Previous",
+    "next": "Next",
+    "metadata": {
+      "title": "Liked Projects — Modifold",
+      "description": "Projects you liked on Modifold."
+    }
+  },
   "SettingsBlogPage": {
     "sidebar": {
       "profileIconAlt": "Profile icon",
       "projects": "Projects",
+      "likes": "Liked projects",
       "notifications": "Notifications",
       "settings": "Settings",
       "apiTokens": "API Tokens",
@@ -475,7 +488,8 @@
     },
     "sort": {
       "downloads": "Most Downloads",
-      "recent": "Recently Added"
+      "recent": "Recently Added",
+      "updated": "Recently Updated"
     },
     "loading": "Loading projects...",
     "noProjects": "No projects yet",
@@ -1278,7 +1292,9 @@
       "projectLikeMany": "{username} and {count} others liked your project {project}",
       "projectLikeOneMiddle": "liked your project",
       "projectLikeManyMiddle": "and {count} others liked your project",
+      "projectVersionReleaseMiddle": "released version {version} for",
       "projectFallback": "your project",
+      "versionFallback": "new",
       "unknown": "New notification",
       "organizationFallback": "organization",
       "organizationInviteTail": "invited you to",

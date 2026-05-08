@@ -18,6 +18,14 @@
 .notification-item b {
     font-weight: 500;
 }
+.notification-item__actor-link {
+	text-decoration: none;
+}
+@media (hover: hover) {
+	.notification-item__actor-link:hover b > span > span {
+		text-decoration: underline;
+	}
+}
 .notification-item__image {
     width: auto;
     min-width: 36px;
@@ -107,6 +115,11 @@
     border-radius: 999px;
     object-fit: cover;
     background: var(--theme-color-background-active);
+}
+@media (hover: hover) {
+	.notification-avatars-stack__item:hover .notification-avatars-stack__avatar {
+		opacity: .85;
+	}
 }
 .notification-item__icon--blue {
     color: var(--theme-color-signal-active-default);

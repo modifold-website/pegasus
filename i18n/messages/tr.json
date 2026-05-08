@@ -23,6 +23,7 @@
     "moderation": "Moderasyon",
     "projects": "Projeler",
     "organizations": "Organizasyonlar",
+    "likes": "Beğenilenler",
     "notifications": "Bildirimler",
     "appearance": "Tema"
   },
@@ -345,10 +346,22 @@
     "byYou": "senin tarafından",
     "byOrganization": "{name} tarafından"
   },
+  "LikesDashboardClient": {
+    "projectIconAlt": "{title} proje simgesi",
+    "loading": "Beğenilen projeler yükleniyor...",
+    "noLikes": "Henüz hiçbir projeyi beğenmediniz.",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "metadata": {
+      "title": "Beğenilen Projeler - Modifold",
+      "description": "Modifold'da beğendiğiniz projeler."
+    }
+  },
   "SettingsBlogPage": {
     "sidebar": {
       "profileIconAlt": "Profil simgesi",
       "projects": "Projeler",
+      "likes": "Beğenilenler",
       "notifications": "Bildirimler",
       "settings": "Ayarlar",
       "apiTokens": "API token’ları",
@@ -474,7 +487,8 @@
     },
     "sort": {
       "downloads": "En çok indirilen",
-      "recent": "En yeni eklenen"
+      "recent": "En yeni eklenen",
+      "updated": "Son güncellenen"
     },
     "loading": "Projeler yükleniyor...",
     "noProjects": "Henüz proje yok",
@@ -1277,7 +1291,9 @@
       "projectLikeMany": "{username} ve {count} kişi daha {project} projenizi beğendi",
       "projectLikeOneMiddle": "projenizi beğendi",
       "projectLikeManyMiddle": "ve {count} kişi daha projenizi beğendi",
+      "projectVersionReleaseMiddle": "{version} sürümünü şu proje için yayınladı",
       "projectFallback": "projenizi",
+      "versionFallback": "yeni",
       "unknown": "Yeni bildirim",
       "organizationFallback": "organizasyon",
       "organizationInviteTail": "seni şuraya davet etti",

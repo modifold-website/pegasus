@@ -101,6 +101,12 @@ export default function ProjectMasthead({ project, authToken }) {
             if(response.ok) {
                 setFollowers(data.followers);
                 setIsLiked(data.is_liked);
+                window.dispatchEvent(new CustomEvent("likes:changed", {
+                    detail: {
+                        projectSlug: project.slug,
+                        isLiked: data.is_liked,
+                    },
+                }));
             } else {
                 throw new Error(data.message || "Failed to toggle like");
             }

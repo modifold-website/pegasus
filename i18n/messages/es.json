@@ -24,6 +24,7 @@
     "moderation": "Moderación",
     "projects": "Proyectos",
     "organizations": "Organizaciones",
+    "likes": "Me gusta",
     "notifications": "Notificaciones",
     "appearance": "Tema"
   },
@@ -346,10 +347,22 @@
     "byYou": "de ti",
     "byOrganization": "de {name}"
   },
+  "LikesDashboardClient": {
+    "projectIconAlt": "Icono del proyecto {title}",
+    "loading": "Cargando proyectos con me gusta...",
+    "noLikes": "Aún no te gusta ningún proyecto.",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "metadata": {
+      "title": "Proyectos que te gustan — Modifold",
+      "description": "Proyectos a los que diste me gusta en Modifold."
+    }
+  },
   "SettingsBlogPage": {
     "sidebar": {
       "profileIconAlt": "Icono del perfil",
       "projects": "Proyectos",
+      "likes": "Me gusta",
       "notifications": "Notificaciones",
       "settings": "Ajustes",
       "apiTokens": "Tokens API",
@@ -475,7 +488,8 @@
     },
     "sort": {
       "downloads": "Descargas",
-      "recent": "Recientes"
+      "recent": "Recientes",
+      "updated": "Recientemente actualizados"
     },
     "loading": "Cargando...",
     "noProjects": "No se encontraron proyectos",
@@ -1278,7 +1292,9 @@
       "projectLikeMany": "{username} y {count} personas más le dieron like a tu proyecto {project}",
       "projectLikeOneMiddle": "le dio like a tu proyecto",
       "projectLikeManyMiddle": "y {count} personas más le dieron like a tu proyecto",
+      "projectVersionReleaseMiddle": "publicó la versión {version} de",
       "projectFallback": "tu proyecto",
+      "versionFallback": "nueva",
       "unknown": "Nueva notificación",
       "organizationFallback": "organización",
       "organizationInviteTail": "te invitó a",

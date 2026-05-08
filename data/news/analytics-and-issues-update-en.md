@@ -5,7 +5,7 @@ author: ["bogdan"]
 date: 2026-04-16
 slug: /news/analytics-and-issues-update
 image: https://media.modifold.com/news/analytics_2.png
-featured: true
+featured: false
 locale: en
 ---
 

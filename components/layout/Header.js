@@ -321,6 +321,16 @@ export default function Header({ authToken }) {
                                                 </div>
 
                                                 <div className="account-action">
+                                                    <Link href="/dashboard/likes" className="account-action__wrapper button--active-transform" onClick={closeAccountMenu}>
+                                                        <svg style={{ fill: "none" }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon--settings account-action__icon">
+                                                            <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path>
+                                                        </svg>
+
+                                                        <span>{t("likes")}</span>
+                                                    </Link>
+                                                </div>
+
+                                                <div className="account-action">
                                                     <Link href="/notifications" className="account-action__wrapper button--active-transform" onClick={closeAccountMenu}>
                                                         <svg className="icon icon--settings account-action__icon" height="24" width="24" viewBox="0 0 24 24">
                                                             <path d="M5 10a7 7 0 0 1 14 0v3.764l1.532 3.065A1.5 1.5 0 0 1 19.191 19H15a3 3 0 0 1-6 0H4.809a1.5 1.5 0 0 1-1.342-2.17L5 13.763V10Zm6 9a1 1 0 1 0 2 0h-2Zm1-14a5 5 0 0 0-5 5v4a1 1 0 0 1-.106.447L5.618 17H18.38l-1.276-2.553A1 1 0 0 1 17 14v-4a5 5 0 0 0-5-5Z"></path>

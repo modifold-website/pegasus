@@ -42,8 +42,8 @@ export default async function Page() {
         newsBySlug[slug].push({ file, data });
     }
 
-    const news = await Promise.all(
-        Object.keys(newsBySlug).map(async (slug) => {
+	const news = await Promise.all(
+		Object.keys(newsBySlug).map(async (slug) => {
             const candidates = newsBySlug[slug];
             let fileData = candidates.find((c) => c.file.endsWith(`-${resolvedLocale}.md`));
             if(!fileData && resolvedLocale !== "en") {
@@ -57,19 +57,20 @@ export default async function Page() {
 
             const { data } = fileData;
 
-            return {
-                title: data.title,
-                description: data.description,
-                date: data.date,
-                author: data.author,
-                slug: data.slug,
-                image: data.image,
-                featured: data.featured || false,
-            };
-        })
-    );
+			return {
+				title: data.title,
+				description: data.description,
+				date: data.date,
+				author: data.author,
+				slug: data.slug,
+				image: data.image,
+				featured: data.featured || false,
+				hiddenFromFeed: data.hiddenFromFeed === true || data.hiddenFromFeed === "true",
+			};
+		})
+	);
 
-    const filteredNews = news.filter((item) => item !== null).sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
+	const filteredNews = news.filter((item) => item !== null && item.hiddenFromFeed !== true).sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
 
     let projects = [];
 

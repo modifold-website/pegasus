@@ -35,7 +35,7 @@ function parseBrowseSearchParams(searchParams) {
     const tags = getValues("c");
     const search = getValues("q")[0] || "";
     const sortCandidate = getValues("sort")[0] || "";
-    const sort = ["downloads", "recent"].includes(sortCandidate) ? sortCandidate : "downloads";
+    const sort = ["downloads", "recent", "updated"].includes(sortCandidate) ? sortCandidate : "downloads";
     const parsedPage = Number.parseInt(getValues("page")[0] || "", 10);
     const page = Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
 

@@ -24,6 +24,7 @@
     "moderation": "Moderação",
     "projects": "Projetos",
     "organizations": "Organizações",
+    "likes": "Curtidos",
     "notifications": "Notificações",
     "appearance": "Tema"
   },
@@ -346,10 +347,22 @@
     "byYou": "por você",
     "byOrganization": "por {name}"
   },
+  "LikesDashboardClient": {
+    "projectIconAlt": "Ícone do projeto {title}",
+    "loading": "Carregando projetos curtidos...",
+    "noLikes": "Você ainda não curtiu nenhum projeto.",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "metadata": {
+      "title": "Projetos curtidos — Modifold",
+      "description": "Projetos que você curtiu no Modifold."
+    }
+  },
   "SettingsBlogPage": {
     "sidebar": {
       "profileIconAlt": "Ícone do perfil",
       "projects": "Projetos",
+      "likes": "Curtidos",
       "notifications": "Notificações",
       "settings": "Configurações",
       "apiTokens": "Tokens de API",
@@ -475,7 +488,8 @@
     },
     "sort": {
       "downloads": "Downloads",
-      "recent": "Recentes"
+      "recent": "Recentes",
+      "updated": "Recentemente atualizados"
     },
     "loading": "Carregando...",
     "noProjects": "Nenhum projeto encontrado",
@@ -1278,7 +1292,9 @@
       "projectLikeMany": "{username} e mais {count} pessoas curtiram seu projeto {project}",
       "projectLikeOneMiddle": "curtiu seu projeto",
       "projectLikeManyMiddle": "e mais {count} pessoas curtiram seu projeto",
+      "projectVersionReleaseMiddle": "lançou a versão {version} para",
       "projectFallback": "seu projeto",
+      "versionFallback": "nova",
       "unknown": "Nova notificação",
       "organizationFallback": "organização",
       "organizationInviteTail": "convidou você para",

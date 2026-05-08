@@ -24,6 +24,7 @@
     "moderation": "Модерація",
     "projects": "Проєкти",
     "organizations": "Організації",
+    "likes": "Вподобані",
     "notifications": "Сповіщення",
     "appearance": "Тема"
   },
@@ -347,10 +348,22 @@
     "byYou": "від вас",
     "byOrganization": "від {name}"
   },
+  "LikesDashboardClient": {
+    "projectIconAlt": "Іконка проєкту {title}",
+    "loading": "Завантаження вподобаних проєктів...",
+    "noLikes": "Ви ще не вподобали жодного проєкту.",
+    "previous": "Попередній",
+    "next": "Наступний",
+    "metadata": {
+      "title": "Вподобані проєкти — Modifold",
+      "description": "Проєкти, які ви вподобали на Modifold."
+    }
+  },
   "SettingsBlogPage": {
     "sidebar": {
       "profileIconAlt": "Іконка профілю",
       "projects": "Проєкти",
+      "likes": "Вподобані",
       "notifications": "Сповіщення",
       "settings": "Налаштування",
       "apiTokens": "API-токени",
@@ -476,7 +489,8 @@
     },
     "sort": {
       "downloads": "Найбільше завантажень",
-      "recent": "Нещодавно додані"
+      "recent": "Нещодавно додані",
+      "updated": "Нещодавно оновлені"
     },
     "loading": "Завантаження проєктів...",
     "noProjects": "Поки що немає проєктів",
@@ -1279,7 +1293,9 @@
       "projectLikeMany": "{username} та ще {count} користувачів вподобали ваш проєкт {project}",
       "projectLikeOneMiddle": "вподобав ваш проєкт",
       "projectLikeManyMiddle": "та ще {count} користувачів вподобали ваш проєкт",
+      "projectVersionReleaseMiddle": "випустив(ла) версію {version} для",
       "projectFallback": "ваш проєкт",
+      "versionFallback": "нової",
       "unknown": "Нове сповіщення",
       "organizationFallback": "організацію",
       "organizationInviteTail": "запросив(ла) вас до",

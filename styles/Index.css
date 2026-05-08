@@ -2489,12 +2489,12 @@ input[type="file"]::-webkit-file-upload-button:hover {
     margin-left: -6px;
 }
 .logreg__logo-container--padding {
-    padding-bottom: 25px;
+    padding-bottom: 18px;
 }
 .logreg__logo-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 .not-found-page__dummy {
     display: flex;
@@ -4030,6 +4030,9 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .browse-recommended-hero__owner:hover {
     opacity: 0.95;
 }
+.browse-recommended-hero__actions .button--type-secondary:hover {
+    opacity: 0.95;
+}
 .browse-recommended-hero__project-link:hover .browse-recommended-hero__project-link h2 {
     text-decoration: underline;
 }
@@ -4159,7 +4162,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 	align-items: center;
 	gap: 6px;
 	padding: 8px 14px;
-	border-radius: 11px;
+	border-radius: 9px;
 	font-weight: 500;
 	line-height: 1;
 	cursor: pointer;
@@ -4720,11 +4723,15 @@ body.light div .image-container::before {
         width: 100% !important;
         max-width: none !important;
     }
+    .browse-view-toggle__item span {
+        display: none;
+    }
     .category-list {
         max-height: min(42vh, 320px);
         overflow-y: auto;
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
+        padding-top: 10px;
         padding-right: 4px;
         -webkit-mask-image: linear-gradient(transparent, #000 14px, #000 calc(100% - 14px), transparent 100%);
         mask-image: linear-gradient(transparent, #000 14px, #000 calc(100% - 14px), transparent 100%);
@@ -4764,7 +4771,7 @@ body.light div .image-container::before {
 }
 .header--bell__unread-count {
     position: absolute;
-    left: 50%;
+    left: 40%;
     top: 15px;
 }
 .account-menu--bell__unread-count {

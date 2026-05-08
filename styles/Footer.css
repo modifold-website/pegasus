@@ -45,6 +45,7 @@
 .footer-social {
     display: flex;
     margin-top: 12px;
+    margin-bottom: 16px;
     flex-direction: row;
     align-items: center;
     gap: 14px;
@@ -146,6 +147,10 @@
 .footer-link:last-child {
     margin-bottom: 0;
 }
+.footer-link:hover {
+    opacity: 0.85;
+    text-decoration: underline;
+}
 .footer-logo__link svg {
     fill: none;
     height: 100%;
@@ -153,16 +158,10 @@
 .footer-opensource {
     color: var(--theme-color-text-secondary);
     margin-bottom: 6px;
-    margin-top: auto;
 }
 .footer-opensource a {
     color: #307df0;
 }
 .footer-opensource a:hover {
     text-decoration: underline;
-}
-@media (max-width: 859px) {
-    .footer-social {
-        margin-bottom: 16px;
-    }
 }

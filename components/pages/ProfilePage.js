@@ -425,13 +425,17 @@ export default function ProfilePage({ user, isBanned, isSubscribed: initialSubsc
                         </button>
                     </div>
 
-                    <div className="modal-window__content">
-                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
-                            <img src="/badges/creator.webp" alt={t("verifiedModal.creatorBadgeAlt")} style={{ width: "72px" }} />
-                            
-                            <p style={{ margin: 0, textAlign: "center" }}>{t("verifiedModal.creatorBadgeText")}</p>
-                        </div>
-                    </div>
+					<div className="modal-window__content">
+						<div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+							<img src="/badges/creator.webp" alt={t("verifiedModal.creatorBadgeAlt")} style={{ width: "72px" }} />
+							
+                            <p style={{ margin: "0px", textAlign: "center" }}>{t("verifiedModal.creatorBadgeText")}</p>
+							
+                            <Link href="/news/creator-badge-launch" className="button button--size-xl button--type-minimal button--active-transform" style={{ width: "100%" }}>
+								{t("verifiedModal.learnMore")}
+							</Link>
+						</div>
+					</div>
                 </div>
             </Modal>
 

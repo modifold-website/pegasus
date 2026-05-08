@@ -114,9 +114,9 @@ export default async function NewsArticle({ params }) {
             const results = await Promise.all(
                 authorSlugs.map(async (authorSlug) => {
                     try {
-                        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/users/${authorSlug}`, {
-                            cache: "force-cache",
-                        });
+						const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/users/${authorSlug}`, {
+							cache: "no-store",
+						});
 
                         if(res.ok) {
                             const user = await res.json();

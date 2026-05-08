@@ -38,7 +38,7 @@
     "savePreferences": "Зберегти налаштування"
   },
   "Footer": {
-    "copyright": "© 2025-2026 modifold.com",
+    "copyright": "© 2026 modifold.com",
     "sections": "Розділи",
     "community": "Спільнота",
     "legal": "Правова інформація",
@@ -586,7 +586,8 @@
     "verifiedModal": {
       "creatorBadgeAlt": "Значок автора",
       "creatorBadgeText": "Цей автор отримав значок автора на Modifold.",
-      "officialBadgeText": "Цей акаунт підтверджено як офіційний представниками Modifold."
+      "officialBadgeText": "Цей акаунт підтверджено як офіційний представниками Modifold.",
+      "learnMore": "Детальніше"
     }
   },
   "SettingsProjectPage": {

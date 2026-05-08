@@ -38,7 +38,7 @@
     "savePreferences": "Salvar preferências"
   },
   "Footer": {
-    "copyright": "© 2025-2026 modifold.com",
+    "copyright": "© 2026 modifold.com",
     "sections": "Seções",
     "community": "Comunidade",
     "legal": "Legal",
@@ -585,7 +585,8 @@
     "verifiedModal": {
       "creatorBadgeAlt": "Selo de criador",
       "creatorBadgeText": "Este criador recebeu o Selo de Criador no Modifold.",
-      "officialBadgeText": "Esta conta é verificada como oficial por representantes do Modifold."
+      "officialBadgeText": "Esta conta é verificada como oficial por representantes do Modifold.",
+      "learnMore": "Saiba mais"
     }
   },
   "SettingsProjectPage": {

@@ -37,7 +37,7 @@
     "savePreferences": "Tercihleri kaydet"
   },
   "Footer": {
-    "copyright": "© 2025-2026 modifold.com",
+    "copyright": "© 2026 modifold.com",
     "sections": "Bölümler",
     "community": "Topluluk",
     "legal": "Yasal",
@@ -584,7 +584,8 @@
     "verifiedModal": {
       "creatorBadgeAlt": "Creator rozeti",
       "creatorBadgeText": "Bu üretici Modifold’da Creator Rozeti aldı.",
-      "officialBadgeText": "Bu hesap, Modifold temsilcileri tarafından resmi olarak doğrulanmıştır."
+      "officialBadgeText": "Bu hesap, Modifold temsilcileri tarafından resmi olarak doğrulanmıştır.",
+      "learnMore": "Daha fazla bilgi"
     }
   },
   "SettingsProjectPage": {

@@ -236,7 +236,7 @@ export default function NotificationsPage({ authToken, initialNotifications = []
 		if(notification.eventType === "project_like") {
 			const projectTitle = notification.project?.title || t("messages.projectFallback");
 			const projectTitleView = notification.project?.slug ? (
-				<Link href={getProjectPath(notification.project)}><b>{projectTitle}</b></Link>
+				<Link href={getProjectPath(notification.project)} className="notification-item__project-link"><b>{projectTitle}</b></Link>
 			) : (
 				<b>{projectTitle}</b>
 			);
@@ -261,7 +261,7 @@ export default function NotificationsPage({ authToken, initialNotifications = []
 			const projectTitle = versionProject?.title || t("messages.projectFallback");
 			const versionNumber = notification.projectVersion?.versionNumber || t("messages.versionFallback");
 			const projectTitleView = versionProject?.slug ? (
-				<Link href={getProjectPath(versionProject)}><b>{projectTitle}</b></Link>
+				<Link href={getProjectPath(versionProject)} className="notification-item__project-link"><b>{projectTitle}</b></Link>
 			) : (
 				<b>{projectTitle}</b>
 			);

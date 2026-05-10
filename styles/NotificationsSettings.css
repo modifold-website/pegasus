@@ -21,8 +21,14 @@
 .notification-item__actor-link {
 	text-decoration: none;
 }
+.notification-item__project-link {
+	text-decoration: none;
+}
 @media (hover: hover) {
 	.notification-item__actor-link:hover b > span > span {
+		text-decoration: underline;
+	}
+	.notification-item__project-link:hover b {
 		text-decoration: underline;
 	}
 }

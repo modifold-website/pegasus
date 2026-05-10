@@ -5,7 +5,7 @@ author: ["bogdan"]
 date: 2026-05-08
 slug: /news/creator-badge-launch
 image: https://media.modifold.com/news/creator_badge.png?v=1
-featured: true
+featured: false
 locale: en
 ---
 

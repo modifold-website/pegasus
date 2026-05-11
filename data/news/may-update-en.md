@@ -71,7 +71,7 @@ The mods page now also has a recommended projects block. It helps you notice int
 
 We started testing a new gallery directly on the project page.
 
-It opens in the context of the page, switches images smoothly, works better on phones, and makes thumbnails easier to use. Animations are softer, and active thumbnails are clearer.
+It opens in the context of the page, switches images smoothly, works better on phones, and makes thumbnails easier to use.
 
 For now, this gallery is available as an experimental feature in [/settings/flags](https://modifold.com/settings/flags). We will keep improving it and gradually enable it more widely.
 

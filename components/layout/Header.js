@@ -249,7 +249,7 @@ export default function Header({ authToken }) {
                                         )}
                                         
                                         <div data-loaded="true" className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--has-preview andropov-image" style={{ aspectRatio: "1 / 1", width: "34px", height: "34px", maxWidth: "none", "--background-color": "var(--theme-color-background)" }}>
-                                            <Image width={40} height={40} src={user?.avatar} alt="" loading="lazy" />
+                                            <Image width={40} height={40} src={user?.avatar} alt="" loading="lazy" unoptimized />
                                         </div>
 
                                         <svg className={`icon icon--chevron_down ${isMenuOpen ? "rotate" : ""}`} width="20" height="20" viewBox="0 0 24 24">
@@ -263,7 +263,7 @@ export default function Header({ authToken }) {
                                             
                                             <Link href={`/user/${user?.slug}`} className="account-menu__user-card button--active-transform" onClick={closeAccountMenu}>
                                                 <div className="andropov-media--cropped andropov-media andropov-media--rounded andropov-media--bordered andropov-image account-menu__avatar" style={{ aspectRatio: "480 / 320", width: "44px", height: "44px", maxWidth: "none", maxHeight: "none", backgroundColor: "var(--theme-color-background)" }}>
-                                                    <Image width={44} height={44} src={user?.avatar} alt="" />
+                                                    <Image width={44} height={44} src={user?.avatar} alt="" unoptimized />
                                                 </div>
 
                                                 <div className="account-menu__name">

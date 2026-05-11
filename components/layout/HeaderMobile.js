@@ -252,7 +252,7 @@ export default function HeaderMobile({ authToken }) {
                             <>
                                 <button type="button" ref={buttonRef} className={`tabbar__item ${isItemActive("account", "/settings") ? "tabbar__item--active" : ""} ${animatingItem === "account" ? "tabbar__item--animating" : ""}`} onPointerDown={() => activateTab("account")} onClick={toggleAccountMenu} aria-label={t("myProfile")} data-ripple="center">
                                     <div data-loaded="true" className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--has-preview tabbar__icon tabbar__avatar andropov-image" style={{ aspectRatio: "1 / 1", width: "28px", height: "28px", maxWidth: "none", "--background-color": "var(--theme-color-background)" }} onAnimationEnd={() => handleTabAnimationEnd("account")}>
-                                        <Image width={28} height={28} src={user?.avatar} alt="" loading="lazy" />
+                                        <Image width={28} height={28} src={user?.avatar} alt="" loading="lazy" unoptimized />
                                     </div>
                                 </button>
                             </>
@@ -274,7 +274,7 @@ export default function HeaderMobile({ authToken }) {
 
                                 <Link href={`/user/${user?.slug}`} className="account-menu__user-card button--active-transform" onClick={closeAccountMenu}>
                                     <div className="andropov-media--cropped andropov-media andropov-media--rounded andropov-media--bordered andropov-image account-menu__avatar" style={{ aspectRatio: "480 / 320", width: "34px", height: "34px", maxWidth: "none", maxHeight: "none", backgroundColor: "var(--theme-color-background)" }}>
-                                        <Image width={34} height={34} src={user?.avatar} alt="" />
+                                        <Image width={34} height={34} src={user?.avatar} alt="" unoptimized />
                                     </div>
 
                                     <div className="account-menu__name">

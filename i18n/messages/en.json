@@ -57,6 +57,13 @@
       "website": "Website",
       "discord": "Discord server"
     },
+    "jury": {
+      "title": "Jury",
+      "organizer": "Organizer",
+      "organizerTooltip": "Mod jam owner",
+      "member": "Jury",
+      "memberTooltip": "A jury vote gives 3 points"
+    },
     "detail": {
       "description": "Description",
       "rules": "Rules",
@@ -94,7 +101,10 @@
       "action": "Vote",
       "voted": "Voted",
       "success": "Vote counted",
-      "error": "Unable to vote"
+      "error": "Unable to vote",
+      "nominationTitle": "Choose a nomination",
+      "nominationHint": "Votes are counted separately in each nomination.",
+      "nominationAlreadyVoted": "You already voted in this nomination"
     },
     "submit": {
       "title": "Submit mod",
@@ -130,7 +140,10 @@
         "general": "General",
         "description": "Description",
         "rules": "Rules",
-        "links": "Links"
+        "links": "Links",
+        "nominations": "Nominations",
+        "jury": "Jury",
+        "moderation": "Moderation"
       },
       "unsaved": {
         "save": "Save changes",
@@ -167,6 +180,56 @@
         "websitePlaceholder": "https://example.com",
         "saveError": "Unable to save links",
         "saved": "Links saved"
+      },
+      "jury": {
+        "title": "Jury",
+        "hint": "Enter a user slug. Votes from assigned jury members count as 3 points instead of 1.",
+        "placeholder": "user-slug",
+        "add": "Add",
+        "remove": "Remove",
+        "empty": "No jury members assigned yet.",
+        "added": "Jury member added",
+        "removed": "Jury member removed",
+        "addError": "Unable to add jury member",
+        "removeError": "Unable to remove jury member"
+      },
+      "nominations": {
+        "title": "Nominations",
+        "hint": "Create categories like “Best Gameplay” or “Jury Pick”. Users can vote separately in each nomination.",
+        "name": "Name",
+        "placeholder": "Best Gameplay",
+        "description": "Description",
+        "descriptionPlaceholder": "Briefly explain what people vote for in this nomination.",
+        "add": "Add nomination",
+        "saveEdit": "Save",
+        "cancelEdit": "Cancel",
+        "edit": "Edit",
+        "delete": "Delete",
+        "empty": "No nominations yet. Without nominations, voting works as one general vote.",
+        "added": "Nomination added",
+        "updated": "Nomination updated",
+        "deleted": "Nomination deleted",
+        "saveError": "Unable to save nomination",
+        "deleteError": "Unable to delete nomination"
+      },
+      "moderation": {
+        "title": "Moderation",
+        "hint": "Review the jam page and send it to Modifold review once the presentation is ready.",
+        "currentStatus": "Current status",
+        "rejectionReason": "Rejection reason",
+        "preview": "Open preview",
+        "submitForReview": "Submit for review",
+        "pendingReview": "Pending review",
+        "approved": "Already approved",
+        "submitReviewError": "Unable to submit for review",
+        "sentToModeration": "Sent to moderation",
+        "status": {
+          "draft": "Draft",
+          "pending_review": "Pending review",
+          "approved": "Approved",
+          "rejected": "Rejected",
+          "archived": "Archived"
+        }
       },
       "description": {
         "title": "Full description",
@@ -228,7 +291,7 @@
       "votingPending": "Voting pending"
     },
     "submissionsCount": "{count} submissions",
-    "votesCount": "{count} votes",
+    "votesCount": "{count} points",
     "emptyTitle": "No mod jams yet",
     "emptyDescription": "Approved mod jams will appear here. You can start the first one and send it to moderation.",
     "emptyFilteredTitle": "Nothing in this section",
@@ -240,7 +303,7 @@
     "empty": "You have not created any mod jams yet.",
     "settings": "Settings",
     "submissions": "{count} submissions",
-    "votes": "{count} votes",
+    "votes": "{count} points",
     "status": {
       "draft": "Draft",
       "pendingReview": "Pending review",

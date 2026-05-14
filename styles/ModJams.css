@@ -118,7 +118,7 @@
 	width: fit-content;
 	border-radius: 999px;
 	padding: 5px 8px;
-	background: var(--theme-color-background);
+	background: var(--theme-color-background-content);
 	color: var(--theme-color-text-secondary);
 	font-size: 12px;
 	font-weight: 600;
@@ -326,9 +326,14 @@
 	position: relative;
 }
 .field .mod-jam-project-picker__popover {
-	position: fixed;
+	position: absolute;
+	top: calc(var(--height) + 8px);
+	left: 0;
+	right: 0;
+	width: 100%;
 	z-index: calc(var(--layout-z-modal-overlay) + 1);
 	overflow: hidden;
+	max-height: min(280px, calc(100dvh - 220px));
 }
 .mod-jam-project-picker__popover .context-list {
 	max-height: inherit;
@@ -568,6 +573,110 @@
 	z-index: 3;
 	flex-shrink: 0;
 }
+.mod-jam-jury-list,
+.mod-jam-jury-settings-list {
+	display: grid;
+	gap: 10px;
+}
+.mod-jam-jury-settings-form {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 10px;
+	align-items: center;
+	margin-top: 12px;
+}
+.mod-jam-jury-settings-form .blog-settings__input {
+	margin-bottom: 0;
+}
+.mod-jam-jury-settings-list {
+	margin-top: 16px;
+}
+.mod-jam-jury-settings-card {
+	display: grid;
+	align-items: center;
+	grid-template-columns: auto minmax(0, 1fr) auto auto;
+}
+.mod-jam-jury-settings-empty {
+	color: var(--theme-color-text-secondary);
+}
+.mod-jam-nominations-form {
+	margin-top: 12px;
+}
+.mod-jam-nominations-list,
+.mod-jam-vote-nominations {
+	display: grid;
+	gap: 10px;
+}
+.mod-jam-nominations-list {
+	margin-top: 18px;
+}
+.mod-jam-nomination-card {
+	display: grid;
+	background: var(--theme-color-background);
+    border-radius: var(--layout-island-border-radius);
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px;
+}
+.mod-jam-nomination-card p,
+.mod-jam-vote-nomination-hint {
+	margin: 4px 0 0;
+	color: var(--theme-color-text-secondary);
+}
+.mod-jam-nomination-card__actions,
+.mod-jam-settings-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+}
+.mod-jam-vote-nomination-option {
+	display: grid;
+	gap: 4px;
+	width: 100%;
+	padding: 12px;
+	text-align: left;
+	border: 1px solid var(--theme-color-border);
+	border-radius: 8px;
+	background: var(--theme-color-background);
+	color: var(--theme-color-text-primary);
+	cursor: pointer;
+}
+.mod-jam-vote-nomination-option:hover:not(:disabled),
+.mod-jam-vote-nomination-option:focus-visible:not(:disabled) {
+	border-color: var(--theme-color-accent);
+}
+.mod-jam-vote-nomination-option:disabled {
+	cursor: default;
+	opacity: .64;
+}
+.mod-jam-vote-nomination-option span,
+.mod-jam-vote-nomination-option small {
+	color: var(--theme-color-text-secondary);
+}
+.mod-jam-vote-nominations {
+	margin-top: 12px;
+}
+.mod-jam-moderation-status,
+.mod-jam-moderation-rejection {
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: var(--theme-color-background);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 14px;
+    margin-bottom: 16px;
+}
+.mod-jam-moderation-rejection {
+	display: block;
+}
+.mod-jam-moderation-rejection p {
+	margin: 6px 0 0;
+	color: var(--theme-color-text-secondary);
+}
 .mod-jam-project-participation img {
 	width: 40px;
 	height: 40px;
@@ -603,6 +712,22 @@
 	line-height: 1;
 }
 @media (max-width: 760px) {
+	.mod-jam-jury-settings-form {
+		grid-template-columns: 1fr;
+	}
+	.mod-jam-jury-settings-card {
+		grid-template-columns: auto minmax(0, 1fr);
+	}
+	.mod-jam-nomination-card,
+	.mod-jam-moderation-status {
+		grid-template-columns: 1fr;
+		align-items: flex-start;
+	}
+	.mod-jam-nomination-card__actions,
+	.mod-jam-settings-actions {
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
 	.mod-jams-title-row {
 		align-items: flex-start;
 		flex-direction: column;

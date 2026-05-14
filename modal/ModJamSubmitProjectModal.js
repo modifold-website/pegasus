@@ -21,27 +21,8 @@ export default function ModJamSubmitProjectModal({ isOpen, jam, authToken, submi
 	const [loading, setLoading] = useState(false);
 	const [loaded, setLoaded] = useState(false);
 	const [isProjectPopoverOpen, setIsProjectPopoverOpen] = useState(false);
-	const [projectPopoverStyle, setProjectPopoverStyle] = useState({});
 	const selectedProject = projects.find((project) => String(project.id) === String(projectId));
 	const currentUserSubmission = user?.id ? submissions.find((submission) => Number(submission.submitter?.id) === Number(user.id)) : null;
-
-	const updateProjectPopoverPosition = () => {
-		if(!projectFieldRef.current || typeof window === "undefined") {
-			return;
-		}
-
-		const rect = projectFieldRef.current.getBoundingClientRect();
-		const viewportPadding = 18;
-		const top = rect.bottom + 6;
-		const maxHeight = Math.max(140, window.innerHeight - top - viewportPadding);
-
-		setProjectPopoverStyle({
-			left: `${rect.left}px`,
-			top: `${top}px`,
-			width: `${rect.width}px`,
-			maxHeight: `${maxHeight}px`,
-		});
-	};
 
 	useEffect(() => {
 		if(!isOpen) {
@@ -61,21 +42,6 @@ export default function ModJamSubmitProjectModal({ isOpen, jam, authToken, submi
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
 	}, []);
-
-	useEffect(() => {
-		if(!isProjectPopoverOpen) {
-			return undefined;
-		}
-
-		updateProjectPopoverPosition();
-		window.addEventListener("resize", updateProjectPopoverPosition);
-		window.addEventListener("scroll", updateProjectPopoverPosition, true);
-
-		return () => {
-			window.removeEventListener("resize", updateProjectPopoverPosition);
-			window.removeEventListener("scroll", updateProjectPopoverPosition, true);
-		};
-	}, [isProjectPopoverOpen]);
 
 	const loadProjects = async () => {
 		if(loading || loaded || !authToken) {
@@ -104,7 +70,6 @@ export default function ModJamSubmitProjectModal({ isOpen, jam, authToken, submi
 	};
 
 	const openProjectPopover = () => {
-		updateProjectPopoverPosition();
 		setIsProjectPopoverOpen(true);
 		loadProjects();
 	};
@@ -201,7 +166,7 @@ export default function ModJamSubmitProjectModal({ isOpen, jam, authToken, submi
 								</label>
 
 								{isProjectPopoverOpen && (
-									<div className="popover mod-jam-project-picker__popover" style={projectPopoverStyle}>
+									<div className="popover mod-jam-project-picker__popover">
 										<div className="context-list" data-scrollable>
 											{loading && !loaded ? (
 												<div className="context-list-option">

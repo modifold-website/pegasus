@@ -57,6 +57,13 @@
       "website": "Site",
       "discord": "Servidor do Discord"
     },
+    "jury": {
+      "title": "Júri",
+      "organizer": "Organizador",
+      "organizerTooltip": "Proprietário do mod jam",
+      "member": "Júri",
+      "memberTooltip": "O voto do júri vale 3 pontos"
+    },
     "detail": {
       "description": "Descrição",
       "rules": "Regras",
@@ -94,7 +101,10 @@
       "action": "Votar",
       "voted": "Votado",
       "success": "Voto registrado",
-      "error": "Não foi possível votar"
+      "error": "Não foi possível votar",
+      "nominationTitle": "Escolha uma indicação",
+      "nominationHint": "Os votos são contados separadamente em cada indicação.",
+      "nominationAlreadyVoted": "Você já votou nesta indicação"
     },
     "submit": {
       "title": "Enviar mod",
@@ -130,7 +140,10 @@
         "general": "Geral",
         "description": "Descrição",
         "rules": "Regras",
-        "links": "Links"
+        "links": "Links",
+        "nominations": "Indicações",
+        "jury": "Júri",
+        "moderation": "Moderação"
       },
       "unsaved": {
         "save": "Salvar alterações",
@@ -167,6 +180,56 @@
         "websitePlaceholder": "https://example.com",
         "saveError": "Não foi possível salvar os links",
         "saved": "Links salvos"
+      },
+      "jury": {
+        "title": "Júri",
+        "hint": "Informe o slug de um usuário. Votos de jurados designados contam como 3 pontos em vez de 1.",
+        "placeholder": "user-slug",
+        "add": "Adicionar",
+        "remove": "Remover",
+        "empty": "Nenhum jurado foi designado ainda.",
+        "added": "Jurado adicionado",
+        "removed": "Jurado removido",
+        "addError": "Não foi possível adicionar o jurado",
+        "removeError": "Não foi possível remover o jurado"
+      },
+      "nominations": {
+        "title": "Indicações",
+        "hint": "Crie categorias como “Melhor gameplay” ou “Escolha do júri”. Usuários podem votar separadamente em cada indicação.",
+        "name": "Nome",
+        "placeholder": "Melhor gameplay",
+        "description": "Descrição",
+        "descriptionPlaceholder": "Explique brevemente o que será avaliado nesta indicação.",
+        "add": "Adicionar indicação",
+        "saveEdit": "Salvar",
+        "cancelEdit": "Cancelar",
+        "edit": "Editar",
+        "delete": "Excluir",
+        "empty": "Ainda não há indicações. Sem indicações, a votação funciona como um voto geral.",
+        "added": "Indicação adicionada",
+        "updated": "Indicação atualizada",
+        "deleted": "Indicação excluída",
+        "saveError": "Não foi possível salvar a indicação",
+        "deleteError": "Não foi possível excluir a indicação"
+      },
+      "moderation": {
+        "title": "Moderação",
+        "hint": "Revise a página do jam e envie para análise da Modifold quando estiver pronta.",
+        "currentStatus": "Status atual",
+        "rejectionReason": "Motivo da rejeição",
+        "preview": "Abrir prévia",
+        "submitForReview": "Enviar para análise",
+        "pendingReview": "Em análise",
+        "approved": "Já aprovado",
+        "submitReviewError": "Não foi possível enviar para análise",
+        "sentToModeration": "Enviado para moderação",
+        "status": {
+          "draft": "Rascunho",
+          "pending_review": "Em análise",
+          "approved": "Aprovado",
+          "rejected": "Rejeitado",
+          "archived": "Arquivado"
+        }
       },
       "description": {
         "title": "Descrição completa",
@@ -228,7 +291,7 @@
       "votingPending": "Aguardando votação"
     },
     "submissionsCount": "{count} envios",
-    "votesCount": "{count} votos",
+    "votesCount": "{count} pontos",
     "emptyTitle": "Ainda não há mod jams",
     "emptyDescription": "Mod jams aprovados aparecerão aqui. Você pode criar o primeiro e enviar para moderação.",
     "emptyFilteredTitle": "Nada nesta seção",
@@ -240,7 +303,7 @@
     "empty": "Você ainda não criou nenhum mod jam.",
     "settings": "Configurações",
     "submissions": "{count} envios",
-    "votes": "{count} votos",
+    "votes": "{count} pontos",
     "status": {
       "draft": "Rascunho",
       "pendingReview": "Em revisão",

@@ -56,6 +56,13 @@
       "website": "Web sitesi",
       "discord": "Discord sunucusu"
     },
+    "jury": {
+      "title": "Jüri",
+      "organizer": "Organizatör",
+      "organizerTooltip": "Mod jam sahibi",
+      "member": "Jüri",
+      "memberTooltip": "Jüri oyu 3 puan verir"
+    },
     "detail": {
       "description": "Açıklama",
       "rules": "Kurallar",
@@ -93,7 +100,10 @@
       "action": "Oy ver",
       "voted": "Oy verildi",
       "success": "Oy kaydedildi",
-      "error": "Oy verilemedi"
+      "error": "Oy verilemedi",
+      "nominationTitle": "Bir adaylık seçin",
+      "nominationHint": "Oylar her adaylıkta ayrı sayılır.",
+      "nominationAlreadyVoted": "Bu adaylıkta zaten oy verdiniz"
     },
     "submit": {
       "title": "Mod gönder",
@@ -129,7 +139,10 @@
         "general": "Genel",
         "description": "Açıklama",
         "rules": "Kurallar",
-        "links": "Bağlantılar"
+        "links": "Bağlantılar",
+        "nominations": "Adaylıklar",
+        "jury": "Jüri",
+        "moderation": "Moderasyon"
       },
       "unsaved": {
         "save": "Değişiklikleri kaydet",
@@ -166,6 +179,56 @@
         "websitePlaceholder": "https://example.com",
         "saveError": "Bağlantılar kaydedilemedi",
         "saved": "Bağlantılar kaydedildi"
+      },
+      "jury": {
+        "title": "Jüri",
+        "hint": "Bir kullanıcı slug'ı girin. Atanan jüri üyelerinin oyları 1 yerine 3 puan sayılır.",
+        "placeholder": "user-slug",
+        "add": "Ekle",
+        "remove": "Kaldır",
+        "empty": "Henüz jüri üyesi atanmadı.",
+        "added": "Jüri üyesi eklendi",
+        "removed": "Jüri üyesi kaldırıldı",
+        "addError": "Jüri üyesi eklenemedi",
+        "removeError": "Jüri üyesi kaldırılamadı"
+      },
+      "nominations": {
+        "title": "Adaylıklar",
+        "hint": "“En iyi oynanış” veya “Jüri seçimi” gibi kategoriler oluşturun. Kullanıcılar her adaylıkta ayrı oy verebilir.",
+        "name": "Ad",
+        "placeholder": "En iyi oynanış",
+        "description": "Açıklama",
+        "descriptionPlaceholder": "Bu adaylıkta neye oy verileceğini kısaca açıklayın.",
+        "add": "Adaylık ekle",
+        "saveEdit": "Kaydet",
+        "cancelEdit": "İptal",
+        "edit": "Düzenle",
+        "delete": "Sil",
+        "empty": "Henüz adaylık yok. Adaylık yoksa oylama tek genel oy olarak çalışır.",
+        "added": "Adaylık eklendi",
+        "updated": "Adaylık güncellendi",
+        "deleted": "Adaylık silindi",
+        "saveError": "Adaylık kaydedilemedi",
+        "deleteError": "Adaylık silinemedi"
+      },
+      "moderation": {
+        "title": "Moderasyon",
+        "hint": "Jam sayfasını kontrol edin ve sunum hazır olduğunda Modifold incelemesine gönderin.",
+        "currentStatus": "Mevcut durum",
+        "rejectionReason": "Reddetme nedeni",
+        "preview": "Önizlemeyi aç",
+        "submitForReview": "İncelemeye gönder",
+        "pendingReview": "İncelemede",
+        "approved": "Zaten onaylandı",
+        "submitReviewError": "İncelemeye gönderilemedi",
+        "sentToModeration": "Moderasyona gönderildi",
+        "status": {
+          "draft": "Taslak",
+          "pending_review": "İncelemede",
+          "approved": "Onaylandı",
+          "rejected": "Reddedildi",
+          "archived": "Arşivlendi"
+        }
       },
       "description": {
         "title": "Tam açıklama",
@@ -227,7 +290,7 @@
       "votingPending": "Oylama bekleniyor"
     },
     "submissionsCount": "{count} gönderi",
-    "votesCount": "{count} oy",
+    "votesCount": "{count} puan",
     "emptyTitle": "Henüz mod jam yok",
     "emptyDescription": "Onaylanan mod jamleri burada görünecek. İlkini oluşturup moderasyona gönderebilirsiniz.",
     "emptyFilteredTitle": "Bu bölüm boş",
@@ -239,7 +302,7 @@
     "empty": "Henüz hiç mod jam oluşturmadınız.",
     "settings": "Ayarlar",
     "submissions": "{count} gönderi",
-    "votes": "{count} oy",
+    "votes": "{count} puan",
     "status": {
       "draft": "Taslak",
       "pendingReview": "İncelemede",

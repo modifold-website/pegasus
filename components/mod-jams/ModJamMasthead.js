@@ -4,16 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import UserName from "@/components/ui/UserName";
 import ModJamSubmitProjectModal from "@/modal/ModJamSubmitProjectModal";
 
 export default function ModJamMasthead({ jam, permissions = {}, submissionsCount = 0, authToken, submissions = [] }) {
 	const t = useTranslations("ModJamsPage");
 	const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
-	const owner = jam.owner;
-	const ownerHref = owner?.profile_url || (owner?.slug ? `/user/${owner.slug}` : null);
 	const hasCover = Boolean(jam.cover_url);
 	const canSubmitProject = jam.lifecycle === "submissions_open";
+	const shouldShowSubmitProject = ["upcoming", "submissions_open"].includes(jam.lifecycle);
 
 	return (
 		<>
@@ -48,28 +46,14 @@ export default function ModJamMasthead({ jam, permissions = {}, submissionsCount
 									<div className="masthead-stats__quantity">{submissionsCount}</div>
 								</div>
 
-								{owner && ownerHref && (
-									<div className="masthead-stats__item">
-										<svg className="masthead-stats__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-											<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-											<path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
-											<path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-											<circle cx="9" cy="7" r="4"></circle>
-										</svg>
-
-										<Link className="mod-jam-masthead-owner__link" href={ownerHref} aria-label={t("detail.creatorProfile", { username: owner.username })}>
-											<UserName user={owner} className="mod-jam-masthead-owner__name" />
-										</Link>
-									</div>
-								)}
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div className="masthead-buttons">
-					{canSubmitProject && (
-						<button className="button button--size-l button--with-icon button--active-transform button--type-minimal" type="button" onClick={() => setIsSubmitModalOpen(true)}>
+					{shouldShowSubmitProject && (
+						<button className="button button--size-l button--with-icon button--active-transform button--type-minimal" type="button" disabled={!canSubmitProject} onClick={() => canSubmitProject && setIsSubmitModalOpen(true)}>
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-plus-icon lucide-plus">
 								<path d="M5 12h14"></path>
 								<path d="M12 5v14"></path>

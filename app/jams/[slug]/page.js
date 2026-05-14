@@ -41,5 +41,5 @@ export default async function ModJamPage({ params }) {
 		notFound();
 	}
 
-	return <ModJamPageView jam={data.mod_jam} submissions={data.submissions || []} permissions={data.permissions || {}} authToken={authToken} />;
+	return <ModJamPageView jam={data.mod_jam} submissions={data.submissions || []} jury={data.jury || []} nominations={data.nominations || []} permissions={data.permissions || {}} authToken={authToken} />;
 }

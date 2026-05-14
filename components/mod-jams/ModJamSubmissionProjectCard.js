@@ -2,7 +2,7 @@ import ProjectCard from "@/components/project/ProjectCard";
 import ProjectCardMedia from "@/components/project/ProjectCardMedia";
 import ModJamVoteButton from "@/components/mod-jams/ModJamVoteButton";
 
-export default function ModJamSubmissionProjectCard({ submission, cardView, jam, authToken, canVote, onVoted, rank, showResult = false }) {
+export default function ModJamSubmissionProjectCard({ submission, cardView, jam, authToken, canVote, nominations = [], userVotes = [], onVoted, selected = false, showVoteButton = false, rank, showResult = false }) {
 	const project = {
 		...submission.project,
 		project_type: "mod",
@@ -11,7 +11,20 @@ export default function ModJamSubmissionProjectCard({ submission, cardView, jam,
 		tags: submission.project.tags || [],
 		owner: submission.submitter,
 	};
-	const voteButton = canVote ? <ModJamVoteButton authToken={authToken} jamSlug={jam.slug} submissionId={submission.id} onVoted={onVoted} /> : null;
+	const voteButton = showVoteButton ? (
+		<ModJamVoteButton
+			authToken={authToken}
+			jamSlug={jam.slug}
+			submissionId={submission.id}
+			nominations={nominations}
+			userVotes={userVotes}
+			onVoted={(nominationId) => onVoted?.(submission.id, nominationId)}
+			disabled={!canVote}
+			selected={selected}
+			visibleWhenDisabled
+			buttonType="secondary"
+		/>
+	) : null;
 	const resultRank = Number(rank) || null;
 	const className = [
 		"mod-jam-submission-item",

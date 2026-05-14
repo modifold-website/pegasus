@@ -57,6 +57,13 @@
       "website": "Sitio web",
       "discord": "Servidor de Discord"
     },
+    "jury": {
+      "title": "Jurado",
+      "organizer": "Organizador",
+      "organizerTooltip": "Propietario del mod jam",
+      "member": "Jurado",
+      "memberTooltip": "El voto del jurado da 3 puntos"
+    },
     "detail": {
       "description": "Descripción",
       "rules": "Reglas",
@@ -94,7 +101,10 @@
       "action": "Votar",
       "voted": "Votado",
       "success": "Voto registrado",
-      "error": "No se pudo votar"
+      "error": "No se pudo votar",
+      "nominationTitle": "Elige una nominación",
+      "nominationHint": "Los votos se cuentan por separado en cada nominación.",
+      "nominationAlreadyVoted": "Ya votaste en esta nominación"
     },
     "submit": {
       "title": "Enviar mod",
@@ -130,7 +140,10 @@
         "general": "General",
         "description": "Descripción",
         "rules": "Reglas",
-        "links": "Enlaces"
+        "links": "Enlaces",
+        "nominations": "Nominaciones",
+        "jury": "Jurado",
+        "moderation": "Moderación"
       },
       "unsaved": {
         "save": "Guardar cambios",
@@ -167,6 +180,56 @@
         "websitePlaceholder": "https://example.com",
         "saveError": "No se pudieron guardar los enlaces",
         "saved": "Enlaces guardados"
+      },
+      "jury": {
+        "title": "Jurado",
+        "hint": "Introduce el slug de un usuario. Los votos de jurado cuentan como 3 puntos en lugar de 1.",
+        "placeholder": "user-slug",
+        "add": "Añadir",
+        "remove": "Eliminar",
+        "empty": "Aún no hay miembros del jurado.",
+        "added": "Miembro del jurado añadido",
+        "removed": "Miembro del jurado eliminado",
+        "addError": "No se pudo añadir el miembro del jurado",
+        "removeError": "No se pudo eliminar el miembro del jurado"
+      },
+      "nominations": {
+        "title": "Nominaciones",
+        "hint": "Crea categorías como “Mejor jugabilidad” o “Elección del jurado”. Los usuarios pueden votar por separado en cada nominación.",
+        "name": "Nombre",
+        "placeholder": "Mejor jugabilidad",
+        "description": "Descripción",
+        "descriptionPlaceholder": "Explica brevemente qué se vota en esta nominación.",
+        "add": "Añadir nominación",
+        "saveEdit": "Guardar",
+        "cancelEdit": "Cancelar",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "empty": "Aún no hay nominaciones. Sin nominaciones, la votación funciona como un voto general.",
+        "added": "Nominación añadida",
+        "updated": "Nominación actualizada",
+        "deleted": "Nominación eliminada",
+        "saveError": "No se pudo guardar la nominación",
+        "deleteError": "No se pudo eliminar la nominación"
+      },
+      "moderation": {
+        "title": "Moderación",
+        "hint": "Revisa la página del jam y envíala a revisión de Modifold cuando esté lista.",
+        "currentStatus": "Estado actual",
+        "rejectionReason": "Motivo del rechazo",
+        "preview": "Abrir vista previa",
+        "submitForReview": "Enviar a revisión",
+        "pendingReview": "En revisión",
+        "approved": "Ya aprobado",
+        "submitReviewError": "No se pudo enviar a revisión",
+        "sentToModeration": "Enviado a moderación",
+        "status": {
+          "draft": "Borrador",
+          "pending_review": "En revisión",
+          "approved": "Aprobado",
+          "rejected": "Rechazado",
+          "archived": "Archivado"
+        }
       },
       "description": {
         "title": "Descripción completa",
@@ -228,7 +291,7 @@
       "votingPending": "Esperando votación"
     },
     "submissionsCount": "{count} participaciones",
-    "votesCount": "{count} votos",
+    "votesCount": "{count} puntos",
     "emptyTitle": "Todavía no hay mod jams",
     "emptyDescription": "Los mod jams aprobados aparecerán aquí. Puedes crear el primero y enviarlo a moderación.",
     "emptyFilteredTitle": "No hay nada en esta sección",
@@ -240,7 +303,7 @@
     "empty": "Aún no has creado ningún mod jam.",
     "settings": "Ajustes",
     "submissions": "{count} participaciones",
-    "votes": "{count} votos",
+    "votes": "{count} puntos",
     "status": {
       "draft": "Borrador",
       "pendingReview": "En revisión",

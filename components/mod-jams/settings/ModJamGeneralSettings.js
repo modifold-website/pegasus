@@ -57,9 +57,7 @@ export default function ModJamGeneralSettings({ authToken, jam }) {
 	const [coverPreview, setCoverPreview] = useState(jam.cover_url || "");
 	const [savedAvatarPreview, setSavedAvatarPreview] = useState(jam.avatar_url || "https://media.modifold.com/static/no-project-icon.svg");
 	const [savedCoverPreview, setSavedCoverPreview] = useState(jam.cover_url || "");
-	const [reviewStatus, setReviewStatus] = useState(jam.status || "");
 	const isDirty = JSON.stringify(form) !== JSON.stringify(savedForm) || Boolean(avatar) || Boolean(cover);
-	const isPendingReview = reviewStatus === "pending_review";
 
 	const updateField = (field, value) => {
 		setForm((current) => ({ ...current, [field]: value }));
@@ -135,39 +133,6 @@ export default function ModJamGeneralSettings({ authToken, jam }) {
 
 			toast.success(t("settings.general.saved"));
 			router.push(`/jams/${nextForm.slug}/settings`);
-			router.refresh();
-		} catch (error) {
-			toast.error(error.message);
-		} finally {
-			setSaving(false);
-		}
-	};
-
-	const submitForReview = async () => {
-		if(isDirty) {
-			toast.error(t("settings.markdown.saveBeforeReview"));
-			return;
-		}
-
-		if(saving || isPendingReview) {
-			return;
-		}
-
-		setSaving(true);
-
-		try {
-			const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/mod-jams/${jam.slug}/submit-review`, {
-				method: "POST",
-				headers: { Authorization: `Bearer ${authToken}` },
-			});
-
-			const data = await response.json().catch(() => ({}));
-			if(!response.ok) {
-				throw new Error(data?.message || t("settings.markdown.submitReviewError"));
-			}
-
-			setReviewStatus("pending_review");
-			toast.success(t("settings.markdown.sentToModeration"));
 			router.refresh();
 		} catch (error) {
 			toast.error(error.message);
@@ -281,11 +246,6 @@ export default function ModJamGeneralSettings({ authToken, jam }) {
 									</div>
 								</div>
 
-								<div className="mod-jam-settings-review-action">
-									<button className="button button--size-m button--type-primary" type="button" disabled={saving || isPendingReview} onClick={submitForReview}>
-										{isPendingReview ? t("settings.markdown.pendingReview") : t("settings.markdown.submitForReview")}
-									</button>
-								</div>
 							</div>
 						</div>
 					</form>

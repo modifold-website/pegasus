@@ -60,6 +60,42 @@ export default function ModJamSettingsSidebar({ jam }) {
 
 					{t("settings.sidebar.links")}
 				</Link>
+
+				<Link href={`${settingsPath}/nominations`} scroll={false} className={`sidebar-item ${isActive(`${settingsPath}/nominations`) ? "sidebar-item--active" : ""}`} data-ripple>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-layout-list-icon lucide-layout-list">
+						<rect width="7" height="7" x="3" y="3" rx="1"/>
+						<rect width="7" height="7" x="3" y="14" rx="1"/>
+						<path d="M14 4h7"/>
+						<path d="M14 9h7"/>
+						<path d="M14 15h7"/>
+						<path d="M14 20h7"/>
+					</svg>
+
+					{t("settings.sidebar.nominations")}
+				</Link>
+
+				<Link href={`${settingsPath}/jury`} scroll={false} className={`sidebar-item ${isActive(`${settingsPath}/jury`) ? "sidebar-item--active" : ""}`} data-ripple>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon lucide lucide-users-icon lucide-users">
+						<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+						<path d="M16 3.128a4 4 0 0 1 0 7.744"/>
+						<path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+						<circle cx="9" cy="7" r="4"/>
+					</svg>
+
+					{t("settings.sidebar.jury")}
+				</Link>
+
+				<Link href={`${settingsPath}/moderation`} scroll={false} className={`sidebar-item ${isActive(`${settingsPath}/moderation`) ? "sidebar-item--active" : ""}`} data-ripple>
+					<svg className="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+						<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
+						<path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path>
+						<path d="M7 21h10"></path>
+						<path d="M12 3v18"></path>
+						<path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path>
+					</svg>
+
+					{t("settings.sidebar.moderation")}
+				</Link>
 			</div>
 		</div>
 	);

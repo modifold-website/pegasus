@@ -83,15 +83,20 @@ export default function ModJamsDashboardPage({ authToken, initialJams = [] }) {
 									<div className="new-project-info">
 										<div className="new-project-header" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
 											<span className="new-project-title" style={{ fontWeight: "500" }}>{jam.title}</span>
-											<span className={`mod-jam-status mod-jam-status--${jam.lifecycle || jam.status}`}>{getStatusLabel(t, jam)}</span>
 										</div>
 
 										<p className="new-project-description">{jam.summary}</p>
 
 										<p className="mod-jams-dashboard-card__meta">
-											{t("submissions", { count: jam.submissions_count || 0 })}
-											<span aria-hidden="true">·</span>
-											{t("votes", { count: jam.votes_count || 0 })}
+											<div className="masthead-stats__item">
+												<svg className="masthead-stats__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+													<path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
+													<path d="m3.3 7 8.7 5 8.7-5"></path>
+													<path d="M12 22V12"></path>
+												</svg>
+												
+												<div className="masthead-stats__quantity">{jam.submissions_count || 0}</div>
+											</div>
 										</p>
 									</div>
 

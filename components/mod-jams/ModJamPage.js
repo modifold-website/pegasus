@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import ModJamExternalLinks from "@/components/mod-jams/ModJamExternalLinks";
+import ModJamJuryPanel from "@/components/mod-jams/ModJamJuryPanel";
 import ModJamMasthead from "@/components/mod-jams/ModJamMasthead";
 import ModJamMarkdownBlock from "@/components/mod-jams/ModJamMarkdownBlock";
 import ModJamSubmissionProjectCard from "@/components/mod-jams/ModJamSubmissionProjectCard";
@@ -17,14 +18,24 @@ function getColorHex(value) {
 	return Number.isFinite(color) ? `#${Math.max(0, Math.min(0xFFFFFF, Math.round(color))).toString(16).padStart(6, "0").toUpperCase()}` : null;
 }
 
-export default function ModJamPage({ jam, submissions = [], authToken, permissions = {} }) {
+export default function ModJamPage({ jam, submissions = [], jury = [], nominations = [], authToken, permissions = {} }) {
 	const t = useTranslations("ModJamsPage");
 	const jamColorHex = getColorHex(jam.color);
 	const hasKnownResults = jam.lifecycle === "completed";
-	const [hasUserVoteInJam, setHasUserVoteInJam] = useState(() => submissions.some((submission) => submission.has_user_vote_in_jam));
+	const hasNominations = nominations.length > 0;
+	const [userVotes, setUserVotes] = useState(() => submissions.flatMap((submission) => (submission.user_votes || []).map((vote) => ({
+		submission_id: submission.id,
+		nomination_id: Number(vote.nomination_id) || 0,
+	}))));
+	const votedSubmissionId = userVotes.find((vote) => vote.nomination_id === 0)?.submission_id || null;
+	const votedNominationIds = new Set(userVotes.map((vote) => Number(vote.nomination_id) || 0));
+	const hasUserVoteInJam = hasNominations ? votedNominationIds.size >= nominations.length : Boolean(votedSubmissionId);
 
 	useEffect(() => {
-		setHasUserVoteInJam(submissions.some((submission) => submission.has_user_vote_in_jam));
+		setUserVotes(submissions.flatMap((submission) => (submission.user_votes || []).map((vote) => ({
+			submission_id: submission.id,
+			nomination_id: Number(vote.nomination_id) || 0,
+		}))));
 	}, [submissions]);
 
 	const submissionResultRanks = useMemo(() => {
@@ -75,8 +86,12 @@ export default function ModJamPage({ jam, submissions = [], authToken, permissio
 		return nextSubmissions;
 	}, [hasKnownResults, submissionResultRanks, submissions]);
 
-	const handleVoted = () => {
-		setHasUserVoteInJam(true);
+	const handleVoted = (submissionId, nominationId = 0) => {
+		setUserVotes((currentVotes) => {
+			const normalizedNominationId = Number(nominationId) || 0;
+			const nextVotes = currentVotes.filter((vote) => Number(vote.nomination_id) !== normalizedNominationId);
+			return [...nextVotes, { submission_id: submissionId, nomination_id: normalizedNominationId }];
+		});
 	};
 
 	return (
@@ -110,7 +125,11 @@ export default function ModJamPage({ jam, submissions = [], authToken, permissio
 												jam={jam}
 												authToken={authToken}
 												canVote={Boolean(permissions.can_vote && !hasUserVoteInJam)}
+												nominations={nominations}
+												userVotes={userVotes}
 												onVoted={handleVoted}
+												selected={userVotes.some((vote) => Number(vote.submission_id) === Number(submission.id)) || Number(votedSubmissionId) === Number(submission.id)}
+												showVoteButton={Boolean(authToken && permissions.can_vote)}
 												rank={submissionResultRanks.get(submission.id)}
 												showResult={hasKnownResults}
 											/>
@@ -123,6 +142,8 @@ export default function ModJamPage({ jam, submissions = [], authToken, permissio
 						</div>
 
 						<aside className="mod-jam-sidebar">
+							<ModJamJuryPanel owner={jam.owner} jury={jury} />
+
 							<div className="content content--padding">
 								<h2>{t("detail.rules")}</h2>
 

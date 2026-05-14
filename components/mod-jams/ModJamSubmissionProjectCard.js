@@ -22,7 +22,7 @@ export default function ModJamSubmissionProjectCard({ submission, cardView, jam,
 			disabled={!canVote}
 			selected={selected}
 			visibleWhenDisabled
-			buttonType="secondary"
+			buttonType="minimal"
 		/>
 	) : null;
 	const resultRank = Number(rank) || null;

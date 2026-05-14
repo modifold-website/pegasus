@@ -147,12 +147,6 @@
 	padding: 46px 24px;
 	text-align: center;
 }
-.mod-jams-empty__icon {
-	color: #307def;
-}
-.mod-jams-empty__icon svg {
-	fill: none;
-}
 .mod-jams-empty h2 {
 	margin: 0;
 }
@@ -631,28 +625,43 @@
 	gap: 10px;
 }
 .mod-jam-vote-nomination-option {
-	display: grid;
-	gap: 4px;
-	width: 100%;
-	padding: 12px;
-	text-align: left;
-	border: 1px solid var(--theme-color-border);
-	border-radius: 8px;
+	display: flex;
 	background: var(--theme-color-background);
-	color: var(--theme-color-text-primary);
-	cursor: pointer;
+    border: 1px dashed var(--theme-sidebar-separator-color-background);
+    cursor: pointer;
+    border-radius: 16px;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 14px;
 }
 .mod-jam-vote-nomination-option:hover:not(:disabled),
 .mod-jam-vote-nomination-option:focus-visible:not(:disabled) {
-	border-color: var(--theme-color-accent);
+	border-color: #307df0;
 }
 .mod-jam-vote-nomination-option:disabled {
 	cursor: default;
 	opacity: .64;
 }
+.mod-jam-vote-nomination-option p {
+	font-weight: 500;
+}
 .mod-jam-vote-nomination-option span,
 .mod-jam-vote-nomination-option small {
+	font-size: 13px;
 	color: var(--theme-color-text-secondary);
+}
+.mod-jam-vote-nomination-option__already-voted {
+	display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: row;
+	color: var(--theme-color-text-secondary);
+	font-size: 13px;
+	margin-top: 8px;
+}
+.mod-jam-vote-nomination-option__already-voted svg {
+	fill: none;
+    color: #F44336;
 }
 .mod-jam-vote-nominations {
 	margin-top: 12px;

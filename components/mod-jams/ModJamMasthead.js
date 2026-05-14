@@ -9,17 +9,12 @@ import ModJamSubmitProjectModal from "@/modal/ModJamSubmitProjectModal";
 export default function ModJamMasthead({ jam, permissions = {}, submissionsCount = 0, authToken, submissions = [] }) {
 	const t = useTranslations("ModJamsPage");
 	const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
-	const hasCover = Boolean(jam.cover_url);
 	const canSubmitProject = jam.lifecycle === "submissions_open";
 	const shouldShowSubmitProject = ["upcoming", "submissions_open"].includes(jam.lifecycle);
 
 	return (
 		<>
-			{hasCover && (
-				<img src={jam.cover_url} className="mod-jam-masthead_cover" alt="" loading="lazy" />
-			)}
-			
-			<section className="masthead" style={hasCover ? { borderTopRightRadius: 0, borderTopLeftRadius: 0 } : undefined}>
+			<section className="masthead">
 				<div className="masthead-info">
 					<div className="masthead-avatar">
 						<div className="avatar avatar-s-masthead">

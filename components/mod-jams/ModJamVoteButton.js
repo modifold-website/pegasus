@@ -107,9 +107,11 @@ export default function ModJamVoteButton({ authToken, jamSlug, submissionId, nom
 
 								return (
 									<button key={nomination.id} type="button" className="mod-jam-vote-nomination-option" disabled={isVoting || hasVotedInNomination} onClick={() => submitVote(nominationId)}>
-										<strong>{nomination.title}</strong>
+										<p>{nomination.title}</p>
+
 										{nomination.description && <span>{nomination.description}</span>}
-										{hasVotedInNomination && <small>{t("vote.nominationAlreadyVoted")}</small>}
+
+										{hasVotedInNomination && <div className="mod-jam-vote-nomination-option__already-voted">{t("vote.nominationAlreadyVoted")}</div>}
 									</button>
 								);
 							})}

@@ -32,11 +32,11 @@
   "ModJamsPage": {
     "metadata": {
       "title": "Mod jams — Modifold",
-      "description": "Explore mod jams da comunidade, envie mods publicados, vote e veja resultados no Modifold."
+      "description": "Explore mod jams da comunidade, participe de desafios criativos, vote e veja resultados no Modifold."
     },
     "eyebrow": "Eventos da comunidade",
-    "title": "Mod jams para mods publicados",
-    "description": "Participe de desafios da comunidade, envie um dos seus mods, vote nos favoritos e revisite eventos encerrados.",
+    "title": "Mod jams da comunidade",
+    "description": "Participe de desafios criativos, descubra o que a comunidade está criando, vote nos favoritos e revisite eventos encerrados.",
     "create": "Criar mod jam",
     "createFirst": "Criar mod jam",
     "loginToCreate": "Entre para criar um mod jam",

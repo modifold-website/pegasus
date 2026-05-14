@@ -31,11 +31,11 @@
   "ModJamsPage": {
     "metadata": {
       "title": "Mod jamleri — Modifold",
-      "description": "Topluluk mod jamlerini keşfedin, yayımlanmış modlarınızı gönderin, oy verin ve sonuçları Modifold'da görün."
+      "description": "Topluluk mod jamlerini keşfedin, yaratıcı etkinliklere katılın, oy verin ve sonuçları Modifold'da görün."
     },
     "eyebrow": "Topluluk etkinlikleri",
-    "title": "Yayımlanmış modlar için mod jamleri",
-    "description": "Topluluk yarışmalarına katılın, modlarınızdan birini gönderin, favorilerinize oy verin ve biten etkinliklerin sonuçlarına geri dönün.",
+    "title": "Topluluk mod jamleri",
+    "description": "Yaratıcı etkinliklere katılın, topluluğun neler yaptığını keşfedin, favorilerinize oy verin ve biten etkinliklere geri dönün.",
     "create": "Mod jam oluştur",
     "createFirst": "Mod jam oluştur",
     "loginToCreate": "Mod jam oluşturmak için giriş yapın",

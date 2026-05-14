@@ -32,11 +32,11 @@
   "ModJamsPage": {
     "metadata": {
       "title": "Mod jams — Modifold",
-      "description": "Browse community mod jams, submit published mods, vote, and view results on Modifold."
+      "description": "Browse community mod jams, join creative challenges, vote, and revisit completed events on Modifold."
     },
     "eyebrow": "Community events",
-    "title": "Mod jams for published mods",
-    "description": "Join community challenges, submit one of your mods, vote for your favorites, and revisit completed events.",
+    "title": "Community mod jams",
+    "description": "Join creative challenges, discover what others are building, vote for your favorites, and revisit past events.",
     "create": "Create mod jam",
     "createFirst": "Create mod jam",
     "loginToCreate": "Log in to create a mod jam",
@@ -134,7 +134,7 @@
       "success": "Mod jam draft created",
       "error": "Unable to create mod jam"
     },
-    "participate": "Participate",
+    "participate": "Join",
     "settings": {
       "sidebar": {
         "general": "General",

@@ -6,6 +6,7 @@
     "home": "Ana sayfa",
     "mods": "Modlar",
     "modpacks": "Modpackler",
+    "modJams": "Mod jamleri",
     "login": "Giriş yap",
     "logout": "Çıkış yap",
     "settings": "Ayarlar",
@@ -26,6 +27,230 @@
     "likes": "Beğenilenler",
     "notifications": "Bildirimler",
     "appearance": "Tema"
+  },
+  "ModJamsPage": {
+    "metadata": {
+      "title": "Mod jamleri — Modifold",
+      "description": "Topluluk mod jamlerini keşfedin, yayımlanmış modlarınızı gönderin, oy verin ve sonuçları Modifold'da görün."
+    },
+    "eyebrow": "Topluluk etkinlikleri",
+    "title": "Yayımlanmış modlar için mod jamleri",
+    "description": "Topluluk yarışmalarına katılın, modlarınızdan birini gönderin, favorilerinize oy verin ve biten etkinliklerin sonuçlarına geri dönün.",
+    "create": "Mod jam oluştur",
+    "createFirst": "Mod jam oluştur",
+    "loginToCreate": "Mod jam oluşturmak için giriş yapın",
+    "statsLabel": "Mod jam istatistikleri",
+    "stats": {
+      "active": "Aktif jamler",
+      "voting": "Oylama açık",
+      "submissions": "Gönderiler"
+    },
+    "catalogTitle": "Tüm mod jamleri",
+    "catalogDescription": "Topluluğun onaylanmış aktif ve tamamlanmış etkinlikleri.",
+    "filtersLabel": "Mod jam filtreleri",
+    "sidebar": {
+      "status": "Filtreler"
+    },
+    "links": {
+      "title": "Bağlantılar",
+      "website": "Web sitesi",
+      "discord": "Discord sunucusu"
+    },
+    "detail": {
+      "description": "Açıklama",
+      "rules": "Kurallar",
+      "emptySubmissions": "Henüz gönderi yok.",
+      "editSettings": "Ayarları düzenle",
+      "creatorProfile": "{username} profilini aç"
+    },
+    "timeline": {
+      "ariaLabel": "Mod jam zaman çizelgesi",
+      "dateTimeSeparator": " saat ",
+      "countdown": {
+        "upcoming": "Başlamasına",
+        "submissionsOpen": "Gönderiler şu tarihe kadar kabul edilir",
+        "votingOpen": "Oylama",
+        "completed": "Tamamlandı"
+      },
+      "units": {
+        "hours": "sa",
+        "minutes": "dk",
+        "seconds": "sn"
+      },
+      "steps": {
+        "start": "Gönderiler açılır",
+        "submissions": "Gönderiler kapanır",
+        "voting": "Topluluk oylaması açılır",
+        "finish": "Bitiş",
+        "submissionsOpen": "Gönderiler açılır",
+        "submissionsClose": "Gönderiler kapanır",
+        "votingOpen": "Topluluk oylaması açılır",
+        "winnersAnnounced": "Kazananlar açıklanır"
+      },
+      "afterSubmissions": "Gönderilerden sonra"
+    },
+    "vote": {
+      "action": "Oy ver",
+      "voted": "Oy verildi",
+      "success": "Oy kaydedildi",
+      "error": "Oy verilemedi"
+    },
+    "submit": {
+      "title": "Mod gönder",
+      "loginHint": "Yayımlanmış modlarınızdan birini bu jam'e eklemek için giriş yapın.",
+      "alreadySubmitted": "Bu mod jam'e zaten bir proje gönderdiniz.",
+      "chooseHint": "Bu mod jam'e katılması için göndermek istediğiniz projeyi seçin.",
+      "placeholder": "Yayımlanmış bir mod seçin",
+      "loading": "Yükleniyor...",
+      "emptyProjects": "Yayımlanmış mod bulunamadı",
+      "action": "Projeyi gönder",
+      "selectFirst": "Önce bir mod seçin",
+      "loadError": "Projeleriniz yüklenemedi",
+      "submitError": "Proje gönderilemedi",
+      "success": "Proje gönderildi"
+    },
+    "creation": {
+      "title": "Mod jam oluştur",
+      "close": "Kapat",
+      "name": "Ad",
+      "namePlaceholder": "Yaz inşa jam'i",
+      "summary": "Kısa açıklama",
+      "summaryHint": "Mod jam'inizi anlatan bir veya iki cümle.",
+      "summaryPlaceholder": "Ortak bir tema etrafında mod oluşturun ve en iyi gönderilere oy verin.",
+      "cancel": "İptal",
+      "creating": "Oluşturuluyor...",
+      "submit": "Taslak oluştur",
+      "success": "Mod jam taslağı oluşturuldu",
+      "error": "Mod jam oluşturulamadı"
+    },
+    "participate": "Katıl",
+    "settings": {
+      "sidebar": {
+        "general": "Genel",
+        "description": "Açıklama",
+        "rules": "Kurallar",
+        "links": "Bağlantılar"
+      },
+      "unsaved": {
+        "save": "Değişiklikleri kaydet",
+        "reset": "Sıfırla",
+        "message": "Kaydedilmemiş değişiklikleriniz var."
+      },
+      "general": {
+        "imageTooLarge": "Görsel 20 MB'tan küçük olmalı",
+        "saveError": "Ayarlar kaydedilemedi",
+        "saved": "Mod jam ayarları kaydedildi",
+        "avatar": "Avatar",
+        "avatarPreviewAlt": "Mod jam avatar önizlemesi",
+        "uploadAvatar": "Avatar yükle",
+        "cover": "Kapak",
+        "coverPreviewAlt": "Mod jam kapak önizlemesi",
+        "uploadCover": "Kapak görseli yükle",
+        "name": "Ad",
+        "slug": "URL",
+        "shortDescription": "Kısa açıklama",
+        "shortDescriptionHint": "Katalogda ve jam kartlarında gösterilir.",
+        "slugPlaceholder": "jam-iniz",
+        "publicPage": "Herkese açık sayfa: /jams/{slug}",
+        "schedule": "Takvim",
+        "starts": "Gönderiler açılır",
+        "submissionsEnd": "Gönderiler kapanır",
+        "votingEnds": "Bitiş",
+        "votingStarts": "Topluluk oylaması açılır",
+        "winnersAnnounced": "Kazananlar açıklanır"
+      },
+      "links": {
+        "discord": "Discord URL'si",
+        "website": "Web sitesi URL'si",
+        "discordPlaceholder": "https://discord.gg/ornek",
+        "websitePlaceholder": "https://example.com",
+        "saveError": "Bağlantılar kaydedilemedi",
+        "saved": "Bağlantılar kaydedildi"
+      },
+      "description": {
+        "title": "Tam açıklama",
+        "hint": "Jam sayfasındaki ana metni oluşturmak için Markdown kullanın.",
+        "placeholder": "Katılımcılara bu jam'in ne hakkında olduğunu, neler yapabileceklerini ve neden ilginç olduğunu anlatın.",
+        "saved": "Açıklama kaydedildi",
+        "saveError": "Açıklama kaydedilemedi"
+      },
+      "rules": {
+        "title": "Kurallar",
+        "hint": "Nelerin gönderilebileceğini ve oylamanın nasıl çalıştığını açıklamak için Markdown kullanın.",
+        "placeholder": "Gönderi gereksinimlerini, oylama kurallarını, son tarihleri ve yasaklı içerikleri açıklayın.",
+        "saved": "Kurallar kaydedildi",
+        "saveError": "Kurallar kaydedilemedi"
+      },
+      "markdown": {
+        "toolbarLabel": "Markdown düzenleyici araç çubuğu",
+        "heading1": "Başlık 1",
+        "heading2": "Başlık 2",
+        "heading3": "Başlık 3",
+        "bold": "Kalın",
+        "italic": "İtalik",
+        "strikethrough": "Üstü çizili",
+        "code": "Kod",
+        "bulletedList": "Madde işaretli liste",
+        "orderedList": "Numaralı liste",
+        "link": "Bağlantı",
+        "image": "Görsel",
+        "linkTemplate": "[bağlantı metni](https://)",
+        "imageTemplate": "![alternatif metin](https://)",
+        "preview": "Önizleme",
+        "submitForReview": "İncelemeye gönder",
+        "pendingReview": "İncelemede",
+        "saveBeforeReview": "İncelemeye göndermeden önce değişiklikleri kaydedin",
+        "submitReviewError": "İncelemeye gönderilemedi",
+        "sentToModeration": "Moderasyona gönderildi"
+      }
+    },
+    "moderation": {
+      "rejectionReason": "Reddetme nedeni",
+      "approvedReason": "Moderatör tarafından onaylandı",
+      "error": "Mod jam denetlenemedi",
+      "approved": "Mod jam onaylandı",
+      "rejected": "Mod jam reddedildi",
+      "empty": "İnceleme bekleyen mod jam yok.",
+      "approve": "Onayla",
+      "reject": "Reddet"
+    },
+    "filters": {
+      "active": "Aktif",
+      "completed": "Tamamlandı"
+    },
+    "status": {
+      "upcoming": "Yakında",
+      "submissionsOpen": "Gönderiler açık",
+      "votingOpen": "Oylama açık",
+      "completed": "Tamamlandı",
+      "draft": "Taslak",
+      "votingPending": "Oylama bekleniyor"
+    },
+    "submissionsCount": "{count} gönderi",
+    "votesCount": "{count} oy",
+    "emptyTitle": "Henüz mod jam yok",
+    "emptyDescription": "Onaylanan mod jamleri burada görünecek. İlkini oluşturup moderasyona gönderebilirsiniz.",
+    "emptyFilteredTitle": "Bu bölüm boş",
+    "emptyFilteredDescription": "Başka bir filtre deneyin veya bir sonraki etkinlik başladığında tekrar bakın."
+  },
+  "ModJamsDashboard": {
+    "title": "Mod jamleriniz",
+    "create": "Mod jam oluştur",
+    "empty": "Henüz hiç mod jam oluşturmadınız.",
+    "settings": "Ayarlar",
+    "submissions": "{count} gönderi",
+    "votes": "{count} oy",
+    "status": {
+      "draft": "Taslak",
+      "pendingReview": "İncelemede",
+      "upcoming": "Yakında",
+      "submissionsOpen": "Gönderiler açık",
+      "votingOpen": "Oylama açık",
+      "completed": "Tamamlandı",
+      "rejected": "Reddedildi",
+      "archived": "Arşivlendi",
+      "votingPending": "Oylama bekleniyor"
+    }
   },
   "CookieBanner": {
     "message": "Deneyiminizi geliştirmek için çerezleri kullanıyoruz. Gerekli çerezler sitenin çalışması için zorunludur; analiz çerezleri ise siteyi nasıl kullandığınızı anlamamıza yardımcı olur.",
@@ -367,6 +592,7 @@
       "apiTokens": "API token’ları",
       "verification": "Creator Rozeti",
       "organizations": "Organizasyonlar",
+      "jams": "Mod jamler",
       "profile": "Profil",
       "appearance": "Görünüm",
       "language": "Dil",

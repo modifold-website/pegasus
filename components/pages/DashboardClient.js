@@ -90,6 +90,7 @@ export default function DashboardClient({ initialProjects, initialTotalPages, in
                         projects: tSidebar("projects"),
                         likes: tSidebar("likes"),
                         organizations: tSidebar("organizations"),
+                        jams: tSidebar("jams"),
                         notifications: tSidebar("notifications"),
                         settings: tSidebar("settings"),
                         apiTokens: tSidebar("apiTokens"),

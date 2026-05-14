@@ -7,6 +7,7 @@
     "home": "Главная",
     "mods": "Моды",
     "modpacks": "Модпаки",
+    "modJams": "Мод-джемы",
     "login": "Войти",
     "logout": "Выйти",
     "settings": "Настройки",
@@ -27,6 +28,230 @@
     "likes": "Понравилось",
     "notifications": "Уведомления",
     "appearance": "Тема"
+  },
+  "ModJamsPage": {
+    "metadata": {
+      "title": "Мод-джемы — Modifold",
+      "description": "Каталог мод-джемов сообщества: отправляйте опубликованные моды, голосуйте и смотрите результаты на Modifold."
+    },
+    "eyebrow": "События сообщества",
+    "title": "Мод-джемы сообщества",
+    "description": "Мод-джемы — это события, которые объединяют участников сообщества для создания и публикации работ на заданную тему.",
+    "create": "Создать мод-джем",
+    "createFirst": "Создать мод-джем",
+    "loginToCreate": "Войдите, чтобы создать мод-джем",
+    "statsLabel": "Статистика мод-джемов",
+    "stats": {
+      "active": "Активные джемы",
+      "voting": "Идет голосование",
+      "submissions": "Работы"
+    },
+    "catalogTitle": "Все мод-джемы",
+    "catalogDescription": "Одобренные события сообщества: активные и завершенные.",
+    "filtersLabel": "Фильтры мод-джемов",
+    "sidebar": {
+      "status": "Фильтры"
+    },
+    "links": {
+      "title": "Ссылки",
+      "website": "Веб-сайт",
+      "discord": "Discord‑сервер"
+    },
+    "detail": {
+      "description": "Описание",
+      "rules": "Правила",
+      "emptySubmissions": "Работ пока нет.",
+      "editSettings": "Редактировать настройки",
+      "creatorProfile": "Открыть профиль {username}"
+    },
+    "timeline": {
+      "ariaLabel": "Таймлайн мод-джема",
+      "dateTimeSeparator": " в ",
+      "countdown": {
+        "upcoming": "До начала",
+        "submissionsOpen": "Работы принимаются до",
+        "votingOpen": "Голосование",
+        "completed": "Завершено"
+      },
+      "units": {
+        "hours": "ч",
+        "minutes": "м",
+        "seconds": "с"
+      },
+      "steps": {
+        "start": "Приём работ открыт",
+        "submissions": "Приём работ закрыт",
+        "voting": "Голосование открыто",
+        "finish": "Финиш",
+        "submissionsOpen": "Приём работ открыт",
+        "submissionsClose": "Приём работ закрыт",
+        "votingOpen": "Голосование открыто",
+        "winnersAnnounced": "Победители объявлены"
+      },
+      "afterSubmissions": "После приёма"
+    },
+    "vote": {
+      "action": "Проголосовать",
+      "voted": "Проголосовали",
+      "success": "Голос засчитан",
+      "error": "Не удалось проголосовать"
+    },
+    "submit": {
+      "title": "Отправить мод",
+      "loginHint": "Войдите, чтобы прикрепить один из ваших опубликованных модов к этому джему.",
+      "alreadySubmitted": "Вы уже отправили проект на этот мод-джем.",
+      "chooseHint": "Выберите проект, который хотите отправить на участие в мод-джеме.",
+      "placeholder": "Выберите опубликованный мод",
+      "loading": "Загрузка...",
+      "emptyProjects": "Опубликованные моды не найдены",
+      "action": "Отправить проект",
+      "selectFirst": "Сначала выберите мод",
+      "loadError": "Не удалось загрузить ваши проекты",
+      "submitError": "Не удалось отправить проект",
+      "success": "Проект отправлен"
+    },
+    "creation": {
+      "title": "Создать мод-джем",
+      "close": "Закрыть",
+      "name": "Название",
+      "namePlaceholder": "Летний строительный джем",
+      "summary": "Краткое описание",
+      "summaryHint": "Одно-два предложения, которые описывают ваш мод-джем.",
+      "summaryPlaceholder": "Создайте мод вокруг общей темы и проголосуйте за лучшие работы.",
+      "cancel": "Отмена",
+      "creating": "Создание...",
+      "submit": "Создать черновик",
+      "success": "Черновик мод-джема создан",
+      "error": "Не удалось создать мод-джем"
+    },
+    "participate": "Участвовать",
+    "settings": {
+      "sidebar": {
+        "general": "Основное",
+        "description": "Описание",
+        "rules": "Правила",
+        "links": "Ссылки"
+      },
+      "unsaved": {
+        "save": "Сохранить изменения",
+        "reset": "Сбросить",
+        "message": "У вас есть несохранённые изменения."
+      },
+      "general": {
+        "imageTooLarge": "Изображение должно быть меньше 20 МБ",
+        "saveError": "Не удалось сохранить настройки",
+        "saved": "Настройки мод-джема сохранены",
+        "avatar": "Аватар",
+        "avatarPreviewAlt": "Предпросмотр аватара мод-джема",
+        "uploadAvatar": "Загрузить аватар",
+        "cover": "Обложка",
+        "coverPreviewAlt": "Предпросмотр обложки мод-джема",
+        "uploadCover": "Загрузить обложку",
+        "name": "Название",
+        "slug": "URL",
+        "shortDescription": "Краткое описание",
+        "shortDescriptionHint": "Показывается в каталоге и на карточках джема.",
+        "slugPlaceholder": "vash-dzhem",
+        "publicPage": "Публичная страница: /jams/{slug}",
+        "schedule": "Расписание",
+        "starts": "Приём работ открыт",
+        "submissionsEnd": "Приём работ закрыт",
+        "votingEnds": "Финиш",
+        "votingStarts": "Голосование открыто",
+        "winnersAnnounced": "Победители объявлены"
+      },
+      "links": {
+        "discord": "Discord URL",
+        "website": "URL веб-сайта",
+        "discordPlaceholder": "https://discord.gg/primer",
+        "websitePlaceholder": "https://example.com",
+        "saveError": "Не удалось сохранить ссылки",
+        "saved": "Ссылки сохранены"
+      },
+      "description": {
+        "title": "Полное описание",
+        "hint": "Используйте Markdown для основного текста на странице джема.",
+        "placeholder": "Расскажите участникам, о чём этот джем, что можно создать и почему это интересно.",
+        "saved": "Описание сохранено",
+        "saveError": "Не удалось сохранить описание"
+      },
+      "rules": {
+        "title": "Правила",
+        "hint": "Используйте Markdown, чтобы объяснить, что можно отправлять и как работает голосование.",
+        "placeholder": "Опишите требования к работам, правила голосования, сроки и запрещённый контент.",
+        "saved": "Правила сохранены",
+        "saveError": "Не удалось сохранить правила"
+      },
+      "markdown": {
+        "toolbarLabel": "Панель Markdown-редактора",
+        "heading1": "Заголовок 1",
+        "heading2": "Заголовок 2",
+        "heading3": "Заголовок 3",
+        "bold": "Жирный",
+        "italic": "Курсив",
+        "strikethrough": "Зачёркнутый",
+        "code": "Код",
+        "bulletedList": "Маркированный список",
+        "orderedList": "Нумерованный список",
+        "link": "Ссылка",
+        "image": "Изображение",
+        "linkTemplate": "[текст ссылки](https://)",
+        "imageTemplate": "![описание изображения](https://)",
+        "preview": "Предпросмотр",
+        "submitForReview": "Отправить на модерацию",
+        "pendingReview": "На модерации",
+        "saveBeforeReview": "Сохраните изменения перед отправкой на модерацию",
+        "submitReviewError": "Не удалось отправить на модерацию",
+        "sentToModeration": "Отправлено на модерацию"
+      }
+    },
+    "moderation": {
+      "rejectionReason": "Причина отклонения",
+      "approvedReason": "Одобрено модератором",
+      "error": "Не удалось модерировать мод-джем",
+      "approved": "Мод-джем одобрен",
+      "rejected": "Мод-джем отклонён",
+      "empty": "Мод-джемов на проверке нет.",
+      "approve": "Одобрить",
+      "reject": "Отклонить"
+    },
+    "filters": {
+      "active": "Активные",
+      "completed": "Завершенные"
+    },
+    "status": {
+      "upcoming": "Скоро старт",
+      "submissionsOpen": "Прием работ",
+      "votingOpen": "Голосование",
+      "completed": "Завершен",
+      "draft": "Черновик",
+      "votingPending": "Ожидание голосования"
+    },
+    "submissionsCount": "{count} работ",
+    "votesCount": "{count} голосов",
+    "emptyTitle": "Мод-джемов пока нет",
+    "emptyDescription": "Одобренные мод-джемы появятся здесь. Можно создать первый и отправить его на модерацию.",
+    "emptyFilteredTitle": "В этом разделе пусто",
+    "emptyFilteredDescription": "Попробуйте другой фильтр или загляните позже, когда начнется новое событие."
+  },
+  "ModJamsDashboard": {
+    "title": "Ваши мод-джемы",
+    "create": "Создать мод-джем",
+    "empty": "Вы пока не создали ни одного мод-джема.",
+    "settings": "Настройки",
+    "submissions": "{count} работ",
+    "votes": "{count} голосов",
+    "status": {
+      "draft": "Черновик",
+      "pendingReview": "На модерации",
+      "upcoming": "Скоро",
+      "submissionsOpen": "Прием работ",
+      "votingOpen": "Голосование",
+      "completed": "Завершен",
+      "rejected": "Отклонен",
+      "archived": "В архиве",
+      "votingPending": "Ожидание голосования"
+    }
   },
   "CookieBanner": {
     "message": "Мы используем cookies для улучшения работы сайта. Обязательные cookies нужны для корректной работы, а аналитические помогают понять, как вы используете сервис.",
@@ -368,6 +593,7 @@
       "apiTokens": "API‑токены",
       "verification": "Значок автора",
       "organizations": "Организации",
+      "jams": "Мод-джемы",
       "profile": "Профиль",
       "appearance": "Внешний вид",
       "language": "Язык",

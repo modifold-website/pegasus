@@ -7,6 +7,7 @@
     "home": "Home",
     "mods": "Mods",
     "modpacks": "Modpacks",
+    "modJams": "Mod jams",
     "login": "Sign in",
     "logout": "Log out",
     "settings": "Settings",
@@ -27,6 +28,230 @@
     "likes": "Liked projects",
     "notifications": "Notifications",
     "appearance": "Theme"
+  },
+  "ModJamsPage": {
+    "metadata": {
+      "title": "Mod jams — Modifold",
+      "description": "Browse community mod jams, submit published mods, vote, and view results on Modifold."
+    },
+    "eyebrow": "Community events",
+    "title": "Mod jams for published mods",
+    "description": "Join community challenges, submit one of your mods, vote for your favorites, and revisit completed events.",
+    "create": "Create mod jam",
+    "createFirst": "Create mod jam",
+    "loginToCreate": "Log in to create a mod jam",
+    "statsLabel": "Mod jam statistics",
+    "stats": {
+      "active": "Active jams",
+      "voting": "Voting now",
+      "submissions": "Submissions"
+    },
+    "catalogTitle": "All mod jams",
+    "catalogDescription": "Approved events from the community, active and completed.",
+    "filtersLabel": "Mod jam filters",
+    "sidebar": {
+      "status": "Filters"
+    },
+    "links": {
+      "title": "Links",
+      "website": "Website",
+      "discord": "Discord server"
+    },
+    "detail": {
+      "description": "Description",
+      "rules": "Rules",
+      "emptySubmissions": "No submissions yet.",
+      "editSettings": "Edit settings",
+      "creatorProfile": "Open {username}'s profile"
+    },
+    "timeline": {
+      "ariaLabel": "Mod jam timeline",
+      "dateTimeSeparator": " at ",
+      "countdown": {
+        "upcoming": "Starts in",
+        "submissionsOpen": "Entries accepted until",
+        "votingOpen": "Voting",
+        "completed": "Completed"
+      },
+      "units": {
+        "hours": "h",
+        "minutes": "m",
+        "seconds": "s"
+      },
+      "steps": {
+        "start": "Submissions open",
+        "submissions": "Submissions close",
+        "voting": "Community voting opens",
+        "finish": "Finish",
+        "submissionsOpen": "Submissions open",
+        "submissionsClose": "Submissions close",
+        "votingOpen": "Community voting opens",
+        "winnersAnnounced": "Winners announced"
+      },
+      "afterSubmissions": "After submissions"
+    },
+    "vote": {
+      "action": "Vote",
+      "voted": "Voted",
+      "success": "Vote counted",
+      "error": "Unable to vote"
+    },
+    "submit": {
+      "title": "Submit mod",
+      "loginHint": "Sign in to attach one of your published mods to this jam.",
+      "alreadySubmitted": "You have already submitted a project to this mod jam.",
+      "chooseHint": "Choose the project you want to submit to this mod jam.",
+      "placeholder": "Select a published mod",
+      "loading": "Loading...",
+      "emptyProjects": "No published mods found",
+      "action": "Submit project",
+      "selectFirst": "Select a mod first",
+      "loadError": "Unable to load your projects",
+      "submitError": "Unable to submit project",
+      "success": "Project submitted"
+    },
+    "creation": {
+      "title": "Create mod jam",
+      "close": "Close",
+      "name": "Name",
+      "namePlaceholder": "Summer building jam",
+      "summary": "Short description",
+      "summaryHint": "One or two sentences that describe your mod jam.",
+      "summaryPlaceholder": "Create a mod around a shared theme and vote for the best entries.",
+      "cancel": "Cancel",
+      "creating": "Creating...",
+      "submit": "Create draft",
+      "success": "Mod jam draft created",
+      "error": "Unable to create mod jam"
+    },
+    "participate": "Participate",
+    "settings": {
+      "sidebar": {
+        "general": "General",
+        "description": "Description",
+        "rules": "Rules",
+        "links": "Links"
+      },
+      "unsaved": {
+        "save": "Save changes",
+        "reset": "Reset",
+        "message": "You have unsaved changes."
+      },
+      "general": {
+        "imageTooLarge": "Image must be smaller than 20 MB",
+        "saveError": "Unable to save settings",
+        "saved": "Mod jam settings saved",
+        "avatar": "Avatar",
+        "avatarPreviewAlt": "Mod jam avatar preview",
+        "uploadAvatar": "Upload avatar",
+        "cover": "Cover",
+        "coverPreviewAlt": "Mod jam cover preview",
+        "uploadCover": "Upload cover image",
+        "name": "Name",
+        "slug": "URL",
+        "shortDescription": "Short description",
+        "shortDescriptionHint": "Shown in the catalog and on jam cards.",
+        "slugPlaceholder": "your-jam",
+        "publicPage": "Public page: /jams/{slug}",
+        "schedule": "Schedule",
+        "starts": "Submissions open",
+        "submissionsEnd": "Submissions close",
+        "votingEnds": "Finish",
+        "votingStarts": "Community voting opens",
+        "winnersAnnounced": "Winners announced"
+      },
+      "links": {
+        "discord": "Discord URL",
+        "website": "Website URL",
+        "discordPlaceholder": "https://discord.gg/example",
+        "websitePlaceholder": "https://example.com",
+        "saveError": "Unable to save links",
+        "saved": "Links saved"
+      },
+      "description": {
+        "title": "Full description",
+        "hint": "Use Markdown to build the main text on the jam page.",
+        "placeholder": "Tell participants what this jam is about, what they can build, and why it is interesting.",
+        "saved": "Description saved",
+        "saveError": "Unable to save description"
+      },
+      "rules": {
+        "title": "Rules",
+        "hint": "Use Markdown to explain what can be submitted and how voting should work.",
+        "placeholder": "Describe submission requirements, voting rules, deadlines, and disallowed content.",
+        "saved": "Rules saved",
+        "saveError": "Unable to save rules"
+      },
+      "markdown": {
+        "toolbarLabel": "Markdown editor toolbar",
+        "heading1": "Heading 1",
+        "heading2": "Heading 2",
+        "heading3": "Heading 3",
+        "bold": "Bold",
+        "italic": "Italic",
+        "strikethrough": "Strikethrough",
+        "code": "Code",
+        "bulletedList": "Bulleted list",
+        "orderedList": "Ordered list",
+        "link": "Link",
+        "image": "Image",
+        "linkTemplate": "[link text](https://)",
+        "imageTemplate": "![alt text](https://)",
+        "preview": "Preview",
+        "submitForReview": "Submit for review",
+        "pendingReview": "Pending review",
+        "saveBeforeReview": "Save changes before submitting for review",
+        "submitReviewError": "Unable to submit for review",
+        "sentToModeration": "Sent to moderation"
+      }
+    },
+    "moderation": {
+      "rejectionReason": "Reason for rejection",
+      "approvedReason": "Approved by moderator",
+      "error": "Unable to moderate mod jam",
+      "approved": "Mod jam approved",
+      "rejected": "Mod jam rejected",
+      "empty": "No mod jams waiting for review.",
+      "approve": "Approve",
+      "reject": "Reject"
+    },
+    "filters": {
+      "active": "Active",
+      "completed": "Completed"
+    },
+    "status": {
+      "upcoming": "Upcoming",
+      "submissionsOpen": "Submissions open",
+      "votingOpen": "Voting open",
+      "completed": "Completed",
+      "draft": "Draft",
+      "votingPending": "Voting pending"
+    },
+    "submissionsCount": "{count} submissions",
+    "votesCount": "{count} votes",
+    "emptyTitle": "No mod jams yet",
+    "emptyDescription": "Approved mod jams will appear here. You can start the first one and send it to moderation.",
+    "emptyFilteredTitle": "Nothing in this section",
+    "emptyFilteredDescription": "Try another filter or check back when the next event starts."
+  },
+  "ModJamsDashboard": {
+    "title": "Your mod jams",
+    "create": "Create mod jam",
+    "empty": "You have not created any mod jams yet.",
+    "settings": "Settings",
+    "submissions": "{count} submissions",
+    "votes": "{count} votes",
+    "status": {
+      "draft": "Draft",
+      "pendingReview": "Pending review",
+      "upcoming": "Upcoming",
+      "submissionsOpen": "Submissions open",
+      "votingOpen": "Voting open",
+      "completed": "Completed",
+      "rejected": "Rejected",
+      "archived": "Archived",
+      "votingPending": "Voting pending"
+    }
   },
   "CookieBanner": {
     "message": "We use cookies to enhance your experience. Essential cookies are necessary for the site to function, while analytics cookies help us understand how you use our site.",
@@ -368,6 +593,7 @@
       "apiTokens": "API Tokens",
       "verification": "Creator Badge",
       "organizations": "Organizations",
+      "jams": "Mod jams",
       "profile": "Profile",
       "appearance": "Appearance",
       "language": "Language",

@@ -7,6 +7,7 @@
     "home": "Головна",
     "mods": "Моди",
     "modpacks": "Модпаки",
+    "modJams": "Мод-джеми",
     "login": "Увійти",
     "logout": "Вийти",
     "settings": "Налаштування",
@@ -27,6 +28,230 @@
     "likes": "Вподобані",
     "notifications": "Сповіщення",
     "appearance": "Тема"
+  },
+  "ModJamsPage": {
+    "metadata": {
+      "title": "Мод-джеми — Modifold",
+      "description": "Каталог мод-джемів спільноти: надсилайте опубліковані моди, голосуйте та переглядайте результати на Modifold."
+    },
+    "eyebrow": "Події спільноти",
+    "title": "Мод-джеми для опублікованих модів",
+    "description": "Долучайтеся до викликів спільноти, прикріплюйте свої моди, голосуйте за улюблені роботи та повертайтеся до результатів завершених подій.",
+    "create": "Створити мод-джем",
+    "createFirst": "Створити мод-джем",
+    "loginToCreate": "Увійдіть, щоб створити мод-джем",
+    "statsLabel": "Статистика мод-джемів",
+    "stats": {
+      "active": "Активні джеми",
+      "voting": "Голосування",
+      "submissions": "Роботи"
+    },
+    "catalogTitle": "Усі мод-джеми",
+    "catalogDescription": "Схвалені події спільноти: активні та завершені.",
+    "filtersLabel": "Фільтри мод-джемів",
+    "sidebar": {
+      "status": "Фільтри"
+    },
+    "links": {
+      "title": "Посилання",
+      "website": "Веб-сайт",
+      "discord": "Discord‑сервер"
+    },
+    "detail": {
+      "description": "Опис",
+      "rules": "Правила",
+      "emptySubmissions": "Робіт поки немає.",
+      "editSettings": "Редагувати налаштування",
+      "creatorProfile": "Відкрити профіль {username}"
+    },
+    "timeline": {
+      "ariaLabel": "Таймлайн мод-джему",
+      "dateTimeSeparator": " о ",
+      "countdown": {
+        "upcoming": "Старт через",
+        "submissionsOpen": "Роботи приймаються до",
+        "votingOpen": "Голосування",
+        "completed": "Завершено"
+      },
+      "units": {
+        "hours": "г",
+        "minutes": "хв",
+        "seconds": "с"
+      },
+      "steps": {
+        "start": "Прийом робіт відкрито",
+        "submissions": "Прийом робіт закрито",
+        "voting": "Голосування відкрито",
+        "finish": "Фініш",
+        "submissionsOpen": "Прийом робіт відкрито",
+        "submissionsClose": "Прийом робіт закрито",
+        "votingOpen": "Голосування відкрито",
+        "winnersAnnounced": "Переможців оголошено"
+      },
+      "afterSubmissions": "Після прийому"
+    },
+    "vote": {
+      "action": "Проголосувати",
+      "voted": "Проголосовано",
+      "success": "Голос зараховано",
+      "error": "Не вдалося проголосувати"
+    },
+    "submit": {
+      "title": "Надіслати мод",
+      "loginHint": "Увійдіть, щоб прикріпити один зі своїх опублікованих модів до цього джему.",
+      "alreadySubmitted": "Ви вже надіслали проєкт на цей мод-джем.",
+      "chooseHint": "Виберіть проєкт, який хочете надіслати для участі в мод-джемі.",
+      "placeholder": "Виберіть опублікований мод",
+      "loading": "Завантаження...",
+      "emptyProjects": "Опубліковані моди не знайдено",
+      "action": "Надіслати проєкт",
+      "selectFirst": "Спочатку виберіть мод",
+      "loadError": "Не вдалося завантажити ваші проєкти",
+      "submitError": "Не вдалося надіслати проєкт",
+      "success": "Проєкт надіслано"
+    },
+    "creation": {
+      "title": "Створити мод-джем",
+      "close": "Закрити",
+      "name": "Назва",
+      "namePlaceholder": "Літній будівельний джем",
+      "summary": "Короткий опис",
+      "summaryHint": "Одне-два речення, які описують ваш мод-джем.",
+      "summaryPlaceholder": "Створіть мод навколо спільної теми та проголосуйте за найкращі роботи.",
+      "cancel": "Скасувати",
+      "creating": "Створення...",
+      "submit": "Створити чернетку",
+      "success": "Чернетку мод-джему створено",
+      "error": "Не вдалося створити мод-джем"
+    },
+    "participate": "Узяти участь",
+    "settings": {
+      "sidebar": {
+        "general": "Основне",
+        "description": "Опис",
+        "rules": "Правила",
+        "links": "Посилання"
+      },
+      "unsaved": {
+        "save": "Зберегти зміни",
+        "reset": "Скинути",
+        "message": "У вас є незбережені зміни."
+      },
+      "general": {
+        "imageTooLarge": "Зображення має бути менше 20 МБ",
+        "saveError": "Не вдалося зберегти налаштування",
+        "saved": "Налаштування мод-джему збережено",
+        "avatar": "Аватар",
+        "avatarPreviewAlt": "Попередній перегляд аватара мод-джему",
+        "uploadAvatar": "Завантажити аватар",
+        "cover": "Обкладинка",
+        "coverPreviewAlt": "Попередній перегляд обкладинки мод-джему",
+        "uploadCover": "Завантажити обкладинку",
+        "name": "Назва",
+        "slug": "URL",
+        "shortDescription": "Короткий опис",
+        "shortDescriptionHint": "Показується в каталозі та на картках джему.",
+        "slugPlaceholder": "vash-dzhem",
+        "publicPage": "Публічна сторінка: /jams/{slug}",
+        "schedule": "Розклад",
+        "starts": "Прийом робіт відкрито",
+        "submissionsEnd": "Прийом робіт закрито",
+        "votingEnds": "Фініш",
+        "votingStarts": "Голосування відкрито",
+        "winnersAnnounced": "Переможців оголошено"
+      },
+      "links": {
+        "discord": "Discord URL",
+        "website": "URL веб-сайту",
+        "discordPlaceholder": "https://discord.gg/pryklad",
+        "websitePlaceholder": "https://example.com",
+        "saveError": "Не вдалося зберегти посилання",
+        "saved": "Посилання збережено"
+      },
+      "description": {
+        "title": "Повний опис",
+        "hint": "Використовуйте Markdown для основного тексту на сторінці джему.",
+        "placeholder": "Розкажіть учасникам, про що цей джем, що можна створити й чому це цікаво.",
+        "saved": "Опис збережено",
+        "saveError": "Не вдалося зберегти опис"
+      },
+      "rules": {
+        "title": "Правила",
+        "hint": "Використовуйте Markdown, щоб пояснити, що можна надсилати і як працює голосування.",
+        "placeholder": "Опишіть вимоги до робіт, правила голосування, строки та заборонений контент.",
+        "saved": "Правила збережено",
+        "saveError": "Не вдалося зберегти правила"
+      },
+      "markdown": {
+        "toolbarLabel": "Панель Markdown-редактора",
+        "heading1": "Заголовок 1",
+        "heading2": "Заголовок 2",
+        "heading3": "Заголовок 3",
+        "bold": "Жирний",
+        "italic": "Курсив",
+        "strikethrough": "Закреслений",
+        "code": "Код",
+        "bulletedList": "Маркований список",
+        "orderedList": "Нумерований список",
+        "link": "Посилання",
+        "image": "Зображення",
+        "linkTemplate": "[текст посилання](https://)",
+        "imageTemplate": "![опис зображення](https://)",
+        "preview": "Попередній перегляд",
+        "submitForReview": "Надіслати на модерацію",
+        "pendingReview": "На модерації",
+        "saveBeforeReview": "Збережіть зміни перед надсиланням на модерацію",
+        "submitReviewError": "Не вдалося надіслати на модерацію",
+        "sentToModeration": "Надіслано на модерацію"
+      }
+    },
+    "moderation": {
+      "rejectionReason": "Причина відхилення",
+      "approvedReason": "Схвалено модератором",
+      "error": "Не вдалося модерувати мод-джем",
+      "approved": "Мод-джем схвалено",
+      "rejected": "Мод-джем відхилено",
+      "empty": "Мод-джемів на перевірці немає.",
+      "approve": "Схвалити",
+      "reject": "Відхилити"
+    },
+    "filters": {
+      "active": "Активні",
+      "completed": "Завершені"
+    },
+    "status": {
+      "upcoming": "Незабаром",
+      "submissionsOpen": "Прийом робіт",
+      "votingOpen": "Голосування",
+      "completed": "Завершено",
+      "draft": "Чернетка",
+      "votingPending": "Очікування голосування"
+    },
+    "submissionsCount": "{count} робіт",
+    "votesCount": "{count} голосів",
+    "emptyTitle": "Мод-джемів ще немає",
+    "emptyDescription": "Схвалені мод-джеми з'являться тут. Можна створити перший і надіслати його на модерацію.",
+    "emptyFilteredTitle": "У цьому розділі порожньо",
+    "emptyFilteredDescription": "Спробуйте інший фільтр або поверніться пізніше, коли почнеться нова подія."
+  },
+  "ModJamsDashboard": {
+    "title": "Ваші мод-джеми",
+    "create": "Створити мод-джем",
+    "empty": "Ви ще не створили жодного мод-джему.",
+    "settings": "Налаштування",
+    "submissions": "{count} робіт",
+    "votes": "{count} голосів",
+    "status": {
+      "draft": "Чернетка",
+      "pendingReview": "На модерації",
+      "upcoming": "Незабаром",
+      "submissionsOpen": "Прийом робіт",
+      "votingOpen": "Голосування",
+      "completed": "Завершено",
+      "rejected": "Відхилено",
+      "archived": "В архіві",
+      "votingPending": "Очікування голосування"
+    }
   },
   "CookieBanner": {
     "message": "Ми використовуємо файли cookie, щоб покращити ваш досвід. Необхідні cookie потрібні для роботи сайту, а аналітичні cookie допомагають нам зрозуміти, як ви користуєтеся сайтом.",
@@ -369,6 +594,7 @@
       "apiTokens": "API-токени",
       "verification": "Значок автора",
       "organizations": "Організації",
+      "jams": "Мод-джеми",
       "profile": "Профіль",
       "appearance": "Зовнішній вигляд",
       "language": "Мова",

@@ -22,7 +22,7 @@ const darkenRgb = (rgb, amount = 0.52) => ({
     b: rgb.b * (1 - amount),
 });
 
-export default function ProjectCardMedia({ project }) {
+export default function ProjectCardMedia({ project, actions = null, showFollowers = true }) {
     const t = useTranslations("ProjectCard");
     const locale = useLocale();
     const rtf = new Intl.RelativeTimeFormat(locale, { numeric: "auto" });
@@ -150,13 +150,15 @@ export default function ProjectCardMedia({ project }) {
                         <span>{formatNumber(project.downloads)}</span>
                     </div>
 
-                    <div className="media-project-stat" title={t("followers")}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-heart-icon lucide-heart">
-                            <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/>
-                        </svg>
-                        
-                        <span>{formatNumber(project.followers || 0)}</span>
-                    </div>
+                    {showFollowers && (
+                        <div className="media-project-stat" title={t("followers")}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-heart-icon lucide-heart">
+                                <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/>
+                            </svg>
+                            
+                            <span>{formatNumber(project.followers || 0)}</span>
+                        </div>
+                    )}
 
                     <div className="media-project-stat media-project-updated" title={formatDate(project.updated_at)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="lucide lucide-heart-icon lucide-update">
@@ -168,6 +170,12 @@ export default function ProjectCardMedia({ project }) {
                         <span>{formatDate(project.updated_at)}</span>
                     </div>
                 </div>
+
+                {actions && (
+                    <div className="media-project-actions">
+                        {actions}
+                    </div>
+                )}
             </div>
         </div>
     );

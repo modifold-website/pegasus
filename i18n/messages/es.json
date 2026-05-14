@@ -7,6 +7,7 @@
     "home": "Inicio",
     "mods": "Mods",
     "modpacks": "Modpacks",
+    "modJams": "Mod jams",
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
     "settings": "Ajustes",
@@ -27,6 +28,230 @@
     "likes": "Me gusta",
     "notifications": "Notificaciones",
     "appearance": "Tema"
+  },
+  "ModJamsPage": {
+    "metadata": {
+      "title": "Mod jams — Modifold",
+      "description": "Explora mod jams de la comunidad, envía mods publicados, vota y consulta resultados en Modifold."
+    },
+    "eyebrow": "Eventos de la comunidad",
+    "title": "Mod jams para mods publicados",
+    "description": "Únete a retos de la comunidad, envía uno de tus mods, vota por tus favoritos y revisa eventos finalizados.",
+    "create": "Crear mod jam",
+    "createFirst": "Crear mod jam",
+    "loginToCreate": "Inicia sesión para crear un mod jam",
+    "statsLabel": "Estadísticas de mod jams",
+    "stats": {
+      "active": "Jams activos",
+      "voting": "Votación abierta",
+      "submissions": "Participaciones"
+    },
+    "catalogTitle": "Todos los mod jams",
+    "catalogDescription": "Eventos aprobados de la comunidad, activos y finalizados.",
+    "filtersLabel": "Filtros de mod jams",
+    "sidebar": {
+      "status": "Filtros"
+    },
+    "links": {
+      "title": "Enlaces",
+      "website": "Sitio web",
+      "discord": "Servidor de Discord"
+    },
+    "detail": {
+      "description": "Descripción",
+      "rules": "Reglas",
+      "emptySubmissions": "Aún no hay participaciones.",
+      "editSettings": "Editar ajustes",
+      "creatorProfile": "Abrir el perfil de {username}"
+    },
+    "timeline": {
+      "ariaLabel": "Línea de tiempo del mod jam",
+      "dateTimeSeparator": " a las ",
+      "countdown": {
+        "upcoming": "Empieza en",
+        "submissionsOpen": "Participaciones hasta",
+        "votingOpen": "Votación",
+        "completed": "Finalizado"
+      },
+      "units": {
+        "hours": "h",
+        "minutes": "m",
+        "seconds": "s"
+      },
+      "steps": {
+        "start": "Envíos abiertos",
+        "submissions": "Envíos cerrados",
+        "voting": "Votación comunitaria abierta",
+        "finish": "Final",
+        "submissionsOpen": "Envíos abiertos",
+        "submissionsClose": "Envíos cerrados",
+        "votingOpen": "Votación comunitaria abierta",
+        "winnersAnnounced": "Ganadores anunciados"
+      },
+      "afterSubmissions": "Después de los envíos"
+    },
+    "vote": {
+      "action": "Votar",
+      "voted": "Votado",
+      "success": "Voto registrado",
+      "error": "No se pudo votar"
+    },
+    "submit": {
+      "title": "Enviar mod",
+      "loginHint": "Inicia sesión para adjuntar uno de tus mods publicados a este jam.",
+      "alreadySubmitted": "Ya enviaste un proyecto a este mod jam.",
+      "chooseHint": "Elige el proyecto que quieres enviar a este mod jam.",
+      "placeholder": "Selecciona un mod publicado",
+      "loading": "Cargando...",
+      "emptyProjects": "No se encontraron mods publicados",
+      "action": "Enviar proyecto",
+      "selectFirst": "Primero selecciona un mod",
+      "loadError": "No se pudieron cargar tus proyectos",
+      "submitError": "No se pudo enviar el proyecto",
+      "success": "Proyecto enviado"
+    },
+    "creation": {
+      "title": "Crear mod jam",
+      "close": "Cerrar",
+      "name": "Nombre",
+      "namePlaceholder": "Jam de construcción de verano",
+      "summary": "Descripción breve",
+      "summaryHint": "Una o dos frases que describan tu mod jam.",
+      "summaryPlaceholder": "Crea un mod alrededor de un tema común y vota por las mejores participaciones.",
+      "cancel": "Cancelar",
+      "creating": "Creando...",
+      "submit": "Crear borrador",
+      "success": "Borrador de mod jam creado",
+      "error": "No se pudo crear el mod jam"
+    },
+    "participate": "Participar",
+    "settings": {
+      "sidebar": {
+        "general": "General",
+        "description": "Descripción",
+        "rules": "Reglas",
+        "links": "Enlaces"
+      },
+      "unsaved": {
+        "save": "Guardar cambios",
+        "reset": "Restablecer",
+        "message": "Tienes cambios sin guardar."
+      },
+      "general": {
+        "imageTooLarge": "La imagen debe pesar menos de 20 MB",
+        "saveError": "No se pudieron guardar los ajustes",
+        "saved": "Ajustes del mod jam guardados",
+        "avatar": "Avatar",
+        "avatarPreviewAlt": "Vista previa del avatar del mod jam",
+        "uploadAvatar": "Subir avatar",
+        "cover": "Portada",
+        "coverPreviewAlt": "Vista previa de la portada del mod jam",
+        "uploadCover": "Subir imagen de portada",
+        "name": "Nombre",
+        "slug": "URL",
+        "shortDescription": "Descripción breve",
+        "shortDescriptionHint": "Se muestra en el catálogo y en las tarjetas del jam.",
+        "slugPlaceholder": "tu-jam",
+        "publicPage": "Página pública: /jams/{slug}",
+        "schedule": "Calendario",
+        "starts": "Envíos abiertos",
+        "submissionsEnd": "Envíos cerrados",
+        "votingEnds": "Final",
+        "votingStarts": "Votación comunitaria abierta",
+        "winnersAnnounced": "Ganadores anunciados"
+      },
+      "links": {
+        "discord": "URL de Discord",
+        "website": "URL del sitio web",
+        "discordPlaceholder": "https://discord.gg/ejemplo",
+        "websitePlaceholder": "https://example.com",
+        "saveError": "No se pudieron guardar los enlaces",
+        "saved": "Enlaces guardados"
+      },
+      "description": {
+        "title": "Descripción completa",
+        "hint": "Usa Markdown para crear el texto principal en la página del jam.",
+        "placeholder": "Cuenta a los participantes de qué trata este jam, qué pueden crear y por qué es interesante.",
+        "saved": "Descripción guardada",
+        "saveError": "No se pudo guardar la descripción"
+      },
+      "rules": {
+        "title": "Reglas",
+        "hint": "Usa Markdown para explicar qué se puede enviar y cómo funciona la votación.",
+        "placeholder": "Describe requisitos de envío, reglas de votación, fechas límite y contenido no permitido.",
+        "saved": "Reglas guardadas",
+        "saveError": "No se pudieron guardar las reglas"
+      },
+      "markdown": {
+        "toolbarLabel": "Barra de herramientas del editor Markdown",
+        "heading1": "Encabezado 1",
+        "heading2": "Encabezado 2",
+        "heading3": "Encabezado 3",
+        "bold": "Negrita",
+        "italic": "Cursiva",
+        "strikethrough": "Tachado",
+        "code": "Código",
+        "bulletedList": "Lista con viñetas",
+        "orderedList": "Lista numerada",
+        "link": "Enlace",
+        "image": "Imagen",
+        "linkTemplate": "[texto del enlace](https://)",
+        "imageTemplate": "![texto alternativo](https://)",
+        "preview": "Vista previa",
+        "submitForReview": "Enviar a revisión",
+        "pendingReview": "En revisión",
+        "saveBeforeReview": "Guarda los cambios antes de enviar a revisión",
+        "submitReviewError": "No se pudo enviar a revisión",
+        "sentToModeration": "Enviado a moderación"
+      }
+    },
+    "moderation": {
+      "rejectionReason": "Motivo del rechazo",
+      "approvedReason": "Aprobado por moderación",
+      "error": "No se pudo moderar el mod jam",
+      "approved": "Mod jam aprobado",
+      "rejected": "Mod jam rechazado",
+      "empty": "No hay mod jams esperando revisión.",
+      "approve": "Aprobar",
+      "reject": "Rechazar"
+    },
+    "filters": {
+      "active": "Activos",
+      "completed": "Finalizados"
+    },
+    "status": {
+      "upcoming": "Próximamente",
+      "submissionsOpen": "Envíos abiertos",
+      "votingOpen": "Votación abierta",
+      "completed": "Finalizado",
+      "draft": "Borrador",
+      "votingPending": "Esperando votación"
+    },
+    "submissionsCount": "{count} participaciones",
+    "votesCount": "{count} votos",
+    "emptyTitle": "Todavía no hay mod jams",
+    "emptyDescription": "Los mod jams aprobados aparecerán aquí. Puedes crear el primero y enviarlo a moderación.",
+    "emptyFilteredTitle": "No hay nada en esta sección",
+    "emptyFilteredDescription": "Prueba otro filtro o vuelve cuando empiece el próximo evento."
+  },
+  "ModJamsDashboard": {
+    "title": "Tus mod jams",
+    "create": "Crear mod jam",
+    "empty": "Aún no has creado ningún mod jam.",
+    "settings": "Ajustes",
+    "submissions": "{count} participaciones",
+    "votes": "{count} votos",
+    "status": {
+      "draft": "Borrador",
+      "pendingReview": "En revisión",
+      "upcoming": "Próximamente",
+      "submissionsOpen": "Envíos abiertos",
+      "votingOpen": "Votación abierta",
+      "completed": "Finalizado",
+      "rejected": "Rechazado",
+      "archived": "Archivado",
+      "votingPending": "Esperando votación"
+    }
   },
   "CookieBanner": {
     "message": "Usamos cookies para mejorar tu experiencia. Las cookies esenciales son necesarias para que el sitio funcione, mientras que las cookies de analítica nos ayudan a entender cómo usas el sitio.",
@@ -368,6 +593,7 @@
       "apiTokens": "Tokens API",
       "verification": "Insignia de Creador",
       "organizations": "Organizaciones",
+      "jams": "Mod jams",
       "profile": "Perfil",
       "appearance": "Apariencia",
       "language": "Idioma",

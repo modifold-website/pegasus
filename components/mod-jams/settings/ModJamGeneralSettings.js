@@ -36,6 +36,7 @@ function getInitialForm(jam) {
 		slug: jam.slug || "",
 		summary: jam.summary || "",
 		starts_at: toDatetimeLocal(jam.starts_at),
+		submissions_start_at: toDatetimeLocal(jam.submissions_start_at || jam.starts_at),
 		submissions_end_at: toDatetimeLocal(jam.submissions_end_at),
 		voting_starts_at: toDatetimeLocal(jam.voting_starts_at || jam.submissions_end_at),
 		voting_end_at: toDatetimeLocal(jam.voting_end_at),
@@ -214,6 +215,15 @@ export default function ModJamGeneralSettings({ authToken, jam }) {
 										<div className="field field--default blog-settings__input">
 											<label className="field__wrapper">
 												<input className="text-input" type="datetime-local" value={form.starts_at} onChange={(event) => updateField("starts_at", event.target.value)} required />
+											</label>
+										</div>
+									</div>
+
+									<div>
+										<p className="blog-settings__field-title">{t("settings.general.submissionsStart")}</p>
+										<div className="field field--default blog-settings__input">
+											<label className="field__wrapper">
+												<input className="text-input" type="datetime-local" value={form.submissions_start_at} onChange={(event) => updateField("submissions_start_at", event.target.value)} required />
 											</label>
 										</div>
 									</div>

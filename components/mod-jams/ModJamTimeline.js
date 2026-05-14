@@ -58,12 +58,14 @@ export default function ModJamTimeline({ jam }) {
 	const locale = useLocale();
 	const now = Date.now();
 	const dateTimeSeparator = t("timeline.dateTimeSeparator");
+	const submissionsStartsAt = jam.submissions_start_at || jam.starts_at;
 	const votingStartsAt = jam.voting_starts_at || jam.submissions_end_at;
 	const startTime = new Date(jam.starts_at).getTime();
+	const submissionsStartTime = new Date(submissionsStartsAt).getTime();
 	const submissionsTime = new Date(jam.submissions_end_at).getTime();
 	const votingStartTime = new Date(votingStartsAt).getTime();
 	const votingTime = new Date(jam.voting_end_at).getTime();
-	const milestones = [startTime, submissionsTime, votingStartTime, votingTime];
+	const milestones = [startTime, submissionsStartTime, submissionsTime, votingStartTime, votingTime];
 	const progress = getTimelineProgress(milestones, now);
 	const getStepClassName = (index, extraClassName = "") => {
 		const isReached = Number.isFinite(milestones[index]) && now >= milestones[index];
@@ -79,7 +81,7 @@ export default function ModJamTimeline({ jam }) {
 				<div className={getStepClassName(0, "mod-jam-timeline__step--edge-start")}>
 					<span className="mod-jam-timeline__dot"></span>
 					<span className="mod-jam-timeline__copy">
-						<strong>{t("timeline.steps.submissionsOpen")}</strong>
+						<strong>{t("timeline.steps.start")}</strong>
 						<small>{formatTimelineDate(jam.starts_at, now, locale, dateTimeSeparator)}</small>
 					</span>
 				</div>
@@ -87,12 +89,20 @@ export default function ModJamTimeline({ jam }) {
 				<div className={getStepClassName(1)}>
 					<span className="mod-jam-timeline__dot"></span>
 					<span className="mod-jam-timeline__copy">
+						<strong>{t("timeline.steps.submissionsOpen")}</strong>
+						<small>{formatTimelineDate(submissionsStartsAt, now, locale, dateTimeSeparator)}</small>
+					</span>
+				</div>
+
+				<div className={getStepClassName(2)}>
+					<span className="mod-jam-timeline__dot"></span>
+					<span className="mod-jam-timeline__copy">
 						<strong>{t("timeline.steps.submissionsClose")}</strong>
 						<small>{formatTimelineDate(jam.submissions_end_at, now, locale, dateTimeSeparator)}</small>
 					</span>
 				</div>
 
-				<div className={getStepClassName(2)}>
+				<div className={getStepClassName(3)}>
 					<span className="mod-jam-timeline__dot"></span>
 					<span className="mod-jam-timeline__copy">
 						<strong>{t("timeline.steps.votingOpen")}</strong>
@@ -100,7 +110,7 @@ export default function ModJamTimeline({ jam }) {
 					</span>
 				</div>
 
-				<div className={getStepClassName(3, "mod-jam-timeline__step--edge-end")}>
+				<div className={getStepClassName(4, "mod-jam-timeline__step--edge-end")}>
 					<span className="mod-jam-timeline__dot"></span>
 					<span className="mod-jam-timeline__copy">
 						<strong>{t("timeline.steps.winnersAnnounced")}</strong>

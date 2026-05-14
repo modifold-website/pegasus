@@ -86,14 +86,14 @@
         "seconds": "s"
       },
       "steps": {
-        "start": "Envios abertos",
+        "start": "Início",
         "submissions": "Envios fechados",
         "voting": "Votação da comunidade aberta",
         "finish": "Final",
         "submissionsOpen": "Envios abertos",
         "submissionsClose": "Envios fechados",
-        "votingOpen": "Votação da comunidade aberta",
-        "winnersAnnounced": "Vencedores anunciados"
+        "votingOpen": "Votação",
+        "winnersAnnounced": "Resultados"
       },
       "afterSubmissions": "Depois dos envios"
     },
@@ -135,6 +135,12 @@
       "error": "Não foi possível criar o mod jam"
     },
     "participate": "Participar",
+    "join": {
+      "joined": "Participando",
+      "success": "Você entrou no mod jam",
+      "error": "Não foi possível participar",
+      "loginRequired": "Entre para participar"
+    },
     "settings": {
       "sidebar": {
         "general": "Geral",
@@ -167,11 +173,12 @@
         "slugPlaceholder": "seu-jam",
         "publicPage": "Página pública: /jams/{slug}",
         "schedule": "Agenda",
-        "starts": "Envios abertos",
+        "starts": "Início do mod jam",
+        "submissionsStart": "Envios abertos",
         "submissionsEnd": "Envios fechados",
         "votingEnds": "Final",
-        "votingStarts": "Votação da comunidade aberta",
-        "winnersAnnounced": "Vencedores anunciados"
+        "votingStarts": "Votação",
+        "winnersAnnounced": "Resultados"
       },
       "links": {
         "discord": "URL do Discord",
@@ -284,6 +291,7 @@
     },
     "status": {
       "upcoming": "Em breve",
+      "running": "Fase de criação",
       "submissionsOpen": "Envios abertos",
       "votingOpen": "Votação aberta",
       "completed": "Encerrado",
@@ -308,6 +316,7 @@
       "draft": "Rascunho",
       "pendingReview": "Em revisão",
       "upcoming": "Em breve",
+      "running": "Fase de criação",
       "submissionsOpen": "Envios abertos",
       "votingOpen": "Votação aberta",
       "completed": "Encerrado",

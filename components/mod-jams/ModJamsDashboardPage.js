@@ -7,32 +7,6 @@ import { useTranslations } from "next-intl";
 import UserSettingsSidebar from "@/components/ui/UserSettingsSidebar";
 import ModJamCreationModal from "@/modal/ModJamCreationModal";
 
-function getStatusLabel(t, jam) {
-	switch(jam.lifecycle || jam.status) {
-	case "draft":
-		return t("status.draft");
-	case "pending_review":
-		return t("status.pendingReview");
-	case "approved":
-	case "upcoming":
-		return t("status.upcoming");
-	case "submissions_open":
-		return t("status.submissionsOpen");
-	case "voting_pending":
-		return t("status.votingPending");
-	case "voting_open":
-		return t("status.votingOpen");
-	case "completed":
-		return t("status.completed");
-	case "rejected":
-		return t("status.rejected");
-	case "archived":
-		return t("status.archived");
-	default:
-		return jam.status || "";
-	}
-}
-
 export default function ModJamsDashboardPage({ authToken, initialJams = [] }) {
 	const { user } = useAuth();
 	const t = useTranslations("ModJamsDashboard");

@@ -86,14 +86,14 @@
         "seconds": "s"
       },
       "steps": {
-        "start": "Submissions open",
+        "start": "Start",
         "submissions": "Submissions close",
         "voting": "Community voting opens",
         "finish": "Finish",
         "submissionsOpen": "Submissions open",
         "submissionsClose": "Submissions close",
-        "votingOpen": "Community voting opens",
-        "winnersAnnounced": "Winners announced"
+        "votingOpen": "Voting",
+        "winnersAnnounced": "Results"
       },
       "afterSubmissions": "After submissions"
     },
@@ -135,6 +135,12 @@
       "error": "Unable to create mod jam"
     },
     "participate": "Join",
+    "join": {
+      "joined": "Joined",
+      "success": "You joined the mod jam",
+      "error": "Unable to join",
+      "loginRequired": "Log in to join"
+    },
     "settings": {
       "sidebar": {
         "general": "General",
@@ -167,11 +173,12 @@
         "slugPlaceholder": "your-jam",
         "publicPage": "Public page: /jams/{slug}",
         "schedule": "Schedule",
-        "starts": "Submissions open",
+        "starts": "Mod jam starts",
+        "submissionsStart": "Submissions open",
         "submissionsEnd": "Submissions close",
         "votingEnds": "Finish",
-        "votingStarts": "Community voting opens",
-        "winnersAnnounced": "Winners announced"
+        "votingStarts": "Voting",
+        "winnersAnnounced": "Results"
       },
       "links": {
         "discord": "Discord URL",
@@ -284,6 +291,7 @@
     },
     "status": {
       "upcoming": "Upcoming",
+      "running": "Building phase",
       "submissionsOpen": "Submissions open",
       "votingOpen": "Voting open",
       "completed": "Completed",
@@ -308,6 +316,7 @@
       "draft": "Draft",
       "pendingReview": "Pending review",
       "upcoming": "Upcoming",
+      "running": "Building phase",
       "submissionsOpen": "Submissions open",
       "votingOpen": "Voting open",
       "completed": "Completed",

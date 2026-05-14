@@ -86,14 +86,14 @@
         "seconds": "с"
       },
       "steps": {
-        "start": "Прийом робіт відкрито",
+        "start": "Старт",
         "submissions": "Прийом робіт закрито",
         "voting": "Голосування відкрито",
         "finish": "Фініш",
         "submissionsOpen": "Прийом робіт відкрито",
         "submissionsClose": "Прийом робіт закрито",
-        "votingOpen": "Голосування відкрито",
-        "winnersAnnounced": "Переможців оголошено"
+        "votingOpen": "Голосування",
+        "winnersAnnounced": "Результати"
       },
       "afterSubmissions": "Після прийому"
     },
@@ -135,6 +135,12 @@
       "error": "Не вдалося створити мод-джем"
     },
     "participate": "Узяти участь",
+    "join": {
+      "joined": "Ви берете участь",
+      "success": "Ви приєдналися до мод-джему",
+      "error": "Не вдалося приєднатися",
+      "loginRequired": "Увійдіть, щоб узяти участь"
+    },
     "settings": {
       "sidebar": {
         "general": "Основне",
@@ -167,11 +173,12 @@
         "slugPlaceholder": "vash-dzhem",
         "publicPage": "Публічна сторінка: /jams/{slug}",
         "schedule": "Розклад",
-        "starts": "Прийом робіт відкрито",
+        "starts": "Старт мод-джему",
+        "submissionsStart": "Прийом робіт відкрито",
         "submissionsEnd": "Прийом робіт закрито",
         "votingEnds": "Фініш",
-        "votingStarts": "Голосування відкрито",
-        "winnersAnnounced": "Переможців оголошено"
+        "votingStarts": "Голосування",
+        "winnersAnnounced": "Результати"
       },
       "links": {
         "discord": "Discord URL",
@@ -284,6 +291,7 @@
     },
     "status": {
       "upcoming": "Незабаром",
+      "running": "Фаза створення",
       "submissionsOpen": "Прийом робіт",
       "votingOpen": "Голосування",
       "completed": "Завершено",
@@ -308,6 +316,7 @@
       "draft": "Чернетка",
       "pendingReview": "На модерації",
       "upcoming": "Незабаром",
+      "running": "Фаза створення",
       "submissionsOpen": "Прийом робіт",
       "votingOpen": "Голосування",
       "completed": "Завершено",

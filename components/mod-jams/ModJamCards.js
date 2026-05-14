@@ -16,7 +16,7 @@ export default function ModJamCatalog({ initialJams = [], authToken = "" }) {
 	const [filter, setFilter] = useState("active");
 	const [isCreationModalOpen, setIsCreationModalOpen] = useState(false);
 	const stats = useMemo(() => {
-		const active = initialJams.filter((jam) => ["upcoming", "submissions_open", "voting_pending", "voting_open"].includes(jam.lifecycle)).length;
+		const active = initialJams.filter((jam) => ["upcoming", "running", "submissions_open", "voting_pending", "voting_open"].includes(jam.lifecycle)).length;
 		const completed = initialJams.filter((jam) => jam.lifecycle === "completed").length;
 
 		return { active, completed };
@@ -24,14 +24,14 @@ export default function ModJamCatalog({ initialJams = [], authToken = "" }) {
 
 	const filteredJams = useMemo(() => {
 		if(filter === "active") {
-			return initialJams.filter((jam) => ["upcoming", "submissions_open", "voting_pending", "voting_open"].includes(jam.lifecycle));
+			return initialJams.filter((jam) => ["upcoming", "running", "submissions_open", "voting_pending", "voting_open"].includes(jam.lifecycle));
 		}
 
 		if(filter === "completed") {
 			return initialJams.filter((jam) => jam.lifecycle === "completed");
 		}
 
-		return initialJams.filter((jam) => ["upcoming", "submissions_open", "voting_pending", "voting_open"].includes(jam.lifecycle));
+		return initialJams.filter((jam) => ["upcoming", "running", "submissions_open", "voting_pending", "voting_open"].includes(jam.lifecycle));
 	}, [filter, initialJams]);
 
 	const filters = [

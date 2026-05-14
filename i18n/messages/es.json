@@ -86,14 +86,14 @@
         "seconds": "s"
       },
       "steps": {
-        "start": "Envíos abiertos",
+        "start": "Inicio",
         "submissions": "Envíos cerrados",
         "voting": "Votación comunitaria abierta",
         "finish": "Final",
         "submissionsOpen": "Envíos abiertos",
         "submissionsClose": "Envíos cerrados",
-        "votingOpen": "Votación comunitaria abierta",
-        "winnersAnnounced": "Ganadores anunciados"
+        "votingOpen": "Votación",
+        "winnersAnnounced": "Resultados"
       },
       "afterSubmissions": "Después de los envíos"
     },
@@ -135,6 +135,12 @@
       "error": "No se pudo crear el mod jam"
     },
     "participate": "Participar",
+    "join": {
+      "joined": "Ya participas",
+      "success": "Te uniste al mod jam",
+      "error": "No se pudo participar",
+      "loginRequired": "Inicia sesión para participar"
+    },
     "settings": {
       "sidebar": {
         "general": "General",
@@ -167,11 +173,12 @@
         "slugPlaceholder": "tu-jam",
         "publicPage": "Página pública: /jams/{slug}",
         "schedule": "Calendario",
-        "starts": "Envíos abiertos",
+        "starts": "Inicio del mod jam",
+        "submissionsStart": "Envíos abiertos",
         "submissionsEnd": "Envíos cerrados",
         "votingEnds": "Final",
-        "votingStarts": "Votación comunitaria abierta",
-        "winnersAnnounced": "Ganadores anunciados"
+        "votingStarts": "Votación",
+        "winnersAnnounced": "Resultados"
       },
       "links": {
         "discord": "URL de Discord",
@@ -284,6 +291,7 @@
     },
     "status": {
       "upcoming": "Próximamente",
+      "running": "Fase de creación",
       "submissionsOpen": "Envíos abiertos",
       "votingOpen": "Votación abierta",
       "completed": "Finalizado",
@@ -308,6 +316,7 @@
       "draft": "Borrador",
       "pendingReview": "En revisión",
       "upcoming": "Próximamente",
+      "running": "Fase de creación",
       "submissionsOpen": "Envíos abiertos",
       "votingOpen": "Votación abierta",
       "completed": "Finalizado",

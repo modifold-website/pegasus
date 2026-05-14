@@ -85,14 +85,14 @@
         "seconds": "sn"
       },
       "steps": {
-        "start": "Gönderiler açılır",
+        "start": "Başlangıç",
         "submissions": "Gönderiler kapanır",
         "voting": "Topluluk oylaması açılır",
         "finish": "Bitiş",
         "submissionsOpen": "Gönderiler açılır",
         "submissionsClose": "Gönderiler kapanır",
-        "votingOpen": "Topluluk oylaması açılır",
-        "winnersAnnounced": "Kazananlar açıklanır"
+        "votingOpen": "Oylama",
+        "winnersAnnounced": "Sonuçlar"
       },
       "afterSubmissions": "Gönderilerden sonra"
     },
@@ -134,6 +134,12 @@
       "error": "Mod jam oluşturulamadı"
     },
     "participate": "Katıl",
+    "join": {
+      "joined": "Katıldınız",
+      "success": "Mod jam'e katıldınız",
+      "error": "Katılınamadı",
+      "loginRequired": "Katılmak için giriş yapın"
+    },
     "settings": {
       "sidebar": {
         "general": "Genel",
@@ -166,11 +172,12 @@
         "slugPlaceholder": "jam-iniz",
         "publicPage": "Herkese açık sayfa: /jams/{slug}",
         "schedule": "Takvim",
-        "starts": "Gönderiler açılır",
+        "starts": "Mod jam başlar",
+        "submissionsStart": "Gönderiler açılır",
         "submissionsEnd": "Gönderiler kapanır",
         "votingEnds": "Bitiş",
-        "votingStarts": "Topluluk oylaması açılır",
-        "winnersAnnounced": "Kazananlar açıklanır"
+        "votingStarts": "Oylama",
+        "winnersAnnounced": "Sonuçlar"
       },
       "links": {
         "discord": "Discord URL'si",
@@ -283,6 +290,7 @@
     },
     "status": {
       "upcoming": "Yakında",
+      "running": "Yapım aşaması",
       "submissionsOpen": "Gönderiler açık",
       "votingOpen": "Oylama açık",
       "completed": "Tamamlandı",
@@ -307,6 +315,7 @@
       "draft": "Taslak",
       "pendingReview": "İncelemede",
       "upcoming": "Yakında",
+      "running": "Yapım aşaması",
       "submissionsOpen": "Gönderiler açık",
       "votingOpen": "Oylama açık",
       "completed": "Tamamlandı",

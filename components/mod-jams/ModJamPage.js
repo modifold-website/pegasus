@@ -102,8 +102,6 @@ export default function ModJamPage({ jam, submissions = [], jury = [], nominatio
 
 			<div className="layout">
 				<div className="page-content mod-jam-detail-page">
-					<ModJamMasthead jam={jam} permissions={permissions} submissionsCount={submissions.length} authToken={authToken} submissions={submissions} />
-
 					<div className="project__general">
 						<div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
 							<div className="content content--padding">
@@ -142,6 +140,8 @@ export default function ModJamPage({ jam, submissions = [], jury = [], nominatio
 						</div>
 
 						<aside className="mod-jam-sidebar">
+							<ModJamMasthead jam={jam} permissions={permissions} submissionsCount={submissions.length} authToken={authToken} submissions={submissions} />
+
 							<ModJamJuryPanel owner={jam.owner} jury={jury} />
 
 							<div className="content content--padding">

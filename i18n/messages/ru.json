@@ -86,14 +86,14 @@
         "seconds": "с"
       },
       "steps": {
-        "start": "Приём работ открыт",
+        "start": "Старт",
         "submissions": "Приём работ закрыт",
-        "voting": "Голосование открыто",
+        "voting": "Голосование",
         "finish": "Финиш",
         "submissionsOpen": "Приём работ открыт",
         "submissionsClose": "Приём работ закрыт",
-        "votingOpen": "Голосование открыто",
-        "winnersAnnounced": "Победители объявлены"
+        "votingOpen": "Голосование",
+        "winnersAnnounced": "Результаты"
       },
       "afterSubmissions": "После приёма"
     },
@@ -135,6 +135,12 @@
       "error": "Не удалось создать мод-джем"
     },
     "participate": "Участвовать",
+    "join": {
+      "joined": "Вы участвуете",
+      "success": "Вы присоединились к мод-джему",
+      "error": "Не удалось присоединиться",
+      "loginRequired": "Войдите, чтобы участвовать"
+    },
     "settings": {
       "sidebar": {
         "general": "Основное",
@@ -167,11 +173,12 @@
         "slugPlaceholder": "vash-dzhem",
         "publicPage": "Публичная страница: /jams/{slug}",
         "schedule": "Расписание",
-        "starts": "Приём работ открыт",
+        "starts": "Старт мод-джема",
+        "submissionsStart": "Приём работ открыт",
         "submissionsEnd": "Приём работ закрыт",
         "votingEnds": "Финиш",
-        "votingStarts": "Голосование открыто",
-        "winnersAnnounced": "Победители объявлены"
+        "votingStarts": "Голосование",
+        "winnersAnnounced": "Результаты"
       },
       "links": {
         "discord": "Discord URL",
@@ -284,6 +291,7 @@
     },
     "status": {
       "upcoming": "Скоро старт",
+      "running": "Идёт подготовка",
       "submissionsOpen": "Прием работ",
       "votingOpen": "Голосование",
       "completed": "Завершен",
@@ -308,6 +316,7 @@
       "draft": "Черновик",
       "pendingReview": "На модерации",
       "upcoming": "Скоро",
+      "running": "Идёт подготовка",
       "submissionsOpen": "Прием работ",
       "votingOpen": "Голосование",
       "completed": "Завершен",

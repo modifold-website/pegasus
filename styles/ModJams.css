@@ -341,12 +341,9 @@
 }
 .mod-jam-timeline__track {
 	position: relative;
-	display: grid;
-	grid-template-columns: repeat(5, minmax(0, 1fr));
 	box-sizing: border-box;
 	height: 90px;
 	min-width: 0;
-	padding-top: 13px;
 	top: -6px;
 }
 .mod-jam-timeline__rail,
@@ -366,21 +363,28 @@
 	background: #03b356;
 }
 .mod-jam-timeline__step {
+	position: absolute;
+	top: 13px;
+	left: var(--step-position);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: min(180px, 24%);
 	min-width: 0;
 	text-align: center;
 	text-transform: uppercase;
+	transform: translateX(-50%);
 	z-index: 1;
 }
 .mod-jam-timeline__step--edge-start {
 	align-items: flex-start;
 	text-align: left;
+	transform: none;
 }
 .mod-jam-timeline__step--edge-end {
 	align-items: flex-end;
 	text-align: right;
+	transform: translateX(-100%);
 }
 .mod-jam-timeline__dot {
 	width: 18px;
@@ -891,12 +895,15 @@
 	.mod-jam-timeline__step,
 	.mod-jam-timeline__step--edge-start,
 	.mod-jam-timeline__step--edge-end {
+		position: static;
 		display: grid;
 		grid-template-columns: 22px minmax(0, 1fr);
 		gap: 12px;
 		align-items: flex-start;
+		width: auto;
 		text-align: left;
 		text-transform: none;
+		transform: none;
 	}
 	.mod-jam-timeline__dot {
 		width: 20px;

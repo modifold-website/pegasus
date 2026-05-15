@@ -71,6 +71,9 @@ export default function ModJamTimeline({ jam }) {
 		const isReached = Number.isFinite(milestones[index]) && now >= milestones[index];
 		return `mod-jam-timeline__step ${extraClassName} ${isReached ? "mod-jam-timeline__step--reached" : ""}`.trim();
 	};
+	const getStepStyle = (index) => ({
+		"--step-position": `${(index / (milestones.length - 1)) * 100}%`,
+	});
 
 	return (
 		<section className="mod-jam-timeline" aria-label={t("timeline.ariaLabel")}>
@@ -78,7 +81,7 @@ export default function ModJamTimeline({ jam }) {
 				<div className="mod-jam-timeline__rail"></div>
 				<div className="mod-jam-timeline__fill"></div>
 
-				<div className={getStepClassName(0, "mod-jam-timeline__step--edge-start")}>
+				<div className={getStepClassName(0, "mod-jam-timeline__step--edge-start")} style={getStepStyle(0)}>
 					<span className="mod-jam-timeline__dot"></span>
 					<span className="mod-jam-timeline__copy">
 						<strong>{t("timeline.steps.start")}</strong>
@@ -86,7 +89,7 @@ export default function ModJamTimeline({ jam }) {
 					</span>
 				</div>
 
-				<div className={getStepClassName(1)}>
+				<div className={getStepClassName(1)} style={getStepStyle(1)}>
 					<span className="mod-jam-timeline__dot"></span>
 					<span className="mod-jam-timeline__copy">
 						<strong>{t("timeline.steps.submissionsOpen")}</strong>
@@ -94,7 +97,7 @@ export default function ModJamTimeline({ jam }) {
 					</span>
 				</div>
 
-				<div className={getStepClassName(2)}>
+				<div className={getStepClassName(2)} style={getStepStyle(2)}>
 					<span className="mod-jam-timeline__dot"></span>
 					<span className="mod-jam-timeline__copy">
 						<strong>{t("timeline.steps.submissionsClose")}</strong>
@@ -102,7 +105,7 @@ export default function ModJamTimeline({ jam }) {
 					</span>
 				</div>
 
-				<div className={getStepClassName(3)}>
+				<div className={getStepClassName(3)} style={getStepStyle(3)}>
 					<span className="mod-jam-timeline__dot"></span>
 					<span className="mod-jam-timeline__copy">
 						<strong>{t("timeline.steps.votingOpen")}</strong>
@@ -110,7 +113,7 @@ export default function ModJamTimeline({ jam }) {
 					</span>
 				</div>
 
-				<div className={getStepClassName(4, "mod-jam-timeline__step--edge-end")}>
+				<div className={getStepClassName(4, "mod-jam-timeline__step--edge-end")} style={getStepStyle(4)}>
 					<span className="mod-jam-timeline__dot"></span>
 					<span className="mod-jam-timeline__copy">
 						<strong>{t("timeline.steps.winnersAnnounced")}</strong>

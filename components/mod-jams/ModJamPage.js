@@ -85,6 +85,65 @@ export default function ModJamPage({ jam, submissions = [], jury = [], nominatio
 
 		return nextSubmissions;
 	}, [hasKnownResults, submissionResultRanks, submissions]);
+	
+	const nominationResultGroups = useMemo(() => {
+		if(!hasKnownResults || !hasNominations) {
+			return [];
+		}
+
+		return nominations.map((nomination) => {
+			const nominationId = Number(nomination.id);
+			const nominationSubmissions = [...submissions].map((submission) => ({
+				submission,
+				score: Number(submission.nomination_votes?.[nominationId]) || 0,
+			})).filter((item) => item.score > 0).sort((first, second) => {
+				const scoreDelta = second.score - first.score;
+
+				if(scoreDelta !== 0) {
+					return scoreDelta;
+				}
+
+				return new Date(first.submission.created_at).getTime() - new Date(second.submission.created_at).getTime();
+			}).slice(0, 3).map((item) => item.submission);
+
+			return {
+				nomination,
+				submissions: nominationSubmissions,
+			};
+		}).filter((group) => group.submissions.length > 0);
+	}, [hasKnownResults, hasNominations, nominations, submissions]);
+
+	const overallResultSubmissions = useMemo(() => {
+		if(!hasKnownResults) {
+			return [];
+		}
+
+		return sortedSubmissions.slice(0, 10);
+	}, [hasKnownResults, sortedSubmissions]);
+
+	const resultWinnerIds = useMemo(() => {
+		const winnerIds = new Set();
+
+		for(const submission of overallResultSubmissions) {
+			winnerIds.add(Number(submission.id));
+		}
+
+		for(const group of nominationResultGroups) {
+			for(const submission of group.submissions) {
+				winnerIds.add(Number(submission.id));
+			}
+		}
+
+		return winnerIds;
+	}, [nominationResultGroups, overallResultSubmissions]);
+
+	const remainingResultSubmissions = useMemo(() => {
+		if(!hasKnownResults) {
+			return [];
+		}
+
+		return sortedSubmissions.filter((submission) => !resultWinnerIds.has(Number(submission.id)));
+	}, [hasKnownResults, resultWinnerIds, sortedSubmissions]);
 
 	const handleVoted = (submissionId, nominationId = 0) => {
 		setUserVotes((currentVotes) => {
@@ -114,27 +173,65 @@ export default function ModJamPage({ jam, submissions = [], jury = [], nominatio
 
 							<section className="mod-jam-submissions-section">
 								{submissions.length > 0 ? (
-									<div className="browse-project-grid mod-jam-submissions-list">
-										{sortedSubmissions.map((submission) => (
-											<ModJamSubmissionProjectCard
-												key={submission.id}
-												submission={submission}
-												cardView="media"
-												jam={jam}
-												authToken={authToken}
-												canVote={Boolean(permissions.can_vote && !hasUserVoteInJam)}
-												nominations={nominations}
-												userVotes={userVotes}
-												onVoted={handleVoted}
-												selected={userVotes.some((vote) => Number(vote.submission_id) === Number(submission.id)) || Number(votedSubmissionId) === Number(submission.id)}
-												showVoteButton={Boolean(authToken && permissions.can_vote)}
-												rank={submissionResultRanks.get(submission.id)}
-												showResult={hasKnownResults}
-											/>
-										))}
-									</div>
+									hasKnownResults ? (
+										<div className="mod-jam-results">
+											{nominationResultGroups.map((group) => (
+												<div key={group.nomination.id} className="mod-jam-results-group">
+													<h2>{t("detail.bestByNomination", { title: group.nomination.title })}</h2>
+
+													<div className="browse-project-grid mod-jam-submissions-list">
+														{group.submissions.map((submission, index) => (
+															<ModJamSubmissionProjectCard key={submission.id} submission={submission} cardView="media" jam={jam} authToken={authToken} nominations={nominations} rank={index + 1} showResult />
+														))}
+													</div>
+												</div>
+											))}
+
+											<div className="mod-jam-results-group">
+												<h2>{t("detail.bestByPoints")}</h2>
+
+												<div className="browse-project-grid mod-jam-submissions-list">
+													{overallResultSubmissions.map((submission) => (
+														<ModJamSubmissionProjectCard key={submission.id} submission={submission} cardView="media" jam={jam} authToken={authToken} nominations={nominations} rank={submissionResultRanks.get(submission.id)} showResult />
+													))}
+												</div>
+											</div>
+
+											{remainingResultSubmissions.length > 0 && (
+												<div className="mod-jam-results-group">
+													<h2>{t("detail.otherProjects")}</h2>
+
+													<div className="mod-jam-results-list">
+														{remainingResultSubmissions.map((submission) => (
+															<ModJamSubmissionProjectCard key={submission.id} submission={submission} cardView="list" jam={jam} authToken={authToken} nominations={nominations} />
+														))}
+													</div>
+												</div>
+											)}
+										</div>
+									) : (
+										<div className="browse-project-grid mod-jam-submissions-list">
+											{sortedSubmissions.map((submission) => (
+												<ModJamSubmissionProjectCard
+													key={submission.id}
+													submission={submission}
+													cardView="media"
+													jam={jam}
+													authToken={authToken}
+													canVote={Boolean(permissions.can_vote && !hasUserVoteInJam)}
+													nominations={nominations}
+													userVotes={userVotes}
+													onVoted={handleVoted}
+													selected={userVotes.some((vote) => Number(vote.submission_id) === Number(submission.id)) || Number(votedSubmissionId) === Number(submission.id)}
+													showVoteButton={Boolean(authToken && permissions.can_vote)}
+												/>
+											))}
+										</div>
+									)
 								) : (
-									<p>{t("detail.emptySubmissions")}</p>
+									<div className="subsite-empty-feed">
+										<p className="subsite-empty-feed__title">{t("detail.emptySubmissions")}</p>
+									</div>
 								)}
 							</section>
 						</div>

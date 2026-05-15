@@ -519,6 +519,16 @@
 .mod-jam-submissions-section h2 {
 	margin: 0;
 }
+.mod-jam-results,
+.mod-jam-results-group,
+.mod-jam-results-list {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+.mod-jam-results {
+	gap: 24px;
+}
 .mod-jam-submission-item {
 	position: relative;
 }

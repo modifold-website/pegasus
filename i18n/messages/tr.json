@@ -68,7 +68,10 @@
       "rules": "Kurallar",
       "emptySubmissions": "Henüz gönderi yok.",
       "editSettings": "Ayarları düzenle",
-      "creatorProfile": "{username} profilini aç"
+      "creatorProfile": "{username} profilini aç",
+      "bestByNomination": "“{title}” adaylığındaki en iyi projeler",
+      "bestByPoints": "Puana göre en iyi projeler",
+      "otherProjects": "Diğer projeler"
     },
     "timeline": {
       "ariaLabel": "Mod jam zaman çizelgesi",

@@ -69,7 +69,10 @@
       "rules": "Reglas",
       "emptySubmissions": "Aún no hay participaciones.",
       "editSettings": "Editar ajustes",
-      "creatorProfile": "Abrir el perfil de {username}"
+      "creatorProfile": "Abrir el perfil de {username}",
+      "bestByNomination": "Mejores proyectos en “{title}”",
+      "bestByPoints": "Mejores proyectos por puntos",
+      "otherProjects": "Otros proyectos"
     },
     "timeline": {
       "ariaLabel": "Línea de tiempo del mod jam",

@@ -69,7 +69,10 @@
       "rules": "Правила",
       "emptySubmissions": "Работ пока нет.",
       "editSettings": "Редактировать настройки",
-      "creatorProfile": "Открыть профиль {username}"
+      "creatorProfile": "Открыть профиль {username}",
+      "bestByNomination": "Лучшие проекты в номинации “{title}”",
+      "bestByPoints": "Лучшие проекты по очкам",
+      "otherProjects": "Остальные проекты"
     },
     "timeline": {
       "ariaLabel": "Таймлайн мод-джема",

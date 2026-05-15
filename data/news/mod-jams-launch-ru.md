@@ -2,7 +2,7 @@
 title: "Представляем мод-джемы"
 description: "Мы запускаем мод-джемы на Modifold: события сообщества, где авторы создают проекты вокруг общей темы, а игроки голосуют за лучшие работы."
 author: ["bogdan"]
-date: 2026-05-14
+date: 2026-05-15
 slug: /news/mod-jams-launch
 image: https://media.modifold.com/news/modjams_update.png
 featured: true

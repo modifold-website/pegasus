@@ -719,11 +719,12 @@
 .mod-jam-nomination-card {
 	display: grid;
 	background: var(--theme-color-background);
-    border-radius: var(--layout-island-border-radius);
+    border-radius: 20px;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
+    font-size: 16px;
     gap: 12px;
-    padding: 20px 24px;
+    padding: 14px 24px;
 }
 .mod-jam-nomination-card p,
 .mod-jam-vote-nomination-hint {
@@ -786,8 +787,9 @@
     gap: 12px;
     flex-wrap: wrap;
     background: var(--theme-color-background);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 16px;
+	font-size: 16px;
     margin-top: 14px;
     margin-bottom: 16px;
 }

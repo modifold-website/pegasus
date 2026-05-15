@@ -5,7 +5,7 @@ import ProjectTags from "../ui/ProjectTags";
 import Tooltip from "../ui/Tooltip";
 import { getProjectPath } from "@/utils/projectRoutes";
 
-export default function ProjectCard({ project, maxTags = 5 }) {
+export default function ProjectCard({ project, maxTags = 5, actions = null }) {
     const t = useTranslations("ProjectCard");
     const locale = useLocale();
     const hasTags = project.tags?.length > 0;
@@ -126,6 +126,12 @@ export default function ProjectCard({ project, maxTags = 5 }) {
                         </div>
                     </div>
                 </div>
+
+                {actions && (
+                    <div className="new-project-actions">
+                        {actions}
+                    </div>
+                )}
             </div>
 
             {hasTags && (

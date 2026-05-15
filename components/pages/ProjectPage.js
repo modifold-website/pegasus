@@ -71,7 +71,7 @@ export default function ProjectPage({ project, authToken, showInlineGallery = fa
                     </div>
                 </div>
 
-                <ProjectSidebar project={project} />
+                <ProjectSidebar project={project} authToken={authToken} />
             </div>
         </>
     );

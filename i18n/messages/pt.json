@@ -7,6 +7,7 @@
     "home": "Início",
     "mods": "Mods",
     "modpacks": "Modpacks",
+    "modJams": "Mod jams",
     "login": "Entrar",
     "logout": "Sair",
     "settings": "Configurações",
@@ -27,6 +28,305 @@
     "likes": "Curtidos",
     "notifications": "Notificações",
     "appearance": "Tema"
+  },
+  "ModJamsPage": {
+    "metadata": {
+      "title": "Mod jams — Modifold",
+      "description": "Explore mod jams da comunidade, participe de desafios criativos, vote e veja resultados no Modifold."
+    },
+    "eyebrow": "Eventos da comunidade",
+    "title": "Mod jams da comunidade",
+    "description": "Participe de desafios criativos, descubra o que a comunidade está criando, vote nos favoritos e revisite eventos encerrados.",
+    "create": "Criar mod jam",
+    "createFirst": "Criar mod jam",
+    "loginToCreate": "Entre para criar um mod jam",
+    "statsLabel": "Estatísticas de mod jams",
+    "stats": {
+      "active": "Jams ativos",
+      "voting": "Votação aberta",
+      "submissions": "Envios"
+    },
+    "catalogTitle": "Todos os mod jams",
+    "catalogDescription": "Eventos aprovados da comunidade, ativos e encerrados.",
+    "filtersLabel": "Filtros de mod jams",
+    "sidebar": {
+      "status": "Filtros"
+    },
+    "links": {
+      "title": "Links",
+      "website": "Site",
+      "discord": "Servidor do Discord"
+    },
+    "jury": {
+      "title": "Júri",
+      "organizer": "Organizador",
+      "organizerTooltip": "Proprietário do mod jam",
+      "member": "Júri",
+      "memberTooltip": "O voto do júri vale 3 pontos"
+    },
+    "detail": {
+      "description": "Descrição",
+      "rules": "Regras",
+      "emptySubmissions": "Ainda não há envios.",
+      "editSettings": "Editar configurações",
+      "creatorProfile": "Abrir perfil de {username}",
+      "bestByNomination": "Melhores projetos em “{title}”",
+      "bestByPoints": "Melhores projetos por pontos",
+      "otherProjects": "Outros projetos"
+    },
+    "timeline": {
+      "ariaLabel": "Linha do tempo do mod jam",
+      "dateTimeSeparator": " às ",
+      "countdown": {
+        "upcoming": "Começa em",
+        "submissionsOpen": "Envios aceitos até",
+        "votingOpen": "Votação",
+        "completed": "Encerrado"
+      },
+      "units": {
+        "hours": "h",
+        "minutes": "m",
+        "seconds": "s"
+      },
+      "steps": {
+        "start": "Início",
+        "submissions": "Envios fechados",
+        "voting": "Votação da comunidade aberta",
+        "finish": "Final",
+        "submissionsOpen": "Envios abertos",
+        "submissionsClose": "Envios fechados",
+        "votingOpen": "Votação",
+        "winnersAnnounced": "Resultados"
+      },
+      "afterSubmissions": "Depois dos envios"
+    },
+    "vote": {
+      "action": "Votar",
+      "voted": "Votado",
+      "success": "Voto registrado",
+      "error": "Não foi possível votar",
+      "nominationTitle": "Escolha uma indicação",
+      "nominationHint": "Os votos são contados separadamente em cada indicação.",
+      "nominationAlreadyVoted": "Você já votou nesta indicação"
+    },
+    "submit": {
+      "title": "Enviar mod",
+      "loginHint": "Entre para anexar um dos seus mods publicados a este jam.",
+      "alreadySubmitted": "Você já enviou um projeto para este mod jam.",
+      "chooseHint": "Escolha o projeto que deseja enviar para participar deste mod jam.",
+      "placeholder": "Selecione um mod publicado",
+      "loading": "Carregando...",
+      "emptyProjects": "Nenhum mod publicado encontrado",
+      "action": "Enviar projeto",
+      "selectFirst": "Selecione um mod primeiro",
+      "loadError": "Não foi possível carregar seus projetos",
+      "submitError": "Não foi possível enviar o projeto",
+      "success": "Projeto enviado"
+    },
+    "creation": {
+      "title": "Criar mod jam",
+      "close": "Fechar",
+      "name": "Nome",
+      "namePlaceholder": "Jam de construção de verão",
+      "summary": "Descrição curta",
+      "summaryHint": "Uma ou duas frases que descrevem seu mod jam.",
+      "summaryPlaceholder": "Crie um mod em torno de um tema comum e vote nos melhores envios.",
+      "cancel": "Cancelar",
+      "creating": "Criando...",
+      "submit": "Criar rascunho",
+      "success": "Rascunho de mod jam criado",
+      "error": "Não foi possível criar o mod jam"
+    },
+    "participate": "Participar",
+    "join": {
+      "joined": "Participando",
+      "success": "Você entrou no mod jam",
+      "error": "Não foi possível participar",
+      "loginRequired": "Entre para participar"
+    },
+    "settings": {
+      "sidebar": {
+        "general": "Geral",
+        "description": "Descrição",
+        "rules": "Regras",
+        "links": "Links",
+        "nominations": "Indicações",
+        "jury": "Júri",
+        "moderation": "Moderação"
+      },
+      "unsaved": {
+        "save": "Salvar alterações",
+        "reset": "Redefinir",
+        "message": "Você tem alterações não salvas."
+      },
+      "general": {
+        "imageTooLarge": "A imagem deve ter menos de 20 MB",
+        "saveError": "Não foi possível salvar as configurações",
+        "saved": "Configurações do mod jam salvas",
+        "avatar": "Avatar",
+        "avatarPreviewAlt": "Prévia do avatar do mod jam",
+        "uploadAvatar": "Enviar avatar",
+        "cover": "Capa",
+        "coverPreviewAlt": "Prévia da capa do mod jam",
+        "uploadCover": "Enviar imagem de capa",
+        "name": "Nome",
+        "slug": "URL",
+        "shortDescription": "Descrição curta",
+        "shortDescriptionHint": "Aparece no catálogo e nos cartões do jam.",
+        "slugPlaceholder": "seu-jam",
+        "publicPage": "Página pública: /jams/{slug}",
+        "schedule": "Agenda",
+        "starts": "Início do mod jam",
+        "submissionsStart": "Envios abertos",
+        "submissionsEnd": "Envios fechados",
+        "votingEnds": "Final",
+        "votingStarts": "Votação",
+        "winnersAnnounced": "Resultados"
+      },
+      "links": {
+        "discord": "URL do Discord",
+        "website": "URL do site",
+        "discordPlaceholder": "https://discord.gg/exemplo",
+        "websitePlaceholder": "https://example.com",
+        "saveError": "Não foi possível salvar os links",
+        "saved": "Links salvos"
+      },
+      "jury": {
+        "title": "Júri",
+        "hint": "Informe o slug de um usuário. Votos de jurados designados contam como 3 pontos em vez de 1.",
+        "placeholder": "user-slug",
+        "add": "Adicionar",
+        "remove": "Remover",
+        "empty": "Nenhum jurado foi designado ainda.",
+        "added": "Jurado adicionado",
+        "removed": "Jurado removido",
+        "addError": "Não foi possível adicionar o jurado",
+        "removeError": "Não foi possível remover o jurado"
+      },
+      "nominations": {
+        "title": "Indicações",
+        "hint": "Crie categorias como “Melhor gameplay” ou “Escolha do júri”. Usuários podem votar separadamente em cada indicação.",
+        "name": "Nome",
+        "placeholder": "Melhor gameplay",
+        "description": "Descrição",
+        "descriptionPlaceholder": "Explique brevemente o que será avaliado nesta indicação.",
+        "add": "Adicionar indicação",
+        "saveEdit": "Salvar",
+        "cancelEdit": "Cancelar",
+        "edit": "Editar",
+        "delete": "Excluir",
+        "empty": "Ainda não há indicações. Sem indicações, a votação funciona como um voto geral.",
+        "added": "Indicação adicionada",
+        "updated": "Indicação atualizada",
+        "deleted": "Indicação excluída",
+        "saveError": "Não foi possível salvar a indicação",
+        "deleteError": "Não foi possível excluir a indicação"
+      },
+      "moderation": {
+        "title": "Moderação",
+        "hint": "Revise a página do jam e envie para análise da Modifold quando estiver pronta.",
+        "currentStatus": "Status atual",
+        "rejectionReason": "Motivo da rejeição",
+        "preview": "Abrir prévia",
+        "submitForReview": "Enviar para análise",
+        "pendingReview": "Em análise",
+        "approved": "Já aprovado",
+        "submitReviewError": "Não foi possível enviar para análise",
+        "sentToModeration": "Enviado para moderação",
+        "status": {
+          "draft": "Rascunho",
+          "pending_review": "Em análise",
+          "approved": "Aprovado",
+          "rejected": "Rejeitado",
+          "archived": "Arquivado"
+        }
+      },
+      "description": {
+        "title": "Descrição completa",
+        "hint": "Use Markdown para criar o texto principal na página do jam.",
+        "placeholder": "Conte aos participantes sobre o que é este jam, o que eles podem criar e por que é interessante.",
+        "saved": "Descrição salva",
+        "saveError": "Não foi possível salvar a descrição"
+      },
+      "rules": {
+        "title": "Regras",
+        "hint": "Use Markdown para explicar o que pode ser enviado e como a votação funciona.",
+        "placeholder": "Descreva requisitos de envio, regras de votação, prazos e conteúdo não permitido.",
+        "saved": "Regras salvas",
+        "saveError": "Não foi possível salvar as regras"
+      },
+      "markdown": {
+        "toolbarLabel": "Barra de ferramentas do editor Markdown",
+        "heading1": "Título 1",
+        "heading2": "Título 2",
+        "heading3": "Título 3",
+        "bold": "Negrito",
+        "italic": "Itálico",
+        "strikethrough": "Tachado",
+        "code": "Código",
+        "bulletedList": "Lista com marcadores",
+        "orderedList": "Lista numerada",
+        "link": "Link",
+        "image": "Imagem",
+        "linkTemplate": "[texto do link](https://)",
+        "imageTemplate": "![texto alternativo](https://)",
+        "preview": "Prévia",
+        "submitForReview": "Enviar para revisão",
+        "pendingReview": "Em revisão",
+        "saveBeforeReview": "Salve as alterações antes de enviar para revisão",
+        "submitReviewError": "Não foi possível enviar para revisão",
+        "sentToModeration": "Enviado para moderação"
+      }
+    },
+    "moderation": {
+      "rejectionReason": "Motivo da rejeição",
+      "approvedReason": "Aprovado pela moderação",
+      "error": "Não foi possível moderar o mod jam",
+      "approved": "Mod jam aprovado",
+      "rejected": "Mod jam rejeitado",
+      "empty": "Não há mod jams aguardando revisão.",
+      "approve": "Aprovar",
+      "reject": "Rejeitar"
+    },
+    "filters": {
+      "active": "Ativos",
+      "completed": "Encerrados"
+    },
+    "status": {
+      "upcoming": "Em breve",
+      "running": "Fase de criação",
+      "submissionsOpen": "Envios abertos",
+      "votingOpen": "Votação aberta",
+      "completed": "Encerrado",
+      "draft": "Rascunho",
+      "votingPending": "Aguardando votação"
+    },
+    "submissionsCount": "{count} envios",
+    "votesCount": "{count} pontos",
+    "emptyTitle": "Ainda não há mod jams",
+    "emptyDescription": "Mod jams aprovados aparecerão aqui. Você pode criar o primeiro e enviar para moderação.",
+    "emptyFilteredTitle": "Nada nesta seção",
+    "emptyFilteredDescription": "Tente outro filtro ou volte quando o próximo evento começar."
+  },
+  "ModJamsDashboard": {
+    "title": "Seus mod jams",
+    "create": "Criar mod jam",
+    "empty": "Você ainda não criou nenhum mod jam.",
+    "settings": "Configurações",
+    "submissions": "{count} envios",
+    "votes": "{count} pontos",
+    "status": {
+      "draft": "Rascunho",
+      "pendingReview": "Em revisão",
+      "upcoming": "Em breve",
+      "running": "Fase de criação",
+      "submissionsOpen": "Envios abertos",
+      "votingOpen": "Votação aberta",
+      "completed": "Encerrado",
+      "rejected": "Rejeitado",
+      "archived": "Arquivado",
+      "votingPending": "Aguardando votação"
+    }
   },
   "CookieBanner": {
     "message": "Usamos cookies para melhorar sua experiência. Cookies essenciais são necessários para o funcionamento do site, enquanto cookies analíticos nos ajudam a entender como você usa nosso site.",
@@ -368,6 +668,7 @@
       "apiTokens": "Tokens de API",
       "verification": "Selo de Criador",
       "organizations": "Organizações",
+      "jams": "Mod jams",
       "profile": "Perfil",
       "appearance": "Aparência",
       "language": "Idioma",

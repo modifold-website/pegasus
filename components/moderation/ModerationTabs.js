@@ -51,6 +51,10 @@ export default function ModerationTabs() {
                 {t("tabs.reports")}
             </Link>
 
+            <Link href="/moderation/mod-jams" data-ripple className="pagination__button" aria-current={pathname === "/moderation/mod-jams" ? "page" : undefined}>
+                Mod jams
+            </Link>
+
             <Link href="/moderation/statistics" data-ripple className="pagination__button" aria-current={pathname === "/moderation/statistics" ? "page" : undefined}>
                 {t("tabs.statistics")}
             </Link>

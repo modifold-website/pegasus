@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import LicenseModal from "../../modal/LicenseModal";
+import ModJamVoteButton from "@/components/mod-jams/ModJamVoteButton";
 import UserName from "../ui/UserName";
 
-export default function ProjectSidebar({ project, showLicense = true, showLinks = true }) {
+export default function ProjectSidebar({ project, authToken, showLicense = true, showLinks = true }) {
     const t = useTranslations("ProjectPage");
     const tLicense = useTranslations("LicenseModal");
     const locale = useLocale();
@@ -32,6 +33,46 @@ export default function ProjectSidebar({ project, showLicense = true, showLinks 
     
     return (
         <div style={{ display: "flex", gap: "15px", flexDirection: "column" }}>
+            {project.mod_jam_participations?.length > 0 && (
+                <div className="content content--padding">
+                    <h2>Mod jams</h2>
+
+                    <div className="mod-jam-project-participations">
+                        {project.mod_jam_participations.map((jam) => (
+                            <Fragment key={jam.submission_id || jam.id}>
+                                <div className="mod-jam-project-participation">
+                                    <div className="author author-card" style={{ "--1ebedaf6": "40px", display: "flex" }}>
+                                        <Link className="author__avatar button--active-transform" href={`/jams/${jam.slug}`}>
+                                            <div className="andropov-media andropov-media--rounded andropov-media--bordered andropov-media--loaded andropov-media--has-preview andropov-image" style={{ aspectRatio: "1.77778 / 1", width: "40px", height: "40px", maxWidth: "none", borderRadius: "8px" }}>
+                                                <img src={jam.avatar_url} className="magnify" alt={t("ownerAvatarAlt", { username: jam.owner?.username })} />
+                                            </div>
+                                        </Link>
+
+                                        <div className="author__main">
+                                            <Link className="author__name" href={`/jams/${jam.slug}`}>
+                                                {jam.title}
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {jam.lifecycle === "voting_open" && (
+                                    <ModJamVoteButton
+                                        authToken={authToken}
+                                        jamSlug={jam.slug}
+                                        submissionId={jam.submission_id}
+                                        disabled={!jam.can_vote}
+                                        selected={Boolean(jam.user_voted_this_submission)}
+                                        visibleWhenDisabled
+                                        buttonType="secondary"
+                                    />
+                                )}
+                            </Fragment>
+                        ))}
+                    </div>
+                </div>
+            )}
+
             <div className="content content--padding">
                 <h2>{t("creators")}</h2>
 

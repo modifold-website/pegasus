@@ -35,6 +35,14 @@
 .media-project-card .project-tags-overflow {
     pointer-events: auto;
 }
+.media-project-actions,
+.media-project-actions * {
+    pointer-events: auto;
+}
+.media-project-actions {
+    display: flex;
+    margin-top: 12px;
+}
 .media-project-card:hover {
     filter: brightness(.98);
     background: var(--theme-color-background-content);
@@ -197,6 +205,14 @@
 }
 .new-project-card .dashboard-project-settings-button {
     pointer-events: auto;
+}
+.new-project-actions,
+.new-project-actions * {
+    pointer-events: auto;
+}
+.new-project-actions {
+    display: flex;
+    flex-shrink: 0;
 }
 .new-project-card .new-stat,
 .new-project-card .new-stat * {

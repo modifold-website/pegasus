@@ -55,7 +55,7 @@ function normalizeInitialState(initialState) {
     };
 }
 
-export default function BrowsePage({ projectType, initialState = null, initialData = null, initialCardView = "list", tags = [], recommendedProjects = [], initialRecommendedCollapsed = false }) {
+export default function BrowsePage({ projectType, initialState = null, initialData = null, initialCardView = "list", tags = [], recommendedProjects = [], activeModJams = [], initialRecommendedCollapsed = false }) {
     const t = useTranslations("BrowsePage");
     const tLabels = useTranslations("CategoryLabels");
     const router = useRouter();
@@ -250,8 +250,8 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
             <BrowseFiltersSidebar t={t} tags={tags} selectedTags={selectedTags} onToggleTag={toggleTag} onClearFilters={clearFilters} getCategoryLabel={formatCategoryLabel} />
 
             <div className="browse-content">
-                {projectType === "mod" && recommendedProjects.length > 0 && (
-                    <BrowseRecommendedRail projects={recommendedProjects} t={t} projectType={projectType} initialCollapsed={initialRecommendedCollapsed} />
+                {projectType === "mod" && (recommendedProjects.length > 0 || activeModJams.length > 0) && (
+                    <BrowseRecommendedRail projects={recommendedProjects} modJams={activeModJams} t={t} projectType={projectType} initialCollapsed={initialRecommendedCollapsed} />
                 )}
 
                 <BrowseToolbar t={t} searchInput={searchInput} onSearchChange={handleSearchChange} cardView={cardView} onToggleCardView={toggleCardView} sort={sort} onSortSelect={handleSortSelect} />

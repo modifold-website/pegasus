@@ -47,6 +47,31 @@ function parseBrowseSearchParams(searchParams) {
     };
 }
 
+async function fetchActiveModJams() {
+    const limit = 100;
+    let page = 1;
+    let totalPages = 1;
+    const modJams = [];
+
+    do {
+        const activeModJamsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/mod-jams?status=active&page=${page}&limit=${limit}`, {
+            next: { revalidate: 60 },
+        });
+
+        if(!activeModJamsResponse.ok) {
+            console.error("Failed to fetch active mod jams for browse hero:", activeModJamsResponse.status);
+            break;
+        }
+
+        const data = await activeModJamsResponse.json();
+        modJams.push(...(Array.isArray(data?.mod_jams) ? data.mod_jams : []));
+        totalPages = Number.isFinite(Number(data?.totalPages)) ? Number(data.totalPages) : 1;
+        page += 1;
+    } while(page <= totalPages);
+
+    return modJams;
+}
+
 export default async function ModsPage({ searchParams }) {
     const cookieStore = await cookies();
     const resolvedSearchParams = await searchParams;
@@ -66,6 +91,7 @@ export default async function ModsPage({ searchParams }) {
     let initialData = null;
     let initialTags = [];
     let recommendedProjects = [];
+    let activeModJams = [];
 
     try {
         const requestParams = new URLSearchParams({
@@ -124,5 +150,11 @@ export default async function ModsPage({ searchParams }) {
         console.error("Failed to fetch recommended mods:", error);
     }
 
-    return <BrowsePage projectType="mod" initialState={initialState} initialData={initialData} initialCardView={initialCardView} tags={initialTags} recommendedProjects={recommendedProjects} initialRecommendedCollapsed={initialRecommendedCollapsed} />;
+    try {
+        activeModJams = await fetchActiveModJams();
+    } catch (error) {
+        console.error("Failed to fetch active mod jams for browse hero:", error);
+    }
+
+    return <BrowsePage projectType="mod" initialState={initialState} initialData={initialData} initialCardView={initialCardView} tags={initialTags} recommendedProjects={recommendedProjects} activeModJams={activeModJams} initialRecommendedCollapsed={initialRecommendedCollapsed} />;
 }

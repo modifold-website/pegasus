@@ -10,42 +10,72 @@ function getProjectImage(project) {
 	return project?.gallery?.find((image) => image?.featured === 1)?.url || project?.gallery?.[0]?.url || project?.icon_url || "https://media.modifold.com/static/no-project-icon.svg";
 }
 
-function HeroPane({ project, t }) {
-	if(!project) {
+function getSlideHref(slide) {
+	return slide?.type === "mod-jam" ? `/jams/${slide.item?.slug || ""}` : getProjectPath(slide?.item);
+}
+
+function getSlideImage(slide) {
+	if(slide?.type === "mod-jam") {
+		return slide.item?.cover_url || slide.item?.avatar_url || "https://media.modifold.com/static/no-project-icon.svg";
+	}
+
+	return getProjectImage(slide?.item);
+}
+
+function getSlidePreviewImage(slide, featuredImage) {
+	return slide?.item?.owner?.avatar || slide?.item?.avatar_url || featuredImage;
+}
+
+function HeroPane({ slide, t }) {
+	if(!slide?.item) {
 		return null;
 	}
 
-	const featuredImage = getProjectImage(project);
-	const previewImage = project?.owner?.avatar || featuredImage;
+	const item = slide.item;
+	const href = getSlideHref(slide);
+	const featuredImage = getSlideImage(slide);
+	const previewImage = getSlidePreviewImage(slide, featuredImage);
+	const ownerHref = item?.owner?.profile_url || `/user/${item?.owner?.slug || ""}`;
+	const ownerName = item?.owner?.username || item?.owner?.display_name || "Modifold Creator";
+	const isModJam = slide.type === "mod-jam";
 
 	return (
 		<>
-			<Link href={getProjectPath(project)} className="browse-recommended-hero__bg-link" aria-label={project?.title || t("recommended.openProject")}>
+			<Link href={href} className="browse-recommended-hero__bg-link" aria-label={item?.title || t(isModJam ? "recommended.participate" : "recommended.openProject")}>
 				<img className="browse-recommended-hero__bg" src={featuredImage} alt="" />
 				<div className="browse-recommended-hero__veil" />
 			</Link>
 
 			<div className="browse-recommended-hero__content">
 				<div style={{ display: "flex", alignItems: "flex-start", flexDirection: "column", gap: "20px", height: "100%" }}>
-					<Link href={getProjectPath(project)} className="browse-recommended-hero__project-link">
-						<h2>{project?.title}</h2>
-						<p>{project?.summary || t("recommended.noSummary")}</p>
+					<Link href={href} className="browse-recommended-hero__project-link">
+						<h2>{item?.title}</h2>
+						<p>{item?.summary || t("recommended.noSummary")}</p>
 					</Link>
 
 					<div className="browse-recommended-hero__actions">
-						<Link href={project?.owner?.profile_url || `/user/${project?.owner?.slug || ""}`} className="browse-recommended-hero__owner">
+						<Link href={ownerHref} className="browse-recommended-hero__owner">
 							<img src={previewImage} alt="" width="24" height="24" />
 							
-							<span>{project?.owner?.username || project?.owner?.display_name || "Modifold Creator"}</span>
+							<span>{ownerName}</span>
 						</Link>
 
-						<Link href={getProjectPath(project)} className="button button--size-m button--type-secondary button--active-transform button--with-icon">
+						<Link href={href} className="button button--size-m button--type-secondary button--active-transform button--with-icon">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-								<path d="M7 7h10v10"></path>
-								<path d="M7 17 17 7"></path>
+								{isModJam ? (
+									<>
+										<path d="M5 12h14"></path>
+										<path d="M12 5v14"></path>
+									</>
+								) : (
+									<>
+										<path d="M7 7h10v10"></path>
+										<path d="M7 17 17 7"></path>
+									</>
+								)}
 							</svg>
 
-							{t("recommended.openProject")}
+							{t(isModJam ? "recommended.participate" : "recommended.openProject")}
 						</Link>
 					</div>
 				</div>
@@ -55,8 +85,11 @@ function HeroPane({ project, t }) {
 	);
 }
 
-export default function BrowseRecommendedRail({ projects, t, projectType = "mod", initialCollapsed = false }) {
-	const slides = useMemo(() => projects.slice(0, 8), [projects]);
+export default function BrowseRecommendedRail({ projects = [], modJams = [], t, projectType = "mod", initialCollapsed = false }) {
+	const slides = useMemo(() => [
+		...modJams.map((jam) => ({ type: "mod-jam", item: jam })),
+		...projects.map((project) => ({ type: "project", item: project })),
+	], [projects, modJams]);
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [isCollapsed, setIsCollapsed] = useState(Boolean(initialCollapsed));
 	const [transitionState, setTransitionState] = useState(null);
@@ -130,16 +163,16 @@ export default function BrowseRecommendedRail({ projects, t, projectType = "mod"
 					{transitionState ? (
 						<>
 							<div className={`browse-recommended-hero__pane browse-recommended-hero__pane--leave ${transitionState.direction === "right" ? "to-left" : "to-right"}`}>
-								<HeroPane project={leavingSlide} t={t} />
+								<HeroPane slide={leavingSlide} t={t} />
 							</div>
 
 							<div className={`browse-recommended-hero__pane browse-recommended-hero__pane--enter ${transitionState.direction === "right" ? "from-right" : "from-left"}`}>
-								<HeroPane project={enteringSlide} t={t} />
+								<HeroPane slide={enteringSlide} t={t} />
 							</div>
 						</>
 					) : (
 						<div className="browse-recommended-hero__pane browse-recommended-hero__pane--active">
-							<HeroPane project={activeSlide} t={t} />
+							<HeroPane slide={activeSlide} t={t} />
 						</div>
 					)}
 
@@ -158,11 +191,11 @@ export default function BrowseRecommendedRail({ projects, t, projectType = "mod"
 							</button>
 
 							<div className="browse-recommended-hero__dots" role="tablist" aria-label={t("recommended.ariaLabel")}>
-								{slides.map((project, index) => {
+								{slides.map((slide, index) => {
 									const activeDotIndex = transitionState ? transitionState.to : activeIndex;
 									return (
 										<button
-											key={project.id || project.slug || index}
+											key={`${slide.type}-${slide.item?.id || slide.item?.slug || index}`}
 											type="button"
 											className={`browse-recommended-hero__dot ${index === activeDotIndex ? "is-active" : ""}`}
 											onClick={() => {

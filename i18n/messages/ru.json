@@ -1339,6 +1339,7 @@
   "LoginModal": {
     "close": "Закрыть",
     "continueWith": "Продолжить через {provider}",
+    "continueWithEmail": "Продолжить через почту",
     "errors": {
       "telegram": "Ошибка авторизации Telegram",
       "github": "Ошибка авторизации GitHub",
@@ -1346,6 +1347,33 @@
       "telegramProcessing": "Ошибка обработки сообщения Telegram",
       "githubProcessing": "Ошибка обработки сообщения GitHub",
       "discordProcessing": "Ошибка обработки сообщения Discord"
+    },
+    "emailAuth": {
+      "close": "Закрыть",
+      "back": "Назад",
+      "loginTitle": "Вход через почту",
+      "registerTitle": "Создать аккаунт",
+      "verifyTitle": "Подтвердите почту",
+      "emailPlaceholder": "Почта",
+      "usernamePlaceholder": "Имя или название",
+      "passwordPlaceholder": "Пароль",
+      "codePlaceholder": "Код из письма",
+      "showPassword": "Показать пароль",
+      "hidePassword": "Скрыть пароль",
+      "loginButton": "Войти",
+      "registerButton": "Создать аккаунт",
+      "verifyButton": "Подтвердить",
+      "submitting": "Подождите...",
+      "createAccount": "Создать аккаунт",
+      "backToLogin": "Войти через почту",
+      "codeSent": "Мы отправили код на вашу почту.",
+      "verifyDescription": "Введите 6-значный код, отправленный на {email}. Он действует 5 минут.",
+      "captchaMissing": "hCaptcha site key не настроен.",
+      "errors": {
+        "login": "Не удалось войти через почту",
+        "register": "Не удалось начать регистрацию",
+        "verify": "Не удалось подтвердить код"
+      }
     },
     "dataModal": {
       "title": "Какие данные мы собираем?",

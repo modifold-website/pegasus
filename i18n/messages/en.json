@@ -1339,6 +1339,7 @@
   "LoginModal": {
     "close": "Close",
     "continueWith": "Continue with {provider}",
+    "continueWithEmail": "Continue with email",
     "errors": {
       "telegram": "Telegram authorization error",
       "github": "GitHub authorization error",
@@ -1346,6 +1347,33 @@
       "telegramProcessing": "Error processing Telegram message",
       "githubProcessing": "Error processing GitHub message",
       "discordProcessing": "Error processing Discord message"
+    },
+    "emailAuth": {
+      "close": "Close",
+      "back": "Back",
+      "loginTitle": "Sign in with email",
+      "registerTitle": "Create an account",
+      "verifyTitle": "Confirm your email",
+      "emailPlaceholder": "Email",
+      "usernamePlaceholder": "Name or title",
+      "passwordPlaceholder": "Password",
+      "codePlaceholder": "Email code",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "loginButton": "Sign in",
+      "registerButton": "Create account",
+      "verifyButton": "Confirm",
+      "submitting": "Please wait...",
+      "createAccount": "Create an account",
+      "backToLogin": "Sign in with email",
+      "codeSent": "We sent a code to your email.",
+      "verifyDescription": "Enter the 6-digit code sent to {email}. It is valid for 5 minutes.",
+      "captchaMissing": "hCaptcha site key is not configured.",
+      "errors": {
+        "login": "Could not sign in with email",
+        "register": "Could not start registration",
+        "verify": "Could not confirm the code"
+      }
     },
     "dataModal": {
       "title": "What data do we collect?",

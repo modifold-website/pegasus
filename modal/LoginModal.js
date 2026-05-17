@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
 import { useTranslations } from "next-intl";
+import { useAuth } from "../components/providers/AuthProvider";
 
 if(typeof window !== "undefined") {
     Modal.setAppElement("body");
@@ -22,9 +23,355 @@ function redirectTo(url, onClose) {
     window.location.assign(url);
 }
 
+function EmailAuthField({ children }) {
+    return (
+        <div className="field field--large">
+            <label className="field__wrapper">
+                {children}
+            </label>
+        </div>
+    );
+}
+
+function PasswordField({ autoComplete, name, placeholder, value, onChange, showPassword, onToggle, t }) {
+    return (
+        <EmailAuthField>
+            <input className="text-input" name={name} type={showPassword ? "text" : "password"} autoComplete={autoComplete} placeholder={placeholder} minLength={8} value={value} onChange={onChange} required />
+            
+            <button className="email-auth__password-toggle" type="button" onClick={onToggle} aria-label={showPassword ? t("hidePassword") : t("showPassword")}>
+                {showPassword ? (
+                    <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
+                        <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+                        <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
+                        <path d="m2 2 20 20" />
+                    </svg>
+                ) : (
+                    <svg className="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                )}
+            </button>
+        </EmailAuthField>
+    );
+}
+
+function EmailLoginAuth({ isOpen, onBack, onClose }) {
+    const t = useTranslations("LoginModal.emailAuth");
+    const { completeLogin } = useAuth();
+    const [mode, setMode] = useState("login");
+    const [form, setForm] = useState({ email: "", password: "", username: "", code: "" });
+    const [captchaToken, setCaptchaToken] = useState("");
+    const [statusMessage, setStatusMessage] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [isModeTransitioning, setIsModeTransitioning] = useState(false);
+    const captchaRef = useRef(null);
+    const captchaWidgetRef = useRef(null);
+    const transitionTimeoutRef = useRef(null);
+    const captchaSiteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
+
+    const updateField = (event) => {
+        const { name, value } = event.target;
+        setForm((currentForm) => ({ ...currentForm, [name]: value }));
+    };
+
+    const resetCaptcha = () => {
+        setCaptchaToken("");
+        if(typeof window !== "undefined" && window.hcaptcha && captchaWidgetRef.current !== null) {
+            window.hcaptcha.reset(captchaWidgetRef.current);
+        }
+    };
+
+    const switchMode = (nextMode, afterSwitch) => {
+        if(nextMode === mode || isModeTransitioning) {
+            return;
+        }
+
+        window.clearTimeout(transitionTimeoutRef.current);
+        setIsModeTransitioning(true);
+        transitionTimeoutRef.current = window.setTimeout(() => {
+            setMode(nextMode);
+            afterSwitch?.();
+            requestAnimationFrame(() => {
+                setIsModeTransitioning(false);
+            });
+        }, 150);
+    };
+
+    const openRegister = () => {
+        setStatusMessage("");
+        resetCaptcha();
+        switchMode("register");
+    };
+
+    const openLogin = () => {
+        setStatusMessage("");
+        resetCaptcha();
+        switchMode("login");
+    };
+
+    const handleClose = () => {
+        window.clearTimeout(transitionTimeoutRef.current);
+        setMode("login");
+        setStatusMessage("");
+        setIsSubmitting(false);
+        setShowPassword(false);
+        setIsModeTransitioning(false);
+        resetCaptcha();
+        onClose();
+    };
+
+    const handleBack = () => {
+        window.clearTimeout(transitionTimeoutRef.current);
+        setMode("login");
+        setStatusMessage("");
+        setIsSubmitting(false);
+        setShowPassword(false);
+        setIsModeTransitioning(false);
+        resetCaptcha();
+        onBack();
+    };
+
+    const submitLogin = async (event) => {
+        event.preventDefault();
+        setIsSubmitting(true);
+        setStatusMessage("");
+
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/email-login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: form.email, password: form.password }),
+            });
+            const data = await response.json();
+
+            if(!response.ok || !data.success) {
+                throw new Error(data.message || t("errors.login"));
+            }
+
+            if(data.twoFactorRequired && data.twoFactorToken) {
+                const nextPath = getReturnPath();
+                const hash = new URLSearchParams({ token: data.twoFactorToken, next: nextPath }).toString();
+                window.location.assign(`/auth/two-factor#${hash}`);
+                return;
+            }
+
+            await completeLogin(data.token);
+            handleClose();
+        } catch (error) {
+            setStatusMessage(error.message || t("errors.login"));
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const submitRegister = async (event) => {
+        event.preventDefault();
+        setIsSubmitting(true);
+        setStatusMessage("");
+
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/email-register/start`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    username: form.username,
+                    email: form.email,
+                    password: form.password,
+                    hcaptchaToken: captchaToken,
+                }),
+            });
+            const data = await response.json();
+
+            if(!response.ok || !data.success) {
+                throw new Error(data.message || t("errors.register"));
+            }
+
+            switchMode("verify", () => setStatusMessage(t("codeSent")));
+        } catch (error) {
+            setStatusMessage(error.message || t("errors.register"));
+            resetCaptcha();
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const submitVerification = async (event) => {
+        event.preventDefault();
+        setIsSubmitting(true);
+        setStatusMessage("");
+
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/email-register/confirm`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: form.email, code: form.code }),
+            });
+            const data = await response.json();
+
+            if(!response.ok || !data.success) {
+                throw new Error(data.message || t("errors.verify"));
+            }
+
+            await completeLogin(data.token);
+            handleClose();
+        } catch (error) {
+            setStatusMessage(error.message || t("errors.verify"));
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    useEffect(() => {
+        if(!isOpen || mode !== "register" || !captchaSiteKey || !captchaRef.current || typeof window === "undefined") {
+            return;
+        }
+
+        const renderCaptcha = () => {
+            if(!window.hcaptcha || captchaWidgetRef.current !== null || !captchaRef.current) {
+                return;
+            }
+
+            captchaWidgetRef.current = window.hcaptcha.render(captchaRef.current, {
+                sitekey: captchaSiteKey,
+                callback: setCaptchaToken,
+                "expired-callback": () => setCaptchaToken(""),
+                "error-callback": () => setCaptchaToken(""),
+            });
+        };
+
+        if(window.hcaptcha) {
+            renderCaptcha();
+            return;
+        }
+
+        const existingScript = document.querySelector("script[data-hcaptcha-script]");
+        if(existingScript) {
+            existingScript.addEventListener("load", renderCaptcha, { once: true });
+            return;
+        }
+
+        const script = document.createElement("script");
+        script.src = "https://js.hcaptcha.com/1/api.js?render=explicit";
+        script.async = true;
+        script.defer = true;
+        script.dataset.hcaptchaScript = "true";
+        script.addEventListener("load", renderCaptcha, { once: true });
+        document.body.appendChild(script);
+    }, [captchaSiteKey, isOpen, mode]);
+
+    useEffect(() => {
+        if(mode !== "register") {
+            captchaWidgetRef.current = null;
+        }
+    }, [mode]);
+
+    useEffect(() => {
+        return () => {
+            window.clearTimeout(transitionTimeoutRef.current);
+        };
+    }, []);
+
+    return (
+        <Modal closeTimeoutMS={150} isOpen={isOpen} onRequestClose={handleClose} className="modal active" overlayClassName="modal-overlay">
+            <div className="modal-window">
+                <div className="modal-window__header">
+                    <button className="icon-button modal-window__back" type="button" onClick={handleBack} aria-label={t("back")} style={{ marginLeft: "-8px", marginRight: "16px" }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ fill: "none" }}>
+                            <path d="m15 18-6-6 6-6"></path>
+                        </svg>
+                    </button>
+
+                    <button className="icon-button modal-window__close" type="button" onClick={handleClose} aria-label={t("close")}>
+                        <svg className="icon icon--cross" height="24" width="24">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 0 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div className="modal-window__content">
+                    <div className={`auth email-auth ${isModeTransitioning ? "email-auth--transitioning" : ""}`}>
+                        <h2 className="email-auth__title">{mode === "login" ? t("loginTitle") : mode === "register" ? t("registerTitle") : t("verifyTitle")}</h2>
+
+                        {mode === "login" && (
+                            <form className="email-auth__form" onSubmit={submitLogin}>
+                                <EmailAuthField>
+                                    <input className="text-input" name="email" type="email" autoComplete="email" placeholder={t("emailPlaceholder")} value={form.email} onChange={updateField} required />
+                                </EmailAuthField>
+
+                                <PasswordField autoComplete="current-password" name="password" placeholder={t("passwordPlaceholder")} value={form.password} onChange={updateField} showPassword={showPassword} onToggle={() => setShowPassword((current) => !current)} t={t} />
+
+                                {statusMessage && <p className="email-auth__status">{statusMessage}</p>}
+                                
+                                <button className="button button--size-xl button--type-primary button--active-transform" type="submit" disabled={isSubmitting}>
+                                    {isSubmitting ? t("submitting") : t("loginButton")}
+                                </button>
+                            </form>
+                        )}
+
+                        {mode === "register" && (
+                            <form className="email-auth__form" onSubmit={submitRegister}>
+                                <EmailAuthField>
+                                    <input className="text-input" name="username" type="text" autoComplete="username" placeholder={t("usernamePlaceholder")} minLength={2} maxLength={100} value={form.username} onChange={updateField} required />
+                                </EmailAuthField>
+
+                                <EmailAuthField>
+                                    <input className="text-input" name="email" type="email" autoComplete="email" placeholder={t("emailPlaceholder")} value={form.email} onChange={updateField} required />
+                                </EmailAuthField>
+
+                                <PasswordField autoComplete="new-password" name="password" placeholder={t("passwordPlaceholder")} value={form.password} onChange={updateField} showPassword={showPassword} onToggle={() => setShowPassword((current) => !current)} t={t} />
+
+                                <div className="email-auth__captcha">
+                                    {captchaSiteKey ? <div ref={captchaRef}></div> : <p className="email-auth__status">{t("captchaMissing")}</p>}
+                                </div>
+
+                                {statusMessage && <p className="email-auth__status">{statusMessage}</p>}
+                                
+                                <button className="button button--size-xl button--type-primary button--active-transform" type="submit" disabled={isSubmitting || !captchaToken}>
+                                    {isSubmitting ? t("submitting") : t("registerButton")}
+                                </button>
+                            </form>
+                        )}
+
+                        {mode === "verify" && (
+                            <form className="email-auth__form" onSubmit={submitVerification}>
+                                <p className="email-auth__description">{t("verifyDescription", { email: form.email })}</p>
+                                <EmailAuthField>
+                                    <input className="text-input" name="code" type="text" inputMode="numeric" autoComplete="one-time-code" placeholder={t("codePlaceholder")} maxLength={6} value={form.code} onChange={updateField} required />
+                                </EmailAuthField>
+                                
+                                {statusMessage && <p className="email-auth__status">{statusMessage}</p>}
+                                
+                                <button className="button button--size-xl button--type-primary button--active-transform" type="submit" disabled={isSubmitting || form.code.trim().length === 0}>
+                                    {isSubmitting ? t("submitting") : t("verifyButton")}
+                                </button>
+                            </form>
+                        )}
+
+                        <div className="auth__footer">
+                            {mode === "login" ? (
+                                <button className="link-button link-button--default" type="button" onClick={openRegister}>
+                                    {t("createAccount")}
+                                </button>
+                            ) : (
+                                <button className="link-button link-button--default" type="button" onClick={openLogin}>
+                                    {t("backToLogin")}
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Modal>
+    );
+}
+
 export default function LoginModal({ isOpen, onClose }) {
     const t = useTranslations("LoginModal");
     const [isDataModalOpen, setIsDataModalOpen] = useState(false);
+    const [isEmailAuthOpen, setIsEmailAuthOpen] = useState(false);
 
     const handleTelegramClick = () => {
         const botName = "8388910351";
@@ -64,9 +411,25 @@ export default function LoginModal({ isOpen, onClose }) {
         setIsDataModalOpen(false);
     };
 
+    const openEmailAuth = () => {
+        setIsEmailAuthOpen(true);
+    };
+
+    const closeEmailAuth = () => {
+        setIsEmailAuthOpen(false);
+        onClose();
+    };
+
+    useEffect(() => {
+        if(!isOpen) {
+            setIsEmailAuthOpen(false);
+            setIsDataModalOpen(false);
+        }
+    }, [isOpen]);
+
     return (
         <>
-            <Modal closeTimeoutMS={150} isOpen={isOpen} onRequestClose={onClose} className="modal active" overlayClassName="modal-overlay">
+            <Modal closeTimeoutMS={150} isOpen={isOpen && !isEmailAuthOpen} onRequestClose={onClose} className="modal active" overlayClassName="modal-overlay">
                 <div className="modal-window">
                     <div className="modal-window__header">
                         <button className="icon-button modal-window__close" type="button" onClick={onClose} aria-label={t("close")}>
@@ -123,6 +486,15 @@ export default function LoginModal({ isOpen, onClose }) {
 
                                     {t("continueWith", { provider: "Telegram" })}
                                 </button>
+
+                                <button className="button button--size-xl button--type-minimal button--with-icon button--active-transform" type="button" onClick={openEmailAuth}>
+                                    <svg className="icon" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
+                                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    </svg>
+
+                                    {t("continueWithEmail")}
+                                </button>
                             </div>
 
                             <div className="auth__footer">
@@ -134,6 +506,8 @@ export default function LoginModal({ isOpen, onClose }) {
                     </div>
                 </div>
             </Modal>
+
+            <EmailLoginAuth isOpen={isOpen && isEmailAuthOpen} onBack={() => setIsEmailAuthOpen(false)} onClose={closeEmailAuth} />
 
             <Modal closeTimeoutMS={150} isOpen={isDataModalOpen} onRequestClose={closeDataModal} className="modal active" overlayClassName="modal-overlay">
                 <div className="modal-window">

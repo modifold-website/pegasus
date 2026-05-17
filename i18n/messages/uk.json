@@ -1340,6 +1340,7 @@
   "LoginModal": {
     "close": "Закрити",
     "continueWith": "Продовжити з {provider}",
+    "continueWithEmail": "Продовжити через пошту",
     "errors": {
       "telegram": "Помилка авторизації Telegram",
       "github": "Помилка авторизації GitHub",
@@ -1347,6 +1348,33 @@
       "telegramProcessing": "Помилка обробки повідомлення Telegram",
       "githubProcessing": "Помилка обробки повідомлення GitHub",
       "discordProcessing": "Помилка обробки повідомлення Discord"
+    },
+    "emailAuth": {
+      "close": "Закрити",
+      "back": "Назад",
+      "loginTitle": "Вхід через пошту",
+      "registerTitle": "Створити акаунт",
+      "verifyTitle": "Підтвердьте пошту",
+      "emailPlaceholder": "Пошта",
+      "usernamePlaceholder": "Ім’я або назва",
+      "passwordPlaceholder": "Пароль",
+      "codePlaceholder": "Код із листа",
+      "showPassword": "Показати пароль",
+      "hidePassword": "Сховати пароль",
+      "loginButton": "Увійти",
+      "registerButton": "Створити акаунт",
+      "verifyButton": "Підтвердити",
+      "submitting": "Зачекайте...",
+      "createAccount": "Створити акаунт",
+      "backToLogin": "Увійти через пошту",
+      "codeSent": "Ми надіслали код на вашу пошту.",
+      "verifyDescription": "Введіть 6-значний код, надісланий на {email}. Він діє 5 хвилин.",
+      "captchaMissing": "hCaptcha site key не налаштовано.",
+      "errors": {
+        "login": "Не вдалося увійти через пошту",
+        "register": "Не вдалося почати реєстрацію",
+        "verify": "Не вдалося підтвердити код"
+      }
     },
     "dataModal": {
       "title": "Які дані ми збираємо?",

@@ -1339,6 +1339,7 @@
   "LoginModal": {
     "close": "Cerrar",
     "continueWith": "Continuar con",
+    "continueWithEmail": "Continuar con correo",
     "errors": {
       "telegram": "Error al iniciar sesión con Telegram",
       "github": "Error al iniciar sesión con GitHub",
@@ -1346,6 +1347,33 @@
       "telegramProcessing": "Error al procesar Telegram",
       "githubProcessing": "Error al procesar GitHub",
       "discordProcessing": "Error al procesar Discord"
+    },
+    "emailAuth": {
+      "close": "Cerrar",
+      "back": "Volver",
+      "loginTitle": "Entrar con correo",
+      "registerTitle": "Crear cuenta",
+      "verifyTitle": "Confirma tu correo",
+      "emailPlaceholder": "Correo",
+      "usernamePlaceholder": "Nombre o título",
+      "passwordPlaceholder": "Contraseña",
+      "codePlaceholder": "Código del correo",
+      "showPassword": "Mostrar contraseña",
+      "hidePassword": "Ocultar contraseña",
+      "loginButton": "Entrar",
+      "registerButton": "Crear cuenta",
+      "verifyButton": "Confirmar",
+      "submitting": "Espera...",
+      "createAccount": "Crear cuenta",
+      "backToLogin": "Entrar con correo",
+      "codeSent": "Hemos enviado un código a tu correo.",
+      "verifyDescription": "Introduce el código de 6 dígitos enviado a {email}. Es válido durante 5 minutos.",
+      "captchaMissing": "La site key de hCaptcha no está configurada.",
+      "errors": {
+        "login": "No se pudo entrar con correo",
+        "register": "No se pudo iniciar el registro",
+        "verify": "No se pudo confirmar el código"
+      }
     },
     "dataModal": {
       "title": "Datos adicionales",

@@ -750,6 +750,26 @@
       "title": "Segurança",
       "description": "Gerencie ações sensíveis da conta."
     },
+    "passwordChange": {
+      "title": "Alterar senha",
+      "description": "Digite sua senha atual e uma nova senha para entrar com e-mail.",
+      "currentPlaceholder": "Senha atual",
+      "newPlaceholder": "Nova senha",
+      "showPassword": "Mostrar senha",
+      "hidePassword": "Ocultar senha",
+      "submit": "Alterar senha",
+      "submitting": "Salvando...",
+      "success": "Senha alterada com sucesso",
+      "errors": {
+        "generic": "Não foi possível alterar a senha",
+        "missing_fields": "Digite a senha atual e a nova senha",
+        "password_too_short": "A nova senha deve ter pelo menos 8 caracteres",
+        "user_not_found": "Usuário não encontrado",
+        "password_login_disabled": "O login com senha não está ativado para esta conta",
+        "current_password_incorrect": "A senha atual está incorreta",
+        "password_unchanged": "A nova senha deve ser diferente da senha atual"
+      }
+    },
     "twoFactor": {
       "title": "Autenticação de dois fatores",
       "description": "Adicione uma camada extra de segurança ao entrar.",
@@ -1339,6 +1359,7 @@
   "LoginModal": {
     "close": "Fechar",
     "continueWith": "Continuar com",
+    "continueWithEmail": "Continuar com e-mail",
     "errors": {
       "telegram": "Erro ao entrar com Telegram",
       "github": "Erro ao entrar com GitHub",
@@ -1346,6 +1367,33 @@
       "telegramProcessing": "Erro ao processar o Telegram",
       "githubProcessing": "Erro ao processar o GitHub",
       "discordProcessing": "Erro ao processar o Discord"
+    },
+    "emailAuth": {
+      "close": "Fechar",
+      "back": "Voltar",
+      "loginTitle": "Entrar com e-mail",
+      "registerTitle": "Criar conta",
+      "verifyTitle": "Confirme seu e-mail",
+      "emailPlaceholder": "E-mail",
+      "usernamePlaceholder": "Nome ou título",
+      "passwordPlaceholder": "Senha",
+      "codePlaceholder": "Código do e-mail",
+      "showPassword": "Mostrar senha",
+      "hidePassword": "Ocultar senha",
+      "loginButton": "Entrar",
+      "registerButton": "Criar conta",
+      "verifyButton": "Confirmar",
+      "submitting": "Aguarde...",
+      "createAccount": "Criar conta",
+      "backToLogin": "Entrar com e-mail",
+      "codeSent": "Enviamos um código para seu e-mail.",
+      "verifyDescription": "Digite o código de 6 dígitos enviado para {email}. Ele é válido por 5 minutos.",
+      "captchaMissing": "A site key do hCaptcha não está configurada.",
+      "errors": {
+        "login": "Não foi possível entrar com e-mail",
+        "register": "Não foi possível iniciar o cadastro",
+        "verify": "Não foi possível confirmar o código"
+      }
     },
     "dataModal": {
       "title": "Dados adicionais",

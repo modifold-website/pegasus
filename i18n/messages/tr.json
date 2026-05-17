@@ -749,6 +749,26 @@
       "title": "Güvenlik",
       "description": "Hassas hesap işlemlerini yönetin."
     },
+    "passwordChange": {
+      "title": "Parolayı değiştir",
+      "description": "E-posta ile giriş için mevcut parolanızı ve yeni parolanızı girin.",
+      "currentPlaceholder": "Mevcut parola",
+      "newPlaceholder": "Yeni parola",
+      "showPassword": "Parolayı göster",
+      "hidePassword": "Parolayı gizle",
+      "submit": "Parolayı değiştir",
+      "submitting": "Kaydediliyor...",
+      "success": "Parola başarıyla değiştirildi",
+      "errors": {
+        "generic": "Parola değiştirilemedi",
+        "missing_fields": "Mevcut parolayı ve yeni parolayı girin",
+        "password_too_short": "Yeni parola en az 8 karakter olmalıdır",
+        "user_not_found": "Kullanıcı bulunamadı",
+        "password_login_disabled": "Bu hesap için parola ile giriş etkin değil",
+        "current_password_incorrect": "Mevcut parola yanlış",
+        "password_unchanged": "Yeni parola mevcut paroladan farklı olmalıdır"
+      }
+    },
     "twoFactor": {
       "title": "İki faktörlü doğrulama",
       "description": "Girişte ekstra bir güvenlik katmanı ekleyin.",
@@ -1338,6 +1358,7 @@
   "LoginModal": {
     "close": "Kapat",
     "continueWith": "{provider} ile devam et",
+    "continueWithEmail": "E-posta ile devam et",
     "errors": {
       "telegram": "Telegram ile giriş hatası",
       "github": "GitHub ile giriş hatası",
@@ -1345,6 +1366,33 @@
       "telegramProcessing": "Telegram mesajı işlenirken hata oluştu",
       "githubProcessing": "GitHub mesajı işlenirken hata oluştu",
       "discordProcessing": "Discord mesajı işlenirken hata oluştu"
+    },
+    "emailAuth": {
+      "close": "Kapat",
+      "back": "Geri",
+      "loginTitle": "E-posta ile giriş",
+      "registerTitle": "Hesap oluştur",
+      "verifyTitle": "E-postanızı doğrulayın",
+      "emailPlaceholder": "E-posta",
+      "usernamePlaceholder": "Ad veya başlık",
+      "passwordPlaceholder": "Parola",
+      "codePlaceholder": "E-posta kodu",
+      "showPassword": "Parolayı göster",
+      "hidePassword": "Parolayı gizle",
+      "loginButton": "Giriş yap",
+      "registerButton": "Hesap oluştur",
+      "verifyButton": "Doğrula",
+      "submitting": "Lütfen bekleyin...",
+      "createAccount": "Hesap oluştur",
+      "backToLogin": "E-posta ile giriş",
+      "codeSent": "E-postanıza bir kod gönderdik.",
+      "verifyDescription": "{email} adresine gönderilen 6 haneli kodu girin. Kod 5 dakika geçerlidir.",
+      "captchaMissing": "hCaptcha site key yapılandırılmadı.",
+      "errors": {
+        "login": "E-posta ile giriş yapılamadı",
+        "register": "Kayıt başlatılamadı",
+        "verify": "Kod doğrulanamadı"
+      }
     },
     "dataModal": {
       "title": "Hangi verileri topluyoruz?",

@@ -750,6 +750,26 @@
       "title": "Безопасность",
       "description": "Управляйте важными действиями аккаунта."
     },
+    "passwordChange": {
+      "title": "Смена пароля",
+      "description": "Введите текущий пароль и новый пароль для входа через почту.",
+      "currentPlaceholder": "Текущий пароль",
+      "newPlaceholder": "Новый пароль",
+      "showPassword": "Показать пароль",
+      "hidePassword": "Скрыть пароль",
+      "submit": "Сменить пароль",
+      "submitting": "Сохранение...",
+      "success": "Пароль успешно изменён",
+      "errors": {
+        "generic": "Не удалось изменить пароль",
+        "missing_fields": "Введите текущий и новый пароль",
+        "password_too_short": "Новый пароль должен быть не короче 8 символов",
+        "user_not_found": "Пользователь не найден",
+        "password_login_disabled": "Вход по паролю не включён для этого аккаунта",
+        "current_password_incorrect": "Текущий пароль указан неверно",
+        "password_unchanged": "Новый пароль должен отличаться от текущего"
+      }
+    },
     "twoFactor": {
       "title": "Двухфакторная аутентификация",
       "description": "Добавьте ещё один уровень безопасности при входе.",
@@ -1339,6 +1359,7 @@
   "LoginModal": {
     "close": "Закрыть",
     "continueWith": "Продолжить через {provider}",
+    "continueWithEmail": "Продолжить через почту",
     "errors": {
       "telegram": "Ошибка авторизации Telegram",
       "github": "Ошибка авторизации GitHub",
@@ -1346,6 +1367,33 @@
       "telegramProcessing": "Ошибка обработки сообщения Telegram",
       "githubProcessing": "Ошибка обработки сообщения GitHub",
       "discordProcessing": "Ошибка обработки сообщения Discord"
+    },
+    "emailAuth": {
+      "close": "Закрыть",
+      "back": "Назад",
+      "loginTitle": "Вход через почту",
+      "registerTitle": "Создать аккаунт",
+      "verifyTitle": "Подтвердите почту",
+      "emailPlaceholder": "Почта",
+      "usernamePlaceholder": "Имя или название",
+      "passwordPlaceholder": "Пароль",
+      "codePlaceholder": "Код из письма",
+      "showPassword": "Показать пароль",
+      "hidePassword": "Скрыть пароль",
+      "loginButton": "Войти",
+      "registerButton": "Создать аккаунт",
+      "verifyButton": "Подтвердить",
+      "submitting": "Подождите...",
+      "createAccount": "Создать аккаунт",
+      "backToLogin": "Войти через почту",
+      "codeSent": "Мы отправили код на вашу почту.",
+      "verifyDescription": "Введите 6-значный код, отправленный на {email}. Он действует 5 минут.",
+      "captchaMissing": "hCaptcha site key не настроен.",
+      "errors": {
+        "login": "Не удалось войти через почту",
+        "register": "Не удалось начать регистрацию",
+        "verify": "Не удалось подтвердить код"
+      }
     },
     "dataModal": {
       "title": "Какие данные мы собираем?",

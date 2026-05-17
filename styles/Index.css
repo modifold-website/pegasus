@@ -1321,6 +1321,9 @@ body.light .ripple-effect {
     justify-content: space-between;
     gap: 16px;
 }
+.settings-twofactor-card:not(:last-child) {
+    margin-bottom: 16px;
+}
 .settings-twofactor-title {
     font-size: 17px;
     font-weight: 500;
@@ -1328,6 +1331,16 @@ body.light .ripple-effect {
 }
 .settings-twofactor-description {
     color: var(--theme-color-text-secondary);
+}
+.settings-password-toggle {
+    color: var(--theme-color-text-secondary-light);
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+    padding: 0;
+}
+.settings-password-toggle .icon {
+    fill: none;
 }
 .settings-language-warning {
     display: flex;
@@ -3329,6 +3342,55 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .auth__footer .link-button {
     font-size: 14px;
     line-height: 18px;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+}
+.email-auth {
+    gap: 18px;
+    display: flex;
+    min-height: 470px;
+    justify-content: center;
+    transition: transform .3s cubic-bezier(.22, 1, .36, 1), opacity .3s cubic-bezier(.22, 1, .36, 1);
+    will-change: transform, opacity;
+}
+.email-auth--transitioning {
+    opacity: 0;
+    transform: translateY(8px);
+}
+.email-auth__title {
+    margin: 0;
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--theme-color-text-primary);
+}
+.email-auth__form {
+    display: grid;
+    gap: 12px;
+}
+.email-auth__password-toggle {
+    color: var(--theme-color-text-secondary-light);
+    cursor: pointer;
+}
+.email-auth__password-toggle .icon {
+    fill: none;
+}
+.email-auth__captcha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+.email-auth__status,
+.email-auth__description {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--theme-color-text-secondary);
 }
 .sidebar-item .andropov-media {
     flex-shrink: 0;

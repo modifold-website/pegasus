@@ -750,6 +750,26 @@
       "title": "Seguridad",
       "description": "Administra las acciones sensibles de la cuenta."
     },
+    "passwordChange": {
+      "title": "Cambiar contraseña",
+      "description": "Introduce tu contraseña actual y una nueva contraseña para iniciar sesión con correo.",
+      "currentPlaceholder": "Contraseña actual",
+      "newPlaceholder": "Nueva contraseña",
+      "showPassword": "Mostrar contraseña",
+      "hidePassword": "Ocultar contraseña",
+      "submit": "Cambiar contraseña",
+      "submitting": "Guardando...",
+      "success": "Contraseña cambiada correctamente",
+      "errors": {
+        "generic": "No se pudo cambiar la contraseña",
+        "missing_fields": "Introduce la contraseña actual y la nueva",
+        "password_too_short": "La nueva contraseña debe tener al menos 8 caracteres",
+        "user_not_found": "Usuario no encontrado",
+        "password_login_disabled": "El inicio de sesión con contraseña no está activado para esta cuenta",
+        "current_password_incorrect": "La contraseña actual es incorrecta",
+        "password_unchanged": "La nueva contraseña debe ser distinta de la actual"
+      }
+    },
     "twoFactor": {
       "title": "Autenticación de dos factores",
       "description": "Agrega una capa extra de seguridad al iniciar sesión.",
@@ -1339,6 +1359,7 @@
   "LoginModal": {
     "close": "Cerrar",
     "continueWith": "Continuar con",
+    "continueWithEmail": "Continuar con correo",
     "errors": {
       "telegram": "Error al iniciar sesión con Telegram",
       "github": "Error al iniciar sesión con GitHub",
@@ -1346,6 +1367,33 @@
       "telegramProcessing": "Error al procesar Telegram",
       "githubProcessing": "Error al procesar GitHub",
       "discordProcessing": "Error al procesar Discord"
+    },
+    "emailAuth": {
+      "close": "Cerrar",
+      "back": "Volver",
+      "loginTitle": "Entrar con correo",
+      "registerTitle": "Crear cuenta",
+      "verifyTitle": "Confirma tu correo",
+      "emailPlaceholder": "Correo",
+      "usernamePlaceholder": "Nombre o título",
+      "passwordPlaceholder": "Contraseña",
+      "codePlaceholder": "Código del correo",
+      "showPassword": "Mostrar contraseña",
+      "hidePassword": "Ocultar contraseña",
+      "loginButton": "Entrar",
+      "registerButton": "Crear cuenta",
+      "verifyButton": "Confirmar",
+      "submitting": "Espera...",
+      "createAccount": "Crear cuenta",
+      "backToLogin": "Entrar con correo",
+      "codeSent": "Hemos enviado un código a tu correo.",
+      "verifyDescription": "Introduce el código de 6 dígitos enviado a {email}. Es válido durante 5 minutos.",
+      "captchaMissing": "La site key de hCaptcha no está configurada.",
+      "errors": {
+        "login": "No se pudo entrar con correo",
+        "register": "No se pudo iniciar el registro",
+        "verify": "No se pudo confirmar el código"
+      }
     },
     "dataModal": {
       "title": "Datos adicionales",

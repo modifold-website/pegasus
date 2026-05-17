@@ -1321,6 +1321,9 @@ body.light .ripple-effect {
     justify-content: space-between;
     gap: 16px;
 }
+.settings-twofactor-card:not(:last-child) {
+    margin-bottom: 16px;
+}
 .settings-twofactor-title {
     font-size: 17px;
     font-weight: 500;
@@ -1328,6 +1331,16 @@ body.light .ripple-effect {
 }
 .settings-twofactor-description {
     color: var(--theme-color-text-secondary);
+}
+.settings-password-toggle {
+    color: var(--theme-color-text-secondary-light);
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+    padding: 0;
+}
+.settings-password-toggle .icon {
+    fill: none;
 }
 .settings-language-warning {
     display: flex;

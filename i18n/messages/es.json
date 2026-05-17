@@ -750,6 +750,26 @@
       "title": "Seguridad",
       "description": "Administra las acciones sensibles de la cuenta."
     },
+    "passwordChange": {
+      "title": "Cambiar contraseña",
+      "description": "Introduce tu contraseña actual y una nueva contraseña para iniciar sesión con correo.",
+      "currentPlaceholder": "Contraseña actual",
+      "newPlaceholder": "Nueva contraseña",
+      "showPassword": "Mostrar contraseña",
+      "hidePassword": "Ocultar contraseña",
+      "submit": "Cambiar contraseña",
+      "submitting": "Guardando...",
+      "success": "Contraseña cambiada correctamente",
+      "errors": {
+        "generic": "No se pudo cambiar la contraseña",
+        "missing_fields": "Introduce la contraseña actual y la nueva",
+        "password_too_short": "La nueva contraseña debe tener al menos 8 caracteres",
+        "user_not_found": "Usuario no encontrado",
+        "password_login_disabled": "El inicio de sesión con contraseña no está activado para esta cuenta",
+        "current_password_incorrect": "La contraseña actual es incorrecta",
+        "password_unchanged": "La nueva contraseña debe ser distinta de la actual"
+      }
+    },
     "twoFactor": {
       "title": "Autenticación de dos factores",
       "description": "Agrega una capa extra de seguridad al iniciar sesión.",

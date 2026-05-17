@@ -16,6 +16,7 @@ export default async function Page() {
     const authToken = cookieStore.get("authToken")?.value;
 
     let initialTwoFactor = null;
+    let initialPassword = null;
 
     try {
         const twoFactorResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/2fa/status`, {
@@ -30,9 +31,22 @@ export default async function Page() {
             const data = await twoFactorResponse.json().catch(() => ({}));
             initialTwoFactor = { enabled: Boolean(data?.enabled) };
         }
+
+        const passwordResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/auth/password/status`, {
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+                Accept: "application/json",
+            },
+            cache: "no-store",
+        });
+
+        if(passwordResponse.ok) {
+            const data = await passwordResponse.json().catch(() => ({}));
+            initialPassword = { enabled: Boolean(data?.enabled) };
+        }
     } catch (error) {
         console.error("Failed to preload user settings:", error);
     }
 
-    return <SettingsAccountSecurityPage initialTwoFactor={initialTwoFactor} authToken={authToken} />;
+    return <SettingsAccountSecurityPage initialTwoFactor={initialTwoFactor} initialPassword={initialPassword} authToken={authToken} />;
 }

@@ -750,6 +750,26 @@
       "title": "Security",
       "description": "Manage sensitive account actions."
     },
+    "passwordChange": {
+      "title": "Change password",
+      "description": "Enter your current password and a new password for email sign-in.",
+      "currentPlaceholder": "Current password",
+      "newPlaceholder": "New password",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "submit": "Change password",
+      "submitting": "Saving...",
+      "success": "Password changed successfully",
+      "errors": {
+        "generic": "Failed to change password",
+        "missing_fields": "Enter your current and new password",
+        "password_too_short": "New password must be at least 8 characters long",
+        "user_not_found": "User not found",
+        "password_login_disabled": "Password sign-in is not enabled for this account",
+        "current_password_incorrect": "Current password is incorrect",
+        "password_unchanged": "New password must be different from the current password"
+      }
+    },
     "twoFactor": {
       "title": "Two-factor authentication",
       "description": "Add an extra layer of security when signing in.",

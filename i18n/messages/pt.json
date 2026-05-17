@@ -750,6 +750,26 @@
       "title": "Segurança",
       "description": "Gerencie ações sensíveis da conta."
     },
+    "passwordChange": {
+      "title": "Alterar senha",
+      "description": "Digite sua senha atual e uma nova senha para entrar com e-mail.",
+      "currentPlaceholder": "Senha atual",
+      "newPlaceholder": "Nova senha",
+      "showPassword": "Mostrar senha",
+      "hidePassword": "Ocultar senha",
+      "submit": "Alterar senha",
+      "submitting": "Salvando...",
+      "success": "Senha alterada com sucesso",
+      "errors": {
+        "generic": "Não foi possível alterar a senha",
+        "missing_fields": "Digite a senha atual e a nova senha",
+        "password_too_short": "A nova senha deve ter pelo menos 8 caracteres",
+        "user_not_found": "Usuário não encontrado",
+        "password_login_disabled": "O login com senha não está ativado para esta conta",
+        "current_password_incorrect": "A senha atual está incorreta",
+        "password_unchanged": "A nova senha deve ser diferente da senha atual"
+      }
+    },
     "twoFactor": {
       "title": "Autenticação de dois fatores",
       "description": "Adicione uma camada extra de segurança ao entrar.",

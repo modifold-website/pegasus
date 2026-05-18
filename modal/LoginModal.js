@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
 import { useTranslations } from "next-intl";
+import { toast } from "react-toastify";
 import { useAuth } from "../components/providers/AuthProvider";
 
 if(typeof window !== "undefined") {
@@ -148,7 +149,7 @@ function EmailLoginAuth({ isOpen, onBack, onClose }) {
             const data = await response.json();
 
             if(!response.ok || !data.success) {
-                throw new Error(data.message || t("errors.login"));
+                throw new Error(t("errors.invalidCredentials"));
             }
 
             if(data.twoFactorRequired && data.twoFactorToken) {
@@ -161,7 +162,7 @@ function EmailLoginAuth({ isOpen, onBack, onClose }) {
             await completeLogin(data.token);
             handleClose();
         } catch (error) {
-            setStatusMessage(error.message || t("errors.login"));
+            toast.error(error.message || t("errors.login"));
         } finally {
             setIsSubmitting(false);
         }
@@ -191,7 +192,7 @@ function EmailLoginAuth({ isOpen, onBack, onClose }) {
 
             switchMode("verify", () => setStatusMessage(t("codeSent")));
         } catch (error) {
-            setStatusMessage(error.message || t("errors.register"));
+            toast.error(error.message || t("errors.register"));
             resetCaptcha();
         } finally {
             setIsSubmitting(false);
@@ -218,7 +219,7 @@ function EmailLoginAuth({ isOpen, onBack, onClose }) {
             await completeLogin(data.token);
             handleClose();
         } catch (error) {
-            setStatusMessage(error.message || t("errors.verify"));
+            toast.error(error.message || t("errors.verify"));
         } finally {
             setIsSubmitting(false);
         }
@@ -278,7 +279,7 @@ function EmailLoginAuth({ isOpen, onBack, onClose }) {
         <Modal closeTimeoutMS={150} isOpen={isOpen} onRequestClose={handleClose} className="modal active" overlayClassName="modal-overlay">
             <div className="modal-window">
                 <div className="modal-window__header">
-                    <button className="icon-button modal-window__back" type="button" onClick={handleBack} aria-label={t("back")} style={{ marginLeft: "-8px", marginRight: "16px" }}>
+                    <button className="icon-button modal-window__back" type="button" onClick={handleBack} aria-label={t("back")} style={{ marginLeft: "-14px", marginRight: "16px" }}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ fill: "none" }}>
                             <path d="m15 18-6-6 6-6"></path>
                         </svg>
@@ -429,7 +430,7 @@ export default function LoginModal({ isOpen, onClose }) {
 
     return (
         <>
-            <Modal closeTimeoutMS={150} isOpen={isOpen && !isEmailAuthOpen} onRequestClose={onClose} className="modal active" overlayClassName="modal-overlay">
+            <Modal closeTimeoutMS={150} isOpen={isOpen && !isEmailAuthOpen && !isDataModalOpen} onRequestClose={onClose} className="modal active" overlayClassName="modal-overlay">
                 <div className="modal-window">
                     <div className="modal-window__header">
                         <button className="icon-button modal-window__close" type="button" onClick={onClose} aria-label={t("close")}>
@@ -512,6 +513,8 @@ export default function LoginModal({ isOpen, onClose }) {
             <Modal closeTimeoutMS={150} isOpen={isDataModalOpen} onRequestClose={closeDataModal} className="modal active" overlayClassName="modal-overlay">
                 <div className="modal-window">
                     <div className="modal-window__header">
+                        <h2>{t("dataModal.title")}</h2>
+                        
                         <button className="icon-button modal-window__close" type="button" onClick={closeDataModal} aria-label={t("close")}>
                             <svg className="icon icon--cross" height="24" width="24">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 0 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path>
@@ -520,8 +523,6 @@ export default function LoginModal({ isOpen, onClose }) {
                     </div>
 
                     <div className="modal-window__content">
-                        <h2 style={{ fontSize: "18px", marginBottom: "15px", fontWeight: "500" }}>{t("dataModal.title")}</h2>
-
                         <p style={{ marginBottom: "15px" }}>{t("dataModal.intro")}</p>
 
                         <ul style={{ paddingLeft: "20px", marginBottom: "15px" }}>

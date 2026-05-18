@@ -1391,6 +1391,7 @@
       "verifyDescription": "Введіть 6-значний код, надісланий на {email}. Він діє 5 хвилин.",
       "captchaMissing": "hCaptcha site key не налаштовано.",
       "errors": {
+        "invalidCredentials": "Невірна пошта або пароль",
         "login": "Не вдалося увійти через пошту",
         "register": "Не вдалося почати реєстрацію",
         "verify": "Не вдалося підтвердити код"

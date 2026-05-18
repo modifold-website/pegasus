@@ -1389,6 +1389,7 @@
       "verifyDescription": "{email} adresine gönderilen 6 haneli kodu girin. Kod 5 dakika geçerlidir.",
       "captchaMissing": "hCaptcha site key yapılandırılmadı.",
       "errors": {
+        "invalidCredentials": "E-posta veya şifre hatalı",
         "login": "E-posta ile giriş yapılamadı",
         "register": "Kayıt başlatılamadı",
         "verify": "Kod doğrulanamadı"

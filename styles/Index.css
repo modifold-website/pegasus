@@ -3732,7 +3732,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    gap: 1.5rem;
+    gap: 24px;
     justify-content: center;
 }
 .stats-header {
@@ -5202,6 +5202,19 @@ body.light div .image-container::before {
     }
     .marquee-content .mod-badge {
         border-radius: 20px;
+    }
+    .hero-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .version-filters {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(auto, 0fr));
+    }
+    .version-page {
+        display: flex;
+        flex-direction: column;
+        gap: 12px !important;
     }
 }
 .context-list-option.context-list-option--with-art.color--negative {

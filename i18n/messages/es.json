@@ -1390,6 +1390,7 @@
       "verifyDescription": "Introduce el código de 6 dígitos enviado a {email}. Es válido durante 5 minutos.",
       "captchaMissing": "La site key de hCaptcha no está configurada.",
       "errors": {
+        "invalidCredentials": "Correo o contraseña incorrectos",
         "login": "No se pudo entrar con correo",
         "register": "No se pudo iniciar el registro",
         "verify": "No se pudo confirmar el código"

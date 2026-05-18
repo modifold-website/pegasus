@@ -430,7 +430,7 @@ export default function LoginModal({ isOpen, onClose }) {
 
     return (
         <>
-            <Modal closeTimeoutMS={150} isOpen={isOpen && !isEmailAuthOpen} onRequestClose={onClose} className="modal active" overlayClassName="modal-overlay">
+            <Modal closeTimeoutMS={150} isOpen={isOpen && !isEmailAuthOpen && !isDataModalOpen} onRequestClose={onClose} className="modal active" overlayClassName="modal-overlay">
                 <div className="modal-window">
                     <div className="modal-window__header">
                         <button className="icon-button modal-window__close" type="button" onClick={onClose} aria-label={t("close")}>
@@ -513,6 +513,8 @@ export default function LoginModal({ isOpen, onClose }) {
             <Modal closeTimeoutMS={150} isOpen={isDataModalOpen} onRequestClose={closeDataModal} className="modal active" overlayClassName="modal-overlay">
                 <div className="modal-window">
                     <div className="modal-window__header">
+                        <h2>{t("dataModal.title")}</h2>
+                        
                         <button className="icon-button modal-window__close" type="button" onClick={closeDataModal} aria-label={t("close")}>
                             <svg className="icon icon--cross" height="24" width="24">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 0 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path>
@@ -521,8 +523,6 @@ export default function LoginModal({ isOpen, onClose }) {
                     </div>
 
                     <div className="modal-window__content">
-                        <h2 style={{ fontSize: "18px", marginBottom: "15px", fontWeight: "500" }}>{t("dataModal.title")}</h2>
-
                         <p style={{ marginBottom: "15px" }}>{t("dataModal.intro")}</p>
 
                         <ul style={{ paddingLeft: "20px", marginBottom: "15px" }}>

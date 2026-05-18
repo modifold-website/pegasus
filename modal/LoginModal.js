@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
 import { useTranslations } from "next-intl";
+import { toast } from "react-toastify";
 import { useAuth } from "../components/providers/AuthProvider";
 
 if(typeof window !== "undefined") {
@@ -148,7 +149,7 @@ function EmailLoginAuth({ isOpen, onBack, onClose }) {
             const data = await response.json();
 
             if(!response.ok || !data.success) {
-                throw new Error(data.message || t("errors.login"));
+                throw new Error(t("errors.invalidCredentials"));
             }
 
             if(data.twoFactorRequired && data.twoFactorToken) {
@@ -161,7 +162,7 @@ function EmailLoginAuth({ isOpen, onBack, onClose }) {
             await completeLogin(data.token);
             handleClose();
         } catch (error) {
-            setStatusMessage(error.message || t("errors.login"));
+            toast.error(error.message || t("errors.login"));
         } finally {
             setIsSubmitting(false);
         }
@@ -191,7 +192,7 @@ function EmailLoginAuth({ isOpen, onBack, onClose }) {
 
             switchMode("verify", () => setStatusMessage(t("codeSent")));
         } catch (error) {
-            setStatusMessage(error.message || t("errors.register"));
+            toast.error(error.message || t("errors.register"));
             resetCaptcha();
         } finally {
             setIsSubmitting(false);
@@ -218,7 +219,7 @@ function EmailLoginAuth({ isOpen, onBack, onClose }) {
             await completeLogin(data.token);
             handleClose();
         } catch (error) {
-            setStatusMessage(error.message || t("errors.verify"));
+            toast.error(error.message || t("errors.verify"));
         } finally {
             setIsSubmitting(false);
         }

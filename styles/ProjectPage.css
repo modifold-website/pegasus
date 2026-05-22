@@ -419,6 +419,7 @@
     justify-content: left;
     padding: 0.75rem;
     align-items: center;
+    border-radius: 14px;
     transition: background-color .2s ease, filter .2s ease, outline .2s ease, transform 120ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .all-versions .version-button .download-button {
@@ -656,6 +657,17 @@
     line-height: 19px;
     border-radius: 999px;
     color: var(--theme-color-text-secondary);
+}
+.version__game-versions-range {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.version__game-versions-separator {
+    color: var(--theme-color-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
 }
 .version__game-platform {
     background: var(--theme-color-background);

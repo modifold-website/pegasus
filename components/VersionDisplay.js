@@ -5,6 +5,14 @@ const defaultGameVersions = [];
 
 const mcVersionRegex = /^([0-9]+.[0-9]+)(.[0-9]+)?$/;
 
+function createSingleVersion(label) {
+    return { type: "single", label };
+}
+
+function createVersionRange(start, end) {
+    return { type: "range", start, end };
+}
+
 function formatVersion(major, minor) {
     return minor === 0 ? major : `${major}.${minor}`;
 }
@@ -60,9 +68,9 @@ function groupConsecutiveIndices(versions, referenceList) {
         const current = sortedList[i];
         if(referenceMap.get(current) !== referenceMap.get(previous) + 1) {
             if(start === previous) {
-                ranges.push(start);
+                ranges.push(createSingleVersion(start));
             } else {
-                ranges.push(`${start}-${previous}`);
+                ranges.push(createVersionRange(start, previous));
             }
 
             start = current;
@@ -72,9 +80,9 @@ function groupConsecutiveIndices(versions, referenceList) {
     }
 
     if(start === previous) {
-        ranges.push(start);
+        ranges.push(createSingleVersion(start));
     } else {
-        ranges.push(`${start}-${previous}`);
+        ranges.push(createVersionRange(start, previous));
     }
 
     return ranges;
@@ -110,14 +118,14 @@ function formatVersionsForDisplay(gameVersions, allGameVersions = defaultGameVer
 
     const releaseVersionsAsRanges = projectVersionsGrouped.map(({ major, minor }) => {
         if(minor.length === 1) {
-            return formatVersion(major, minor[0]);
+            return createSingleVersion(formatVersion(major, minor[0]));
         }
 
         if(allReleasesGrouped.find((x) => x.major === major).minor.every((value, index) => value === minor[index])) {
-            return `${major}.x`;
+            return createSingleVersion(`${major}.x`);
         }
 
-        return `${formatVersion(major, minor[0])}-${formatVersion(major, minor[minor.length - 1])}`;
+        return createVersionRange(formatVersion(major, minor[0]), formatVersion(major, minor[minor.length - 1]));
     });
 
     const legacyVersionsAsRanges = groupConsecutiveIndices(
@@ -144,9 +152,17 @@ export default function VersionDisplay({ gameVersions, allGameVersions = default
         <>
             {formattedVersions.length > 0 ? (
                 formattedVersions.map((version, index) => (
-                    <span key={index} className="version__game-versions">
-                        {version}
-                    </span>
+                    version.type === "range" ? (
+                        <span key={index} className="version__game-versions-range">
+                            <span className="version__game-versions">{version.start}</span>
+                            <span className="version__game-versions-separator" aria-hidden="true">—</span>
+                            <span className="version__game-versions">{version.end}</span>
+                        </span>
+                    ) : (
+                        <span key={index} className="version__game-versions">
+                            {version.label}
+                        </span>
+                    )
                 ))
             ) : (
                 <span className="version__game-versions">{t("notSpecified")}</span>

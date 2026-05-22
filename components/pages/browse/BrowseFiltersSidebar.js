@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import CategoryIcon from "@/utils/CategoryIcon";
 
 const normalizeTags = (tags) => tags.map((tag) => (typeof tag === "string" ? { name: tag } : tag)).filter((tag) => tag && typeof tag.name === "string");
@@ -21,6 +21,7 @@ export default function BrowseFiltersSidebar({ t, tags = [], selectedTags = [], 
     const normalizedGameVersions = useMemo(() => normalizeGameVersionItems(gameVersions), [gameVersions]);
     const [versionSearch, setVersionSearch] = useState("");
     const [showAllVersions, setShowAllVersions] = useState(false);
+    const versionListRef = useRef(null);
     const hasSelectedFilters = selectedTags.length > 0 || selectedGameVersions.length > 0;
     const filteredGameVersions = useMemo(() => {
         const query = versionSearch.trim().toLowerCase();
@@ -32,6 +33,22 @@ export default function BrowseFiltersSidebar({ t, tags = [], selectedTags = [], 
 
         return visibleVersions.filter((item) => item.version.toLowerCase().includes(query));
     }, [normalizedGameVersions, showAllVersions, versionSearch]);
+    const updateVersionListFade = useCallback(() => {
+        const list = versionListRef.current;
+        if(!list) {
+            return;
+        }
+
+        const canScrollTop = list.scrollTop > 1;
+        const canScrollBottom = list.scrollTop + list.clientHeight < list.scrollHeight - 1;
+
+        list.style.setProperty("--_top-fade-height", canScrollTop ? "var(--_fade-height)" : "0px");
+        list.style.setProperty("--_bottom-fade-height", canScrollBottom ? "var(--_fade-height)" : "0px");
+    }, []);
+
+    useEffect(() => {
+        updateVersionListFade();
+    }, [filteredGameVersions, updateVersionListFade]);
 
     return (
         <div className="sidebar--browse">
@@ -49,7 +66,7 @@ export default function BrowseFiltersSidebar({ t, tags = [], selectedTags = [], 
                             <input type="search" value={versionSearch} onChange={(event) => setVersionSearch(event.target.value)} placeholder={t("placeholders.versionSearch")} aria-label={t("gameVersions")} />
                         </label>
 
-                        <ul className="category-list browse-version-list" role="list">
+                        <ul ref={versionListRef} className="category-list browse-version-list" role="list" onScroll={updateVersionListFade}>
                             {filteredGameVersions.map((item) => {
                                 const isSelected = selectedGameVersions.includes(item.version);
 

@@ -3949,11 +3949,17 @@ input[type="file"]::-webkit-file-upload-button:hover {
     color: var(--theme-color-text-secondary);
 }
 .browse-version-list {
+    --_fade-height: 3rem;
+    --_top-fade-height: 0px;
+    --_bottom-fade-height: 0px;
     max-height: 260px;
     overflow-y: auto;
     padding-right: 4px;
     scrollbar-color: var(--theme-color-background) transparent;
     scrollbar-width: thin;
+    transition: --_top-fade-height .05s linear, --_bottom-fade-height .05s linear;
+    -webkit-mask-image: linear-gradient(transparent, #000 var(--_top-fade-height), #000 calc(100% - var(--_bottom-fade-height)), transparent 100%);
+    mask-image: linear-gradient(transparent, #000 var(--_top-fade-height), #000 calc(100% - var(--_bottom-fade-height)), transparent 100%);
 }
 .browse-version-option {
     min-height: 34px;
@@ -3961,7 +3967,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .browse-version-checkbox {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     border: 0;
     background: transparent;
     color: var(--theme-color-text-primary);
@@ -3971,7 +3977,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
     text-align: left;
     font: inherit;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     outline-offset: 4px;
 }
 .browse-version-checkbox:hover,
@@ -3991,8 +3997,8 @@ input[type="file"]::-webkit-file-upload-button:hover {
     flex-shrink: 0;
 }
 .browse-version-checkbox__box--checked {
-    background: #00AF5C;
-    border-color: #00AF5C;
+    background: #307df0;
+    border-color: #307df0;
 }
 .browse-version-checkbox__box svg {
     width: 14px;

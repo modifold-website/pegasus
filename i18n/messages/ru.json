@@ -800,12 +800,15 @@
   },
   "BrowsePage": {
     "gameVersion": "Версия игры",
+    "gameVersions": "Версии игры",
+    "showAllVersions": "Показывать все версии",
     "loader": "Загрузчик",
     "categories": "Категории",
     "clearFilters": "Сбросить фильтры",
     "clearAllFilters": "Сбросить все фильтры",
     "placeholders": {
-      "search": "Поиск проектов..."
+      "search": "Поиск проектов...",
+      "versionSearch": "Поиск..."
     },
     "sort": {
       "downloads": "По скачиваниям",

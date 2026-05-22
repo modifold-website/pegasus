@@ -20,13 +20,14 @@ function parseQueryString(queryString) {
 
     return {
         tags: params.getAll("c"),
+        gameVersions: params.getAll("v"),
         sort: ["downloads", "recent", "updated"].includes(rawSort) ? rawSort : "downloads",
         search: params.get("q") || "",
         page: Number.isFinite(rawPage) && rawPage > 0 ? rawPage : 1,
     };
 }
 
-function buildQueryString({ sort, search, selectedTags, currentPage }) {
+function buildQueryString({ sort, search, selectedTags, selectedGameVersions, currentPage }) {
     const params = new URLSearchParams();
 
     if(search) {
@@ -42,6 +43,7 @@ function buildQueryString({ sort, search, selectedTags, currentPage }) {
     }
 
     [...selectedTags].sort().forEach((tag) => params.append("c", tag));
+    [...selectedGameVersions].sort().forEach((version) => params.append("v", version));
 
     return params.toString();
 }
@@ -49,13 +51,14 @@ function buildQueryString({ sort, search, selectedTags, currentPage }) {
 function normalizeInitialState(initialState) {
     return {
         tags: Array.isArray(initialState?.tags) ? initialState.tags : [],
+        gameVersions: Array.isArray(initialState?.gameVersions) ? initialState.gameVersions : [],
         sort: ["downloads", "recent", "updated"].includes(initialState?.sort) ? initialState.sort : "downloads",
         search: typeof initialState?.search === "string" ? initialState.search : "",
         page: Number.isFinite(initialState?.page) && initialState.page > 0 ? initialState.page : 1,
     };
 }
 
-export default function BrowsePage({ projectType, initialState = null, initialData = null, initialCardView = "list", tags = [], recommendedProjects = [], activeModJams = [], initialRecommendedCollapsed = false }) {
+export default function BrowsePage({ projectType, initialState = null, initialData = null, initialCardView = "list", tags = [], gameVersions = [], recommendedProjects = [], activeModJams = [], initialRecommendedCollapsed = false }) {
     const t = useTranslations("BrowsePage");
     const tLabels = useTranslations("CategoryLabels");
     const router = useRouter();
@@ -71,6 +74,7 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
     const [search, setSearch] = useState(normalizedInitialState.search);
     const [searchInput, setSearchInput] = useState(normalizedInitialState.search);
     const [selectedTags, setSelectedTags] = useState(normalizedInitialState.tags);
+    const [selectedGameVersions, setSelectedGameVersions] = useState(normalizedInitialState.gameVersions);
     const [loading, setLoading] = useState(!hasInitialData);
     const [currentPage, setCurrentPage] = useState(normalizedInitialState.page);
     const [totalPages, setTotalPages] = useState(() => initialData?.totalPages || 1);
@@ -93,6 +97,7 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
         const parsed = parseQueryString(urlQueryString);
 
         setSelectedTags(parsed.tags);
+        setSelectedGameVersions(parsed.gameVersions);
         setSort(parsed.sort);
         setSearch(parsed.search);
         setSearchInput(parsed.search);
@@ -114,8 +119,9 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
         sort,
         search,
         selectedTags,
+        selectedGameVersions,
         currentPage,
-    }), [sort, search, selectedTags, currentPage]);
+    }), [sort, search, selectedTags, selectedGameVersions, currentPage]);
 
     useEffect(() => {
         if(nextQueryString === urlQueryString) {
@@ -130,9 +136,10 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
         sort,
         search,
         tags: [...selectedTags].sort().join(","),
+        game_versions: [...selectedGameVersions].sort().join(","),
         page: currentPage,
         limit: 20,
-    }), [projectType, sort, search, selectedTags, currentPage]);
+    }), [projectType, sort, search, selectedTags, selectedGameVersions, currentPage]);
 
     const apiKey = useMemo(() => JSON.stringify(apiParams), [apiParams]);
 
@@ -200,16 +207,17 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
         setCurrentPage(1);
     };
 
-    const clearFilters = () => {
-        setSelectedTags([]);
-        setSearch("");
-        setSearchInput("");
-        setSort("downloads");
+    const toggleGameVersion = (version) => {
+        setSelectedGameVersions((prev) => prev.includes(version) ? prev.filter((item) => item !== version) : [...prev, version]);
         setCurrentPage(1);
     };
 
-    const clearSelectedTags = () => {
+    const clearFilters = () => {
         setSelectedTags([]);
+        setSelectedGameVersions([]);
+        setSearch("");
+        setSearchInput("");
+        setSort("downloads");
         setCurrentPage(1);
     };
 
@@ -247,7 +255,7 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
 
     return (
         <div className="browse-page">
-            <BrowseFiltersSidebar t={t} tags={tags} selectedTags={selectedTags} onToggleTag={toggleTag} onClearFilters={clearFilters} getCategoryLabel={formatCategoryLabel} />
+            <BrowseFiltersSidebar t={t} tags={tags} selectedTags={selectedTags} onToggleTag={toggleTag} gameVersions={gameVersions} selectedGameVersions={selectedGameVersions} onToggleGameVersion={toggleGameVersion} onClearFilters={clearFilters} getCategoryLabel={formatCategoryLabel} />
 
             <div className="browse-content">
                 {projectType === "mod" && (recommendedProjects.length > 0 || activeModJams.length > 0) && (
@@ -256,10 +264,10 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
 
                 <BrowseToolbar t={t} searchInput={searchInput} onSearchChange={handleSearchChange} cardView={cardView} onToggleCardView={toggleCardView} sort={sort} onSortSelect={handleSortSelect} />
 
-                {selectedTags.length > 0 && (
+                {(selectedTags.length > 0 || selectedGameVersions.length > 0) && (
                     <div className="browse-selected-filters">
-                        {selectedTags.length > 1 && (
-                            <button className="browse-selected-filter-chip" type="button" onClick={clearSelectedTags}>
+                        {selectedTags.length + selectedGameVersions.length > 1 && (
+                            <button className="browse-selected-filter-chip" type="button" onClick={clearFilters}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-x-icon lucide-circle-x">
                                     <circle cx="12" cy="12" r="10"/>
                                     <path d="m15 9-6 6"/>
@@ -278,6 +286,17 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
                                 </svg>
 
                                 {formatCategoryLabel(tag)}
+                            </button>
+                        ))}
+
+                        {selectedGameVersions.map((version) => (
+                            <button key={version} className="browse-selected-filter-chip" type="button" onClick={() => toggleGameVersion(version)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x-icon lucide-x">
+                                    <path d="M18 6 6 18"/>
+                                    <path d="m6 6 12 12"/>
+                                </svg>
+
+                                {version}
                             </button>
                         ))}
                     </div>

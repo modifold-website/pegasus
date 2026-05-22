@@ -187,10 +187,7 @@ export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoadi
                                                         key={version}
                                                         className={`context-list-option ${formData.game_versions.includes(version) ? "context-list-option--selected" : ""}`}
                                                         style={{ "--press-duration": "140ms" }}
-                                                        onClick={() => {
-                                                            handleToggleGameVersion(version);
-                                                            toggleGameVersionsPopover();
-                                                        }}
+                                                        onClick={() => handleToggleGameVersion(version)}
                                                     >
                                                         <div className="context-list-option__label">{version}</div>
                                                     </div>

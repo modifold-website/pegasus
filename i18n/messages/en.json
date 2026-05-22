@@ -800,12 +800,15 @@
   },
   "BrowsePage": {
     "gameVersion": "Game version",
+    "gameVersions": "Game Versions",
+    "showAllVersions": "Show all versions",
     "loader": "Loader",
     "categories": "Categories",
     "clearFilters": "Clear Filters",
     "clearAllFilters": "Clear all filters",
     "placeholders": {
-      "search": "Search projects..."
+      "search": "Search projects...",
+      "versionSearch": "Search..."
     },
     "sort": {
       "downloads": "Most Downloads",

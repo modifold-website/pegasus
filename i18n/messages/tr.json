@@ -799,12 +799,15 @@
   },
   "BrowsePage": {
     "gameVersion": "Oyun sürümü",
+    "gameVersions": "Oyun sürümleri",
+    "showAllVersions": "Tüm sürümleri göster",
     "loader": "Yükleyici",
     "categories": "Kategoriler",
     "clearFilters": "Filtreleri temizle",
     "clearAllFilters": "Tüm filtreleri temizle",
     "placeholders": {
-      "search": "Projeleri ara..."
+      "search": "Projeleri ara...",
+      "versionSearch": "Ara..."
     },
     "sort": {
       "downloads": "En çok indirilen",

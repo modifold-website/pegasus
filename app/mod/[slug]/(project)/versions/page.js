@@ -2,6 +2,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import VersionsPage from "@/components/pages/VersionsPage";
 import { getProjectBasePath } from "@/utils/projectRoutes";
+import { fetchGameVersions } from "@/utils/gameVersions";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
@@ -81,5 +82,7 @@ export default async function Page({ params }) {
         }
     } catch {}
 
-    return <VersionsPage project={{ ...project, members }} authToken={authToken} />;
+    const gameVersions = await fetchGameVersions();
+
+    return <VersionsPage project={{ ...project, members }} authToken={authToken} gameVersions={gameVersions} />;
 }

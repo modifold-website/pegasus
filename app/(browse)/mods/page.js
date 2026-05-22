@@ -1,6 +1,7 @@
 ﻿import { getLocale, getTranslations } from "next-intl/server";
 import { cookies } from "next/headers";
 import BrowsePage from "@/components/pages/BrowsePage";
+import { fetchGameVersionItems } from "@/utils/gameVersions";
 
 export async function generateMetadata() {
     const resolvedLocale = await getLocale();
@@ -33,6 +34,7 @@ function parseBrowseSearchParams(searchParams) {
     };
 
     const tags = getValues("c");
+    const gameVersions = getValues("v");
     const search = getValues("q")[0] || "";
     const sortCandidate = getValues("sort")[0] || "";
     const sort = ["downloads", "recent", "updated"].includes(sortCandidate) ? sortCandidate : "downloads";
@@ -43,6 +45,7 @@ function parseBrowseSearchParams(searchParams) {
         sort,
         search,
         tags,
+        gameVersions,
         page,
     };
 }
@@ -79,17 +82,20 @@ export default async function ModsPage({ searchParams }) {
     const initialCardView = cookieStore.get("browse_card_view_mod")?.value === "media" ? "media" : "list";
     const initialRecommendedCollapsed = cookieStore.get("browse_recommended_collapsed_mod")?.value === "1";
     const sortedTags = [...initialState.tags].sort();
+    const sortedGameVersions = [...initialState.gameVersions].sort();
     const apiParams = {
         type: "mod",
         sort: initialState.sort,
         search: initialState.search,
         tags: sortedTags.join(","),
+        game_versions: sortedGameVersions.join(","),
         page: initialState.page,
         limit: 20,
     };
     const initialApiKey = JSON.stringify(apiParams);
     let initialData = null;
     let initialTags = [];
+    let gameVersions = [];
     let recommendedProjects = [];
     let activeModJams = [];
 
@@ -99,6 +105,7 @@ export default async function ModsPage({ searchParams }) {
             sort: apiParams.sort,
             search: apiParams.search,
             tags: apiParams.tags,
+            game_versions: apiParams.game_versions,
             page: String(apiParams.page),
             limit: String(apiParams.limit),
         });
@@ -135,6 +142,8 @@ export default async function ModsPage({ searchParams }) {
         console.error("Failed to fetch mod tags:", error);
     }
 
+    gameVersions = await fetchGameVersionItems();
+
     try {
         const recommendedResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/recommended?type=mod`, {
             next: { revalidate: 60 },
@@ -156,5 +165,5 @@ export default async function ModsPage({ searchParams }) {
         console.error("Failed to fetch active mod jams for browse hero:", error);
     }
 
-    return <BrowsePage projectType="mod" initialState={initialState} initialData={initialData} initialCardView={initialCardView} tags={initialTags} recommendedProjects={recommendedProjects} activeModJams={activeModJams} initialRecommendedCollapsed={initialRecommendedCollapsed} />;
+    return <BrowsePage projectType="mod" initialState={initialState} initialData={initialData} initialCardView={initialCardView} tags={initialTags} gameVersions={gameVersions} recommendedProjects={recommendedProjects} activeModJams={activeModJams} initialRecommendedCollapsed={initialRecommendedCollapsed} />;
 }

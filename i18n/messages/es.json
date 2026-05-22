@@ -800,12 +800,15 @@
   },
   "BrowsePage": {
     "gameVersion": "Versión del juego",
+    "gameVersions": "Versiones del juego",
+    "showAllVersions": "Mostrar todas las versiones",
     "loader": "Loader",
     "categories": "Categorías",
     "clearFilters": "Limpiar filtros",
     "clearAllFilters": "Limpiar todos los filtros",
     "placeholders": {
-      "search": "Buscar"
+      "search": "Buscar",
+      "versionSearch": "Buscar..."
     },
     "sort": {
       "downloads": "Descargas",

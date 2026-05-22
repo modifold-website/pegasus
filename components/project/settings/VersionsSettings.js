@@ -12,10 +12,7 @@ import VersionUploadModal from "../../../modal/VersionUploadModal";
 import VersionEditMetadataModal from "../../../modal/VersionEditMetadataModal";
 import VersionEditDetailsModal from "../../../modal/VersionEditDetailsModal";
 import VersionEditFilesModal from "../../../modal/VersionEditFilesModal";
-
-const gameVersions = [
-    "Early Access",
-];
+import { DEFAULT_GAME_VERSIONS, sortByKnownGameVersions } from "@/utils/gameVersions";
 
 const loaders = [
     "Vanilla",
@@ -45,7 +42,7 @@ const createEmptyDependencyDraft = () => ({
     dependency_type: "required",
 });
 
-export default function VersionsSettings({ project, authToken }) {
+export default function VersionsSettings({ project, authToken, gameVersions = DEFAULT_GAME_VERSIONS }) {
     const t = useTranslations("SettingsProjectPage");
     const tProject = useTranslations("ProjectPage");
 
@@ -740,8 +737,8 @@ export default function VersionsSettings({ project, authToken }) {
             return String(version.game_versions).split(",").map((v) => v.trim()).filter(Boolean);
         });
 
-        return [...new Set(items)].sort((a, b) => gameVersions.indexOf(a) - gameVersions.indexOf(b));
-    }, [versions]);
+        return sortByKnownGameVersions([...new Set(items)], gameVersions);
+    }, [versions, gameVersions]);
 
     const availableChannels = useMemo(() => {
         const items = versions.map((v) => v?.release_channel).filter(Boolean);
@@ -975,7 +972,7 @@ export default function VersionsSettings({ project, authToken }) {
                                             <span className="version__game-platform">{tProject("versions.notSpecified")}</span>
                                         )}
 
-                                        <VersionDisplay gameVersions={version.game_versions ? version.game_versions.split(",").map((v) => v.trim()).filter(Boolean) : []} />
+                                        <VersionDisplay gameVersions={version.game_versions ? version.game_versions.split(",").map((v) => v.trim()).filter(Boolean) : []} allGameVersions={gameVersions} />
                                     </span>
 
                                     <div className="version__metadata">

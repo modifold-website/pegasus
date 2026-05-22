@@ -62,6 +62,24 @@ export default function HomeAnalyticsSection({ currentLocale, t }) {
 	return (
 		<>
 			<section className="creator-analytics-section">
+				<div className="creator-analytics-copy">
+					<span className="home-pill home-pill--analytics">{t("analyticsSection.badge")}</span>
+
+					<h2 className="creator-analytics-title">{t("analyticsSection.title")}</h2>
+
+					<p className="creator-analytics-lead">{t("analyticsSection.lead")}</p>
+
+					<button className="button button--size-xl button--type-secondary button--with-icon button--active-transform" type="button" onClick={() => setIsOnlineInfoModalOpen(true)} style={{ "--icon-size": "20px" }}>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-question-mark-icon lucide-circle-question-mark">
+							<circle cx="12" cy="12" r="10"></circle>
+							<path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+							<path d="M12 17h.01"></path>
+						</svg>
+
+						{t("analyticsSection.learnMore")}
+					</button>
+				</div>
+				
 				<div className="creator-analytics-card" aria-label={t("analyticsSection.chartLabel")}>
 					<div className="creator-analytics-metrics">
 						<div>
@@ -128,24 +146,6 @@ export default function HomeAnalyticsSection({ currentLocale, t }) {
 							</AreaChart>
 						</ResponsiveContainer>
 					</div>
-				</div>
-
-				<div className="creator-analytics-copy">
-					<span className="home-pill home-pill--analytics">{t("analyticsSection.badge")}</span>
-
-					<h2 className="creator-analytics-title">{t("analyticsSection.title")}</h2>
-
-					<p className="creator-analytics-lead">{t("analyticsSection.lead")}</p>
-
-					<button className="button button--size-xl button--type-secondary button--with-icon button--active-transform" type="button" onClick={() => setIsOnlineInfoModalOpen(true)} style={{ "--icon-size": "20px" }}>
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-question-mark-icon lucide-circle-question-mark">
-							<circle cx="12" cy="12" r="10"></circle>
-							<path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-							<path d="M12 17h.01"></path>
-						</svg>
-
-						{t("analyticsSection.learnMore")}
-					</button>
 				</div>
 			</section>
 

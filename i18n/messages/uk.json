@@ -448,6 +448,17 @@
       "activeServers": "Активні сервери",
       "onlineNow": "Онлайн зараз",
       "learnMore": "Докладніше"
+    },
+    "notificationsPreview": {
+      "badge": "Для гравців",
+      "title": "Не пропускайте нові версії",
+      "lead": "Підписуйтеся на авторів і проєкти, щоб отримувати сповіщення про релізи та оновлення улюблених модів.",
+      "panelTitle": "Сповіщення",
+      "releasedVersion": "випустив версію {version} для",
+      "days": {
+        "yesterday": "Вчора",
+        "previous": "20 травня 2026"
+      }
     }
   },
   "ProjectCreationModal": {

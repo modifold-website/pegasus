@@ -447,6 +447,17 @@
       "activeServers": "Active servers",
       "onlineNow": "Online now",
       "learnMore": "Learn more"
+    },
+    "notificationsPreview": {
+      "badge": "For players",
+      "title": "Never miss a new version",
+      "lead": "Follow creators and projects to get notified when your favorite mods release updates.",
+      "panelTitle": "Notifications",
+      "releasedVersion": "released version {version} for",
+      "days": {
+        "yesterday": "Yesterday",
+        "previous": "May 20, 2026"
+      }
     }
   },
   "ProjectCreationModal": {

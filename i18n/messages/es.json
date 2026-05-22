@@ -447,6 +447,17 @@
       "activeServers": "Servidores activos",
       "onlineNow": "Online ahora",
       "learnMore": "Más información"
+    },
+    "notificationsPreview": {
+      "badge": "Para jugadores",
+      "title": "No te pierdas nuevas versiones",
+      "lead": "Sigue a creadores y proyectos para recibir notificaciones cuando tus mods favoritos publiquen actualizaciones.",
+      "panelTitle": "Notificaciones",
+      "releasedVersion": "publicó la versión {version} para",
+      "days": {
+        "yesterday": "Ayer",
+        "previous": "20 de mayo de 2026"
+      }
     }
   },
   "ProjectCreationModal": {

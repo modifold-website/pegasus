@@ -446,6 +446,17 @@
       "activeServers": "Aktif sunucular",
       "onlineNow": "Şu an çevrimiçi",
       "learnMore": "Daha fazla bilgi"
+    },
+    "notificationsPreview": {
+      "badge": "Oyuncular için",
+      "title": "Yeni sürümleri kaçırmayın",
+      "lead": "Favori modlarınız güncelleme yayınladığında bildirim almak için üreticileri ve projeleri takip edin.",
+      "panelTitle": "Bildirimler",
+      "releasedVersion": "{version} sürümünü yayınladı:",
+      "days": {
+        "yesterday": "Dün",
+        "previous": "20 Mayıs 2026"
+      }
     }
   },
   "ProjectCreationModal": {

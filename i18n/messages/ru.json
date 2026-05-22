@@ -447,6 +447,17 @@
       "activeServers": "Активные серверы",
       "onlineNow": "Онлайн сейчас",
       "learnMore": "Подробнее"
+    },
+    "notificationsPreview": {
+      "badge": "Для игроков",
+      "title": "Не пропускайте новые версии",
+      "lead": "Подписывайтесь на авторов и проекты, чтобы получать уведомления о новых релизах и обновлениях любимых модов.",
+      "panelTitle": "Уведомления",
+      "releasedVersion": "выпустил версию {version} для",
+      "days": {
+        "yesterday": "Вчера",
+        "previous": "20 мая 2026"
+      }
     }
   },
   "ProjectCreationModal": {

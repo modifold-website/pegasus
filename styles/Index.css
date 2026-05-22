@@ -4595,6 +4595,10 @@ body.light div .image-container::before {
     color: #F2749A;
     background: rgb(242 116 154 / 20%);
 }
+.home-pill--notifications {
+    color: #307df0;
+    background: rgb(48 125 240 / 15%);
+}
 .home-section-title {
     font-size: 44px;
     line-height: 1.06;
@@ -4731,9 +4735,45 @@ body.light div .image-container::before {
     line-height: 125%;
     color: var(--theme-color-text-secondary);
 }
+.home-notifications-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr) ;
+    align-items: center;
+    gap: 58px;
+    padding: 4.5rem 0 2rem;
+}
+.home-notifications-copy {
+    min-width: 0;
+}
+.home-notifications-title {
+    max-width: 620px;
+    margin-bottom: 24px;
+    font-size: 44px;
+    font-weight: 600;
+    line-height: 1.08;
+}
+.home-notifications-lead {
+    max-width: 650px;
+    color: var(--theme-color-text-secondary);
+    font-size: 24px;
+    line-height: 1.3;
+}
+.home-notification-item {
+    border-radius: 18px;
+    padding: 14px;
+}
+.home-notification-actor {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.home-notification-actor img {
+    width: 18px;
+    display: inline-block;
+}
 .creator-analytics-section {
     display: grid;
-    grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr);
+    grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr);
     align-items: center;
     gap: 58px;
     padding: 5.5rem 0 3rem;
@@ -4810,6 +4850,14 @@ body.light div .image-container::before {
     }
     .creator-feature-card h3 {
         font-size: 30px;
+    }
+    .home-notifications-section {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    .home-notifications-title,
+    .home-notifications-lead {
+        max-width: none;
     }
     .creator-analytics-section {
         grid-template-columns: 1fr;
@@ -4888,6 +4936,24 @@ body.light div .image-container::before {
     .creator-feature-icon svg {
         width: 26px;
         height: 26px;
+    }
+    .home-notifications-section {
+        padding: 2.5rem 0 1.25rem;
+        gap: 20px;
+    }
+    .home-notifications-title {
+        margin-bottom: 14px;
+        font-size: clamp(28px, 8vw, 36px);
+    }
+    .home-notifications-lead {
+        font-size: 16px;
+        line-height: 1.35;
+    }
+    .home-notification-item {
+        align-items: flex-start;
+    }
+    .home-notification-item .notification-item__etc {
+        display: none;
     }
     .creator-analytics-section {
         padding: 2.5rem 0 1.25rem;

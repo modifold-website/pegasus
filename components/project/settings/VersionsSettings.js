@@ -12,7 +12,7 @@ import VersionUploadModal from "../../../modal/VersionUploadModal";
 import VersionEditMetadataModal from "../../../modal/VersionEditMetadataModal";
 import VersionEditDetailsModal from "../../../modal/VersionEditDetailsModal";
 import VersionEditFilesModal from "../../../modal/VersionEditFilesModal";
-import { DEFAULT_GAME_VERSIONS, sortByKnownGameVersions } from "@/utils/gameVersions";
+import { DEFAULT_GAME_VERSIONS, normalizeGameVersionItemsPayload, sortByKnownGameVersions } from "@/utils/gameVersions";
 
 const loaders = [
     "Vanilla",
@@ -98,6 +98,8 @@ export default function VersionsSettings({ project, authToken, gameVersions = DE
         dependencies: [],
     });
     const [editDependencyDraft, setEditDependencyDraft] = useState(createEmptyDependencyDraft);
+    const gameVersionItems = useMemo(() => normalizeGameVersionItemsPayload({ game_versions: gameVersions }), [gameVersions]);
+    const gameVersionNames = useMemo(() => gameVersionItems.map((item) => item.version), [gameVersionItems]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -737,8 +739,8 @@ export default function VersionsSettings({ project, authToken, gameVersions = DE
             return String(version.game_versions).split(",").map((v) => v.trim()).filter(Boolean);
         });
 
-        return sortByKnownGameVersions([...new Set(items)], gameVersions);
-    }, [versions, gameVersions]);
+        return sortByKnownGameVersions([...new Set(items)], gameVersionNames);
+    }, [versions, gameVersionNames]);
 
     const availableChannels = useMemo(() => {
         const items = versions.map((v) => v?.release_channel).filter(Boolean);
@@ -972,7 +974,7 @@ export default function VersionsSettings({ project, authToken, gameVersions = DE
                                             <span className="version__game-platform">{tProject("versions.notSpecified")}</span>
                                         )}
 
-                                        <VersionDisplay gameVersions={version.game_versions ? version.game_versions.split(",").map((v) => v.trim()).filter(Boolean) : []} allGameVersions={gameVersions} />
+                                        <VersionDisplay gameVersions={version.game_versions ? version.game_versions.split(",").map((v) => v.trim()).filter(Boolean) : []} allGameVersions={gameVersionNames} />
                                     </span>
 
                                     <div className="version__metadata">
@@ -1022,7 +1024,7 @@ export default function VersionsSettings({ project, authToken, gameVersions = DE
                 gameVersionsRef={gameVersionsRef}
                 toggleGameVersionsPopover={toggleGameVersionsPopover}
                 isGameVersionsPopoverOpen={isGameVersionsPopoverOpen}
-                gameVersions={gameVersions}
+                gameVersions={gameVersionItems}
                 handleToggleGameVersion={handleToggleGameVersion}
                 gameVersionsLabel={gameVersionsLabel}
                 loadersRef={loadersRef}
@@ -1054,7 +1056,7 @@ export default function VersionsSettings({ project, authToken, gameVersions = DE
                 editGameVersionsRef={editGameVersionsRef}
                 toggleEditGameVersionsPopover={toggleEditGameVersionsPopover}
                 isEditGameVersionsPopoverOpen={isEditGameVersionsPopoverOpen}
-                gameVersions={gameVersions}
+                gameVersions={gameVersionItems}
                 handleEditToggleGameVersion={handleEditToggleGameVersion}
                 editGameVersionsLabel={editGameVersionsLabel}
                 editLoadersRef={editLoadersRef}

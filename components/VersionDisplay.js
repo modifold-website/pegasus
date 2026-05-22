@@ -1,7 +1,7 @@
 ﻿import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 
-const defaultGameVersions = ["Early Access"];
+const defaultGameVersions = [];
 
 const mcVersionRegex = /^([0-9]+.[0-9]+)(.[0-9]+)?$/;
 

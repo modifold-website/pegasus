@@ -1170,6 +1170,10 @@
         "beta": "Beta",
         "alpha": "Alfa"
       },
+      "gameVersionGroups": {
+        "releases": "Yayınlar",
+        "preReleases": "Ön yayınlar"
+      },
       "selectGameVersions": "Oyun sürümlerini seç",
       "selectedGameVersions": "{count, plural, one {# seçildi} other {# seçildi}}",
       "selectLoaders": "Yükleyicileri seç",

@@ -2,6 +2,7 @@
 
 import Modal from "react-modal";
 import VersionDependenciesEditor from "./VersionDependenciesEditor";
+import GameVersionPopoverList from "@/components/GameVersionPopoverList";
 
 if(typeof window !== "undefined") {
     Modal.setAppElement("body");
@@ -182,16 +183,13 @@ export default function VersionUploadModal({ isOpen, onRequestClose, uploadLoadi
                                     {isGameVersionsPopoverOpen && !uploadLoading && (
                                         <div className="popover">
                                             <div className="context-list" data-scrollable style={{ maxHeight: "200px", overflowY: "auto" }}>
-                                                {gameVersions.map((version) => (
-                                                    <div
-                                                        key={version}
-                                                        className={`context-list-option ${formData.game_versions.includes(version) ? "context-list-option--selected" : ""}`}
-                                                        style={{ "--press-duration": "140ms" }}
-                                                        onClick={() => handleToggleGameVersion(version)}
-                                                    >
-                                                        <div className="context-list-option__label">{version}</div>
-                                                    </div>
-                                                ))}
+                                                <GameVersionPopoverList
+                                                    gameVersions={gameVersions}
+                                                    selectedVersions={formData.game_versions}
+                                                    onToggleVersion={handleToggleGameVersion}
+                                                    releaseLabel={t("versions.gameVersionGroups.releases")}
+                                                    preReleaseLabel={t("versions.gameVersionGroups.preReleases")}
+                                                />
                                             </div>
                                         </div>
                                     )}

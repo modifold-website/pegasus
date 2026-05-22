@@ -1171,6 +1171,10 @@
         "beta": "Бета",
         "alpha": "Альфа"
       },
+      "gameVersionGroups": {
+        "releases": "Релизы",
+        "preReleases": "Пре-релизы"
+      },
       "selectGameVersions": "Выберите версии игры",
       "selectedGameVersions": "{count, plural, one {# выбран} few {# выбрано} many {# выбрано} other {# выбрано}}",
       "selectLoaders": "Выберите загрузчики",

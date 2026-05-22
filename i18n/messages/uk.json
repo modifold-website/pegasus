@@ -1172,6 +1172,10 @@
         "beta": "Бета",
         "alpha": "Альфа"
       },
+      "gameVersionGroups": {
+        "releases": "Релізи",
+        "preReleases": "Пре-релізи"
+      },
       "selectGameVersions": "Вибрати версії гри",
       "selectedGameVersions": "{count, plural, one {# вибрано} other {# вибрано}}",
       "selectLoaders": "Вибрати лоадери",

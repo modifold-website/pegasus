@@ -1,6 +1,7 @@
 "use client";
 
 import Modal from "react-modal";
+import GameVersionPopoverList from "@/components/GameVersionPopoverList";
 
 if(typeof window !== "undefined") {
     Modal.setAppElement("body");
@@ -35,11 +36,13 @@ export default function VersionEditMetadataModal({ isOpen, onRequestClose, editL
                             {isEditGameVersionsPopoverOpen && !editLoading && (
                                 <div className="popover">
                                     <div className="context-list" data-scrollable style={{ maxHeight: "200px", overflowY: "auto" }}>
-                                        {gameVersions.map((version) => (
-                                            <div key={version} className={`context-list-option ${editFormData.game_versions.includes(version) ? "context-list-option--selected" : ""}`} style={{ "--press-duration": "140ms" }} onClick={() => handleEditToggleGameVersion(version)}>
-                                                <div className="context-list-option__label">{version}</div>
-                                            </div>
-                                        ))}
+                                        <GameVersionPopoverList
+                                            gameVersions={gameVersions}
+                                            selectedVersions={editFormData.game_versions}
+                                            onToggleVersion={handleEditToggleGameVersion}
+                                            releaseLabel={t("versions.gameVersionGroups.releases")}
+                                            preReleaseLabel={t("versions.gameVersionGroups.preReleases")}
+                                        />
                                     </div>
                                 </div>
                             )}

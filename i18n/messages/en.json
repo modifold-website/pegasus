@@ -1171,6 +1171,10 @@
         "beta": "Beta",
         "alpha": "Alpha"
       },
+      "gameVersionGroups": {
+        "releases": "Releases",
+        "preReleases": "Pre-releases"
+      },
       "selectGameVersions": "Select game versions",
       "selectedGameVersions": "{count, plural, one {# selected} other {# selected}}",
       "selectLoaders": "Select loaders",

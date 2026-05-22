@@ -3308,6 +3308,17 @@ input[type="file"]::-webkit-file-upload-button:hover {
     position: relative;
     padding: 6px;
 }
+.context-list-group:not(:last-child) {
+    margin-bottom: 8px;
+}
+.context-list-group__title {
+    color: var(--theme-color-text-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 16px;
+    padding: 6px 10px 4px;
+}
 .popover__scrollable .context-list-option:not(:last-child) {
     margin-bottom: 4px;
 }

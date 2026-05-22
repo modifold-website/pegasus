@@ -8,14 +8,11 @@ import VersionDisplay from "../VersionDisplay";
 import { useTranslations, useLocale } from "next-intl";
 import ProjectSidebar from "../project/ProjectSidebar";
 import showOverTheTopDownloadAnimation from "../ui/showOverTheTopDownloadAnimation";
-
-const gameVersions = [
-    "Early Access",
-];
+import { DEFAULT_GAME_VERSIONS, sortByKnownGameVersions } from "@/utils/gameVersions";
 
 const releaseChannels = ["release", "beta", "alpha"];
 
-export default function VersionsPage({ project, authToken }) {
+export default function VersionsPage({ project, authToken, gameVersions = DEFAULT_GAME_VERSIONS }) {
     const t = useTranslations("ProjectPage");
     const locale = useLocale();
     const router = useRouter();
@@ -35,7 +32,7 @@ export default function VersionsPage({ project, authToken }) {
     const filterChannelsRef = useRef(null);
     const filterLoadersRef = useRef(null);
 
-    const availableGameVersions = [...new Set(project.versions.flatMap((version) => (version.game_versions ? version.game_versions.split(",").map((v) => v.trim()) : [])))].sort((a, b) => gameVersions.indexOf(a) - gameVersions.indexOf(b));
+    const availableGameVersions = sortByKnownGameVersions([...new Set(project.versions.flatMap((version) => (version.game_versions ? version.game_versions.split(",").map((v) => v.trim()) : [])))], gameVersions);
     const availableChannels = [...new Set(project.versions.map((version) => version.release_channel))].filter((channel) => releaseChannels.includes(channel));
 
     const filteredVersions = useMemo(() => {
@@ -274,7 +271,7 @@ export default function VersionsPage({ project, authToken }) {
                                             <span className="version__game-platform">{t("versions.notSpecified")}</span>
                                         )}
                                         
-                                        <VersionDisplay gameVersions={version.game_versions ? version.game_versions.split(",").map((v) => v.trim()) : []} />
+                                        <VersionDisplay gameVersions={version.game_versions ? version.game_versions.split(",").map((v) => v.trim()) : []} allGameVersions={gameVersions} />
                                     </span>
 
                                     <div className="version__metadata">

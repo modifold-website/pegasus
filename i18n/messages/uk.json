@@ -801,12 +801,15 @@
   },
   "BrowsePage": {
     "gameVersion": "Версія гри",
+    "gameVersions": "Версії гри",
+    "showAllVersions": "Показувати всі версії",
     "loader": "Лоадер",
     "categories": "Категорії",
     "clearFilters": "Очистити фільтри",
     "clearAllFilters": "Очистити всі фільтри",
     "placeholders": {
-      "search": "Пошук проєктів..."
+      "search": "Пошук проєктів...",
+      "versionSearch": "Пошук..."
     },
     "sort": {
       "downloads": "Найбільше завантажень",
@@ -1168,6 +1171,10 @@
         "release": "Реліз",
         "beta": "Бета",
         "alpha": "Альфа"
+      },
+      "gameVersionGroups": {
+        "releases": "Релізи",
+        "preReleases": "Пре-релізи"
       },
       "selectGameVersions": "Вибрати версії гри",
       "selectedGameVersions": "{count, plural, one {# вибрано} other {# вибрано}}",

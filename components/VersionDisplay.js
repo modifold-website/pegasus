@@ -1,11 +1,7 @@
 ﻿import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 
-const tags = {
-    gameVersions: [
-        "Early Access",
-    ]
-};
+const defaultGameVersions = [];
 
 const mcVersionRegex = /^([0-9]+.[0-9]+)(.[0-9]+)?$/;
 
@@ -45,7 +41,16 @@ function groupConsecutiveIndices(versions, referenceList) {
         referenceMap.set(item, index);
     });
 
-    const sortedList = versions.slice().sort((a, b) => referenceMap.get(a) - referenceMap.get(b));
+    const sortedList = versions.slice().sort((a, b) => {
+        const left = referenceMap.has(a) ? referenceMap.get(a) : Number.MAX_SAFE_INTEGER;
+        const right = referenceMap.has(b) ? referenceMap.get(b) : Number.MAX_SAFE_INTEGER;
+
+        if(left !== right) {
+            return left - right;
+        }
+
+        return String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: "base" });
+    });
 
     const ranges = [];
     let start = sortedList[0];
@@ -75,9 +80,9 @@ function groupConsecutiveIndices(versions, referenceList) {
     return ranges;
 }
 
-function formatVersionsForDisplay(gameVersions) {
+function formatVersionsForDisplay(gameVersions, allGameVersions = defaultGameVersions) {
     const inputVersions = gameVersions.slice();
-    const allVersions = tags.gameVersions;
+    const allVersions = [...new Set([...allGameVersions, ...inputVersions])];
 
     const allReleases = allVersions.filter((version) => mcVersionRegex.test(version));
     const allLegacy = allVersions.filter((version) => !mcVersionRegex.test(version));
@@ -87,7 +92,16 @@ function formatVersionsForDisplay(gameVersions) {
         return map;
     }, {});
 
-    inputVersions.sort((a, b) => indices[a] - indices[b]);
+    inputVersions.sort((a, b) => {
+        const left = Object.prototype.hasOwnProperty.call(indices, a) ? indices[a] : Number.MAX_SAFE_INTEGER;
+        const right = Object.prototype.hasOwnProperty.call(indices, b) ? indices[b] : Number.MAX_SAFE_INTEGER;
+
+        if(left !== right) {
+            return left - right;
+        }
+
+        return String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: "base" });
+    });
 
     const releaseVersions = inputVersions.filter((projVer) => allReleases.includes(projVer));
 
@@ -116,15 +130,15 @@ function formatVersionsForDisplay(gameVersions) {
     return output;
 }
 
-export default function VersionDisplay({ gameVersions }) {
+export default function VersionDisplay({ gameVersions, allGameVersions = defaultGameVersions }) {
     const t = useTranslations("ProjectPage.versions");
     const formattedVersions = useMemo(() => {
         if(!Array.isArray(gameVersions) || gameVersions.length === 0) {
             return [];
         }
 
-        return formatVersionsForDisplay(gameVersions);
-    }, [gameVersions]);
+        return formatVersionsForDisplay(gameVersions, allGameVersions);
+    }, [gameVersions, allGameVersions]);
 
     return (
         <>

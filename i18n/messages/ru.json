@@ -800,12 +800,15 @@
   },
   "BrowsePage": {
     "gameVersion": "Версия игры",
+    "gameVersions": "Версии игры",
+    "showAllVersions": "Показывать все версии",
     "loader": "Загрузчик",
     "categories": "Категории",
     "clearFilters": "Сбросить фильтры",
     "clearAllFilters": "Сбросить все фильтры",
     "placeholders": {
-      "search": "Поиск проектов..."
+      "search": "Поиск проектов...",
+      "versionSearch": "Поиск..."
     },
     "sort": {
       "downloads": "По скачиваниям",
@@ -1167,6 +1170,10 @@
         "release": "Релиз",
         "beta": "Бета",
         "alpha": "Альфа"
+      },
+      "gameVersionGroups": {
+        "releases": "Релизы",
+        "preReleases": "Пре-релизы"
       },
       "selectGameVersions": "Выберите версии игры",
       "selectedGameVersions": "{count, plural, one {# выбран} few {# выбрано} many {# выбрано} other {# выбрано}}",

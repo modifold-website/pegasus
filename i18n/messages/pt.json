@@ -800,12 +800,15 @@
   },
   "BrowsePage": {
     "gameVersion": "Versão do jogo",
+    "gameVersions": "Versões do jogo",
+    "showAllVersions": "Mostrar todas as versões",
     "loader": "Loader",
     "categories": "Categorias",
     "clearFilters": "Limpar filtros",
     "clearAllFilters": "Limpar todos os filtros",
     "placeholders": {
-      "search": "Pesquisar"
+      "search": "Pesquisar",
+      "versionSearch": "Pesquisar..."
     },
     "sort": {
       "downloads": "Downloads",
@@ -1167,6 +1170,10 @@
         "release": "Lançamento",
         "beta": "Beta",
         "alpha": "Alfa"
+      },
+      "gameVersionGroups": {
+        "releases": "Lançamentos",
+        "preReleases": "Pré-lançamentos"
       },
       "selectGameVersions": "Selecionar versões do jogo",
       "selectedGameVersions": "{count, plural, one {# selecionada} other {# selecionadas}}",

@@ -1,6 +1,7 @@
 ﻿import { cookies } from "next/headers";
 import { getLocale, getTranslations } from "next-intl/server";
 import VersionsSettings from "@/components/project/settings/VersionsSettings";
+import { fetchGameVersionItems } from "@/utils/gameVersions";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
@@ -46,5 +47,7 @@ export default async function Page({ params }) {
 
     const project = await resProject.json();
 
-    return <VersionsSettings project={project} authToken={authToken} />;
+    const gameVersions = await fetchGameVersionItems();
+
+    return <VersionsSettings project={project} authToken={authToken} gameVersions={gameVersions} />;
 }

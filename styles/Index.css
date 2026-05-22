@@ -2732,6 +2732,9 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .license-modal__content {
     min-height: 0;
 }
+.license-modal__content span {
+    white-space: pre-line;
+}
 .version-upload-steps {
     display: flex;
     align-items: center;

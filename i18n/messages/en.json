@@ -432,6 +432,21 @@
         "title": "Follows and notifications",
         "description": "Follow your favorite creators, get notifications, and never miss new versions and updates."
       }
+    },
+    "analyticsSection": {
+      "badge": "Modifold Analytics",
+      "title": "Track real mod usage",
+      "lead": "Track how many players are running your mod and how many servers are active over time. Modifold Analytics gives authors a clear, privacy-respecting signal of real in-game usage.",
+      "cta": "Publish your project",
+      "chartLabel": "Preview of Modifold Analytics online activity chart",
+      "chartTitle": "Modifold Analytics",
+      "chartSubtitle": "Players online and active servers using your mod.",
+      "players": "Players",
+      "servers": "Servers",
+      "downloads": "Downloads",
+      "activeServers": "Active servers",
+      "onlineNow": "Online now",
+      "learnMore": "Learn more"
     }
   },
   "ProjectCreationModal": {

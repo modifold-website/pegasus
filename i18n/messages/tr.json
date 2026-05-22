@@ -431,6 +431,21 @@
         "title": "Takipler ve bildirimler",
         "description": "Favori üreticilerinizi takip edin, bildirim alın ve yeni sürüm ile güncellemeleri kaçırmayın."
       }
+    },
+    "analyticsSection": {
+      "badge": "Modifold Analytics",
+      "title": "Modunuzun gerçek kullanımını takip edin",
+      "lead": "Modunuzu kaç oyuncunun kullandığını ve kaç sunucunun aktif olduğunu zaman içinde takip edin. Modifold Analytics, üreticilere gerçek oyun içi kullanım için net ve gizliliğe saygılı bir sinyal sunar.",
+      "cta": "Projenizi yayınlayın",
+      "chartLabel": "Modifold Analytics çevrimiçi etkinlik grafiği önizlemesi",
+      "chartTitle": "Modifold Analytics",
+      "chartSubtitle": "Modunuzu kullanan çevrimiçi oyuncular ve aktif sunucular.",
+      "players": "Oyuncular",
+      "servers": "Sunucular",
+      "downloads": "İndirmeler",
+      "activeServers": "Aktif sunucular",
+      "onlineNow": "Şu an çevrimiçi",
+      "learnMore": "Daha fazla bilgi"
     }
   },
   "ProjectCreationModal": {

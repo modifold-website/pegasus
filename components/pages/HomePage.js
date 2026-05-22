@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from "next-intl";
 import ProjectCard from "../project/ProjectCard";
 import { useAuth } from "../providers/AuthProvider";
 import LoginModal from "../../modal/LoginModal";
+import HomeAnalyticsSection from "./HomeAnalyticsSection";
 
 export default function HomePage({ news = [], locale, projects = [], projectsLimit = 20 }) {
 	const t = useTranslations("HomePage");
@@ -181,6 +182,8 @@ export default function HomePage({ news = [], locale, projects = [], projectsLim
                         </div>
                     </div>
                 </section>
+
+				<HomeAnalyticsSection currentLocale={currentLocale} t={t} />
 
                 <section className="creator-features-section">
                     <div className="home-section-intro">

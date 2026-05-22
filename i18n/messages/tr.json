@@ -373,9 +373,9 @@
   },
   "HomePage": {
     "title": "Hytale modlarınız için bir yuva - Modifold",
-    "description": "Topluluk için oluşturulmuş açık kaynak platformumuzda Hytale modlarını keşfedin, oynayın ve paylaşın.",
+    "description": "Hytale modlama sahnesini keşfedin, topluluğun ürettiklerini oynayın ve kendi çalışmalarınızı dünyayla paylaşın.",
     "heroTitle": "{hytale} modlarınız için bir yuva",
-    "heroDescription": "Topluluk için oluşturulmuş açık kaynak platformumuzda Hytale modlarını keşfedin, oynayın ve paylaşın.",
+    "heroDescription": "Hytale modlama sahnesini keşfedin, topluluğun ürettiklerini oynayın ve kendi çalışmalarınızı dünyayla paylaşın.",
     "exploreMods": "Modları keşfet",
     "dashboardCta": "Kontrol paneline git",
     "loginCta": "Giriş yap",

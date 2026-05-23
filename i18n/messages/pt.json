@@ -374,9 +374,9 @@
   },
   "HomePage": {
     "title": "O lar dos seus mods de Hytale — Modifold",
-    "description": "Descubra, jogue e compartilhe mods de Hytale em nossa plataforma de código aberto criada para a comunidade.",
+    "description": "Explore a cena de mods de Hytale, jogue o que a comunidade cria e compartilhe seu próprio trabalho com o mundo.",
     "heroTitle": "O lar dos seus mods de {hytale}",
-    "heroDescription": "Descubra, jogue e compartilhe mods de Hytale em nossa plataforma de código aberto criada para a comunidade.",
+    "heroDescription": "Explore a cena de mods de Hytale, jogue o que a comunidade cria e compartilhe seu próprio trabalho com o mundo.",
     "exploreMods": "Explorar mods",
     "dashboardCta": "Ir para o painel de controle",
     "loginCta": "Entrar",
@@ -431,6 +431,32 @@
       "notifications": {
         "title": "Seguidores e notificações",
         "description": "Siga seus criadores favoritos, receba notificações e não perca novas versões e atualizações."
+      }
+    },
+    "analyticsSection": {
+      "badge": "Modifold Analytics",
+      "title": "Acompanhe o uso real do seu mod",
+      "lead": "Acompanhe quantos jogadores usam seu mod e quantos servidores estão ativos ao longo do tempo. O Modifold Analytics dá aos autores um sinal claro e com respeito à privacidade do uso real no jogo.",
+      "cta": "Publicar seu projeto",
+      "chartLabel": "Prévia do gráfico de atividade online do Modifold Analytics",
+      "chartTitle": "Modifold Analytics",
+      "chartSubtitle": "Jogadores online e servidores ativos usando seu mod.",
+      "players": "Jogadores",
+      "servers": "Servidores",
+      "downloads": "Downloads",
+      "activeServers": "Servidores ativos",
+      "onlineNow": "Online agora",
+      "learnMore": "Saiba mais"
+    },
+    "notificationsPreview": {
+      "badge": "Para jogadores",
+      "title": "Não perca novas versões",
+      "lead": "Siga criadores e projetos para receber notificações quando seus mods favoritos publicarem atualizações.",
+      "panelTitle": "Notificações",
+      "releasedVersion": "publicou a versão {version} para",
+      "days": {
+        "yesterday": "Ontem",
+        "previous": "20 de maio de 2026"
       }
     }
   },

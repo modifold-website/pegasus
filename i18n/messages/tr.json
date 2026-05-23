@@ -373,9 +373,9 @@
   },
   "HomePage": {
     "title": "Hytale modlarınız için bir yuva - Modifold",
-    "description": "Topluluk için oluşturulmuş açık kaynak platformumuzda Hytale modlarını keşfedin, oynayın ve paylaşın.",
+    "description": "Hytale modlama sahnesini keşfedin, topluluğun ürettiklerini oynayın ve kendi çalışmalarınızı dünyayla paylaşın.",
     "heroTitle": "{hytale} modlarınız için bir yuva",
-    "heroDescription": "Topluluk için oluşturulmuş açık kaynak platformumuzda Hytale modlarını keşfedin, oynayın ve paylaşın.",
+    "heroDescription": "Hytale modlama sahnesini keşfedin, topluluğun ürettiklerini oynayın ve kendi çalışmalarınızı dünyayla paylaşın.",
     "exploreMods": "Modları keşfet",
     "dashboardCta": "Kontrol paneline git",
     "loginCta": "Giriş yap",
@@ -430,6 +430,32 @@
       "notifications": {
         "title": "Takipler ve bildirimler",
         "description": "Favori üreticilerinizi takip edin, bildirim alın ve yeni sürüm ile güncellemeleri kaçırmayın."
+      }
+    },
+    "analyticsSection": {
+      "badge": "Modifold Analytics",
+      "title": "Modunuzun gerçek kullanımını takip edin",
+      "lead": "Modunuzu kaç oyuncunun kullandığını ve kaç sunucunun aktif olduğunu zaman içinde takip edin. Modifold Analytics, üreticilere gerçek oyun içi kullanım için net ve gizliliğe saygılı bir sinyal sunar.",
+      "cta": "Projenizi yayınlayın",
+      "chartLabel": "Modifold Analytics çevrimiçi etkinlik grafiği önizlemesi",
+      "chartTitle": "Modifold Analytics",
+      "chartSubtitle": "Modunuzu kullanan çevrimiçi oyuncular ve aktif sunucular.",
+      "players": "Oyuncular",
+      "servers": "Sunucular",
+      "downloads": "İndirmeler",
+      "activeServers": "Aktif sunucular",
+      "onlineNow": "Şu an çevrimiçi",
+      "learnMore": "Daha fazla bilgi"
+    },
+    "notificationsPreview": {
+      "badge": "Oyuncular için",
+      "title": "Yeni sürümleri kaçırmayın",
+      "lead": "Favori modlarınız güncelleme yayınladığında bildirim almak için üreticileri ve projeleri takip edin.",
+      "panelTitle": "Bildirimler",
+      "releasedVersion": "{version} sürümünü yayınladı:",
+      "days": {
+        "yesterday": "Dün",
+        "previous": "20 Mayıs 2026"
       }
     }
   },

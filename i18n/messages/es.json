@@ -374,9 +374,9 @@
   },
   "HomePage": {
     "title": "El hogar de tus mods de Hytale — Modifold",
-    "description": "Descubre, juega y comparte mods de Hytale en nuestra plataforma de código abierto creada para la comunidad.",
+    "description": "Explora la escena de mods de Hytale, juega lo que crea la comunidad y comparte tu propio trabajo con el mundo.",
     "heroTitle": "El hogar de tus mods de {hytale}",
-    "heroDescription": "Descubre, juega y comparte mods de Hytale en nuestra plataforma de código abierto creada para la comunidad.",
+    "heroDescription": "Explora la escena de mods de Hytale, juega lo que crea la comunidad y comparte tu propio trabajo con el mundo.",
     "exploreMods": "Explorar mods",
     "dashboardCta": "Ir al panel de control",
     "loginCta": "Iniciar sesión",
@@ -431,6 +431,32 @@
       "notifications": {
         "title": "Seguimientos y notificaciones",
         "description": "Sigue a tus creadores favoritos, recibe notificaciones y no te pierdas nuevas versiones y actualizaciones."
+      }
+    },
+    "analyticsSection": {
+      "badge": "Modifold Analytics",
+      "title": "Sigue el uso real de tu mod",
+      "lead": "Sigue cuántos jugadores usan tu mod y cuántos servidores están activos con el tiempo. Modifold Analytics ofrece a los autores una señal clara y respetuosa con la privacidad del uso real en el juego.",
+      "cta": "Publicar tu proyecto",
+      "chartLabel": "Vista previa del gráfico de actividad online de Modifold Analytics",
+      "chartTitle": "Modifold Analytics",
+      "chartSubtitle": "Jugadores online y servidores activos que usan tu mod.",
+      "players": "Jugadores",
+      "servers": "Servidores",
+      "downloads": "Descargas",
+      "activeServers": "Servidores activos",
+      "onlineNow": "Online ahora",
+      "learnMore": "Más información"
+    },
+    "notificationsPreview": {
+      "badge": "Para jugadores",
+      "title": "No te pierdas nuevas versiones",
+      "lead": "Sigue a creadores y proyectos para recibir notificaciones cuando tus mods favoritos publiquen actualizaciones.",
+      "panelTitle": "Notificaciones",
+      "releasedVersion": "publicó la versión {version} para",
+      "days": {
+        "yesterday": "Ayer",
+        "previous": "20 de mayo de 2026"
       }
     }
   },

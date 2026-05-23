@@ -374,9 +374,9 @@
   },
   "HomePage": {
     "title": "The home for your Hytale mods — Modifold",
-    "description": "Discover, play, and share Hytale mods through our open-source platform built for the community.",
+    "description": "Explore the Hytale modding scene, play what the community builds, and share your own work with the world.",
     "heroTitle": "The home for your {hytale} mods",
-    "heroDescription": "Discover, play, and share Hytale mods through our open-source platform built for the community.",
+    "heroDescription": "Explore the Hytale modding scene, play what the community builds, and share your own work with the world.",
     "exploreMods": "Explore mods",
     "dashboardCta": "Dashboard",
     "loginCta": "Sign in",
@@ -431,6 +431,32 @@
       "notifications": {
         "title": "Follows and notifications",
         "description": "Follow your favorite creators, get notifications, and never miss new versions and updates."
+      }
+    },
+    "analyticsSection": {
+      "badge": "Modifold Analytics",
+      "title": "Track real mod usage",
+      "lead": "Track how many players are running your mod and how many servers are active over time. Modifold Analytics gives authors a clear, privacy-respecting signal of real in-game usage.",
+      "cta": "Publish your project",
+      "chartLabel": "Preview of Modifold Analytics online activity chart",
+      "chartTitle": "Modifold Analytics",
+      "chartSubtitle": "Players online and active servers using your mod.",
+      "players": "Players",
+      "servers": "Servers",
+      "downloads": "Downloads",
+      "activeServers": "Active servers",
+      "onlineNow": "Online now",
+      "learnMore": "Learn more"
+    },
+    "notificationsPreview": {
+      "badge": "For players",
+      "title": "Never miss a new version",
+      "lead": "Follow creators and projects to get notified when your favorite mods release updates.",
+      "panelTitle": "Notifications",
+      "releasedVersion": "released version {version} for",
+      "days": {
+        "yesterday": "Yesterday",
+        "previous": "May 20, 2026"
       }
     }
   },

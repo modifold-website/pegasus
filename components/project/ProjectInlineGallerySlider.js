@@ -1,26 +1,21 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
+import ImageLightbox, { useImageLightbox } from "../ui/ImageLightbox";
 
 const SLIDE_DURATION_MS = 440;
 const AUTO_PLAY_MS = 6500;
-const SWIPE_TRIGGER_RATIO = 0.55;
-const MIN_SWIPE_TRIGGER_PX = 140;
-const FLICK_MIN_DISTANCE_PX = 22;
-const FLICK_MIN_VELOCITY_PX_PER_MS = 0.38;
 
 export default function ProjectInlineGallerySlider({ images = [], projectTitle = "" }) {
+	const t = useTranslations("ProjectPage");
 	const preparedImages = useMemo(() => (
 		Array.isArray(images) ? images.filter((image) => typeof image?.url === "string" && image.url.length > 0) : []
 	), [images]);
 	const visibleThumbsCount = 5;
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [transitionState, setTransitionState] = useState(null);
-	const stageRef = useRef(null);
-	const dragStartXRef = useRef(null);
-	const dragStartTimeRef = useRef(0);
-	const isDraggingRef = useRef(false);
-	const [dragOffsetX, setDragOffsetX] = useState(0);
+	const { lightboxOpen, lightboxImage, closeLightbox, getLightboxTriggerProps } = useImageLightbox();
 
 	useEffect(() => {
 		setActiveIndex(0);
@@ -78,179 +73,6 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 		}
 	}, [activeIndex, preparedImages.length]);
 
-	const resetDragState = () => {
-		dragStartXRef.current = null;
-		dragStartTimeRef.current = 0;
-		isDraggingRef.current = false;
-		setDragOffsetX(0);
-	};
-
-	const getSwipeTriggerPx = () => {
-		const stageWidth = Number(stageRef.current?.clientWidth) || 0;
-		if(stageWidth <= 0) {
-			return MIN_SWIPE_TRIGGER_PX;
-		}
-
-		return Math.max(MIN_SWIPE_TRIGGER_PX, Math.floor(stageWidth * SWIPE_TRIGGER_RATIO));
-	};
-
-	const handleSwipeDelta = (deltaX) => {
-		const triggerPx = getSwipeTriggerPx();
-		if(Math.abs(deltaX) < triggerPx) {
-			return;
-		}
-
-		if(deltaX < 0) {
-			goNext();
-			return;
-		}
-
-		goPrev();
-	};
-
-	const onPointerDown = (event) => {
-		if(!hasMultipleImages) {
-			return;
-		}
-
-		isDraggingRef.current = true;
-		dragStartXRef.current = event.clientX;
-		dragStartTimeRef.current = performance.now();
-		event.currentTarget.setPointerCapture?.(event.pointerId);
-	};
-
-	const onPointerMove = (event) => {
-		if(!isDraggingRef.current || dragStartXRef.current === null) {
-			return;
-		}
-
-		const deltaX = event.clientX - dragStartXRef.current;
-		const triggerPx = getSwipeTriggerPx();
-		setDragOffsetX(deltaX);
-
-		if(deltaX <= -triggerPx) {
-			goNext();
-			dragStartXRef.current = event.clientX;
-			setDragOffsetX(0);
-			return;
-		}
-
-		if(deltaX >= triggerPx) {
-			goPrev();
-			dragStartXRef.current = event.clientX;
-			setDragOffsetX(0);
-		}
-	};
-
-	const onPointerUp = (event) => {
-		if(dragStartXRef.current === null) {
-			resetDragState();
-			return;
-		}
-
-		const deltaX = event.clientX - dragStartXRef.current;
-		const elapsedMs = Math.max(1, performance.now() - dragStartTimeRef.current);
-		const velocityPxPerMs = Math.abs(deltaX) / elapsedMs;
-		const isFlick = Math.abs(deltaX) >= FLICK_MIN_DISTANCE_PX && velocityPxPerMs >= FLICK_MIN_VELOCITY_PX_PER_MS;
-		const isShortDirectionalSwipe = Math.abs(deltaX) >= FLICK_MIN_DISTANCE_PX;
-
-		if(isFlick || isShortDirectionalSwipe) {
-			if(deltaX < 0) {
-				goNext();
-			} else {
-				goPrev();
-			}
-		} else {
-			handleSwipeDelta(deltaX);
-		}
-
-		resetDragState();
-		event.currentTarget.releasePointerCapture?.(event.pointerId);
-	};
-
-	const onPointerCancel = () => resetDragState();
-	const onTouchStart = (event) => {
-		if(!hasMultipleImages) {
-			return;
-		}
-
-		const touch = event.touches?.[0];
-		if(!touch) {
-			return;
-		}
-
-		isDraggingRef.current = true;
-		dragStartXRef.current = touch.clientX;
-		dragStartTimeRef.current = performance.now();
-	};
-
-	const onTouchMove = (event) => {
-		const touch = event.touches?.[0];
-		if(!touch || !isDraggingRef.current || dragStartXRef.current === null) {
-			return;
-		}
-
-		const deltaX = touch.clientX - dragStartXRef.current;
-		const triggerPx = getSwipeTriggerPx();
-		setDragOffsetX(deltaX);
-
-		if(deltaX <= -triggerPx) {
-			goNext();
-			dragStartXRef.current = touch.clientX;
-			setDragOffsetX(0);
-			return;
-		}
-
-		if(deltaX >= triggerPx) {
-			goPrev();
-			dragStartXRef.current = touch.clientX;
-			setDragOffsetX(0);
-		}
-	};
-
-	const onTouchEnd = (event) => {
-		if(dragStartXRef.current === null) {
-			resetDragState();
-			return;
-		}
-
-		const touch = event.changedTouches?.[0];
-		if(!touch) {
-			resetDragState();
-			return;
-		}
-
-		const deltaX = touch.clientX - dragStartXRef.current;
-		const elapsedMs = Math.max(1, performance.now() - dragStartTimeRef.current);
-		const velocityPxPerMs = Math.abs(deltaX) / elapsedMs;
-		const isFlick = Math.abs(deltaX) >= FLICK_MIN_DISTANCE_PX && velocityPxPerMs >= FLICK_MIN_VELOCITY_PX_PER_MS;
-		const isShortDirectionalSwipe = Math.abs(deltaX) >= FLICK_MIN_DISTANCE_PX;
-
-		if(isFlick || isShortDirectionalSwipe) {
-			if(deltaX < 0) {
-				goNext();
-			} else {
-				goPrev();
-			}
-		} else {
-			handleSwipeDelta(deltaX);
-		}
-
-		resetDragState();
-	};
-
-	useEffect(() => {
-		const handleWindowMouseUp = () => resetDragState();
-		const handleWindowBlur = () => resetDragState();
-
-		window.addEventListener("mouseup", handleWindowMouseUp);
-		window.addEventListener("blur", handleWindowBlur);
-
-		return () => {
-			window.removeEventListener("mouseup", handleWindowMouseUp);
-			window.removeEventListener("blur", handleWindowBlur);
-		};
-	}, []);
 	const activeImage = preparedImages[activeIndex];
 	const leavingImage = transitionState ? preparedImages[transitionState.from] : null;
 	const enteringImage = transitionState ? preparedImages[transitionState.to] : null;
@@ -269,16 +91,18 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 	const visibleThumbs = preparedImages.slice(thumbsWindowStart, thumbsWindowStart + visibleThumbsCount);
 	const nextVisibleThumbs = preparedImages.slice(nextThumbsWindowStart, nextThumbsWindowStart + visibleThumbsCount);
 	const activeThumbIndex = transitionState ? transitionState.to : activeIndex;
+	const getImageAlt = (image, index) => image.title || `${projectTitle} image ${index + 1}`;
+	const getThumbAlt = (image, index) => image.title || `${projectTitle} thumbnail ${index + 1}`;
 
 	return (
 		<div className="content content--padding project-inline-gallery">
-			<div className={`project-inline-gallery__stage ${!hasMultipleImages ? "is-static" : ""}`} ref={stageRef} onPointerDown={hasMultipleImages && !isAnimating ? onPointerDown : undefined} onPointerMove={hasMultipleImages && !isAnimating ? onPointerMove : undefined} onPointerUp={hasMultipleImages && !isAnimating ? onPointerUp : undefined} onPointerCancel={hasMultipleImages ? onPointerCancel : undefined} onLostPointerCapture={hasMultipleImages ? onPointerCancel : undefined} onTouchStart={hasMultipleImages && !isAnimating ? onTouchStart : undefined} onTouchMove={hasMultipleImages && !isAnimating ? onTouchMove : undefined} onTouchEnd={hasMultipleImages && !isAnimating ? onTouchEnd : undefined} onTouchCancel={hasMultipleImages ? onPointerCancel : undefined} onDragStart={(event) => event.preventDefault()}>
+			<div className={`project-inline-gallery__stage ${!hasMultipleImages ? "is-static" : ""}`} onDragStart={(event) => event.preventDefault()}>
 				{transitionState ? (
 					<>
 						<div className={`project-inline-gallery__pane project-inline-gallery__pane--leave ${transitionState.direction === "right" ? "to-left" : "to-right"}`}>
 							<img
 								src={leavingImage.url}
-								alt={leavingImage.title || `${projectTitle} image ${transitionState.from + 1}`}
+								alt={getImageAlt(leavingImage, transitionState.from)}
 								className="project-inline-gallery__main-image"
 								loading="eager"
 								draggable={false}
@@ -288,7 +112,7 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 						<div className={`project-inline-gallery__pane project-inline-gallery__pane--enter ${transitionState.direction === "right" ? "from-right" : "from-left"}`}>
 							<img
 								src={enteringImage.url}
-								alt={enteringImage.title || `${projectTitle} image ${transitionState.to + 1}`}
+								alt={getImageAlt(enteringImage, transitionState.to)}
 								className="project-inline-gallery__main-image"
 								loading="eager"
 								draggable={false}
@@ -296,17 +120,16 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 						</div>
 					</>
 				) : (
-					<div className="project-inline-gallery__pane">
+					<button type="button" className="project-inline-gallery__pane project-inline-gallery__pane--button" aria-label={t("gallery.viewImage", { title: activeImage.title || t("gallery.image") })} {...getLightboxTriggerProps(activeImage)}>
 						<img
 							key={activeImage.id || activeImage.url}
 							src={activeImage.url}
-							alt={activeImage.title || `${projectTitle} image ${activeIndex + 1}`}
+							alt={getImageAlt(activeImage, activeIndex)}
 							className="project-inline-gallery__main-image"
 							loading="eager"
 							draggable={false}
-							style={dragOffsetX !== 0 ? { transform: `translateX(${dragOffsetX}px)`, transition: "none" } : undefined}
 						/>
-					</div>
+					</button>
 				)}
 			</div>
 
@@ -325,7 +148,7 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 									const index = thumbsWindowStart + offset;
 									return (
 										<button key={`leave-${image.id || image.url}-${index}`} type="button" className={`project-inline-gallery__thumb ${index === activeThumbIndex ? "is-active" : ""}`} onClick={() => openAt(index)} aria-label={`Open image ${index + 1}`} disabled={isAnimating}>
-											<img src={image.url} alt={image.title || `${projectTitle} thumbnail ${index + 1}`} loading="lazy" />
+											<img src={image.url} alt={getThumbAlt(image, index)} loading="lazy" />
 										</button>
 									);
 								})}
@@ -335,7 +158,7 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 									const index = nextThumbsWindowStart + offset;
 									return (
 										<button key={`enter-${image.id || image.url}-${index}`} type="button" className={`project-inline-gallery__thumb ${index === activeThumbIndex ? "is-active" : ""}`} onClick={() => openAt(index)} aria-label={`Open image ${index + 1}`} disabled={isAnimating}>
-											<img src={image.url} alt={image.title || `${projectTitle} thumbnail ${index + 1}`} loading="lazy" />
+											<img src={image.url} alt={getThumbAlt(image, index)} loading="lazy" />
 										</button>
 									);
 								})}
@@ -347,7 +170,7 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 								const index = thumbsWindowStart + offset;
 								return (
 									<button key={`${image.id || image.url}-${index}`} type="button" className={`project-inline-gallery__thumb ${index === activeThumbIndex ? "is-active" : ""}`} onClick={() => openAt(index)} aria-label={`Open image ${index + 1}`} disabled={isAnimating}>
-										<img src={image.url} alt={image.title || `${projectTitle} thumbnail ${index + 1}`} loading="lazy" />
+										<img src={image.url} alt={getThumbAlt(image, index)} loading="lazy" />
 									</button>
 								);
 							})}
@@ -361,6 +184,8 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 					</svg>
 				</button>
 			</div>
+
+			<ImageLightbox isOpen={lightboxOpen} image={lightboxImage} onClose={closeLightbox} dialogLabel={t("gallery.lightboxLabel")} closeLabel={t("close")} openInNewTabLabel={t("gallery.openInNewTab")} fallbackAlt={t("gallery.image")} />
 		</div>
 	);
 }

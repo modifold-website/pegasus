@@ -625,6 +625,17 @@
         justify-content: flex-start;
         flex-wrap: wrap;
     }
+    .project-page-card__main {
+        align-items: flex-start;
+    }
+    .project-page-card .new-project-info {
+        min-width: 0;
+    }
+    .project-page-card__actions.masthead-buttons {
+        width: auto;
+        margin-left: auto;
+        flex-wrap: nowrap;
+    }
     .project__general {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -672,6 +683,68 @@
     }
     .all-versions .version-button .version__stats strong {
         font-size: 16px;
+    }
+}
+@media (max-width: 520px) {
+    .project-page-card__main {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    .project-page-card .new-project-icon {
+        width: 88px;
+        height: 88px;
+        border-radius: 14px;
+    }
+    .project-page-card .new-project-info {
+        min-width: 0;
+        gap: 8px;
+    }
+    .project-page-card .project-page-card__header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+        text-align: left;
+        white-space: normal;
+    }
+    .project-page-card .new-project-title {
+        font-size: 20px;
+        line-height: 1.15;
+        text-align: left;
+    }
+    .project-page-card .masthead-status {
+        font-size: 18px;
+    }
+    .project-page-card .new-project-description {
+        -webkit-line-clamp: 3;
+    }
+    .project-page-card .new-project-bottom {
+        flex-wrap: wrap;
+        row-gap: 8px;
+        column-gap: 12px;
+    }
+    .project-page-card .new-project-bottom .new-stat:first-child {
+        order: 1;
+    }
+    .project-page-card .new-updated {
+        order: 2;
+    }
+    .project-page-card .new-project-players {
+        order: 3;
+    }
+    .project-page-card__actions.masthead-buttons {
+        width: auto;
+        margin-left: 0;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .project-page-card__actions .button--like,
+    .project-page-card__actions .icon-button {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
     }
 }
 .all-versions .version-button .version__stats span {

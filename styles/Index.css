@@ -4636,6 +4636,24 @@ body.light div .image-container::before {
     font-size: 24px;
     line-height: 1.3;
 }
+.showcase-notifications {
+    position: relative;
+    background: var(--theme-color-background);
+    border-radius: var(--layout-island-border-radius);
+    padding: 14px;
+}
+.showcase-notifications:after {
+    background: linear-gradient(0deg, #307df0, #307df000);
+    border-radius: var(--layout-island-border-radius);
+    content: "";
+    height: 55%;
+    inset: 0 0 -12px -12px;
+    margin-top: auto;
+    opacity: .2;
+    position: absolute;
+    width: calc(100% + 24px);
+    z-index: -1;
+}
 .showcase-visual {
     position: relative;
     background: var(--theme-color-background);
@@ -4801,10 +4819,7 @@ body.light div .image-container::before {
 .creator-analytics-card {
     position: relative;
     min-width: 0;
-    border-radius: var(--layout-island-border-radius);
-    background: var(--theme-color-background-content);
     overflow: hidden;
-    padding: 20px;
 }
 .creator-analytics-metrics {
     position: relative;
@@ -4817,8 +4832,8 @@ body.light div .image-container::before {
     min-width: 0;
     border: 1px solid var(--theme-color-border);
     border-radius: var(--layout-island-border-radius);
-    background: var(--theme-color-background);
-    padding: 14px;
+    background: var(--theme-color-background-content);
+    padding: 18px 20px;
 }
 .creator-analytics-metrics strong {
     display: block;
@@ -5488,6 +5503,12 @@ body.light div .image-container::before {
         border-radius: 20px;
     }
     .showcase-visual:after {
+        border-radius: 20px;
+    }
+    .showcase-notifications {
+        border-radius: 20px;
+    }
+    .showcase-notifications:after {
         border-radius: 20px;
     }
     .marquee-content .mod-badge {

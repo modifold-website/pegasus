@@ -74,7 +74,7 @@ function PreviewNotificationItem({ item, t }) {
 export default function HomeNotificationsSection({ t }) {
 	return (
 		<section className="home-notifications-section">
-			<div className="showcase-visual notifications">
+			<div className="showcase-notifications notifications">
 				<span className="notifications__header-text">{t("notificationsPreview.panelTitle")}</span>
 
 				<div className="notifications-feed">

@@ -161,18 +161,13 @@
 	border-radius: 14px;
 	overflow: hidden;
 	aspect-ratio: 16 / 9;
-	touch-action: pan-y;
-	cursor: grab;
+	cursor: pointer;
 	user-select: none;
 	-webkit-user-select: none;
 }
-.project-inline-gallery__stage:active {
-	cursor: grabbing;
-}
 .project-inline-gallery__stage.is-static,
 .project-inline-gallery__stage.is-static:active {
-	cursor: default;
-	touch-action: auto;
+	cursor: pointer;
 }
 .project-inline-gallery__main-image {
 	width: 100%;
@@ -187,6 +182,13 @@
 	position: absolute;
     background: var(--theme-color-background);
 	inset: 0;
+}
+.project-inline-gallery__pane--button {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	border: 0;
+	cursor: pointer;
 }
 .project-inline-gallery__pane--active {
 	transform: translateX(0);

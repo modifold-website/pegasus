@@ -69,6 +69,15 @@
 .moderation-page .new-project-card > *:not(.new-project-card__overlay) {
     pointer-events: auto;
 }
+.moderation-page .technical-review-card:not(.skeleton):hover,
+.moderation-page .technical-review-card:not(.skeleton):active {
+    filter: none;
+    transform: none;
+    background: var(--theme-color-background-content);
+}
+.moderation-page .technical-review-card:not(.skeleton):hover .new-project-title {
+    text-decoration: none;
+}
 .moderation-history {
     margin-top: 16px;
 }

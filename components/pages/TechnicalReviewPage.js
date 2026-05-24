@@ -276,7 +276,7 @@ export default function TechnicalReviewPage({ authToken, initialVersions, initia
 
 						return (
 							<div key={version.id} className="new-projects-list">
-								<div className="new-project-card">
+								<div className="new-project-card technical-review-card">
 									<div style={{ display: "flex", gap: "12px", padding: "16px", borderBottom: "1px solid var(--theme-color-border)" }}>
 										<Link href={getProjectPath(project)} style={{ height: "96px" }}>
 											<img className="new-project-icon" alt={version.project_title} src={version.project_icon_url} />

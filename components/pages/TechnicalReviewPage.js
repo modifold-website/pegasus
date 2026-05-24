@@ -300,7 +300,7 @@ export default function TechnicalReviewPage({ authToken, initialVersions, initia
 										</div>
 
 										<div className="new-project-stats" style={{ minWidth: "220px" }}>
-											<a className="button button--size-m button--type-positive button--with-icon" href={version.file_url} target="_blank" rel="noreferrer">
+											<a className="button button--size-m button--type-minimal button--with-icon" href={version.file_url} target="_blank" rel="noreferrer">
 												<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download-icon lucide-download">
 													<path d="M12 15V3"></path>
 													<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -310,11 +310,11 @@ export default function TechnicalReviewPage({ authToken, initialVersions, initia
 												{t("actions.download")}
 											</a>
 
-											<button className="button button--size-m button--type-primary" type="button" onClick={() => submitDecision(version, "approved")} disabled={isSubmitting}>
+											<button className="button button--size-m button--type-positive" type="button" onClick={() => submitDecision(version, "approved")} disabled={isSubmitting}>
 												{t("actions.publish")}
 											</button>
 
-											<button className="button button--size-m button--type-minimal" type="button" onClick={() => openBlockModal(version)} disabled={isSubmitting}>
+											<button className="button button--size-m button--type-negative" type="button" onClick={() => openBlockModal(version)} disabled={isSubmitting}>
 												{t("actions.block")}
 											</button>
 										</div>
@@ -386,17 +386,31 @@ export default function TechnicalReviewPage({ authToken, initialVersions, initia
 					</div>
 
 					<div className="modal-window__content">
-						<label className="field field--default">
-							<span className="field__label">{t("modal.reason")}</span>
-							<textarea className="text-area" value={blockReason} onChange={(event) => setBlockReason(event.target.value)} rows={5} placeholder={t("modal.reasonPlaceholder")} />
-						</label>
+						<p className="blog-settings__field-title" style={{ marginBottom: "4px" }}>{t("modal.reason")}</p>
+						<p style={{ marginBottom: "8px", color: "var(--theme-color-text-secondary)" }}>{t("modal.reasonPlaceholder")}</p>
+						
+						<div className="field field--default textarea">
+							<label className="field__wrapper">
+								<textarea
+									name="reason"
+									placeholder={t("modal.reasonPlaceholder")}
+									className="autosize textarea__input"
+									required
+									minLength={30}
+									maxLength={256}
+									style={{ height: "128px" }}
+									value={blockReason}
+									onChange={(event) => setBlockReason(event.target.value)}
+								/>
+							</label>
+						</div>
 
-						<div style={{ display: "flex", justifyContent: "flex-end", gap: "8px" }}>
-							<button className="button button--size-m button--type-secondary" type="button" onClick={() => setBlockingVersion(null)} disabled={isSubmitting}>
+						<div style={{ display: "flex", justifyContent: "flex-end", gap: "8px", marginTop: "16px" }}>
+							<button className="button button--size-m button--type-minimal" type="button" onClick={() => setBlockingVersion(null)} disabled={isSubmitting}>
 								{t("modal.cancel")}
 							</button>
 
-							<button className="button button--size-m button--type-primary" type="button" onClick={() => blockingVersion && submitDecision(blockingVersion, "blocked", blockReason)} disabled={isSubmitting || !blockReason.trim()}>
+							<button className="button button--size-m button--type-primary" type="button" onClick={() => blockingVersion && submitDecision(blockingVersion, "blocked", blockReason)} disabled={isSubmitting || blockReason.trim().length < 30}>
 								{t("modal.confirm")}
 							</button>
 						</div>

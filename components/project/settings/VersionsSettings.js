@@ -985,11 +985,6 @@ export default function VersionsSettings({ project, authToken, gameVersions = DE
                                     <span className="version__title">
                                         {version.version_number}
 
-                                        <span className={`version__badge type--${moderationBadge.type}`}>
-                                            <span className="circle"></span>
-                                            {moderationBadge.label}
-                                        </span>
-
                                         {version.loaders && version.loaders.trim() && version.loaders !== "null" ? (
                                             version.loaders.split(",").map((loader, index) => (
                                                 <span key={index} className="version__game-platform">
@@ -1004,6 +999,11 @@ export default function VersionsSettings({ project, authToken, gameVersions = DE
                                     </span>
 
                                     <div className="version__metadata">
+                                        <span className={`version__badge type--${moderationBadge.type}`} style={{ marginRight: "8px" }}>
+                                            <span className="circle"></span>
+                                            {moderationBadge.label}
+                                        </span>
+
                                         <span className="version_number">{formatDate(version.created_at)}</span>
                                     </div>
                                 </Link>

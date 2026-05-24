@@ -549,6 +549,12 @@
 .version__badge.green, .version__badge.type--accepted, .version__badge.type--admin, .version__badge.type--approved-general, .version__badge.type--release, .version__badge.type--success {
     --badge-color: #00af5c;
 }
+.version__badge.type--pending {
+	--badge-color: #ffa347;
+}
+.version__badge.type--blocked, .version__badge.type--error {
+	--badge-color: #ff496e;
+}
 .version__badge.type--beta {
 	--badge-color: #ffa347;
 }

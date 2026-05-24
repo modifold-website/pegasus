@@ -570,6 +570,14 @@
       "notSpecified": "Не вказано",
       "published": "Опубліковано:",
       "downloads": "завантажень",
+      "statuses": {
+        "approved": "Опублікована",
+        "pending": "На перевірці",
+        "scanning": "На перевірці",
+        "needs_review": "На перевірці",
+        "blocked": "Заблокована",
+        "error": "Помилка перевірки"
+      },
       "channels": {
         "release": "Реліз",
         "beta": "Бета",
@@ -1142,6 +1150,7 @@
         "fileTooLarge": "Файл занадто великий. Максимальний розмір — 100 МБ"
       },
       "success": "Версію завантажено",
+      "successModeration": "Версію відправлено на модерацію",
       "title": "Завантажити нову версію",
       "dependenciesEditor": {
         "title": "Додати залежність",
@@ -1547,7 +1556,8 @@
       "users": "Користувачі",
       "verification": "Верифікація",
       "statistics": "Статистика",
-      "reports": "Reports"
+      "reports": "Reports",
+      "technicalReview": "Перевірка файлів"
     },
     "charts": {
       "approvedProjects": "Графік схвалених проєктів",
@@ -1598,6 +1608,62 @@
       "pageOf": "Сторінка {page} з {totalPages}"
     },
     "empty": "Немає проєктів, що очікують на модерацію."
+  },
+  "TechnicalReviewPage": {
+    "metadata": {
+      "title": "Перевірка файлів — Modifold"
+    },
+    "filters": {
+      "searchPlaceholder": "Пошук за версіями, проєктами або ID...",
+      "sort": {
+        "oldest": "Найстаріші",
+        "newest": "Найновіші"
+      }
+    },
+    "statuses": {
+      "needs_review": "Потрібна перевірка",
+      "pending": "Очікує",
+      "scanning": "Сканується",
+      "error": "Помилка сканування",
+      "blocked": "Заблокована",
+      "approved": "Опублікована",
+      "all": "Усі статуси"
+    },
+    "fields": {
+      "version": "Версія",
+      "fileSize": "Розмір файлу",
+      "status": "Статус",
+      "scanRequested": "Запит перевірки",
+      "reason": "Причина",
+      "argusReasons": "Сигнали Argus"
+    },
+    "actions": {
+      "download": "Завантажити",
+      "publish": "Опублікувати",
+      "block": "Заблокувати"
+    },
+    "modal": {
+      "title": "Заблокувати версію",
+      "close": "Закрити",
+      "reason": "Причина",
+      "reasonPlaceholder": "Поясніть, чому версію заблоковано.",
+      "cancel": "Скасувати",
+      "confirm": "Заблокувати версію"
+    },
+    "success": {
+      "approved": "Версію опубліковано.",
+      "blocked": "Версію заблоковано."
+    },
+    "errors": {
+      "fetch": "Не вдалося завантажити чергу перевірки файлів.",
+      "decision": "Не вдалося оновити версію."
+    },
+    "pagination": {
+      "previous": "Попередній",
+      "next": "Наступний",
+      "pageOf": "Сторінка {page} з {totalPages}"
+    },
+    "empty": "У цій черзі перевірки файлів немає версій."
   },
   "UsersModerationPage": {
     "metadata": {
@@ -1679,6 +1745,7 @@
       "projectLikeOneMiddle": "вподобав ваш проєкт",
       "projectLikeManyMiddle": "та ще {count} користувачів вподобали ваш проєкт",
       "projectVersionReleaseMiddle": "випустив(ла) версію {version} для",
+      "projectVersionApprovedMiddle": "Ваша версія {version} пройшла модерацію і тепер доступна для",
       "projectFallback": "ваш проєкт",
       "versionFallback": "нової",
       "unknown": "Нове сповіщення",

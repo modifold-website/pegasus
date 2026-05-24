@@ -569,6 +569,14 @@
       "notSpecified": "Não especificado",
       "published": "Publicado:",
       "downloads": "downloads",
+      "statuses": {
+        "approved": "Publicado",
+        "pending": "Em revisão",
+        "scanning": "Em revisão",
+        "needs_review": "Em revisão",
+        "blocked": "Bloqueada",
+        "error": "Erro de revisão"
+      },
       "channels": {
         "release": "Lançamento",
         "beta": "Beta",
@@ -1141,6 +1149,7 @@
         "fileTooLarge": "O arquivo é muito grande. O tamanho máximo é 100 MB"
       },
       "success": "Versão enviada",
+      "successModeration": "Versão enviada para moderação",
       "title": "Versões",
       "dependenciesEditor": {
         "title": "Adicionar dependência",
@@ -1546,7 +1555,8 @@
       "users": "Usuários",
       "verification": "Verificação",
       "statistics": "Estatisticas",
-      "reports": "Reports"
+      "reports": "Reports",
+      "technicalReview": "Technical review"
     },
     "charts": {
       "approvedProjects": "Gráfico de projetos aprovados",
@@ -1597,6 +1607,62 @@
       "pageOf": "Página {page} de {totalPages}"
     },
     "empty": "Não há projetos pendentes de moderação."
+  },
+  "TechnicalReviewPage": {
+    "metadata": {
+      "title": "Technical review — Modifold"
+    },
+    "filters": {
+      "searchPlaceholder": "Search versions, projects, or IDs...",
+      "sort": {
+        "oldest": "Oldest",
+        "newest": "Newest"
+      }
+    },
+    "statuses": {
+      "needs_review": "Needs review",
+      "pending": "Pending",
+      "scanning": "Scanning",
+      "error": "Scan error",
+      "blocked": "Blocked",
+      "approved": "Approved",
+      "all": "All statuses"
+    },
+    "fields": {
+      "version": "Version",
+      "fileSize": "File size",
+      "status": "Status",
+      "scanRequested": "Scan requested",
+      "reason": "Reason",
+      "argusReasons": "Argus signals"
+    },
+    "actions": {
+      "download": "Download",
+      "publish": "Publish",
+      "block": "Block"
+    },
+    "modal": {
+      "title": "Block version",
+      "close": "Close",
+      "reason": "Reason",
+      "reasonPlaceholder": "Explain why this version is blocked.",
+      "cancel": "Cancel",
+      "confirm": "Block version"
+    },
+    "success": {
+      "approved": "Version published.",
+      "blocked": "Version blocked."
+    },
+    "errors": {
+      "fetch": "Failed to load technical review queue.",
+      "decision": "Failed to update version."
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "pageOf": "Page {page} of {totalPages}"
+    },
+    "empty": "No versions in this technical review queue."
   },
   "UsersModerationPage": {
     "metadata": {
@@ -1678,6 +1744,7 @@
       "projectLikeOneMiddle": "curtiu seu projeto",
       "projectLikeManyMiddle": "e mais {count} pessoas curtiram seu projeto",
       "projectVersionReleaseMiddle": "lançou a versão {version} para",
+      "projectVersionApprovedMiddle": "Your version {version} passed moderation and is now available for",
       "projectFallback": "seu projeto",
       "versionFallback": "nova",
       "unknown": "Nova notificação",

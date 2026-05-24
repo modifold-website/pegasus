@@ -273,6 +273,23 @@ export default function NotificationsPage({ authToken, initialNotifications = []
 			);
 		}
 
+		if(notification.eventType === "project_version_approved") {
+			const versionProject = notification.projectVersion?.project || null;
+			const projectTitle = versionProject?.title || t("messages.projectFallback");
+			const versionNumber = notification.projectVersion?.versionNumber || t("messages.versionFallback");
+			const projectTitleView = versionProject?.slug ? (
+				<Link href={getProjectPath(versionProject)} className="notification-item__project-link"><b>{projectTitle}</b></Link>
+			) : (
+				<b>{projectTitle}</b>
+			);
+
+			return (
+				<>
+					{t("messages.projectVersionApprovedMiddle", { version: versionNumber })} {projectTitleView}
+				</>
+			);
+		}
+
         if(notification.eventType === "organization_invite") {
             const organizationName = notification.organization?.name || t("messages.organizationFallback");
             const organizationView = notification.organization?.slug ? (
@@ -329,7 +346,7 @@ export default function NotificationsPage({ authToken, initialNotifications = []
                             </svg>
 						)}
 
-						{notification.eventType === "project_version_release" && (
+						{(notification.eventType === "project_version_release" || notification.eventType === "project_version_approved") && (
 							<svg className="notification-item__icon notification-item__icon--blue" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
 								<circle cx="8" cy="8" r="8" fill="currentColor"></circle>
 								<path d="M5 8h6M8 5v6" stroke="#fff" strokeWidth="1.6" strokeLinecap="round"></path>

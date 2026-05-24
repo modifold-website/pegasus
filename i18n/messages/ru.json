@@ -569,6 +569,14 @@
       "notSpecified": "Не указано",
       "published": "Опубликовано:",
       "downloads": "скачиваний",
+      "statuses": {
+        "approved": "Опубликована",
+        "pending": "На проверке",
+        "scanning": "На проверке",
+        "needs_review": "На проверке",
+        "blocked": "Заблокирована",
+        "error": "Ошибка проверки"
+      },
       "channels": {
         "release": "Релиз",
         "beta": "Бета",
@@ -1141,6 +1149,7 @@
         "fileTooLarge": "Файл слишком большой. Максимальный размер — 100 МБ"
       },
       "success": "Версия загружена",
+      "successModeration": "Версия отправлена на модерацию",
       "title": "Загрузить новую версию",
       "dependenciesEditor": {
         "title": "Добавить зависимость",
@@ -1546,7 +1555,8 @@
       "users": "Пользователи",
       "verification": "Верификация",
       "statistics": "Статистика",
-      "reports": "Жалобы"
+      "reports": "Жалобы",
+      "technicalReview": "Проверка файлов"
     },
     "charts": {
       "approvedProjects": "График одобренных проектов",
@@ -1597,6 +1607,62 @@
       "pageOf": "Страница {page} из {totalPages}"
     },
     "empty": "Нет проектов, ожидающих модерации."
+  },
+  "TechnicalReviewPage": {
+    "metadata": {
+      "title": "Проверка файлов — Modifold"
+    },
+    "filters": {
+      "searchPlaceholder": "Поиск по версиям, проектам или ID...",
+      "sort": {
+        "oldest": "Сначала старые",
+        "newest": "Сначала новые"
+      }
+    },
+    "statuses": {
+      "needs_review": "Нужна проверка",
+      "pending": "Ожидает",
+      "scanning": "Сканируется",
+      "error": "Ошибка сканирования",
+      "blocked": "Заблокирована",
+      "approved": "Опубликована",
+      "all": "Все статусы"
+    },
+    "fields": {
+      "version": "Версия",
+      "fileSize": "Размер файла",
+      "status": "Статус",
+      "scanRequested": "Запрос проверки",
+      "reason": "Причина",
+      "argusReasons": "Сигналы Argus"
+    },
+    "actions": {
+      "download": "Скачать",
+      "publish": "Опубликовать",
+      "block": "Заблокировать"
+    },
+    "modal": {
+      "title": "Заблокировать версию",
+      "close": "Закрыть",
+      "reason": "Причина",
+      "reasonPlaceholder": "Объясните, почему версия заблокирована.",
+      "cancel": "Отмена",
+      "confirm": "Заблокировать версию"
+    },
+    "success": {
+      "approved": "Версия опубликована.",
+      "blocked": "Версия заблокирована."
+    },
+    "errors": {
+      "fetch": "Не удалось загрузить очередь проверки файлов.",
+      "decision": "Не удалось обновить версию."
+    },
+    "pagination": {
+      "previous": "Назад",
+      "next": "Вперёд",
+      "pageOf": "Страница {page} из {totalPages}"
+    },
+    "empty": "В этой очереди проверки файлов нет версий."
   },
   "UsersModerationPage": {
     "metadata": {
@@ -1678,6 +1744,7 @@
       "projectLikeOneMiddle": "поставил лайк вашему проекту",
       "projectLikeManyMiddle": "и ещё {count} пользователей поставили лайк вашему проекту",
       "projectVersionReleaseMiddle": "выпустил версию {version} для",
+      "projectVersionApprovedMiddle": "Ваша версия {version} прошла модерацию и теперь доступна для",
       "projectFallback": "вашему проекту",
       "versionFallback": "новую",
       "unknown": "Новое уведомление",

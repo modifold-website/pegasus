@@ -37,6 +37,43 @@ const formatDate = (value) => {
 	return date.toLocaleString();
 };
 
+const ARGUS_PASSED_MESSAGE = "Argus security worker did not find suspicious signals";
+
+const normalizeArgusSignals = (report) => {
+	if(!report || typeof report !== "object") {
+		return [];
+	}
+
+	if(Array.isArray(report.findings)) {
+		return report.findings.map((finding) => {
+			if(typeof finding === "string") {
+				return {
+					message: finding,
+					isPassed: finding === ARGUS_PASSED_MESSAGE,
+				};
+			}
+
+			const message = String(finding?.message || "").trim();
+			return {
+				message,
+				isPassed: finding?.type === "passed" || message === ARGUS_PASSED_MESSAGE,
+			};
+		}).filter((finding) => finding.message);
+	}
+
+	if(Array.isArray(report.reasons)) {
+		return report.reasons.map((reason) => {
+			const message = String(reason || "").trim();
+			return {
+				message,
+				isPassed: message === ARGUS_PASSED_MESSAGE,
+			};
+		}).filter((finding) => finding.message);
+	}
+
+	return [];
+};
+
 export default function TechnicalReviewPage({ authToken, initialVersions, initialTotalPages }) {
 	const t = useTranslations("TechnicalReviewPage");
 	const [versions, setVersions] = useState(initialVersions || []);
@@ -235,7 +272,7 @@ export default function TechnicalReviewPage({ authToken, initialVersions, initia
 							slug: version.project_slug,
 						};
 						const report = version.argus_report || {};
-						const reasons = Array.isArray(report.reasons) ? report.reasons : [];
+						const argusSignals = normalizeArgusSignals(report);
 
 						return (
 							<div key={version.id} className="new-projects-list">
@@ -254,7 +291,7 @@ export default function TechnicalReviewPage({ authToken, initialVersions, initia
 
 											<p className="new-project-description">{version.project_summary}</p>
 
-											<div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "8px", color: "var(--theme-color-text-secondary)", fontSize: "13px" }}>
+											<div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "8px", color: "var(--theme-color-text-secondary)", fontSize: "14px" }}>
 												<span>{t("fields.version")}: {version.version_number}</span>
 												<span>{t("fields.fileSize")}: {formatBytes(version.file_size)}</span>
 												<span>{t("fields.status")}: {t(`statuses.${version.moderation_status}`)}</span>
@@ -263,7 +300,13 @@ export default function TechnicalReviewPage({ authToken, initialVersions, initia
 										</div>
 
 										<div className="new-project-stats" style={{ minWidth: "220px" }}>
-											<a className="button button--size-m button--type-secondary" href={version.file_url} target="_blank" rel="noreferrer">
+											<a className="button button--size-m button--type-positive button--with-icon" href={version.file_url} target="_blank" rel="noreferrer">
+												<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download-icon lucide-download">
+													<path d="M12 15V3"></path>
+													<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+													<path d="m7 10 5 5 5-5"></path>
+												</svg>
+												
 												{t("actions.download")}
 											</a>
 
@@ -290,12 +333,22 @@ export default function TechnicalReviewPage({ authToken, initialVersions, initia
 											</div>
 										)}
 
-										{reasons.length > 0 && (
-											<div>
+										{argusSignals.length > 0 && (
+											<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
 												<strong>{t("fields.argusReasons")}:</strong>
-												<ul style={{ margin: "6px 0 0", paddingLeft: "18px" }}>
-													{reasons.map((reason) => <li key={reason}>{reason}</li>)}
-												</ul>
+
+												{argusSignals.map((signal) => (
+													<li key={signal.message} style={signal.isPassed ? { color: "#2e9e45", display: "flex", alignItems: "center", gap: "4px" } : undefined}>
+														{signal.isPassed && (
+															<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check-icon lucide-circle-check" style={{ fill: "none" }} aria-hidden="true">
+																<circle cx="12" cy="12" r="10"></circle>
+																<path d="m9 12 2 2 4-4"></path>
+															</svg>
+														)}
+
+														{signal.message}
+													</li>
+												))}
 											</div>
 										)}
 									</div>

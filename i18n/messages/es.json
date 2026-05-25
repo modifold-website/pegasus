@@ -840,6 +840,7 @@
     "categories": "Categorías",
     "clearFilters": "Limpiar filtros",
     "clearAllFilters": "Limpiar todos los filtros",
+    "clearSearch": "Limpiar búsqueda",
     "placeholders": {
       "search": "Buscar",
       "versionSearch": "Buscar..."

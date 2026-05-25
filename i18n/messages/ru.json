@@ -840,6 +840,7 @@
     "categories": "Категории",
     "clearFilters": "Сбросить фильтры",
     "clearAllFilters": "Сбросить все фильтры",
+    "clearSearch": "Очистить поиск",
     "placeholders": {
       "search": "Поиск проектов...",
       "versionSearch": "Поиск..."

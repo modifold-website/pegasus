@@ -840,6 +840,7 @@
     "categories": "Categories",
     "clearFilters": "Clear Filters",
     "clearAllFilters": "Clear all filters",
+    "clearSearch": "Clear search",
     "placeholders": {
       "search": "Search projects...",
       "versionSearch": "Search..."

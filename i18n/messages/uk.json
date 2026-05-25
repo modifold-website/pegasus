@@ -841,6 +841,7 @@
     "categories": "Категорії",
     "clearFilters": "Очистити фільтри",
     "clearAllFilters": "Очистити всі фільтри",
+    "clearSearch": "Очистити пошук",
     "placeholders": {
       "search": "Пошук проєктів...",
       "versionSearch": "Пошук..."

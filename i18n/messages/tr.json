@@ -839,6 +839,7 @@
     "categories": "Kategoriler",
     "clearFilters": "Filtreleri temizle",
     "clearAllFilters": "Tüm filtreleri temizle",
+    "clearSearch": "Aramayı temizle",
     "placeholders": {
       "search": "Projeleri ara...",
       "versionSearch": "Ara..."

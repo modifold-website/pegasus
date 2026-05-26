@@ -54,7 +54,14 @@ export default function VersionPage({ project, version, authToken }) {
     const knownReleaseChannels = ["release", "beta", "alpha"];
     const hasKnownReleaseChannel = knownReleaseChannels.includes(releaseChannel);
     const releaseChannelLabel = hasKnownReleaseChannel ? t(`versions.channels.${releaseChannel}`) : (version.release_channel || t("versions.notSpecified"));
-    const dependencies = Array.isArray(version.dependencies) ? version.dependencies : [];
+	const dependencies = Array.isArray(version.dependencies) ? version.dependencies : [];
+	const hasChangelog = Boolean(version.changelog);
+	const hasDependencies = dependencies.length > 0;
+	const versionPageClassName = [
+		"version-page",
+		!hasChangelog ? "version-page--no-changelog" : null,
+		!hasDependencies ? "version-page--no-dependencies" : null,
+	].filter(Boolean).join(" ");
 
     const formatDependencyType = (dependencyType) => {
         const normalized = String(dependencyType || "").trim().toLowerCase();
@@ -69,7 +76,7 @@ export default function VersionPage({ project, version, authToken }) {
         <>
             <div className="project__general">
                 <div>
-                    <div className="version-page">
+                    <div className={versionPageClassName}>
                         <div className="version-page__title content content--padding">
                             <div className="version-page__breadcrumb">
                                 <Link href={`${getProjectPath(project)}/versions`} className="version-page__back-link button--active-transform">
@@ -104,7 +111,7 @@ export default function VersionPage({ project, version, authToken }) {
                             </div>
                         </div>
                         
-                        {version.changelog && (
+                        {hasChangelog && (
                             <div className="version-page__changelog content content--padding">
                                 <h3>{t("changesTitle")}</h3>
 
@@ -133,7 +140,7 @@ export default function VersionPage({ project, version, authToken }) {
                             </div>
                         )}
 
-                        {dependencies.length > 0 && (
+                        {hasDependencies && (
                             <div className="version-page__dependencies content content--padding">
                                 <h3>{t("versions.dependencies.title")}</h3>
 

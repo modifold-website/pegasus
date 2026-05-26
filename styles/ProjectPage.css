@@ -873,17 +873,38 @@
     transform: rotate(180deg);
 }
 .version-page {
-    gap: 12px;
-    display: grid;
-    grid-template:
-        "title" auto
-        "changelog" auto
-        "dependencies" auto
-        "metadata" auto / 1fr;
-    column-gap: .75rem;
+	gap: 12px;
+	display: grid;
+	grid-template:
+		"title" auto
+		"changelog" auto
+		"dependencies" auto
+		"files" auto
+		"metadata" auto / 1fr;
+	column-gap: .75rem;
+}
+.version-page--no-changelog {
+	grid-template:
+		"title" auto
+		"dependencies" auto
+		"files" auto
+		"metadata" auto / 1fr;
+}
+.version-page--no-dependencies {
+	grid-template:
+		"title" auto
+		"changelog" auto
+		"files" auto
+		"metadata" auto / 1fr;
+}
+.version-page--no-changelog.version-page--no-dependencies {
+	grid-template:
+		"title" auto
+		"files" auto
+		"metadata" auto / 1fr;
 }
 .version-page__title {
-    grid-area: title;
+	grid-area: title;
 }
 .version-page__breadcrumb {
     display: flex;
@@ -1033,14 +1054,34 @@
     font-weight: 600;
 }
 @media (min-width: 1200px) {
-    .version-page {
-        grid-template:
-        "title title" auto
-        "changelog metadata" auto
-        "dependencies metadata" auto
-        "files metadata" auto
-        "dummy metadata" 1fr / 1fr 20rem;
-    }
+	.version-page {
+		grid-template:
+		"title title" auto
+		"changelog metadata" auto
+		"dependencies metadata" auto
+		"files metadata" auto
+		"dummy metadata" 1fr / 1fr 20rem;
+	}
+	.version-page--no-changelog {
+		grid-template:
+		"title title" auto
+		"dependencies metadata" auto
+		"files metadata" auto
+		"dummy metadata" 1fr / 1fr 20rem;
+	}
+	.version-page--no-dependencies {
+		grid-template:
+		"title title" auto
+		"changelog metadata" auto
+		"files metadata" auto
+		"dummy metadata" 1fr / 1fr 20rem;
+	}
+	.version-page--no-changelog.version-page--no-dependencies {
+		grid-template:
+		"title title" auto
+		"files metadata" auto
+		"dummy metadata" 1fr / 1fr 20rem;
+	}
 }
 .version-page__files .file {
     align-items: center;

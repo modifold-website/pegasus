@@ -232,6 +232,12 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
         setSearchInput(event.target.value);
     };
 
+    const handleClearSearch = () => {
+        setSearchInput("");
+        setSearch("");
+        setCurrentPage(1);
+    };
+
     const getPageButtons = () => {
         const maxButtons = 10;
         let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
@@ -262,7 +268,7 @@ export default function BrowsePage({ projectType, initialState = null, initialDa
                     <BrowseRecommendedRail projects={recommendedProjects} modJams={activeModJams} t={t} projectType={projectType} initialCollapsed={initialRecommendedCollapsed} />
                 )}
 
-                <BrowseToolbar t={t} searchInput={searchInput} onSearchChange={handleSearchChange} cardView={cardView} onToggleCardView={toggleCardView} sort={sort} onSortSelect={handleSortSelect} />
+                <BrowseToolbar t={t} searchInput={searchInput} onSearchChange={handleSearchChange} onClearSearch={handleClearSearch} cardView={cardView} onToggleCardView={toggleCardView} sort={sort} onSortSelect={handleSortSelect} />
 
                 {(selectedTags.length > 0 || selectedGameVersions.length > 0) && (
                     <div className="browse-selected-filters">

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function BrowseToolbar({ t, searchInput, onSearchChange, cardView, onToggleCardView, sort, onSortSelect }) {
+export default function BrowseToolbar({ t, searchInput, onSearchChange, onClearSearch, cardView, onToggleCardView, sort, onSortSelect }) {
     const [isSortOpen, setIsSortOpen] = useState(false);
     const sortRef = useRef(null);
     const sortOptions = [
@@ -38,6 +38,15 @@ export default function BrowseToolbar({ t, searchInput, onSearchChange, cardView
                         </svg>
 
                         <input type="text" placeholder={t("placeholders.search")} value={searchInput} onChange={onSearchChange} className="text-input" />
+
+                        {searchInput && (
+                            <button className="field__clear-button" type="button" aria-label={t("clearSearch")} onMouseDown={(event) => event.preventDefault()} onClick={onClearSearch}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon field__icon">
+                                    <path d="M18 6 6 18" />
+                                    <path d="m6 6 12 12" />
+                                </svg>
+                            </button>
+                        )}
                     </div>
                 </label>
             </div>

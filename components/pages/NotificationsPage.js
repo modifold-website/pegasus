@@ -273,6 +273,23 @@ export default function NotificationsPage({ authToken, initialNotifications = []
 			);
 		}
 
+		if(notification.eventType === "project_version_approved") {
+			const versionProject = notification.projectVersion?.project || null;
+			const projectTitle = versionProject?.title || t("messages.projectFallback");
+			const versionNumber = notification.projectVersion?.versionNumber || t("messages.versionFallback");
+			const projectTitleView = versionProject?.slug ? (
+				<Link href={getProjectPath(versionProject)} className="notification-item__project-link"><b>{projectTitle}</b></Link>
+			) : (
+				<b>{projectTitle}</b>
+			);
+
+			return (
+				<>
+					{t("messages.projectVersionApprovedMiddle", { version: versionNumber })} {projectTitleView}
+				</>
+			);
+		}
+
         if(notification.eventType === "organization_invite") {
             const organizationName = notification.organization?.name || t("messages.organizationFallback");
             const organizationView = notification.organization?.slug ? (
@@ -307,6 +324,7 @@ export default function NotificationsPage({ authToken, initialNotifications = []
     };
 
     const renderNotificationItem = (notification) => {
+		const approvedIconClipId = `notification-approved-icon-${notification.id}`;
         const content = (
             <>
                 <div className="notification-item__image">
@@ -333,6 +351,20 @@ export default function NotificationsPage({ authToken, initialNotifications = []
 							<svg className="notification-item__icon notification-item__icon--blue" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
 								<circle cx="8" cy="8" r="8" fill="currentColor"></circle>
 								<path d="M5 8h6M8 5v6" stroke="#fff" strokeWidth="1.6" strokeLinecap="round"></path>
+							</svg>
+						)}
+
+						{notification.eventType === "project_version_approved" && (
+							<svg className="notification-item__icon notification-item__icon--green" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+								<g clipPath={`url(#${approvedIconClipId})`}>
+									<path d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16Z" fill="currentColor"></path>
+									<path d="M12 5L6.5 11L4 8.27273" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"></path>
+								</g>
+								<defs>
+									<clipPath id={approvedIconClipId}>
+										<rect width="16" height="16" fill="white"></rect>
+									</clipPath>
+								</defs>
 							</svg>
 						)}
 

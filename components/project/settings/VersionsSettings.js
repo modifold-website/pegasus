@@ -41,6 +41,15 @@ const createEmptyDependencyDraft = () => ({
     version_number: "",
     dependency_type: "required",
 });
+const VERSION_MODERATION_BADGE_TYPES = {
+    approved: "success",
+    pending: "pending",
+    scanning: "pending",
+    needs_review: "pending",
+    blocked: "blocked",
+    error: "error",
+};
+const VERSION_MODERATION_STATUS_KEYS = new Set(Object.keys(VERSION_MODERATION_BADGE_TYPES));
 
 export default function VersionsSettings({ project, authToken, gameVersions = DEFAULT_GAME_VERSIONS }) {
     const t = useTranslations("SettingsProjectPage");
@@ -239,7 +248,7 @@ export default function VersionsSettings({ project, authToken, gameVersions = DE
             });
 
             if(response.ok) {
-                toast.success(t("versions.success"));
+                toast.success(t("versions.successModeration"));
                 setShowUpload(false);
                 resetUploadForm();
 
@@ -694,6 +703,15 @@ export default function VersionsSettings({ project, authToken, gameVersions = DE
         setVersions(nextProject?.versions || []);
     };
 
+    const getVersionModerationBadge = (status) => {
+        const statusKey = String(status || "approved");
+        const normalizedStatus = VERSION_MODERATION_STATUS_KEYS.has(statusKey) ? statusKey : "approved";
+        return {
+            type: VERSION_MODERATION_BADGE_TYPES[normalizedStatus] || "pending",
+            label: tProject(`versions.statuses.${normalizedStatus}`),
+        };
+    };
+
     const resetUploadForm = () => {
         setFormData({
             version_number: "",
@@ -889,7 +907,10 @@ export default function VersionsSettings({ project, authToken, gameVersions = DE
                             <p className="subsite-empty-feed__title">{tProject("noFiles")}</p>
                         </div>
                     ) : (
-                        filteredVersions.map((version) => (
+                        filteredVersions.map((version) => {
+                            const moderationBadge = getVersionModerationBadge(version.moderation_status);
+
+                            return (
                             <div key={version.id} className="version-button">
                                 <div className="version-actions">
                                     <button className="download-button version-actions__trigger" type="button" onClick={() => setOpenEditActionsVersionId((prev) => (prev === version.id ? null : version.id))} aria-label={tProject("editVersion")} title={tProject("editVersion")} aria-expanded={openEditActionsVersionId === version.id}>
@@ -978,11 +999,11 @@ export default function VersionsSettings({ project, authToken, gameVersions = DE
                                     </span>
 
                                     <div className="version__metadata">
-                                        <span className={`version__badge type--${version.release_channel}`}>
+                                        <span className={`version__badge type--${moderationBadge.type}`} style={{ marginRight: "8px" }}>
                                             <span className="circle"></span>
-                                            {tProject("versions.published")}
+                                            {moderationBadge.label}
                                         </span>
-                                        <span className="divider"></span>
+
                                         <span className="version_number">{formatDate(version.created_at)}</span>
                                     </div>
                                 </Link>
@@ -992,7 +1013,8 @@ export default function VersionsSettings({ project, authToken, gameVersions = DE
                                     <span>{tProject("versions.downloads")}</span>
                                 </div>
                             </div>
-                        ))
+                            );
+                        })
                     )}
                 </div>
             </div>

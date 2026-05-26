@@ -1772,6 +1772,30 @@ body[data-feature-flag-frosted-menus="true"] .popover {
 .field__icon--left {
     margin-right: var(--iconLeftMarginRight);
 }
+.field__clear-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    margin-left: 8px;
+    padding: 0;
+    color: var(--theme-color-text-secondary);
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+}
+.field__clear-button .field__icon {
+    color: inherit;
+}
+@media (hover: hover) {
+    .field__clear-button:hover {
+        color: var(--theme-color-text-primary);
+        background: var(--theme-color-button-minimal-hover);
+    }
+}
 .field .popover {
     --width: 100% !important;
 }

@@ -568,6 +568,14 @@
       "notSpecified": "Belirtilmedi",
       "published": "Yayınlanma:",
       "downloads": "indirme",
+      "statuses": {
+        "approved": "Yayınlandı",
+        "pending": "İncelemede",
+        "scanning": "İncelemede",
+        "needs_review": "İncelemede",
+        "blocked": "Engellendi",
+        "error": "İnceleme hatası"
+      },
       "channels": {
         "release": "Kararlı",
         "beta": "Beta",
@@ -831,6 +839,7 @@
     "categories": "Kategoriler",
     "clearFilters": "Filtreleri temizle",
     "clearAllFilters": "Tüm filtreleri temizle",
+    "clearSearch": "Aramayı temizle",
     "placeholders": {
       "search": "Projeleri ara...",
       "versionSearch": "Ara..."
@@ -1140,6 +1149,7 @@
         "fileTooLarge": "Dosya çok büyük. Maksimum boyut 100 MB"
       },
       "success": "Sürüm yüklendi",
+      "successModeration": "Sürüm moderasyona gönderildi",
       "title": "Yeni sürüm yükle",
       "dependenciesEditor": {
         "title": "Bağımlılık ekle",
@@ -1545,7 +1555,8 @@
       "users": "Kullanıcılar",
       "verification": "Doğrulama",
       "statistics": "Istatistikler",
-      "reports": "Reports"
+      "reports": "Reports",
+      "technicalReview": "Technical review"
     },
     "charts": {
       "approvedProjects": "Onaylanan proje grafiği",
@@ -1596,6 +1607,79 @@
       "pageOf": "{totalPages} içinde {page}. sayfa"
     },
     "empty": "Bekleyen proje yok."
+  },
+  "TechnicalReviewPage": {
+    "metadata": {
+      "title": "Technical review — Modifold"
+    },
+    "filters": {
+      "searchPlaceholder": "Search versions, projects, or IDs...",
+      "sort": {
+        "oldest": "Oldest",
+        "newest": "Newest"
+      }
+    },
+    "statuses": {
+      "needs_review": "Needs review",
+      "pending": "Pending",
+      "scanning": "Scanning",
+      "error": "Scan error",
+      "blocked": "Blocked",
+      "approved": "Approved",
+      "all": "All statuses"
+    },
+    "fields": {
+      "version": "Version",
+      "fileSize": "File size",
+      "status": "Status",
+      "scanRequested": "Scan requested",
+      "reason": "Reason",
+      "argusReasons": "Argus signals",
+      "noFlags": "No suspicious flags for this file.",
+      "argusNotice": "Argus noticed: {message}",
+      "noArgusSummary": "no additional details"
+    },
+    "tabs": {
+      "thread": "Thread",
+      "files": "Files"
+    },
+    "severity": {
+      "critical": "Critical",
+      "severe": "Severe",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low",
+      "info": "Info"
+    },
+    "actions": {
+      "download": "Download",
+      "approve": "Approve",
+      "publish": "Publish",
+      "block": "Block",
+      "copyCode": "Copy code"
+    },
+    "modal": {
+      "title": "Block version",
+      "close": "Close",
+      "reason": "Reason",
+      "reasonPlaceholder": "Explain why this version is blocked.",
+      "cancel": "Cancel",
+      "confirm": "Block version"
+    },
+    "success": {
+      "approved": "Version published",
+      "blocked": "Version blocked"
+    },
+    "errors": {
+      "fetch": "Failed to load technical review queue.",
+      "decision": "Failed to update version."
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "pageOf": "Page {page} of {totalPages}"
+    },
+    "empty": "No versions in this technical review queue."
   },
   "UsersModerationPage": {
     "metadata": {
@@ -1677,6 +1761,7 @@
       "projectLikeOneMiddle": "projenizi beğendi",
       "projectLikeManyMiddle": "ve {count} kişi daha projenizi beğendi",
       "projectVersionReleaseMiddle": "{version} sürümünü şu proje için yayınladı",
+      "projectVersionApprovedMiddle": "Your version {version} passed moderation and is now available for",
       "projectFallback": "projenizi",
       "versionFallback": "yeni",
       "unknown": "Yeni bildirim",

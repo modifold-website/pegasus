@@ -11,6 +11,14 @@ import showOverTheTopDownloadAnimation from "../ui/showOverTheTopDownloadAnimati
 import { DEFAULT_GAME_VERSIONS, sortByKnownGameVersions } from "@/utils/gameVersions";
 
 const releaseChannels = ["release", "beta", "alpha"];
+const VERSION_MODERATION_BADGE_TYPES = {
+    pending: "pending",
+    scanning: "pending",
+    needs_review: "pending",
+    blocked: "blocked",
+    error: "error",
+};
+const VERSION_MODERATION_STATUS_KEYS = new Set(Object.keys(VERSION_MODERATION_BADGE_TYPES));
 
 export default function VersionsPage({ project, authToken, gameVersions = DEFAULT_GAME_VERSIONS }) {
     const t = useTranslations("ProjectPage");
@@ -174,6 +182,18 @@ export default function VersionsPage({ project, authToken, gameVersions = DEFAUL
         return buttons;
     };
 
+    const getVersionModerationBadge = (status) => {
+        const statusKey = String(status || "").trim();
+        if(!VERSION_MODERATION_STATUS_KEYS.has(statusKey)) {
+            return null;
+        }
+
+        return {
+            type: VERSION_MODERATION_BADGE_TYPES[statusKey],
+            label: t(`versions.statuses.${statusKey}`),
+        };
+    };
+
     return (
         <>
             <div className="project__general">
@@ -249,7 +269,10 @@ export default function VersionsPage({ project, authToken, gameVersions = DEFAUL
                             <div>{t("versions.headers.statistics")}</div>
                         </div>
 
-                        {currentVersions.map((version) => (
+                        {currentVersions.map((version) => {
+                            const moderationBadge = getVersionModerationBadge(version.moderation_status);
+
+                            return (
                             <div key={version.id} className="version-button button--active-transform">
                                 <a className="download-button" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation}>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
@@ -275,6 +298,13 @@ export default function VersionsPage({ project, authToken, gameVersions = DEFAUL
                                     </span>
 
                                     <div className="version__metadata">
+                                        {moderationBadge && (
+                                            <span className={`version__badge type--${moderationBadge.type}`} style={{ marginRight: "8px" }}>
+                                                <span className="circle"></span>
+                                                {moderationBadge.label}
+                                            </span>
+                                        )}
+
                                         <span className={`version__badge type--${version.release_channel}`}>
                                             <span className="circle"></span>
                                             {t("versions.published")}
@@ -289,7 +319,8 @@ export default function VersionsPage({ project, authToken, gameVersions = DEFAUL
                                     <span>{t("versions.downloads")}</span>
                                 </div>
                             </div>
-                        ))}
+                            );
+                        })}
                     </div>
 
                     {totalPages > 1 && (

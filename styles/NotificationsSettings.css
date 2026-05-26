@@ -127,6 +127,9 @@
 		opacity: .85;
 	}
 }
+.notification-item__icon--green {
+    color: var(--theme-color-signal-positive-default);
+}
 .notification-item__icon--blue {
     color: var(--theme-color-signal-active-default);
 }

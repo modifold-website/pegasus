@@ -1635,12 +1635,29 @@
       "status": "Статус",
       "scanRequested": "Запрос проверки",
       "reason": "Причина",
-      "argusReasons": "Сигналы Argus"
+      "argusReasons": "Сигналы Argus",
+      "noFlags": "Для этого файла нет подозрительных флагов.",
+      "argusNotice": "Аргус заметил: {message}",
+      "noArgusSummary": "нет дополнительных деталей"
+    },
+    "tabs": {
+      "thread": "Тред",
+      "files": "Файлы"
+    },
+    "severity": {
+      "critical": "Критично",
+      "severe": "Критично",
+      "high": "Высокая",
+      "medium": "Средняя",
+      "low": "Низкая",
+      "info": "Инфо"
     },
     "actions": {
       "download": "Скачать",
+      "approve": "Одобрить",
       "publish": "Опубликовать",
-      "block": "Заблокировать"
+      "block": "Заблокировать",
+      "copyCode": "Скопировать код"
     },
     "modal": {
       "title": "Заблокировать версию",

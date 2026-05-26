@@ -1635,12 +1635,29 @@
       "status": "Status",
       "scanRequested": "Scan requested",
       "reason": "Reason",
-      "argusReasons": "Argus signals"
+      "argusReasons": "Argus signals",
+      "noFlags": "No suspicious flags for this file.",
+      "argusNotice": "Argus noticed: {message}",
+      "noArgusSummary": "no additional details"
+    },
+    "tabs": {
+      "thread": "Thread",
+      "files": "Files"
+    },
+    "severity": {
+      "critical": "Critical",
+      "severe": "Severe",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low",
+      "info": "Info"
     },
     "actions": {
       "download": "Download",
+      "approve": "Approve",
       "publish": "Publish",
-      "block": "Block"
+      "block": "Block",
+      "copyCode": "Copy code"
     },
     "modal": {
       "title": "Block version",

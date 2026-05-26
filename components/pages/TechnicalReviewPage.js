@@ -37,6 +37,55 @@ const formatDate = (value) => {
 	return date.toLocaleString();
 };
 
+const severityOrder = {
+	critical: 4,
+	severe: 4,
+	high: 3,
+	medium: 2,
+	low: 1,
+	info: 0,
+};
+
+const getSeverity = (value) => {
+	const severity = String(value || "low").toLowerCase();
+	return severityOrder[severity] === undefined ? "low" : severity;
+};
+
+const getHighestSeverity = (items) => {
+	return items
+		.map((item) => getSeverity(item.severity))
+		.sort((a, b) => (severityOrder[b] || 0) - (severityOrder[a] || 0))[0] || "low";
+};
+
+const getFileNameFromUrl = (value) => {
+	if(!value) {
+		return "";
+	}
+
+	try {
+		const url = new URL(value);
+		return decodeURIComponent(url.pathname.split("/").filter(Boolean).pop() || "");
+	} catch {
+		return String(value).split("/").filter(Boolean).pop() || "";
+	}
+};
+
+const getFindingSource = (finding) => {
+	return String(finding?.source || finding?.file || finding?.path || finding?.class || finding?.class_name || "").trim();
+};
+
+const normalizeFindingMessage = (finding) => {
+	if(typeof finding === "string") {
+		return finding;
+	}
+
+	return String(finding?.message || finding?.reason || finding?.type || "").trim();
+};
+
+const formatFindingType = (value) => {
+	return String(value || "suspicious pattern").replace(/_/g, " ").toUpperCase();
+};
+
 const ARGUS_PASSED_MESSAGE = "Argus security worker did not find suspicious signals";
 
 const normalizeArgusSignals = (report) => {
@@ -49,13 +98,21 @@ const normalizeArgusSignals = (report) => {
 			if(typeof finding === "string") {
 				return {
 					message: finding,
+					severity: "low",
+					type: "",
+					source: "",
+					excerpt: "",
 					isPassed: finding === ARGUS_PASSED_MESSAGE,
 				};
 			}
 
-			const message = String(finding?.message || "").trim();
+			const message = normalizeFindingMessage(finding);
 			return {
 				message,
+				severity: getSeverity(finding?.severity),
+				type: String(finding?.type || "").trim(),
+				source: getFindingSource(finding),
+				excerpt: String(finding?.excerpt || finding?.code || "").trim(),
 				isPassed: finding?.type === "passed" || message === ARGUS_PASSED_MESSAGE,
 			};
 		}).filter((finding) => finding.message);
@@ -66,12 +123,43 @@ const normalizeArgusSignals = (report) => {
 			const message = String(reason || "").trim();
 			return {
 				message,
+				severity: "low",
+				type: "",
+				source: "",
+				excerpt: "",
 				isPassed: message === ARGUS_PASSED_MESSAGE,
 			};
 		}).filter((finding) => finding.message);
 	}
 
 	return [];
+};
+
+const buildReviewGroups = (signals) => {
+	const flaggedSignals = signals.filter((signal) => !signal.isPassed);
+	const groupsMap = new Map();
+
+	flaggedSignals.forEach((signal, index) => {
+		const source = signal.source || signal.message || `finding-${index + 1}`;
+
+		if(!groupsMap.has(source)) {
+			groupsMap.set(source, {
+				source,
+				flags: [],
+			});
+		}
+
+		groupsMap.get(source).flags.push(signal);
+	});
+
+	return [...groupsMap.values()];
+};
+
+const getArgusThreadMessage = (version, signals) => {
+	const flaggedSignal = signals.find((signal) => !signal.isPassed);
+	const passedSignal = signals.find((signal) => signal.isPassed);
+
+	return version.moderation_reason || flaggedSignal?.message || passedSignal?.message || "";
 };
 
 export default function TechnicalReviewPage({ authToken, initialVersions, initialTotalPages }) {
@@ -88,6 +176,7 @@ export default function TechnicalReviewPage({ authToken, initialVersions, initia
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [isStatusPopoverOpen, setIsStatusPopoverOpen] = useState(false);
 	const [isSortPopoverOpen, setIsSortPopoverOpen] = useState(false);
+	const [reviewTabs, setReviewTabs] = useState({});
 	const statusPopoverRef = useRef(null);
 	const sortPopoverRef = useRef(null);
 
@@ -159,6 +248,15 @@ export default function TechnicalReviewPage({ authToken, initialVersions, initia
 		setSort(selectedSort);
 		setIsSortPopoverOpen(false);
 		setPage(1);
+	};
+
+	const getReviewTab = (versionId) => reviewTabs[versionId] || "thread";
+
+	const setReviewTab = (versionId, tab) => {
+		setReviewTabs((current) => ({
+			...current,
+			[versionId]: tab,
+		}));
 	};
 
 	const submitDecision = async (version, decision, reason = "") => {
@@ -265,7 +363,7 @@ export default function TechnicalReviewPage({ authToken, initialVersions, initia
 					<p>{t("empty")}</p>
 				</div>
 			) : (
-				<div className="projects-grid">
+				<div className="browse-project-list">
 					{versions.map((version) => {
 						const project = {
 							project_type: version.project_type,
@@ -273,85 +371,167 @@ export default function TechnicalReviewPage({ authToken, initialVersions, initia
 						};
 						const report = version.argus_report || {};
 						const argusSignals = normalizeArgusSignals(report);
+						const reviewGroups = buildReviewGroups(argusSignals);
+						const highestSeverity = getHighestSeverity(argusSignals);
+						const fileName = report.file_name || getFileNameFromUrl(version.file_url) || version.version_number;
+						const activeReviewTab = getReviewTab(version.id);
+						const argusThreadMessage = getArgusThreadMessage(version, argusSignals);
 
 						return (
-							<div key={version.id} className="new-projects-list">
-								<div className="new-project-card technical-review-card">
-									<div style={{ display: "flex", gap: "12px", padding: "16px", borderBottom: "1px solid var(--theme-color-border)" }}>
-										<Link href={getProjectPath(project)} style={{ height: "96px" }}>
-											<img className="new-project-icon" alt={version.project_title} src={version.project_icon_url} />
-										</Link>
+							<div key={version.id} className="new-project-card technical-review-card">
+								<div className="technical-review-card__header">
+									<Link href={getProjectPath(project)} className="technical-review-card__icon-link">
+										<img className="new-project-icon" alt={version.project_title} src={version.project_icon_url} />
+									</Link>
 
-										<div className="new-project-info">
-											<div className="new-project-header">
-												<Link href={getProjectPath(project)} className="new-project-title">
-													{version.project_title}
-												</Link>
-											</div>
+									<div className="technical-review-card__summary">
+										<div className="technical-review-card__title-row">
+											<Link href={getProjectPath(project)} className="technical-review-card__project">
+												{version.project_title}
+											</Link>
+											
+											<div className="technical-review-card__version">{version.version_number}</div>
 
-											<p className="new-project-description">{version.project_summary}</p>
+											<div className="technical-review-card__badges">
+												<span className={`technical-review-badge technical-review-badge--status-${version.moderation_status}`}>
+													{t(`statuses.${version.moderation_status}`)}
+												</span>
 
-											<div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "8px", color: "var(--theme-color-text-secondary)", fontSize: "14px" }}>
-												<span>{t("fields.version")}: {version.version_number}</span>
-												<span>{t("fields.fileSize")}: {formatBytes(version.file_size)}</span>
-												<span>{t("fields.status")}: {t(`statuses.${version.moderation_status}`)}</span>
-												{version.scan_requested_at && <span>{t("fields.scanRequested")}: {formatDate(version.scan_requested_at)}</span>}
+												<span className={`technical-review-badge technical-review-badge--severity-${highestSeverity}`}>
+													{t(`severity.${highestSeverity}`)}
+												</span>
 											</div>
 										</div>
 
-										<div className="new-project-stats" style={{ minWidth: "220px" }}>
-											<a className="button button--size-m button--type-minimal button--with-icon" href={version.file_url} target="_blank" rel="noreferrer">
-												<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download-icon lucide-download">
-													<path d="M12 15V3"></path>
-													<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-													<path d="m7 10 5 5 5-5"></path>
-												</svg>
-												
-												{t("actions.download")}
-											</a>
-
-											<button className="button button--size-m button--type-positive" type="button" onClick={() => submitDecision(version, "approved")} disabled={isSubmitting}>
-												{t("actions.publish")}
-											</button>
-
-											<button className="button button--size-m button--type-negative" type="button" onClick={() => openBlockModal(version)} disabled={isSubmitting}>
-												{t("actions.block")}
-											</button>
+										<div className="technical-review-card__meta">
+											<span>{fileName}</span>
+											<span>{formatBytes(version.file_size)}</span>
+											{version.scan_requested_at && <span>{t("fields.scanRequested")}: {formatDate(version.scan_requested_at)}</span>}
 										</div>
 									</div>
 
-									<div style={{ padding: "12px 16px", display: "grid", gap: "8px" }}>
-										{version.moderation_reason && (
-											<div>
-												<strong>{t("fields.reason")}:</strong> {version.moderation_reason}
-											</div>
-										)}
+									<div className="technical-review-card__actions">
+										<button className="button button--size-m button--type-positive" type="button" onClick={() => submitDecision(version, "approved")} disabled={isSubmitting}>
+											{t("actions.approve")}
+										</button>
 
-										{report.sha256 && (
-											<div>
-												<strong>SHA-256:</strong> <code>{report.sha256}</code>
-											</div>
-										)}
-
-										{argusSignals.length > 0 && (
-											<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-												<strong>{t("fields.argusReasons")}:</strong>
-
-												{argusSignals.map((signal) => (
-													<li key={signal.message} style={signal.isPassed ? { color: "#2e9e45", display: "flex", alignItems: "center", gap: "4px" } : undefined}>
-														{signal.isPassed && (
-															<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check-icon lucide-circle-check" style={{ fill: "none" }} aria-hidden="true">
-																<circle cx="12" cy="12" r="10"></circle>
-																<path d="m9 12 2 2 4-4"></path>
-															</svg>
-														)}
-
-														{signal.message}
-													</li>
-												))}
-											</div>
-										)}
+										<button className="button button--size-m button--type-negative" type="button" onClick={() => openBlockModal(version)} disabled={isSubmitting}>
+											{t("actions.block")}
+										</button>
 									</div>
+								</div>
+
+								<div className="technical-review-tabs">
+									<button type="button" className={activeReviewTab === "thread" ? "technical-review-tabs__active" : ""} onClick={() => setReviewTab(version.id, "thread")}>
+										{t("tabs.thread")}
+									</button>
+
+									<button type="button" className={activeReviewTab === "files" ? "technical-review-tabs__active" : ""} onClick={() => setReviewTab(version.id, "files")}>
+										{t("tabs.files")}
+									</button>
+
+									<button type="button" className={activeReviewTab === "file" ? "technical-review-tabs__active" : ""} onClick={() => setReviewTab(version.id, "file")}>
+										{fileName}
+									</button>
+								</div>
+
+								<div className="technical-review-card__body">
+									{activeReviewTab === "thread" && (
+										<div className="technical-review-thread">
+											{t("fields.argusNotice", { message: argusThreadMessage || t("fields.noArgusSummary") })}
+										</div>
+									)}
+
+									{activeReviewTab === "files" && (
+										<div className="technical-review-files">
+											<div className="technical-review-file-row">
+												<div className="technical-review-file-row__main">
+													<div className="technical-review-file-row__name">{fileName}</div>
+													<div className="technical-review-file-row__meta">
+														<span>{formatBytes(version.file_size)}</span>
+														{report.sha256 && <code>SHA-256 {report.sha256}</code>}
+													</div>
+												</div>
+
+												<a className="button button--size-m button--type-minimal button--with-icon" href={version.file_url} target="_blank" rel="noreferrer" download={fileName}>
+													<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download-icon lucide-download">
+														<path d="M12 15V3"></path>
+														<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+														<path d="m7 10 5 5 5-5"></path>
+													</svg>
+
+													{t("actions.download")}
+												</a>
+											</div>
+										</div>
+									)}
+
+									{activeReviewTab === "file" && (
+										<>
+											<div className="technical-review-card__filebar">
+												<div className="technical-review-card__file-title">
+													<span>{fileName}</span>
+													<span className="technical-review-pill">{formatBytes(version.file_size)}</span>
+													<span className={`technical-review-badge technical-review-badge--severity-${highestSeverity}`}>
+														{t(`severity.${highestSeverity}`)}
+													</span>
+												</div>
+
+												{report.sha256 && (
+													<code className="technical-review-card__hash">SHA-256 {report.sha256}</code>
+												)}
+											</div>
+
+											{reviewGroups.length === 0 ? (
+												<div className="technical-review-empty-flags">{t("fields.noFlags")}</div>
+											) : (
+												reviewGroups.map((group) => (
+													<details key={group.source} className="technical-review-class">
+														<summary className="technical-review-class__summary">
+															<span className="technical-review-class__chevron" aria-hidden="true">
+																<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+																	<path d="m6 9 6 6 6-6"></path>
+																</svg>
+															</span>
+
+															<code className="technical-review-class__path">{group.source}</code>
+														</summary>
+
+														<div className="technical-review-class__details">
+															{group.flags.map((flag) => (
+																<div key={`${group.source}-${flag.type}-${flag.message}`} className="technical-review-finding">
+																	<div className="technical-review-finding__header">
+																		<div>
+																			<div className="technical-review-finding__title">
+																				{formatFindingType(flag.type)}
+																			</div>
+
+																			<div className="technical-review-finding__reason">
+																				{flag.message}
+																			</div>
+																		</div>
+																	</div>
+
+																	{flag.excerpt && (
+																		<div className="technical-review-code">
+																			<div className="technical-review-code__line">1</div>
+																			<pre><code>{flag.excerpt}</code></pre>
+																			<button className="technical-review-code__copy" type="button" onClick={() => navigator.clipboard?.writeText(flag.excerpt)} aria-label={t("actions.copyCode")}>
+																				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+																					<rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+																					<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+																				</svg>
+																			</button>
+																		</div>
+																	)}
+																</div>
+															))}
+														</div>
+													</details>
+												))
+											)}
+										</>
+									)}
 								</div>
 							</div>
 						);

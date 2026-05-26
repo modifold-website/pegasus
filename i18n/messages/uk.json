@@ -1636,12 +1636,29 @@
       "status": "Статус",
       "scanRequested": "Запит перевірки",
       "reason": "Причина",
-      "argusReasons": "Сигнали Argus"
+      "argusReasons": "Сигнали Argus",
+      "noFlags": "Для цього файлу немає підозрілих flags.",
+      "argusNotice": "Argus noticed: {message}",
+      "noArgusSummary": "no additional details"
+    },
+    "tabs": {
+      "thread": "Thread",
+      "files": "Files"
+    },
+    "severity": {
+      "critical": "Critical",
+      "severe": "Severe",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low",
+      "info": "Info"
     },
     "actions": {
       "download": "Завантажити",
+      "approve": "Approve",
       "publish": "Опублікувати",
-      "block": "Заблокувати"
+      "block": "Заблокувати",
+      "copyCode": "Copy code"
     },
     "modal": {
       "title": "Заблокувати версію",

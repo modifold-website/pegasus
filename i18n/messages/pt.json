@@ -1668,8 +1668,8 @@
       "confirm": "Block version"
     },
     "success": {
-      "approved": "Version published.",
-      "blocked": "Version blocked."
+      "approved": "Version published",
+      "blocked": "Version blocked"
     },
     "errors": {
       "fetch": "Failed to load technical review queue.",

@@ -1113,7 +1113,8 @@
     margin: 0;
 }
 .version-page__metadata .metadata-value {
-    display: block;
+    display: flex;
+    gap: 6px;
     color: var(--theme-color-text-secondary);
 }
 .version-page__metadata .metadata-value .version__badge {

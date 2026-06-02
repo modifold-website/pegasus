@@ -91,6 +91,8 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 	const visibleThumbs = preparedImages.slice(thumbsWindowStart, thumbsWindowStart + visibleThumbsCount);
 	const nextVisibleThumbs = preparedImages.slice(nextThumbsWindowStart, nextThumbsWindowStart + visibleThumbsCount);
 	const activeThumbIndex = transitionState ? transitionState.to : activeIndex;
+	const displayedThumbsCount = Math.max(1, (isThumbsAnimating ? nextVisibleThumbs : visibleThumbs).length);
+	const hasSingleVisibleThumb = displayedThumbsCount === 1;
 	const getImageAlt = (image, index) => image.title || `${projectTitle} image ${index + 1}`;
 	const getThumbAlt = (image, index) => image.title || `${projectTitle} thumbnail ${index + 1}`;
 
@@ -140,10 +142,10 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 					</svg>
 				</button>
 
-				<div className="project-inline-gallery__thumbs-viewport" style={{ "--thumb-count": Math.max(1, (isThumbsAnimating ? nextVisibleThumbs : visibleThumbs).length) }}>
+				<div className={`project-inline-gallery__thumbs-viewport ${hasSingleVisibleThumb ? "project-inline-gallery__thumbs-viewport--single" : ""}`} style={{ "--thumb-count": displayedThumbsCount }}>
 					{isThumbsAnimating ? (
 						<>
-							<div className={`project-inline-gallery__thumbs-track project-inline-gallery__thumbs-track--leave ${transitionState.direction === "right" ? "to-left" : "to-right"}`}>
+							<div className={`project-inline-gallery__thumbs-track project-inline-gallery__thumbs-track--leave ${visibleThumbs.length === 1 ? "project-inline-gallery__thumbs-track--single" : ""} ${transitionState.direction === "right" ? "to-left" : "to-right"}`}>
 								{visibleThumbs.map((image, offset) => {
 									const index = thumbsWindowStart + offset;
 									return (
@@ -153,7 +155,7 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 									);
 								})}
 							</div>
-							<div className={`project-inline-gallery__thumbs-track project-inline-gallery__thumbs-track--enter ${transitionState.direction === "right" ? "from-right" : "from-left"}`}>
+							<div className={`project-inline-gallery__thumbs-track project-inline-gallery__thumbs-track--enter ${nextVisibleThumbs.length === 1 ? "project-inline-gallery__thumbs-track--single" : ""} ${transitionState.direction === "right" ? "from-right" : "from-left"}`}>
 								{nextVisibleThumbs.map((image, offset) => {
 									const index = nextThumbsWindowStart + offset;
 									return (
@@ -165,7 +167,7 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 							</div>
 						</>
 					) : (
-						<div className="project-inline-gallery__thumbs-track project-inline-gallery__thumbs-track--active">
+						<div className={`project-inline-gallery__thumbs-track project-inline-gallery__thumbs-track--active ${visibleThumbs.length === 1 ? "project-inline-gallery__thumbs-track--single" : ""}`}>
 							{visibleThumbs.map((image, offset) => {
 								const index = thumbsWindowStart + offset;
 								return (

@@ -16,6 +16,7 @@ export default function ProjectTabs({ project }) {
     const showIssuesTab = project?.issues_enabled;
 
     const isActive = (href) => pathname === href;
+    const isVersionsActive = pathname === `${basePath}/${project.slug}/versions` || pathname.startsWith(`${basePath}/${project.slug}/version/`);
     const isWikiActive = pathname === `${basePath}/${project.slug}/wiki` || pathname.startsWith(`${basePath}/${project.slug}/wiki/`);
     const isIssuesActive = pathname === `${basePath}/${project.slug}/issues` || pathname.startsWith(`${basePath}/${project.slug}/issues/`);
 
@@ -103,7 +104,7 @@ export default function ProjectTabs({ project }) {
                 {t("tabs.description")}
             </Link>
 
-            <Link href={`${basePath}/${project.slug}/versions`} scroll={false} className={`tabs__tab ${isActive(`${basePath}/${project.slug}/versions`) ? "tabs__tab--active" : ""}`}>
+            <Link href={`${basePath}/${project.slug}/versions`} scroll={false} className={`tabs__tab ${isVersionsActive ? "tabs__tab--active" : ""}`}>
                 {t("tabs.versions")}
             </Link>
         

@@ -980,6 +980,13 @@
         "30d": "30 dias",
         "90d": "3 meses"
       },
+      "chartTypes": {
+        "label": "Tipo de gráfico",
+        "line": "Linha",
+        "bar": "Barras",
+        "lineAria": "Mostrar como gráfico de linhas",
+        "barAria": "Mostrar como gráfico de barras"
+      },
       "stats": {
         "downloads": "Downloads",
         "views": "Views",

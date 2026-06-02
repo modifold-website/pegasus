@@ -979,6 +979,13 @@
         "30d": "30 gün",
         "90d": "3 ay"
       },
+      "chartTypes": {
+        "label": "Grafik türü",
+        "line": "Çizgi",
+        "bar": "Sütun",
+        "lineAria": "Çizgi grafik olarak göster",
+        "barAria": "Sütun grafik olarak göster"
+      },
       "stats": {
         "downloads": "İndirmeler",
         "views": "Görüntülenmeler",

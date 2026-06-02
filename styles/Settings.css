@@ -505,7 +505,7 @@
     display: flex;
     justify-content: space-between;
     gap: 16px;
-    align-items: flex-start;
+    align-items: center;
     margin-bottom: 20px;
 }
 .project-analytics-card__eyebrow {
@@ -518,6 +518,46 @@
     margin: 0 !important;
     font-size: 18px !important;
     line-height: 1.1;
+}
+.project-analytics-chart-toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
+	padding: 4px;
+	border-radius: 12px;
+	background: var(--theme-color-background);
+	flex-shrink: 0;
+}
+.project-analytics-chart-toggle__item {
+	border: 0;
+	background: transparent;
+	color: var(--theme-color-text-secondary);
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 12px;
+	border-radius: 8px;
+	font-weight: 500;
+	line-height: 1;
+	cursor: pointer;
+	transition: color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+.project-analytics-chart-toggle__item:hover {
+	color: var(--theme-color-text-primary);
+}
+.project-analytics-chart-toggle__item svg {
+	width: 16px;
+	height: 16px;
+	fill: none;
+	flex-shrink: 0;
+}
+.project-analytics-chart-toggle__item span {
+	font-size: 14px;
+}
+.project-analytics-chart-toggle__item.is-active {
+	color: var(--theme-color-text-primary);
+	background: var(--theme-color-background-content);
+	box-shadow: var(--theme-color-button-secondary-shadow);
 }
 .project-analytics-chart {
     width: 100%;
@@ -616,6 +656,13 @@
         flex-direction: column;
         align-items: flex-start;
     }
+	.project-analytics-chart-toggle {
+		width: 100%;
+	}
+	.project-analytics-chart-toggle__item {
+		justify-content: center;
+		flex: 1;
+	}
 }
 .delete-account-section {
     margin-top: 12px;

@@ -261,7 +261,7 @@ export default function VersionPage({ project, version, authToken }) {
                     </div>
                 </div>
 
-                <ProjectSidebar project={project} />
+                <ProjectSidebar project={project} showFeaturedVersions={false} />
             </div>
         </>
     );

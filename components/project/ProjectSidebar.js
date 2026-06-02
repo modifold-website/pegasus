@@ -1,13 +1,36 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import LicenseModal from "../../modal/LicenseModal";
 import ModJamVoteButton from "@/components/mod-jams/ModJamVoteButton";
 import UserName from "../ui/UserName";
+import VersionDisplay from "../VersionDisplay";
+import showOverTheTopDownloadAnimation from "../ui/showOverTheTopDownloadAnimation";
+import { getProjectPath } from "@/utils/projectRoutes";
 
-export default function ProjectSidebar({ project, authToken, showLicense = true, showLinks = true }) {
+const FEATURED_VERSIONS_LIMIT = 5;
+const knownReleaseChannels = ["release", "beta", "alpha"];
+
+function getVersionTimestamp(version) {
+	const timestamp = new Date(version?.created_at || version?.updated_at || 0).getTime();
+	return Number.isFinite(timestamp) ? timestamp : 0;
+}
+
+function getVersionGameVersions(version) {
+	if(Array.isArray(version?.game_versions)) {
+		return version.game_versions;
+	}
+
+	if(typeof version?.game_versions === "string") {
+		return version.game_versions.split(",").map((value) => value.trim()).filter(Boolean);
+	}
+
+	return [];
+}
+
+export default function ProjectSidebar({ project, authToken, showLicense = true, showLinks = true, showFeaturedVersions = true }) {
     const t = useTranslations("ProjectPage");
     const tLicense = useTranslations("LicenseModal");
     const locale = useLocale();
@@ -30,6 +53,14 @@ export default function ProjectSidebar({ project, authToken, showLicense = true,
     const hasValidDates = Number.isFinite(createdAtTime) && Number.isFinite(updatedAtTime);
     const isSameCreatedUpdated = hasValidDates ? createdAtTime === updatedAtTime : project?.created_at === project?.updated_at;
     const showUpdatedAt = Boolean(project?.updated_at) && !isSameCreatedUpdated;
+    const projectPath = getProjectPath(project);
+    const featuredVersions = useMemo(() => {
+        if(!Array.isArray(project?.versions)) {
+            return [];
+        }
+
+        return project.versions.filter((version) => version?.id).slice().sort((left, right) => getVersionTimestamp(right) - getVersionTimestamp(left)).slice(0, FEATURED_VERSIONS_LIMIT);
+    }, [project?.versions]);
     
     return (
         <div style={{ display: "flex", gap: "15px", flexDirection: "column" }}>
@@ -232,6 +263,55 @@ export default function ProjectSidebar({ project, authToken, showLicense = true,
                     </div>
                 </div>
             </div>
+
+            {showFeaturedVersions && featuredVersions.length > 0 && (
+                <div className="content content--padding project-sidebar-featured-versions">
+                    <div className="project-sidebar-featured-versions__header">
+                        <h2>{t("featuredVersionsTitle")}</h2>
+
+                        <Link href={`${projectPath}/versions`} className="project-sidebar-featured-versions__see-all button--active-transform">
+                            {t("showAllVersions")}
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                <path d="m9 18 6-6-6-6"/>
+                            </svg>
+                        </Link>
+                    </div>
+
+                    <div className="project-sidebar-featured-versions__list">
+                        {featuredVersions.map((version) => {
+                            const releaseChannel = typeof version.release_channel === "string" ? version.release_channel.trim().toLowerCase() : "";
+                            const releaseChannelLabel = knownReleaseChannels.includes(releaseChannel) ? t(`versions.channels.${releaseChannel}`) : (version.release_channel || t("versions.notSpecified"));
+                            const versionName = version.name || version.version_number || version.id;
+
+                            return (
+                                <div key={version.id} className="project-sidebar-featured-version">
+                                    <a className="project-sidebar-featured-version__download button--active-transform" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation} aria-label={t("downloadVersionAria", { version: versionName })}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 15V3"/>
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="m7 10 5 5 5-5"/>
+                                        </svg>
+                                    </a>
+
+                                    <Link href={`${projectPath}/version/${version.id}`} className="project-sidebar-featured-version__body">
+                                        <span className="project-sidebar-featured-version__title">{versionName}</span>
+
+                                        <span className="project-sidebar-featured-version__game-versions">
+                                            <VersionDisplay gameVersions={getVersionGameVersions(version)} />
+                                        </span>
+
+                                        <span className={`version__badge type--${releaseChannel || "release"}`} style={{ lineHeight: "1" }}>
+                                            <span className="circle"></span>
+                                            {releaseChannelLabel}
+                                        </span>
+                                    </Link>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            )}
 
             {showLicense && project?.license?.id && (
                 <LicenseModal isOpen={showLicenseModal} licenseId={project?.license?.id} onRequestClose={() => setShowLicenseModal(false)} />

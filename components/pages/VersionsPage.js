@@ -338,7 +338,7 @@ export default function VersionsPage({ project, authToken, gameVersions = DEFAUL
                     )}
                 </div>
 
-                <ProjectSidebar project={project} />
+                <ProjectSidebar project={project} showFeaturedVersions={false} />
             </div>
         </>
     );

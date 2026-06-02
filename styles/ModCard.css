@@ -176,7 +176,6 @@
     margin-left: auto;
     justify-content: flex-end;
     white-space: nowrap;
-    font-weight: 500;
 }
 .new-project-card {
     display: flex;

@@ -595,6 +595,11 @@
           "embedded": "Integrada"
         }
       },
+      "downloadModal": {
+        "description": "Este mod necesita bibliotecas o mods adicionales para funcionar.",
+        "anyVersion": "Cualquier versión compatible",
+        "openDependency": "Abrir {dependency}"
+      },
       "metadata": {
         "title": "Metadatos",
         "gameVersion": "Versión del juego",

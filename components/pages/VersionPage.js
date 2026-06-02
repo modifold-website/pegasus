@@ -3,14 +3,11 @@
 import Link from "next/link";
 import { getProjectPath } from "@/utils/projectRoutes";
 import { useTranslations, useLocale } from "next-intl";
-import Modal from "react-modal";
 import VersionDisplay from "../VersionDisplay";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import ProjectSidebar from "../project/ProjectSidebar";
-import showOverTheTopDownloadAnimation from "../ui/showOverTheTopDownloadAnimation";
-
-Modal.setAppElement("body");
+import VersionDownloadButton from "../project/VersionDownloadButton";
 
 const getSafeMarkdownHref = (href) => {
     if(typeof href !== "string") {
@@ -98,7 +95,7 @@ export default function VersionPage({ project, version, authToken }) {
 
                             <div className="input-group">
                                 {primaryFile && (
-                                    <a className="button button--size-m button--type-primary" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation}>
+                                    <VersionDownloadButton project={project} version={version} className="button button--size-m button--type-primary" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`}>
                                         <svg className="masthead-stats__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M12 15V3" />
                                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -106,7 +103,7 @@ export default function VersionPage({ project, version, authToken }) {
                                         </svg>
                                         
                                         {t("download")}
-                                    </a>
+                                    </VersionDownloadButton>
                                 )}
                             </div>
                         </div>
@@ -193,7 +190,7 @@ export default function VersionPage({ project, version, authToken }) {
                                         <span className="file-size">({formatBytes(file.size)})</span>
                                     </span>
 
-                                    <a style={{ marginLeft: "auto", "--button-radius": "100px", "--button-padding": "0 16px" }} className="button button--size-m button--type-secondary button--active-transform button-with-icon" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation}>
+                                    <VersionDownloadButton project={project} version={version} style={{ marginLeft: "auto", "--button-radius": "100px", "--button-padding": "0 16px" }} className="button button--size-m button--type-secondary button--active-transform button-with-icon" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`}>
                                         <svg className="masthead-stats__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M12 15V3"></path>
                                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -201,7 +198,7 @@ export default function VersionPage({ project, version, authToken }) {
                                         </svg>
                                         
                                         {t("download")}
-                                    </a>
+                                    </VersionDownloadButton>
                                 </div>
                             )) || <span>{t("noFiles")}</span>}
                         </div>

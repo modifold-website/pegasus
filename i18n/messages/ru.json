@@ -595,6 +595,11 @@
           "embedded": "Встроенная"
         }
       },
+      "downloadModal": {
+        "description": "Для работы этого мода нужны дополнительные библиотеки или моды.",
+        "anyVersion": "Любая совместимая версия",
+        "openDependency": "Открыть {dependency}"
+      },
       "metadata": {
         "title": "Метаданные",
         "gameVersion": "Версия игры",

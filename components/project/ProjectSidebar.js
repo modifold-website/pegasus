@@ -7,9 +7,9 @@ import LicenseModal from "../../modal/LicenseModal";
 import ModJamVoteButton from "@/components/mod-jams/ModJamVoteButton";
 import UserName from "../ui/UserName";
 import VersionDisplay from "../VersionDisplay";
-import showOverTheTopDownloadAnimation from "../ui/showOverTheTopDownloadAnimation";
 import { getProjectPath } from "@/utils/projectRoutes";
 import { LICENSES } from "../Licenses";
+import VersionDownloadButton from "./VersionDownloadButton";
 
 const FEATURED_VERSIONS_LIMIT = 5;
 const knownReleaseChannels = ["release", "beta", "alpha"];
@@ -299,13 +299,13 @@ export default function ProjectSidebar({ project, authToken, showLicense = true,
 
                             return (
                                 <div key={version.id} className="project-sidebar-featured-version">
-                                    <a className="project-sidebar-featured-version__download button--active-transform" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation} aria-label={t("downloadVersionAria", { version: versionName })}>
+                                    <VersionDownloadButton project={project} version={version} className="project-sidebar-featured-version__download button--active-transform" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} ariaLabel={t("downloadVersionAria", { version: versionName })}>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 15V3"/>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="m7 10 5 5 5-5"/>
                                         </svg>
-                                    </a>
+                                    </VersionDownloadButton>
 
                                     <Link href={`${projectPath}/version/${version.id}`} className="project-sidebar-featured-version__body">
                                         <span className="project-sidebar-featured-version__title">{versionName}</span>

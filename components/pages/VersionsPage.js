@@ -7,7 +7,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import VersionDisplay from "../VersionDisplay";
 import { useTranslations, useLocale } from "next-intl";
 import ProjectSidebar from "../project/ProjectSidebar";
-import showOverTheTopDownloadAnimation from "../ui/showOverTheTopDownloadAnimation";
+import VersionDownloadButton from "../project/VersionDownloadButton";
 import { DEFAULT_GAME_VERSIONS, sortByKnownGameVersions } from "@/utils/gameVersions";
 
 const releaseChannels = ["release", "beta", "alpha"];
@@ -273,52 +273,52 @@ export default function VersionsPage({ project, authToken, gameVersions = DEFAUL
                             const moderationBadge = getVersionModerationBadge(version.moderation_status);
 
                             return (
-                            <div key={version.id} className="version-button button--active-transform">
-                                <a className="download-button" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`} onClick={showOverTheTopDownloadAnimation}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-4-4 4m0 0-4-4m4 4V4"></path>
-                                    </svg>
-                                </a>
+                                <div key={version.id} className="version-button">
+                                    <VersionDownloadButton project={project} version={version} className="download-button" href={`${process.env.NEXT_PUBLIC_API_BASE}/projects/${project.slug}/versions/${version.id}/download`}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-4-4 4m0 0-4-4m4 4V4"></path>
+                                        </svg>
+                                    </VersionDownloadButton>
 
-                                <Link href={`${getProjectPath(project)}/version/${version.id}`}>
-                                    <span className="version__title">
-                                        {version.version_number}
+                                    <Link href={`${getProjectPath(project)}/version/${version.id}`}>
+                                        <span className="version__title">
+                                            {version.version_number}
 
-                                        {version.loaders && version.loaders.trim() && version.loaders !== "null" ? (
-                                            version.loaders.split(",").map((loader, index) => (
-                                                <span key={index} className="version__game-platform">
-                                                    {loader.trim()}
-                                                </span>
-                                            ))
-                                        ) : (
-                                            <span className="version__game-platform">{t("versions.notSpecified")}</span>
-                                        )}
-                                        
-                                        <VersionDisplay gameVersions={version.game_versions ? version.game_versions.split(",").map((v) => v.trim()) : []} allGameVersions={gameVersions} />
-                                    </span>
-
-                                    <div className="version__metadata">
-                                        {moderationBadge && (
-                                            <span className={`version__badge type--${moderationBadge.type}`} style={{ marginRight: "8px" }}>
-                                                <span className="circle"></span>
-                                                {moderationBadge.label}
-                                            </span>
-                                        )}
-
-                                        <span className={`version__badge type--${version.release_channel}`}>
-                                            <span className="circle"></span>
-                                            {t("versions.published")}
+                                            {version.loaders && version.loaders.trim() && version.loaders !== "null" ? (
+                                                version.loaders.split(",").map((loader, index) => (
+                                                    <span key={index} className="version__game-platform">
+                                                        {loader.trim()}
+                                                    </span>
+                                                ))
+                                            ) : (
+                                                <span className="version__game-platform">{t("versions.notSpecified")}</span>
+                                            )}
+                                            
+                                            <VersionDisplay gameVersions={version.game_versions ? version.game_versions.split(",").map((v) => v.trim()) : []} allGameVersions={gameVersions} />
                                         </span>
-                                        <span className="divider"></span>
-                                        <span className="version_number">{formatDate(version.created_at)}</span>
-                                    </div>
-                                </Link>
 
-                                <div className="version__stats">
-                                    <strong>{version.downloads}</strong>
-                                    <span>{t("versions.downloads")}</span>
+                                        <div className="version__metadata">
+                                            {moderationBadge && (
+                                                <span className={`version__badge type--${moderationBadge.type}`} style={{ marginRight: "8px" }}>
+                                                    <span className="circle"></span>
+                                                    {moderationBadge.label}
+                                                </span>
+                                            )}
+
+                                            <span className={`version__badge type--${version.release_channel}`}>
+                                                <span className="circle"></span>
+                                                {t("versions.published")}
+                                            </span>
+                                            <span className="divider"></span>
+                                            <span className="version_number">{formatDate(version.created_at)}</span>
+                                        </div>
+                                    </Link>
+
+                                    <div className="version__stats">
+                                        <strong>{version.downloads}</strong>
+                                        <span>{t("versions.downloads")}</span>
+                                    </div>
                                 </div>
-                            </div>
                             );
                         })}
                     </div>

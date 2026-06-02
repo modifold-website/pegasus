@@ -594,6 +594,11 @@
           "embedded": "Gömülü"
         }
       },
+      "downloadModal": {
+        "description": "Bu modun çalışması için ek kütüphaneler veya modlar gerekir.",
+        "anyVersion": "Uyumlu herhangi bir sürüm",
+        "openDependency": "{dependency} aç"
+      },
       "metadata": {
         "title": "Meta verileri",
         "gameVersion": "Oyun sürümü",

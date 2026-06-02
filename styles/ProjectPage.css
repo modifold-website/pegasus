@@ -502,6 +502,9 @@
     width: 22px;
     height: 22px;
 }
+.all-versions .version-button .download-button:active {
+    transform: scale(0.96);
+}
 .all-versions .version-button .version-actions__trigger svg {
     fill: none;
     width: 20px;
@@ -510,9 +513,6 @@
 .version-button .download-button:hover {
     color: #ffffff !important;
     background: #00af5c !important;
-}
-.version-button .download-button:active {
-    transform: scale(0.97);
 }
 .version-button .download-button.version-actions__trigger:hover {
     color: var(--theme-color-text-primary) !important;
@@ -913,6 +913,121 @@
 	background: var(--theme-color-background);
 	font-size: 13px;
 	line-height: 17px;
+}
+.version-download-modal .modal-window {
+	max-width: 860px;
+}
+.version-download-modal__header {
+	align-items: center;
+}
+.version-download-modal__project {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-width: 0;
+}
+.version-download-modal__project-icon,
+.version-download-modal__dependency-icon {
+	flex-shrink: 0;
+	border-radius: 10px;
+	object-fit: cover;
+	background: var(--theme-color-background);
+	border: 1px solid var(--theme-color-border);
+	box-shadow: var(--project_card-box-shadow);
+}
+.version-download-modal__project-text {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	min-width: 0;
+}
+.version-download-modal__project-text span {
+	color: var(--theme-color-text-secondary);
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1;
+}
+.version-download-modal__content {
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+}
+.version-download-modal__intro {
+	max-width: 640px;
+	margin: 0 auto;
+	color: var(--theme-color-text-primary);
+	font-size: 16px;
+	line-height: 22px;
+	text-align: center;
+}
+.version-download-modal__dependencies {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.version-download-modal__dependency {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 12px;
+	padding: 12px;
+	border-radius: 18px;
+	background: var(--theme-color-background);
+}
+.version-download-modal__dependency-main {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	min-width: 0;
+}
+.version-download-modal__dependency-main p,
+.version-download-modal__dependency-main span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.version-download-modal__dependency-main p {
+    font-size: 16px;
+	line-height: 22px;
+}
+.version-download-modal__dependency-main span {
+	color: var(--theme-color-text-secondary);
+	font-size: 15px;
+	line-height: 1.1;
+}
+.version-download-modal__dependency-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.version-download-modal__dependency-actions .icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	width: 34px;
+	height: 34px;
+	min-width: 34px;
+	background: var(--theme-color-background-content);
+	box-shadow: var(--project_card-box-shadow);
+}
+.version-download-modal__dependency-actions .icon-button svg {
+	fill: none;
+}
+.version-download-modal__dependency-actions .icon-button:hover {
+    opacity: 0.8;
+}
+@media (max-width: 720px) {
+	.version-download-modal__intro {
+		font-size: 20px;
+		text-align: left;
+	}
+	.version-download-modal__dependency {
+		grid-template-columns: auto minmax(0, 1fr);
+	}
+	.version-download-modal__dependency-actions {
+		grid-column: 1 / -1;
+		justify-content: flex-start;
+	}
 }
 .links-list {
     font-weight: 500;

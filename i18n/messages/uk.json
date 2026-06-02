@@ -596,6 +596,11 @@
           "embedded": "Вбудована"
         }
       },
+      "downloadModal": {
+        "description": "Для роботи цього мода потрібні додаткові бібліотеки або моди.",
+        "anyVersion": "Будь-яка сумісна версія",
+        "openDependency": "Відкрити {dependency}"
+      },
       "metadata": {
         "title": "Метадані",
         "gameVersion": "Версія гри",

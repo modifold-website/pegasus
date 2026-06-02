@@ -9,6 +9,7 @@ import UserName from "../ui/UserName";
 import VersionDisplay from "../VersionDisplay";
 import showOverTheTopDownloadAnimation from "../ui/showOverTheTopDownloadAnimation";
 import { getProjectPath } from "@/utils/projectRoutes";
+import { LICENSES } from "../Licenses";
 
 const FEATURED_VERSIONS_LIMIT = 5;
 const knownReleaseChannels = ["release", "beta", "alpha"];
@@ -30,15 +31,27 @@ function getVersionGameVersions(version) {
 	return [];
 }
 
+function getLicenseDisplayName(license, unknownLicense) {
+	const normalizedId = (license?.id || "").toString().toLowerCase();
+	if(normalizedId === "arr" || normalizedId === "no-license") {
+		return "ARR";
+	}
+
+	const matchedLicense = LICENSES.find((item) => {
+		const candidates = [item.id, item.key, item.spdx, item.name].filter(Boolean).map((value) => value.toString().toLowerCase());
+		return candidates.includes(normalizedId) || candidates.includes((license?.name || "").toString().toLowerCase());
+	});
+
+	return matchedLicense?.spdx || license?.spdx || license?.name || unknownLicense;
+}
+
 export default function ProjectSidebar({ project, authToken, showLicense = true, showLinks = true, showFeaturedVersions = true }) {
     const t = useTranslations("ProjectPage");
     const tLicense = useTranslations("LicenseModal");
     const locale = useLocale();
     const [showLicenseModal, setShowLicenseModal] = useState(false);
     const licenseToken = "__LICENSE__";
-    const normalizedLicenseId = (project?.license?.id || "").toString().toLowerCase();
-    const isArrLicense = normalizedLicenseId === "arr" || normalizedLicenseId === "no-license";
-    const licenseName = isArrLicense ? "ARR" : (project?.license?.name || tLicense("unknown"));
+    const licenseName = getLicenseDisplayName(project?.license, tLicense("unknown"));
     const licensedAs = t("licensedAs", { license: licenseToken });
     const [licensedAsBefore, licensedAsAfter = ""] = licensedAs.split(licenseToken);
     const licensedHasToken = licensedAs.includes(licenseToken);

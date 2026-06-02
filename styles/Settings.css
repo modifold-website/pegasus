@@ -378,13 +378,14 @@
     bottom: calc(100% + 10px);
     transform: translateX(-50%);
     z-index: 20;
-    background: #0d0f14;
-    color: #fff;
+    box-shadow: var(--theme-shadow-popover);
+    background: var(--theme-color-background-content);
+    color: var(--theme-color-text-primary);
     padding: 8px 12px;
     border-radius: 12px;
     font-size: 14px;
     line-height: 1;
-    font-weight: 600;
+    font-weight: 500;
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
@@ -401,7 +402,7 @@
     height: 0;
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
-    border-top: 7px solid #0d0f14;
+    border-top: 7px solid var(--theme-color-background-content);
 }
 .mf-tooltip--visible .mf-tooltip__bubble {
     opacity: 1;

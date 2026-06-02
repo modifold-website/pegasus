@@ -329,7 +329,7 @@
 	min-height: 70px;
 }
 .project-inline-gallery__thumbs-viewport--single {
-	width: auto;
+	width: 128px;
 }
 .project-inline-gallery__thumbs-track {
 	display: grid;
@@ -339,6 +339,7 @@
 }
 .project-inline-gallery__thumbs-track--single {
 	grid-template-columns: minmax(0, 128px);
+	justify-content: center;
 	width: auto;
 }
 .project-inline-gallery__thumbs-track--active {
@@ -659,6 +660,9 @@
 	}
 	.project-inline-gallery__thumbs-viewport {
 		min-height: 62px;
+	}
+	.project-inline-gallery__thumbs-viewport--single {
+		width: 112px;
 	}
 	.project-inline-gallery__thumbs-track--single {
 		grid-template-columns: minmax(0, 112px);

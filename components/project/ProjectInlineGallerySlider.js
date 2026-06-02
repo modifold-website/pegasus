@@ -91,8 +91,8 @@ export default function ProjectInlineGallerySlider({ images = [], projectTitle =
 	const visibleThumbs = preparedImages.slice(thumbsWindowStart, thumbsWindowStart + visibleThumbsCount);
 	const nextVisibleThumbs = preparedImages.slice(nextThumbsWindowStart, nextThumbsWindowStart + visibleThumbsCount);
 	const activeThumbIndex = transitionState ? transitionState.to : activeIndex;
-	const displayedThumbsCount = Math.max(1, (isThumbsAnimating ? nextVisibleThumbs : visibleThumbs).length);
-	const hasSingleVisibleThumb = displayedThumbsCount === 1;
+	const displayedThumbsCount = Math.max(1, isThumbsAnimating ? Math.max(visibleThumbs.length, nextVisibleThumbs.length) : visibleThumbs.length);
+	const hasSingleVisibleThumb = !isThumbsAnimating && displayedThumbsCount === 1;
 	const getImageAlt = (image, index) => image.title || `${projectTitle} image ${index + 1}`;
 	const getThumbAlt = (image, index) => image.title || `${projectTitle} thumbnail ${index + 1}`;
 
